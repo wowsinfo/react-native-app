@@ -58,16 +58,32 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-wowsinfo-wowsinfoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-wowsinfoTests.release.xcconfig"; path = "Target Support Files/Pods-wowsinfo-wowsinfoTests/Pods-wowsinfo-wowsinfoTests.release.xcconfig"; sourceTree = "<group>"; };
 		9200E86F2A963881007605E1 /* objc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = objc.h; sourceTree = "<group>"; };
+		92926A5F2A977EEF00191FEC /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
+		92926A602A977EEF00191FEC /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
+		92926A612A977EEF00191FEC /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
+		92926A622A977EEF00191FEC /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
+		92926A632A977EEF00191FEC /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
+		92926A642A977EEF00191FEC /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
+		92926A652A977EEF00191FEC /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
+		92926A662A977EEF00191FEC /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foundation.ttf; sourceTree = "<group>"; };
+		92926A672A977EEF00191FEC /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
+		92926A682A977EEF00191FEC /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
+		92926A692A977EEF00191FEC /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
+		92926A6A2A977EEF00191FEC /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		92926A6B2A977EEF00191FEC /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
+		92926A6C2A977EEF00191FEC /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
+		92926A6D2A977EEF00191FEC /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
+		92926A6E2A977EEF00191FEC /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		92C1CADC2A962A0400E07A7D /* wowsinfoDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wowsinfoDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		92C1CADD2A962A0400E07A7D /* debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "debug-Info.plist"; path = "/Users/henryquan/Documents/GitHub/react-native-app/wowsinfo/ios/wowsinfo/debug-Info.plist"; sourceTree = "<absolute>"; };
+		92C1CADD2A962A0400E07A7D /* debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "debug-Info.plist"; sourceTree = "<group>"; };
 		92C72AE92A962F000056AD82 /* ReactNativeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeManager.m; sourceTree = "<group>"; };
 		92C72AEA2A962F000056AD82 /* ReactNativeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactNativeManager.swift; sourceTree = "<group>"; };
 		92C72AEC2A962F000056AD82 /* QuickActionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickActionManager.swift; sourceTree = "<group>"; };
 		92C72AED2A962F000056AD82 /* QuickActionEventEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickActionEventEmitter.m; sourceTree = "<group>"; };
 		92C72AEE2A962F000056AD82 /* QuickActionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickActionManager.m; sourceTree = "<group>"; };
 		92C72AEF2A962F000056AD82 /* QuickActionEventEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickActionEventEmitter.swift; sourceTree = "<group>"; };
-		92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = wowsinfo/AppDelegate.swift; sourceTree = "<group>"; };
-		92C72AFF2A96306E0056AD82 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootController.swift; path = wowsinfo/RootController.swift; sourceTree = "<group>"; };
+		92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		92C72AFF2A96306E0056AD82 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -125,7 +141,8 @@
 				92C72AFF2A96306E0056AD82 /* RootController.swift */,
 			);
 			name = wowsinfo;
-			sourceTree = "<group>";
+			path = "/Users/henryquan/Documents/GitHub/react-native-app/wowsinfo/ios/wowsinfo";
+			sourceTree = "<absolute>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
@@ -172,6 +189,7 @@
 		9200E8702A963C48007605E1 /* support */ = {
 			isa = PBXGroup;
 			children = (
+				92926A5E2A977EEF00191FEC /* Fonts */,
 				9200E86F2A963881007605E1 /* objc.h */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -181,6 +199,30 @@
 			path = support;
 			sourceTree = "<group>";
 		};
+		92926A5E2A977EEF00191FEC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				92926A5F2A977EEF00191FEC /* Fontisto.ttf */,
+				92926A602A977EEF00191FEC /* Octicons.ttf */,
+				92926A612A977EEF00191FEC /* Feather.ttf */,
+				92926A622A977EEF00191FEC /* Entypo.ttf */,
+				92926A632A977EEF00191FEC /* FontAwesome5_Brands.ttf */,
+				92926A642A977EEF00191FEC /* MaterialCommunityIcons.ttf */,
+				92926A652A977EEF00191FEC /* AntDesign.ttf */,
+				92926A662A977EEF00191FEC /* Foundation.ttf */,
+				92926A672A977EEF00191FEC /* Ionicons.ttf */,
+				92926A682A977EEF00191FEC /* FontAwesome5_Solid.ttf */,
+				92926A692A977EEF00191FEC /* FontAwesome5_Regular.ttf */,
+				92926A6A2A977EEF00191FEC /* FontAwesome.ttf */,
+				92926A6B2A977EEF00191FEC /* Zocial.ttf */,
+				92926A6C2A977EEF00191FEC /* EvilIcons.ttf */,
+				92926A6D2A977EEF00191FEC /* SimpleLineIcons.ttf */,
+				92926A6E2A977EEF00191FEC /* MaterialIcons.ttf */,
+			);
+			name = Fonts;
+			path = "../../../node_modules/react-native-vector-icons/Fonts";
+			sourceTree = "<group>";
+		};
 		92C72AE82A962F000056AD82 /* react-native */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,8 +230,7 @@
 				92C72AEA2A962F000056AD82 /* ReactNativeManager.swift */,
 				92C72AEB2A962F000056AD82 /* quick-actions */,
 			);
-			name = "react-native";
-			path = "wowsinfo/react-native";
+			path = "react-native";
 			sourceTree = "<group>";
 		};
 		92C72AEB2A962F000056AD82 /* quick-actions */ = {
@@ -698,7 +739,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = wowsinfo/Info.plist;
+				INFOPLIST_FILE = wowsinfo/support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -712,7 +753,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = wowsinfo;
-				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/objc.h;
+				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/support/objc.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -726,7 +767,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = wowsinfo/Info.plist;
+				INFOPLIST_FILE = wowsinfo/support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -740,7 +781,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = wowsinfo;
-				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/objc.h;
+				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/support/objc.h;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -892,7 +933,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = "wowsinfo/debug-info.plist";
+				INFOPLIST_FILE = "wowsinfo/support/debug-info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -907,7 +948,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Charts/Charts.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/NativeChart/NativeChart.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftAlgorithms/Algorithms.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit/YogaKit.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/FlipperKit/FlipperKit.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/RCTTypeSafety/RCTTypeSafety.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/React/React-Core.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/ReactCommon/ReactCommon.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/React_Codegen/React-Codegen.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/React_NativeModulesApple/React-NativeModulesApple.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/folly/RCT-Folly.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/yoga/Yoga.modulemap\" -Xcc -DFB_SONARKIT_ENABLED=1 -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/objc.h;
+				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/support/objc.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -921,7 +962,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = "wowsinfo/debug-info.plist";
+				INFOPLIST_FILE = "wowsinfo/support/debug-info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -935,7 +976,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/objc.h;
+				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/support/objc.h;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
