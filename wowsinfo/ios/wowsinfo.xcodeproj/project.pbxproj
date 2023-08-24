@@ -12,6 +12,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		7699B88040F8A987B510C191 /* libPods-wowsinfo-wowsinfoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-wowsinfo-wowsinfoTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		92926A902A9786F200191FEC /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 92926A8F2A9786F200191FEC /* Localizable.xcstrings */; };
+		92926A912A9786F200191FEC /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 92926A8F2A9786F200191FEC /* Localizable.xcstrings */; };
 		92C1CAD22A962A0400E07A7D /* libPods-wowsinfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-wowsinfo.a */; };
 		92C1CAD42A962A0400E07A7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		92C1CAD52A962A0400E07A7D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -74,6 +76,7 @@
 		92926A6C2A977EEF00191FEC /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		92926A6D2A977EEF00191FEC /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		92926A6E2A977EEF00191FEC /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		92926A8F2A9786F200191FEC /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		92C1CADC2A962A0400E07A7D /* wowsinfoDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wowsinfoDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C1CADD2A962A0400E07A7D /* debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "debug-Info.plist"; sourceTree = "<group>"; };
 		92C72AE92A962F000056AD82 /* ReactNativeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeManager.m; sourceTree = "<group>"; };
@@ -189,11 +192,12 @@
 		9200E8702A963C48007605E1 /* support */ = {
 			isa = PBXGroup;
 			children = (
+				92926A8F2A9786F200191FEC /* Localizable.xcstrings */,
 				92926A5E2A977EEF00191FEC /* Fonts */,
 				9200E86F2A963881007605E1 /* objc.h */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				92C1CADD2A962A0400E07A7D /* debug-Info.plist */,
+				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 			);
 			path = support;
@@ -347,6 +351,9 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
+				ja,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -374,6 +381,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				92926A902A9786F200191FEC /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +391,7 @@
 			files = (
 				92C1CAD42A962A0400E07A7D /* LaunchScreen.storyboard in Resources */,
 				92C1CAD52A962A0400E07A7D /* Images.xcassets in Resources */,
+				92926A912A9786F200191FEC /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

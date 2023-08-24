@@ -36,7 +36,7 @@ export const getKeyByValue = (object, value) => {
 };
 
 export const getTierList = () => {
-  return ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+  return ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', '★', '★', '★'];
 };
 
 export const filterShip = (data, shipData = null) => {

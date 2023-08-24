@@ -37,11 +37,6 @@ class ReactNativeManager: NSObject {
     
     func setup(with delegate: RCTBridgeDelegate, and launchOptions: [AnyHashable: Any]?) {
         bridge = RCTBridge(delegate: delegate, launchOptions: launchOptions)
-        
-        /// https://stackoverflow.com/a/48903673, RCTBridge required dispatch_sync to load RCTDevLoadingView
-        #if RCT_DEV
-        bridge?.module(for: RCTDevLoadingView.self)
-        #endif
     }
     
     func attach(rootViewController: UIViewController) {
