@@ -1,8 +1,8 @@
-import { SafeStorage, SafeValue } from '../core';
-import { Actions } from 'react-native-router-flux';
-import { getAvailablePurchases, getPurchaseHistory } from 'react-native-iap';
-import { Alert, Platform } from 'react-native';
-import { lang } from './lang';
+import {SafeStorage, SafeValue} from '../core';
+import {Actions} from 'react-native-router-flux';
+import {getAvailablePurchases, getPurchaseHistory} from 'react-native-iap';
+import {Alert, Platform} from 'react-native';
+import {lang} from './lang';
 
 /**
  * App information
@@ -21,8 +21,7 @@ export const APP = {
   WeChat:
     'https://github.com/HenryQuan/WoWs-Info-Origin/blob/master/Support/WeChat.png',
   PersonalRating: 'https://wows-numbers.com/personal/rating',
-  LatestRelease:
-    'https://github.com/wowsinfo/react-native-app/releases/latest',
+  LatestRelease: 'https://github.com/wowsinfo/react-native-app/releases/latest',
 };
 
 /**

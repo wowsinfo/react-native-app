@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "92C1CACB2A962A0400E07A7D"
-               BuildableName = "wowsinfoDebug.app"
-               BlueprintName = "wowsinfoDebug"
+               BlueprintIdentifier = "923257AE2A98B0D00053E5F6"
+               BuildableName = "wowsinfo-debug.app"
+               BlueprintName = "wowsinfo-debug"
                ReferencedContainer = "container:wowsinfo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,9 +43,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "92C1CACB2A962A0400E07A7D"
-            BuildableName = "wowsinfoDebug.app"
-            BlueprintName = "wowsinfoDebug"
+            BlueprintIdentifier = "923257AE2A98B0D00053E5F6"
+            BuildableName = "wowsinfo-debug.app"
+            BlueprintName = "wowsinfo-debug"
             ReferencedContainer = "container:wowsinfo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -60,9 +60,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "92C1CACB2A962A0400E07A7D"
-            BuildableName = "wowsinfoDebug.app"
-            BlueprintName = "wowsinfoDebug"
+            BlueprintIdentifier = "923257AE2A98B0D00053E5F6"
+            BuildableName = "wowsinfo-debug.app"
+            BlueprintName = "wowsinfo-debug"
             ReferencedContainer = "container:wowsinfo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -7,59 +7,57 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* wowsinfoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* wowsinfoTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-wowsinfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-wowsinfo.a */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		7699B88040F8A987B510C191 /* libPods-wowsinfo-wowsinfoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-wowsinfo-wowsinfoTests.a */; };
+		0C80B921A6F3F58F76C31292 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		7BCAD8F72E8689ED09AA43DE /* libPods-wowsinfo-debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91C2EDCC608D13B394C6FB4E /* libPods-wowsinfo-debug.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		92224B4D2A98B5630021F111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9232578A2A98AF9C0053E5F6 /* Assets.xcassets */; };
+		92224B4E2A98B5630021F111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9232578A2A98AF9C0053E5F6 /* Assets.xcassets */; };
+		923257B22A98B0D00053E5F6 /* ReactNativeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEA2A962F000056AD82 /* ReactNativeManager.swift */; };
+		923257B32A98B0D00053E5F6 /* QuickActionEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AED2A962F000056AD82 /* QuickActionEventEmitter.m */; };
+		923257B42A98B0D00053E5F6 /* QuickActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEE2A962F000056AD82 /* QuickActionManager.m */; };
+		923257B52A98B0D00053E5F6 /* ReactNativeCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92553F252A987D49008EC8FC /* ReactNativeCaller.swift */; };
+		923257B62A98B0D00053E5F6 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92553F2F2A988158008EC8FC /* SetupView.swift */; };
+		923257B72A98B0D00053E5F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */; };
+		923257B82A98B0D00053E5F6 /* QuickActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEC2A962F000056AD82 /* QuickActionManager.swift */; };
+		923257B92A98B0D00053E5F6 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFF2A96306E0056AD82 /* RootController.swift */; };
+		923257BA2A98B0D00053E5F6 /* ReactNativeCaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 92553F292A987D9F008EC8FC /* ReactNativeCaller.m */; };
+		923257BB2A98B0D00053E5F6 /* ReactNativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AE92A962F000056AD82 /* ReactNativeManager.m */; };
+		923257BC2A98B0D00053E5F6 /* QuickActionEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEF2A962F000056AD82 /* QuickActionEventEmitter.swift */; };
+		923257C12A98B0D00053E5F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		923257C32A98B0D00053E5F6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 92926A8F2A9786F200191FEC /* Localizable.xcstrings */; };
+		92553F262A987D49008EC8FC /* ReactNativeCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92553F252A987D49008EC8FC /* ReactNativeCaller.swift */; };
+		92553F2A2A987D9F008EC8FC /* ReactNativeCaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 92553F292A987D9F008EC8FC /* ReactNativeCaller.m */; };
+		92553F302A988158008EC8FC /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92553F2F2A988158008EC8FC /* SetupView.swift */; };
 		92926A902A9786F200191FEC /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 92926A8F2A9786F200191FEC /* Localizable.xcstrings */; };
-		92926A912A9786F200191FEC /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 92926A8F2A9786F200191FEC /* Localizable.xcstrings */; };
-		92C1CAD22A962A0400E07A7D /* libPods-wowsinfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-wowsinfo.a */; };
-		92C1CAD42A962A0400E07A7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		92C1CAD52A962A0400E07A7D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		92C72AF02A962F000056AD82 /* ReactNativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AE92A962F000056AD82 /* ReactNativeManager.m */; };
-		92C72AF12A962F000056AD82 /* ReactNativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AE92A962F000056AD82 /* ReactNativeManager.m */; };
 		92C72AF22A962F000056AD82 /* ReactNativeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEA2A962F000056AD82 /* ReactNativeManager.swift */; };
-		92C72AF32A962F000056AD82 /* ReactNativeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEA2A962F000056AD82 /* ReactNativeManager.swift */; };
 		92C72AF42A962F000056AD82 /* QuickActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEC2A962F000056AD82 /* QuickActionManager.swift */; };
-		92C72AF52A962F000056AD82 /* QuickActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEC2A962F000056AD82 /* QuickActionManager.swift */; };
 		92C72AF62A962F000056AD82 /* QuickActionEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AED2A962F000056AD82 /* QuickActionEventEmitter.m */; };
-		92C72AF72A962F000056AD82 /* QuickActionEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AED2A962F000056AD82 /* QuickActionEventEmitter.m */; };
 		92C72AF82A962F000056AD82 /* QuickActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEE2A962F000056AD82 /* QuickActionManager.m */; };
-		92C72AF92A962F000056AD82 /* QuickActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEE2A962F000056AD82 /* QuickActionManager.m */; };
 		92C72AFA2A962F000056AD82 /* QuickActionEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEF2A962F000056AD82 /* QuickActionEventEmitter.swift */; };
-		92C72AFB2A962F000056AD82 /* QuickActionEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEF2A962F000056AD82 /* QuickActionEventEmitter.swift */; };
 		92C72AFD2A962F5D0056AD82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */; };
-		92C72AFE2A962F5D0056AD82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */; };
 		92C72B002A96306E0056AD82 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFF2A96306E0056AD82 /* RootController.swift */; };
-		92C72B012A96306E0056AD82 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFF2A96306E0056AD82 /* RootController.swift */; };
+		D0A56DCDBCDD05C70CE37224 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = wowsinfo;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* wowsinfoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wowsinfoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* wowsinfoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = wowsinfoTests.m; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* wowsinfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wowsinfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-wowsinfo-wowsinfoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wowsinfo-wowsinfoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B4392A12AC88292D35C810B /* Pods-wowsinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfo/Pods-wowsinfo.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-wowsinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo.release.xcconfig"; path = "Target Support Files/Pods-wowsinfo/Pods-wowsinfo.release.xcconfig"; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = support/Info.plist; sourceTree = "<group>"; };
+		388ADB2D89B17E2D670EC186 /* Pods-wowsinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfo/Pods-wowsinfo.debug.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-wowsinfo-wowsinfoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-wowsinfoTests.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfo-wowsinfoTests/Pods-wowsinfo-wowsinfoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-wowsinfo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wowsinfo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		62BC9D4810E163F4D27CCDA2 /* Pods-wowsinfo-debug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-debug.release.xcconfig"; path = "Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug.release.xcconfig"; sourceTree = "<group>"; };
+		6309FA9D9A4BF4413A44EE3A /* Pods-wowsinfotest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfotest.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfotest/Pods-wowsinfotest.debug.xcconfig"; sourceTree = "<group>"; };
+		6D901F95CD4FCE7372A062B8 /* libPods-wowsinfotest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wowsinfotest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		808D29D51443D5B687BC971D /* Pods-wowsinfotest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfotest.release.xcconfig"; path = "Target Support Files/Pods-wowsinfotest/Pods-wowsinfotest.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-wowsinfo-wowsinfoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-wowsinfoTests.release.xcconfig"; path = "Target Support Files/Pods-wowsinfo-wowsinfoTests/Pods-wowsinfo-wowsinfoTests.release.xcconfig"; sourceTree = "<group>"; };
+		91C2EDCC608D13B394C6FB4E /* libPods-wowsinfo-debug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wowsinfo-debug.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9200E86F2A963881007605E1 /* objc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = objc.h; sourceTree = "<group>"; };
+		9232578A2A98AF9C0053E5F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		923257CA2A98B0D00053E5F6 /* wowsinfo-debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "wowsinfo-debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		92553F252A987D49008EC8FC /* ReactNativeCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactNativeCaller.swift; sourceTree = "<group>"; };
+		92553F292A987D9F008EC8FC /* ReactNativeCaller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactNativeCaller.m; sourceTree = "<group>"; };
+		92553F2F2A988158008EC8FC /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
 		92926A5F2A977EEF00191FEC /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		92926A602A977EEF00191FEC /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		92926A612A977EEF00191FEC /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -77,8 +75,7 @@
 		92926A6D2A977EEF00191FEC /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		92926A6E2A977EEF00191FEC /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		92926A8F2A9786F200191FEC /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		92C1CADC2A962A0400E07A7D /* wowsinfoDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wowsinfoDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		92C1CADD2A962A0400E07A7D /* debug-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "debug-Info.plist"; sourceTree = "<group>"; };
+		92C1CADD2A962A0400E07A7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92C72AE92A962F000056AD82 /* ReactNativeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeManager.m; sourceTree = "<group>"; };
 		92C72AEA2A962F000056AD82 /* ReactNativeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactNativeManager.swift; sourceTree = "<group>"; };
 		92C72AEC2A962F000056AD82 /* QuickActionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickActionManager.swift; sourceTree = "<group>"; };
@@ -87,61 +84,44 @@
 		92C72AEF2A962F000056AD82 /* QuickActionEventEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickActionEventEmitter.swift; sourceTree = "<group>"; };
 		92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92C72AFF2A96306E0056AD82 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
+		A45E42193C3FB61E81C20E9A /* Pods-wowsinfo-debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-debug.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug.debug.xcconfig"; sourceTree = "<group>"; };
+		B66C1C581B386FD45CBD0E97 /* Pods-wowsinfoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfoTests.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfoTests/Pods-wowsinfoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CBE9FEE413D6D88203233985 /* libPods-wowsinfoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wowsinfoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2E2B1F66FB6C7096AAAD1F2 /* Pods-wowsinfoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfoTests.release.xcconfig"; path = "Target Support Files/Pods-wowsinfoTests/Pods-wowsinfoTests.release.xcconfig"; sourceTree = "<group>"; };
+		E89AE616A3CD58B795671FE5 /* Pods-wowsinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo.release.xcconfig"; path = "Target Support Files/Pods-wowsinfo/Pods-wowsinfo.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00E356EB1AD99517003FC87E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7699B88040F8A987B510C191 /* libPods-wowsinfo-wowsinfoTests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-wowsinfo.a in Frameworks */,
+				0C80B921A6F3F58F76C31292 /* (null) in Frameworks */,
+				D0A56DCDBCDD05C70CE37224 /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		92C1CAD12A962A0400E07A7D /* Frameworks */ = {
+		923257BD2A98B0D00053E5F6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92C1CAD22A962A0400E07A7D /* libPods-wowsinfo.a in Frameworks */,
+				7BCAD8F72E8689ED09AA43DE /* libPods-wowsinfo-debug.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* wowsinfoTests */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F21AD99517003FC87E /* wowsinfoTests.m */,
-				00E356F01AD99517003FC87E /* Supporting Files */,
-			);
-			path = wowsinfoTests;
-			sourceTree = "<group>";
-		};
-		00E356F01AD99517003FC87E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F11AD99517003FC87E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* wowsinfo */ = {
 			isa = PBXGroup;
 			children = (
-				9200E8702A963C48007605E1 /* support */,
+				13B07FB61A68108700A75B9A /* Info.plist */,
 				92C72AE82A962F000056AD82 /* react-native */,
+				92553F2E2A98811F008EC8FC /* view */,
 				92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */,
 				92C72AFF2A96306E0056AD82 /* RootController.swift */,
+				9200E8702A963C48007605E1 /* support */,
 			);
 			name = wowsinfo;
 			path = "/Users/henryquan/Documents/GitHub/react-native-app/wowsinfo/ios/wowsinfo";
@@ -151,8 +131,9 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-wowsinfo.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-wowsinfo-wowsinfoTests.a */,
+				6D901F95CD4FCE7372A062B8 /* libPods-wowsinfotest.a */,
+				CBE9FEE413D6D88203233985 /* libPods-wowsinfoTests.a */,
+				91C2EDCC608D13B394C6FB4E /* libPods-wowsinfo-debug.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -168,8 +149,9 @@
 			isa = PBXGroup;
 			children = (
 				13B07FAE1A68108700A75B9A /* wowsinfo */,
+				923257852A98AF9B0053E5F6 /* wowsinfo-debug */,
+				923257962A98AF9C0053E5F6 /* Testing */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* wowsinfoTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -183,8 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* wowsinfo.app */,
-				00E356EE1AD99517003FC87E /* wowsinfoTests.xctest */,
-				92C1CADC2A962A0400E07A7D /* wowsinfoDebug.app */,
+				923257CA2A98B0D00053E5F6 /* wowsinfo-debug.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,15 +173,54 @@
 		9200E8702A963C48007605E1 /* support */ = {
 			isa = PBXGroup;
 			children = (
-				92926A8F2A9786F200191FEC /* Localizable.xcstrings */,
-				92926A5E2A977EEF00191FEC /* Fonts */,
-				9200E86F2A963881007605E1 /* objc.h */,
-				13B07FB61A68108700A75B9A /* Info.plist */,
-				92C1CADD2A962A0400E07A7D /* debug-Info.plist */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				92926A8F2A9786F200191FEC /* Localizable.xcstrings */,
+				9232578A2A98AF9C0053E5F6 /* Assets.xcassets */,
+				9200E86F2A963881007605E1 /* objc.h */,
+				92926A5E2A977EEF00191FEC /* Fonts */,
+				92553F2D2A987E84008EC8FC /* json */,
 			);
 			path = support;
+			sourceTree = "<group>";
+		};
+		923257852A98AF9B0053E5F6 /* wowsinfo-debug */ = {
+			isa = PBXGroup;
+			children = (
+				92C1CADD2A962A0400E07A7D /* Info.plist */,
+			);
+			path = "wowsinfo-debug";
+			sourceTree = "<group>";
+		};
+		923257962A98AF9C0053E5F6 /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Testing;
+			sourceTree = "<group>";
+		};
+		92553F2C2A987E0F008EC8FC /* caller */ = {
+			isa = PBXGroup;
+			children = (
+				92553F292A987D9F008EC8FC /* ReactNativeCaller.m */,
+				92553F252A987D49008EC8FC /* ReactNativeCaller.swift */,
+			);
+			path = caller;
+			sourceTree = "<group>";
+		};
+		92553F2D2A987E84008EC8FC /* json */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		92553F2E2A98811F008EC8FC /* view */ = {
+			isa = PBXGroup;
+			children = (
+				92553F2F2A988158008EC8FC /* SetupView.swift */,
+			);
+			name = view;
+			path = "react-native/view";
 			sourceTree = "<group>";
 		};
 		92926A5E2A977EEF00191FEC /* Fonts */ = {
@@ -230,9 +250,10 @@
 		92C72AE82A962F000056AD82 /* react-native */ = {
 			isa = PBXGroup;
 			children = (
+				92553F2C2A987E0F008EC8FC /* caller */,
+				92C72AEB2A962F000056AD82 /* quick-actions */,
 				92C72AE92A962F000056AD82 /* ReactNativeManager.m */,
 				92C72AEA2A962F000056AD82 /* ReactNativeManager.swift */,
-				92C72AEB2A962F000056AD82 /* quick-actions */,
 			);
 			path = "react-native";
 			sourceTree = "<group>";
@@ -240,9 +261,9 @@
 		92C72AEB2A962F000056AD82 /* quick-actions */ = {
 			isa = PBXGroup;
 			children = (
+				92C72AEE2A962F000056AD82 /* QuickActionManager.m */,
 				92C72AEC2A962F000056AD82 /* QuickActionManager.swift */,
 				92C72AED2A962F000056AD82 /* QuickActionEventEmitter.m */,
-				92C72AEE2A962F000056AD82 /* QuickActionManager.m */,
 				92C72AEF2A962F000056AD82 /* QuickActionEventEmitter.swift */,
 			);
 			path = "quick-actions";
@@ -251,10 +272,16 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-wowsinfo.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-wowsinfo.release.xcconfig */,
 				5B7EB9410499542E8C5724F5 /* Pods-wowsinfo-wowsinfoTests.debug.xcconfig */,
 				89C6BE57DB24E9ADA2F236DE /* Pods-wowsinfo-wowsinfoTests.release.xcconfig */,
+				388ADB2D89B17E2D670EC186 /* Pods-wowsinfo.debug.xcconfig */,
+				E89AE616A3CD58B795671FE5 /* Pods-wowsinfo.release.xcconfig */,
+				6309FA9D9A4BF4413A44EE3A /* Pods-wowsinfotest.debug.xcconfig */,
+				808D29D51443D5B687BC971D /* Pods-wowsinfotest.release.xcconfig */,
+				B66C1C581B386FD45CBD0E97 /* Pods-wowsinfoTests.debug.xcconfig */,
+				D2E2B1F66FB6C7096AAAD1F2 /* Pods-wowsinfoTests.release.xcconfig */,
+				A45E42193C3FB61E81C20E9A /* Pods-wowsinfo-debug.debug.xcconfig */,
+				62BC9D4810E163F4D27CCDA2 /* Pods-wowsinfo-debug.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -262,27 +289,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* wowsinfoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "wowsinfoTests" */;
-			buildPhases = (
-				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
-				00E356EA1AD99517003FC87E /* Sources */,
-				00E356EB1AD99517003FC87E /* Frameworks */,
-				00E356EC1AD99517003FC87E /* Resources */,
-				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
-				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00E356F51AD99517003FC87E /* PBXTargetDependency */,
-			);
-			name = wowsinfoTests;
-			productName = wowsinfoTests;
-			productReference = 00E356EE1AD99517003FC87E /* wowsinfoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		13B07F861A680F5B00A75B9A /* wowsinfo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "wowsinfo" */;
@@ -305,26 +311,26 @@
 			productReference = 13B07F961A680F5B00A75B9A /* wowsinfo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		92C1CACB2A962A0400E07A7D /* wowsinfoDebug */ = {
+		923257AE2A98B0D00053E5F6 /* wowsinfo-debug */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 92C1CAD92A962A0400E07A7D /* Build configuration list for PBXNativeTarget "wowsinfoDebug" */;
+			buildConfigurationList = 923257C72A98B0D00053E5F6 /* Build configuration list for PBXNativeTarget "wowsinfo-debug" */;
 			buildPhases = (
-				92C1CACC2A962A0400E07A7D /* [CP] Check Pods Manifest.lock */,
-				92C1CACD2A962A0400E07A7D /* Start Packager */,
-				92C1CACE2A962A0400E07A7D /* Sources */,
-				92C1CAD12A962A0400E07A7D /* Frameworks */,
-				92C1CAD32A962A0400E07A7D /* Resources */,
-				92C1CAD62A962A0400E07A7D /* Bundle React Native code and images */,
-				92C1CAD72A962A0400E07A7D /* [CP] Embed Pods Frameworks */,
-				92C1CAD82A962A0400E07A7D /* [CP] Copy Pods Resources */,
+				923257AF2A98B0D00053E5F6 /* [CP] Check Pods Manifest.lock */,
+				923257B02A98B0D00053E5F6 /* Start Packager */,
+				923257B12A98B0D00053E5F6 /* Sources */,
+				923257BD2A98B0D00053E5F6 /* Frameworks */,
+				923257C02A98B0D00053E5F6 /* Resources */,
+				923257C42A98B0D00053E5F6 /* Bundle React Native code and images */,
+				923257C52A98B0D00053E5F6 /* [CP] Embed Pods Frameworks */,
+				923257C62A98B0D00053E5F6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = wowsinfoDebug;
+			name = "wowsinfo-debug";
 			productName = wowsinfo;
-			productReference = 92C1CADC2A962A0400E07A7D /* wowsinfoDebug.app */;
+			productReference = 923257CA2A98B0D00053E5F6 /* wowsinfo-debug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -333,12 +339,9 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
-					00E356ED1AD99517003FC87E = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 13B07F861A680F5B00A75B9A;
-					};
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
 					};
@@ -361,37 +364,29 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* wowsinfo */,
-				92C1CACB2A962A0400E07A7D /* wowsinfoDebug */,
-				00E356ED1AD99517003FC87E /* wowsinfoTests */,
+				923257AE2A98B0D00053E5F6 /* wowsinfo-debug */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00E356EC1AD99517003FC87E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				92224B4D2A98B5630021F111 /* Assets.xcassets in Resources */,
 				92926A902A9786F200191FEC /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		92C1CAD32A962A0400E07A7D /* Resources */ = {
+		923257C02A98B0D00053E5F6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92C1CAD42A962A0400E07A7D /* LaunchScreen.storyboard in Resources */,
-				92C1CAD52A962A0400E07A7D /* Images.xcassets in Resources */,
-				92926A912A9786F200191FEC /* Localizable.xcstrings in Resources */,
+				923257C12A98B0D00053E5F6 /* LaunchScreen.storyboard in Resources */,
+				92224B4E2A98B5630021F111 /* Assets.xcassets in Resources */,
+				923257C32A98B0D00053E5F6 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,7 +426,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		92C1CACC2A962A0400E07A7D /* [CP] Check Pods Manifest.lock */ = {
+		923257AF2A98B0D00053E5F6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -446,14 +441,14 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-wowsinfo-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-wowsinfo-debug-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		92C1CACD2A962A0400E07A7D /* Start Packager */ = {
+		923257B02A98B0D00053E5F6 /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -472,7 +467,7 @@
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		92C1CAD62A962A0400E07A7D /* Bundle React Native code and images */ = {
+		923257C42A98B0D00053E5F6 /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -488,60 +483,38 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		92C1CAD72A962A0400E07A7D /* [CP] Embed Pods Frameworks */ = {
+		923257C52A98B0D00053E5F6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		92C1CAD82A962A0400E07A7D /* [CP] Copy Pods Resources */ = {
+		923257C62A98B0D00053E5F6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-wowsinfo-wowsinfoTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
@@ -566,23 +539,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-wowsinfoTests/Pods-wowsinfo-wowsinfoTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-wowsinfoTests/Pods-wowsinfo-wowsinfoTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-wowsinfoTests/Pods-wowsinfo-wowsinfoTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -598,23 +554,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-wowsinfoTests/Pods-wowsinfo-wowsinfoTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-wowsinfoTests/Pods-wowsinfo-wowsinfoTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-wowsinfoTests/Pods-wowsinfo-wowsinfoTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -639,14 +578,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00E356EA1AD99517003FC87E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00E356F31AD99517003FC87E /* wowsinfoTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -654,102 +585,49 @@
 				92C72AF22A962F000056AD82 /* ReactNativeManager.swift in Sources */,
 				92C72AF62A962F000056AD82 /* QuickActionEventEmitter.m in Sources */,
 				92C72AF82A962F000056AD82 /* QuickActionManager.m in Sources */,
+				92553F262A987D49008EC8FC /* ReactNativeCaller.swift in Sources */,
+				92553F302A988158008EC8FC /* SetupView.swift in Sources */,
 				92C72AFD2A962F5D0056AD82 /* AppDelegate.swift in Sources */,
 				92C72AF42A962F000056AD82 /* QuickActionManager.swift in Sources */,
 				92C72B002A96306E0056AD82 /* RootController.swift in Sources */,
+				92553F2A2A987D9F008EC8FC /* ReactNativeCaller.m in Sources */,
 				92C72AF02A962F000056AD82 /* ReactNativeManager.m in Sources */,
 				92C72AFA2A962F000056AD82 /* QuickActionEventEmitter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		92C1CACE2A962A0400E07A7D /* Sources */ = {
+		923257B12A98B0D00053E5F6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92C72AF32A962F000056AD82 /* ReactNativeManager.swift in Sources */,
-				92C72AF72A962F000056AD82 /* QuickActionEventEmitter.m in Sources */,
-				92C72AF92A962F000056AD82 /* QuickActionManager.m in Sources */,
-				92C72AFE2A962F5D0056AD82 /* AppDelegate.swift in Sources */,
-				92C72AF52A962F000056AD82 /* QuickActionManager.swift in Sources */,
-				92C72B012A96306E0056AD82 /* RootController.swift in Sources */,
-				92C72AF12A962F000056AD82 /* ReactNativeManager.m in Sources */,
-				92C72AFB2A962F000056AD82 /* QuickActionEventEmitter.swift in Sources */,
+				923257B22A98B0D00053E5F6 /* ReactNativeManager.swift in Sources */,
+				923257B32A98B0D00053E5F6 /* QuickActionEventEmitter.m in Sources */,
+				923257B42A98B0D00053E5F6 /* QuickActionManager.m in Sources */,
+				923257B52A98B0D00053E5F6 /* ReactNativeCaller.swift in Sources */,
+				923257B62A98B0D00053E5F6 /* SetupView.swift in Sources */,
+				923257B72A98B0D00053E5F6 /* AppDelegate.swift in Sources */,
+				923257B82A98B0D00053E5F6 /* QuickActionManager.swift in Sources */,
+				923257B92A98B0D00053E5F6 /* RootController.swift in Sources */,
+				923257BA2A98B0D00053E5F6 /* ReactNativeCaller.m in Sources */,
+				923257BB2A98B0D00053E5F6 /* ReactNativeManager.m in Sources */,
+				923257BC2A98B0D00053E5F6 /* QuickActionEventEmitter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* wowsinfo */;
-			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-wowsinfo-wowsinfoTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = wowsinfoTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wowsinfo.app/wowsinfo";
-			};
-			name = Debug;
-		};
-		00E356F71AD99517003FC87E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-wowsinfo-wowsinfoTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = wowsinfoTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wowsinfo.app/wowsinfo";
-			};
-			name = Release;
-		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-wowsinfo.debug.xcconfig */;
+			baseConfigurationReference = 388ADB2D89B17E2D670EC186 /* Pods-wowsinfo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = wowsinfo/support/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				DEVELOPMENT_TEAM = 4YSG3SYMLE;
+				INFOPLIST_FILE = wowsinfo/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -762,22 +640,29 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = wowsinfo;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/support/objc.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-wowsinfo.release.xcconfig */;
+			baseConfigurationReference = E89AE616A3CD58B795671FE5 /* Pods-wowsinfo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = wowsinfo/support/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				DEVELOPMENT_TEAM = 4YSG3SYMLE;
+				INFOPLIST_FILE = wowsinfo/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -790,8 +675,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = wowsinfo;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/support/objc.h;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -845,7 +735,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -911,7 +801,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -935,15 +825,17 @@
 			};
 			name = Release;
 		};
-		92C1CADA2A962A0400E07A7D /* Debug */ = {
+		923257C82A98B0D00053E5F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-wowsinfo.debug.xcconfig */;
+			baseConfigurationReference = A45E42193C3FB61E81C20E9A /* Pods-wowsinfo-debug.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = "wowsinfo/support/debug-info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				DEVELOPMENT_TEAM = 4YSG3SYMLE;
+				INFOPLIST_FILE = "wowsinfo-debug/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -954,25 +846,31 @@
 					"-ObjC",
 					"-lc++",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Charts/Charts.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/NativeChart/NativeChart.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftAlgorithms/Algorithms.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit/YogaKit.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/FlipperKit/FlipperKit.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/RCTTypeSafety/RCTTypeSafety.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/React/React-Core.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/ReactCommon/ReactCommon.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/React_Codegen/React-Codegen.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/React_NativeModulesApple/React-NativeModulesApple.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/folly/RCT-Folly.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/yoga/Yoga.modulemap\" -Xcc -DFB_SONARKIT_ENABLED=1 -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/support/objc.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
-		92C1CADB2A962A0400E07A7D /* Release */ = {
+		923257C92A98B0D00053E5F6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-wowsinfo.release.xcconfig */;
+			baseConfigurationReference = 62BC9D4810E163F4D27CCDA2 /* Pods-wowsinfo-debug.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = "wowsinfo/support/debug-info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				DEVELOPMENT_TEAM = 4YSG3SYMLE;
+				INFOPLIST_FILE = "wowsinfo-debug/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -985,8 +883,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/support/objc.h;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -994,15 +897,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "wowsinfoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Debug */,
-				00E356F71AD99517003FC87E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "wowsinfo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1021,11 +915,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		92C1CAD92A962A0400E07A7D /* Build configuration list for PBXNativeTarget "wowsinfoDebug" */ = {
+		923257C72A98B0D00053E5F6 /* Build configuration list for PBXNativeTarget "wowsinfo-debug" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				92C1CADA2A962A0400E07A7D /* Debug */,
-				92C1CADB2A962A0400E07A7D /* Release */,
+				923257C82A98B0D00053E5F6 /* Debug */,
+				923257C92A98B0D00053E5F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

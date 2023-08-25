@@ -7,7 +7,6 @@
 
 import UIKit
 import React
-import FlipperKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {

@@ -20,7 +20,7 @@ class RootController: UIHostingController<WoWsInfoView> {
 struct WoWsInfoView: View {
     var body: some View {
         NavigationView {
-            ReactNativeApp()
+            SetupView()
         }
     }
 }

@@ -1,6 +1,1472 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "about_github_link" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https://github.com/HenryQuan/WoWs-Info-Origin/blob/master/README.md"
+          }
+        }
+      }
+    },
+    "app_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WoWs Info Future"
+          }
+        }
+      }
+    },
+    "basic_add_friend" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to list"
+          }
+        }
+      }
+    },
+    "basic_data_unknown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown"
+          }
+        }
+      }
+    },
+    "basic_last_battle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Battle"
+          }
+        }
+      }
+    },
+    "basic_level_tier" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Level"
+          }
+        }
+      }
+    },
+    "basic_more_stat" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "- Show More -"
+          }
+        }
+      }
+    },
+    "basic_register_date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register Date"
+          }
+        }
+      }
+    },
+    "basic_set_main" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set as Main Account"
+          }
+        }
+      }
+    },
+    "button_back_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
+    },
+    "button_home_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
+          }
+        }
+      }
+    },
+    "button_menu_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu"
+          }
+        }
+      }
+    },
+    "button_settings_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
+    },
+    "clan_created_date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Created At"
+          }
+        }
+      }
+    },
+    "clan_creator_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creator"
+          }
+        }
+      }
+    },
+    "clan_leader_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leader"
+          }
+        }
+      }
+    },
+    "clan_member_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Member"
+          }
+        }
+      }
+    },
+    "detailed_avg_plane_killed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avg Planed Destroyed"
+          }
+        }
+      }
+    },
+    "detailed_avg_potential_damage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avg Potential Damage"
+          }
+        }
+      }
+    },
+    "detailed_avg_scouting_damage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avg Scouting Damage"
+          }
+        }
+      }
+    },
+    "detailed_avg_spotted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avg Spotted"
+          }
+        }
+      }
+    },
+    "detailed_avg_torp_potential_damage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avg Torp Potential Damage"
+          }
+        }
+      }
+    },
+    "detailed_damage_potential_ratio" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Damage Dealt / Potential"
+          }
+        }
+      }
+    },
+    "detailed_draw" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Draws"
+          }
+        }
+      }
+    },
+    "detailed_frag_spot_ratio" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frag / Spotted"
+          }
+        }
+      }
+    },
+    "detailed_loss" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Losses"
+          }
+        }
+      }
+    },
+    "detailed_survival_rate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Survival Rate"
+          }
+        }
+      }
+    },
+    "detailed_survived" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Survived Battles"
+          }
+        }
+      }
+    },
+    "detailed_survived_win" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Survived Wins"
+          }
+        }
+      }
+    },
+    "detailed_survivied_win_rate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Survived Win Rate"
+          }
+        }
+      }
+    },
+    "detailed_total_damage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Damage Dealt"
+          }
+        }
+      }
+    },
+    "detailed_total_frag" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Frags"
+          }
+        }
+      }
+    },
+    "detailed_total_plane_killed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Planed Destroyed"
+          }
+        }
+      }
+    },
+    "detailed_total_potential_damage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Potential Damage"
+          }
+        }
+      }
+    },
+    "detailed_total_scouting_damage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Scouting Damage"
+          }
+        }
+      }
+    },
+    "detailed_total_spotted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Spotted"
+          }
+        }
+      }
+    },
+    "detailed_total_torp_potential_damage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Torp Potential Damage"
+          }
+        }
+      }
+    },
+    "detailed_total_xp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total XP"
+          }
+        }
+      }
+    },
+    "detailed_win" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wins"
+          }
+        }
+      }
+    },
+    "error_download_issue" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data update was unsuccessful. Please try again later.\n\nIf the issue persists, you might consider using a VPN or changing your DNS settings to '8.8.8.8'.\nIf the problem persists, it could indicate that the server is currently offline."
+          }
+        }
+      }
+    },
+    "error_pr_corruption" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personal rating data cannot be downloaded"
+          }
+        }
+      }
+    },
+    "error_timeout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timeout"
+          }
+        }
+      }
+    },
+    "error_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        }
+      }
+    },
+    "extra_rs_beta" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Realtime Statistics Beta"
+          }
+        }
+      }
+    },
+    "extra_rs_beta_download" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download RS on your computer"
+          }
+        }
+      }
+    },
+    "extra_section_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extra"
+          }
+        }
+      }
+    },
+    "extra_support_wowsinfo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Support WoWs Info"
+          }
+        }
+      }
+    },
+    "extra_support_wowsinfo_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Donations and Ads"
+          }
+        }
+      }
+    },
+    "extra_wowsinfo_re" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WoWs Info Re"
+          }
+        }
+      }
+    },
+    "extra_wowsinfo_re_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try out the new version currently under development."
+          }
+        }
+      }
+    },
+    "friend_clan_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clan"
+          }
+        }
+      }
+    },
+    "friend_player_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Player"
+          }
+        }
+      }
+    },
+    "Hello World" : {
+
+    },
+    "iap_no_purchase_history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No payment history has been found"
+          }
+        }
+      }
+    },
+    "iap_pro_expired" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WoWs Info Pro has expired"
+          }
+        }
+      }
+    },
+    "iap_thx_for_support" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thank you for your support!"
+          }
+        }
+      }
+    },
+    "menu_footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        }
+      }
+    },
+    "menu_search_clan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clan"
+          }
+        }
+      }
+    },
+    "menu_search_player" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Player"
+          }
+        }
+      }
+    },
+    "pro_50_off_until_re" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50% off for the first purchase"
+          }
+        }
+      }
+    },
+    "pro_more_stats" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More detailed statistics"
+          }
+        }
+      }
+    },
+    "pro_more_stats_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show even more statistics in your profile"
+          }
+        }
+      }
+    },
+    "pro_per_year" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Year"
+          }
+        }
+      }
+    },
+    "pro_quick_access_main" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick access to main account"
+          }
+        }
+      }
+    },
+    "pro_quick_access_main_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check statistics for your main account with just a tap"
+          }
+        }
+      }
+    },
+    "pro_restore_pro" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore Pro Version"
+          }
+        }
+      }
+    },
+    "pro_rs" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RS Beta"
+          }
+        }
+      }
+    },
+    "pro_rs_subtite" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get realtime statistics in your battles"
+          }
+        }
+      }
+    },
+    "pro_support_development" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Support development"
+          }
+        }
+      }
+    },
+    "pro_support_development_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More features are currently under development"
+          }
+        }
+      }
+    },
+    "pro_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WoWs Info Pro"
+          }
+        }
+      }
+    },
+    "pro_upgrade_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upgrade to Pro"
+          }
+        }
+      }
+    },
+    "rank_season_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Season"
+          }
+        }
+      }
+    },
+    "rating_author" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By Wiochi"
+          }
+        }
+      }
+    },
+    "rating_average" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Average"
+          }
+        }
+      }
+    },
+    "rating_bad" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Improvement Needed"
+          }
+        }
+      }
+    },
+    "rating_below_average" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Below Average"
+          }
+        }
+      }
+    },
+    "rating_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It is a measure of skill."
+          }
+        }
+      }
+    },
+    "rating_good" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Good"
+          }
+        }
+      }
+    },
+    "rating_great" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Great"
+          }
+        }
+      }
+    },
+    "rating_read_more" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "- Learn More -"
+          }
+        }
+      }
+    },
+    "rating_scale" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Colour Scale"
+          }
+        }
+      }
+    },
+    "rating_super_unicum" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SUPER Unicum"
+          }
+        }
+      }
+    },
+    "rating_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personal Rating"
+          }
+        }
+      }
+    },
+    "rating_unicum" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicum"
+          }
+        }
+      }
+    },
+    "rating_unknown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown"
+          }
+        }
+      }
+    },
+    "rating_very_good" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Very Good"
+          }
+        }
+      }
+    },
+    "rating_warning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please refrain from making judgments about other players based solely on their rating."
+          }
+        }
+      }
+    },
+    "record_best_ship" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best Ship"
+          }
+        }
+      }
+    },
+    "record_max_damage_dealt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max Damage Dealt"
+          }
+        }
+      }
+    },
+    "record_max_damage_scouting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max Scouting Damage"
+          }
+        }
+      }
+    },
+    "record_max_frags_battle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max Frags"
+          }
+        }
+      }
+    },
+    "record_max_planes_killed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max Planes Destroyed"
+          }
+        }
+      }
+    },
+    "record_max_ships_spotted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max Ships Spotted"
+          }
+        }
+      }
+    },
+    "record_max_total_agro" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max Potential Damage Dealt"
+          }
+        }
+      }
+    },
+    "record_max_xp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max XP"
+          }
+        }
+      }
+    },
+    "record_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Records"
+          }
+        }
+      }
+    },
+    "rs_tip_download" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1. Download"
+          }
+        }
+      }
+    },
+    "rs_tip_enjoy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3. Enjoy"
+          }
+        }
+      }
+    },
+    "rs_tip_one" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please visit this Github repository and download the latest release. This program does not use lots of RAM and storage. Currently, it is in its beta stage and has no GUI.\n"
+          }
+        }
+      }
+    },
+    "rs_tip_setup" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2. Setup"
+          }
+        }
+      }
+    },
+    "rs_tip_three" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the IP address you see on the screen and WoWs Info will start giving you real-time statistics for both teams.\n"
+          }
+        }
+      }
+    },
+    "rs_tip_two" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy and paste the path of your game folder into this program and you have to run it with admin or it will not work. It won't do anything harmful to your computer.\n"
+          }
+        }
+      }
+    },
+    "search_player_online" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "online"
+          }
+        }
+      }
+    },
+    "setting_api_language" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API Language"
+          }
+        }
+      }
+    },
+    "setting_api_update_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update Data from Server"
+          }
+        }
+      }
+    },
+    "setting_api_update_data_cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "setting_api_update_data_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please only use this when data are missing"
+          }
+        }
+      }
+    },
+    "setting_api_update_data_update" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update"
+          }
+        }
+      }
+    },
+    "setting_app_language" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Language"
+          }
+        }
+      }
+    },
+    "setting_game_server" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game Server"
+          }
+        }
+      }
+    },
+    "settings_api_settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API Settings"
+          }
+        }
+      }
+    },
+    "settings_app_check_for_update" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check for update"
+          }
+        }
+      }
+    },
+    "settings_app_dark_mode" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark mode"
+          }
+        }
+      }
+    },
+    "settings_app_has_update" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update {0} is available"
+          }
+        }
+      }
+    },
+    "settings_app_no_image_mode" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No image mode"
+          }
+        }
+      }
+    },
+    "settings_app_no_update" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are using the latest version."
+          }
+        }
+      }
+    },
+    "settings_app_report_issues" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Report an issue"
+          }
+        }
+      }
+    },
+    "settings_app_send_feedback" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback"
+          }
+        }
+      }
+    },
+    "settings_app_send_feedback_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send an email to developer"
+          }
+        }
+      }
+    },
+    "settings_app_settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Settings"
+          }
+        }
+      }
+    },
+    "settings_app_share" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share with friends"
+          }
+        }
+      }
+    },
+    "settings_app_share_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share WoWs Info if you enjoy using it!"
+          }
+        }
+      }
+    },
+    "settings_app_swap_buttons" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swap bottom buttons"
+          }
+        }
+      }
+    },
+    "settings_app_theme_colour" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Theme colour"
+          }
+        }
+      }
+    },
+    "settings_app_write_review" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write a review"
+          }
+        }
+      }
+    },
+    "settings_app_write_review_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you have any questions, issues or suggestions, please send an email to the developer so that we could discuss and solve the problem together."
+          }
+        }
+      }
+    },
+    "settings_app_write_review_no" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write a review"
+          }
+        }
+      }
+    },
+    "settings_app_write_review_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About review and feedback"
+          }
+        }
+      }
+    },
+    "settings_app_write_review_yes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send an email"
+          }
+        }
+      }
+    },
+    "settings_open_source" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Source"
+          }
+        }
+      }
+    },
+    "settings_open_source_github" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Github"
+          }
+        }
+      }
+    },
+    "settings_open_source_licence" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licences"
+          }
+        }
+      }
+    },
+    "settings_open_source_licence_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Great modules that are used by WoWs Info"
+          }
+        }
+      }
+    },
     "setup_done_button" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8,6 +1474,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Done"
+          }
+        }
+      }
+    },
+    "setup_loading" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading..."
           }
         }
       }
@@ -41,2444 +1518,13 @@
         }
       }
     },
-    "setup_loading" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Loading...",
-          }
-        }
-      }
-    },
-    "friend_clan_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clan",
-          }
-        }
-      }
-    },
-    "friend_player_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Player",
-          }
-        }
-      }
-    },
-    "update_version_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Version",
-          }
-        }
-      }
-    },
-    "update_app_version" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "App ->",
-          }
-        }
-      }
-    },
-    "update_game_version" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Game ->",
-          }
-        }
-      }
-    },
-    "button_settings_label" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Settings",
-          }
-        }
-      }
-    },
-    "button_menu_label" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Menu",
-          }
-        }
-      }
-    },
-    "button_back_label" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Back",
-          }
-        }
-      }
-    },
-    "button_home_label" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Home",
-          }
-        }
-      }
-    },
-    "wiki_warship_footer" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Filter",
-          }
-        }
-      }
-    },
-    "wiki_warship_filter_btn" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apply",
-          }
-        }
-      }
-    },
-    "wiki_warship_reset_btn" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reset",
-          }
-        }
-      }
-    },
-    "wiki_warship_filter_placeholder" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enter a ship name",
-          }
-        }
-      }
-    },
-    "wiki_warship_filter_tier" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tier",
-          }
-        }
-      }
-    },
-    "wiki_warship_filter_nation" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nation / Region",
-          }
-        }
-      }
-    },
-    "wiki_warship_filter_type" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Type",
-          }
-        }
-      }
-    },
-    "wiki_warship_filter_premium" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Premium ship",
-          }
-        }
-      }
-    },
-    "warship_unkown" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unknown",
-          }
-        }
-      }
-    },
-    "warship_model" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "3D Model",
-          }
-        }
-      }
-    },
-    "warship_update_module" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Update ship modules",
-          }
-        }
-      }
-    },
-    "warship_default_module" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Default",
-          }
-        }
-      }
-    },
-    "warship_apply_module" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apply",
-          }
-        }
-      }
-    },
-    "warship_survivability" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Survivability",
-          }
-        }
-      }
-    },
-    "warship_survivability_health" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Health",
-          }
-        }
-      }
-    },
-    "warship_survivability_armour" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Armour",
-          }
-        }
-      }
-    },
-    "warship_survivability_protection" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Protection",
-          }
-        }
-      }
-    },
-    "warship_artillery" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Artillery",
-          }
-        }
-      }
-    },
-    "warship_artillery_main" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Main Battery",
-          }
-        }
-      }
-    },
-    "warship_avg_damage" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Average Damage",
-          }
-        }
-      }
-    },
-    "warship_avg_winrate" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Average Winrate",
-          }
-        }
-      }
-    },
-    "warship_avg_frag" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Average Frags",
-          }
-        }
-      }
-    },
-    "warship_weapon_reload" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reload Time",
-          }
-        }
-      }
-    },
-    "warship_weapon_range" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Range",
-          }
-        }
-      }
-    },
-    "warship_weapon_configuration" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configuration",
-          }
-        }
-      }
-    },
-    "warship_weapon_dispersion" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Max Dispersion",
-          }
-        }
-      }
-    },
-    "warship_weapon_rotation" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rotation Time",
-          }
-        }
-      }
-    },
-    "warship_weapon_fire_chance" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fire Chance",
-          }
-        }
-      }
-    },
-    "warship_artillery_main_weight" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Weight",
-          }
-        }
-      }
-    },
-    "warship_weapon_damage" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Max Damage",
-          }
-        }
-      }
-    },
-    "warship_weapon_potential_damage" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Potential Damage",
-          }
-        }
-      }
-    },
-    "warship_weapon_ap_overmatch" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Overmatch",
-          }
-        }
-      }
-    },
-    "warship_weapon_he_penetration" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Penetration",
-          }
-        }
-      }
-    },
-    "warship_weapon_speed" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Speed",
-          }
-        }
-      }
-    },
-    "warship_ramming" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ramming",
-          }
-        }
-      }
-    },
-    "warship_artillery_secondary" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Secondary",
-          }
-        }
-      }
-    },
-    "warship_torpedoes" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Torpedoes",
-          }
-        }
-      }
-    },
-    "warship_torpedoes_visible_distance" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Detection",
-          }
-        }
-      }
-    },
-    "warship_antiaircraft" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "AA Defense",
-          }
-        }
-      }
-    },
-    "warship_maneuverabilty" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Maneuverabilty",
-          }
-        }
-      }
-    },
-    "warship_maneuverabilty_turning" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turning Radius",
-          }
-        }
-      }
-    },
-    "warship_maneuverabilty_speed" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Max Speed",
-          }
-        }
-      }
-    },
-    "warship_maneuverabilty_rudder_time" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rudder Time",
-          }
-        }
-      }
-    },
-    "warship_aircraft" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aircraft",
-          }
-        }
-      }
-    },
-    "warship_concealment" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Concealment",
-          }
-        }
-      }
-    },
-    "warship_concealment_detect_by_ship" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Detection by Ship",
-          }
-        }
-      }
-    },
-    "warship_concealment_detect_by_plane" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Detection by Plane",
-          }
-        }
-      }
-    },
-    "warship_upgrades" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Upgrades",
-          }
-        }
-      }
-    },
-    "warship_next_ship" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Next ship(s)",
-          }
-        }
-      }
-    },
-    "warship_compare_similar" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compare similar ships",
-          }
-        }
-      }
-    },
-    "setting_game_server" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Game Server",
-          }
-        }
-      }
-    },
-    "setting_api_language" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "API Language",
-          }
-        }
-      }
-    },
-    "setting_api_update_data" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Update Data from Server",
-          }
-        }
-      }
-    },
-    "setting_api_update_data_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please only use this when data are missing",
-          }
-        }
-      }
-    },
-    "setting_api_update_data_update" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Update",
-          }
-        }
-      }
-    },
-    "setting_api_update_data_cancel" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cancel",
-          }
-        }
-      }
-    },
-    "setting_app_language" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "App Language",
-          }
-        }
-      }
-    },
-    "settings_api_settings" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "API Settings",
-          }
-        }
-      }
-    },
-    "settings_app_settings" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "App Settings",
-          }
-        }
-      }
-    },
-    "settings_app_dark_mode" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dark mode",
-          }
-        }
-      }
-    },
-    "settings_app_theme_colour" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "App Theme colour",
-          }
-        }
-      }
-    },
-    "settings_app_no_image_mode" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No image mode",
-          }
-        }
-      }
-    },
-    "settings_app_swap_buttons" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Swap bottom buttons",
-          }
-        }
-      }
-    },
-    "settings_app_send_feedback" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Feedback",
-          }
-        }
-      }
-    },
-    "settings_app_send_feedback_subtitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Send an email to developer",
-          }
-        }
-      }
-    },
-    "settings_app_report_issues" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Report an issue",
-          }
-        }
-      }
-    },
-    "settings_app_write_review" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Write a review",
-          }
-        }
-      }
-    },
-    "settings_app_write_review_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "About review and feedback",
-          }
-        }
-      }
-    },
-    "settings_app_write_review_message" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "If you have any questions, issues or suggestions, please send an email to the developer so that we could discuss and solve the problem together.",
-          }
-        }
-      }
-    },
-    "settings_app_write_review_yes" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Send an email",
-          }
-        }
-      }
-    },
-    "settings_app_write_review_no" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Write a review",
-          }
-        }
-      }
-    },
-    "settings_app_share" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Share with friends",
-          }
-        }
-      }
-    },
-    "settings_app_share_subtitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Share WoWs Info if you enjoy using it!",
-          }
-        }
-      }
-    },
-    "settings_app_check_for_update" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Check for update",
-          }
-        }
-      }
-    },
-    "settings_app_no_update" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You are using the latest version.",
-          }
-        }
-      }
-    },
-    "settings_app_has_update" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Update {0} is available",
-          }
-        }
-      }
-    },
-    "settings_open_source" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open Source",
-          }
-        }
-      }
-    },
-    "settings_open_source_github" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Github",
-          }
-        }
-      }
-    },
-    "settings_open_source_licence" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Licences",
-          }
-        }
-      }
-    },
-    "settings_open_source_licence_subtitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Great modules that are used by WoWs Info",
-          }
-        }
-      }
-    },
-    "menu_footer" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search",
-          }
-        }
-      }
-    },
-    "menu_search_player" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Player",
-          }
-        }
-      }
-    },
-    "menu_search_clan" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clan",
-          }
-        }
-      }
-    },
-    "pro_upgrade_button" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Upgrade to Pro",
-          }
-        }
-      }
-    },
-    "pro_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "WoWs Info Pro",
-          }
-        }
-      }
-    },
-    "pro_rs" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RS Beta",
-          }
-        }
-      }
-    },
-    "pro_rs_subtite" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Get realtime statistics in your battles",
-          }
-        }
-      }
-    },
-    "pro_more_stats" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "More detailed statistics",
-          }
-        }
-      }
-    },
-    "pro_more_stats_subtitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Show even more statistics in your profile",
-          }
-        }
-      }
-    },
-    "pro_quick_access_main" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quick access to main account",
-          }
-        }
-      }
-    },
-    "pro_quick_access_main_subtitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Check statistics for your main account with just a tap",
-          }
-        }
-      }
-    },
-    "pro_support_development" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Support development",
-          }
-        }
-      }
-    },
-    "pro_support_development_subtitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" :  "More features are currently under development",
-          }
-        }
-      }
-    },
-    "pro_50_off_until_re" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "50% off for the first purchase",
-          }
-        }
-      }
-    },
-    "pro_per_year" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Year",
-          }
-        }
-      }
-    },
-    "pro_restore_pro" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Restore Pro Version",
-          }
-        }
-      }
-    },
-    "iap_thx_for_support" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Thank you for your support!",
-          }
-        }
-      }
-    },
-    "iap_no_purchase_history" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No payment history has been found",
-          }
-        }
-      }
-    },
-    "iap_pro_expired" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "WoWs Info Pro has expired",
-          }
-        }
-      }
-    },
-    "search_player_online" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "online",
-          }
-        }
-      }
-    },
-    "wiki_section_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Encyclopedia",
-          }
-        }
-      }
-    },
-    "wiki_achievement" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Achievement",
-          }
-        }
-      }
-    },
-    "wiki_warships" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Warships",
-          }
-        }
-      }
-    },
-    "wiki_upgrades" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Upgrades",
-          }
-        }
-      }
-    },
-    "wiki_flags" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Flags/Camouflages",
-          }
-        }
-      }
-    },
-    "wiki_skills" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Commander Skills",
-          }
-        }
-      }
-    },
-    "wiki_skills_tier" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tier",
-          }
-        }
-      }
-    },
-    "wiki_skills_reset" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reset",
-          }
-        }
-      }
-    },
-    "wiki_skills_point" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "point(s)",
-          }
-        }
-      }
-    },
-    "wiki_maps" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Maps",
-          }
-        }
-      }
-    },
-    "wiki_collections" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Collections",
-          }
-        }
-      }
-    },
-    "extra_section_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Extra",
-          }
-        }
-      }
-    },
-    "extra_support_wowsinfo" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Support WoWs Info",
-          }
-        }
-      }
-    },
-    "extra_wowsinfo_re" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "WoWs Info Re",
-          }
-        }
-      }
-    },
-    "extra_wowsinfo_re_subtitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Try out the new version currently under development.",
-          }
-        }
-      }
-    },
-    "extra_rs_beta" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Realtime Statistics Beta",
-          }
-        }
-      }
-    },
-    "extra_rs_beta_download" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Download RS on your computer",
-          }
-        }
-      }
-    },
-    "extra_support_wowsinfo_subtitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Donations and Ads",
-          }
-        }
-      }
-    },
-    "support_paypal" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PayPal",
-          }
-        }
-      }
-    },
-    "support_patreon" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Patreon",
-          }
-        }
-      }
-    },
-    "support_wechat" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "WeChat",
-          }
-        }
-      }
-    },
-    "support_ads" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ads Settings",
-          }
-        }
-      }
-    },
-    "support_ads_banner" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Show Ads",
-          }
-        }
-      }
-    },
-    "support_ads_fullscreen" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Show Ads on launch",
-          }
-        }
-      }
-    },
-    "website_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Websites",
-          }
-        }
-      }
-    },
-    "website_official_site" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "World of Warships",
-          }
-        }
-      }
-    },
-    "website_premium" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Premium Shop",
-          }
-        }
-      }
-    },
-    "website_global_wiki" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Global Wiki",
-          }
-        }
-      }
-    },
-    "website_dev_blog" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Developer Blog",
-          }
-        }
-      }
-    },
-    "website_sea_group" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "SEA Group",
-          }
-        }
-      }
-    },
-    "website_daily_bounce" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The Daily Bounce",
-          }
-        }
-      }
-    },
-    "website_numbers" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "WoWS Stats & Numbers",
-          }
-        }
-      }
-    },
-    "website_today" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Warships.Today",
-          }
-        }
-      }
-    },
-    "website_ranking" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Player Ranking",
-          }
-        }
-      }
-    },
-    "website_models" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Warships Models",
-          }
-        }
-      }
-    },
-    "website_game_models" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "GameModels3D",
-          }
-        }
-      }
-    },
-    "website_stats_news_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Statistics & News",
-          }
-        }
-      }
-    },
-    "website_official_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Official Websites",
-          }
-        }
-      }
-    },
-    "website_utility_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Utilities",
-          }
-        }
-      }
-    },
-    "website_ap_calculator" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ship AP Calculator",
-          }
-        }
-      }
-    },
-    "website_wowsft" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "WoWs Fitting Tool",
-          }
-        }
-      }
-    },
-    "website_ingame_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In-game Websites",
-          }
-        }
-      }
-    },
-    "website_wargming_login" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wargming.net Login",
-          }
-        }
-      }
-    },
-    "website_wargming_login_subtitle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You have to login first to use websites below. It works better on Tablets.",
-          }
-        }
-      }
-    },
-    "website_userbonus" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "My Bonus",
-          }
-        }
-      }
-    },
-    "website_news_ingame" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In-game News",
-          }
-        }
-      }
-    },
-    "website_ingame_armory" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "My Armory",
-          }
-        }
-      }
-    },
-    "website_ingame_clan" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "My Clan",
-          }
-        }
-      }
-    },
-    "website_ingame_warehouse" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "My Warehouse",
-          }
-        }
-      }
-    },
-    "website_my_logbook" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "My Logbook",
-          }
-        }
-      }
-    },
-    "youtuber_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "YouTubers",
-          }
-        }
-      }
-    },
-    "youtuber_official" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "WoWs Official",
-          }
-        }
-      }
-    },
-    "youtuber_flambass" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Flambass",
-          }
-        }
-      }
-    },
-    "youtuber_notser" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Notser",
-          }
-        }
-      }
-    },
-    "youtuber_jingles" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The Mighty Jingles",
-          }
-        }
-      }
-    },
-    "youtuber_panzerknacker" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Panzerknacker",
-          }
-        }
-      }
-    },
-    "youtuber_flamu" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Flamu",
-          }
-        }
-      }
-    },
-    "youtuber_yuro" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yuro",
-          }
-        }
-      }
-    },
-    "youtuber_iChaseGaming" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "iChaseGaming",
-          }
-        }
-      }
-    },
-    "youtuber_NoZoupForYou" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NoZoupForYou",
-          }
-        }
-      }
-    },
-    "youtuber_Toptier" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toptier",
-          }
-        }
-      }
-    },
-    "tool_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tools",
-          }
-        }
-      }
-    },
-    "tab_achievement_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Achievement",
-          }
-        }
-      }
-    },
-    "tab_graph_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Graph",
-          }
-        }
-      }
-    },
-    "tab_ship_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ship",
-          }
-        }
-      }
-    },
-    "tab_rank_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rank Battles",
-          }
-        }
-      }
-    },
-    "rating_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Personal Rating",
-          }
-        }
-      }
-    },
-    "rating_description" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "It is a measure of skill.",
-          }
-        }
-      }
-    },
-    "rating_read_more" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "- Learn More -",
-          }
-        }
-      }
-    },
-    "rating_warning" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please refrain from making judgments about other players based solely on their rating.",
-          }
-        }
-      }
-    },
-    "rating_author" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "By Wiochi",
-          }
-        }
-      }
-    },
-    "rating_scale" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Colour Scale",
-          }
-        }
-      }
-    },
-    "rating_bad" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Improvement Needed",
-          }
-        }
-      }
-    },
-    "rating_below_average" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Below Average",
-          }
-        }
-      }
-    },
-    "rating_average" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Average",
-          }
-        }
-      }
-    },
-    "rating_good" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Good",
-          }
-        }
-      }
-    },
-    "rating_very_good" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Very Good",
-          }
-        }
-      }
-    },
-    "rating_great" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Great",
-          }
-        }
-      }
-    },
-    "rating_unicum" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unicum",
-          }
-        }
-      }
-    },
-    "rating_super_unicum" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "SUPER Unicum",
-          }
-        }
-      }
-    },
-    "rating_unknown" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unknown",
-          }
-        }
-      }
-    },
-    "basic_data_unknown" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unknown",
-          }
-        }
-      }
-    },
-    "basic_level_tier" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Level",
-          }
-        }
-      }
-    },
-    "basic_register_date" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Register Date",
-          }
-        }
-      }
-    },
-    "basic_last_battle" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Last Battle",
-          }
-        }
-      }
-    },
-    "basic_more_stat" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "- Show More -",
-          }
-        }
-      }
-    },
-    "basic_add_friend" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add to list",
-          }
-        }
-      }
-    },
-    "basic_set_main" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Set as Main Account",
-          }
-        }
-      }
-    },
-    "detailed_win" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wins",
-          }
-        }
-      }
-    },
-    "detailed_draw" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Draws",
-          }
-        }
-      }
-    },
-    "detailed_loss" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Losses",
-          }
-        }
-      }
-    },
-    "detailed_survived" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Survived Battles",
-          }
-        }
-      }
-    },
-    "detailed_total_xp" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total XP",
-          }
-        }
-      }
-    },
-    "detailed_survived_win" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Survived Wins",
-          }
-        }
-      }
-    },
-    "detailed_survival_rate" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Survival Rate",
-          }
-        }
-      }
-    },
-    "detailed_survivied_win_rate" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Survived Win Rate",
-          }
-        }
-      }
-    },
-    "detailed_total_potential_damage" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total Potential Damage",
-          }
-        }
-      }
-    },
-    "detailed_avg_potential_damage" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Avg Potential Damage",
-          }
-        }
-      }
-    },
-    "detailed_total_torp_potential_damage" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total Torp Potential Damage",
-          }
-        }
-      }
-    },
-    "detailed_avg_torp_potential_damage" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Avg Torp Potential Damage",
-          }
-        }
-      }
-    },
-    "detailed_total_scouting_damage" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total Scouting Damage",
-          }
-        }
-      }
-    },
-    "detailed_avg_scouting_damage" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Avg Scouting Damage",
-          }
-        }
-      }
-    },
-    "detailed_total_damage" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total Damage Dealt",
-          }
-        }
-      }
-    },
-    "detailed_damage_potential_ratio" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Damage Dealt / Potential",
-          }
-        }
-      }
-    },
-    "detailed_total_spotted" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total Spotted",
-          }
-        }
-      }
-    },
-    "detailed_avg_spotted" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Avg Spotted",
-          }
-        }
-      }
-    },
-    "detailed_total_frag" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total Frags",
-          }
-        }
-      }
-    },
-    "detailed_frag_spot_ratio" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Frag / Spotted",
-          }
-        }
-      }
-    },
-    "detailed_total_plane_killed" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total Planed Destroyed",
-          }
-        }
-      }
-    },
-    "detailed_avg_plane_killed" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Avg Planed Destroyed",
-          }
-        }
-      }
-    },
     "ship_detail_damage" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Damage",
-          }
-        }
-      }
-    },
-    "ship_detail_winrate" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Winrate",
+            "value" : "Damage"
           }
         }
       }
@@ -2489,7 +1535,18 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Frag",
+            "value" : "Frag"
+          }
+        }
+      }
+    },
+    "ship_detail_winrate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Winrate"
           }
         }
       }
@@ -2500,7 +1557,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Battle",
+            "value" : "Battle"
           }
         }
       }
@@ -2511,183 +1568,623 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Colour",
+            "value" : "Colour"
           }
         }
       }
     },
-    "rank_season_title" : {
+    "support_ads" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Season",
+            "value" : "Ads Settings"
           }
         }
       }
     },
-    "clan_created_date" : {
+    "support_ads_banner" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Created At",
+            "value" : "Show Ads"
           }
         }
       }
     },
-    "clan_creator_name" : {
+    "support_ads_fullscreen" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Creator",
+            "value" : "Show Ads on launch"
           }
         }
       }
     },
-    "clan_leader_name" : {
+    "support_patreon" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leader",
+            "value" : "Patreon"
           }
         }
       }
     },
-    "clan_member_title" : {
+    "support_paypal" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Member",
+            "value" : "PayPal"
           }
         }
       }
     },
-    "record_title" : {
+    "support_wechat" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Records",
+            "value" : "WeChat"
           }
         }
       }
     },
-    "record_best_ship" : {
+    "tab_achievement_title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Best Ship",
+            "value" : "Achievement"
           }
         }
       }
     },
-    "record_max_damage_dealt" : {
+    "tab_graph_title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Max Damage Dealt",
+            "value" : "Graph"
           }
         }
       }
     },
-    "record_max_frags_battle" : {
+    "tab_rank_title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Max Frags",
+            "value" : "Rank Battles"
           }
         }
       }
     },
-    "record_max_planes_killed" : {
+    "tab_ship_title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Max Planes Destroyed",
+            "value" : "Ship"
           }
         }
       }
     },
-    "record_max_xp" : {
+    "tool_title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Max XP",
+            "value" : "Tools"
           }
         }
       }
     },
-    "record_max_ships_spotted" : {
+    "update_app_version" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Max Ships Spotted",
+            "value" : "App ->"
           }
         }
       }
     },
-    "record_max_total_agro" : {
+    "update_game_version" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Max Potential Damage Dealt",
+            "value" : "Game ->"
           }
         }
       }
     },
-    "record_max_damage_scouting" : {
+    "update_version_title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Max Scouting Damage",
+            "value" : "Version"
           }
         }
       }
     },
-    "weapon_max_frags" : {
+    "warship_aircraft" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Max Frags",
+            "value" : "Aircraft"
           }
         }
       }
     },
-    "weapon_total_frags" : {
+    "warship_antiaircraft" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Total Frags",
+            "value" : "AA Defense"
+          }
+        }
+      }
+    },
+    "warship_apply_module" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apply"
+          }
+        }
+      }
+    },
+    "warship_artillery" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Artillery"
+          }
+        }
+      }
+    },
+    "warship_artillery_main" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Main Battery"
+          }
+        }
+      }
+    },
+    "warship_artillery_main_weight" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weight"
+          }
+        }
+      }
+    },
+    "warship_artillery_secondary" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Secondary"
+          }
+        }
+      }
+    },
+    "warship_avg_damage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Average Damage"
+          }
+        }
+      }
+    },
+    "warship_avg_frag" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Average Frags"
+          }
+        }
+      }
+    },
+    "warship_avg_winrate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Average Winrate"
+          }
+        }
+      }
+    },
+    "warship_compare_similar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compare similar ships"
+          }
+        }
+      }
+    },
+    "warship_concealment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Concealment"
+          }
+        }
+      }
+    },
+    "warship_concealment_detect_by_plane" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detection by Plane"
+          }
+        }
+      }
+    },
+    "warship_concealment_detect_by_ship" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detection by Ship"
+          }
+        }
+      }
+    },
+    "warship_default_module" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default"
+          }
+        }
+      }
+    },
+    "warship_maneuverabilty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maneuverabilty"
+          }
+        }
+      }
+    },
+    "warship_maneuverabilty_rudder_time" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rudder Time"
+          }
+        }
+      }
+    },
+    "warship_maneuverabilty_speed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max Speed"
+          }
+        }
+      }
+    },
+    "warship_maneuverabilty_turning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turning Radius"
+          }
+        }
+      }
+    },
+    "warship_model" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3D Model"
+          }
+        }
+      }
+    },
+    "warship_next_ship" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next ship(s)"
+          }
+        }
+      }
+    },
+    "warship_ramming" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ramming"
+          }
+        }
+      }
+    },
+    "warship_survivability" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Survivability"
+          }
+        }
+      }
+    },
+    "warship_survivability_armour" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Armour"
+          }
+        }
+      }
+    },
+    "warship_survivability_health" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Health"
+          }
+        }
+      }
+    },
+    "warship_survivability_protection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protection"
+          }
+        }
+      }
+    },
+    "warship_torpedoes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torpedoes"
+          }
+        }
+      }
+    },
+    "warship_torpedoes_visible_distance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detection"
+          }
+        }
+      }
+    },
+    "warship_unkown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown"
+          }
+        }
+      }
+    },
+    "warship_update_module" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update ship modules"
+          }
+        }
+      }
+    },
+    "warship_upgrades" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upgrades"
+          }
+        }
+      }
+    },
+    "warship_weapon_ap_overmatch" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overmatch"
+          }
+        }
+      }
+    },
+    "warship_weapon_configuration" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuration"
+          }
+        }
+      }
+    },
+    "warship_weapon_damage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max Damage"
+          }
+        }
+      }
+    },
+    "warship_weapon_dispersion" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max Dispersion"
+          }
+        }
+      }
+    },
+    "warship_weapon_fire_chance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fire Chance"
+          }
+        }
+      }
+    },
+    "warship_weapon_he_penetration" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penetration"
+          }
+        }
+      }
+    },
+    "warship_weapon_potential_damage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Potential Damage"
+          }
+        }
+      }
+    },
+    "warship_weapon_range" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Range"
+          }
+        }
+      }
+    },
+    "warship_weapon_reload" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reload Time"
+          }
+        }
+      }
+    },
+    "warship_weapon_rotation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rotation Time"
+          }
+        }
+      }
+    },
+    "warship_weapon_speed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speed"
           }
         }
       }
@@ -2698,18 +2195,524 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hit Ratio",
+            "value" : "Hit Ratio"
           }
         }
       }
     },
-    "app_name" : {
+    "weapon_max_frags" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "WoWs Info Future",
+            "value" : "Max Frags"
+          }
+        }
+      }
+    },
+    "weapon_total_frags" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Frags"
+          }
+        }
+      }
+    },
+    "website_ap_calculator" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ship AP Calculator"
+          }
+        }
+      }
+    },
+    "website_daily_bounce" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Daily Bounce"
+          }
+        }
+      }
+    },
+    "website_dev_blog" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Developer Blog"
+          }
+        }
+      }
+    },
+    "website_game_models" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GameModels3D"
+          }
+        }
+      }
+    },
+    "website_global_wiki" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Global Wiki"
+          }
+        }
+      }
+    },
+    "website_ingame_armory" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Armory"
+          }
+        }
+      }
+    },
+    "website_ingame_clan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Clan"
+          }
+        }
+      }
+    },
+    "website_ingame_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In-game Websites"
+          }
+        }
+      }
+    },
+    "website_ingame_warehouse" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Warehouse"
+          }
+        }
+      }
+    },
+    "website_models" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warships Models"
+          }
+        }
+      }
+    },
+    "website_my_logbook" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Logbook"
+          }
+        }
+      }
+    },
+    "website_news_ingame" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In-game News"
+          }
+        }
+      }
+    },
+    "website_numbers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WoWS Stats & Numbers"
+          }
+        }
+      }
+    },
+    "website_official_site" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "World of Warships"
+          }
+        }
+      }
+    },
+    "website_official_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Official Websites"
+          }
+        }
+      }
+    },
+    "website_premium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium Shop"
+          }
+        }
+      }
+    },
+    "website_ranking" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Player Ranking"
+          }
+        }
+      }
+    },
+    "website_sea_group" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SEA Group"
+          }
+        }
+      }
+    },
+    "website_stats_news_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistics & News"
+          }
+        }
+      }
+    },
+    "website_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Websites"
+          }
+        }
+      }
+    },
+    "website_today" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warships.Today"
+          }
+        }
+      }
+    },
+    "website_userbonus" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Bonus"
+          }
+        }
+      }
+    },
+    "website_utility_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilities"
+          }
+        }
+      }
+    },
+    "website_wargming_login" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wargming.net Login"
+          }
+        }
+      }
+    },
+    "website_wargming_login_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have to login first to use websites below. It works better on Tablets."
+          }
+        }
+      }
+    },
+    "website_wowsft" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WoWs Fitting Tool"
+          }
+        }
+      }
+    },
+    "wiki_achievement" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Achievement"
+          }
+        }
+      }
+    },
+    "wiki_collections" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Collections"
+          }
+        }
+      }
+    },
+    "wiki_flags" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flags/Camouflages"
+          }
+        }
+      }
+    },
+    "wiki_maps" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maps"
+          }
+        }
+      }
+    },
+    "wiki_section_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encyclopedia"
+          }
+        }
+      }
+    },
+    "wiki_skills" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commander Skills"
+          }
+        }
+      }
+    },
+    "wiki_skills_point" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "point(s)"
+          }
+        }
+      }
+    },
+    "wiki_skills_reset" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
+          }
+        }
+      }
+    },
+    "wiki_skills_tier" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tier"
+          }
+        }
+      }
+    },
+    "wiki_upgrades" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upgrades"
+          }
+        }
+      }
+    },
+    "wiki_warship_filter_btn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apply"
+          }
+        }
+      }
+    },
+    "wiki_warship_filter_nation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nation / Region"
+          }
+        }
+      }
+    },
+    "wiki_warship_filter_placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter a ship name"
+          }
+        }
+      }
+    },
+    "wiki_warship_filter_premium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium ship"
+          }
+        }
+      }
+    },
+    "wiki_warship_filter_tier" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tier"
+          }
+        }
+      }
+    },
+    "wiki_warship_filter_type" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type"
+          }
+        }
+      }
+    },
+    "wiki_warship_footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter"
+          }
+        }
+      }
+    },
+    "wiki_warship_reset_btn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
+          }
+        }
+      }
+    },
+    "wiki_warships" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warships"
           }
         }
       }
@@ -2720,84 +2723,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Black",
-          }
-        }
-      }
-    },
-    "wowsinfo_white" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "White",
-          }
-        }
-      }
-    },
-    "wowsinfo_ultra" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ultra",
-          }
-        }
-      }
-    },
-    "wowsinfo_ultimate" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ultimate",
-          }
-        }
-      }
-    },
-    "wowsinfo_pro" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pro",
-          }
-        }
-      }
-    },
-    "wowsinfo_new" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New",
-          }
-        }
-      }
-    },
-    "wowsinfo_go" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Go",
-          }
-        }
-      }
-    },
-    "wowsinfo_origin" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Origin",
+            "value" : "Black"
           }
         }
       }
@@ -2808,128 +2734,84 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Free",
+            "value" : "Free"
           }
         }
       }
     },
-    "rs_tip_download" : {
+    "wowsinfo_go" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "1. Download",
+            "value" : "Go"
           }
         }
       }
     },
-    "rs_tip_one" : {
+    "wowsinfo_new" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please visit this Github repository and download the latest release. This program does not use lots of RAM and storage. Currently, it is in its beta stage and has no GUI.\n",
+            "value" : "New"
           }
         }
       }
     },
-    "rs_tip_setup" : {
+    "wowsinfo_origin" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "2. Setup",
+            "value" : "Origin"
           }
         }
       }
     },
-    "rs_tip_two" : {
+    "wowsinfo_pro" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Copy and paste the path of your game folder into this program and you have to run it with admin or it will not work. It won't do anything harmful to your computer.\n",
+            "value" : "Pro"
           }
         }
       }
     },
-    "rs_tip_enjoy" : {
+    "wowsinfo_ultimate" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "3. Enjoy",
+            "value" : "Ultimate"
           }
         }
       }
     },
-    "rs_tip_three" : {
+    "wowsinfo_ultra" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enter the IP address you see on the screen and WoWs Info will start giving you real-time statistics for both teams.\n",
+            "value" : "Ultra"
           }
         }
       }
     },
-    "error_title" : {
+    "wowsinfo_white" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Error",
-          }
-        }
-      }
-    },
-    "error_download_issue" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Data update was unsuccessful. Please try again later.\n\nIf the issue persists, you might consider using a VPN or changing your DNS settings to '8.8.8.8'.\nIf the problem persists, it could indicate that the server is currently offline.",
-          }
-        }
-      }
-    },
-    "error_timeout" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Timeout",
-          }
-        }
-      }
-    },
-    "error_pr_corruption" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Personal rating data cannot be downloaded",
-          }
-        }
-      }
-    },
-    "about_github_link" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "https://github.com/HenryQuan/WoWs-Info-Origin/blob/master/README.md"
+            "value" : "White"
           }
         }
       }
