@@ -22,7 +22,7 @@ class Donation extends Component {
   }
 
   async componentDidMount() {
-    if (!GITHUB_VERSION) {
+    if (!AppGlobalData.githubVersion) {
       try {
         const products = await RNIap.getProducts(itemSkus);
         // Do this just to ensure that all IAPs are available
@@ -46,7 +46,7 @@ class Donation extends Component {
     ];
 
     // They won't allow wechat and paypal
-    if (!GITHUB_VERSION) {
+    if (!AppGlobalData.githubVersion) {
       this.support = [
         {
           t: 'GitHub',
@@ -58,7 +58,7 @@ class Donation extends Component {
 
     return (
       <View>
-        {/* { GITHUB_VERSION || products == null ? null : 
+        {/* { AppGlobalData.GITHUB_VERSION || products == null ? null : 
           <FlatList horizontal data={products} renderItem={({item}) => 
             <Button style={{marginLeft: 4}} icon='favorite' color='red' compact
               onPress={() => this.supportWoWsInfo(item)}>{item.localizedPrice}</Button>}

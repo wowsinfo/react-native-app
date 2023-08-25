@@ -27,7 +27,7 @@ class Collection extends PureComponent {
       isCollection = true;
     } else {
       // Display all available collections
-      let saved = DATA[SAVED.collection].collection;
+      let saved = AppGlobalData[SAVED.collection].collection;
       Object.keys(saved).forEach(k => {
         collection.push(saved[k]);
       });
@@ -90,10 +90,10 @@ class Collection extends PureComponent {
     } else {
       // This is an collection
       let id = item.collection_id;
-      let items = DATA[SAVED.collection].item;
+      let items = AppGlobalData[SAVED.collection].item;
 
       let collectionItems = [];
-      collectionItems.push(DATA[SAVED.collection].collection[id]);
+      collectionItems.push(AppGlobalData[SAVED.collection].collection[id]);
       for (let one in items) {
         let curr = items[one];
         if (curr.collection_id === id) {

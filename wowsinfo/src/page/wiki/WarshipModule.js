@@ -110,7 +110,7 @@ class WarshipModule extends Component {
   makeSection(data) {
     const {modules, modules_tree} = data;
 
-    let moduleName = DATA[SAVED.encyclopedia].ship_modules;
+    let moduleName = AppGlobalData[SAVED.encyclopedia].ship_modules;
 
     let section = [];
     for (let key in modules) {

@@ -35,8 +35,8 @@ class Statistics extends Component {
     if (ID != null && ID !== '') {
       const {account_id, nickname, server} = props.info;
       // Check if this player is inside friend list
-      let friend = DATA[LOCAL.friendList];
-      let master = DATA[LOCAL.userInfo];
+      let friend = AppGlobalData[LOCAL.friendList];
+      let master = AppGlobalData[LOCAL.userInfo];
       console.log(master, account_id);
       this.state = {
         name: nickname,
@@ -352,7 +352,7 @@ class Statistics extends Component {
 
   setMainAccount = () => {
     let info = this.getPlayerInfo();
-    DATA[LOCAL.userInfo] = info;
+    AppGlobalData[LOCAL.userInfo] = info;
     SafeStorage.set(LOCAL.userInfo, info);
     this.setState({canBeMaster: false});
   };
@@ -362,9 +362,9 @@ class Statistics extends Component {
 
     // Update object
     let str = LOCAL.friendList;
-    DATA[str].player[info.account_id] = info;
+    AppGlobalData[str].player[info.account_id] = info;
 
-    SafeStorage.set(str, DATA[str]);
+    SafeStorage.set(str, AppGlobalData[str]);
     this.setState({canBeFriend: false});
   };
 

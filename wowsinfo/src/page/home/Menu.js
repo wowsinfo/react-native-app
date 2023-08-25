@@ -54,7 +54,7 @@ class Menu extends Component {
     this.first = getFirstLaunch();
     this.state = {
       loading: true,
-      main: DATA[LOCAL.userInfo],
+      main: AppGlobalData[LOCAL.userInfo],
       bestItemWidth: bestWidth(400),
     };
 
@@ -64,7 +64,7 @@ class Menu extends Component {
   componentDidUpdate() {
     this.getData();
     const {main} = this.state;
-    let curr = DATA[LOCAL.userInfo];
+    let curr = AppGlobalData[LOCAL.userInfo];
     setLastLocation('');
     if (curr.account_id !== main.account_id) {
       this.setState({main: curr});

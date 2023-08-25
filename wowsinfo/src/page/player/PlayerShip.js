@@ -111,7 +111,7 @@ class PlayerShip extends PureComponent {
   }
 
   renderShip(item) {
-    let ship = DATA[SAVED.warship][item.ship_id];
+    let ship = AppGlobalData[SAVED.warship][item.ship_id];
     return (
       <Touchable
         key={item.ship_id}

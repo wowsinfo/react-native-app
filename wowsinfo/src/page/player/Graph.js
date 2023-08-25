@@ -22,7 +22,7 @@ class Graph extends PureComponent {
       const {pvp, ship_id} = ship;
       const {battles} = pvp;
 
-      let curr = DATA[SAVED.warship][ship_id];
+      let curr = AppGlobalData[SAVED.warship][ship_id];
       if (curr == null) continue;
 
       const {nation, tier, type} = curr;
@@ -37,10 +37,10 @@ class Graph extends PureComponent {
       avgTier: this.getAvgTier(tierInfo),
       nation: this.objToChart(
         nationInfo,
-        DATA[SAVED.encyclopedia].ship_nations,
+        AppGlobalData[SAVED.encyclopedia].ship_nations,
         10,
       ),
-      type: this.objToChart(typeInfo, DATA[SAVED.encyclopedia].ship_types),
+      type: this.objToChart(typeInfo, AppGlobalData[SAVED.encyclopedia].ship_types),
     };
   }
 
@@ -82,20 +82,20 @@ class Graph extends PureComponent {
           {/* <Title style={{textAlign: 'center'}}>{`Average Tier - ${avgTier}`}</Title> */}
           <BarChart
             style={{height: 300}}
-            darkMode={DARKMODE}
+            darkMode={AppGlobalData.isDarkMode}
             themeColor={TintColour()[500]}
             chartData={tier.y}
             xAxisLabels={tier.x}
           />
           <PieChart
             style={{height: 300}}
-            darkMode={DARKMODE}
+            darkMode={AppGlobalData.isDarkMode}
             chartData={nation.y}
             dataLabels={nation.x}
           />
           <PieChart
             style={{height: 300}}
-            darkMode={DARKMODE}
+            darkMode={AppGlobalData.isDarkMode}
             chartData={type.y}
             dataLabels={type.x}
           />

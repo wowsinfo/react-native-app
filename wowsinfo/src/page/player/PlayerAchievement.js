@@ -12,7 +12,7 @@ class PlayerAchievement extends PureComponent {
   constructor(props) {
     super(props);
 
-    let saved = DATA[SAVED.achievement];
+    let saved = AppGlobalData[SAVED.achievement];
     let data = props.data;
 
     let formatted = [];

@@ -15,11 +15,11 @@ class WikiIcon extends Component {
     const {item, scale, warship, selected, ...props} = this.props;
     let width = 80;
     if (scale) width *= scale;
-    let theme = DATA[LOCAL.theme];
+    let theme = AppGlobalData[LOCAL.theme];
 
     let imageSrc = {uri: item.image ? item.image : item.icon};
     let defaultSrc = {uri: 'Unknown'};
-    if (NOIMAGEMODE) imageSrc = null;
+    if (AppGlobalData.useNoImageMode) imageSrc = null;
     defaultSrc = null;
 
     if (warship) {
@@ -45,7 +45,7 @@ class WikiIcon extends Component {
           {...props}>
           {item.new ? (
             <View
-              style={[newLabel, {backgroundColor: DATA[LOCAL.theme][500]}]}
+              style={[newLabel, {backgroundColor: AppGlobalData[LOCAL.theme][500]}]}
             />
           ) : null}
           <Image

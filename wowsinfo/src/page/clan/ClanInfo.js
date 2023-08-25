@@ -47,7 +47,7 @@ class ClanInfo extends Component {
       };
     } else {
       // When everything is Valid
-      let friend = DATA[LOCAL.friendList];
+      let friend = AppGlobalData[LOCAL.friendList];
       this.state = {
         id: clan_id,
         tag: tag,
@@ -188,8 +188,8 @@ class ClanInfo extends Component {
   addFriend = () => {
     const {clan_id, tag, server} = this.props.info;
     let str = LOCAL.friendList;
-    DATA[str].clan[clan_id] = {clan_id, tag, server};
-    SafeStorage.set(str, DATA[str]);
+    AppGlobalData[str].clan[clan_id] = {clan_id, tag, server};
+    SafeStorage.set(str, AppGlobalData[str]);
     this.setState({canBeFriend: false});
   };
 

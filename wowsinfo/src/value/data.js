@@ -79,11 +79,11 @@ export const SAVED = {
  * First launch
  */
 export const getFirstLaunch = () => {
-  return DATA[LOCAL.firstLaunch];
+  return AppGlobalData[LOCAL.firstLaunch];
 };
 
 export const setFirstLaunch = mode => {
-  DATA[LOCAL.firstLaunch] = mode;
+  AppGlobalData[LOCAL.firstLaunch] = mode;
   SafeStorage.set(LOCAL.firstLaunch, mode);
 };
 
@@ -113,12 +113,12 @@ export const getPrefix = index => {
 };
 
 export const getCurrServer = () => {
-  return SafeValue(DATA[LOCAL.userServer], 3);
+  return SafeValue(AppGlobalData[LOCAL.userServer], 3);
 };
 
 export const setCurrServer = index => {
   let str = LOCAL.userServer;
-  DATA[str] = index;
+  AppGlobalData[str] = index;
   SafeStorage.set(str, index);
 };
 
@@ -126,12 +126,12 @@ export const setCurrServer = index => {
  * User Language
  */
 export const getUserLang = () => {
-  return SafeValue(DATA[LOCAL.userLanguage], 'en');
+  return SafeValue(AppGlobalData[LOCAL.userLanguage], 'en');
 };
 
 export const setUserLang = lang => {
   let str = LOCAL.userLanguage;
-  DATA[str] = lang;
+  AppGlobalData[str] = lang;
   SafeStorage.set(str, lang);
 };
 
@@ -139,7 +139,7 @@ export const setUserLang = lang => {
  * API Language
  */
 export const getAPILanguage = () => {
-  return SafeValue(DATA[LOCAL.apiLanguage], 'en');
+  return SafeValue(AppGlobalData[LOCAL.apiLanguage], 'en');
 };
 
 export const getAPILangName = () => {
@@ -151,12 +151,12 @@ export const langStr = () => {
 };
 
 export const getAPIList = () => {
-  return DATA[SAVED.language];
+  return AppGlobalData[SAVED.language];
 };
 
 export const setAPILanguage = lang => {
   let str = LOCAL.apiLanguage;
-  DATA[str] = lang;
+  AppGlobalData[str] = lang;
   SafeStorage.set(str, lang);
 };
 
@@ -164,13 +164,13 @@ export const setAPILanguage = lang => {
  * Swap Button
  */
 export const getSwapButton = () => {
-  return DATA[LOCAL.swapButton];
+  return AppGlobalData[LOCAL.swapButton];
 };
 
 export const setSwapButton = swap => {
-  SWAPBUTTON = swap;
+  AppGlobalData.shouldSwapButton = swap;
   let str = LOCAL.swapButton;
-  DATA[str] = swap;
+  AppGlobalData[str] = swap;
   SafeStorage.set(str, swap);
 };
 
@@ -178,13 +178,13 @@ export const setSwapButton = swap => {
  * No Image Mode
  */
 export const getImageMode = () => {
-  return DATA[LOCAL.noImageMode];
+  return AppGlobalData[LOCAL.noImageMode];
 };
 
 export const setImageMode = image => {
-  NOIMAGEMODE = image;
+  AppGlobalData.useNoImageMode = image;
   let str = LOCAL.noImageMode;
-  DATA[str] = image;
+  AppGlobalData[str] = image;
   SafeStorage.set(str, image);
 };
 
@@ -193,17 +193,17 @@ export const setImageMode = image => {
  */
 export const setLastLocation = str => {
   let loc = LOCAL.lastLocation;
-  DATA[loc] = str;
+  AppGlobalData[loc] = str;
   SafeStorage.set(loc, str);
 };
 
 export const isProVersion = () => {
-  return DATA[LOCAL.proVersion] === true;
+  return AppGlobalData[LOCAL.proVersion] === true;
 };
 
 export const setProVersion = pro => {
   let str = LOCAL.proVersion;
-  DATA[str] = pro;
+  AppGlobalData[str] = pro;
   SafeStorage.set(str, pro);
 };
 
@@ -273,7 +273,7 @@ const restorePurchase = (shouldRestore, showAlert) => {
 };
 
 export const getCurrDate = () => {
-  return DATA[LOCAL.date];
+  return AppGlobalData[LOCAL.date];
 };
 
 /**
@@ -282,7 +282,7 @@ export const getCurrDate = () => {
 export const updateCurrData = () => {
   const today = new Date().toDateString();
   let str = LOCAL.date;
-  DATA[str] = today;
+  AppGlobalData[str] = today;
   SafeStorage.set(str, today);
 };
 
@@ -295,7 +295,7 @@ export const differentMonth = () => {
 };
 
 export const getLastUpdate = () => {
-  return DATA[LOCAL.lastUpdate];
+  return AppGlobalData[LOCAL.lastUpdate];
 };
 
 /**

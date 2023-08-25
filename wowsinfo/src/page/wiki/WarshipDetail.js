@@ -37,7 +37,7 @@ class WarshipDetail extends PureComponent {
     console.log(curr);
 
     // Get all other same tier and same type ships
-    let warship = DATA[SAVED.warship];
+    let warship = AppGlobalData[SAVED.warship];
     let similar = Object.entries(warship).filter(s => {
       // Same tier, same type but not the same ship
       if (
@@ -166,7 +166,7 @@ class WarshipDetail extends PureComponent {
     const {name, model, type, nation, ship_id} = curr;
     const {description} = data;
 
-    let currShip = DATA[SAVED.pr][ship_id];
+    let currShip = AppGlobalData[SAVED.pr][ship_id];
     let avgDamage = Guard(currShip, 'average_damage_dealt', 0);
     let avgWinrate = Guard(currShip, 'win_rate', 0);
     let avgFrag = Guard(currShip, 'average_frags', 0);
@@ -757,7 +757,7 @@ class WarshipDetail extends PureComponent {
     clone.sort((a, b) => b - a);
     for (let index in clone) {
       let id = clone[index];
-      clone[index] = Object.assign(DATA[SAVED.consumable][id]);
+      clone[index] = Object.assign(AppGlobalData[SAVED.consumable][id]);
     }
     console.log(clone);
 
@@ -814,7 +814,7 @@ class WarshipDetail extends PureComponent {
           horizontal
           keyExtractor={shipKey}
           renderItem={({item}) => {
-            let curr = DATA[SAVED.warship][item.key];
+            let curr = AppGlobalData[SAVED.warship][item.key];
             return (
               <WarshipCell
                 scale={1.4}
@@ -876,7 +876,7 @@ class WarshipDetail extends PureComponent {
     let winrateChart = [];
     let fragChart = [];
     for (let ship of similar) {
-      let overall = DATA[SAVED.pr][ship.ship_id];
+      let overall = AppGlobalData[SAVED.pr][ship.ship_id];
       if (overall == null) continue;
 
       const {average_damage_dealt, average_frags, win_rate} = overall;
@@ -903,7 +903,7 @@ class WarshipDetail extends PureComponent {
             style={{height: names.length * 20}}
             chartData={values}
             xAxisLabels={names}
-            darkMode={DARKMODE}
+            darkMode={AppGlobalData.isDarkMode}
             themeColor={c.c}
           />
         </View>

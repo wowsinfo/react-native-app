@@ -20,7 +20,7 @@ class Downloader {
     this.language = langStr();
 
     // To prevent when first launch, everything is new and too many dots
-    this.new = !DATA[LOCAL.firstLaunch];
+    this.new = !AppGlobalData[LOCAL.firstLaunch];
     console.log(this.new);
 
     console.log(`Downloader\nYou server is '${this.domain}'`);
@@ -77,7 +77,7 @@ class Downloader {
       log += `gameVersion - ${gameVersion}\n`;
       // Do not continue if we cannot get current game version
       if (gameVersion == null) return this.makeObj(false, log);
-      let currVersion = DATA[LOCAL.gameVersion];
+      let currVersion = AppGlobalData[LOCAL.gameVersion];
       console.log(`Current: ${currVersion}\nAPI: ${gameVersion}`);
       let appVersion = await SafeStorage.get(LOCAL.appVersion, '1.0.4.2');
       log += `appVersion - ${appVersion}\n`;
@@ -93,40 +93,40 @@ class Downloader {
         log += 'Updating Data\n';
         console.log('Downloader\nUpdating all data from API');
         // Download language
-        DATA[SAVED.language] = await this.getLanguage();
+        AppGlobalData[SAVED.language] = await this.getLanguage();
         log += `${lang.setting_api_language}\n`;
         // Download ship type, nation and module names for Wiki
-        DATA[SAVED.encyclopedia] = await this.getEncyclopedia();
+        AppGlobalData[SAVED.encyclopedia] = await this.getEncyclopedia();
         log += `${lang.wiki_section_title}\n`;
 
         // Wiki
-        DATA[SAVED.warship] = await this.getWarship();
+        AppGlobalData[SAVED.warship] = await this.getWarship();
         log += `${lang.wiki_warships}\n`;
 
-        DATA[SAVED.achievement] = await this.getAchievement();
+        AppGlobalData[SAVED.achievement] = await this.getAchievement();
         log += `${lang.wiki_achievement}\n`;
 
-        DATA[SAVED.collection] = await this.getCollectionAndItem();
+        AppGlobalData[SAVED.collection] = await this.getCollectionAndItem();
         log += `${lang.wiki_collections}\n`;
 
-        DATA[SAVED.commanderSkill] = await this.getCommanderSkill();
+        AppGlobalData[SAVED.commanderSkill] = await this.getCommanderSkill();
         log += `${lang.wiki_skills}\n`;
 
-        DATA[SAVED.consumable] = await this.getConsumable();
+        AppGlobalData[SAVED.consumable] = await this.getConsumable();
         log += `${lang.wiki_upgrades}\n`;
 
-        DATA[SAVED.map] = await this.getMap();
+        AppGlobalData[SAVED.map] = await this.getMap();
         log += `${lang.wiki_maps}\n`;
 
-        DATA[SAVED.pr] = await this.getPR();
+        AppGlobalData[SAVED.pr] = await this.getPR();
         log += `${lang.rating_title}\n`;
 
-        let PR = DATA[SAVED.pr];
+        let PR = AppGlobalData[SAVED.pr];
         if (PR == null || Object.keys(PR).length < 10) {
           // Get data from the mirror
-          DATA[SAVED.pr] = await this.getPRMirror();
+          AppGlobalData[SAVED.pr] = await this.getPRMirror();
           log += `${lang.rating_title} - mirror\n`;
-          PR = DATA[SAVED.pr];
+          PR = AppGlobalData[SAVED.pr];
           // Check if the mirror is ok
           if (PR == null || Object.keys(PR).length < 10) {
             log += `${lang.error_pr_corruption}\n`;
@@ -136,7 +136,7 @@ class Downloader {
         }
 
         // Uncomment this line to log everything
-        // console.log(DATA);
+        // console.log(AppGlobalData.printDATA());
 
         // Make sure it is also great than current version
         // Update this value only if all data are saved correctly
@@ -241,7 +241,7 @@ class Downloader {
           delete curr.is_special;
           // If it is undefined then it is new
           if (this.new === true) {
-            let isOld = Guard(DATA[SAVED.warship], `${id}`, true);
+            let isOld = Guard(AppGlobalData[SAVED.warship], `${id}`, true);
             curr.new = isOld ? false : true;
           }
           // If it has some extra data
@@ -277,7 +277,7 @@ class Downloader {
     if (this.new === true) {
       for (let id in data) {
         let curr = data[id];
-        curr.new = DATA[SAVED.achievement][id] ? false : true;
+        curr.new = AppGlobalData[SAVED.achievement][id] ? false : true;
       }
     }
     await SafeStorage.set(SAVED.achievement, data);
@@ -310,7 +310,7 @@ class Downloader {
     if (this.new === true) {
       for (let id in collection) {
         let curr = collection[id];
-        let isOld = Guard(DATA[SAVED.collection], `collection.${id}`, true);
+        let isOld = Guard(AppGlobalData[SAVED.collection], `collection.${id}`, true);
         curr.new = isOld ? false : true;
       }
     }
@@ -355,7 +355,7 @@ class Downloader {
       for (let id in data) {
         let curr = data[id];
         if (this.new === true) {
-          curr.new = DATA[SAVED.consumable][id] ? false : true;
+          curr.new = AppGlobalData[SAVED.consumable][id] ? false : true;
         }
 
         if (curr.type === 'Modernization') {

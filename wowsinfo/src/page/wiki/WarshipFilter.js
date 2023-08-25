@@ -43,11 +43,11 @@ class WarshipFilter extends Component {
 
     let tierList = getTierList();
 
-    let nations = DATA[SAVED.encyclopedia].ship_nations;
+    let nations = AppGlobalData[SAVED.encyclopedia].ship_nations;
     let nationList = [];
     Object.keys(nations).forEach(k => nationList.push(nations[k]));
 
-    let types = DATA[SAVED.encyclopedia].ship_types;
+    let types = AppGlobalData[SAVED.encyclopedia].ship_types;
     let typeList = [];
     Object.keys(types).forEach(k => typeList.push(types[k]));
 

@@ -16,7 +16,7 @@ class Achievement extends PureComponent {
     super(props);
     setLastLocation('Achievement');
     console.log('WIKI - Achievement');
-    let achievement = DATA[SAVED.achievement];
+    let achievement = AppGlobalData[SAVED.achievement];
     let sorted = Object.entries(achievement).sort((a, b) => {
       // Sort by hidden then by key
       if (a[1].hidden === b[1].hidden) return a[0].localeCompare(b[0]);

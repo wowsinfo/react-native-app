@@ -67,14 +67,14 @@ class Settings extends Component {
     super(props);
 
     this.state = {
-      darkMode: DARKMODE,
+      darkMode: AppGlobalData.isDarkMode,
       tintColour: TintColour(),
       showColour: false,
       server: getCurrServer(),
       APILanguage: getAPILanguage(),
       userLanguage: getUserLang(),
       swapButton: getSwapButton(),
-      noImageMode: NOIMAGEMODE,
+      noImageMode: AppGlobalData.useNoImageMode,
     };
 
     this.colourList = [
@@ -176,7 +176,7 @@ class Settings extends Component {
         </List.Section>
         <List.Section
           title={`${lang.setting_api_language} - ${langList[APILanguage]}`}>
-          {CANUPDATEAPI ? this.renderAPILanguage(langList) : null}
+          {AppGlobalData.shouldUpdateAPI ? this.renderAPILanguage(langList) : null}
         </List.Section>
         <List.Section title={`${lang.setting_app_language} - ${display}`}>
           <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
@@ -314,8 +314,8 @@ class Settings extends Component {
   }
 
   checkAppUpdate = () => {
-    if (CANCHECKFORUPDATE) {
-      CANCHECKFORUPDATE = false;
+    if (AppGlobalData.canCheckForUpdate) {
+      AppGlobalData.canCheckForUpdate = false;
       SafeFetch.normal(WikiAPI.Github_AppVersion).then(v => {
         let version = Guard(v, 'version', null);
         if (version != null) {
@@ -357,7 +357,7 @@ class Settings extends Component {
 
   noImage(curr) {
     setImageMode(curr);
-    this.setState({noImageMode: NOIMAGEMODE});
+    this.setState({noImageMode: AppGlobalData.useNoImageMode});
   }
 
   /**
@@ -367,10 +367,10 @@ class Settings extends Component {
     const {tintColour} = this.state;
     // Switch mode
     UpdateDarkMode();
-    this.setState({darkMode: DARKMODE});
-    this.props.theme.dark = DARKMODE;
-    if (DARKMODE) {
-      global.DARK = {
+    this.setState({darkMode: AppGlobalData.isDarkMode});
+    this.props.theme.dark = AppGlobalData.isDarkMode;
+    if (AppGlobalData.isDarkMode) {
+      AppGlobalData.darkTheme = {
         colors: {
           ...DarkTheme.colors,
           View: 'black',
@@ -379,10 +379,10 @@ class Settings extends Component {
           accent: tintColour[300],
         },
       };
-      this.props.theme.colors = DARK.colors;
+      this.props.theme.colors = AppGlobalData.darkTheme.colors;
     } else {
       // Setup global light theme
-      global.LIGHT = {
+      AppGlobalData.lightTheme = {
         colors: {
           ...DefaultTheme.colors,
           View: 'white',
@@ -391,7 +391,7 @@ class Settings extends Component {
           accent: tintColour[300],
         },
       };
-      this.props.theme.colors = LIGHT.colors;
+      this.props.theme.colors = AppGlobalData.lightTheme.colors;
     }
     console.log(this.props.theme);
   }
@@ -429,7 +429,7 @@ class Settings extends Component {
     this.setState({APILanguage: language});
 
     setFirstLaunch(true);
-    CANUPDATEAPI = false;
+    AppGlobalData.shouldUpdateAPI = false;
     Actions.reset('Menu');
   }
 

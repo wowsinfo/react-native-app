@@ -44,7 +44,7 @@ class AppName extends Component {
   getVersion() {
     let app = APP.Version;
     if (Platform.OS === 'ios') app = APP.IOSVersion;
-    return `${app} (${DATA[LOCAL.gameVersion]})`;
+    return `${app} (${AppGlobalData[LOCAL.gameVersion]})`;
   }
 }
 

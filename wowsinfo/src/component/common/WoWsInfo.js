@@ -98,7 +98,7 @@ class WoWsInfo extends Component {
       <Surface style={[container, style, ThemeBackColour()]}>
         <SafeAreaView style={safeView}>
           <StatusBar
-            barStyle={DARKMODE ? 'light-content' : 'dark-content'}
+            barStyle={AppGlobalData.isDarkMode ? 'light-content' : 'dark-content'}
             backgroundColor={ThemeColour()}
           />
           <View style={[child, ViewBackColour()]}>{children}</View>
@@ -116,7 +116,7 @@ class WoWsInfo extends Component {
 
     return (
       <View style={[footer, ThemeBackColour()]}>
-        {SWAPBUTTON ? this.renderRight() : this.renderLeft()}
+        {AppGlobalData.shouldSwapButton ? this.renderRight() : this.renderLeft()}
         <Button
           disabled={shouldDisable}
           onPress={this.pressEvent}
@@ -124,7 +124,7 @@ class WoWsInfo extends Component {
           uppercase={upper}>
           {title ? title : this.lucky}
         </Button>
-        {SWAPBUTTON ? this.renderLeft() : this.renderRight()}
+        {AppGlobalData.shouldSwapButton ? this.renderLeft() : this.renderRight()}
       </View>
     );
   }
@@ -132,14 +132,14 @@ class WoWsInfo extends Component {
   renderLeft() {
     const {noLeft, home} = this.props;
     return noLeft ? null : (
-      <FooterButton icon={home ? 'cog' : 'home'} left={!SWAPBUTTON} />
+      <FooterButton icon={home ? 'cog' : 'home'} left={!AppGlobalData.shouldSwapButton} />
     );
   }
 
   renderRight() {
     const {noRight, home} = this.props;
     return noRight ? null : (
-      <FooterButton icon={home ? 'search' : 'arrow-left'} left={SWAPBUTTON} />
+      <FooterButton icon={home ? 'search' : 'arrow-left'} left={AppGlobalData.shouldSwapButton} />
     );
   }
 

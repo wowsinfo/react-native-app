@@ -3,24 +3,24 @@ import {LOCAL} from './data';
 import {SafeStorage} from '../core';
 
 export const ThemeBackColour = () => {
-  return {backgroundColor: DARKMODE ? GREY[900] : GREY[100]};
+  return {backgroundColor: AppGlobalData.isDarkMode ? GREY[900] : GREY[100]};
 };
 
 export const ViewBackColour = () => {
-  return {backgroundColor: DARKMODE ? 'black' : 'white'};
+  return {backgroundColor: AppGlobalData.isDarkMode ? 'black' : 'white'};
 };
 
 export const ThemeColour = () => {
-  return DARKMODE ? GREY[900] : GREY[100];
+  return AppGlobalData.isDarkMode ? GREY[900] : GREY[100];
 };
 
 export const UpdateDarkMode = () => {
-  global.DARKMODE = !DARKMODE;
-  SafeStorage.set(LOCAL.darkMode, DARKMODE);
+  AppGlobalData.isDarkMode = !AppGlobalData.isDarkMode;
+  SafeStorage.set(LOCAL.darkMode, AppGlobalData.isDarkMode);
 };
 
 export const TintColour = () => {
-  return DATA[LOCAL.theme];
+  return AppGlobalData[LOCAL.theme];
 };
 
 export const TintTextColour = () => {
@@ -30,6 +30,6 @@ export const TintTextColour = () => {
 };
 
 export const UpdateTintColour = tint => {
-  DATA[LOCAL.theme] = tint;
+  AppGlobalData[LOCAL.theme] = tint;
   SafeStorage.set(LOCAL.theme, tint);
 };

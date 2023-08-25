@@ -103,15 +103,15 @@ class App extends Component {
     DataLoader.loadAll().then(data => {
       // console.log(data);
 
-      global.DATA = data;
-      SWAPBUTTON = DATA[LOCAL.swapButton];
-      NOIMAGEMODE = DATA[LOCAL.noImageMode];
-      LASTLOCATION = DATA[LOCAL.lastLocation];
-      DARKMODE = DATA[LOCAL.darkMode];
+      AppGlobalData.setupWith(data);
+      AppGlobalData.shouldSwapButton = AppGlobalData[LOCAL.swapButton];
+      AppGlobalData.useNoImageMode = AppGlobalData[LOCAL.noImageMode];
+      AppGlobalData.lastLocation = AppGlobalData[LOCAL.lastLocation];
+      AppGlobalData.isDarkMode = AppGlobalData[LOCAL.darkMode];
 
       // No more auto dark mode
 
-      let userLang = DATA[LOCAL.userLanguage];
+      let userLang = AppGlobalData[LOCAL.userLanguage];
       if (userLang !== '') lang.setLanguage(userLang);
 
       console.log('state has been set');
@@ -120,7 +120,7 @@ class App extends Component {
       if (!tint[50]) tint = BLUE;
 
       // Setup global dark theme
-      global.DARK = {
+      AppGlobalData.darkTheme = {
         colors: {
           ...DarkTheme.colors,
           surface: 'black',
@@ -131,7 +131,7 @@ class App extends Component {
       };
 
       // Setup global light theme
-      global.LIGHT = {
+      AppGlobalData.lightTheme = {
         colors: {
           ...DefaultTheme.colors,
           surface: 'white',
@@ -142,8 +142,8 @@ class App extends Component {
       };
 
       props.theme.roundness = 32;
-      props.theme.dark = DARKMODE;
-      props.theme.colors = DARKMODE ? DARK.colors : LIGHT.colors;
+      props.theme.dark = AppGlobalData.isDarkMode;
+      props.theme.colors = AppGlobalData.isDarkMode ? AppGlobalData.darkTheme.colors : AppGlobalData.lightTheme.colors;
       console.log(props.theme);
 
       let first = getFirstLaunch();
@@ -152,7 +152,7 @@ class App extends Component {
         let dn = new Downloader(getCurrServer());
         dn.updateAll(false).then(obj => {
           // Since data are loaded even if user is offline, it should be fine
-          this.setState({loading: false, dark: DARKMODE});
+          this.setState({loading: false, dark: AppGlobalData.isDarkMode});
           // Display message if it is not success
           if (!obj.status) {
             Alert.alert(
@@ -162,7 +162,7 @@ class App extends Component {
           }
         });
       } else {
-        this.setState({loading: false, dark: DARKMODE});
+        this.setState({loading: false, dark: AppGlobalData.isDarkMode});
       }
     });
   }
