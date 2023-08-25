@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        ReactNativeManager.shared.setup(with: self, and: launchOptions)
+//        ReactNativeManager.shared.setup(with: self, and: launchOptions)
         QuickActionManager.shared.setDefaultActions()
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
 

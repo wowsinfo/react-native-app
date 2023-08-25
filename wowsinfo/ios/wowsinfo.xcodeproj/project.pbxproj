@@ -12,6 +12,14 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		92224B4D2A98B5630021F111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9232578A2A98AF9C0053E5F6 /* Assets.xcassets */; };
 		92224B4E2A98B5630021F111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9232578A2A98AF9C0053E5F6 /* Assets.xcassets */; };
+		92224B512A98D4560021F111 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92224B502A98D4560021F111 /* String+Extension.swift */; };
+		92224B522A98D4560021F111 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92224B502A98D4560021F111 /* String+Extension.swift */; };
+		92224B552A98D58B0021F111 /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92224B542A98D58B0021F111 /* SetupViewModel.swift */; };
+		92224B562A98D58B0021F111 /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92224B542A98D58B0021F111 /* SetupViewModel.swift */; };
+		92224B592A98DB600021F111 /* DefaultServerUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92224B582A98DB600021F111 /* DefaultServerUsecase.swift */; };
+		92224B5A2A98DB600021F111 /* DefaultServerUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92224B582A98DB600021F111 /* DefaultServerUsecase.swift */; };
+		92224B5D2A98DC540021F111 /* GameServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92224B5C2A98DC540021F111 /* GameServer.swift */; };
+		92224B5E2A98DC540021F111 /* GameServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92224B5C2A98DC540021F111 /* GameServer.swift */; };
 		923257B22A98B0D00053E5F6 /* ReactNativeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEA2A962F000056AD82 /* ReactNativeManager.swift */; };
 		923257B32A98B0D00053E5F6 /* QuickActionEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AED2A962F000056AD82 /* QuickActionEventEmitter.m */; };
 		923257B42A98B0D00053E5F6 /* QuickActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEE2A962F000056AD82 /* QuickActionManager.m */; };
@@ -53,6 +61,10 @@
 		89C6BE57DB24E9ADA2F236DE /* Pods-wowsinfo-wowsinfoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-wowsinfoTests.release.xcconfig"; path = "Target Support Files/Pods-wowsinfo-wowsinfoTests/Pods-wowsinfo-wowsinfoTests.release.xcconfig"; sourceTree = "<group>"; };
 		91C2EDCC608D13B394C6FB4E /* libPods-wowsinfo-debug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wowsinfo-debug.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9200E86F2A963881007605E1 /* objc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = objc.h; sourceTree = "<group>"; };
+		92224B502A98D4560021F111 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		92224B542A98D58B0021F111 /* SetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetupViewModel.swift; path = wowsinfo/view/SetupViewModel.swift; sourceTree = SOURCE_ROOT; };
+		92224B582A98DB600021F111 /* DefaultServerUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultServerUsecase.swift; sourceTree = "<group>"; };
+		92224B5C2A98DC540021F111 /* GameServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServer.swift; sourceTree = "<group>"; };
 		9232578A2A98AF9C0053E5F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		923257CA2A98B0D00053E5F6 /* wowsinfo-debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "wowsinfo-debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92553F252A987D49008EC8FC /* ReactNativeCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactNativeCaller.swift; sourceTree = "<group>"; };
@@ -117,8 +129,10 @@
 			isa = PBXGroup;
 			children = (
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				92C72AE82A962F000056AD82 /* react-native */,
+				92224B4F2A98D42B0021F111 /* foundation */,
+				92224B572A98DB3D0021F111 /* usecase */,
 				92553F2E2A98811F008EC8FC /* view */,
+				92224B5B2A98DC140021F111 /* model */,
 				92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */,
 				92C72AFF2A96306E0056AD82 /* RootController.swift */,
 				9200E8702A963C48007605E1 /* support */,
@@ -183,6 +197,31 @@
 			path = support;
 			sourceTree = "<group>";
 		};
+		92224B4F2A98D42B0021F111 /* foundation */ = {
+			isa = PBXGroup;
+			children = (
+				92224B502A98D4560021F111 /* String+Extension.swift */,
+			);
+			path = foundation;
+			sourceTree = "<group>";
+		};
+		92224B572A98DB3D0021F111 /* usecase */ = {
+			isa = PBXGroup;
+			children = (
+				92C72AE82A962F000056AD82 /* react-native */,
+				92224B582A98DB600021F111 /* DefaultServerUsecase.swift */,
+			);
+			path = usecase;
+			sourceTree = "<group>";
+		};
+		92224B5B2A98DC140021F111 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				92224B5C2A98DC540021F111 /* GameServer.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		923257852A98AF9B0053E5F6 /* wowsinfo-debug */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,9 +257,9 @@
 			isa = PBXGroup;
 			children = (
 				92553F2F2A988158008EC8FC /* SetupView.swift */,
+				92224B542A98D58B0021F111 /* SetupViewModel.swift */,
 			);
-			name = view;
-			path = "react-native/view";
+			path = view;
 			sourceTree = "<group>";
 		};
 		92926A5E2A977EEF00191FEC /* Fonts */ = {
@@ -586,9 +625,13 @@
 				92C72AF62A962F000056AD82 /* QuickActionEventEmitter.m in Sources */,
 				92C72AF82A962F000056AD82 /* QuickActionManager.m in Sources */,
 				92553F262A987D49008EC8FC /* ReactNativeCaller.swift in Sources */,
+				92224B592A98DB600021F111 /* DefaultServerUsecase.swift in Sources */,
+				92224B552A98D58B0021F111 /* SetupViewModel.swift in Sources */,
+				92224B512A98D4560021F111 /* String+Extension.swift in Sources */,
 				92553F302A988158008EC8FC /* SetupView.swift in Sources */,
 				92C72AFD2A962F5D0056AD82 /* AppDelegate.swift in Sources */,
 				92C72AF42A962F000056AD82 /* QuickActionManager.swift in Sources */,
+				92224B5D2A98DC540021F111 /* GameServer.swift in Sources */,
 				92C72B002A96306E0056AD82 /* RootController.swift in Sources */,
 				92553F2A2A987D9F008EC8FC /* ReactNativeCaller.m in Sources */,
 				92C72AF02A962F000056AD82 /* ReactNativeManager.m in Sources */,
@@ -604,9 +647,13 @@
 				923257B32A98B0D00053E5F6 /* QuickActionEventEmitter.m in Sources */,
 				923257B42A98B0D00053E5F6 /* QuickActionManager.m in Sources */,
 				923257B52A98B0D00053E5F6 /* ReactNativeCaller.swift in Sources */,
+				92224B5A2A98DB600021F111 /* DefaultServerUsecase.swift in Sources */,
+				92224B562A98D58B0021F111 /* SetupViewModel.swift in Sources */,
+				92224B522A98D4560021F111 /* String+Extension.swift in Sources */,
 				923257B62A98B0D00053E5F6 /* SetupView.swift in Sources */,
 				923257B72A98B0D00053E5F6 /* AppDelegate.swift in Sources */,
 				923257B82A98B0D00053E5F6 /* QuickActionManager.swift in Sources */,
+				92224B5E2A98DC540021F111 /* GameServer.swift in Sources */,
 				923257B92A98B0D00053E5F6 /* RootController.swift in Sources */,
 				923257BA2A98B0D00053E5F6 /* ReactNativeCaller.m in Sources */,
 				923257BB2A98B0D00053E5F6 /* ReactNativeManager.m in Sources */,

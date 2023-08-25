@@ -188,6 +188,17 @@
         }
       }
     },
+    "continue" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        }
+      }
+    },
     "detailed_avg_plane_killed" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -572,9 +583,6 @@
           }
         }
       }
-    },
-    "Hello World" : {
-
     },
     "iap_no_purchase_history" : {
       "extractionState" : "manual",
@@ -1133,6 +1141,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "online"
+          }
+        }
+      }
+    },
+    "server_asia" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asia"
+          }
+        }
+      }
+    },
+    "server_europe" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Europe"
+          }
+        }
+      }
+    },
+    "server_north_america" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "North America"
           }
         }
       }
