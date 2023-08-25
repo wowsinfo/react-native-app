@@ -40,7 +40,7 @@ class About extends Component {
                 height: imageWidth,
                 width: imageWidth,
               }}
-              source={require('../../img/Logo.png')}
+              source={{uri: 'Logo'}}
             />
           </Anime.View>
         </Touchable>

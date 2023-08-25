@@ -28,7 +28,7 @@ class WarshipCell extends Component {
               width: width,
               tintColor: TintColour()[500],
             }}
-            source={require('../../img/Unknown.png')}
+            source={{uri: 'Unknown'}}
           />
         )}
         <WarshipLabel item={item} />

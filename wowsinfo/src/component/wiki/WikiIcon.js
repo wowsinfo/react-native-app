@@ -18,7 +18,7 @@ class WikiIcon extends Component {
     let theme = DATA[LOCAL.theme];
 
     let imageSrc = {uri: item.image ? item.image : item.icon};
-    let defaultSrc = require('../../img/Unknown.png');
+    let defaultSrc = {uri: 'Unknown'};
     if (NOIMAGEMODE) imageSrc = null;
     defaultSrc = null;
 

@@ -14,7 +14,7 @@ class FloatingButton extends Component {
 
     this.state = {
       menu: hasMenu,
-      icon: hasMenu ? 'home' : require('../../img/Ship.png'),
+      icon: hasMenu ? 'home' : {uri: 'Ship'},
     };
   }
 

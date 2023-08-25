@@ -384,7 +384,7 @@ class Statistics extends Component {
     if (achievement && Object.keys(achievement).length > 0) loading = false;
     return (
       <TabButton
-        icon={require('../../img/AchievementTab.png')}
+        icon={{uri: 'AchievementTab'}}
         color={this.theme}
         disabled={loading}
         onPress={() => SafeAction('PlayerAchievement', {data: achievement})}
@@ -398,7 +398,7 @@ class Statistics extends Component {
 
     return (
       <TabButton
-        icon={require('../../img/Ship.png')}
+        icon={{uri: 'Ship'}}
         color={this.theme}
         disabled={loading}
         onPress={() => SafeAction('PlayerShip', {data: ship}, 1)}
@@ -412,7 +412,7 @@ class Statistics extends Component {
 
     return (
       <TabButton
-        icon={require('../../img/Rank.png')}
+        icon={{uri: 'Rank'}}
         color={this.theme}
         disabled={loading}
         onPress={() => SafeAction('Rank', {data: rank, ship: rankShip})}
@@ -427,7 +427,7 @@ class Statistics extends Component {
 
     return (
       <TabButton
-        icon={require('../../img/Graph.png')}
+        icon={{uri: 'Graph'}}
         color={this.theme}
         disabled={loading || hidden}
         onPress={() => SafeAction('Graph', {data: graph})}

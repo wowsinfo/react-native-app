@@ -141,33 +141,33 @@ class Menu extends Component {
     this.wiki = [
       {
         t: lang.wiki_achievement,
-        i: require('../../img/Achievement.png'),
+        i: {uri: 'Achievement'},
         p: () => SafeAction('Achievement'),
       },
       {
         t: lang.wiki_warships,
-        i: require('../../img/Warship.png'),
+        i: {uri: 'Warship'},
         p: () => SafeAction('Warship'),
       },
       {
         t: lang.wiki_upgrades,
-        i: require('../../img/Upgrade.png'),
+        i: {uri: 'Upgrade'},
         p: () => SafeAction('Consumable', {upgrade: true}),
       },
       {
         t: lang.wiki_flags,
-        i: require('../../img/Camouflage.png'),
+        i: {uri: 'Camouflage'},
         p: () => SafeAction('Consumable'),
       },
       {
         t: lang.wiki_skills,
-        i: require('../../img/CommanderSkill.png'),
+        i: {uri: 'CommanderSkill'},
         p: () => SafeAction('CommanderSkill'),
       },
       {t: lang.wiki_maps, i: 'map', p: () => SafeAction('Map')},
       {
         t: lang.wiki_collections,
-        i: require('../../img/Collection.png'),
+        i: {uri: 'Collection'},
         p: () => SafeAction('Collection'),
       },
     ];

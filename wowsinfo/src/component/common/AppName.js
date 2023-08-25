@@ -33,7 +33,7 @@ class AppName extends Component {
           easing="ease"
           useNativeDriver>
           <Image
-            source={require('../../img/Logo.png')}
+            source={{uri: 'Logo'}}
             style={{height: 64, width: 64, tintColor: TintColour()[500]}}
           />
         </Anime.View>

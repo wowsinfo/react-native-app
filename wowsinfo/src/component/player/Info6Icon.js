@@ -48,34 +48,34 @@ class Info6Icon extends Component {
         ]}
         onLayout={this.updateBestWidth}>
         <IconLabel
-          icon={require('../../img/Battle.png')}
+          icon={{uri: 'Battle'}}
           info={battles}
           style={labelStyle}
         />
         <IconLabel
-          icon={require('../../img/WinRate.png')}
+          icon={{uri: 'WinRate'}}
           info={`${roundTo((wins / battles) * 100, 2)}%`}
           style={labelStyle}
         />
         <IconLabel
-          icon={require('../../img/Damage.png')}
+          icon={{uri: 'Damage'}}
           info={roundTo(damage_dealt / battles)}
           style={labelStyle}
         />
         {topOnly ? null : (
           <>
             <IconLabel
-              icon={require('../../img/EXP.png')}
+              icon={{uri: 'EXP'}}
               info={roundTo(xp / battles)}
               style={labelStyle}
             />
             <IconLabel
-              icon={require('../../img/KillDeathRatio.png')}
+              icon={{uri: 'KillDeathRatio'}}
               info={roundTo(frags / death, 2)}
               style={labelStyle}
             />
             <IconLabel
-              icon={require('../../img/HitRatio.png')}
+              icon={{uri: 'HitRatio'}}
               info={`${roundTo((hits / shots) * 100, 2)}%`}
               style={labelStyle}
             />

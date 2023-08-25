@@ -46,7 +46,7 @@ class Loading extends Component {
           iterationCount="infinite"
           easing="ease"
           useNativeDriver>
-          <Image style={logo} source={require('../../img/Logo.png')} />
+          <Image style={logo} source={{uri: 'Logo'}} />
         </Anime.View>
         <Text style={label}>{lang.setup_loading}</Text>
       </Surface>

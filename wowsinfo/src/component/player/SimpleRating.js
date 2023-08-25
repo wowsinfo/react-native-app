@@ -24,13 +24,13 @@ class SimpleRating extends PureComponent {
       <View>
         <View style={horizontal}>
           <View style={centerView}>
-            <Image style={iconStyle} source={require('../../img/Battle.png')} />
+            <Image style={iconStyle} source={{uri: 'Battle'}} />
             <Text style={centerText}>{nothing ? '0' : pvp.battles}</Text>
           </View>
           <View style={centerView}>
             <Image
               style={iconStyle}
-              source={require('../../img/WinRate.png')}
+              source={{uri: 'WinRate'}}
             />
             <Text style={centerText}>
               {nothing
@@ -39,7 +39,7 @@ class SimpleRating extends PureComponent {
             </Text>
           </View>
           <View style={centerView}>
-            <Image style={iconStyle} source={require('../../img/Damage.png')} />
+            <Image style={iconStyle} source={{uri: 'Damage'}} />
             <Text style={centerText}>
               {nothing ? '0' : roundTo(pvp.damage_dealt / pvp.battles)}
             </Text>
