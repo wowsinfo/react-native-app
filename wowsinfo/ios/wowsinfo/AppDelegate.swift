@@ -16,11 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         ReactNativeManager.shared.setup(with: self, and: launchOptions)
-        QuickActionManager.shared.setDefaultActions()
+//        QuickActionManager.shared.setDefaultActions()
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
 
         // show the main view
-        let root = ReactNativeManager.shared.getRCTRootViewController(with: "wowsinfo")
+        let root = RootViewController.create(withMode: .uikit)
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = root
         window?.makeKeyAndVisible()

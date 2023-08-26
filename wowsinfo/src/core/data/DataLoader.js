@@ -88,6 +88,13 @@ class DataLoader {
         data[friendList] = saved;
         SafeStorage.set(friendList, saved);
       }
+
+      // let's add ICBC if FFD is still present
+      if (info.clan[2000008934] != null) {
+        delete info.clan[2000008934];
+        info.clan[2000020641] = {tag: 'ICBC', clan_id: '2000020641', server: 3};
+        SafeStorage.set(friendList, info);
+      }
     });
 
     this.loadEntry(data, userData, {});

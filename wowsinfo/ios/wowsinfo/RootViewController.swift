@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class RootViewController: UIHostingController<WoWsInfoView> {
+private class SwiftUIViewController: UIHostingController<WoWsInfoView> {
     init() {
         super.init(rootView: WoWsInfoView())
     }
@@ -15,4 +15,22 @@ class RootViewController: UIHostingController<WoWsInfoView> {
     required init?(coder aDecoder: NSCoder) {
         preconditionFailure("Coder is not used")
     }
+}
+
+enum RootViewControllerMode {
+    case swiftui
+    case uikit
+}
+
+class RootViewController {
+    static func create(withMode mode: RootViewControllerMode = .uikit) -> UIViewController {
+        switch mode {
+        case .swiftui:
+            return SwiftUIViewController()
+        case .uikit:
+            return ReactNativeManager.shared.getRCTRootViewController(with: "wowsinfo")
+        }
+    }
+    
+    private init() {}
 }
