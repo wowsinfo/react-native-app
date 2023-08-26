@@ -363,13 +363,13 @@ class Menu extends Component {
         </View>
         <SectionTitle title={lang.extra_section_title} />
         <View style={wrap}>
-          <List.Item
+          {/* <List.Item
             title={lang.extra_wowsinfo_re}
             description={lang.extra_wowsinfo_re_subtitle}
             style={{width: bestItemWidth}}
             titleStyle={{color: Colors.orange500}}
             onPress={() => Linking.openURL('https://wowsinfo.firebaseapp.com/')}
-          />
+          /> */}
           <List.Item
             title="RS Beta"
             description={lang.extra_rs_beta}

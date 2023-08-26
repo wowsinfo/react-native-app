@@ -282,7 +282,7 @@ export const lang = new LocalizedStrings({
     weapon_total_frags: 'Total Frags',
     weapon_hit_ratio: 'Hit Ratio',
     /// App name section
-    app_name: 'WoWs Info Future',
+    app_name: 'WoWs Info Seven',
     wowsinfo_black: 'Black',
     wowsinfo_white: 'White',
     wowsinfo_ultra: 'Ultra',
@@ -591,7 +591,7 @@ export const lang = new LocalizedStrings({
     weapon_total_frags: '总击杀',
     weapon_hit_ratio: '命中率',
     /// App name section
-    app_name: 'WoWs Info 未来',
+    app_name: 'WoWs Info 赛文',
     wowsinfo_black: '黑',
     wowsinfo_white: '白',
     wowsinfo_ultra: '超级版',
@@ -900,7 +900,7 @@ export const lang = new LocalizedStrings({
     weapon_total_frags: '總擊殺',
     weapon_hit_ratio: '命中率',
     /// App name section
-    app_name: 'WoWs Info 未來',
+    app_name: 'WoWs Info 七號',
     wowsinfo_black: '黑',
     wowsinfo_white: '白',
     wowsinfo_ultra: '超級版',
@@ -1211,7 +1211,7 @@ export const lang = new LocalizedStrings({
     weapon_total_frags: '総艦艇撃沈数',
     weapon_hit_ratio: '命中率',
     /// App name section
-    app_name: 'WoWs Info 未来',
+    app_name: 'WoWs Info セブン',
     wowsinfo_black: '黒',
     wowsinfo_white: '白',
     wowsinfo_ultra: 'ウルトラ',
@@ -1524,7 +1524,7 @@ export const lang = new LocalizedStrings({
     weapon_total_frags: 'Total Frags',
     weapon_hit_ratio: 'Hit Ratio',
     /// App name section
-    app_name: 'WoWs Info Future',
+    app_name: 'WoWs Info Seven',
     wowsinfo_black: 'Black',
     wowsinfo_white: 'White',
     wowsinfo_ultra: 'Ultra',

@@ -108,7 +108,7 @@ class RS extends Component {
               uppercase={false}
               onPress={() =>
                 Linking.openURL(
-                  'https://github.com/HenryQuan/WoWs-RS/releases/latest',
+                  'https://github.com/wowsinfo/WoWs-RS//releases/latest',
                 )
               }>
               {lang.extra_rs_beta_download}
