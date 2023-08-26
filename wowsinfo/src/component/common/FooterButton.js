@@ -22,8 +22,8 @@ class FooterButton extends Component {
       <SafeAreaView
         style={{
           position: 'absolute',
-          left: left ? 0 : null,
-          right: left ? null : 0,
+          left: left ? 8 : null,
+          right: left ? null : 8,
         }}>
         <IconButton
           color={Colors.grey500}

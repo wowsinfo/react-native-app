@@ -54,7 +54,7 @@ class Menu extends Component {
     this.first = getFirstLaunch();
     this.state = {
       loading: true,
-      main: AppGlobalData[LOCAL.userInfo],
+      main: AppGlobalData.get(LOCAL.userInfo),
       bestItemWidth: bestWidth(400),
     };
 
@@ -64,7 +64,7 @@ class Menu extends Component {
   componentDidUpdate() {
     this.getData();
     const {main} = this.state;
-    let curr = AppGlobalData[LOCAL.userInfo];
+    let curr = AppGlobalData.get(LOCAL.userInfo);
     setLastLocation('');
     if (curr.account_id !== main.account_id) {
       this.setState({main: curr});
@@ -159,11 +159,11 @@ class Menu extends Component {
         i: {uri: 'Camouflage'},
         p: () => SafeAction('Consumable'),
       },
-      {
-        t: lang.wiki_skills,
-        i: {uri: 'CommanderSkill'},
-        p: () => SafeAction('CommanderSkill'),
-      },
+      // {
+      //   t: lang.wiki_skills,
+      //   i: {uri: 'CommanderSkill'},
+      //   p: () => SafeAction('CommanderSkill'),
+      // },
       {t: lang.wiki_maps, i: 'map', p: () => SafeAction('Map')},
       {
         t: lang.wiki_collections,

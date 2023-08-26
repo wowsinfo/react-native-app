@@ -29,8 +29,8 @@ class Detailed extends Component {
     }
 
     const {pvp, ship_id, rating} = data;
-    const ship = AppGlobalData[SAVED.warship][ship_id];
-    const overall = AppGlobalData[SAVED.pr][ship_id];
+    const ship = AppGlobalData.get(SAVED.warship)[ship_id];
+    const overall = AppGlobalData.get(SAVED.pr)[ship_id];
     return (
       <WoWsInfo
         onPress={

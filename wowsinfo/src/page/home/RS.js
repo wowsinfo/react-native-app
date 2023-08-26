@@ -54,7 +54,7 @@ class RS extends Component {
     setLastLocation('RS');
     this.state = {
       // Controls whether ip if valid
-      ip: AppGlobalData[LOCAL.rsIP], // load saved ip
+      ip: AppGlobalData.get(LOCAL.rsIP), // load saved ip
       rs: null,
       valid: false,
       // Whether show map info
@@ -174,7 +174,10 @@ class RS extends Component {
         onLongPress={
           info.account_id ? () => SafeAction('Statistics', {info: info}) : null
         }>
-        <WarshipCell item={AppGlobalData.get(SAVED.warship)[info.ship_id]} scale={1.4} />
+        <WarshipCell
+          item={AppGlobalData.get(SAVED.warship)[info.ship_id]}
+          scale={1.4}
+        />
         <Text style={playerName} numberOfLines={1}>
           {pName}
         </Text>

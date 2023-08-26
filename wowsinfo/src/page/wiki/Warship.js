@@ -17,7 +17,7 @@ class Warship extends PureComponent {
     super(props);
     setLastLocation('Warship');
     console.log('WIKI - Warship');
-    let warship = AppGlobalData[SAVED.warship];
+    let warship = AppGlobalData.get(SAVED.warship);
     let sorted = Object.entries(warship).sort((a, b) => {
       // Sort by tier, then by type
       if (a[1].new) return -1;

@@ -22,7 +22,7 @@ class Graph extends PureComponent {
       const {pvp, ship_id} = ship;
       const {battles} = pvp;
 
-      let curr = AppGlobalData[SAVED.warship][ship_id];
+      let curr = AppGlobalData.get(SAVED.warship)[ship_id];
       if (curr == null) continue;
 
       const {nation, tier, type} = curr;
@@ -37,10 +37,13 @@ class Graph extends PureComponent {
       avgTier: this.getAvgTier(tierInfo),
       nation: this.objToChart(
         nationInfo,
-        AppGlobalData[SAVED.encyclopedia].ship_nations,
+        AppGlobalData.get(SAVED.encyclopedia).ship_nations,
         10,
       ),
-      type: this.objToChart(typeInfo, AppGlobalData[SAVED.encyclopedia].ship_types),
+      type: this.objToChart(
+        typeInfo,
+        AppGlobalData.get(SAVED.encyclopedia).ship_types,
+      ),
     };
   }
 

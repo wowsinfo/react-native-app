@@ -9,15 +9,9 @@ import {SafeAreaView, StyleSheet, StatusBar, Dimensions} from 'react-native';
 import {Button, Surface} from 'react-native-paper';
 import {isAndroid} from 'react-native-device-detection';
 import {lang} from '../../value/lang';
-import {LOCAL} from '../../value/data';
 import {FooterButton} from './FooterButton';
 import {SafeAction, random} from '../../core';
-import {
-  ThemeBackColour,
-  ThemeColour,
-  ViewBackColour,
-  TintColour,
-} from '../../value/colour';
+import {ThemeBackColour, ThemeColour, ViewBackColour} from '../../value/colour';
 import {View} from 'react-native-animatable';
 
 class WoWsInfo extends Component {
@@ -80,7 +74,7 @@ class WoWsInfo extends Component {
       'CJokerLukas',
       'VladimirlS',
       'CICN',
-      'FFD',
+      'ICBC',
     ];
 
     // 80% of the time, it will be the app name
@@ -98,7 +92,9 @@ class WoWsInfo extends Component {
       <Surface style={[container, style, ThemeBackColour()]}>
         <SafeAreaView style={safeView}>
           <StatusBar
-            barStyle={AppGlobalData.isDarkMode ? 'light-content' : 'dark-content'}
+            barStyle={
+              AppGlobalData.isDarkMode ? 'light-content' : 'dark-content'
+            }
             backgroundColor={ThemeColour()}
           />
           <View style={[child, ViewBackColour()]}>{children}</View>
@@ -116,7 +112,9 @@ class WoWsInfo extends Component {
 
     return (
       <View style={[footer, ThemeBackColour()]}>
-        {AppGlobalData.shouldSwapButton ? this.renderRight() : this.renderLeft()}
+        {AppGlobalData.shouldSwapButton
+          ? this.renderRight()
+          : this.renderLeft()}
         <Button
           disabled={shouldDisable}
           onPress={this.pressEvent}
@@ -124,7 +122,9 @@ class WoWsInfo extends Component {
           uppercase={upper}>
           {title ? title : this.lucky}
         </Button>
-        {AppGlobalData.shouldSwapButton ? this.renderLeft() : this.renderRight()}
+        {AppGlobalData.shouldSwapButton
+          ? this.renderLeft()
+          : this.renderRight()}
       </View>
     );
   }
@@ -132,14 +132,20 @@ class WoWsInfo extends Component {
   renderLeft() {
     const {noLeft, home} = this.props;
     return noLeft ? null : (
-      <FooterButton icon={home ? 'cog' : 'home'} left={!AppGlobalData.shouldSwapButton} />
+      <FooterButton
+        icon={home ? 'cog' : 'home'}
+        left={!AppGlobalData.shouldSwapButton}
+      />
     );
   }
 
   renderRight() {
     const {noRight, home} = this.props;
     return noRight ? null : (
-      <FooterButton icon={home ? 'search' : 'arrow-left'} left={AppGlobalData.shouldSwapButton} />
+      <FooterButton
+        icon={home ? 'search' : 'arrow-left'}
+        left={AppGlobalData.shouldSwapButton}
+      />
     );
   }
 
@@ -178,7 +184,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   footer: {
-    height: 48,
+    height: 60,
     justifyContent: 'center',
   },
 });

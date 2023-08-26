@@ -102,7 +102,7 @@ class App extends Component {
     // Load all data from AsyncStorage
     DataLoader.loadAll().then(data => {
       // console.log(data);
-      
+
       console.log(AppGlobalData);
       AppGlobalData.setupWith(data);
       AppGlobalData.shouldSwapButton = AppGlobalData.get(LOCAL.swapButton);
@@ -144,7 +144,9 @@ class App extends Component {
 
       props.theme.roundness = 32;
       props.theme.dark = AppGlobalData.isDarkMode;
-      props.theme.colors = AppGlobalData.isDarkMode ? AppGlobalData.darkTheme.colors : AppGlobalData.lightTheme.colors;
+      props.theme.colors = AppGlobalData.isDarkMode
+        ? AppGlobalData.darkTheme.colors
+        : AppGlobalData.lightTheme.colors;
       console.log(props.theme);
 
       let first = getFirstLaunch();

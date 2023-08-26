@@ -3,7 +3,7 @@ import {SafeValue} from './SafeGuard';
 import {SAVED} from '../../value/data';
 import {lang} from '../../value/lang';
 
-const getOverall = id => AppGlobalData[SAVED.pr][id];
+const getOverall = id => AppGlobalData.get(SAVED.pr)[id];
 
 const calRating = (
   actualDmg,

@@ -10,7 +10,8 @@ import SwiftUI
 /// The wrapper of the React Native app
 struct WoWsInfoView: View {
     var body: some View {
-        ReactNativeApp().ignoresSafeArea()
+        ReactNativeApp()
+            .ignoresSafeArea() // Required to fill the entire screen
     }
 }
 

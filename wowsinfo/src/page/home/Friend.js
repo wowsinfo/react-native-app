@@ -17,7 +17,7 @@ import {FlatGrid} from 'react-native-super-grid';
 class Friend extends PureComponent {
   constructor(props) {
     super(props);
-    let all = AppGlobalData[LOCAL.friendList];
+    let all = AppGlobalData.get(LOCAL.friendList);
 
     let player = this.getPlayer(all);
     let clan = this.getClan(all);
@@ -99,16 +99,16 @@ class Friend extends PureComponent {
 
   removeFriend(info) {
     let str = LOCAL.friendList;
-    delete AppGlobalData[str].player[info.account_id];
-    SafeStorage.set(str, AppGlobalData[str]);
-    this.setState({player: this.getPlayer(AppGlobalData[str])});
+    delete AppGlobalData.get(str).player[info.account_id];
+    SafeStorage.set(str, AppGlobalData.get(str));
+    this.setState({player: this.getPlayer(AppGlobalData.get(str))});
   }
 
   removeClan(info) {
     let str = LOCAL.friendList;
-    delete AppGlobalData[str].clan[info.clan_id];
-    SafeStorage.set(str, AppGlobalData[str]);
-    this.setState({clan: this.getClan(AppGlobalData[str])});
+    delete AppGlobalData.get(str).clan[info.clan_id];
+    SafeStorage.set(str, AppGlobalData.get(str));
+    this.setState({clan: this.getClan(AppGlobalData.get(str))});
   }
 
   pushToPlayer(info) {

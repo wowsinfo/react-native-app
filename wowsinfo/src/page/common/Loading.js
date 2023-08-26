@@ -63,6 +63,8 @@ const styles = StyleSheet.create({
   },
   logo: {
     tintColor: 'white',
+    width: 128,
+    height: 128,
   },
   label: {
     color: 'white',

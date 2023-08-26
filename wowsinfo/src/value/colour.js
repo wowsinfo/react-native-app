@@ -20,7 +20,7 @@ export const UpdateDarkMode = () => {
 };
 
 export const TintColour = () => {
-  return AppGlobalData[LOCAL.theme];
+  return AppGlobalData.get(LOCAL.theme);
 };
 
 export const TintTextColour = () => {

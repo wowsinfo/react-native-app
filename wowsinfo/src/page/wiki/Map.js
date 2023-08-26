@@ -17,7 +17,7 @@ class Map extends Component {
     setLastLocation('Map');
     console.log('WIKI - Map');
 
-    let map = AppGlobalData[SAVED.map];
+    let map = AppGlobalData.get(SAVED.map);
     console.log(map);
     this.state = {
       data: map,

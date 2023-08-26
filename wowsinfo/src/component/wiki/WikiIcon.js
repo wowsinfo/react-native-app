@@ -15,7 +15,7 @@ class WikiIcon extends Component {
     const {item, scale, warship, selected, ...props} = this.props;
     let width = 80;
     if (scale) width *= scale;
-    let theme = AppGlobalData[LOCAL.theme];
+    let theme = AppGlobalData.get(LOCAL.theme);
 
     let imageSrc = {uri: item.image ? item.image : item.icon};
     let defaultSrc = {uri: 'Unknown'};
@@ -45,7 +45,10 @@ class WikiIcon extends Component {
           {...props}>
           {item.new ? (
             <View
-              style={[newLabel, {backgroundColor: AppGlobalData[LOCAL.theme][500]}]}
+              style={[
+                newLabel,
+                {backgroundColor: AppGlobalData.get(LOCAL.theme)[500]},
+              ]}
             />
           ) : null}
           <Image

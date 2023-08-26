@@ -5,9 +5,8 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView, KeyboardAvoidingView} from 'react-native';
 import {Searchbar} from 'react-native-paper';
-import * as Anime from 'react-native-animatable';
 import {WoWsInfo, SectionTitle, PlayerCell} from '../../component';
 import {
   getCurrDomain,
@@ -19,7 +18,6 @@ import {Guard, SafeFetch, bestWidth} from '../../core';
 import {WoWsAPI} from '../../value/api';
 import {Friend} from './Friend';
 import {lang} from '../../value/lang';
-import {FlatGrid} from 'react-native-super-grid';
 
 class Search extends Component {
   constructor(props) {
@@ -57,24 +55,29 @@ class Search extends Component {
         hideAds
         title={lang.menu_footer}
         onPress={() => this.refs['search'].focus()}>
-        <Searchbar
-          ref="search"
-          value={search}
-          style={searchBar}
-          placeholder={`${this.prefix.toUpperCase()} - ${online} ${
-            lang.search_player_online
-          }`}
-          onChangeText={this.searchAll}
-          autoCorrect={false}
-          autoCapitalize="none"
-        />
-        <ScrollView
-          style={scroll}
-          keyboardShouldPersistTaps="always"
-          keyboardDismissMode="on-drag"
-          onLayout={this.updateWidth}>
-          {this.renderContent()}
-        </ScrollView>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          style={{flex: 1}}>
+          <Searchbar
+            ref="search"
+            value={search}
+            style={searchBar}
+            placeholder={`${this.prefix.toUpperCase()} - ${online} ${
+              lang.search_player_online
+            }`}
+            onChangeText={this.searchAll}
+            autoCorrect={false}
+            autoCapitalize="none"
+          />
+          <ScrollView
+            style={scroll}
+            keyboardShouldPersistTaps="always"
+            keyboardDismissMode="on-drag"
+            contentContainerStyle={{flexGrow: 1}}
+            onLayout={this.updateWidth}>
+            {this.renderContent()}
+          </ScrollView>
+        </KeyboardAvoidingView>
       </WoWsInfo>
     );
   }

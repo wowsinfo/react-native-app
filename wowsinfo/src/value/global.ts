@@ -10,15 +10,23 @@ class AppGlobalData {
         AppGlobalData.dataSource = data;
     }
 
-    public static get(key: any): any {
+    public static get(key: string): any {
         return AppGlobalData.dataSource[key];
     }
 
-    public static set(key: any, value: any): void {
+    public static set(key: string, value: any): void {
         console.log('AppGlobalData.set() called with key: ' + key + ' and value: ' + value);
         if (key == null || value == null) {
             console.error('AppGlobalData.set() cannot set null key or value');
             console.trace();
+            return;
+        }
+
+        // if value is a Promise, we need to resolve it first
+        if (value instanceof Promise) {
+            console.log('AppGlobalData.set() value is a Promise');
+            console.trace();
+            return;
         }
 
         AppGlobalData.dataSource[key] = value;

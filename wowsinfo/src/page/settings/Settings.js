@@ -176,7 +176,9 @@ class Settings extends Component {
         </List.Section>
         <List.Section
           title={`${lang.setting_api_language} - ${langList[APILanguage]}`}>
-          {AppGlobalData.shouldUpdateAPI ? this.renderAPILanguage(langList) : null}
+          {AppGlobalData.shouldUpdateAPI
+            ? this.renderAPILanguage(langList)
+            : null}
         </List.Section>
         <List.Section title={`${lang.setting_app_language} - ${display}`}>
           <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>

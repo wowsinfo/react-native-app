@@ -10,10 +10,9 @@ class Rank extends PureComponent {
   constructor(props) {
     super(props);
     let list = [];
+    console.log(props);
     for (let key in props.data) {
       let curr = props.data[key];
-      const {rank, start_rank} = curr.rank_info;
-      if (rank === 0 || rank === start_rank) continue;
       curr.season = Number(key);
       list.push(curr);
     }
@@ -41,16 +40,16 @@ class Rank extends PureComponent {
           itemDimension={300}
           data={data}
           renderItem={({item}) => {
-            const {season, rank_info} = item;
-            const {rank, start_rank} = rank_info;
+            const {season} = item;
             const shipData = ship[season];
+            console.log(shipData);
 
-            let emoji = '⭐';
+            // let emoji = '⭐';
 
             return (
               <Touchable
                 onPress={
-                  shipData == null
+                  shipData == null || shipData.length == 0
                     ? null
                     : () => SafeAction('PlayerShip', {data: shipData})
                 }
@@ -59,10 +58,8 @@ class Rank extends PureComponent {
                   style={
                     centerText
                   }>{`- ${lang.rank_season_title} ${season} -`}</Headline>
-                <Title style={centerText}>{`${emoji} ${rank} ${emoji}`}</Title>
-                {rank > 0 && rank !== start_rank ? (
-                  <View>{this.renderSeasonInfo(item)}</View>
-                ) : null}
+                {/* <Title style={centerText}>{`${emoji} ${rank} ${emoji}`}</Title> */}
+                <View>{this.renderSeasonInfo(item)}</View>
               </Touchable>
             );
           }}
@@ -74,12 +71,15 @@ class Rank extends PureComponent {
 
   renderSeasonInfo(data) {
     if (data == null) return null;
-    const {rank_solo, rank_div2, rank_div3} = data;
+    // find the other key which is not season
+    const rank_key = Object.keys(data).find(key => key != 'season');
+    if (rank_key == null) return null;
+    const {rank_solo, rank_div2, rank_div3} = data[rank_key];
     let info = rank_solo;
     if (info == null) info = rank_div2;
     if (info == null) info = rank_div3;
     if (info == null) return null;
-    return <Info6Icon data={info} compact topOnly />;
+    return <Info6Icon data={info} compact />;
   }
 }
 

@@ -28,10 +28,7 @@ class SimpleRating extends PureComponent {
             <Text style={centerText}>{nothing ? '0' : pvp.battles}</Text>
           </View>
           <View style={centerView}>
-            <Image
-              style={iconStyle}
-              source={{uri: 'WinRate'}}
-            />
+            <Image style={iconStyle} source={{uri: 'WinRate'}} />
             <Text style={centerText}>
               {nothing
                 ? '0.0%'

@@ -35,8 +35,8 @@ class Statistics extends Component {
     if (ID != null && ID !== '') {
       const {account_id, nickname, server} = props.info;
       // Check if this player is inside friend list
-      let friend = AppGlobalData[LOCAL.friendList];
-      let master = AppGlobalData[LOCAL.userInfo];
+      let friend = AppGlobalData.get(LOCAL.friendList);
+      let master = AppGlobalData.get(LOCAL.userInfo);
       console.log(master, account_id);
       this.state = {
         name: nickname,
@@ -364,7 +364,7 @@ class Statistics extends Component {
     let str = LOCAL.friendList;
     AppGlobalData.get(str).player[info.account_id] = info;
 
-    SafeStorage.set(str, AppGlobalData[str]);
+    SafeStorage.set(str, AppGlobalData.get(str));
     this.setState({canBeFriend: false});
   };
 

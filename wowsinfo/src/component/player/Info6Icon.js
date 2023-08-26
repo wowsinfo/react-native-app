@@ -47,11 +47,7 @@ class Info6Icon extends Component {
             : {marginTop: 16, marginBottom: 16},
         ]}
         onLayout={this.updateBestWidth}>
-        <IconLabel
-          icon={{uri: 'Battle'}}
-          info={battles}
-          style={labelStyle}
-        />
+        <IconLabel icon={{uri: 'Battle'}} info={battles} style={labelStyle} />
         <IconLabel
           icon={{uri: 'WinRate'}}
           info={`${roundTo((wins / battles) * 100, 2)}%`}

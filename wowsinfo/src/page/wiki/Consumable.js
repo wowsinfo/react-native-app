@@ -22,7 +22,7 @@ class Consumable extends PureComponent {
 
     // Load data depending on 'upgrade' prop
     let data = [];
-    let consumable = AppGlobalData[SAVED.consumable];
+    let consumable = AppGlobalData.get(SAVED.consumable);
     for (let key in consumable) {
       let curr = consumable[key];
 

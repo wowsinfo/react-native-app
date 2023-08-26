@@ -17,7 +17,7 @@ class CommanderSkill extends Component {
     super(props);
     setLastLocation('CommanderSkill');
     console.log('WIKI - Commander Skill');
-    let skill = AppGlobalData[SAVED.commanderSkill];
+    let skill = AppGlobalData.get(SAVED.commanderSkill);
     let cloned = copy(skill);
 
     let section = [];
