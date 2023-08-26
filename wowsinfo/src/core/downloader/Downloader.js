@@ -93,38 +93,38 @@ class Downloader {
         log += 'Updating Data\n';
         console.log('Downloader\nUpdating all data from API');
         // Download language
-        AppGlobalData[SAVED.language] = await this.getLanguage();
+        AppGlobalData.set(SAVED.language, await this.getLanguage());
         log += `${lang.setting_api_language}\n`;
         // Download ship type, nation and module names for Wiki
-        AppGlobalData[SAVED.encyclopedia] = await this.getEncyclopedia();
+        AppGlobalData.set(SAVED.encyclopedia, await this.getEncyclopedia());
         log += `${lang.wiki_section_title}\n`;
 
         // Wiki
-        AppGlobalData[SAVED.warship] = await this.getWarship();
+        AppGlobalData.set(SAVED.warship, this.getWarship());
         log += `${lang.wiki_warships}\n`;
 
-        AppGlobalData[SAVED.achievement] = await this.getAchievement();
+        AppGlobalData.set(SAVED.achievement, this.getAchievement());
         log += `${lang.wiki_achievement}\n`;
 
-        AppGlobalData[SAVED.collection] = await this.getCollectionAndItem();
+        AppGlobalData.set(SAVED.collection, this.getCollectionAndItem());
         log += `${lang.wiki_collections}\n`;
 
-        AppGlobalData[SAVED.commanderSkill] = await this.getCommanderSkill();
+        AppGlobalData.set(SAVED.commanderSkill, this.getCommanderSkill());
         log += `${lang.wiki_skills}\n`;
 
-        AppGlobalData[SAVED.consumable] = await this.getConsumable();
+        AppGlobalData.set(SAVED.consumable, this.getConsumable());
         log += `${lang.wiki_upgrades}\n`;
 
-        AppGlobalData[SAVED.map] = await this.getMap();
+        AppGlobalData.set(SAVED.map, this.getMap());
         log += `${lang.wiki_maps}\n`;
 
-        AppGlobalData[SAVED.pr] = await this.getPR();
+        AppGlobalData.set(SAVED.pr, this.getPR());
         log += `${lang.rating_title}\n`;
 
         let PR = AppGlobalData[SAVED.pr];
         if (PR == null || Object.keys(PR).length < 10) {
           // Get data from the mirror
-          AppGlobalData[SAVED.pr] = await this.getPRMirror();
+          AppGlobalData.set(SAVED.pr, await this.getPRMirror());
           log += `${lang.rating_title} - mirror\n`;
           PR = AppGlobalData[SAVED.pr];
           // Check if the mirror is ok

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-native start",
     "android": "react-native run-android",
-    "ios": "react-native run-ios --simulator=\"iPhone 14 Pro\"",
+    "ios": "react-native run-ios --scheme wowsinfo-debug --simulator=\"iPhone 14 Pro\"",
     "pod": "cd ios && pod install",
     "clean-ios": "cd ios && rm -rf Pods/ Podfile.lock",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",

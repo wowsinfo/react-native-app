@@ -37,6 +37,8 @@
 		92553F2A2A987D9F008EC8FC /* ReactNativeCaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 92553F292A987D9F008EC8FC /* ReactNativeCaller.m */; };
 		92553F302A988158008EC8FC /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92553F2F2A988158008EC8FC /* SetupView.swift */; };
 		92926A902A9786F200191FEC /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 92926A8F2A9786F200191FEC /* Localizable.xcstrings */; };
+		92A539B32A998AE500A3B71B /* WoWsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A539B22A998AE500A3B71B /* WoWsInfoView.swift */; };
+		92A539B42A998AE500A3B71B /* WoWsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A539B22A998AE500A3B71B /* WoWsInfoView.swift */; };
 		92C72AF02A962F000056AD82 /* ReactNativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AE92A962F000056AD82 /* ReactNativeManager.m */; };
 		92C72AF22A962F000056AD82 /* ReactNativeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEA2A962F000056AD82 /* ReactNativeManager.swift */; };
 		92C72AF42A962F000056AD82 /* QuickActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEC2A962F000056AD82 /* QuickActionManager.swift */; };
@@ -87,6 +89,7 @@
 		92926A6D2A977EEF00191FEC /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		92926A6E2A977EEF00191FEC /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		92926A8F2A9786F200191FEC /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		92A539B22A998AE500A3B71B /* WoWsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoWsInfoView.swift; sourceTree = "<group>"; };
 		92C1CADD2A962A0400E07A7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92C72AE92A962F000056AD82 /* ReactNativeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeManager.m; sourceTree = "<group>"; };
 		92C72AEA2A962F000056AD82 /* ReactNativeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactNativeManager.swift; sourceTree = "<group>"; };
@@ -258,6 +261,7 @@
 			children = (
 				92553F2F2A988158008EC8FC /* SetupView.swift */,
 				92224B542A98D58B0021F111 /* SetupViewModel.swift */,
+				92A539B22A998AE500A3B71B /* WoWsInfoView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -625,6 +629,7 @@
 				92C72AF62A962F000056AD82 /* QuickActionEventEmitter.m in Sources */,
 				92C72AF82A962F000056AD82 /* QuickActionManager.m in Sources */,
 				92553F262A987D49008EC8FC /* ReactNativeCaller.swift in Sources */,
+				92A539B32A998AE500A3B71B /* WoWsInfoView.swift in Sources */,
 				92224B592A98DB600021F111 /* DefaultServerUsecase.swift in Sources */,
 				92224B552A98D58B0021F111 /* SetupViewModel.swift in Sources */,
 				92224B512A98D4560021F111 /* String+Extension.swift in Sources */,
@@ -647,6 +652,7 @@
 				923257B32A98B0D00053E5F6 /* QuickActionEventEmitter.m in Sources */,
 				923257B42A98B0D00053E5F6 /* QuickActionManager.m in Sources */,
 				923257B52A98B0D00053E5F6 /* ReactNativeCaller.swift in Sources */,
+				92A539B42A998AE500A3B71B /* WoWsInfoView.swift in Sources */,
 				92224B5A2A98DB600021F111 /* DefaultServerUsecase.swift in Sources */,
 				92224B562A98D58B0021F111 /* SetupViewModel.swift in Sources */,
 				92224B522A98D4560021F111 /* String+Extension.swift in Sources */,

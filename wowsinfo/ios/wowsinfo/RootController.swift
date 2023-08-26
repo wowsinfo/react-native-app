@@ -16,21 +16,3 @@ class RootController: UIHostingController<WoWsInfoView> {
         preconditionFailure("Coder is not used")
     }
 }
-
-struct WoWsInfoView: View {
-    var body: some View {
-        NavigationView {
-            SetupView()
-        }
-    }
-}
-
-struct ReactNativeApp: UIViewRepresentable {
-    func makeUIView(context: Context) -> UIView {
-        return ReactNativeManager.shared.getRCTRootView(with: "wowsinfo")
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {
-        //
-    }
-}

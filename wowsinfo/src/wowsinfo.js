@@ -102,16 +102,17 @@ class App extends Component {
     // Load all data from AsyncStorage
     DataLoader.loadAll().then(data => {
       // console.log(data);
-
+      
+      console.log(AppGlobalData);
       AppGlobalData.setupWith(data);
-      AppGlobalData.shouldSwapButton = AppGlobalData[LOCAL.swapButton];
-      AppGlobalData.useNoImageMode = AppGlobalData[LOCAL.noImageMode];
-      AppGlobalData.lastLocation = AppGlobalData[LOCAL.lastLocation];
-      AppGlobalData.isDarkMode = AppGlobalData[LOCAL.darkMode];
+      AppGlobalData.shouldSwapButton = AppGlobalData.get(LOCAL.swapButton);
+      AppGlobalData.useNoImageMode = AppGlobalData.get(LOCAL.noImageMode);
+      AppGlobalData.lastLocation = AppGlobalData.get(LOCAL.lastLocation);
+      AppGlobalData.isDarkMode = AppGlobalData.get(LOCAL.darkMode);
 
       // No more auto dark mode
 
-      let userLang = AppGlobalData[LOCAL.userLanguage];
+      let userLang = AppGlobalData.get(LOCAL.userLanguage);
       if (userLang !== '') lang.setLanguage(userLang);
 
       console.log('state has been set');

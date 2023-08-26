@@ -30,6 +30,6 @@ export const TintTextColour = () => {
 };
 
 export const UpdateTintColour = tint => {
-  AppGlobalData[LOCAL.theme] = tint;
+  AppGlobalData.set(LOCAL.theme, tint);
   SafeStorage.set(LOCAL.theme, tint);
 };

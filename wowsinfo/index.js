@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, NativeModules } from 'react-native';
 import App from './src/wowsinfo';
 import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import './src/value/global';
+NativeModules.DevSettings.setIsDebuggingRemotely(true);
 
 export function Main() {
     return (

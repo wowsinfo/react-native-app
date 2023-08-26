@@ -1,8 +1,8 @@
-import {SafeStorage, SafeValue} from '../core';
-import {Actions} from 'react-native-router-flux';
-import {getAvailablePurchases, getPurchaseHistory} from 'react-native-iap';
-import {Alert, Platform} from 'react-native';
-import {lang} from './lang';
+import { SafeStorage, SafeValue } from '../core';
+import { Actions } from 'react-native-router-flux';
+import { getAvailablePurchases, getPurchaseHistory } from 'react-native-iap';
+import { Alert, Platform } from 'react-native';
+import { lang } from './lang';
 
 /**
  * App information
@@ -79,11 +79,11 @@ export const SAVED = {
  * First launch
  */
 export const getFirstLaunch = () => {
-  return AppGlobalData[LOCAL.firstLaunch];
+  return AppGlobalData.get(LOCAL.firstLaunch);
 };
 
 export const setFirstLaunch = mode => {
-  AppGlobalData[LOCAL.firstLaunch] = mode;
+  AppGlobalData.set(LOCAL.firstLaunch, mode);
   SafeStorage.set(LOCAL.firstLaunch, mode);
 };
 
@@ -113,12 +113,12 @@ export const getPrefix = index => {
 };
 
 export const getCurrServer = () => {
-  return SafeValue(AppGlobalData[LOCAL.userServer], 3);
+  return SafeValue(AppGlobalData.get(LOCAL.userServer), 3);
 };
 
 export const setCurrServer = index => {
   let str = LOCAL.userServer;
-  AppGlobalData[str] = index;
+  AppGlobalData.set(str, index);
   SafeStorage.set(str, index);
 };
 
@@ -126,12 +126,12 @@ export const setCurrServer = index => {
  * User Language
  */
 export const getUserLang = () => {
-  return SafeValue(AppGlobalData[LOCAL.userLanguage], 'en');
+  return SafeValue(AppGlobalData.get(LOCAL.userLanguage), 'en');
 };
 
 export const setUserLang = lang => {
   let str = LOCAL.userLanguage;
-  AppGlobalData[str] = lang;
+  AppGlobalData.set(str, lang);
   SafeStorage.set(str, lang);
 };
 
@@ -139,7 +139,7 @@ export const setUserLang = lang => {
  * API Language
  */
 export const getAPILanguage = () => {
-  return SafeValue(AppGlobalData[LOCAL.apiLanguage], 'en');
+  return SafeValue(AppGlobalData.get(LOCAL.apiLanguage), 'en');
 };
 
 export const getAPILangName = () => {
@@ -151,12 +151,12 @@ export const langStr = () => {
 };
 
 export const getAPIList = () => {
-  return AppGlobalData[SAVED.language];
+  return AppGlobalData.get(SAVED.language);
 };
 
 export const setAPILanguage = lang => {
   let str = LOCAL.apiLanguage;
-  AppGlobalData[str] = lang;
+  AppGlobalData.set(str, lang);
   SafeStorage.set(str, lang);
 };
 
@@ -164,13 +164,13 @@ export const setAPILanguage = lang => {
  * Swap Button
  */
 export const getSwapButton = () => {
-  return AppGlobalData[LOCAL.swapButton];
+  return AppGlobalData.get(LOCAL.swapButton);
 };
 
 export const setSwapButton = swap => {
   AppGlobalData.shouldSwapButton = swap;
   let str = LOCAL.swapButton;
-  AppGlobalData[str] = swap;
+  AppGlobalData.set(str, swap);
   SafeStorage.set(str, swap);
 };
 
@@ -178,13 +178,13 @@ export const setSwapButton = swap => {
  * No Image Mode
  */
 export const getImageMode = () => {
-  return AppGlobalData[LOCAL.noImageMode];
+  return AppGlobalData.get(LOCAL.noImageMode);
 };
 
 export const setImageMode = image => {
   AppGlobalData.useNoImageMode = image;
   let str = LOCAL.noImageMode;
-  AppGlobalData[str] = image;
+  AppGlobalData.set(str, image);
   SafeStorage.set(str, image);
 };
 
@@ -193,17 +193,17 @@ export const setImageMode = image => {
  */
 export const setLastLocation = str => {
   let loc = LOCAL.lastLocation;
-  AppGlobalData[loc] = str;
+  AppGlobalData.set(loc, str);
   SafeStorage.set(loc, str);
 };
 
 export const isProVersion = () => {
-  return AppGlobalData[LOCAL.proVersion] === true;
+  return AppGlobalData.get(LOCAL.proVersion) === true;
 };
 
 export const setProVersion = pro => {
   let str = LOCAL.proVersion;
-  AppGlobalData[str] = pro;
+  AppGlobalData.set(str, pro);
   SafeStorage.set(str, pro);
 };
 
@@ -273,7 +273,7 @@ const restorePurchase = (shouldRestore, showAlert) => {
 };
 
 export const getCurrDate = () => {
-  return AppGlobalData[LOCAL.date];
+  return AppGlobalData.get(LOCAL.date);
 };
 
 /**
@@ -282,7 +282,7 @@ export const getCurrDate = () => {
 export const updateCurrData = () => {
   const today = new Date().toDateString();
   let str = LOCAL.date;
-  AppGlobalData[str] = today;
+  AppGlobalData.set(str, today);
   SafeStorage.set(str, today);
 };
 
@@ -295,7 +295,7 @@ export const differentMonth = () => {
 };
 
 export const getLastUpdate = () => {
-  return AppGlobalData[LOCAL.lastUpdate];
+  return AppGlobalData.get(LOCAL.lastUpdate);
 };
 
 /**

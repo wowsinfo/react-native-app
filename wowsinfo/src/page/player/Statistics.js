@@ -352,7 +352,7 @@ class Statistics extends Component {
 
   setMainAccount = () => {
     let info = this.getPlayerInfo();
-    AppGlobalData[LOCAL.userInfo] = info;
+    AppGlobalData.set(LOCAL.userInfo, info);
     SafeStorage.set(LOCAL.userInfo, info);
     this.setState({canBeMaster: false});
   };
@@ -362,7 +362,7 @@ class Statistics extends Component {
 
     // Update object
     let str = LOCAL.friendList;
-    AppGlobalData[str].player[info.account_id] = info;
+    AppGlobalData.get(str).player[info.account_id] = info;
 
     SafeStorage.set(str, AppGlobalData[str]);
     this.setState({canBeFriend: false});

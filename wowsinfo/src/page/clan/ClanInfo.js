@@ -188,7 +188,7 @@ class ClanInfo extends Component {
   addFriend = () => {
     const {clan_id, tag, server} = this.props.info;
     let str = LOCAL.friendList;
-    AppGlobalData[str].clan[clan_id] = {clan_id, tag, server};
+    AppGlobalData.get(str).clan[clan_id] = {clan_id, tag, server};
     SafeStorage.set(str, AppGlobalData[str]);
     this.setState({canBeFriend: false});
   };

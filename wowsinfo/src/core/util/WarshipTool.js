@@ -153,11 +153,11 @@ const normalise = (nation, type, tier) => {
   let data = {nation: {}, type: {}, tier: {}};
 
   nation.forEach(i => {
-    data.nation[getKeyByValue(AppGlobalData[SAVED.encyclopedia].ship_nations, i)] = true;
+    data.nation[getKeyByValue(AppGlobalData.get(SAVED.encyclopedia).ship_nations, i)] = true;
   });
 
   type.forEach(i => {
-    data.type[getKeyByValue(AppGlobalData[SAVED.encyclopedia].ship_types, i)] = true;
+    data.type[getKeyByValue(AppGlobalData.get(SAVED.encyclopedia).ship_types, i)] = true;
   });
 
   tier.forEach(i => {
