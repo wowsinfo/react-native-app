@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
 
         // show the main view
-        let root = RootController()
+        let root = ReactNativeManager.shared.getRCTRootViewController(with: "wowsinfo")
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = root
         window?.makeKeyAndVisible()

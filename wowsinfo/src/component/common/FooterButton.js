@@ -29,6 +29,7 @@ class FooterButton extends Component {
           color={Colors.grey500}
           icon={icon}
           accessibilityLabel={al}
+          style={{height: 48, width: 48, borderRadius: 24}}
           onPress={() => this.pressEvent()}
         />
       </SafeAreaView>

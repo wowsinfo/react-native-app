@@ -48,8 +48,6 @@ export const getTierList = () => {
     'IX',
     'X',
     '★',
-    '★',
-    '★',
   ];
 };
 

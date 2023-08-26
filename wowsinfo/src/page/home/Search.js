@@ -56,7 +56,7 @@ class Search extends Component {
         title={lang.menu_footer}
         onPress={() => this.refs['search'].focus()}>
         <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          behavior={undefined}
           style={{flex: 1}}>
           <Searchbar
             ref="search"

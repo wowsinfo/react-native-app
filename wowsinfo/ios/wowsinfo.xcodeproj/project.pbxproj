@@ -27,7 +27,7 @@
 		923257B62A98B0D00053E5F6 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92553F2F2A988158008EC8FC /* SetupView.swift */; };
 		923257B72A98B0D00053E5F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */; };
 		923257B82A98B0D00053E5F6 /* QuickActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEC2A962F000056AD82 /* QuickActionManager.swift */; };
-		923257B92A98B0D00053E5F6 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFF2A96306E0056AD82 /* RootController.swift */; };
+		923257B92A98B0D00053E5F6 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFF2A96306E0056AD82 /* RootViewController.swift */; };
 		923257BA2A98B0D00053E5F6 /* ReactNativeCaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 92553F292A987D9F008EC8FC /* ReactNativeCaller.m */; };
 		923257BB2A98B0D00053E5F6 /* ReactNativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AE92A962F000056AD82 /* ReactNativeManager.m */; };
 		923257BC2A98B0D00053E5F6 /* QuickActionEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEF2A962F000056AD82 /* QuickActionEventEmitter.swift */; };
@@ -46,7 +46,7 @@
 		92C72AF82A962F000056AD82 /* QuickActionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEE2A962F000056AD82 /* QuickActionManager.m */; };
 		92C72AFA2A962F000056AD82 /* QuickActionEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEF2A962F000056AD82 /* QuickActionEventEmitter.swift */; };
 		92C72AFD2A962F5D0056AD82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */; };
-		92C72B002A96306E0056AD82 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFF2A96306E0056AD82 /* RootController.swift */; };
+		92C72B002A96306E0056AD82 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFF2A96306E0056AD82 /* RootViewController.swift */; };
 		D0A56DCDBCDD05C70CE37224 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
@@ -98,7 +98,7 @@
 		92C72AEE2A962F000056AD82 /* QuickActionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickActionManager.m; sourceTree = "<group>"; };
 		92C72AEF2A962F000056AD82 /* QuickActionEventEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickActionEventEmitter.swift; sourceTree = "<group>"; };
 		92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		92C72AFF2A96306E0056AD82 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
+		92C72AFF2A96306E0056AD82 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		A45E42193C3FB61E81C20E9A /* Pods-wowsinfo-debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-debug.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug.debug.xcconfig"; sourceTree = "<group>"; };
 		B66C1C581B386FD45CBD0E97 /* Pods-wowsinfoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfoTests.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfoTests/Pods-wowsinfoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CBE9FEE413D6D88203233985 /* libPods-wowsinfoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wowsinfoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,7 +137,7 @@
 				92553F2E2A98811F008EC8FC /* view */,
 				92224B5B2A98DC140021F111 /* model */,
 				92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */,
-				92C72AFF2A96306E0056AD82 /* RootController.swift */,
+				92C72AFF2A96306E0056AD82 /* RootViewController.swift */,
 				9200E8702A963C48007605E1 /* support */,
 			);
 			name = wowsinfo;
@@ -637,7 +637,7 @@
 				92C72AFD2A962F5D0056AD82 /* AppDelegate.swift in Sources */,
 				92C72AF42A962F000056AD82 /* QuickActionManager.swift in Sources */,
 				92224B5D2A98DC540021F111 /* GameServer.swift in Sources */,
-				92C72B002A96306E0056AD82 /* RootController.swift in Sources */,
+				92C72B002A96306E0056AD82 /* RootViewController.swift in Sources */,
 				92553F2A2A987D9F008EC8FC /* ReactNativeCaller.m in Sources */,
 				92C72AF02A962F000056AD82 /* ReactNativeManager.m in Sources */,
 				92C72AFA2A962F000056AD82 /* QuickActionEventEmitter.swift in Sources */,
@@ -660,7 +660,7 @@
 				923257B72A98B0D00053E5F6 /* AppDelegate.swift in Sources */,
 				923257B82A98B0D00053E5F6 /* QuickActionManager.swift in Sources */,
 				92224B5E2A98DC540021F111 /* GameServer.swift in Sources */,
-				923257B92A98B0D00053E5F6 /* RootController.swift in Sources */,
+				923257B92A98B0D00053E5F6 /* RootViewController.swift in Sources */,
 				923257BA2A98B0D00053E5F6 /* ReactNativeCaller.m in Sources */,
 				923257BB2A98B0D00053E5F6 /* ReactNativeManager.m in Sources */,
 				923257BC2A98B0D00053E5F6 /* QuickActionEventEmitter.swift in Sources */,

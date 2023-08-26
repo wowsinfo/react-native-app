@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class RootController: UIHostingController<WoWsInfoView> {
+class RootViewController: UIHostingController<WoWsInfoView> {
     init() {
         super.init(rootView: WoWsInfoView())
     }

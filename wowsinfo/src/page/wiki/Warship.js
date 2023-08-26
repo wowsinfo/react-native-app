@@ -50,7 +50,7 @@ class Warship extends PureComponent {
   render() {
     const {data} = this.state;
 
-    const width = bestCellWidth(100);
+    const width = bestCellWidth(160);
     return (
       <WoWsInfo
         title={`${lang.wiki_warship_footer} - ${data.length}`}
