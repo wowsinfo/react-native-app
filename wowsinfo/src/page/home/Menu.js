@@ -185,20 +185,20 @@ class Menu extends Component {
         t: lang.website_global_wiki,
         d: `http://wiki.wargaming.net/en/World_of_Warships/`,
       },
-      {t: lang.website_dev_blog, d: `https://www.facebook.com/wowsdevblog/`},
+      {t: lang.website_dev_blog, d: `https://blog.worldofwarships.com/`},
     ];
 
     this.stats_info_website = [
-      {t: lang.website_sea_group, d: `https://sea-group.org/`},
-      {
-        t: lang.website_daily_bounce,
-        d: `https://thedailybounce.net/category/world-of-warships/`,
-      },
+      // {t: lang.website_sea_group, d: `https://sea-group.org/`},
+      // {
+      //   t: lang.website_daily_bounce,
+      //   d: `https://thedailybounce.net/category/world-of-warships/`,
+      // },
       {t: lang.website_numbers, d: `https://${this.prefix}.wows-numbers.com/`},
-      {
-        t: lang.website_models,
-        d: `https://sketchfab.com/tags/world-of-warships`,
-      },
+      // {
+      //   t: lang.website_models,
+      //   d: `https://sketchfab.com/tags/world-of-warships`,
+      // },
       {
         t: lang.website_game_models,
         d: 'https://gamemodels3d.com/games/worldofwarships/',
@@ -206,10 +206,10 @@ class Menu extends Component {
     ];
 
     this.ultility_websites = [
-      {
-        t: lang.website_ap_calculator,
-        d: 'https://mustanghx.github.io/ship_ap_calculator/',
-      },
+      // {
+      //   t: lang.website_ap_calculator,
+      //   d: 'https://mustanghx.github.io/ship_ap_calculator/',
+      // },
       {t: lang.website_wowsft, d: 'https://wowsft.com/'},
     ];
 
@@ -409,7 +409,7 @@ class Menu extends Component {
           />
         </View>
         <SectionTitle title={lang.website_title} />
-        <List.Accordion title={lang.website_official_title}>
+        <List.Section title={lang.website_official_title} expanded>
           <View style={wrap}>
             {this.offical_websites.map(item => (
               <List.Item
@@ -420,8 +420,8 @@ class Menu extends Component {
               />
             ))}
           </View>
-        </List.Accordion>
-        <List.Accordion title={lang.website_stats_news_title}>
+        </List.Section>
+        <List.Section title={lang.website_stats_news_title} expanded>
           <View style={wrap}>
             {this.stats_info_website.map(item => (
               <List.Item
@@ -432,8 +432,8 @@ class Menu extends Component {
               />
             ))}
           </View>
-        </List.Accordion>
-        <List.Accordion title={lang.website_utility_title}>
+        </List.Section>
+        <List.Section title={lang.website_utility_title} expanded>
           <View style={wrap}>
             {this.ultility_websites.map(item => (
               <List.Item
@@ -444,8 +444,8 @@ class Menu extends Component {
               />
             ))}
           </View>
-        </List.Accordion>
-        <List.Accordion title={lang.youtuber_title}>
+        </List.Section>
+        {/* <List.Section title={lang.youtuber_title} expanded>
           <View style={wrap}>
             {this.youtubers.map(item => (
               <List.Item
@@ -456,8 +456,8 @@ class Menu extends Component {
               />
             ))}
           </View>
-        </List.Accordion>
-        <List.Accordion
+        </List.Section> */}
+        <List.Section
           title={lang.website_ingame_title}
           description={lang.website_wargming_login_subtitle}>
           <View style={wrap}>
@@ -470,7 +470,7 @@ class Menu extends Component {
               />
             ))}
           </View>
-        </List.Accordion>
+        </List.Section>
         {/* <List.Section title={lang.tool_title}>
         </List.Section> */}
       </View>
