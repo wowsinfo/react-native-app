@@ -61,6 +61,7 @@ import {
 } from 'react-native-material-color';
 import {lang} from '../../value/lang';
 import {WikiAPI} from '../../value/api';
+import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
 class Settings extends Component {
   constructor(props) {
@@ -279,12 +280,12 @@ class Settings extends Component {
         <List.Item
           title={lang.settings_app_send_feedback}
           description={lang.settings_app_send_feedback_subtitle}
-          onPress={() => Linking.openURL(APP.Developer)}
+          onPress={() => SimpleViewHandler.openURL(APP.Developer)}
         />
         <List.Item
           title={lang.settings_app_report_issues}
           description={issueLink}
-          onPress={() => Linking.openURL(issueLink)}
+          onPress={() => SimpleViewHandler.openURL(issueLink)}
         />
         {isAndroid ? (
           <List.Item
@@ -304,7 +305,7 @@ class Settings extends Component {
         <List.Item
           title={lang.settings_open_source_github}
           description={APP.Github}
-          onPress={() => Linking.openURL(APP.Github)}
+          onPress={() => SimpleViewHandler.openURL(APP.Github)}
         />
         <List.Item
           title={lang.settings_open_source_licence}
@@ -340,8 +341,14 @@ class Settings extends Component {
         lang.app_name,
         format(lang.settings_app_has_update, version),
         [
-          {text: 'Google Play', onPress: () => Linking.openURL(APP.GooglePlay)},
-          {text: 'Github', onPress: () => Linking.openURL(APP.LatestRelease)},
+          {
+            text: 'Google Play',
+            onPress: () => SimpleViewHandler.openURL(APP.GooglePlay),
+          },
+          {
+            text: 'Github',
+            onPress: () => SimpleViewHandler.openURL(APP.LatestRelease),
+          },
         ],
       );
     } else {

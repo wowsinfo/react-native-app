@@ -10,6 +10,7 @@ import {WoWsInfo} from '../../component';
 import {FlatGrid} from 'react-native-super-grid';
 import {List} from 'react-native-paper';
 import {lang} from '../../value/lang';
+import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
 const libraries = [
   {name: 'react', link: 'https://github.com/facebook/react'},
@@ -81,7 +82,7 @@ class License extends Component {
                 key={item.name}
                 title={item.name}
                 description={item.link}
-                onPress={() => Linking.openURL(item.link)}
+                onPress={() => SimpleViewHandler.openURL(item.link)}
               />
             );
           }}

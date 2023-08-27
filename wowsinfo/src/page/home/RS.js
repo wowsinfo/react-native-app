@@ -47,6 +47,7 @@ import {
 import {FlatGrid} from 'react-native-super-grid';
 import {lang} from '../../value/lang';
 import KeepAwake from 'react-native-keep-awake';
+import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
 class RS extends Component {
   constructor(props) {
@@ -107,7 +108,7 @@ class RS extends Component {
             <Button
               uppercase={false}
               onPress={() =>
-                Linking.openURL(
+                SimpleViewHandler.openURL(
                   'https://github.com/wowsinfo/WoWs-RS//releases/latest',
                 )
               }>

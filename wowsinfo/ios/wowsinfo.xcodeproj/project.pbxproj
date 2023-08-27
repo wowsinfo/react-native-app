@@ -48,6 +48,10 @@
 		92C72B002A96306E0056AD82 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFF2A96306E0056AD82 /* RootViewController.swift */; };
 		92D075EB2A9B049D00CFE9FC /* libPods-wowsinfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D075EA2A9B049D00CFE9FC /* libPods-wowsinfo.a */; };
 		92D075ED2A9B366B00CFE9FC /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 92D075EC2A9B366B00CFE9FC /* main.jsbundle */; };
+		92D075F02A9B613000CFE9FC /* SimpleViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D075EF2A9B613000CFE9FC /* SimpleViewHandler.swift */; };
+		92D075F12A9B613000CFE9FC /* SimpleViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D075EF2A9B613000CFE9FC /* SimpleViewHandler.swift */; };
+		92D075F32A9B623700CFE9FC /* SimpleViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D075F22A9B623700CFE9FC /* SimpleViewHandler.m */; };
+		92D075F42A9B623700CFE9FC /* SimpleViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D075F22A9B623700CFE9FC /* SimpleViewHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +105,8 @@
 		92C72AFF2A96306E0056AD82 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		92D075EA2A9B049D00CFE9FC /* libPods-wowsinfo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-wowsinfo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D075EC2A9B366B00CFE9FC /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		92D075EF2A9B613000CFE9FC /* SimpleViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleViewHandler.swift; sourceTree = "<group>"; };
+		92D075F22A9B623700CFE9FC /* SimpleViewHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleViewHandler.m; sourceTree = "<group>"; };
 		A45E42193C3FB61E81C20E9A /* Pods-wowsinfo-debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-debug.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug.debug.xcconfig"; sourceTree = "<group>"; };
 		B66C1C581B386FD45CBD0E97 /* Pods-wowsinfoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfoTests.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfoTests/Pods-wowsinfoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CBE9FEE413D6D88203233985 /* libPods-wowsinfoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wowsinfoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -293,9 +299,19 @@
 			path = "../../../node_modules/react-native-vector-icons/Fonts";
 			sourceTree = "<group>";
 		};
+		92C71DEC2A9B6C2A008FF0B7 /* module */ = {
+			isa = PBXGroup;
+			children = (
+				92D075F22A9B623700CFE9FC /* SimpleViewHandler.m */,
+				92D075EF2A9B613000CFE9FC /* SimpleViewHandler.swift */,
+			);
+			path = module;
+			sourceTree = "<group>";
+		};
 		92C72AE82A962F000056AD82 /* react-native */ = {
 			isa = PBXGroup;
 			children = (
+				92C71DEC2A9B6C2A008FF0B7 /* module */,
 				92553F2C2A987E0F008EC8FC /* caller */,
 				92C72AEB2A962F000056AD82 /* quick-actions */,
 				92C72AE92A962F000056AD82 /* ReactNativeManager.m */,
@@ -630,11 +646,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				92C72AF22A962F000056AD82 /* ReactNativeManager.swift in Sources */,
+				92D075F32A9B623700CFE9FC /* SimpleViewHandler.m in Sources */,
 				92C72AF62A962F000056AD82 /* QuickActionEventEmitter.m in Sources */,
 				92C72AF82A962F000056AD82 /* QuickActionManager.m in Sources */,
 				92553F262A987D49008EC8FC /* ReactNativeCaller.swift in Sources */,
 				92A539B32A998AE500A3B71B /* WoWsInfoView.swift in Sources */,
 				92224B592A98DB600021F111 /* DefaultServerUsecase.swift in Sources */,
+				92D075F02A9B613000CFE9FC /* SimpleViewHandler.swift in Sources */,
 				92224B552A98D58B0021F111 /* SetupViewModel.swift in Sources */,
 				92224B512A98D4560021F111 /* String+Extension.swift in Sources */,
 				92553F302A988158008EC8FC /* SetupView.swift in Sources */,
@@ -653,11 +671,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				923257B22A98B0D00053E5F6 /* ReactNativeManager.swift in Sources */,
+				92D075F42A9B623700CFE9FC /* SimpleViewHandler.m in Sources */,
 				923257B32A98B0D00053E5F6 /* QuickActionEventEmitter.m in Sources */,
 				923257B42A98B0D00053E5F6 /* QuickActionManager.m in Sources */,
 				923257B52A98B0D00053E5F6 /* ReactNativeCaller.swift in Sources */,
 				92A539B42A998AE500A3B71B /* WoWsInfoView.swift in Sources */,
 				92224B5A2A98DB600021F111 /* DefaultServerUsecase.swift in Sources */,
+				92D075F12A9B613000CFE9FC /* SimpleViewHandler.swift in Sources */,
 				92224B562A98D58B0021F111 /* SetupViewModel.swift in Sources */,
 				92224B522A98D4560021F111 /* String+Extension.swift in Sources */,
 				923257B62A98B0D00053E5F6 /* SetupView.swift in Sources */,

@@ -11,6 +11,7 @@ import {Text, Paragraph, Caption, Button} from 'react-native-paper';
 import {lang} from '../../value/lang';
 import {getRatingList, getColourList, SafeAction} from '../../core';
 import {APP} from '../../value/data';
+import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
 class Rating extends Component {
   render() {
@@ -55,7 +56,7 @@ class Rating extends Component {
               </View>
             );
           })}
-          <Button onPress={() => Linking.openURL(APP.PersonalRating)}>
+          <Button onPress={() => SimpleViewHandler.openURL(APP.PersonalRating)}>
             {lang.rating_read_more}
           </Button>
         </ScrollView>

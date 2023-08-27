@@ -25,7 +25,8 @@ import {WoWsAPI} from '../../value/api';
 import {getDomain, getPrefix, LOCAL, setLastLocation} from '../../value/data';
 import {TintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
-import { CustomStatusBar } from '../../component/common/CustomStatusBar';
+import {CustomStatusBar} from '../../component/common/CustomStatusBar';
+import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
 class Statistics extends Component {
   constructor(props) {
@@ -243,13 +244,11 @@ class Statistics extends Component {
             style={container}
             title={`- ${id} -`}
             onPress={() =>
-              Linking.openURL(
+              SimpleViewHandler.openURL(
                 `https://${this.prefix}.wows-numbers.com/player/${id},${name}/`,
               )
             }>
-            <ScrollView>
-              {this.renderBasic(basic)}
-            </ScrollView>
+            <ScrollView>{this.renderBasic(basic)}</ScrollView>
             <FooterPlus style={footer}>
               {this.renderAchievement(achievement)}
               {this.renderGraph(graph)}

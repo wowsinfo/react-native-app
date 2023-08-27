@@ -5,6 +5,7 @@ import {WoWsInfo, Touchable} from '../../component';
 import {TintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
 import {getRandomAnimation} from '../../core';
+import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
 class About extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class About extends Component {
       <WoWsInfo hideAds>
         <Touchable
           style={touch}
-          onPress={() => Linking.openURL(lang.abour_github_link)}>
+          onPress={() => SimpleViewHandler.openURL(lang.abour_github_link)}>
           <Anime.View
             animation={animation}
             iterationCount="infinite"

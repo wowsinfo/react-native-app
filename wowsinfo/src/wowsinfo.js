@@ -41,8 +41,8 @@ import {
   setJSExceptionHandler,
   setNativeExceptionHandler,
 } from 'react-native-exception-handler';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NativeManager} from './core/native/NativeManager';
+import {SimpleViewHandler} from './core/native/SimpleViewHandler';
 
 setJSExceptionHandler((e, fatal) => {
   if (fatal) {
@@ -71,7 +71,7 @@ function showAlert(msg, mode) {
       {
         text: 'E-mail',
         onPress: () =>
-          Linking.openURL(
+          SimpleViewHandler.openURL(
             `mailto:development.henryquan@gmail.com?subject=[WoWs Info ${APP.Version}] &body=${msg}`,
           ),
       },

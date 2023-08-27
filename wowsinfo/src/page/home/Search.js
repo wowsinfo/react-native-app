@@ -55,9 +55,7 @@ class Search extends Component {
         hideAds
         title={lang.menu_footer}
         onPress={() => this.refs['search'].focus()}>
-        <KeyboardAvoidingView
-          behavior={undefined}
-          style={{flex: 1}}>
+        <KeyboardAvoidingView behavior={undefined} style={{flex: 1}}>
           <Searchbar
             ref="search"
             value={search}

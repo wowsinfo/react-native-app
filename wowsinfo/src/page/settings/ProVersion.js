@@ -14,6 +14,7 @@ import {
 import {LOCAL, setProVersion, validateProVersion} from '../../value/data';
 import {Actions} from 'react-native-router-flux';
 import {lang} from '../../value/lang';
+import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
 class ProVersion extends Component {
   purchaseUpdateSubscription = null;
@@ -118,7 +119,7 @@ class ProVersion extends Component {
       <View style={horizontal}>
         <Button
           onPress={() =>
-            Linking.openURL(
+            SimpleViewHandler.openURL(
               'https://github.com/HenryQuan/WoWs-Info-Future/blob/legacy_version/Privacy%20Policy.md',
             )
           }>
@@ -126,7 +127,7 @@ class ProVersion extends Component {
         </Button>
         <Button
           onPress={() =>
-            Linking.openURL(
+            SimpleViewHandler.openURL(
               'https://github.com/HenryQuan/WoWs-Info-Future/blob/legacy_version/Term%20of%20Use.md',
             )
           }>

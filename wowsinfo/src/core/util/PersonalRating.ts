@@ -98,16 +98,19 @@ export const getAP = (rating: number, battle: number): number => {
 };
 
 export const getRatingRange = (): Array<number> => [
-  0, 750, 1100, 1350, 1550, 1750, 2100, 2450, 9999,
+  0, 750, 1100, 1350, 1550, 1750, 2100, 2450, 99999,
 ];
+
+/**
+ * Returns the index of the range that the given rating falls into.
+ * @param rating The personal rating number
+ * @returns The index of the rating. If the rating is invalid, returns 0 which is unknown
+ */
 export const getRatingIndex = (rating?: number): number => {
   if (rating == null) return 0;
-  let index = 0;
-  for (let range of getRatingRange()) {
-    if (rating < range) return index;
-    index++;
-  }
-  return index;
+  const range = getRatingRange();
+  const index = range.findIndex(range => rating < range);
+  return index === -1 ? 0 : index;
 };
 
 export const getColourList = (): Array<string> => [

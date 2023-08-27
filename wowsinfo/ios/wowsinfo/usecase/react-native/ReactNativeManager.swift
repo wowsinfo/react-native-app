@@ -11,7 +11,7 @@ import React
 typealias ReactNativeDictionary = [NSObject: Any]
 
 @objc(ReactNativeManager)
-class ReactNativeManager: NSObject {
+class ReactNativeManager: NSObject, RCTBridgeModule {
     
     // Singleton
     static let shared = ReactNativeManager()
@@ -22,7 +22,7 @@ class ReactNativeManager: NSObject {
     /// Setup the bridge so only one JSC VM is created to save resources and simplify the communication between RN views in different parts of your native app,
     /// you can have multiple views powered by React Native that are associated with a single JS runtime.
     private(set) var bridge: RCTBridge!
-    // An instance of the root view controller
+    // An instance of the root view controller to show native alert or controllers
     private(set) weak var rootViewController: UIViewController?
     // From React Native side, to inform whether the Home Page is loaded
     var isLoaded: Bool = false
@@ -58,5 +58,13 @@ class ReactNativeManager: NSObject {
     // React Native created a new instance so the shared one is not updated
     @objc func reactNativeHasLoaded() {
         ReactNativeManager.shared.isLoaded = true
+    }
+    
+    @objc static func requiresMainQueueSetup() -> Bool {
+        true
+    }
+    
+    static func moduleName() -> String! {
+        Self.description()
     }
 }

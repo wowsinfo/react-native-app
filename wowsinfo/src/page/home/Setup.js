@@ -26,6 +26,7 @@ import {
 } from '../../value/data';
 import {Downloader} from '../../core';
 import {WoWsInfo, SectionTitle, LoadingIndicator} from '../../component';
+import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
 class Setup extends Component {
   constructor(props) {
@@ -107,7 +108,7 @@ class Setup extends Component {
           <List.Item
             title={lang.settings_app_send_feedback}
             description={lang.settings_app_send_feedback_subtitle}
-            onPress={() => Linking.openURL(APP.Developer)}
+            onPress={() => SimpleViewHandler.openURL(APP.Developer)}
           />
         </View>
       );

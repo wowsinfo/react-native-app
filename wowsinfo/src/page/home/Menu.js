@@ -41,15 +41,11 @@ import {Loading} from '../common/Loading';
 import {Actions} from 'react-native-router-flux';
 import {NativeManager} from '../../core/native/NativeManager';
 import {QuickAction} from '../../core/native/QuickAction';
+import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
 class Menu extends Component {
   constructor(props) {
     super(props);
-
-    // let unitID = 'ca-app-pub-5048098651344514/1247820419';
-    // if (isAndroid) unitID = 'ca-app-pub-5048098651344514/3013393881';
-    // AdMobInterstitial.setAdUnitID(unitID);
-    // AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
 
     this.first = getFirstLaunch();
     this.state = {
@@ -105,7 +101,9 @@ class Menu extends Component {
                   {
                     text: lang.settings_app_send_feedback_subtitle,
                     onPress: () =>
-                      Linking.openURL(APP.Developer + `&body=${obj.log}`),
+                      SimpleViewHandler.openURL(
+                        APP.Developer + `&body=${obj.log}`,
+                      ),
                     style: 'default',
                   },
                   {
@@ -343,6 +341,7 @@ class Menu extends Component {
         <View style={wrap}>
           {this.wiki.map(item => (
             <List.Item
+              key={item.t}
               title={item.t}
               style={{padding: 0, paddingLeft: 8, width: bestItemWidth}}
               onPress={() => item.p()}
@@ -363,14 +362,15 @@ class Menu extends Component {
         </View>
         <SectionTitle title={lang.extra_section_title} />
         <View style={wrap}>
-          {/* <List.Item
+          {/* <List.Item key={item.t}
             title={lang.extra_wowsinfo_re}
             description={lang.extra_wowsinfo_re_subtitle}
             style={{width: bestItemWidth}}
             titleStyle={{color: Colors.orange500}}
-            onPress={() => Linking.openURL('https://wowsinfo.firebaseapp.com/')}
+            onPress={() => SimpleViewHandler.openURL('https://wowsinfo.firebaseapp.com/')}
           /> */}
           <List.Item
+            key="rs"
             title="RS Beta"
             description={lang.extra_rs_beta}
             style={{width: bestItemWidth}}
@@ -378,6 +378,7 @@ class Menu extends Component {
             onPress={() => (onlyProVersion() ? SafeAction('RS') : null)}
           />
           <List.Item
+            key="review"
             title={lang.settings_app_write_review}
             style={{width: bestItemWidth}}
             onPress={() => {
@@ -388,12 +389,12 @@ class Menu extends Component {
                 [
                   {
                     text: lang.settings_app_write_review_yes,
-                    onPress: () => Linking.openURL(APP.Developer),
+                    onPress: () => SimpleViewHandler.openURL(APP.Developer),
                     style: 'default',
                   },
                   {
                     text: lang.settings_app_write_review_no,
-                    onPress: () => Linking.openURL(store),
+                    onPress: () => SimpleViewHandler.openURL(store),
                   },
                 ],
                 {cancelable: false},
@@ -402,6 +403,7 @@ class Menu extends Component {
             description={store}
           />
           <List.Item
+            key="share"
             title={lang.settings_app_share}
             onPress={() => this.shareApp(store)}
             style={{width: bestItemWidth}}
@@ -413,10 +415,11 @@ class Menu extends Component {
           <View style={wrap}>
             {this.offical_websites.map(item => (
               <List.Item
+                key={item.t}
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => Linking.openURL(item.d)}
+                onPress={() => SimpleViewHandler.openURL(item.d)}
               />
             ))}
           </View>
@@ -425,10 +428,11 @@ class Menu extends Component {
           <View style={wrap}>
             {this.stats_info_website.map(item => (
               <List.Item
+                key={item.t}
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => Linking.openURL(item.d)}
+                onPress={() => SimpleViewHandler.openURL(item.d)}
               />
             ))}
           </View>
@@ -437,10 +441,11 @@ class Menu extends Component {
           <View style={wrap}>
             {this.ultility_websites.map(item => (
               <List.Item
+                key={item.t}
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => Linking.openURL(item.d)}
+                onPress={() => SimpleViewHandler.openURL(item.d)}
               />
             ))}
           </View>
@@ -448,11 +453,11 @@ class Menu extends Component {
         {/* <List.Section title={lang.youtuber_title} expanded>
           <View style={wrap}>
             {this.youtubers.map(item => (
-              <List.Item
+              <List.Item key={item.t}
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => Linking.openURL(item.d)}
+                onPress={() => SimpleViewHandler.openURL(item.d)}
               />
             ))}
           </View>
@@ -463,10 +468,11 @@ class Menu extends Component {
           <View style={wrap}>
             {this.ingame_websites.map(item => (
               <List.Item
+                key={item.t}
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => Linking.openURL(item.d)}
+                onPress={() => SimpleViewHandler.openURL(item.d)}
               />
             ))}
           </View>

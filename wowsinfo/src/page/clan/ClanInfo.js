@@ -33,6 +33,7 @@ import {
 import {TintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
 import {FlatGrid} from 'react-native-super-grid';
+import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
 class ClanInfo extends Component {
   constructor(props) {
@@ -80,14 +81,11 @@ class ClanInfo extends Component {
         <WoWsInfo
           title={`- ${id} -`}
           onPress={() =>
-            Linking.openURL(
+            SimpleViewHandler.openURL(
               `https://${this.prefix}.wows-numbers.com/clan/${id}, ${tag}/`,
             )
           }>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <Title style={clanTag}>{tag}</Title>
-            {this.renderClanInfo(info)}
-          </ScrollView>
+          {this.renderClanInfo(info)}
         </WoWsInfo>
       );
     } else {
@@ -102,7 +100,7 @@ class ClanInfo extends Component {
   renderClanInfo(data) {
     if (data) {
       console.log(data);
-      const {horizontal} = styles;
+      const {horizontal, clanTag} = styles;
       const {
         created_at,
         creator_name,
@@ -113,6 +111,7 @@ class ClanInfo extends Component {
         name,
         members,
         members_count,
+        tag,
       } = data;
       const {canBeFriend} = this.state;
 
@@ -124,61 +123,66 @@ class ClanInfo extends Component {
       console.log(memberInfo);
 
       return (
-        <View>
-          <Subheading style={{color: TintColour()[500], alignSelf: 'center'}}>
-            {name}
-          </Subheading>
-          <InfoLabel
-            title={lang.clan_created_date}
-            info={humanTimeString(created_at)}
-          />
-          <View style={[horizontal, {flex: 1, justifyContent: 'space-around'}]}>
-            <InfoLabel
-              title={lang.clan_creator_name}
-              info={creator_name}
-              onPress={() => this.pushToMaster(creator_name, creator_id)}
-            />
-            <InfoLabel
-              title={lang.clan_leader_name}
-              info={leader_name}
-              onPress={() => this.pushToMaster(leader_name, leader_id)}
-            />
-          </View>
-          {canBeFriend ? (
-            <Button
-              icon="contacts"
-              onPress={this.addFriend}
-              style={{padding: 4}}>
-              {lang.basic_add_friend}
-            </Button>
-          ) : null}
-          <Paragraph style={{padding: 16}}>{description}</Paragraph>
-          <SectionTitle
-            style={{alignSelf: 'flex-start'}}
-            title={`${lang.clan_member_title} - ${members_count}`}
-          />
-          <FlatGrid
-            data={memberInfo}
-            itemDimension={300}
-            renderItem={({item}) => {
-              return (
-                <List.Item
-                  title={item.account_name}
-                  description={humanTimeString(item.joined_at)}
-                  onPress={() => this.pushToPlayer(item)}
-                  key={String(item.account_id)}
-                  right={() => (
-                    <Caption style={{paddingRight: 8, alignSelf: 'center'}}>
-                      {item.account_id}
-                    </Caption>
-                  )}
+        <FlatGrid
+          ListHeaderComponent={() => (
+            <View>
+              <Title style={clanTag}>{tag}</Title>
+              <Subheading
+                style={{color: TintColour()[500], alignSelf: 'center'}}>
+                {name}
+              </Subheading>
+              <InfoLabel
+                title={lang.clan_created_date}
+                info={humanTimeString(created_at)}
+              />
+              <View
+                style={[horizontal, {flex: 1, justifyContent: 'space-around'}]}>
+                <InfoLabel
+                  title={lang.clan_creator_name}
+                  info={creator_name}
+                  onPress={() => this.pushToMaster(creator_name, creator_id)}
                 />
-              );
-            }}
-            showsVerticalScrollIndicator={false}
-            spacing={0}
-          />
-        </View>
+                <InfoLabel
+                  title={lang.clan_leader_name}
+                  info={leader_name}
+                  onPress={() => this.pushToMaster(leader_name, leader_id)}
+                />
+              </View>
+              {canBeFriend ? (
+                <Button
+                  icon="contacts"
+                  onPress={this.addFriend}
+                  style={{padding: 4}}>
+                  {lang.basic_add_friend}
+                </Button>
+              ) : null}
+              <Paragraph style={{padding: 16}}>{description}</Paragraph>
+              <SectionTitle
+                style={{alignSelf: 'flex-start'}}
+                title={`${lang.clan_member_title} - ${members_count}`}
+              />
+            </View>
+          )}
+          data={memberInfo}
+          itemDimension={300}
+          renderItem={({item}) => {
+            return (
+              <List.Item
+                title={item.account_name}
+                description={humanTimeString(item.joined_at)}
+                onPress={() => this.pushToPlayer(item)}
+                key={String(item.account_id)}
+                right={() => (
+                  <Caption style={{paddingRight: 8, alignSelf: 'center'}}>
+                    {item.account_id}
+                  </Caption>
+                )}
+              />
+            );
+          }}
+          showsVerticalScrollIndicator={false}
+          spacing={0}
+        />
       );
     } else {
       return <LoadingIndicator />;

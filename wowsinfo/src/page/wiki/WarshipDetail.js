@@ -33,6 +33,7 @@ import {WoWsAPI} from '../../value/api';
 import {Actions} from 'react-native-router-flux';
 import {TintColour, TintTextColour, ThemeColour} from '../../value/colour';
 import {HorizontalBarChart} from 'native-chart-experiment';
+import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
 class WarshipDetail extends PureComponent {
   constructor(props) {
@@ -137,9 +138,7 @@ class WarshipDetail extends PureComponent {
     if (curr) {
       return (
         <WoWsInfo title={`${curr.ship_id_str} ${curr.ship_id}`}>
-          <ScrollView
-            style={{flex: 1}}
-            showsVerticalScrollIndicator={false}>
+          <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
             <Anime.View
               animation="pulse"
               iterationCount="infinite"
@@ -206,7 +205,7 @@ class WarshipDetail extends PureComponent {
           <Button
             style={modelBtn}
             onPress={() =>
-              Linking.openURL(
+              SimpleViewHandler.openURL(
                 `https://sketchfab.com/models/${model}/embed?autostart=1&preload=1`,
               )
             }>
