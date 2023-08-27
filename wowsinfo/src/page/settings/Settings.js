@@ -242,11 +242,13 @@ class Settings extends Component {
       <View>
         <SectionTitle title={lang.settings_app_settings} />
         <List.Item
+          key='dark_mode'
           title={lang.settings_app_dark_mode}
           onPress={() => this.updateTheme()}
           right={() => <Checkbox status={darkMode ? 'checked' : 'unchecked'} />}
         />
         <List.Item
+          key='theme_colour'
           title={lang.settings_app_theme_colour}
           onPress={() => this.setState({showColour: true})}
           right={() => (
@@ -254,6 +256,7 @@ class Settings extends Component {
           )}
         />
         <List.Item
+          key='no_image_mode'
           title={lang.settings_app_no_image_mode}
           onPress={() => this.noImage(!noImageMode)}
           right={() => (
@@ -261,6 +264,7 @@ class Settings extends Component {
           )}
         />
         <List.Item
+          key='swap_button'
           title={lang.settings_app_swap_buttons}
           onPress={() => this.swapButton(!swapButton)}
           right={() => (
@@ -278,17 +282,20 @@ class Settings extends Component {
       <View>
         <SectionTitle title={lang.app_name} />
         <List.Item
+          key='feedback'
           title={lang.settings_app_send_feedback}
           description={lang.settings_app_send_feedback_subtitle}
           onPress={() => SimpleViewHandler.openURL(APP.Developer)}
         />
         <List.Item
+          key='report_issue'
           title={lang.settings_app_report_issues}
           description={issueLink}
           onPress={() => SimpleViewHandler.openURL(issueLink)}
         />
         {isAndroid ? (
           <List.Item
+            key='check_update'
             title={lang.settings_app_check_for_update}
             onPress={this.checkAppUpdate}
             description={`v${APP.Version}`}
