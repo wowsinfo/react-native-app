@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C80B921A6F3F58F76C31292 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		7BCAD8F72E8689ED09AA43DE /* libPods-wowsinfo-debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91C2EDCC608D13B394C6FB4E /* libPods-wowsinfo-debug.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		92224B4D2A98B5630021F111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9232578A2A98AF9C0053E5F6 /* Assets.xcassets */; };
@@ -47,7 +46,8 @@
 		92C72AFA2A962F000056AD82 /* QuickActionEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEF2A962F000056AD82 /* QuickActionEventEmitter.swift */; };
 		92C72AFD2A962F5D0056AD82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */; };
 		92C72B002A96306E0056AD82 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFF2A96306E0056AD82 /* RootViewController.swift */; };
-		D0A56DCDBCDD05C70CE37224 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		92D075EB2A9B049D00CFE9FC /* libPods-wowsinfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D075EA2A9B049D00CFE9FC /* libPods-wowsinfo.a */; };
+		92D075ED2A9B366B00CFE9FC /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 92D075EC2A9B366B00CFE9FC /* main.jsbundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +99,8 @@
 		92C72AEF2A962F000056AD82 /* QuickActionEventEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickActionEventEmitter.swift; sourceTree = "<group>"; };
 		92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92C72AFF2A96306E0056AD82 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		92D075EA2A9B049D00CFE9FC /* libPods-wowsinfo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-wowsinfo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		92D075EC2A9B366B00CFE9FC /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		A45E42193C3FB61E81C20E9A /* Pods-wowsinfo-debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-debug.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug.debug.xcconfig"; sourceTree = "<group>"; };
 		B66C1C581B386FD45CBD0E97 /* Pods-wowsinfoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfoTests.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfoTests/Pods-wowsinfoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CBE9FEE413D6D88203233985 /* libPods-wowsinfoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wowsinfoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,8 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* (null) in Frameworks */,
-				D0A56DCDBCDD05C70CE37224 /* (null) in Frameworks */,
+				92D075EB2A9B049D00CFE9FC /* libPods-wowsinfo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +148,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				92D075EA2A9B049D00CFE9FC /* libPods-wowsinfo.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				6D901F95CD4FCE7372A062B8 /* libPods-wowsinfotest.a */,
 				CBE9FEE413D6D88203233985 /* libPods-wowsinfoTests.a */,
@@ -165,6 +167,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				92D075EC2A9B366B00CFE9FC /* main.jsbundle */,
 				13B07FAE1A68108700A75B9A /* wowsinfo */,
 				923257852A98AF9B0053E5F6 /* wowsinfo-debug */,
 				923257962A98AF9C0053E5F6 /* Testing */,
@@ -420,6 +423,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				92224B4D2A98B5630021F111 /* Assets.xcassets in Resources */,
 				92926A902A9786F200191FEC /* Localizable.xcstrings in Resources */,
+				92D075ED2A9B366B00CFE9FC /* main.jsbundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,8 +682,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4YSG3SYMLE;
-				INFOPLIST_FILE = wowsinfo/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_FILE = wowsinfo/support/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -690,11 +694,11 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yihengquan.wowsinfo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yihengquan.WoWs-Info";
 				PRODUCT_NAME = wowsinfo;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/support/objc.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -712,8 +716,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4YSG3SYMLE;
-				INFOPLIST_FILE = wowsinfo/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_FILE = wowsinfo/support/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -724,11 +728,11 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yihengquan.wowsinfo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yihengquan.WoWs-Info";
 				PRODUCT_NAME = wowsinfo;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/support/objc.h;
 				SWIFT_VERSION = 5.0;
@@ -891,7 +895,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4YSG3SYMLE;
 				INFOPLIST_FILE = "wowsinfo-debug/Info.plist";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -907,7 +911,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/support/objc.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -926,7 +930,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4YSG3SYMLE;
 				INFOPLIST_FILE = "wowsinfo-debug/Info.plist";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -941,7 +945,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = wowsinfo/support/objc.h;
 				SWIFT_VERSION = 5.0;
