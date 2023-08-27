@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, ScrollView, StyleSheet, Linking} from 'react-native';
+import {View, ScrollView, StyleSheet, Linking, StatusBar} from 'react-native';
 import {Text, IconButton, Title, Button} from 'react-native-paper';
 import {
   LoadingIndicator,
@@ -19,12 +19,13 @@ import {
   SafeAction,
   SafeStorage,
   getOverallRating,
-  currDeviceWidth,
+  getColour,
 } from '../../core';
 import {WoWsAPI} from '../../value/api';
 import {getDomain, getPrefix, LOCAL, setLastLocation} from '../../value/data';
 import {TintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
+import { CustomStatusBar } from '../../component/common/CustomStatusBar';
 
 class Statistics extends Component {
   constructor(props) {
@@ -233,24 +234,30 @@ class Statistics extends Component {
         </WoWsInfo>
       );
     } else {
+      const {rating} = this.state;
+      const ratingColor = getColour(rating);
       // Display player data
       return (
-        <WoWsInfo
-          style={container}
-          title={`- ${id} -`}
-          onPress={() =>
-            Linking.openURL(
-              `https://${this.prefix}.wows-numbers.com/player/${id},${name}/`,
-            )
-          }>
-          <ScrollView>{this.renderBasic(basic)}</ScrollView>
-          <FooterPlus style={footer}>
-            {this.renderAchievement(achievement)}
-            {this.renderGraph(graph)}
-            {this.renderShip(ship)}
-            {this.renderRank(rank, rankShip)}
-          </FooterPlus>
-        </WoWsInfo>
+        <CustomStatusBar backgroundColor={ratingColor}>
+          <WoWsInfo
+            style={container}
+            title={`- ${id} -`}
+            onPress={() =>
+              Linking.openURL(
+                `https://${this.prefix}.wows-numbers.com/player/${id},${name}/`,
+              )
+            }>
+            <ScrollView>
+              {this.renderBasic(basic)}
+            </ScrollView>
+            <FooterPlus style={footer}>
+              {this.renderAchievement(achievement)}
+              {this.renderGraph(graph)}
+              {this.renderShip(ship)}
+              {this.renderRank(rank, rankShip)}
+            </FooterPlus>
+          </WoWsInfo>
+        </CustomStatusBar>
       );
     }
   }
@@ -319,13 +326,13 @@ class Statistics extends Component {
         if (currRank > 0) extraInfo += ` | ⭐${currRank}`;
         return (
           <View style={container}>
+            <RatingButton rating={rating} />
             <Title style={playerName}>{name}</Title>
             <Text style={level}>{extraInfo}</Text>
             <View style={horizontal}>
               <InfoLabel title={lang.basic_register_date} info={register} />
               <InfoLabel title={lang.basic_last_battle} info={lastBattle} />
             </View>
-            <RatingButton rating={rating} />
             <View style={{padding: 4}}>
               {canBeFriend ? (
                 <Button icon="contacts" onPress={this.addFriend}>

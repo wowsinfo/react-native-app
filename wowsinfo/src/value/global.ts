@@ -15,7 +15,6 @@ class AppGlobalData {
     }
 
     public static set(key: string, value: any): void {
-        console.log('AppGlobalData.set() called with key: ' + key + ' and value: ' + value);
         if (key == null || value == null) {
             console.error('AppGlobalData.set() cannot set null key or value');
             console.trace();
@@ -24,7 +23,7 @@ class AppGlobalData {
 
         // if value is a Promise, we need to resolve it first
         if (value instanceof Promise) {
-            console.log('AppGlobalData.set() value is a Promise');
+            console.error('AppGlobalData.set() value is a Promise');
             console.trace();
             return;
         }

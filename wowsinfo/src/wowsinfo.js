@@ -103,7 +103,6 @@ class App extends Component {
     DataLoader.loadAll().then(data => {
       // console.log(data);
 
-      console.log(AppGlobalData);
       AppGlobalData.setupWith(data);
       AppGlobalData.shouldSwapButton = AppGlobalData.get(LOCAL.swapButton);
       AppGlobalData.useNoImageMode = AppGlobalData.get(LOCAL.noImageMode);

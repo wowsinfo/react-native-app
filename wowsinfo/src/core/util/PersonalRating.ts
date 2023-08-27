@@ -3,16 +3,16 @@ import {SafeValue} from './SafeGuard';
 import {SAVED} from '../../value/data';
 import {lang} from '../../value/lang';
 
-const getOverall = id => AppGlobalData.get(SAVED.pr)[id];
+const getOverall = (id: string) => AppGlobalData.get(SAVED.pr)[id];
 
 const calRating = (
-  actualDmg,
-  expectedDmg,
-  actualWins,
-  expectedWins,
-  actualFrags,
-  expectedFrags,
-) => {
+  actualDmg: number,
+  expectedDmg: number,
+  actualWins: number,
+  expectedWins: number,
+  actualFrags: number,
+  expectedFrags: number,
+): number => {
   // From https://wows-numbers.com/personal/rating by Wiochi
   const rDmg = actualDmg / expectedDmg;
   const rWins = actualWins / expectedWins;
@@ -31,7 +31,7 @@ const calRating = (
  * Calculate rating for each ship and return an overall rating
  * @param {*} ships
  */
-export const getOverallRating = ships => {
+export const getOverallRating = (ships: any): number => {
   if (ships == null) return -1;
 
   let actualDmg = 0,
@@ -92,23 +92,25 @@ export const getOverallRating = ships => {
   );
 };
 
-export const getAP = (rating, battle) => {
+export const getAP = (rating: number, battle: number): number => {
   if (rating == -1 || battle == 0) return 0;
   else return Number(roundTo(Math.log10(Math.max(10, battle)) * rating));
 };
 
-export const getRatingRange = () => [
+export const getRatingRange = (): Array<number> => [
   0, 750, 1100, 1350, 1550, 1750, 2100, 2450, 9999,
 ];
-export const getRatingIndex = rating => {
+export const getRatingIndex = (rating?: number): number => {
+  if (rating == null) return 0;
   let index = 0;
   for (let range of getRatingRange()) {
     if (rating < range) return index;
     index++;
   }
+  return index;
 };
 
-export const getColourList = () => [
+export const getColourList = (): Array<string> => [
   '#607D8B',
   'red',
   'orange',
@@ -121,12 +123,12 @@ export const getColourList = () => [
   'black',
 ];
 
-export const getColour = rating => {
+export const getColour = (rating?: number): string => {
   const colours = getColourList();
   return SafeValue(colours[getRatingIndex(rating)], '#607D8B');
 };
 
-export const getRatingList = () => [
+export const getRatingList = (): Array<string> => [
   lang.rating_Unkwown,
   lang.rating_bad,
   lang.rating_below_average,
@@ -138,7 +140,7 @@ export const getRatingList = () => [
   lang.rating_super_unicum,
 ];
 
-export const getComment = rating => {
+export const getComment = (rating: number): string => {
   const comments = getRatingList();
 
   let index = getRatingIndex(rating);

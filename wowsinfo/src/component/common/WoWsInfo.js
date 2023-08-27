@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {SafeAreaView, StyleSheet, StatusBar, Dimensions} from 'react-native';
+import {SafeAreaView, StyleSheet, StatusBar} from 'react-native';
 import {Button, Surface} from 'react-native-paper';
 import {isAndroid} from 'react-native-device-detection';
 import {lang} from '../../value/lang';
