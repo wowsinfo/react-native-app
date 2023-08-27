@@ -1,10 +1,11 @@
+import { NativeEvents } from './NativeEvents';
 import { QuickAction } from './QuickAction';
 import { NativeModules } from 'react-native';
 
-const ReactNativeManager = NativeModules.ReactNativeManager;
+const manager = NativeModules.ReactNativeManager;
 
-class NativeManager {
-  private static _instance: NativeManager;
+export class ReactNativeManager {
+  private static _instance: ReactNativeManager;
   private constructor() { }
 
   public static get Instance() {
@@ -14,14 +15,13 @@ class NativeManager {
 
   // Keep the listener alive
   private quickActionManager!: QuickAction;
+  private nativeEvents: NativeEvents = new NativeEvents();
 
   setup() {
     this.quickActionManager = new QuickAction();
   }
 
   static appHasLoaded() {
-    ReactNativeManager.reactNativeHasLoaded();
+    manager.reactNativeHasLoaded();
   }
 }
-
-export { NativeManager };

@@ -38,6 +38,14 @@
 		92926A902A9786F200191FEC /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 92926A8F2A9786F200191FEC /* Localizable.xcstrings */; };
 		92A539B32A998AE500A3B71B /* WoWsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A539B22A998AE500A3B71B /* WoWsInfoView.swift */; };
 		92A539B42A998AE500A3B71B /* WoWsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A539B22A998AE500A3B71B /* WoWsInfoView.swift */; };
+		92C71DEE2A9B821D008FF0B7 /* NativeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C71DED2A9B821D008FF0B7 /* NativeHandler.swift */; };
+		92C71DEF2A9B821D008FF0B7 /* NativeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C71DED2A9B821D008FF0B7 /* NativeHandler.swift */; };
+		92C71DF12A9B8229008FF0B7 /* NativeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C71DF02A9B8229008FF0B7 /* NativeHandler.m */; };
+		92C71DF22A9B8229008FF0B7 /* NativeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C71DF02A9B8229008FF0B7 /* NativeHandler.m */; };
+		92C71DF42A9B8535008FF0B7 /* ReactNativeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C71DF32A9B8535008FF0B7 /* ReactNativeEvent.swift */; };
+		92C71DF52A9B8535008FF0B7 /* ReactNativeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C71DF32A9B8535008FF0B7 /* ReactNativeEvent.swift */; };
+		92C71DF72A9B8673008FF0B7 /* ReactNativeEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C71DF62A9B8673008FF0B7 /* ReactNativeEvent.m */; };
+		92C71DF82A9B8673008FF0B7 /* ReactNativeEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C71DF62A9B8673008FF0B7 /* ReactNativeEvent.m */; };
 		92C72AF02A962F000056AD82 /* ReactNativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AE92A962F000056AD82 /* ReactNativeManager.m */; };
 		92C72AF22A962F000056AD82 /* ReactNativeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEA2A962F000056AD82 /* ReactNativeManager.swift */; };
 		92C72AF42A962F000056AD82 /* QuickActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEC2A962F000056AD82 /* QuickActionManager.swift */; };
@@ -95,6 +103,10 @@
 		92926A8F2A9786F200191FEC /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		92A539B22A998AE500A3B71B /* WoWsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoWsInfoView.swift; sourceTree = "<group>"; };
 		92C1CADD2A962A0400E07A7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92C71DED2A9B821D008FF0B7 /* NativeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeHandler.swift; sourceTree = "<group>"; };
+		92C71DF02A9B8229008FF0B7 /* NativeHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeHandler.m; sourceTree = "<group>"; };
+		92C71DF32A9B8535008FF0B7 /* ReactNativeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactNativeEvent.swift; sourceTree = "<group>"; };
+		92C71DF62A9B8673008FF0B7 /* ReactNativeEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactNativeEvent.m; sourceTree = "<group>"; };
 		92C72AE92A962F000056AD82 /* ReactNativeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeManager.m; sourceTree = "<group>"; };
 		92C72AEA2A962F000056AD82 /* ReactNativeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactNativeManager.swift; sourceTree = "<group>"; };
 		92C72AEC2A962F000056AD82 /* QuickActionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickActionManager.swift; sourceTree = "<group>"; };
@@ -299,19 +311,23 @@
 			path = "../../../node_modules/react-native-vector-icons/Fonts";
 			sourceTree = "<group>";
 		};
-		92C71DEC2A9B6C2A008FF0B7 /* module */ = {
+		92C71DEC2A9B6C2A008FF0B7 /* communication */ = {
 			isa = PBXGroup;
 			children = (
 				92D075F22A9B623700CFE9FC /* SimpleViewHandler.m */,
 				92D075EF2A9B613000CFE9FC /* SimpleViewHandler.swift */,
+				92C71DF02A9B8229008FF0B7 /* NativeHandler.m */,
+				92C71DED2A9B821D008FF0B7 /* NativeHandler.swift */,
+				92C71DF62A9B8673008FF0B7 /* ReactNativeEvent.m */,
+				92C71DF32A9B8535008FF0B7 /* ReactNativeEvent.swift */,
 			);
-			path = module;
+			path = communication;
 			sourceTree = "<group>";
 		};
 		92C72AE82A962F000056AD82 /* react-native */ = {
 			isa = PBXGroup;
 			children = (
-				92C71DEC2A9B6C2A008FF0B7 /* module */,
+				92C71DEC2A9B6C2A008FF0B7 /* communication */,
 				92553F2C2A987E0F008EC8FC /* caller */,
 				92C72AEB2A962F000056AD82 /* quick-actions */,
 				92C72AE92A962F000056AD82 /* ReactNativeManager.m */,
@@ -648,7 +664,9 @@
 				92C72AF22A962F000056AD82 /* ReactNativeManager.swift in Sources */,
 				92D075F32A9B623700CFE9FC /* SimpleViewHandler.m in Sources */,
 				92C72AF62A962F000056AD82 /* QuickActionEventEmitter.m in Sources */,
+				92C71DF12A9B8229008FF0B7 /* NativeHandler.m in Sources */,
 				92C72AF82A962F000056AD82 /* QuickActionManager.m in Sources */,
+				92C71DF42A9B8535008FF0B7 /* ReactNativeEvent.swift in Sources */,
 				92553F262A987D49008EC8FC /* ReactNativeCaller.swift in Sources */,
 				92A539B32A998AE500A3B71B /* WoWsInfoView.swift in Sources */,
 				92224B592A98DB600021F111 /* DefaultServerUsecase.swift in Sources */,
@@ -658,7 +676,9 @@
 				92553F302A988158008EC8FC /* SetupView.swift in Sources */,
 				92C72AFD2A962F5D0056AD82 /* AppDelegate.swift in Sources */,
 				92C72AF42A962F000056AD82 /* QuickActionManager.swift in Sources */,
+				92C71DEE2A9B821D008FF0B7 /* NativeHandler.swift in Sources */,
 				92224B5D2A98DC540021F111 /* GameServer.swift in Sources */,
+				92C71DF72A9B8673008FF0B7 /* ReactNativeEvent.m in Sources */,
 				92C72B002A96306E0056AD82 /* RootViewController.swift in Sources */,
 				92553F2A2A987D9F008EC8FC /* ReactNativeCaller.m in Sources */,
 				92C72AF02A962F000056AD82 /* ReactNativeManager.m in Sources */,
@@ -673,7 +693,9 @@
 				923257B22A98B0D00053E5F6 /* ReactNativeManager.swift in Sources */,
 				92D075F42A9B623700CFE9FC /* SimpleViewHandler.m in Sources */,
 				923257B32A98B0D00053E5F6 /* QuickActionEventEmitter.m in Sources */,
+				92C71DF22A9B8229008FF0B7 /* NativeHandler.m in Sources */,
 				923257B42A98B0D00053E5F6 /* QuickActionManager.m in Sources */,
+				92C71DF52A9B8535008FF0B7 /* ReactNativeEvent.swift in Sources */,
 				923257B52A98B0D00053E5F6 /* ReactNativeCaller.swift in Sources */,
 				92A539B42A998AE500A3B71B /* WoWsInfoView.swift in Sources */,
 				92224B5A2A98DB600021F111 /* DefaultServerUsecase.swift in Sources */,
@@ -683,7 +705,9 @@
 				923257B62A98B0D00053E5F6 /* SetupView.swift in Sources */,
 				923257B72A98B0D00053E5F6 /* AppDelegate.swift in Sources */,
 				923257B82A98B0D00053E5F6 /* QuickActionManager.swift in Sources */,
+				92C71DEF2A9B821D008FF0B7 /* NativeHandler.swift in Sources */,
 				92224B5E2A98DC540021F111 /* GameServer.swift in Sources */,
+				92C71DF82A9B8673008FF0B7 /* ReactNativeEvent.m in Sources */,
 				923257B92A98B0D00053E5F6 /* RootViewController.swift in Sources */,
 				923257BA2A98B0D00053E5F6 /* ReactNativeCaller.m in Sources */,
 				923257BB2A98B0D00053E5F6 /* ReactNativeManager.m in Sources */,
@@ -700,6 +724,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4YSG3SYMLE;
 				INFOPLIST_FILE = wowsinfo/support/Info.plist;
@@ -734,6 +759,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4YSG3SYMLE;
 				INFOPLIST_FILE = wowsinfo/support/Info.plist;
@@ -912,6 +938,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4YSG3SYMLE;
 				INFOPLIST_FILE = "wowsinfo-debug/Info.plist";
@@ -947,6 +974,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4YSG3SYMLE;
 				INFOPLIST_FILE = "wowsinfo-debug/Info.plist";

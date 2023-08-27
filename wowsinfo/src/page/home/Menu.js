@@ -39,7 +39,7 @@ import {
 } from '../../value/data';
 import {Loading} from '../common/Loading';
 import {Actions} from 'react-native-router-flux';
-import {NativeManager} from '../../core/native/NativeManager';
+import {ReactNativeManager} from '../../core/native/ReactNativeManager';
 import {QuickAction} from '../../core/native/QuickAction';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
@@ -68,7 +68,7 @@ class Menu extends Component {
   }
 
   componentDidMount() {
-    NativeManager.appHasLoaded();
+    ReactNativeManager.appHasLoaded();
     QuickAction.performPendingShortcut();
 
     if (this.first) {

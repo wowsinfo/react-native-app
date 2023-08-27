@@ -41,7 +41,7 @@ import {
   setJSExceptionHandler,
   setNativeExceptionHandler,
 } from 'react-native-exception-handler';
-import {NativeManager} from './core/native/NativeManager';
+import {ReactNativeManager} from './core/native/ReactNativeManager';
 import {SimpleViewHandler} from './core/native/SimpleViewHandler';
 
 setJSExceptionHandler((e, fatal) => {
@@ -84,7 +84,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    NativeManager.Instance.setup();
+    ReactNativeManager.Instance.setup();
 
     // const json = {};
     // AsyncStorage.getAllKeys().then(keys => {
