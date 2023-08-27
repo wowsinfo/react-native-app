@@ -80,12 +80,20 @@ class WarshipModule extends Component {
     const {xp} = styles;
 
     let selected = false;
-    for (let name in module) {
-      if (module[name] === ID) {
+    for (let module_name in module) {
+      if (module[module_name] === ID) {
         selected = true;
         break;
       }
     }
+
+    const right = () => {
+      if (price_xp > 0) {
+        return <Caption style={xp}>{`${price_xp} xp`}</Caption>;
+      } else {
+        return null;
+      }
+    };
 
     return (
       <List.Item
@@ -94,9 +102,7 @@ class WarshipModule extends Component {
         title={name}
         description={`${price_credit}`}
         onPress={() => this.updateModule(tree, ID)}
-        right={() =>
-          price_xp > 0 ? <Caption style={xp}>{`${price_xp} xp`}</Caption> : null
-        }
+        right={right}
       />
     );
   }
@@ -125,8 +131,11 @@ class WarshipModule extends Component {
             return aM.price_xp - bM.price_xp;
           } else if (aM.next_modules != null && bM.next_modules != null) {
             // They all have next module, we need to check check the id
-            if (aM.next_modules[0] == b) return -1;
-            else return 1;
+            if (aM.next_modules[0] == b) {
+              return -1;
+            } else {
+              return 1;
+            }
           } else {
             // Whoever is not null comes first
             return aM.next_modules != null ? -1 : 1;
@@ -152,7 +161,9 @@ class WarshipModule extends Component {
     console.log(names);
     let name = names.join('');
     // Seriously??
-    if (name === 'FireControl') name = 'Suo';
+    if (name === 'FireControl') {
+      name = 'Suo';
+    }
     return name;
   }
 }

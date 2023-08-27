@@ -22,7 +22,9 @@ class PlayerRecord extends Component {
   render() {
     const {container, wrap} = styles;
     const {data} = this.props;
-    if (!data) return null;
+    if (!data) {
+      return null;
+    }
 
     const {
       aircraft,
@@ -107,7 +109,9 @@ class PlayerRecord extends Component {
   renderMax(data) {
     const {record, container} = styles;
     const {num, id, name} = data;
-    if (!id) return null;
+    if (!id) {
+      return null;
+    }
     let ship = AppGlobalData.get(SAVED.warship)[id];
     return (
       <View style={[record, {width: this.state.goodWidth}]} key={name}>
@@ -129,7 +133,9 @@ class PlayerRecord extends Component {
     const {record, container} = styles;
     const {name, data} = item;
     const {frags, max_frags_battle, max_frags_ship_id, hits, shots} = data;
-    if (!max_frags_ship_id) return null;
+    if (!max_frags_ship_id) {
+      return null;
+    }
     let bestShip = AppGlobalData.get(SAVED.warship)[max_frags_ship_id];
     return (
       <View style={{width: this.state.goodWidth}} key={name}>

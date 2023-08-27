@@ -16,8 +16,11 @@ class SimpleRating extends PureComponent {
     const {pvp, rating} = this.props.info;
 
     let nothing = false;
-    if (pvp == null) nothing = true;
-    else if (pvp.battles === 0) nothing = true;
+    if (pvp == null) {
+      nothing = true;
+    } else if (pvp.battles === 0) {
+      nothing = true;
+    }
 
     let iconStyle = {height: 24, width: 24, tintColor: TintColour()[500]};
     return (

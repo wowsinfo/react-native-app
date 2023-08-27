@@ -77,7 +77,9 @@ class RS extends Component {
     const {ip} = this.state;
     KeepAwake.activate();
     // Enter rs mode when there is a valid ip
-    if (ip !== '') this.validIP(ip);
+    if (ip !== '') {
+      this.validIP(ip);
+    }
   }
 
   componentWillUnmount() {
@@ -125,7 +127,9 @@ class RS extends Component {
 
   renderPlayer() {
     const {loading, allay, enemy} = this.state;
-    if (loading) return <LoadingIndicator />;
+    if (loading) {
+      return <LoadingIndicator />;
+    }
 
     const {horizontal} = styles;
     let allayRating = getOverallRating(allay);
@@ -188,7 +192,9 @@ class RS extends Component {
   }
 
   renderMapInfo(rs) {
-    if (rs === null) return null;
+    if (rs === null) {
+      return null;
+    }
     const {info} = this.state;
 
     const {
@@ -276,12 +282,16 @@ class RS extends Component {
               this.appendExtraInfo(v).then(player => {
                 const team = player.relation;
                 // 0 and 1 are friends
-                if (team < 2) allayList.push(player);
-                else enemyList.push(player);
+                if (team < 2) {
+                  allayList.push(player);
+                } else {
+                  enemyList.push(player);
+                }
 
                 // Set a random id (1 in 88888888 is really small but it can happens)
-                if (player.account_id == null)
+                if (player.account_id == null) {
                   player.account_id = random(88888888);
+                }
 
                 this.setState({
                   allay: allayList,
@@ -302,7 +312,9 @@ class RS extends Component {
 
   async appendExtraInfo(player) {
     const {name, shipId} = player;
-    if (name.startsWith(':')) return player;
+    if (name.startsWith(':')) {
+      return player;
+    }
     let idInfo = await SafeFetch.get(WoWsAPI.PlayerSearch, this.domain, name);
     let playerID = Guard(idInfo, 'data.0', null);
     if (playerID != null) {

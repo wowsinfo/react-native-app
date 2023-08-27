@@ -1,12 +1,12 @@
-import { NativeEvents } from './NativeEvents';
-import { QuickAction } from './QuickAction';
-import { NativeModules } from 'react-native';
+import {NativeEvents} from './NativeEvents';
+import {QuickAction} from './QuickAction';
+import {NativeModules} from 'react-native';
 
 const manager = NativeModules.ReactNativeManager;
 
 export class ReactNativeManager {
   private static _instance: ReactNativeManager;
-  private constructor() { }
+  private constructor() {}
 
   public static get Instance() {
     // Do you need arguments? Make it a regular static method instead.

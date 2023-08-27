@@ -1,6 +1,6 @@
 import {SafeStorage, SafeValue} from '../core';
 import {Actions} from 'react-native-router-flux';
-import {getAvailablePurchases, getPurchaseHistory} from 'react-native-iap';
+import {getAvailablePurchases} from 'react-native-iap';
 import {Alert, Platform} from 'react-native';
 import {lang} from './lang';
 
@@ -15,7 +15,8 @@ export const APP = {
   AppStore: 'https://itunes.apple.com/app/id1202750166',
   GooglePlay:
     'https://play.google.com/store/apps/details?id=com.yihengquan.wowsinfo',
-  Developer: `mailto:development.henryquan@gmail.com?subject=[WoWs Info 1.7.0] `,
+  Developer:
+    'mailto:development.henryquan@gmail.com?subject=[WoWs Info 1.7.0] ',
   Patreon: 'https://www.patreon.com/henryquan',
   PayPal: 'https://www.paypal.me/YihengQuan',
   WeChat:
@@ -102,13 +103,17 @@ export const getDomain = index => {
 
 export const getCurrPrefix = () => {
   let prefix = getCurrDomain();
-  if (prefix === 'com') prefix = 'na';
+  if (prefix === 'com') {
+    prefix = 'na';
+  }
   return prefix;
 };
 
 export const getPrefix = index => {
   let prefix = getDomain(index);
-  if (prefix === 'com') prefix = 'na';
+  if (prefix === 'com') {
+    prefix = 'na';
+  }
   return prefix;
 };
 
@@ -213,7 +218,9 @@ export const setProVersion = pro => {
  * @returns whether pro version
  */
 export const onlyProVersion = () => {
-  if (isProVersion()) return true;
+  if (isProVersion()) {
+    return true;
+  }
   // Only push if user is not using pro version
   Actions.ProVersion();
   return false;
@@ -250,7 +257,9 @@ export const validateProVersion = async showAlert => {
 
     // Should not be pro version
     setProVersion(false);
-    if (showAlert) throw new Error(lang.iap_no_purchase_history);
+    if (showAlert) {
+      throw new Error(lang.iap_no_purchase_history);
+    }
   } catch (err) {
     Alert.alert(err.message);
   }

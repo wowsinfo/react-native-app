@@ -1,18 +1,10 @@
 import React, {PureComponent} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {List, Colors, IconButton} from 'react-native-paper';
-import * as Anime from 'react-native-animatable';
 import {LOCAL} from '../../value/data';
-import {
-  SafeAction,
-  SafeStorage,
-  SafeValue,
-  random,
-  bestWidth,
-} from '../../core';
+import {SafeAction, SafeStorage, SafeValue, bestWidth} from '../../core';
 import {SectionTitle} from '../../component';
 import {lang} from '../../value/lang';
-import {FlatGrid} from 'react-native-super-grid';
 
 class Friend extends PureComponent {
   constructor(props) {
@@ -36,13 +28,17 @@ class Friend extends PureComponent {
 
   getPlayer = all => {
     let player = [];
-    for (let ID in all.player) player.push(all.player[ID]);
+    for (let ID in all.player) {
+      player.push(all.player[ID]);
+    }
     return player;
   };
 
   getClan = all => {
     let clan = [];
-    for (let ID in all.clan) clan.push(all.clan[ID]);
+    for (let ID in all.clan) {
+      clan.push(all.clan[ID]);
+    }
     return clan;
   };
 

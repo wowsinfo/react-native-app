@@ -76,7 +76,9 @@ class Downloader {
       let gameVersion = await this.getVersion();
       log += `gameVersion - ${gameVersion}\n`;
       // Do not continue if we cannot get current game version
-      if (gameVersion == null) return this.makeObj(false, log);
+      if (gameVersion == null) {
+        return this.makeObj(false, log);
+      }
       let currVersion = AppGlobalData.get(LOCAL.gameVersion);
       console.log(`Current: ${currVersion}\nAPI: ${gameVersion}`);
       let appVersion = await SafeStorage.get(LOCAL.appVersion, '1.0.4.2');
@@ -319,8 +321,8 @@ class Downloader {
       }
     }
 
-    all['collection'] = collection;
-    all['item'] = item;
+    all.collection = collection;
+    all.item = item;
 
     await SafeStorage.set(SAVED.collection, all);
     return all;
@@ -372,7 +374,9 @@ class Downloader {
           }
 
           // Legendary upgrades
-          if (slot > 6) continue;
+          if (slot > 6) {
+            continue;
+          }
           curr.slot = slot;
         }
       }

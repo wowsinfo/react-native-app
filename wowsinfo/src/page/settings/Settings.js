@@ -1,14 +1,6 @@
 import React, {Component} from 'react';
-import {
-  View,
-  ScrollView,
-  FlatList,
-  StyleSheet,
-  Linking,
-  Share,
-  Alert,
-} from 'react-native';
-import {isAndroid, isIos} from 'react-native-device-detection';
+import {View, ScrollView, FlatList, StyleSheet, Alert} from 'react-native';
+import {isAndroid} from 'react-native-device-detection';
 import {
   List,
   Button,
@@ -53,7 +45,6 @@ import {
   LIME,
   YELLOW,
   AMBER,
-  ORANGE,
   DEEPORANGE,
   BROWN,
   GREY,
@@ -153,11 +144,14 @@ class Settings extends Component {
       'zh-hant': '繁体中文',
     };
     let appLangList = [];
-    for (let code in appLang)
+    for (let code in appLang) {
       appLangList.push({code: code, lang: appLang[code]});
+    }
 
     let display = appLang[userLanguage];
-    if (display == null) display = '???';
+    if (display == null) {
+      display = '???';
+    }
 
     return (
       <View>
@@ -199,7 +193,9 @@ class Settings extends Component {
 
   renderAPILanguage(langList) {
     const langData = [];
-    for (let key in langList) langData.push(key);
+    for (let key in langList) {
+      langData.push(key);
+    }
     langData.sort();
 
     return (
@@ -242,13 +238,13 @@ class Settings extends Component {
       <View>
         <SectionTitle title={lang.settings_app_settings} />
         <List.Item
-          key='dark_mode'
+          key="dark_mode"
           title={lang.settings_app_dark_mode}
           onPress={() => this.updateTheme()}
           right={() => <Checkbox status={darkMode ? 'checked' : 'unchecked'} />}
         />
         <List.Item
-          key='theme_colour'
+          key="theme_colour"
           title={lang.settings_app_theme_colour}
           onPress={() => this.setState({showColour: true})}
           right={() => (
@@ -256,7 +252,7 @@ class Settings extends Component {
           )}
         />
         <List.Item
-          key='no_image_mode'
+          key="no_image_mode"
           title={lang.settings_app_no_image_mode}
           onPress={() => this.noImage(!noImageMode)}
           right={() => (
@@ -264,7 +260,7 @@ class Settings extends Component {
           )}
         />
         <List.Item
-          key='swap_button'
+          key="swap_button"
           title={lang.settings_app_swap_buttons}
           onPress={() => this.swapButton(!swapButton)}
           right={() => (
@@ -282,20 +278,20 @@ class Settings extends Component {
       <View>
         <SectionTitle title={lang.app_name} />
         <List.Item
-          key='feedback'
+          key="feedback"
           title={lang.settings_app_send_feedback}
           description={lang.settings_app_send_feedback_subtitle}
           onPress={() => SimpleViewHandler.openURL(APP.Developer)}
         />
         <List.Item
-          key='report_issue'
+          key="report_issue"
           title={lang.settings_app_report_issues}
           description={issueLink}
           onPress={() => SimpleViewHandler.openURL(issueLink)}
         />
         {isAndroid ? (
           <List.Item
-            key='check_update'
+            key="check_update"
             title={lang.settings_app_check_for_update}
             onPress={this.checkAppUpdate}
             description={`v${APP.Version}`}
@@ -439,7 +435,9 @@ class Settings extends Component {
    * @param {Boolean} force foce update
    */
   updateApiLanguage(language, force) {
-    if (!force && language === this.state.APILanguage) return;
+    if (!force && language === this.state.APILanguage) {
+      return;
+    }
 
     setAPILanguage(language);
     this.setState({APILanguage: language});

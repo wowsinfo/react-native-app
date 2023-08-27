@@ -5,7 +5,6 @@
  */
 
 import React, {PureComponent} from 'react';
-import {StyleSheet} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 import {WikiIcon, WoWsInfo} from '../../component';
 import {SAVED, setLastLocation} from '../../value/data';
@@ -19,8 +18,11 @@ class Achievement extends PureComponent {
     let achievement = AppGlobalData.get(SAVED.achievement);
     let sorted = Object.entries(achievement).sort((a, b) => {
       // Sort by hidden then by key
-      if (a[1].hidden === b[1].hidden) return a[0].localeCompare(b[0]);
-      else return a[1].hidden - b[1].hidden;
+      if (a[1].hidden === b[1].hidden) {
+        return a[0].localeCompare(b[0]);
+      } else {
+        return a[1].hidden - b[1].hidden;
+      }
     });
 
     sorted.forEach((item, index) => {
@@ -55,13 +57,5 @@ class Achievement extends PureComponent {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export {Achievement};

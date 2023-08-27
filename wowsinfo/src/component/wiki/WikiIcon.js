@@ -14,12 +14,16 @@ class WikiIcon extends Component {
     const {container, newLabel} = styles;
     const {item, scale, warship, selected, ...props} = this.props;
     let width = 80;
-    if (scale) width *= scale;
+    if (scale) {
+      width *= scale;
+    }
     let theme = AppGlobalData.get(LOCAL.theme);
 
     let imageSrc = {uri: item.image ? item.image : item.icon};
     let defaultSrc = {uri: 'Unknown'};
-    if (AppGlobalData.useNoImageMode) imageSrc = null;
+    if (AppGlobalData.useNoImageMode) {
+      imageSrc = null;
+    }
     defaultSrc = null;
 
     if (warship) {

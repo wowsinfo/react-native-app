@@ -50,7 +50,9 @@ class Detailed extends Component {
   }
 
   renderNumberDiff(data, overall) {
-    if (overall == null || data == null) return null;
+    if (overall == null || data == null) {
+      return null;
+    }
     const {horizontal} = styles;
     const {battles, wins, damage_dealt, frags} = data;
     const {average_damage_dealt, average_frags, win_rate} = overall;
@@ -84,14 +86,19 @@ class Detailed extends Component {
   }
 
   getColor = diff => {
-    if (diff === 0) return null;
+    if (diff === 0) {
+      return null;
+    }
     return {color: diff > 0 ? 'green' : 'red'};
   };
 
   normalise = (diff, digit) => {
     let rounded = roundTo(diff, digit);
-    if (rounded <= 0) return rounded;
-    else return `+${rounded}`;
+    if (rounded <= 0) {
+      return rounded;
+    } else {
+      return `+${rounded}`;
+    }
   };
 }
 

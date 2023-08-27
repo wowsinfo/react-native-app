@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, StyleSheet, Dimensions, Linking} from 'react-native';
+import {Image, StyleSheet, Dimensions} from 'react-native';
 import * as Anime from 'react-native-animatable';
 import {WoWsInfo, Touchable} from '../../component';
 import {TintColour} from '../../value/colour';

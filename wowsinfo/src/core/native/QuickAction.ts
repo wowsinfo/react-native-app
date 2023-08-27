@@ -1,5 +1,5 @@
-import { NativeModules, NativeEventEmitter } from 'react-native';
-import { SafeAction } from '..';
+import {NativeModules, NativeEventEmitter} from 'react-native';
+import {SafeAction} from '..';
 const manager = NativeModules.QuickActionManager;
 const eventEmitter = NativeModules.QuickActionEventEmitter;
 
@@ -35,4 +35,4 @@ class QuickAction {
   }
 }
 
-export { QuickAction };
+export {QuickAction};

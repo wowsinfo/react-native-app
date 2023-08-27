@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, ScrollView, Alert, Linking} from 'react-native';
+import {View, StyleSheet, ScrollView, Alert} from 'react-native';
 import {WoWsInfo, LoadingIndicator} from '../../component';
 import {Title, List, Button, Text, Colors} from 'react-native-paper';
 import {
   initConnection,
   getSubscriptions,
   requestSubscription,
-  getAvailablePurchases,
   finishTransaction,
   purchaseUpdatedListener,
   purchaseErrorListener,
 } from 'react-native-iap';
-import {LOCAL, setProVersion, validateProVersion} from '../../value/data';
+import {setProVersion, validateProVersion} from '../../value/data';
 import {Actions} from 'react-native-router-flux';
 import {lang} from '../../value/lang';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, ScrollView, StyleSheet, Linking, StatusBar} from 'react-native';
+import {View, ScrollView, StyleSheet} from 'react-native';
 import {Text, IconButton, Title, Button} from 'react-native-paper';
 import {
   LoadingIndicator,
@@ -114,7 +114,9 @@ class Statistics extends Component {
       } else {
         let battle = Guard(player, 'statistics.pvp.battles', 0);
         // Treat zero battle account as hidden not for hidden accounts
-        if (!hiddenAccount && battle == 0) this.setState({hidden: true});
+        if (!hiddenAccount && battle == 0) {
+          this.setState({hidden: true});
+        }
         this.setState({basic: player});
       }
     });
@@ -156,7 +158,9 @@ class Statistics extends Component {
         if (keys.length > 0) {
           let last = keys.slice(-1)[0];
           let currRank = Guard(rank[last], 'rank_info.rank', 0);
-          if (currRank > 0) this.setState({currRank: currRank});
+          if (currRank > 0) {
+            this.setState({currRank: currRank});
+          }
         }
         this.setState({rank: rank});
       }
@@ -172,7 +176,9 @@ class Statistics extends Component {
           const {seasons, ship_id} = ship;
           for (let season in seasons) {
             // Init if not already
-            if (formatted[season] == null) formatted[season] = [];
+            if (formatted[season] == null) {
+              formatted[season] = [];
+            }
             // Put this ship inside
             let curr = seasons[season];
             // TO make there is data there
@@ -186,7 +192,9 @@ class Statistics extends Component {
             } else if (rank_div3) {
               curr.pvp = curr.rank_div3;
               delete curr.rank_div3;
-            } else continue;
+            } else {
+              continue;
+            }
 
             curr.ship_id = ship_id;
             formatted[season].push(curr);
@@ -320,9 +328,13 @@ class Statistics extends Component {
         );
       } else {
         let name = nickname;
-        if (clan !== '') name = `[${clan}]\n${nickname}`;
+        if (clan !== '') {
+          name = `[${clan}]\n${nickname}`;
+        }
         let extraInfo = `Lv ${leveling_tier}`;
-        if (currRank > 0) extraInfo += ` | ⭐${currRank}`;
+        if (currRank > 0) {
+          extraInfo += ` | ⭐${currRank}`;
+        }
         return (
           <View style={container}>
             <RatingButton rating={rating} />
@@ -375,7 +387,9 @@ class Statistics extends Component {
   };
 
   renderStatistics(statistics) {
-    if (!statistics) return null;
+    if (!statistics) {
+      return null;
+    }
     const {showMore} = this.state;
     return (
       <View style={{paddingBottom: 8}}>
@@ -387,7 +401,9 @@ class Statistics extends Component {
 
   renderAchievement(achievement) {
     let loading = true;
-    if (achievement && Object.keys(achievement).length > 0) loading = false;
+    if (achievement && Object.keys(achievement).length > 0) {
+      loading = false;
+    }
     return (
       <TabButton
         icon={{uri: 'AchievementTab'}}
@@ -400,7 +416,9 @@ class Statistics extends Component {
 
   renderShip(ship) {
     let loading = true;
-    if (ship && ship.length > 0) loading = false;
+    if (ship && ship.length > 0) {
+      loading = false;
+    }
 
     return (
       <TabButton
@@ -414,7 +432,9 @@ class Statistics extends Component {
 
   renderRank(rank, rankShip) {
     let loading = true;
-    if (rank && rankShip) loading = false;
+    if (rank && rankShip) {
+      loading = false;
+    }
 
     return (
       <TabButton
@@ -428,7 +448,9 @@ class Statistics extends Component {
 
   renderGraph(graph) {
     let loading = true;
-    if (graph && graph.length > 0) loading = false;
+    if (graph && graph.length > 0) {
+      loading = false;
+    }
     const {hidden} = this.state;
 
     return (

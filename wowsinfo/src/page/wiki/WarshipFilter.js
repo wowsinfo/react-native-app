@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {View, FlatList, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView, StyleSheet} from 'react-native';
 import {Text, TextInput, List, Checkbox, Button} from 'react-native-paper';
 import {WoWsInfo, FooterPlus, Space} from '../../component';
 import {lang} from '../../value/lang';
@@ -34,12 +34,12 @@ class WarshipFilter extends Component {
 
   componentDidMount() {
     // After component has been rendered or it will be undefined
-    this.refs['scrollview'].scrollTo({x: 0, y: 128, animated: false});
+    this.refs.scrollview.scrollTo({x: 0, y: 128, animated: false});
   }
 
   render() {
     const {horizontal, button, selectionText} = styles;
-    const {premium, name, nation, type, tier} = this.state;
+    const {premium, name, nation, type, tier, wrapView} = this.state;
 
     let tierList = getTierList();
 
@@ -55,7 +55,7 @@ class WarshipFilter extends Component {
       <WoWsInfo
         hideAds
         title={lang.wiki_warship_filter_placeholder}
-        onPress={() => this.refs['search'].focus()}>
+        onPress={() => this.refs.search.focus()}>
         <TextInput
           label={lang.wiki_warship_filter_placeholder}
           ref="search"
@@ -64,7 +64,9 @@ class WarshipFilter extends Component {
           onChangeText={t => this.setState({name: t})}
           onEndEditing={() => {
             // Do not go back if it is still empty
-            if (name.trim(' ').length > 0) this.applyAll();
+            if (name.trim(' ').length > 0) {
+              this.applyAll();
+            }
           }}
           clearButtonMode="while-editing"
           autoCapitalize="none"
@@ -73,7 +75,7 @@ class WarshipFilter extends Component {
           <Space />
           <List.Section title={lang.wiki_warship_filter_tier}>
             <Text style={selectionText}>{`${tier.join(' | ')} `}</Text>
-            <View style={{flexWrap: 'wrap', flexDirection: 'row'}}>
+            <View style={wrapView}>
               {tierList.map(item =>
                 this.renderButton(item, () => this.addData(item, MODE.TIER)),
               )}
@@ -83,7 +85,7 @@ class WarshipFilter extends Component {
           </List.Section>
           <List.Section title={lang.wiki_warship_filter_nation}>
             <Text style={selectionText}>{`${nation.join(' | ')} `}</Text>
-            <View style={{flexWrap: 'wrap', flexDirection: 'row'}}>
+            <View style={wrapView}>
               {nationList.map(item =>
                 this.renderButton(item, () => this.addData(item, MODE.NATION)),
               )}
@@ -93,7 +95,7 @@ class WarshipFilter extends Component {
           </List.Section>
           <List.Section title={lang.wiki_warship_filter_type}>
             <Text style={selectionText}>{`${type.join(' | ')} `}</Text>
-            <View style={{flexWrap: 'wrap', flexDirection: 'row'}}>
+            <View style={wrapView}>
               {typeList.map(item =>
                 this.renderButton(item, () => this.addData(item, MODE.TYPE)),
               )}
@@ -159,7 +161,9 @@ class WarshipFilter extends Component {
     }
 
     // Same as last added item
-    if (arr.slice(-1)[0] === item) return;
+    if (arr.slice(-1)[0] === item) {
+      return;
+    }
     arr.push(item);
 
     switch (mode) {
@@ -186,6 +190,10 @@ const styles = StyleSheet.create({
   selectionText: {
     paddingLeft: 16,
     paddingRight: 16,
+  },
+  wrapView: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
   },
 });
 

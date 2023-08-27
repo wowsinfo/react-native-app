@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react';
-import {View, ScrollView, StyleSheet} from 'react-native';
-import {Title} from 'react-native-paper';
+import {ScrollView, StyleSheet} from 'react-native';
 import {BarChart, PieChart} from 'native-chart-experiment';
 import {WoWsInfo} from '../../component';
 import {SAVED} from '../../value/data';
@@ -23,7 +22,9 @@ class Graph extends PureComponent {
       const {battles} = pvp;
 
       let curr = AppGlobalData.get(SAVED.warship)[ship_id];
-      if (curr == null) continue;
+      if (curr == null) {
+        continue;
+      }
 
       const {nation, tier, type} = curr;
       tierInfo[tier] = SafeValue(tierInfo[tier], 0) + battles;
@@ -52,10 +53,14 @@ class Graph extends PureComponent {
     let chart = {x: [], y: []};
     for (let key in obj) {
       let val = obj[key];
-      if (val === 0 || val < min) continue;
+      if (val === 0 || val < min) {
+        continue;
+      }
 
       let label = key;
-      if (name) label = name[key];
+      if (name) {
+        label = name[key];
+      }
 
       chart.x.push(label);
       chart.y.push(val);
@@ -76,9 +81,7 @@ class Graph extends PureComponent {
   };
 
   render() {
-    const {container} = styles;
-    const {tier, avgTier, nation, type} = this.state;
-    const themeColour = TintColour()[500];
+    const {tier, nation, type} = this.state;
     return (
       <WoWsInfo hideAds>
         <ScrollView>
@@ -106,16 +109,6 @@ class Graph extends PureComponent {
       </WoWsInfo>
     );
   }
-
-  renderLabel = () => <VictoryLabel style={{color: TintColour()[500]}} />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export {Graph};

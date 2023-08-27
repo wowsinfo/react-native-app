@@ -18,7 +18,9 @@ export const random = range => {
 };
 
 export const roundTo = (num, digit = 0) => {
-  if (isNaN(num) || !isFinite(num)) return Number(-1);
+  if (isNaN(num) || !isFinite(num)) {
+    return Number(-1);
+  }
   return Number(Number(num).toFixed(digit));
 };
 
@@ -36,8 +38,12 @@ export const dayDifference = time => {
  * @param {*} time
  */
 export const humanTimeString = time => {
-  if (time == null) return lang.warship_unkown;
-  if (time === 0) return `---`;
+  if (time == null) {
+    return lang.warship_unkown;
+  }
+  if (time === 0) {
+    return '---';
+  }
   let obj = new Date(time * 1000);
   // first part to get date string and the second get locale time
   return `${obj
@@ -68,7 +74,9 @@ export const getRandomAnimation = () => {
 export const bestCellWidth = baseWidth => {
   const deviceWidth = Dimensions.get('window').width;
   const usualCount = deviceWidth / baseWidth;
-  if (usualCount > 6) return deviceWidth / 6;
+  if (usualCount > 6) {
+    return deviceWidth / 6;
+  }
   return baseWidth;
 };
 

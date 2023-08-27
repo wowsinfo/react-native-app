@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import * as RNIap from 'react-native-iap';
-import {View, FlatList, Linking, Platform} from 'react-native';
-import {Button, List} from 'react-native-paper';
+import {View} from 'react-native';
+import {List} from 'react-native-paper';
 import {lang} from '../../value/lang';
 import {APP} from '../../value/data';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
@@ -59,11 +59,11 @@ class Donation extends Component {
 
     return (
       <View>
-        {/* { AppGlobalData.GITHUB_VERSION || products == null ? null : 
-          <FlatList horizontal data={products} renderItem={({item}) => 
+        {/* { AppGlobalData.GITHUB_VERSION || products == null ? null :
+          <FlatList horizontal data={products} renderItem={({item}) =>
             <Button style={{marginLeft: 4}} icon='favorite' color='red' compact
               onPress={() => this.supportWoWsInfo(item)}>{item.localizedPrice}</Button>}
-          keyExtractor={p => p.price}/> 
+          keyExtractor={p => p.price}/>
         } */}
         {this.support.map(item => {
           return (

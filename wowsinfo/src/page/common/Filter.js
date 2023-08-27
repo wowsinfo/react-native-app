@@ -5,8 +5,9 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import {lang} from '../../value/lang';
+import {Button, Checkbox, List, TextInput} from 'react-native-paper';
 
 class Filter extends Component {
   constructor(props) {

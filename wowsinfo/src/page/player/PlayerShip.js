@@ -41,7 +41,9 @@ class PlayerShip extends PureComponent {
     const {filter} = this.props;
     if (filter) {
       // Prevent repetitive update
-      if (filter === this.state.filter) return;
+      if (filter === this.state.filter) {
+        return;
+      }
       this.setState({filter: filter});
       this.updateShip(filter);
     }
@@ -124,8 +126,9 @@ class PlayerShip extends PureComponent {
 
   updateShip(data) {
     let sorted = filterShip(data, this.original);
-    if (sorted == null) this.setState({data: this.original});
-    else {
+    if (sorted == null) {
+      this.setState({data: this.original});
+    } else {
       // Get rating again
       let rating = getOverallRating(sorted);
       this.setState({data: sorted, rating: rating});

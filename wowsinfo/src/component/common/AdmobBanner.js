@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {View, Platform} from 'react-native';
 import {List} from 'react-native-paper';
 import {lang} from '../../value/lang';
 import {SafeAction} from '../../core';
@@ -14,7 +13,6 @@ class AdmobBanner extends Component {
 
   render() {
     // Ask users to support me (especially IOS users)
-    const {success} = this.state;
     return (
       <List.Item
         title={lang.extra_support_wowsinfo}

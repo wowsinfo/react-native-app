@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {View, ScrollView, Linking, StyleSheet} from 'react-native';
+import {View, ScrollView, StyleSheet} from 'react-native';
 import {WoWsInfo, SectionTitle} from '../../component';
 import {Text, Paragraph, Caption, Button} from 'react-native-paper';
 import {lang} from '../../value/lang';

@@ -22,7 +22,9 @@ class Info6Icon extends Component {
   render() {
     const {container, wrap} = styles;
     const {data, compact, topOnly} = this.props;
-    if (!data) return null;
+    if (!data) {
+      return null;
+    }
 
     const {cellWidth} = this.state;
     const {

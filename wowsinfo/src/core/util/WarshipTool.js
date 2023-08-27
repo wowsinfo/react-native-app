@@ -1,7 +1,9 @@
 import {SAVED} from '../../value/data';
 
 export const getTierLabel = tier => {
-  if (tier < 1) return 'O';
+  if (tier < 1) {
+    return 'O';
+  }
   // From 1 to 15
   const label = getTierList();
   return label[tier - 1];
@@ -11,7 +13,9 @@ export const getTierLabel = tier => {
  * A function that returns a colour between red and green depending on curr / max
  */
 export const getColourWithRange = (min, curr, max) => {
-  if (curr < min) return '#FF0000';
+  if (curr < min) {
+    return '#FF0000';
+  }
   let scale = Number(((curr - min) / (max - min)) * 100).toFixed(0);
 
   function componentToHex(c) {
@@ -63,7 +67,9 @@ export const filterShip = (data, shipData = null) => {
     for (let ship of shipData) {
       let curr = warship[ship.ship_id];
       // Ignore removed ships
-      if (curr == null) continue;
+      if (curr == null) {
+        continue;
+      }
       if (validShip(curr, fname, fdata, premium)) {
         filtered.push(ship);
       }
@@ -82,8 +88,11 @@ export const filterShip = (data, shipData = null) => {
   if (shipData == null) {
     sorted = filtered.sort((a, b) => {
       // Sort by tier, then by type
-      if (a.tier === b.tier) return a.type.localeCompare(b.type);
-      else return b.tier - a.tier;
+      if (a.tier === b.tier) {
+        return a.type.localeCompare(b.type);
+      } else {
+        return b.tier - a.tier;
+      }
     });
   }
 
@@ -126,8 +135,9 @@ const validShip = (curr, fname, fdata, premium) => {
     filterType = true;
   }
 
-  if (filterName && filterNation && filterPremium && filterTier && filterType)
+  if (filterName && filterNation && filterPremium && filterTier && filterType) {
     return true;
+  }
   return false;
 };
 

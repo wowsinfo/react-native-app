@@ -20,10 +20,17 @@ class Warship extends PureComponent {
     let warship = AppGlobalData.get(SAVED.warship);
     let sorted = Object.entries(warship).sort((a, b) => {
       // Sort by tier, then by type
-      if (a[1].new) return -1;
-      if (b[1].new) return 1;
-      if (a[1].tier === b[1].tier) return a[1].type.localeCompare(b[1].type);
-      else return b[1].tier - a[1].tier;
+      if (a[1].new) {
+        return -1;
+      }
+      if (b[1].new) {
+        return 1;
+      }
+      if (a[1].tier === b[1].tier) {
+        return a[1].type.localeCompare(b[1].type);
+      } else {
+        return b[1].tier - a[1].tier;
+      }
     });
 
     // Remove extra information (ship id)
@@ -41,7 +48,9 @@ class Warship extends PureComponent {
     const {filter} = this.props;
     if (filter) {
       // Prevent repetitive update
-      if (filter === this.state.filter) return;
+      if (filter === this.state.filter) {
+        return;
+      }
       this.setState({filter: filter});
       this.updateShip(filter);
     }
@@ -79,23 +88,12 @@ class Warship extends PureComponent {
 
   updateShip(data) {
     let sorted = filterShip(data);
-    if (sorted == null) this.setState({data: this.original});
-    else this.setState({data: sorted});
+    if (sorted == null) {
+      this.setState({data: this.original});
+    } else {
+      this.setState({data: sorted});
+    }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-  },
-  input: {
-    padding: 4,
-  },
-  apply: {
-    padding: 8,
-  },
-});
 
 export {Warship};

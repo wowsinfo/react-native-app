@@ -24,8 +24,9 @@ class CommanderSkill extends Component {
     cloned.forEach(i => {
       let index = i.tier - 1;
       // Data is sorted so we wont need to worry about not in order
-      if (!section[index])
+      if (!section[index]) {
         section.push({title: `${lang.wiki_skills_tier} ${i.tier}`, data: []});
+      }
       section[index].data.push(Object.assign(i));
     });
 
@@ -68,7 +69,9 @@ class CommanderSkill extends Component {
     let pointLeft = point;
     if (item.selected == true) {
       // Remember to set it to a number otherwise you will have weird issues
-      if (pointLeft == lang.wiki_skills_reset) pointLeft = 0;
+      if (pointLeft == lang.wiki_skills_reset) {
+        pointLeft = 0;
+      }
       pointLeft += item.tier;
       // Deselect this skill and return your points
       item.selected = false;
@@ -78,8 +81,11 @@ class CommanderSkill extends Component {
       if (pointLeft >= 0) {
         item.selected = true;
         // If you do not have enough point do nothing
-        if (pointLeft == 0) this.setState({point: lang.wiki_skills_reset});
-        else this.setState({point: pointLeft});
+        if (pointLeft == 0) {
+          this.setState({point: lang.wiki_skills_reset});
+        } else {
+          this.setState({point: pointLeft});
+        }
       }
     }
   }
@@ -92,11 +98,5 @@ class CommanderSkill extends Component {
     this.setState({point: 19, data: data});
   }
 }
-
-const styles = StyleSheet.create({
-  header: {
-    textAlign: 'center',
-  },
-});
 
 export {CommanderSkill};

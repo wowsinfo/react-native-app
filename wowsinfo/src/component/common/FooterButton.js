@@ -13,10 +13,15 @@ class FooterButton extends Component {
     /// 'cog' is the name for new settings
 
     let al = '';
-    if (icon === 'cog') al = lang.button_settings_label;
-    else if (icon === 'arrow-left') al = lang.button_back_label;
-    else if (icon === 'home') al = lang.button_home_label;
-    else al = lang.button_menu_label;
+    if (icon === 'cog') {
+      al = lang.button_settings_label;
+    } else if (icon === 'arrow-left') {
+      al = lang.button_back_label;
+    } else if (icon === 'home') {
+      al = lang.button_home_label;
+    } else {
+      al = lang.button_menu_label;
+    }
 
     return (
       <SafeAreaView
@@ -38,8 +43,9 @@ class FooterButton extends Component {
 
   pressEvent() {
     const {icon} = this.props;
-    if (icon === 'cog') SafeAction('Settings');
-    else if (icon === 'arrow-left') {
+    if (icon === 'cog') {
+      SafeAction('Settings');
+    } else if (icon === 'arrow-left') {
       Actions.pop();
       if (Actions.state.routes.length === 2) {
         setTimeout(() => Actions.refresh(), 1000);
@@ -49,7 +55,9 @@ class FooterButton extends Component {
       // Clear last location
       setLastLocation('');
       setTimeout(() => Actions.refresh(), 1000);
-    } else SafeAction('Search');
+    } else {
+      SafeAction('Search');
+    }
   }
 }
 

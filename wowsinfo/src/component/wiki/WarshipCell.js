@@ -16,7 +16,9 @@ class WarshipCell extends Component {
     const {item, scale, onPress} = this.props;
 
     let width = 80;
-    if (scale) width *= scale;
+    if (scale) {
+      width *= scale;
+    }
     return (
       <Touchable style={container} onPress={item ? onPress : null}>
         {item ? (

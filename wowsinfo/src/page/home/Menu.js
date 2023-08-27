@@ -181,9 +181,9 @@ class Menu extends Component {
       },
       {
         t: lang.website_global_wiki,
-        d: `http://wiki.wargaming.net/en/World_of_Warships/`,
+        d: 'http://wiki.wargaming.net/en/World_of_Warships/',
       },
-      {t: lang.website_dev_blog, d: `https://blog.worldofwarships.com/`},
+      {t: lang.website_dev_blog, d: 'https://blog.worldofwarships.com/'},
     ];
 
     this.stats_info_website = [
@@ -281,12 +281,16 @@ class Menu extends Component {
 
   render() {
     const {loading, main} = this.state;
-    if (loading) return <Loading />;
+    if (loading) {
+      return <Loading />;
+    }
 
     // For main account
     let enabled = main.account_id !== '';
     let title = `- ${main.nickname} -`;
-    if (title === '-  -') title = '- ??? -';
+    if (title === '-  -') {
+      title = '- ??? -';
+    }
 
     return (
       <WoWsInfo
@@ -317,7 +321,9 @@ class Menu extends Component {
   }
 
   renderProButton() {
-    if (isProVersion()) return null;
+    if (isProVersion()) {
+      return null;
+    }
     return (
       <>
         <Button

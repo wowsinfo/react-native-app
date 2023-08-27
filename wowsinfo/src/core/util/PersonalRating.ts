@@ -32,7 +32,9 @@ const calRating = (
  * @param {*} ships
  */
 export const getOverallRating = (ships: any): number => {
-  if (ships == null) return -1;
+  if (ships == null) {
+    return -1;
+  }
 
   let actualDmg = 0,
     expectedDmg = 0,
@@ -47,12 +49,16 @@ export const getOverallRating = (ships: any): number => {
     const pvp = SafeValue(ship.pvp, null);
     if (pvp) {
       const overall = getOverall(ship.ship_id);
-      if (overall == null) continue;
+      if (overall == null) {
+        continue;
+      }
 
       const {battles, damage_dealt, frags, wins} = pvp;
       const {average_damage_dealt, average_frags, win_rate} = overall;
 
-      if (battles == 0) continue;
+      if (battles === 0) {
+        continue;
+      }
       let currAvgDmg = damage_dealt / battles;
       let currWinrate = (wins / battles) * 100;
       let currFrags = frags / battles;
@@ -93,8 +99,11 @@ export const getOverallRating = (ships: any): number => {
 };
 
 export const getAP = (rating: number, battle: number): number => {
-  if (rating == -1 || battle == 0) return 0;
-  else return Number(roundTo(Math.log10(Math.max(10, battle)) * rating));
+  if (rating === -1 || battle === 0) {
+    return 0;
+  } else {
+    return Number(roundTo(Math.log10(Math.max(10, battle)) * rating));
+  }
 };
 
 export const getRatingRange = (): Array<number> => [
@@ -107,9 +116,11 @@ export const getRatingRange = (): Array<number> => [
  * @returns The index of the rating. If the rating is invalid, returns 0 which is unknown
  */
 export const getRatingIndex = (rating?: number): number => {
-  if (rating == null) return 0;
+  if (rating == null) {
+    return 0;
+  }
   const range = getRatingRange();
-  const index = range.findIndex(range => rating < range);
+  const index = range.findIndex(r => rating < r);
   return index === -1 ? 0 : index;
 };
 
@@ -152,7 +163,9 @@ export const getComment = (rating: number): string => {
 
   let diff = range - rating;
   // Prevent big numbers
-  if (range === 9999) diff = rating - 2450;
+  if (range === 9999) {
+    diff = rating - 2450;
+  }
 
   return `${comment} (+${diff})`;
 };

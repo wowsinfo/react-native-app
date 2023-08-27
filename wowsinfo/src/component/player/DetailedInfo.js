@@ -32,11 +32,15 @@ class DetailedInfo extends Component {
   render() {
     const {container} = styles;
     const {data} = this.props;
-    if (!data) return null;
+    if (!data) {
+      return null;
+    }
 
     const {last_battle_time, pvp} = data;
     let playerMode = false;
-    if (pvp.max_damage_dealt_ship_id) playerMode = true;
+    if (pvp.max_damage_dealt_ship_id) {
+      playerMode = true;
+    }
 
     const {more} = this.state;
 
@@ -237,17 +241,23 @@ class DetailedInfo extends Component {
       {name: lang.warship_ramming, data: ramming},
     ];
 
-    if (!playerMode) return weapons.map(d => this.renderShipRecord(d));
+    if (!playerMode) {
+      return weapons.map(d => this.renderShipRecord(d));
+    }
     return null;
   }
 
   renderShipRecord(weapon) {
     const {data, name} = weapon;
-    if (data == null) return null;
+    if (data == null) {
+      return null;
+    }
     const {container, horizontal} = styles;
     const {frags, max_frags_battle, hits, shots} = weapon.data;
     console.log(weapon);
-    if (frags == 0) return null;
+    if (frags == 0) {
+      return null;
+    }
     return (
       <View style={container} key={name}>
         <SectionTitle title={name} />

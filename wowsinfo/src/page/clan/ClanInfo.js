@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {View, ScrollView, Linking, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {
   WoWsInfo,
   LoadingIndicator,

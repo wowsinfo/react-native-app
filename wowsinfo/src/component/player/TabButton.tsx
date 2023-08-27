@@ -8,19 +8,27 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {IconButton} from 'react-native-paper';
 import {Touchable} from '../common/Touchable';
-import { IconSource } from 'react-native-paper/lib/typescript/components/Icon';
+import {IconSource} from 'react-native-paper/lib/typescript/components/Icon';
 
 export interface TabButtonProps {
   icon: IconSource;
   disabled?: boolean;
   onPress?: () => void;
   otherProps?: any;
-};
+}
 
-export const TabButton = ({icon, onPress, disabled, ...otherProps}: TabButtonProps) => {
+export const TabButton = ({
+  icon,
+  onPress,
+  disabled,
+  ...otherProps
+}: TabButtonProps) => {
   return (
-    <Touchable fill style={styles.container} onPress={disabled ? null : onPress}>
-      <IconButton icon={icon} size={26} {...otherProps}  />
+    <Touchable
+      fill
+      style={styles.container}
+      onPress={disabled ? null : onPress}>
+      <IconButton icon={icon} size={26} {...otherProps} />
     </Touchable>
   );
 };

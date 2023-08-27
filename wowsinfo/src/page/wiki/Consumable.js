@@ -17,7 +17,9 @@ class Consumable extends PureComponent {
     super(props);
     const {upgrade} = props;
     let loc = 'Consumable';
-    if (upgrade === true) loc = 'Upgrade';
+    if (upgrade === true) {
+      loc = 'Upgrade';
+    }
     setLastLocation(loc);
 
     // Load data depending on 'upgrade' prop
@@ -38,8 +40,11 @@ class Consumable extends PureComponent {
     data.sort((a, b) => {
       if (!upgrade) {
         // Flags first then camouflages
-        if (a.type === 'Flags') return -1;
-        else return 1;
+        if (a.type === 'Flags') {
+          return -1;
+        } else {
+          return 1;
+        }
       }
 
       // Sort by price
@@ -63,7 +68,9 @@ class Consumable extends PureComponent {
 
   renderGrid() {
     const {data} = this.state;
-    if (!data) return <LoadingModal />;
+    if (!data) {
+      return <LoadingModal />;
+    }
 
     return (
       <View style={{flex: 1}}>

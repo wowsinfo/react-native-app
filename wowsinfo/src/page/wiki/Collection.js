@@ -5,7 +5,7 @@
  */
 
 import React, {PureComponent} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 import {WoWsInfo, WikiIcon} from '../../component';
 import {SAVED, setLastLocation} from '../../value/data';
@@ -47,7 +47,9 @@ class Collection extends PureComponent {
 
     let ID = '';
     // This is to prevent setting ID inside the collection page
-    if (data.length > 0 && data[0].card_id) ID = data[0].collection_id;
+    if (data.length > 0 && data[0].card_id) {
+      ID = data[0].collection_id;
+    }
 
     return (
       <WoWsInfo title={ID}>
@@ -71,7 +73,9 @@ class Collection extends PureComponent {
                   <Paragraph style={label}>{header.description}</Paragraph>
                 </View>
               );
-            } else return null;
+            } else {
+              return null;
+            }
           }}
           showsVerticalScrollIndicator={false}
         />

@@ -14,7 +14,9 @@ class LoadingIndicator extends Component {
   render() {
     const {style} = this.props;
     let appTheme = TintColour();
-    if (!appTheme) appTheme = Blue;
+    if (!appTheme) {
+      appTheme = Blue;
+    }
 
     return (
       <ActivityIndicator

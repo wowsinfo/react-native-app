@@ -48,7 +48,9 @@ class Setup extends Component {
         const langList = data;
         const langData = [];
 
-        for (const key in langList) langData.push(key);
+        for (const key in langList) {
+          langData.push(key);
+        }
         langData.sort();
 
         this.setState({langList: langList, langData: langData, loading: false});
@@ -100,8 +102,10 @@ class Setup extends Component {
     const {loading, error, langData, langList} = this.state;
     const {titleStyle, wrapView} = styles;
 
-    if (loading) return <LoadingIndicator />;
-    if (error)
+    if (loading) {
+      return <LoadingIndicator />;
+    }
+    if (error) {
       return (
         <View>
           <Paragraph style={titleStyle}>{lang.error_download_issue}</Paragraph>
@@ -112,6 +116,7 @@ class Setup extends Component {
           />
         </View>
       );
+    }
 
     return (
       <View style={wrapView}>

@@ -25,7 +25,9 @@ export const TintColour = () => {
 
 export const TintTextColour = () => {
   let colour = TintColour();
-  if (!colour) colour = BLUE;
+  if (!colour) {
+    colour = BLUE;
+  }
   return {color: colour[500]};
 };
 

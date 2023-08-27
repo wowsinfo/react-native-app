@@ -18,9 +18,13 @@ class BasicDetail extends Component {
     console.log(item);
 
     let ID = '';
-    if (item.consumable_id) ID = item.consumable_id;
-    else if (item.achievement_id) ID = item.achievement_id;
-    else if (item.collection_id) ID = item.card_id;
+    if (item.consumable_id) {
+      ID = item.consumable_id;
+    } else if (item.achievement_id) {
+      ID = item.achievement_id;
+    } else if (item.collection_id) {
+      ID = item.card_id;
+    }
 
     return <WoWsInfo title={ID}>{this.renderDetail()}</WoWsInfo>;
   }

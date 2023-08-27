@@ -54,7 +54,7 @@ class Search extends Component {
       <WoWsInfo
         hideAds
         title={lang.menu_footer}
-        onPress={() => this.refs['search'].focus()}>
+        onPress={() => this.refs.search.focus()}>
         <KeyboardAvoidingView behavior={undefined} style={{flex: 1}}>
           <Searchbar
             ref="search"
@@ -149,7 +149,9 @@ class Search extends Component {
    */
   searchAll = text => {
     // Reset search
-    if (text.length < 2) this.setState({result: {player: [], clan: []}});
+    if (text.length < 2) {
+      this.setState({result: {player: [], clan: []}});
+    }
     this.setState({search: text});
 
     // Clear timeout everytime for efficient data request

@@ -6,7 +6,9 @@
  */
 export const Guard = (obj, path, dval) => {
   // This is a just a simple check if obj is null or undefined
-  if (path === '' && obj != null) return obj;
+  if (path === '' && obj != null) {
+    return obj;
+  }
   // check if object is valid and path does not start with or end with '.'
   if (!path.startsWith('.') && !path.endsWith('.')) {
     // get path as an array and it must have at least 2 elements
@@ -27,6 +29,8 @@ export const Guard = (obj, path, dval) => {
  * @param {*} dval
  */
 export const SafeValue = (obj, dval) => {
-  if (obj == null) return dval;
+  if (obj == null) {
+    return dval;
+  }
   return obj;
 };

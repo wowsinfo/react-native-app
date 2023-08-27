@@ -6,7 +6,7 @@
 
 import React, {PureComponent} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
-import {WoWsInfo, LoadingIndicator} from '../../component';
+import {WoWsInfo} from '../../component';
 
 class SimilarGraph extends PureComponent {
   constructor(props) {

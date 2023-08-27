@@ -79,8 +79,11 @@ class WoWsInfo extends Component {
 
     // 80% of the time, it will be the app name
     let r = random(10);
-    if (r < 8) this.lucky = lang.app_name;
-    else this.lucky = `WoWs Info ${name[random(name.length)]}`;
+    if (r < 8) {
+      this.lucky = lang.app_name;
+    } else {
+      this.lucky = `WoWs Info ${name[random(name.length)]}`;
+    }
   }
 
   render() {
@@ -154,8 +157,11 @@ class WoWsInfo extends Component {
    */
   pressEvent = () => {
     const {onPress, about} = this.props;
-    if (onPress) return onPress();
-    else if (about) return this.navigate();
+    if (onPress) {
+      return onPress();
+    } else if (about) {
+      return this.navigate();
+    }
   };
 
   /**

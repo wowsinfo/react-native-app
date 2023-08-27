@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Alert, BackHandler, Linking} from 'react-native';
+import {Alert, BackHandler} from 'react-native';
 import {Router, Stack, Scene, Actions} from 'react-native-router-flux';
 import {withTheme, DarkTheme, DefaultTheme} from 'react-native-paper';
 import {
@@ -112,12 +112,16 @@ class App extends Component {
       // No more auto dark mode
 
       let userLang = AppGlobalData.get(LOCAL.userLanguage);
-      if (userLang !== '') lang.setLanguage(userLang);
+      if (userLang !== '') {
+        lang.setLanguage(userLang);
+      }
 
       console.log('state has been set');
 
       let tint = TintColour();
-      if (!tint[50]) tint = BLUE;
+      if (!tint[50]) {
+        tint = BLUE;
+      }
 
       // Setup global dark theme
       AppGlobalData.darkTheme = {
@@ -171,7 +175,9 @@ class App extends Component {
 
   render() {
     const {loading, dark} = this.state;
-    if (loading) return <Loading />;
+    if (loading) {
+      return <Loading />;
+    }
     return (
       <Router
         sceneStyle={{flex: 1, backgroundColor: dark ? 'black' : 'white'}}
@@ -213,7 +219,7 @@ class App extends Component {
   }
 
   handleBack = () => {
-    if (Actions.state.routes.length == 1) {
+    if (Actions.state.routes.length === 1) {
       BackHandler.exitApp();
     }
   };
