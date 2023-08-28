@@ -213,7 +213,7 @@ class Menu extends Component {
 
     this.ingame_websites = [
       {
-        t: lang.website_wargming_login,
+        t: lang.website_wargaming_login,
         d: `https://${this.prefix}.wargaming.net/id/signin/`,
       },
       {
@@ -395,12 +395,12 @@ class Menu extends Component {
                 [
                   {
                     text: lang.settings_app_write_review_yes,
-                    onPress: () => SimpleViewHandler.openURL(APP.Developer),
+                    onPress: () => Linking.openURL(APP.Developer),
                     style: 'default',
                   },
                   {
                     text: lang.settings_app_write_review_no,
-                    onPress: () => SimpleViewHandler.openURL(store),
+                    onPress: () => Linking.openURL(store),
                   },
                 ],
                 {cancelable: false},
@@ -470,7 +470,7 @@ class Menu extends Component {
         </List.Section> */}
         <List.Section
           title={lang.website_ingame_title}
-          description={lang.website_wargming_login_subtitle}>
+          description={lang.website_wargaming_login_subtitle}>
           <View style={wrap}>
             {this.ingame_websites.map(item => (
               <List.Item

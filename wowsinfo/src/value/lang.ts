@@ -76,7 +76,7 @@ export const lang = new LocalizedStrings({
     server_name: ['Russia', 'Europe', 'North America', 'Asia'],
     setting_game_server: 'Game Server',
     setting_api_language: 'API Language',
-    setting_api_update_data: 'Update Data from Server',
+    setting_api_update_data: 'Update data from server',
     setting_api_update_data_title: 'Please only use this when data is missing',
     setting_api_update_data_update: 'Update',
     setting_api_update_data_cancel: 'Cancel',
@@ -88,7 +88,7 @@ export const lang = new LocalizedStrings({
     settings_app_no_image_mode: 'No Image Mode',
     settings_app_swap_buttons: 'Swap Bottom Buttons',
     settings_app_send_feedback: 'Send Feedback',
-    settings_app_send_feedback_subtitle: 'Send an Email to the Developer',
+    settings_app_send_feedback_subtitle: 'Send an Email to the developer',
     settings_app_report_issues: 'Report an Issue',
     settings_app_write_review: 'Write a Review',
     settings_app_write_review_title: 'About Review and Feedback',
@@ -114,21 +114,21 @@ export const lang = new LocalizedStrings({
     pro_upgrade_button: 'Upgrade to Pro',
     pro_title: 'WoWs Info Pro',
     pro_rs: 'RS Beta',
-    pro_rs_subtitle: 'Get Realtime Statistics in Your Battles',
+    pro_rs_subtitle: 'Get realtime statistics in your battles',
     pro_more_stats: 'More Detailed Statistics',
-    pro_more_stats_subtitle: 'Show Even More Statistics in Your Profile',
+    pro_more_stats_subtitle: 'Show even more statistics in your profile',
     pro_quick_access_main: 'Quick Access to Main Account',
     pro_quick_access_main_subtitle:
-      'Check Statistics for Your Main Account with Just a Tap',
+      'Check statistics for your main account with just a tap',
     pro_support_development: 'Support Development',
     pro_support_development_subtitle:
-      'More Features are Currently Under Development',
+      'More features are currently under development',
     pro_50_off_until_re: '50% Off for the First Purchase',
     pro_per_year: 'Year',
     pro_restore_pro: 'Restore Pro Version',
-    iap_thx_for_support: 'Thank You for Your Support!',
+    iap_thx_for_support: 'Thank you for your support!',
     iap_no_purchase_history: 'No Payment History Found',
-    iap_pro_expired: 'WoWs Info Pro has Expired',
+    iap_pro_expired: 'WoWs Info Pro has expired',
     // Search bar
     search_player_online: 'Online',
     // Wiki
@@ -136,7 +136,7 @@ export const lang = new LocalizedStrings({
     wiki_achievement: 'Achievement',
     wiki_warships: 'Warships',
     wiki_upgrades: 'Upgrades',
-    wiki_flags: 'Flags/Camouflages',
+    wiki_flags: 'Flags / Camouflages',
     wiki_skills: 'Commander Skills',
     wiki_skills_tier: 'Tier',
     wiki_skills_reset: 'Reset Skills',
@@ -148,16 +148,13 @@ export const lang = new LocalizedStrings({
     extra_support_wowsinfo: 'Support WoWs Info',
     extra_wowsinfo_re: 'WoWs Info Re',
     extra_wowsinfo_re_subtitle:
-      'Try out the New Version Currently Under Development.',
+      'Try out the new version currently under development',
     extra_rs_beta: 'Realtime Statistics Beta',
-    extra_rs_beta_download: 'Download RS on Your Computer',
+    extra_rs_beta_download: 'Download RS on your computer',
     extra_support_wowsinfo_subtitle: 'Donations and Ads',
     support_paypal: 'PayPal',
     support_patreon: 'Patreon',
     support_wechat: 'WeChat',
-    support_ads: 'Ads Settings',
-    support_ads_banner: 'Show Ads',
-    support_ads_fullscreen: 'Show Ads on Launch',
     // Websites
     website_title: 'Websites',
     website_official_site: 'World of Warships',
@@ -179,7 +176,7 @@ export const lang = new LocalizedStrings({
     website_ingame_title: 'In-game Websites',
     website_wargaming_login: 'Wargaming.net Login',
     website_wargaming_login_subtitle:
-      'You Have to Log in First to Use Websites Below. It Works Better on Tablets.',
+      'You have to log in first to use websites below. It works better on tablets.',
     website_userbonus: 'My Bonus',
     website_news_ingame: 'In-game News',
     website_ingame_armory: 'My Armory',
@@ -200,10 +197,10 @@ export const lang = new LocalizedStrings({
     tab_rank_title: 'Rank',
     // Rating
     rating_title: 'Personal Rating',
-    rating_description: 'This Rating Reflects a Player\'s Skill Level.',
+    rating_description: 'This rating reflects a player\'s skill level.',
     rating_read_more: '- Read More -',
     rating_warning:
-      'Please Refrain from Using This Rating to Judge Other Players',
+      'Please refrain from using this rating to judge other players',
     rating_author: 'By Wiochi',
     rating_scale: 'Colour Scale',
     rating_bad: 'Improvement Needed',
@@ -299,7 +296,7 @@ export const lang = new LocalizedStrings({
     // General errors
     error_title: 'Error',
     error_download_issue:
-      'Failed to update data.\nPlease try again later.\n\nIf it persists, please try using a VPN or changing your DNS to "8.8.8.8".\nIf it still persists, it means that the server is OFFLINE',
+      'Failed to update data.\nPlease try again later.\n\nIf the issue persists, please try using a VPN or changing your DNS to "8.8.8.8".\nIf the problem continues, it indicates that the server is unavailable',
     error_timeout: 'Timeout',
     error_pr_corrupted: 'Personal rating data cannot be downloaded',
     /// About WoWs Info section
@@ -457,9 +454,6 @@ export const lang = new LocalizedStrings({
     support_paypal: '贝宝',
     support_patreon: 'Patreon',
     support_wechat: '微信',
-    support_ads: '广告设置',
-    support_ads_banner: '显示广告',
-    support_ads_fullscreen: '启动 APP 时显示广告',
     // Websites
     website_title: '网站',
     website_official_site: '战舰世界官网',
@@ -479,8 +473,8 @@ export const lang = new LocalizedStrings({
     website_ap_calculator: 'AP 曲线计算器',
     website_wowsft: 'WoWs Fitting Tool',
     website_ingame_title: '游戏内网站',
-    website_wargming_login: '登陆 Wargming.net',
-    website_wargming_login_subtitle:
+    website_wargaming_login: '登陆 Wargming.net',
+    website_wargaming_login_subtitle:
       '需要登陆才可以使用下面的网站，推荐使用大屏设备',
     website_userbonus: '我的奖赏',
     website_news_ingame: '游戏内新闻',
@@ -758,9 +752,6 @@ export const lang = new LocalizedStrings({
     support_paypal: '貝寶',
     support_patreon: 'Patreon',
     support_wechat: '微信',
-    support_ads: '廣告設置',
-    support_ads_banner: '顯示廣告',
-    support_ads_fullscreen: '啟動APP時顯示廣告',
     // Websites
     website_title: '網站',
     website_official_site: '戰艦世界官網',
@@ -780,8 +771,8 @@ export const lang = new LocalizedStrings({
     website_ap_calculator: 'AP 曲線計算器',
     website_wowsft: 'WoWs Fitting Tool',
     website_ingame_title: '遊戲內網站',
-    website_wargming_login: '登陸 Wargming.net',
-    website_wargming_login_subtitle:
+    website_wargaming_login: '登陸 Wargming.net',
+    website_wargaming_login_subtitle:
       '需要登陸才可以使用下面的網站，推薦使用大屏設備',
     website_userbonus: '我的獎賞',
     website_news_ingame: '遊戲內新聞',
@@ -1061,9 +1052,6 @@ export const lang = new LocalizedStrings({
     support_paypal: 'ペイパル　PayPal',
     support_patreon: 'パトレオン　Patreon',
     support_wechat: '微信　WeChat',
-    support_ads: '広告の設定',
-    support_ads_banner: '広告を見せる',
-    support_ads_fullscreen: 'アプリを開く時に広告を見せる',
     // Websites
     website_title: 'ウェブサイト',
     website_official_site: 'World of Warships',
@@ -1083,8 +1071,8 @@ export const lang = new LocalizedStrings({
     website_ap_calculator: 'Ship AP Calculator',
     website_wowsft: 'WoWs Fitting Tool',
     website_ingame_title: 'ゲーム内のサイト',
-    website_wargming_login: 'Wargming.net ログイン',
-    website_wargming_login_subtitle:
+    website_wargaming_login: 'Wargming.net ログイン',
+    website_wargaming_login_subtitle:
       'ログインしてから使おう。タブレットをおすすめ！',
     website_userbonus: '私のボーナス',
     website_news_ingame: 'ゲーム内のニュース',

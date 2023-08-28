@@ -1614,39 +1614,6 @@
         }
       }
     },
-    "support_ads" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ads Settings"
-          }
-        }
-      }
-    },
-    "support_ads_banner" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Show Ads"
-          }
-        }
-      }
-    },
-    "support_ads_fullscreen" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Show Ads on launch"
-          }
-        }
-      }
-    },
     "support_patreon" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2516,7 +2483,7 @@
         }
       }
     },
-    "website_wargming_login" : {
+    "website_wargaming_login" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -2527,7 +2494,7 @@
         }
       }
     },
-    "website_wargming_login_subtitle" : {
+    "website_wargaming_login_subtitle" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
