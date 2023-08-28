@@ -139,7 +139,6 @@ class Settings extends Component {
     const appLang = {
       en: 'English',
       ja: '日本語',
-      id: 'Bahasa Indonesia',
       zh: '简体中文',
       'zh-hant': '繁体中文',
     };

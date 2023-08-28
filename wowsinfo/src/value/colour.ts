@@ -1,3 +1,4 @@
+// @ts-ignore
 import {GREY, BLUE} from 'react-native-material-color';
 import {LOCAL} from './data';
 import {SafeStorage} from '../core';
@@ -31,7 +32,7 @@ export const TintTextColour = () => {
   return {color: colour[500]};
 };
 
-export const UpdateTintColour = tint => {
+export const UpdateTintColour = (tint: any) => {
   AppGlobalData.set(LOCAL.theme, tint);
   SafeStorage.set(LOCAL.theme, tint);
 };

@@ -83,7 +83,7 @@ export const getFirstLaunch = () => {
   return AppGlobalData.get(LOCAL.firstLaunch);
 };
 
-export const setFirstLaunch = mode => {
+export const setFirstLaunch = (mode: boolean) => {
   AppGlobalData.set(LOCAL.firstLaunch, mode);
   SafeStorage.set(LOCAL.firstLaunch, mode);
 };
@@ -97,7 +97,7 @@ export const getCurrDomain = () => {
   return SERVER[getCurrServer()];
 };
 
-export const getDomain = index => {
+export const getDomain = (index: number) => {
   return SERVER[index];
 };
 
@@ -109,7 +109,7 @@ export const getCurrPrefix = () => {
   return prefix;
 };
 
-export const getPrefix = index => {
+export const getPrefix = (index: number) => {
   let prefix = getDomain(index);
   if (prefix === 'com') {
     prefix = 'na';
@@ -121,7 +121,7 @@ export const getCurrServer = () => {
   return SafeValue(AppGlobalData.get(LOCAL.userServer), 3);
 };
 
-export const setCurrServer = index => {
+export const setCurrServer = (index: number) => {
   let str = LOCAL.userServer;
   AppGlobalData.set(str, index);
   SafeStorage.set(str, index);
@@ -134,7 +134,7 @@ export const getUserLang = () => {
   return SafeValue(AppGlobalData.get(LOCAL.userLanguage), 'en');
 };
 
-export const setUserLang = lang => {
+export const setUserLang = (lang: string) => {
   let str = LOCAL.userLanguage;
   AppGlobalData.set(str, lang);
   SafeStorage.set(str, lang);
@@ -159,7 +159,7 @@ export const getAPIList = () => {
   return AppGlobalData.get(SAVED.language);
 };
 
-export const setAPILanguage = lang => {
+export const setAPILanguage = (lang: string) => {
   let str = LOCAL.apiLanguage;
   AppGlobalData.set(str, lang);
   SafeStorage.set(str, lang);
@@ -172,7 +172,7 @@ export const getSwapButton = () => {
   return AppGlobalData.get(LOCAL.swapButton);
 };
 
-export const setSwapButton = swap => {
+export const setSwapButton = (swap: boolean) => {
   AppGlobalData.shouldSwapButton = swap;
   let str = LOCAL.swapButton;
   AppGlobalData.set(str, swap);
@@ -186,7 +186,7 @@ export const getImageMode = () => {
   return AppGlobalData.get(LOCAL.noImageMode);
 };
 
-export const setImageMode = image => {
+export const setImageMode = (image: boolean) => {
   AppGlobalData.useNoImageMode = image;
   let str = LOCAL.noImageMode;
   AppGlobalData.set(str, image);
@@ -196,7 +196,7 @@ export const setImageMode = image => {
 /**
  * Last Location
  */
-export const setLastLocation = str => {
+export const setLastLocation = (str: string) => {
   let loc = LOCAL.lastLocation;
   AppGlobalData.set(loc, str);
   SafeStorage.set(loc, str);
@@ -206,7 +206,7 @@ export const isProVersion = () => {
   return AppGlobalData.get(LOCAL.proVersion) === true;
 };
 
-export const setProVersion = pro => {
+export const setProVersion = (pro: boolean) => {
   let str = LOCAL.proVersion;
   AppGlobalData.set(str, pro);
   SafeStorage.set(str, pro);
@@ -226,7 +226,7 @@ export const onlyProVersion = () => {
   return false;
 };
 
-export const validateProVersion = async showAlert => {
+export const validateProVersion = async (showAlert?: boolean) => {
   try {
     const history = await getAvailablePurchases();
     console.log(history);
@@ -260,12 +260,12 @@ export const validateProVersion = async showAlert => {
     if (showAlert) {
       throw new Error(lang.iap_no_purchase_history);
     }
-  } catch (err) {
+  } catch (err: any) {
     Alert.alert(err.message);
   }
 };
 
-const restorePurchase = (shouldRestore, showAlert) => {
+const restorePurchase = (shouldRestore: boolean, showAlert?: boolean) => {
   console.log(`Restore purchase - ${shouldRestore}`);
   if (shouldRestore === true) {
     setProVersion(true);
@@ -314,7 +314,7 @@ export const shouldUpdateWithCycle = () => {
   const curr = new Date(getCurrDate());
   const last = new Date(getLastUpdate());
 
-  const diff = Math.abs(curr - last);
+  const diff = Math.abs(curr.getTime() - last.getTime());
   // Convert ut to days
   const diffDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
   console.log(`${diffDays} day(s)`);
