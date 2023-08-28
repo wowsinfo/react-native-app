@@ -38,8 +38,8 @@ class WarshipFilter extends Component {
   }
 
   render() {
-    const {horizontal, button, selectionText} = styles;
-    const {premium, name, nation, type, tier, wrapView} = this.state;
+    const {horizontal, button, selectionText, wrapView} = styles;
+    const {premium, name, nation, type, tier} = this.state;
 
     let tierList = getTierList();
 
@@ -142,7 +142,7 @@ class WarshipFilter extends Component {
   };
 
   renderButton(item, event) {
-    return <Button onPress={event}>{item}</Button>;
+    return <Button key={item} onPress={event}>{item}</Button>;
   }
 
   addData(item, mode) {

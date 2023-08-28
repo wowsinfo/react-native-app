@@ -247,24 +247,22 @@ class Statistics extends Component {
       const ratingColor = getColour(rating);
       // Display player data
       return (
-        <CustomStatusBar backgroundColor={ratingColor}>
-          <WoWsInfo
-            style={container}
-            title={`- ${id} -`}
-            onPress={() =>
-              SimpleViewHandler.openURL(
-                `https://${this.prefix}.wows-numbers.com/player/${id},${name}/`,
-              )
-            }>
-            <ScrollView>{this.renderBasic(basic)}</ScrollView>
-            <FooterPlus style={footer}>
-              {this.renderAchievement(achievement)}
-              {this.renderGraph(graph)}
-              {this.renderShip(ship)}
-              {this.renderRank(rank, rankShip)}
-            </FooterPlus>
-          </WoWsInfo>
-        </CustomStatusBar>
+        <WoWsInfo
+          style={container}
+          title={`- ${id} -`}
+          onPress={() =>
+            SimpleViewHandler.openURL(
+              `https://${this.prefix}.wows-numbers.com/player/${id},${name}/`,
+            )
+          }>
+          <ScrollView>{this.renderBasic(basic)}</ScrollView>
+          <FooterPlus style={footer}>
+            {this.renderAchievement(achievement)}
+            {this.renderGraph(graph)}
+            {this.renderShip(ship)}
+            {this.renderRank(rank, rankShip)}
+          </FooterPlus>
+        </WoWsInfo>
       );
     }
   }
