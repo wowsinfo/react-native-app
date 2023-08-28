@@ -4,7 +4,7 @@
 import {SafeStorage} from '../util/SafeStorage';
 import {LOCAL, SAVED, APP} from '../../value/data';
 // @ts-ignore
-import {BLUE} from 'react-native-material-color';
+import {RED} from 'react-native-material-color';
 import {lang} from '../../value/lang';
 import {Platform} from 'react-native';
 
@@ -118,7 +118,7 @@ class DataLoader {
     });
     this.loadEntry(data, userServer, 3);
     this.loadEntry(data, lastUpdate, new Date().toDateString());
-    this.loadEntry(data, theme, BLUE);
+    this.loadEntry(data, theme, RED);
     this.loadEntry(data, darkMode, false);
     this.loadEntry(data, noImageMode, false);
     this.loadEntry(data, date, new Date().toDateString());

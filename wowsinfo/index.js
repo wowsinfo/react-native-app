@@ -6,13 +6,6 @@ import './src/value/global';
 
 if (__DEV__) {
   NativeModules.DevSettings.setIsDebuggingRemotely(true);
-} else {
-  // clear up console
-  console.log = () => {};
-  console.warn = () => {};
-  console.error = () => {
-    // send to crashlytics instead
-  };
 }
 
 export function Main() {

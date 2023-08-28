@@ -129,7 +129,7 @@ class Downloader {
 
         let PR = AppGlobalData.get(SAVED.pr);
         if (PR == null || Object.keys(PR).length < 10) {
-          // Get data from the mirror
+          // Use the local version as a backup
           AppGlobalData.set(SAVED.pr, this.readLocalPR());
           log += `${lang.rating_title} - local\n`;
           PR = AppGlobalData.get(SAVED.pr);

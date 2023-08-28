@@ -8,7 +8,7 @@ import React, {Component} from 'react';
 import {StatusBar, Image, StyleSheet, Text} from 'react-native';
 import * as Anime from 'react-native-animatable';
 import {Surface} from 'react-native-paper';
-import {BLUE} from 'react-native-material-color';
+import {RED} from 'react-native-material-color';
 import {getRandomAnimation} from '../../core';
 import {lang} from '../../value/lang';
 
@@ -40,7 +40,7 @@ class Loading extends Component {
 
     return (
       <Surface style={container}>
-        <StatusBar backgroundColor={BLUE[700]} />
+        <StatusBar backgroundColor={RED[700]} />
         <Anime.View
           animation={getRandomAnimation()}
           iterationCount="infinite"
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: BLUE[500],
+    backgroundColor: RED[500],
   },
   logo: {
     tintColor: 'white',

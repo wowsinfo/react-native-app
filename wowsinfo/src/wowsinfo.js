@@ -31,7 +31,7 @@ import {
 } from './page';
 import {LOCAL, getFirstLaunch, getCurrServer, APP} from './value/data';
 import {DataLoader, Downloader} from './core';
-import {GREY, BLUE} from 'react-native-material-color';
+import {GREY, RED} from 'react-native-material-color';
 import {TintColour} from './value/colour';
 import {lang} from './value/lang';
 import {PlayerShip} from './page/player/PlayerShip';
@@ -120,7 +120,7 @@ class App extends Component {
 
       let tint = TintColour();
       if (!tint[50]) {
-        tint = BLUE;
+        tint = RED;
       }
 
       // Setup global dark theme
