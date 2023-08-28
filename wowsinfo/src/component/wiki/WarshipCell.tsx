@@ -25,7 +25,7 @@ export const WarshipCell = ({item, scale, onPress}: WarshipCellProps) => {
   }
 
   return (
-    <Touchable style={container} onPress={item ? onPress : null}>
+    <Touchable style={container} onPress={item ? onPress : undefined}>
       {item ? (
         <WikiIcon warship item={item} scale={scale} />
       ) : (

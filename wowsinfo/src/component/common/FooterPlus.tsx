@@ -18,7 +18,7 @@ export const FooterPlus = ({children, style}: FooterPlusProps) => {
   return (
     <View style={[similarView, ThemeBackColour(), style]}>{children}</View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   similarView: {

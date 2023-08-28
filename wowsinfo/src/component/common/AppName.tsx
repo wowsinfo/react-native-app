@@ -22,7 +22,7 @@ export const AppName = () => {
       app = APP.IOSVersion;
     }
     return `${app} (${AppGlobalData.get(LOCAL.gameVersion)})`;
-  }
+  };
 
   return (
     <Touchable style={horizontal}>
@@ -45,7 +45,7 @@ export const AppName = () => {
       </Anime.View>
     </Touchable>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

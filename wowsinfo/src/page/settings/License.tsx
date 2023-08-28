@@ -4,7 +4,7 @@
  * Showing all libraries used in WoWs Info
  */
 
-import React, {Component} from 'react';
+import React from 'react';
 import {WoWsInfo} from '../../component';
 import {FlatGrid} from 'react-native-super-grid';
 import {List} from 'react-native-paper';
@@ -69,28 +69,24 @@ const libraries = [
   {name: lang.app_name, link: 'https://github.com/HenryQuan/WoWs-Info'},
 ];
 
-class License extends Component {
-  render() {
-    return (
-      <WoWsInfo hideAds>
-        <FlatGrid
-          data={libraries}
-          renderItem={({item}) => {
-            return (
-              <List.Item
-                key={item.name}
-                title={item.name}
-                description={item.link}
-                onPress={() => SimpleViewHandler.openURL(item.link)}
-              />
-            );
-          }}
-          itemDimension={300}
-          spacing={0}
-        />
-      </WoWsInfo>
-    );
-  }
-}
-
-export {License};
+export const License = () => {
+  return (
+    <WoWsInfo>
+      <FlatGrid
+        data={libraries}
+        renderItem={({item}) => {
+          return (
+            <List.Item
+              key={item.name}
+              title={item.name}
+              description={item.link}
+              onPress={() => SimpleViewHandler.openURL(item.link)}
+            />
+          );
+        }}
+        itemDimension={300}
+        spacing={0}
+      />
+    </WoWsInfo>
+  );
+};

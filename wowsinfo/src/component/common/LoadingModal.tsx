@@ -15,7 +15,7 @@ export const LoadingModal = () => {
       </Modal>
     </Portal>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

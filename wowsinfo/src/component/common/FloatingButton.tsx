@@ -9,7 +9,7 @@ export const FloatingButton = () => {
 
   useEffect(() => {
     // @ts-ignore
-    const hasMenu = Actions.state.routes.findIndex((r) => r.routeName === 'Menu');
+    const hasMenu = Actions.state.routes.findIndex(r => r.routeName === 'Menu');
     setMenu(hasMenu > 0);
     setIcon(hasMenu > 0 ? 'home' : {uri: 'Ship'});
   }, []);

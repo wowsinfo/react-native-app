@@ -87,7 +87,9 @@ class DataLoader {
       if (info.player == null) {
         // Previously, it was all players
         let saved: any = {clan: {}, player: {}};
-        info.forEach((v: any) => (saved.player[v.id] = this.formatConverter(v)));
+        info.forEach(
+          (v: any) => (saved.player[v.id] = this.formatConverter(v)),
+        );
         data[friendList] = saved;
         SafeStorage.set(friendList, saved);
       }

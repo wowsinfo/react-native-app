@@ -24,11 +24,11 @@ export const getColourWithRange = (min: number, curr: number, max: number) => {
     let hex = c.toString(16);
     hex = hex.substring(0, 2);
     return hex.length == 1 ? '0' + hex : hex;
-  }
+  };
 
-  const rgbToHex = (r: number, g: number, b: number) =>  {
+  const rgbToHex = (r: number, g: number, b: number) => {
     return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
-  }
+  };
 
   let G = (255 * scale) / 100;
   let R = (255 * (100 - scale)) / 100;
@@ -151,7 +151,10 @@ const normalise = (nation: Array<any>, type: Array<any>, tier: Array<any>) => {
   let data: any = {nation: {}, type: {}, tier: {}};
 
   nation.forEach(i => {
-    const key = getKeyByValue(AppGlobalData.get(SAVED.encyclopedia).ship_nations, i);
+    const key = getKeyByValue(
+      AppGlobalData.get(SAVED.encyclopedia).ship_nations,
+      i,
+    );
     if (key == null) {
       console.error('normalise: Invalid ship nation: ' + i);
     } else {
@@ -160,7 +163,10 @@ const normalise = (nation: Array<any>, type: Array<any>, tier: Array<any>) => {
   });
 
   type.forEach(i => {
-    const key = getKeyByValue(AppGlobalData.get(SAVED.encyclopedia).ship_types, i);
+    const key = getKeyByValue(
+      AppGlobalData.get(SAVED.encyclopedia).ship_types,
+      i,
+    );
     if (key == null) {
       console.error('normalise: Invalid ship type: ' + i);
     } else {

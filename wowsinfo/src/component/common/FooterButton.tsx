@@ -42,7 +42,7 @@ export const FooterButton = ({icon, left}: FooterButtonProps) => {
     } else {
       SafeAction('Search');
     }
-  }
+  };
 
   return (
     <SafeAreaView
@@ -60,4 +60,4 @@ export const FooterButton = ({icon, left}: FooterButtonProps) => {
       />
     </SafeAreaView>
   );
-}
+};

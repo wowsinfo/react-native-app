@@ -142,7 +142,11 @@ class WarshipFilter extends Component {
   };
 
   renderButton(item, event) {
-    return <Button key={item} onPress={event}>{item}</Button>;
+    return (
+      <Button key={item} onPress={event}>
+        {item}
+      </Button>
+    );
   }
 
   addData(item, mode) {
