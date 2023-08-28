@@ -41,4 +41,8 @@ class QuickActionEventEmitter: RCTEventEmitter {
             sendEvent(withName: RNEvents.quick_action.rawValue, body: type)
         }
     }
+    
+    override class func requiresMainQueueSetup() -> Bool {
+        true
+    }
 }

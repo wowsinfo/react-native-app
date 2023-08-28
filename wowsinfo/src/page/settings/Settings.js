@@ -159,8 +159,8 @@ class Settings extends Component {
         <List.Section
           title={`${lang.setting_game_server} - ${lang.server_name[server]}`}>
           <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            {SERVER.map((_, index) => (
-              <Button onPress={() => this.updateServer(index)}>
+            {SERVER.map((key, index) => (
+              <Button key={key + '_server'} onPress={() => this.updateServer(index)}>
                 {lang.server_name[index]}
               </Button>
             ))}
@@ -178,7 +178,7 @@ class Settings extends Component {
         <List.Section title={`${lang.setting_app_language} - ${display}`}>
           <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
             {appLangList.map(item => (
-              <Button onPress={() => this.updateUserLang(item.code)}>
+              <Button key={item.code} onPress={() => this.updateUserLang(item.code)}>
                 {item.lang}
               </Button>
             ))}
@@ -202,7 +202,7 @@ class Settings extends Component {
       <View>
         <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
           {langData.map(item => (
-            <Button onPress={() => this.updateApiLanguage(item)}>
+            <Button key={item} onPress={() => this.updateApiLanguage(item)}>
               {langList[item]}
             </Button>
           ))}

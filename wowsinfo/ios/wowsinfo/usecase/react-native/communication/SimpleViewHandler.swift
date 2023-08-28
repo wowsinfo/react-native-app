@@ -10,7 +10,7 @@ import SafariServices
 
 /// Handle view related requests from React Native which are simple to implement
 @objc(SimpleViewHandler)
-class SimpleViewHandler: NSObject {
+class SimpleViewHandler: NSObject, RCTBridgeModule {
     @objc func showSafariViewController(_ link: String, resolver: RCTPromiseResolveBlock, rejecter: RCTPromiseRejectBlock) {
         guard let url = URL(string: link),
               let rootController = ReactNativeManager.shared.rootViewController else {
@@ -23,5 +23,13 @@ class SimpleViewHandler: NSObject {
             rootController.present(safari, animated: true)
         }
         resolver(true)
+    }
+    
+    static func moduleName() -> String! {
+        "SimpleViewHandler"
+    }
+    
+    static func requiresMainQueueSetup() -> Bool {
+        true
     }
 }
