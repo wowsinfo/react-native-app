@@ -96,7 +96,7 @@ class ProVersion extends Component {
       <WoWsInfo hideAds>
         <ScrollView style={viewStyle}>
           <Title style={titleStyle}>{lang.pro_title}</Title>
-          <List.Item title={lang.pro_rs} description={lang.pro_rs_subtite} />
+          <List.Item title={lang.pro_rs} description={lang.pro_rs_subtitle} />
           <List.Item
             title={lang.pro_more_stats}
             description={lang.pro_more_stats_subtitle}

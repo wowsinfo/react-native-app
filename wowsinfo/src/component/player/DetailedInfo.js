@@ -117,7 +117,7 @@ class DetailedInfo extends Component {
             info={`${roundTo((survived_battles / battles) * 100, 2)}%`}
           />
           <InfoLabel
-            title={lang.detailed_survivied_win_rate}
+            title={lang.detailed_survived_win_rate}
             info={`${roundTo((survived_wins / survived_battles) * 100, 2)}%`}
           />
         </View>

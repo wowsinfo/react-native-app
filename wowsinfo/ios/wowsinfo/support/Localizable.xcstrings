@@ -331,7 +331,7 @@
         }
       }
     },
-    "detailed_survivied_win_rate" : {
+    "detailed_survived_win_rate" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -452,7 +452,7 @@
         }
       }
     },
-    "error_pr_corruption" : {
+    "error_pr_corrupted" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -738,7 +738,7 @@
         }
       }
     },
-    "pro_rs_subtite" : {
+    "pro_rs_subtitle" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -1933,7 +1933,7 @@
         }
       }
     },
-    "warship_maneuverabilty" : {
+    "warship_maneuverability" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -1944,7 +1944,7 @@
         }
       }
     },
-    "warship_maneuverabilty_rudder_time" : {
+    "warship_maneuverability_rudder_time" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -1955,7 +1955,7 @@
         }
       }
     },
-    "warship_maneuverabilty_speed" : {
+    "warship_maneuverability_speed" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -1966,7 +1966,7 @@
         }
       }
     },
-    "warship_maneuverabilty_turning" : {
+    "warship_maneuverability_turning" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -2076,7 +2076,7 @@
         }
       }
     },
-    "warship_unkown" : {
+    "warship_unknown" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

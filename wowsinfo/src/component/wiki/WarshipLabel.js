@@ -27,7 +27,7 @@ class WarshipLabel extends Component {
     } else {
       return (
         <Caption numberOfLines={1} style={[style, label]}>
-          {lang.warship_unkown}
+          {lang.warship_unknown}
         </Caption>
       );
     }

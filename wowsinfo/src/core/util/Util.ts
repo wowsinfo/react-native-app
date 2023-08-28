@@ -42,7 +42,7 @@ export const dayDifference = (time: number) => {
  */
 export const humanTimeString = (time?: number) => {
   if (time == null) {
-    return lang.warship_unkown;
+    return lang.warship_unknown;
   }
   if (time === 0) {
     return '---';

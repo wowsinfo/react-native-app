@@ -25,7 +25,7 @@ export const About = () => {
     <WoWsInfo>
       <Touchable
         style={touch}
-        onPress={() => SimpleViewHandler.openURL(lang.abour_github_link)}>
+        onPress={() => SimpleViewHandler.openURL(lang.about_github_link)}>
         <Anime.View
           animation={animation}
           iterationCount="infinite"

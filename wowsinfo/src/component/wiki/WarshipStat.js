@@ -21,7 +21,7 @@ class WarshipStat extends Component {
         {this.renderProgress(artillery, lang.warship_artillery)}
         {this.renderProgress(torpedoes, lang.warship_torpedoes)}
         {this.renderProgress(anti_aircraft, lang.warship_antiaircraft)}
-        {this.renderProgress(mobility.total, lang.warship_maneuverabilty)}
+        {this.renderProgress(mobility.total, lang.warship_maneuverability)}
         {this.renderProgress(aircraft, lang.warship_aircraft)}
         {this.renderProgress(concealment.total, lang.warship_concealment)}
       </View>

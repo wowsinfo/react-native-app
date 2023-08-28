@@ -3,7 +3,7 @@
 export const lang = new LocalizedStrings({
   en: {
     /// Setup section
-    setup_title: 'Setup WoWs Info',
+    setup_title: 'Set up WoWs Info',
     setup_done_button: 'Done',
     setup_loading: 'Loading...',
     /// Home section
@@ -12,8 +12,8 @@ export const lang = new LocalizedStrings({
     friend_player_title: 'Player',
     // Update section
     update_version_title: 'Version',
-    update_app_version: 'App ->',
-    update_game_version: 'Game ->',
+    update_app_version: 'App →',
+    update_game_version: 'Game →',
     // Button section
     button_settings_label: 'Settings',
     button_menu_label: 'Menu',
@@ -21,19 +21,19 @@ export const lang = new LocalizedStrings({
     button_home_label: 'Home',
     /// Wiki section
     wiki_warship_footer: 'Filter',
-    wiki_warship_filter_btn: 'Apply',
+    wiki_warship_filter_btn: 'Apply Filters',
     wiki_warship_reset_btn: 'Reset',
-    wiki_warship_filter_placeholder: 'Enter a ship name',
+    wiki_warship_filter_placeholder: 'Enter a Ship Name',
     wiki_warship_filter_tier: 'Tier',
     wiki_warship_filter_nation: 'Nation / Region',
     wiki_warship_filter_type: 'Type',
-    wiki_warship_filter_premium: 'Premium ship',
+    wiki_warship_filter_premium: 'Premium Ship',
     // Warship Detail
-    warship_unkown: 'Unknown',
+    warship_unknown: 'Unknown',
     warship_model: '3D Model',
-    warship_update_module: 'Update ship modules',
+    warship_update_module: 'Update Ship Modules',
     warship_default_module: 'Default',
-    warship_apply_module: 'Apply',
+    warship_apply_module: 'Apply Modules',
     warship_survivability: 'Survivability',
     warship_survivability_health: 'Health',
     warship_survivability_armour: 'Armour',
@@ -60,49 +60,49 @@ export const lang = new LocalizedStrings({
     warship_torpedoes: 'Torpedoes',
     warship_torpedoes_visible_distance: 'Detection',
     warship_antiaircraft: 'AA Defense',
-    warship_maneuverabilty: 'Maneuverabilty',
-    warship_maneuverabilty_turning: 'Turning Radius',
-    warship_maneuverabilty_speed: 'Max Speed',
-    warship_maneuverabilty_rudder_time: 'Rudder Time',
+    warship_maneuverability: 'Maneuverability',
+    warship_maneuverability_turning: 'Turning Radius',
+    warship_maneuverability_speed: 'Max Speed',
+    warship_maneuverability_rudder_time: 'Rudder Time',
     warship_aircraft: 'Aircraft',
     warship_concealment: 'Concealment',
     warship_concealment_detect_by_ship: 'Detection by Ship',
     warship_concealment_detect_by_plane: 'Detection by Plane',
     warship_upgrades: 'Upgrades',
-    warship_next_ship: 'Next ship(s)',
-    warship_compare_similar: 'Compare similar ships',
+    warship_next_ship: 'Next Ship(s)',
+    warship_compare_similar: 'Compare Similar Ships',
     /// Menu section
     /// Settings section
     server_name: ['Russia', 'Europe', 'North America', 'Asia'],
     setting_game_server: 'Game Server',
     setting_api_language: 'API Language',
     setting_api_update_data: 'Update Data from Server',
-    setting_api_update_data_title: 'Please only use this when data are missing',
+    setting_api_update_data_title: 'Please only use this when data is missing',
     setting_api_update_data_update: 'Update',
     setting_api_update_data_cancel: 'Cancel',
     setting_app_language: 'WoWs Info Language',
     settings_api_settings: 'API Settings',
     settings_app_settings: 'App Settings',
-    settings_app_dark_mode: 'Dark mode',
-    settings_app_theme_colour: 'Theme colour',
-    settings_app_no_image_mode: 'No image mode',
-    settings_app_swap_buttons: 'Swap bottom buttons',
-    settings_app_send_feedback: 'Feedback',
-    settings_app_send_feedback_subtitle: 'Send an email to developer',
-    settings_app_report_issues: 'Report an issue',
-    settings_app_write_review: 'Write a review',
-    settings_app_write_review_title: 'About review and feedback',
+    settings_app_dark_mode: 'Dark Mode',
+    settings_app_theme_colour: 'Theme Colour',
+    settings_app_no_image_mode: 'No Image Mode',
+    settings_app_swap_buttons: 'Swap Bottom Buttons',
+    settings_app_send_feedback: 'Send Feedback',
+    settings_app_send_feedback_subtitle: 'Send an Email to the Developer',
+    settings_app_report_issues: 'Report an Issue',
+    settings_app_write_review: 'Write a Review',
+    settings_app_write_review_title: 'About Review and Feedback',
     settings_app_write_review_message:
-      'If you have any questions, issues or suggestions, please send an email to the developer so that we could discuss and solve the problem together.',
-    settings_app_write_review_yes: 'Send an email',
-    settings_app_write_review_no: 'Write a review',
-    settings_app_share: 'Share with friends',
+      'If you have any questions, issues, or suggestions, please send an email to the developer so that we can discuss and solve the problem together.',
+    settings_app_write_review_yes: 'Send an Email',
+    settings_app_write_review_no: 'Write a Review',
+    settings_app_share: 'Share with Friends',
     settings_app_share_subtitle: 'Share WoWs Info if you enjoy using it!',
-    settings_app_check_for_update: 'Check for update',
+    settings_app_check_for_update: 'Check for Update',
     settings_app_no_update: 'You are using the latest version.',
     settings_app_has_update: 'Update {0} is available',
     settings_open_source: 'Open Source',
-    settings_open_source_github: 'Github',
+    settings_open_source_github: 'GitHub',
     settings_open_source_licence: 'Licences',
     settings_open_source_licence_subtitle:
       'Great modules that are used by WoWs Info',
@@ -114,23 +114,23 @@ export const lang = new LocalizedStrings({
     pro_upgrade_button: 'Upgrade to Pro',
     pro_title: 'WoWs Info Pro',
     pro_rs: 'RS Beta',
-    pro_rs_subtite: 'Get realtime statistics in your battles',
-    pro_more_stats: 'More detailed statistics',
-    pro_more_stats_subtitle: 'Show even more statistics in your profile',
-    pro_quick_access_main: 'Quick access to main account',
+    pro_rs_subtitle: 'Get Realtime Statistics in Your Battles',
+    pro_more_stats: 'More Detailed Statistics',
+    pro_more_stats_subtitle: 'Show Even More Statistics in Your Profile',
+    pro_quick_access_main: 'Quick Access to Main Account',
     pro_quick_access_main_subtitle:
-      'Check statistics for your main account with just a tap',
-    pro_support_development: 'Support development',
+      'Check Statistics for Your Main Account with Just a Tap',
+    pro_support_development: 'Support Development',
     pro_support_development_subtitle:
-      'More features are currently under development',
-    pro_50_off_until_re: '50% off for the first purchase',
+      'More Features are Currently Under Development',
+    pro_50_off_until_re: '50% Off for the First Purchase',
     pro_per_year: 'Year',
     pro_restore_pro: 'Restore Pro Version',
-    iap_thx_for_support: 'Thank you for your support!',
-    iap_no_purchase_history: 'No payment history has been found',
-    iap_pro_expired: 'WoWs Info Pro has expired',
+    iap_thx_for_support: 'Thank You for Your Support!',
+    iap_no_purchase_history: 'No Payment History Found',
+    iap_pro_expired: 'WoWs Info Pro has Expired',
     // Search bar
-    search_player_online: 'online',
+    search_player_online: 'Online',
     // Wiki
     wiki_section_title: 'Encyclopedia',
     wiki_achievement: 'Achievement',
@@ -139,8 +139,8 @@ export const lang = new LocalizedStrings({
     wiki_flags: 'Flags/Camouflages',
     wiki_skills: 'Commander Skills',
     wiki_skills_tier: 'Tier',
-    wiki_skills_reset: 'Reset',
-    wiki_skills_point: 'point(s)',
+    wiki_skills_reset: 'Reset Skills',
+    wiki_skills_point: 'Point(s)',
     wiki_maps: 'Maps',
     wiki_collections: 'Collections',
     // Extra
@@ -148,16 +148,16 @@ export const lang = new LocalizedStrings({
     extra_support_wowsinfo: 'Support WoWs Info',
     extra_wowsinfo_re: 'WoWs Info Re',
     extra_wowsinfo_re_subtitle:
-      'Try out the new version currently under development.',
+      'Try out the New Version Currently Under Development.',
     extra_rs_beta: 'Realtime Statistics Beta',
-    extra_rs_beta_download: 'Download RS on your computer',
+    extra_rs_beta_download: 'Download RS on Your Computer',
     extra_support_wowsinfo_subtitle: 'Donations and Ads',
     support_paypal: 'PayPal',
     support_patreon: 'Patreon',
     support_wechat: 'WeChat',
     support_ads: 'Ads Settings',
     support_ads_banner: 'Show Ads',
-    support_ads_fullscreen: 'Show Ads on launch',
+    support_ads_fullscreen: 'Show Ads on Launch',
     // Websites
     website_title: 'Websites',
     website_official_site: 'World of Warships',
@@ -177,27 +177,19 @@ export const lang = new LocalizedStrings({
     website_ap_calculator: 'Ship AP Calculator',
     website_wowsft: 'WoWs Fitting Tool',
     website_ingame_title: 'In-game Websites',
-    website_wargming_login: 'Wargming.net Login',
-    website_wargming_login_subtitle:
-      'You have to login first to use websites below. It works better on Tablets.',
+    website_wargaming_login: 'Wargaming.net Login',
+    website_wargaming_login_subtitle:
+      'You Have to Log in First to Use Websites Below. It Works Better on Tablets.',
     website_userbonus: 'My Bonus',
     website_news_ingame: 'In-game News',
     website_ingame_armory: 'My Armory',
     website_ingame_clan: 'My Clan',
     website_ingame_warehouse: 'My Warehouse',
     website_my_logbook: 'My Logbook',
-    // YouTubers
-    youtuber_title: 'YouTubers',
-    youtuber_official: 'WoWs Official',
-    youtuber_flambass: 'Flambass',
-    youtuber_notser: 'Notser',
-    youtuber_jingles: 'The Mighty Jingles',
-    youtuber_panzerknacker: 'Panzerknacker',
-    youtuber_flamu: 'Flamu',
-    youtuber_yuro: 'Yuro',
-    youtuber_iChaseGaming: 'iChaseGaming',
-    youtuber_NoZoupForYou: 'NoZoupForYou',
-    youtuber_Toptier: 'Toptier',
+    // CC
+    content_creator_title: 'Content Creator',
+    content_creator_official: 'WoWs Official',
+    content_creator_fubuki: 'FubukiFubukiDance',
     // Tools
     tool_title: 'Tools',
     /// Player section
@@ -208,10 +200,10 @@ export const lang = new LocalizedStrings({
     tab_rank_title: 'Rank',
     // Rating
     rating_title: 'Personal Rating',
-    rating_description: 'It is a measure of skill.',
+    rating_description: 'This Rating Reflects a Player\'s Skill Level.',
     rating_read_more: '- Read More -',
     rating_warning:
-      'Please do not judge other players simply by his/her rating',
+      'Please Refrain from Using This Rating to Judge Other Players',
     rating_author: 'By Wiochi',
     rating_scale: 'Colour Scale',
     rating_bad: 'Improvement Needed',
@@ -222,14 +214,14 @@ export const lang = new LocalizedStrings({
     rating_great: 'Great',
     rating_unicum: 'Unicum',
     rating_super_unicum: 'SUPER Unicum',
-    rating_Unkwown: 'Unknown',
+    rating_unknown: 'Unknown',
     // Basic
     basic_data_unknown: 'Unknown',
     basic_level_tier: 'Level',
-    basic_register_date: 'Register Date',
+    basic_register_date: 'Registration Date',
     basic_last_battle: 'Last Battle',
     basic_more_stat: '- Show More -',
-    basic_add_friend: 'Add to list',
+    basic_add_friend: 'Add to List',
     basic_set_main: 'Set as Main Account',
     // Detailed
     detailed_win: 'Wins',
@@ -239,11 +231,11 @@ export const lang = new LocalizedStrings({
     detailed_total_xp: 'Total XP',
     detailed_survived_win: 'Survived Wins',
     detailed_survival_rate: 'Survival Rate',
-    detailed_survivied_win_rate: 'Survived Win Rate',
+    detailed_survived_win_rate: 'Survived Win Rate',
     detailed_total_potential_damage: 'Total Potential Damage',
     detailed_avg_potential_damage: 'Avg Potential Damage',
-    detailed_total_torp_potential_damage: 'Total Torp Potential Damage',
-    detailed_avg_torp_potential_damage: 'Avg Torp Potential Damage',
+    detailed_total_torp_potential_damage: 'Total Torpedo Potential Damage',
+    detailed_avg_torp_potential_damage: 'Avg Torpedo Potential Damage',
     detailed_total_scouting_damage: 'Total Scouting Damage',
     detailed_avg_scouting_damage: 'Avg Scouting Damage',
     detailed_total_damage: 'Total Damage Dealt',
@@ -252,8 +244,8 @@ export const lang = new LocalizedStrings({
     detailed_avg_spotted: 'Avg Spotted',
     detailed_total_frag: 'Total Frags',
     detailed_frag_spot_ratio: 'Frag / Spotted',
-    detailed_total_plane_killed: 'Total Planed Destroyed',
-    detailed_avg_plane_killed: 'Avg Planed Destroyed',
+    detailed_total_plane_killed: 'Total Planes Destroyed',
+    detailed_avg_plane_killed: 'Avg Planes Destroyed',
     // Ship detail
     ship_detail_damage: 'Damage',
     ship_detail_winrate: 'Winrate',
@@ -263,7 +255,7 @@ export const lang = new LocalizedStrings({
     // Rank
     rank_season_title: 'Season',
     // Clan
-    clan_created_date: 'Created At',
+    clan_created_date: 'Creation Date',
     clan_creator_name: 'Creator',
     clan_leader_name: 'Leader',
     clan_member_title: 'Member',
@@ -296,23 +288,23 @@ export const lang = new LocalizedStrings({
     // Tips
     rs_tip_download: '1. Download',
     rs_tip_one:
-      'Please visit this Github repository and download the latest release. This program does not use lots of RAM and storage. Currently, it is in its beta stage and has no GUI.\n',
+      'Please visit this GitHub repository and download the latest release. This program does not use a lot of RAM and storage. Currently, it is in its beta stage and has no GUI.\n',
     rs_tip_setup: '2. Setup',
     rs_tip_two:
-      "Copy and paste the path of your game folder into this program and you have to run it with admin or it will not work. It won't do anything harmful to your computer.\n",
+      "Copy and paste the path of your game folder into this program, and you have to run it with admin or it will not work. It won't do anything harmful to your computer.\n",
     rs_tip_enjoy: '3. Enjoy',
     rs_tip_three:
-      'Enter the IP address you see on the screen and WoWs Info will start giving you real-time statistics for both teams.\n',
+      'Enter the IP address you see on the screen, and WoWs Info will start giving you real-time statistics for both teams.\n',
     /// Error section
     // General errors
     error_title: 'Error',
     error_download_issue:
-      'Failed to update data. \nPlease try again later.\n\nIf it persists, please try using a VPN or changing your DNS to "8.8.8.8".\nIf it still persists, it means that the server is OFFLINE',
+      'Failed to update data.\nPlease try again later.\n\nIf it persists, please try using a VPN or changing your DNS to "8.8.8.8".\nIf it still persists, it means that the server is OFFLINE',
     error_timeout: 'Timeout',
-    error_pr_corruption: 'Personal rating data cannot be downloaded',
+    error_pr_corrupted: 'Personal rating data cannot be downloaded',
     /// About WoWs Info section
-    // Github link
-    abour_github_link:
+    // GitHub link
+    about_github_link:
       'https://github.com/HenryQuan/WoWs-Info-Origin/blob/master/README.md',
   },
   zh: {
@@ -343,7 +335,7 @@ export const lang = new LocalizedStrings({
     wiki_warship_filter_type: '类型',
     wiki_warship_filter_premium: '金币船',
     // Warship Detail
-    warship_unkown: '未知',
+    warship_unknown: '未知',
     warship_model: '3D模型',
     warship_update_module: '更新组件',
     warship_default_module: '默认组件',
@@ -374,10 +366,10 @@ export const lang = new LocalizedStrings({
     warship_torpedoes: '鱼雷',
     warship_torpedoes_visible_distance: '探测距离',
     warship_antiaircraft: '防空',
-    warship_maneuverabilty: '机动性',
-    warship_maneuverabilty_turning: '转舵半径',
-    warship_maneuverabilty_speed: '最大航速',
-    warship_maneuverabilty_rudder_time: '转舵时间',
+    warship_maneuverability: '机动性',
+    warship_maneuverability_turning: '转舵半径',
+    warship_maneuverability_speed: '最大航速',
+    warship_maneuverability_rudder_time: '转舵时间',
     warship_aircraft: '飞机',
     warship_concealment: '隐蔽',
     warship_concealment_detect_by_ship: '被船发现距离',
@@ -427,7 +419,7 @@ export const lang = new LocalizedStrings({
     pro_upgrade_button: '升级到专业版',
     pro_title: 'WoWs Info 专业版',
     pro_rs: '实时数据 Beta 测试版',
-    pro_rs_subtite: '获得每一场战斗的实时数据',
+    pro_rs_subtitle: '获得每一场战斗的实时数据',
     pro_more_stats: '更多详细数据',
     pro_more_stats_subtitle: '在玩家界面显示更多更详细的数据',
     pro_quick_access_main: '快速查看主账号',
@@ -496,18 +488,10 @@ export const lang = new LocalizedStrings({
     website_ingame_clan: '我的工会',
     website_ingame_warehouse: '我的仓库',
     website_my_logbook: '我的航海日志',
-    // YouTubers
-    youtuber_title: '油管主',
-    youtuber_official: '战舰世界官方频道',
-    youtuber_flambass: '舰长 Flambass',
-    youtuber_notser: '舰长 Notser',
-    youtuber_jingles: '舰长 The Mighty Jingles',
-    youtuber_panzerknacker: '舰长 Panzerknacker',
-    youtuber_flamu: '舰长 Flamu',
-    youtuber_yuro: '舰长 Yuro',
-    youtuber_iChaseGaming: '舰长 iChaseGaming',
-    youtuber_NoZoupForYou: '舰长 NoZoupForYou',
-    youtuber_Toptier: '舰长 Toptier',
+    // CC
+    content_creator_title: '油管主',
+    content_creator_official: '战舰世界官方频道',
+    content_creator_fubuki: '青空雪舞Channel',
     // Tools
     tool_title: '工具',
     /// Player section
@@ -531,7 +515,7 @@ export const lang = new LocalizedStrings({
     rating_great: '非常好',
     rating_unicum: '大佬平均',
     rating_super_unicum: '神佬平均',
-    rating_Unkwown: '水平未知',
+    rating_unknown: '水平未知',
     // Basic
     basic_data_unknown: '未知',
     basic_level_tier: '等级',
@@ -548,7 +532,7 @@ export const lang = new LocalizedStrings({
     detailed_total_xp: '总经验',
     detailed_survived_win: '存活胜利',
     detailed_survival_rate: '生存率',
-    detailed_survivied_win_rate: '存活胜率',
+    detailed_survived_win_rate: '存活胜率',
     detailed_total_potential_damage: '总潜在伤害',
     detailed_avg_potential_damage: '平均潜在伤害',
     detailed_total_torp_potential_damage: '鱼雷潜在伤害',
@@ -618,10 +602,10 @@ export const lang = new LocalizedStrings({
     error_download_issue:
       '无法更新数据，\n请稍后重试。\n\n如果问题依然存在，请尝试修改DNS为【8.8.8.8】或者使用VPN。\n如果还是不可以的话，说明服务器正在维护中。',
     error_timeout: '请求超时',
-    error_pr_corruption: '无法下载评分数据',
+    error_pr_corrupted: '无法下载评分数据',
     /// About WoWs Info section
     // Github link
-    abour_github_link:
+    about_github_link:
       'https://github.com/HenryQuan/WoWs-Info-Origin/blob/master/README.md',
   },
   'zh-hant': {
@@ -652,7 +636,7 @@ export const lang = new LocalizedStrings({
     wiki_warship_filter_type: '類型',
     wiki_warship_filter_premium: '金幣船',
     // Warship Detail
-    warship_unkown: '未知',
+    warship_unknown: '未知',
     warship_model: '3D模型',
     warship_update_module: '更新組件',
     warship_default_module: '默認組件',
@@ -683,10 +667,10 @@ export const lang = new LocalizedStrings({
     warship_torpedoes: '魚雷',
     warship_torpedoes_visible_distance: '探測距離',
     warship_antiaircraft: '防空',
-    warship_maneuverabilty: '機動性',
-    warship_maneuverabilty_turning: '轉舵半徑',
-    warship_maneuverabilty_speed: '最大航速',
-    warship_maneuverabilty_rudder_time: '轉舵時間',
+    warship_maneuverability: '機動性',
+    warship_maneuverability_turning: '轉舵半徑',
+    warship_maneuverability_speed: '最大航速',
+    warship_maneuverability_rudder_time: '轉舵時間',
     warship_aircraft: '飛機',
     warship_concealment: '隱蔽',
     warship_concealment_detect_by_ship: '被船發現距離',
@@ -736,7 +720,7 @@ export const lang = new LocalizedStrings({
     pro_upgrade_button: '升級到專業版',
     pro_title: 'WoWs Info 專業版',
     pro_rs: '實時數據 Beta 測試版',
-    pro_rs_subtite: '獲得每一場戰鬥的實時數據',
+    pro_rs_subtitle: '獲得每一場戰鬥的實時數據',
     pro_more_stats: '更多詳細數據',
     pro_more_stats_subtitle: '在玩家界面顯示更多更詳細的數據',
     pro_quick_access_main: '快速查看主賬號',
@@ -805,18 +789,10 @@ export const lang = new LocalizedStrings({
     website_ingame_clan: '我的工會',
     website_ingame_warehouse: '我的倉庫',
     website_my_logbook: '我的航海日誌',
-    // YouTubers
-    youtuber_title: '油管主',
-    youtuber_official: '戰艦世界官方頻道',
-    youtuber_flambass: '艦長 Flambass',
-    youtuber_notser: '艦長 Notser',
-    youtuber_jingles: '艦長 The Mighty Jingles',
-    youtuber_panzerknacker: '艦長 Panzerknacker',
-    youtuber_flamu: '艦長 Flamu',
-    youtuber_yuro: '艦長 Yuro',
-    youtuber_iChaseGaming: '艦長 iChaseGaming',
-    youtuber_NoZoupForYou: '艦長 NoZoupForYou',
-    youtuber_Toptier: '艦長 Toptier',
+    // CC
+    content_creator_title: '油管主',
+    content_creator_official: '戰艦世界官方頻道',
+    content_creator_fubuki: '青空雪舞Channel',
     // Tools
     tool_title: '工具',
     /// Player section
@@ -840,7 +816,7 @@ export const lang = new LocalizedStrings({
     rating_great: '非常好',
     rating_unicum: '大佬平均',
     rating_super_unicum: '神佬平均',
-    rating_Unkwown: '水平未知',
+    rating_unknown: '水平未知',
     // Basic
     basic_data_unknown: '未知',
     basic_level_tier: '等級',
@@ -857,7 +833,7 @@ export const lang = new LocalizedStrings({
     detailed_total_xp: '總經驗',
     detailed_survived_win: '存活勝利',
     detailed_survival_rate: '生存率',
-    detailed_survivied_win_rate: '存活勝率',
+    detailed_survived_win_rate: '存活勝率',
     detailed_total_potential_damage: '總潛在傷害',
     detailed_avg_potential_damage: '平均潛在傷害',
     detailed_total_torp_potential_damage: '魚雷潛在傷害',
@@ -927,10 +903,10 @@ export const lang = new LocalizedStrings({
     error_download_issue:
       '無法更新數據，\n請稍後重試。\n\n如果問題依然存在，請嘗試修改DNS為【8.8.8.8】或者使用VPN。\n如果還是不可以的話，說明服務器正在維護中。',
     error_timeout: '請求超時',
-    error_pr_corruption: '無法下載評分數據',
+    error_pr_corrupted: '無法下載評分數據',
     /// About WoWs Info section
     // Github link
-    abour_github_link:
+    about_github_link:
       'https://github.com/HenryQuan/WoWs-Info-Origin/blob/master/README.md',
   },
   ja: {
@@ -961,7 +937,7 @@ export const lang = new LocalizedStrings({
     wiki_warship_filter_type: '艦種',
     wiki_warship_filter_premium: 'プレミアム艦艇',
     // Warship Detail
-    warship_unkown: '不明',
+    warship_unknown: '不明',
     warship_model: '3Dモデル',
     warship_update_module: 'モジュールを変える',
     warship_default_module: '初期モジュール',
@@ -992,10 +968,10 @@ export const lang = new LocalizedStrings({
     warship_torpedoes: '魚雷',
     warship_torpedoes_visible_distance: '発見距離',
     warship_antiaircraft: '対空火力',
-    warship_maneuverabilty: '機動性',
-    warship_maneuverabilty_turning: '旋回半径',
-    warship_maneuverabilty_speed: '最大速度',
-    warship_maneuverabilty_rudder_time: '転舵時間',
+    warship_maneuverability: '機動性',
+    warship_maneuverability_turning: '旋回半径',
+    warship_maneuverability_speed: '最大速度',
+    warship_maneuverability_rudder_time: '転舵時間',
     warship_aircraft: '航空機',
     warship_concealment: '隠蔽性',
     warship_concealment_detect_by_ship: '海面発見距離',
@@ -1046,7 +1022,7 @@ export const lang = new LocalizedStrings({
     pro_upgrade_button: 'プロバージョンにアップデート',
     pro_title: 'WoWs Info プロ',
     pro_rs: 'リアルタイム統計 Beta',
-    pro_rs_subtite: 'リアルタイムで戦闘からの情報を見せる',
+    pro_rs_subtitle: 'リアルタイムで戦闘からの情報を見せる',
     pro_more_stats: 'もっと詳しい情報',
     pro_more_stats_subtitle: 'プレーヤーの詳しい情報を開放する',
     pro_quick_access_main: 'メインプレヤー',
@@ -1116,18 +1092,10 @@ export const lang = new LocalizedStrings({
     website_ingame_clan: '私のクラン',
     website_ingame_warehouse: '私の倉庫',
     website_my_logbook: '私の航海記事',
-    // YouTubers
-    youtuber_title: 'ユーチューバー',
-    youtuber_official: 'WoWsの公式チャンネル',
-    youtuber_flambass: 'Flambass艦長',
-    youtuber_notser: 'Notser艦長',
-    youtuber_jingles: 'The Mighty Jingles艦長',
-    youtuber_panzerknacker: 'Panzerknacker艦長',
-    youtuber_flamu: 'Flamu艦長',
-    youtuber_yuro: 'Yuro艦長',
-    youtuber_iChaseGaming: 'iChaseGaming艦長',
-    youtuber_NoZoupForYou: 'NoZoupForYou艦長',
-    youtuber_Toptier: 'Toptier艦長',
+    // content_creators
+    content_creator_title: 'ユーチューバー',
+    content_creator_official: 'WoWsの公式チャンネル',
+    content_creator_fubuki: '青空雪舞Channel',
     // Tools
     tool_title: 'ツール',
     /// Player section
@@ -1151,7 +1119,7 @@ export const lang = new LocalizedStrings({
     rating_great: 'グレート',
     rating_unicum: 'ユニカム',
     rating_super_unicum: 'スーパーユニカム',
-    rating_Unkwown: '不明',
+    rating_unknown: '不明',
     // Basic
     basic_data_unknown: '不明',
     basic_level_tier: 'レベル',
@@ -1168,7 +1136,7 @@ export const lang = new LocalizedStrings({
     detailed_total_xp: '総経験値',
     detailed_survived_win: '生還勝利',
     detailed_survival_rate: '生還率',
-    detailed_survivied_win_rate: '生還勝率',
+    detailed_survived_win_rate: '生還勝率',
     detailed_total_potential_damage: '総潜在ダメージ',
     detailed_avg_potential_damage: '平均潜在ダメージ',
     detailed_total_torp_potential_damage: '総水雷潜在ダメージ',
@@ -1238,10 +1206,10 @@ export const lang = new LocalizedStrings({
     error_download_issue:
       'アップデート失敗\nやり直してください\n\nいつも失敗の場合はVPNを使ったりDNSを「８.８.８.８」に変えたりしてみてください\nメンテナンスを行う可能性もある',
     error_timeout: 'タイムアウト',
-    error_pr_corruption: '操艦技術のデータがダウンロードできません',
+    error_pr_corrupted: '操艦技術のデータがダウンロードできません',
     /// About WoWs Info section
     // Github link
-    abour_github_link:
+    about_github_link:
       'https://github.com/HenryQuan/WoWs-Info-Origin/blob/master/README.md',
   },
 });

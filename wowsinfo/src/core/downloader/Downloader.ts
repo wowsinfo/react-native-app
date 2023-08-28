@@ -135,7 +135,7 @@ class Downloader {
           PR = AppGlobalData.get(SAVED.pr);
           // Check if the mirror is ok
           if (PR == null || Object.keys(PR).length < 10) {
-            log += `${lang.error_pr_corruption}\n`;
+            log += `${lang.error_pr_corrupted}\n`;
             log += ` ${lang.rating_title} - ${JSON.stringify(PR)}\n`;
             return this.makeObj(false, log);
           }

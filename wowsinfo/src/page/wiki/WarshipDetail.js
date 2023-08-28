@@ -702,19 +702,19 @@ class WarshipDetail extends PureComponent {
     return (
       <View style={styles.margin}>
         <Headline style={this.sectionTitle}>
-          {lang.warship_maneuverabilty}
+          {lang.warship_maneuverability}
         </Headline>
         <View style={horizontal}>
           <InfoLabel
-            title={lang.warship_maneuverabilty_rudder_time}
+            title={lang.warship_maneuverability_rudder_time}
             info={rudderMsg}
           />
           <InfoLabel
-            title={lang.warship_maneuverabilty_speed}
+            title={lang.warship_maneuverability_speed}
             info={`${max_speed} - ${speedFlag} kt`}
           />
           <InfoLabel
-            title={lang.warship_maneuverabilty_turning}
+            title={lang.warship_maneuverability_turning}
             info={`${turning_radius} m`}
           />
         </View>

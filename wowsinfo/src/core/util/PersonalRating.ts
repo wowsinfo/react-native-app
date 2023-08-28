@@ -143,7 +143,7 @@ export const getColour = (rating?: number): string => {
 };
 
 export const getRatingList = (): Array<string> => [
-  lang.rating_Unkwown,
+  lang.rating_unknown,
   lang.rating_bad,
   lang.rating_below_average,
   lang.rating_average,
