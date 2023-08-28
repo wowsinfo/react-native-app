@@ -21,7 +21,8 @@ export * from './wiki/WarshipFilter';
 export * from './wiki/WarshipModule';
 export * from './wiki/SimilarGraph';
 
-export * from './player/Statistics';
+import Statistics from './player/Statistics';
+export {Statistics};
 export * from './player/PlayerAchievement';
 export * from './player/Rating';
 export * from './player/Graph';

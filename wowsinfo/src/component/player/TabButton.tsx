@@ -6,7 +6,7 @@
 
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {IconButton} from 'react-native-paper';
+import {IconButton, useTheme} from 'react-native-paper';
 import {Touchable} from '../common/Touchable';
 import {IconSource} from 'react-native-paper/lib/typescript/components/Icon';
 
@@ -23,12 +23,13 @@ export const TabButton = ({
   disabled,
   ...otherProps
 }: TabButtonProps) => {
+  const themes = useTheme();
   return (
     <Touchable
       fill
       style={styles.container}
-      onPress={disabled ? null : onPress}>
-      <IconButton icon={icon} size={26} {...otherProps} />
+      onPress={disabled ? undefined : onPress}>
+      <IconButton icon={icon} size={26} {...otherProps} color={themes.colors.primary} />
     </Touchable>
   );
 };

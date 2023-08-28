@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
-import {Text, IconButton, Title, Button} from 'react-native-paper';
+import {Text, IconButton, Title, Button, DefaultTheme, Provider, withTheme} from 'react-native-paper';
 import {
   LoadingIndicator,
   WoWsInfo,
@@ -20,13 +20,14 @@ import {
   SafeStorage,
   getOverallRating,
   getColour,
+  getColourList,
 } from '../../core';
 import {WoWsAPI} from '../../value/api';
 import {getDomain, getPrefix, LOCAL, setLastLocation} from '../../value/data';
 import {TintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
-import {CustomStatusBar} from '../../component/common/CustomStatusBar';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+import {GREY} from 'react-native-material-color';
 
 class Statistics extends Component {
   constructor(props) {
@@ -69,8 +70,8 @@ class Statistics extends Component {
       this.domain = getDomain(server);
       this.prefix = getPrefix(server);
       console.log(this.domain);
-      // Save theme colour
-      this.theme = TintColour()[500];
+      // start with unknown colour
+      this.props.theme.colors.primary = getColourList()[0];
 
       if (this.domain != null) {
         this.getBasic();
@@ -246,6 +247,13 @@ class Statistics extends Component {
       const {rating} = this.state;
       const ratingColor = getColour(rating);
       // Display player data
+      // get current theme from react-native-paper
+      const ratingTheme = DefaultTheme;
+      this.props.theme.colors = {
+        ...this.props.colors,
+        primary: ratingColor,
+      }
+      
       return (
         <WoWsInfo
           style={container}
@@ -405,7 +413,6 @@ class Statistics extends Component {
     return (
       <TabButton
         icon={{uri: 'AchievementTab'}}
-        color={this.theme}
         disabled={loading}
         onPress={() => SafeAction('PlayerAchievement', {data: achievement})}
       />
@@ -421,7 +428,6 @@ class Statistics extends Component {
     return (
       <TabButton
         icon={{uri: 'Ship'}}
-        color={this.theme}
         disabled={loading}
         onPress={() => SafeAction('PlayerShip', {data: ship}, 1)}
       />
@@ -437,7 +443,6 @@ class Statistics extends Component {
     return (
       <TabButton
         icon={{uri: 'Rank'}}
-        color={this.theme}
         disabled={loading}
         onPress={() => SafeAction('Rank', {data: rank, ship: rankShip})}
       />
@@ -454,7 +459,6 @@ class Statistics extends Component {
     return (
       <TabButton
         icon={{uri: 'Graph'}}
-        color={this.theme}
         disabled={loading || hidden}
         onPress={() => SafeAction('Graph', {data: graph})}
       />
@@ -497,4 +501,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {Statistics};
+export default withTheme(Statistics);

@@ -27,7 +27,7 @@ export const PlayerAchievement = ({data}: any) => {
   }, []);
 
   return (
-    <WoWsInfo title={`${lang.tab_achievement_title} - ${data.length}`}>
+    <WoWsInfo title={`${lang.tab_achievement_title} - ${displayData.length}`}>
       <Anime.View useNativeDriver animation="fadeIn">
         <FlatGrid
           itemDimension={80}
