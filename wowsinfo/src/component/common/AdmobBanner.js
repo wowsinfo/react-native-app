@@ -3,6 +3,7 @@ import {List} from 'react-native-paper';
 import {lang} from '../../value/lang';
 import {SafeAction} from '../../core';
 
+// mark as deprecated
 class AdmobBanner extends Component {
   constructor(props) {
     super(props);

@@ -6,7 +6,7 @@ class SafeFetch {
    * @param {*} api
    * @param  {...any} extra
    */
-  static get(api, ...extra) {
+  static get(api: string, ...extra: any) {
     const format = require('string-format');
     let lang = '';
     if (extra.length > 1) {
@@ -34,7 +34,7 @@ class SafeFetch {
    * A simple wrapper around fetch api
    * @param {*} api
    */
-  static normal(api) {
+  static normal(api: string) {
     console.log(`NormalFetch\n${api}`);
     return fetch(api)
       .then(res => {

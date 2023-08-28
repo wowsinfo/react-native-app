@@ -1,9 +1,11 @@
 import {SAVED} from '../../value/data';
 
-export const getTierLabel = tier => {
+export const getTierLabel = (tier: number) => {
   if (tier < 1) {
+    console.error('getTierLabel: Invalid tier: ' + tier);
     return 'O';
   }
+
   // From 1 to 15
   const label = getTierList();
   return label[tier - 1];
@@ -12,19 +14,19 @@ export const getTierLabel = tier => {
 /**
  * A function that returns a colour between red and green depending on curr / max
  */
-export const getColourWithRange = (min, curr, max) => {
+export const getColourWithRange = (min: number, curr: number, max: number) => {
   if (curr < min) {
     return '#FF0000';
   }
-  let scale = Number(((curr - min) / (max - min)) * 100).toFixed(0);
+  let scale = Number(((curr - min) / (max - min)) * 100);
 
-  function componentToHex(c) {
+  const componentToHex = (c: number) => {
     let hex = c.toString(16);
     hex = hex.substring(0, 2);
     return hex.length == 1 ? '0' + hex : hex;
   }
 
-  function rgbToHex(r, g, b) {
+  const rgbToHex = (r: number, g: number, b: number) =>  {
     return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
   }
 
@@ -35,7 +37,7 @@ export const getColourWithRange = (min, curr, max) => {
   return colour;
 };
 
-export const getKeyByValue = (object, value) => {
+export const getKeyByValue = (object: any, value: any) => {
   return Object.keys(object).find(key => object[key] === value);
 };
 
@@ -43,7 +45,7 @@ export const getTierList = () => {
   return ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', '★'];
 };
 
-export const filterShip = (data, shipData = null) => {
+export const filterShip = (data: any, shipData?: Array<any>) => {
   const {premium, name, nation, type, tier} = data;
   console.log(data);
   if (
@@ -99,7 +101,7 @@ export const filterShip = (data, shipData = null) => {
   return sorted;
 };
 
-const validShip = (curr, fname, fdata, premium) => {
+const validShip = (curr: any, fname: string, fdata: any, premium: boolean) => {
   let filterTier = false;
   let filterName = false;
   let filterNation = false;
@@ -141,27 +143,38 @@ const validShip = (curr, fname, fdata, premium) => {
   return false;
 };
 
-const isEmpty = obj => {
+const isEmpty = (obj: any) => {
   return Object.keys(obj).length === 0;
 };
 
-const normalise = (nation, type, tier) => {
-  let data = {nation: {}, type: {}, tier: {}};
+const normalise = (nation: Array<any>, type: Array<any>, tier: Array<any>) => {
+  let data: any = {nation: {}, type: {}, tier: {}};
 
   nation.forEach(i => {
-    data.nation[
-      getKeyByValue(AppGlobalData.get(SAVED.encyclopedia).ship_nations, i)
-    ] = true;
+    const key = getKeyByValue(AppGlobalData.get(SAVED.encyclopedia).ship_nations, i);
+    if (key == null) {
+      console.error('normalise: Invalid ship nation: ' + i);
+    } else {
+      data.nation[key] = true;
+    }
   });
 
   type.forEach(i => {
-    data.type[
-      getKeyByValue(AppGlobalData.get(SAVED.encyclopedia).ship_types, i)
-    ] = true;
+    const key = getKeyByValue(AppGlobalData.get(SAVED.encyclopedia).ship_types, i);
+    if (key == null) {
+      console.error('normalise: Invalid ship type: ' + i);
+    } else {
+      data.type[key] = true;
+    }
   });
 
   tier.forEach(i => {
-    data.tier[getTierList().indexOf(i) + 1] = true;
+    const index = getTierList().indexOf(i);
+    if (index === -1) {
+      console.error('normalise: Invalid ship tier: ' + i);
+    } else {
+      data.tier[index + 1] = true;
+    }
   });
 
   return data;

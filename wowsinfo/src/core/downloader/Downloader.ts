@@ -10,11 +10,15 @@ import {
   shouldUpdateWithCycle,
   getCurrDate,
 } from '../../value/data';
-import {SafeFetch, Guard, SafeStorage} from '../';
+import {SafeFetch, Guard, SafeStorage} from '..';
 import {lang} from '../../value/lang';
 
 class Downloader {
-  constructor(server) {
+  private domain: string;
+  private language: string;
+  private new: boolean;
+
+  constructor(server: number) {
     // Convert server index to string
     this.domain = getCurrDomain();
     this.language = langStr();
@@ -31,7 +35,7 @@ class Downloader {
    * @param {*} previous this is the version we have
    * @param {*} current this is the version from API
    */
-  checkVersionUpdate(previous, current) {
+  checkVersionUpdate(previous: string, current: string) {
     // Simply check if they are different
     return previous !== current;
     // pList = previous.split('.');
@@ -155,7 +159,7 @@ class Downloader {
     }
   }
 
-  makeObj(status, log) {
+  makeObj(status: boolean, log: string) {
     return {status, log};
   }
 
@@ -287,7 +291,7 @@ class Downloader {
   }
 
   async getCollectionAndItem() {
-    let all = {};
+    let all: any = {};
 
     let collection = await SafeFetch.get(
       WikiAPI.Collection,

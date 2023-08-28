@@ -4,18 +4,20 @@
  * This is a view that connect with WoWs Info footer
  */
 
-import React, {Component} from 'react';
+import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {ThemeBackColour} from '../../value/colour';
 
-class FooterPlus extends Component {
-  render() {
-    const {similarView} = styles;
-    const {children, style} = this.props;
-    return (
-      <View style={[similarView, ThemeBackColour(), style]}>{children}</View>
-    );
-  }
+export interface FooterPlusProps {
+  children: React.ReactNode;
+  style?: any;
+}
+
+export const FooterPlus = ({children, style}: FooterPlusProps) => {
+  const {similarView} = styles;
+  return (
+    <View style={[similarView, ThemeBackColour(), style]}>{children}</View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -24,5 +26,3 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 16,
   },
 });
-
-export {FooterPlus};

@@ -5,7 +5,7 @@ import {Dimensions} from 'react-native';
  * Deep clone an object
  * @param {*} value
  */
-export const copy = value => {
+export const copy = (value: any) => {
   return JSON.parse(JSON.stringify(value));
 };
 
@@ -13,11 +13,14 @@ export const copy = value => {
  * Return a number between 0 to range - 1
  * @param {int} range
  */
-export const random = range => {
+export const random = (range: number) => {
   return Math.floor(Math.random() * range);
 };
 
-export const roundTo = (num, digit = 0) => {
+export const roundTo = (num?: number, digit = 0) => {
+  if (num == null) {
+    return Number(-1);
+  }
   if (isNaN(num) || !isFinite(num)) {
     return Number(-1);
   }
@@ -28,7 +31,7 @@ export const roundTo = (num, digit = 0) => {
  * Get date difference in days
  * @param {*} time
  */
-export const dayDifference = time => {
+export const dayDifference = (time: number) => {
   let timeDiff = Math.abs(Date.now() / 1000 - time);
   return Math.ceil(timeDiff / (3600 * 24));
 };
@@ -37,7 +40,7 @@ export const dayDifference = time => {
  * Get a readable date string
  * @param {*} time
  */
-export const humanTimeString = time => {
+export const humanTimeString = (time?: number) => {
   if (time == null) {
     return lang.warship_unkown;
   }
@@ -71,13 +74,13 @@ export const getRandomAnimation = () => {
 /**
  * Get the best cell width so that there won't be more than 6 items per row
  */
-export const bestCellWidth = baseWidth => {
+export const bestCellWidth = (target: number) => {
   const deviceWidth = Dimensions.get('window').width;
-  const usualCount = deviceWidth / baseWidth;
+  const usualCount = deviceWidth / target;
   if (usualCount > 6) {
     return deviceWidth / 6;
   }
-  return baseWidth;
+  return target;
 };
 
 /**
@@ -85,9 +88,9 @@ export const bestCellWidth = baseWidth => {
  * if 2 items cannot be place just do one
  * @param {number} width
  */
-export const bestWidth = (width, deviceWidth = currDeviceWidth()) => {
+export const bestWidth = (width: number, deviceWidth = currDeviceWidth()) => {
   console.log(width, deviceWidth);
-  return deviceWidth / Math.max(1, Number(deviceWidth / width).toFixed(0));
+  return deviceWidth / Math.max(1, Number(deviceWidth / width));
 };
 
 export const currDeviceWidth = () => {

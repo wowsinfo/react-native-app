@@ -3,6 +3,7 @@
  */
 import {SafeStorage} from '../util/SafeStorage';
 import {LOCAL, SAVED, APP} from '../../value/data';
+// @ts-ignore
 import {BLUE} from 'react-native-material-color';
 import {lang} from '../../value/lang';
 import {Platform} from 'react-native';
@@ -49,7 +50,7 @@ class DataLoader {
       proVersion,
     } = LOCAL;
 
-    let data = {};
+    let data: any = {};
     // Manully setting up SAVED section (they are all different)
     this.loadEntry(data, apiLanguage, 'en');
     this.loadEntry(data, userLanguage, lang.getLanguage());
@@ -85,8 +86,8 @@ class DataLoader {
       let info = data[friendList];
       if (info.player == null) {
         // Previously, it was all players
-        let saved = {clan: {}, player: {}};
-        info.forEach(v => (saved.player[v.id] = this.formatConverter(v)));
+        let saved: any = {clan: {}, player: {}};
+        info.forEach((v: any) => (saved.player[v.id] = this.formatConverter(v)));
         data[friendList] = saved;
         SafeStorage.set(friendList, saved);
       }
@@ -126,7 +127,7 @@ class DataLoader {
    * Convert old format to new format
    * @param {*} obj
    */
-  static formatConverter(obj) {
+  static formatConverter(obj: any) {
     if (obj.name != null) {
       obj.nickname = obj.name;
       delete obj.name;
@@ -145,9 +146,10 @@ class DataLoader {
    * @param {*} data
    */
   static async loadSaved() {
-    let data = {};
+    let data: any = {};
     // SAVED section is about the same
     for (let key in SAVED) {
+      // @ts-ignore
       const curr = SAVED[key];
       // Get it from storage
       data[curr] = await SafeStorage.get(curr, {});
@@ -161,7 +163,7 @@ class DataLoader {
    * @param {string} key
    * @param {any} value
    */
-  static async loadEntry(data, key, value) {
+  static async loadEntry(data: any, key: string, value: any) {
     data[key] = await SafeStorage.get(key, value);
   }
 }
