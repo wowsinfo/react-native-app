@@ -42,6 +42,7 @@ class PlayerShip extends PureComponent {
     if (filter) {
       // Prevent repetitive update
       if (filter === this.state.filter) {
+        this.setState({rating: getOverallRating(this.state.data)});
         return;
       }
       this.setState({filter: filter});

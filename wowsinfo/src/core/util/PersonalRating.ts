@@ -107,7 +107,7 @@ export const getAP = (rating: number, battle: number): number => {
 };
 
 export const getRatingRange = (): Array<number> => [
-  0, 750, 1100, 1350, 1550, 1750, 2100, 2450, 99999,
+  0, 750, 1100, 1350, 1550, 1750, 2100, 2450, 999999,
 ];
 
 /**
