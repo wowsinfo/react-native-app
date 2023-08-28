@@ -130,10 +130,10 @@ class Downloader {
         let PR = AppGlobalData.get(SAVED.pr);
         if (PR == null || Object.keys(PR).length < 10) {
           // Get data from the mirror
-          AppGlobalData.set(SAVED.pr, await this.getPRMirror());
-          log += `${lang.rating_title} - mirror\n`;
+          AppGlobalData.set(SAVED.pr, this.readLocalPR());
+          log += `${lang.rating_title} - local\n`;
           PR = AppGlobalData.get(SAVED.pr);
-          // Check if the mirror is ok
+          // Check if local is valid
           if (PR == null || Object.keys(PR).length < 10) {
             log += `${lang.error_pr_corrupted}\n`;
             log += ` ${lang.rating_title} - ${JSON.stringify(PR)}\n`;
@@ -423,8 +423,10 @@ class Downloader {
     return json;
   }
 
-  async getPRMirror() {
-    let res = await SafeFetch.normal(WikiAPI.PersonalRatingMirror);
+  readLocalPR() {
+    console.log('Reading from local');
+    const res = require('../../data/personal_rating.json');
+    console.log(res);
     let json = Guard(res, 'data', {});
     // Cleanup empty key
     for (let key in json) {
@@ -434,7 +436,7 @@ class Downloader {
       }
     }
 
-    await SafeStorage.set(SAVED.pr, json);
+    SafeStorage.set(SAVED.pr, json);
     return json;
   }
 }
