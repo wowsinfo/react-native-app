@@ -1,6 +1,14 @@
 import React, {Component} from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
-import {Text, IconButton, Title, Button, DefaultTheme, Provider, withTheme} from 'react-native-paper';
+import {
+  Text,
+  IconButton,
+  Title,
+  Button,
+  DefaultTheme,
+  Provider,
+  withTheme,
+} from 'react-native-paper';
 import {
   LoadingIndicator,
   WoWsInfo,
@@ -248,12 +256,11 @@ class Statistics extends Component {
       const ratingColor = getColour(rating);
       // Display player data
       // get current theme from react-native-paper
-      const ratingTheme = DefaultTheme;
       this.props.theme.colors = {
         ...this.props.colors,
         primary: ratingColor,
-      }
-      
+      };
+
       return (
         <WoWsInfo
           style={container}

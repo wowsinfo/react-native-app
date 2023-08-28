@@ -8,11 +8,11 @@ import {
   FooterPlus,
   SimpleRating,
 } from '../../component';
-import {getOverallRating, SafeAction, filterShip, Guard} from '../../core';
+import {getOverallRating, SafeAction, filterShip, Guard, getColour} from '../../core';
 import {FlatGrid} from 'react-native-super-grid';
 import {SAVED} from '../../value/data';
 import {lang} from '../../value/lang';
-import {Button} from 'react-native-paper';
+import {Button, withTheme} from 'react-native-paper';
 
 class PlayerShip extends PureComponent {
   constructor(props) {
@@ -64,6 +64,9 @@ class PlayerShip extends PureComponent {
       {n: lang.record_max_xp, v: 'pvp.max_xp'},
       {n: lang.record_max_frags_battle, v: 'pvp.max_frags_battle'},
     ];
+
+    const ratingColor = getColour(rating);
+    this.props.theme.colors.primary = ratingColor;
 
     return (
       <WoWsInfo
@@ -137,4 +140,4 @@ class PlayerShip extends PureComponent {
   }
 }
 
-export {PlayerShip};
+export default withTheme(PlayerShip);

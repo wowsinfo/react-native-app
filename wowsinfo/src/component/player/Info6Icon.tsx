@@ -85,7 +85,7 @@ export const Info6Icon = ({data, compact, topOnly}: Info6IconProps) => {
       )}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   wrap: {

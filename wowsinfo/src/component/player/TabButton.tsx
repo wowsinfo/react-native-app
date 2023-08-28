@@ -29,7 +29,12 @@ export const TabButton = ({
       fill
       style={styles.container}
       onPress={disabled ? undefined : onPress}>
-      <IconButton icon={icon} size={26} {...otherProps} color={themes.colors.primary} />
+      <IconButton
+        icon={icon}
+        size={26}
+        color={themes.colors.primary}
+        {...otherProps}
+      />
     </Touchable>
   );
 };

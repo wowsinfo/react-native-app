@@ -16,18 +16,28 @@ export interface IconLabelProps {
   otherProps?: any;
 }
 
-export const IconLabel = ({info, icon, style, ...otherProps}: IconLabelProps) => {
+export const IconLabel = ({
+  info,
+  icon,
+  style,
+  ...otherProps
+}: IconLabelProps) => {
   const theme = useTheme();
   const {container, label} = styles;
   console.log(style);
   return (
     <View style={[container, style]}>
       {/* color={TintColour()[500]} */}
-      <IconButton size={36} icon={icon} color={theme.colors.primary} {...otherProps} />
+      <IconButton
+        size={36}
+        icon={icon}
+        color={theme.colors.primary}
+        {...otherProps}
+      />
       <Text style={label}>{info}</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

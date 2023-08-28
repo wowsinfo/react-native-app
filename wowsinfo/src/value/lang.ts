@@ -197,7 +197,7 @@ export const lang = new LocalizedStrings({
     tab_rank_title: 'Rank',
     // Rating
     rating_title: 'Personal Rating',
-    rating_description: 'This rating reflects a player\'s skill level.',
+    rating_description: "This rating reflects a player's skill level.",
     rating_read_more: '- Read More -',
     rating_warning:
       'Please refrain from using this rating to judge other players',

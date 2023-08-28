@@ -17,9 +17,15 @@ export interface SectionTitleProps {
   bold?: boolean;
 }
 
-export const SectionTitle = ({title, back, center, style, bold}: SectionTitleProps) => {
+export const SectionTitle = ({
+  title,
+  back,
+  center,
+  style,
+  bold,
+}: SectionTitleProps) => {
   const theme = useTheme();
-  
+
   return (
     <Title
       style={[
@@ -33,7 +39,7 @@ export const SectionTitle = ({title, back, center, style, bold}: SectionTitlePro
       {title}
     </Title>
   );
-}
+};
 
 const styles = StyleSheet.create({
   text: {
