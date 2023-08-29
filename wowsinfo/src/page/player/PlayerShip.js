@@ -8,7 +8,7 @@ import {
   FooterPlus,
   SimpleRating,
 } from '../../component';
-import {getOverallRating, SafeAction, filterShip, Guard, getColour} from '../../core';
+import {getOverallRating, SafeAction, filterShip, Guard, getColour, bestCellWidth, bestCellWidthEven} from '../../core';
 import {FlatGrid} from 'react-native-super-grid';
 import {SAVED} from '../../value/data';
 import {lang} from '../../value/lang';
@@ -67,6 +67,7 @@ class PlayerShip extends PureComponent {
 
     const ratingColor = getColour(rating);
     this.props.theme.colors.primary = ratingColor;
+    const cellWidth = bestCellWidthEven(160);
 
     return (
       <WoWsInfo
@@ -77,7 +78,8 @@ class PlayerShip extends PureComponent {
         }>
         <RatingButton rating={rating} />
         <FlatGrid
-          itemDimension={150}
+          itemDimension={cellWidth}
+          spacing={0}
           data={data}
           renderItem={({item}) => this.renderShip(item)}
           showsVerticalScrollIndicator={false}
@@ -122,7 +124,7 @@ class PlayerShip extends PureComponent {
       <Touchable
         key={item.ship_id}
         onPress={() => SafeAction('PlayerShipDetail', {data: item})}>
-        <WarshipCell item={ship} scale={1.8} />
+        <WarshipCell item={ship} scale={2} />
         <SimpleRating info={item} />
       </Touchable>
     );

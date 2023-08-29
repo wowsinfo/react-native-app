@@ -34,7 +34,6 @@ class DataLoader {
       firstLaunch,
       friendList,
       userData,
-      noImageMode,
       showBanner,
       showFullscreen,
       userInfo,
@@ -120,7 +119,6 @@ class DataLoader {
     this.loadEntry(data, lastUpdate, new Date().toDateString());
     this.loadEntry(data, theme, RED);
     this.loadEntry(data, darkMode, false);
-    this.loadEntry(data, noImageMode, false);
     this.loadEntry(data, date, new Date().toDateString());
     return data;
   }

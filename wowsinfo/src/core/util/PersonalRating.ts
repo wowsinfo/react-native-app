@@ -125,15 +125,15 @@ export const getRatingIndex = (rating?: number): number => {
 };
 
 export const getColourList = (): Array<string> => [
-  '#607D8B',
-  'red',
-  'orange',
-  '#F5C84C',
-  '#67AF34',
-  '#4A7D23',
-  '#60C6B3',
-  'magenta',
-  'purple',
+  '#607D8B', // blue gray
+  '#D32F2F', // red700
+  '#FF9800', // orange
+  '#FFB300', // amber600
+  '#7CB342', // light green 600
+  '#388E3C', // green700
+  '#03A9F4', // blue (replacing cyan)
+  '#9C27B0', // purple
+  '#673AB7', // deep purple
   'black',
 ];
 

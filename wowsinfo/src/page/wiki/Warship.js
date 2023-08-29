@@ -10,7 +10,7 @@ import {WoWsInfo, WarshipCell} from '../../component';
 import {FlatGrid} from 'react-native-super-grid';
 import {SAVED, setLastLocation} from '../../value/data';
 import {lang} from '../../value/lang';
-import {SafeAction, filterShip, bestCellWidth} from '../../core';
+import {SafeAction, filterShip, bestCellWidth, bestCellWidthEven} from '../../core';
 
 class Warship extends PureComponent {
   constructor(props) {
@@ -59,7 +59,7 @@ class Warship extends PureComponent {
   render() {
     const {data} = this.state;
 
-    const width = bestCellWidth(160);
+    const width = bestCellWidthEven(160);
     return (
       <WoWsInfo
         title={`${lang.wiki_warship_footer} - ${data.length}`}
@@ -68,6 +68,7 @@ class Warship extends PureComponent {
         }>
         <FlatGrid
           itemDimension={width}
+          spacing={0}
           data={data}
           renderItem={({item}) => {
             return (

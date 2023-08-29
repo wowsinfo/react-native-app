@@ -25,7 +25,6 @@ import {
   getSwapButton,
   getUserLang,
   setUserLang,
-  setImageMode,
   setFirstLaunch,
 } from '../../value/data';
 import {TintColour, UpdateTintColour, UpdateDarkMode} from '../../value/colour';
@@ -66,7 +65,6 @@ class Settings extends Component {
       APILanguage: getAPILanguage(),
       userLanguage: getUserLang(),
       swapButton: getSwapButton(),
-      noImageMode: AppGlobalData.useNoImageMode,
     };
 
     this.colourList = [
@@ -234,7 +232,7 @@ class Settings extends Component {
   }
 
   renderAppSettings() {
-    const {tintColour, swapButton, darkMode, noImageMode} = this.state;
+    const {tintColour, swapButton, darkMode} = this.state;
     const {tint} = styles;
 
     return (
@@ -252,14 +250,6 @@ class Settings extends Component {
           onPress={() => this.setState({showColour: true})}
           right={() => (
             <View style={[tint, {backgroundColor: tintColour[500]}]} />
-          )}
-        />
-        <List.Item
-          key="no_image_mode"
-          title={lang.settings_app_no_image_mode}
-          onPress={() => this.noImage(!noImageMode)}
-          right={() => (
-            <Checkbox status={noImageMode ? 'checked' : 'unchecked'} />
           )}
         />
         <List.Item
@@ -368,11 +358,6 @@ class Settings extends Component {
   swapButton(curr) {
     setSwapButton(curr);
     this.setState({swapButton: getSwapButton()});
-  }
-
-  noImage(curr) {
-    setImageMode(curr);
-    this.setState({noImageMode: AppGlobalData.useNoImageMode});
   }
 
   /**

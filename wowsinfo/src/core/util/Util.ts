@@ -84,6 +84,16 @@ export const bestCellWidth = (target: number) => {
 };
 
 /**
+ * Get the cell width so that it fits the entire device width evenly
+ */
+export const bestCellWidthEven = (target: number) => {
+  const deviceWidth = Dimensions.get('window').width;
+  const usualCount = deviceWidth / target;
+  const result = deviceWidth / Math.floor(usualCount);
+  return result;
+};
+
+/**
  * Make sure the item isn't longer than the device,
  * if 2 items cannot be place just do one
  * @param {number} width

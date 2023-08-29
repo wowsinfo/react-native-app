@@ -180,20 +180,6 @@ export const setSwapButton = (swap: boolean) => {
 };
 
 /**
- * No Image Mode
- */
-export const getImageMode = () => {
-  return AppGlobalData.get(LOCAL.noImageMode);
-};
-
-export const setImageMode = (image: boolean) => {
-  AppGlobalData.useNoImageMode = image;
-  let str = LOCAL.noImageMode;
-  AppGlobalData.set(str, image);
-  SafeStorage.set(str, image);
-};
-
-/**
  * Last Location
  */
 export const setLastLocation = (str: string) => {

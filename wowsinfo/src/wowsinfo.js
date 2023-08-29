@@ -105,7 +105,6 @@ class App extends Component {
 
       AppGlobalData.setupWith(data);
       AppGlobalData.shouldSwapButton = AppGlobalData.get(LOCAL.swapButton);
-      AppGlobalData.useNoImageMode = AppGlobalData.get(LOCAL.noImageMode);
       AppGlobalData.lastLocation = AppGlobalData.get(LOCAL.lastLocation);
       AppGlobalData.isDarkMode = AppGlobalData.get(LOCAL.darkMode);
 

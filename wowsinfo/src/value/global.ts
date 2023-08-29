@@ -47,8 +47,8 @@ class AppGlobalData {
 
   // App Settings
   static shouldSwapButton: boolean = false;
-  static useNoImageMode: boolean = false;
-  static useCleanMode: boolean = false; // not used
+  // static useNoImageMode: boolean = false; // not used
+  // static useCleanMode: boolean = false; // not used
 
   // You can only check one time
   static canCheckForUpdate: boolean = true;
