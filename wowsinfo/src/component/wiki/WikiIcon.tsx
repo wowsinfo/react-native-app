@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import {View, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet, ImageSourcePropType} from 'react-native';
 import {LOCAL} from '../../value/data';
 import {Touchable} from '../common/Touchable';
 
@@ -14,6 +14,8 @@ export interface WikiIconProps {
   scale?: number;
   warship?: boolean;
   selected?: boolean;
+  /// Force the icon to use the current theme instead
+  themeIcon?: boolean;
   otherProps?: any;
 }
 
@@ -21,7 +23,7 @@ interface IconUri {
   uri: string;
 }
 
-export const WikiIcon = ({item, scale, warship, selected, ...otherProps}: WikiIconProps) => {
+export const WikiIcon = ({item, scale, warship, selected, themeIcon, ...otherProps}: WikiIconProps) => {
   const {container, newLabel} = styles;
   let width = 80;
   if (scale) {
@@ -29,13 +31,8 @@ export const WikiIcon = ({item, scale, warship, selected, ...otherProps}: WikiIc
   }
   let theme = AppGlobalData.get(LOCAL.theme);
 
-  let imageSrc: IconUri | null = {uri: item.image ? item.image : item.icon};
-  let defaultSrc: IconUri | null = {uri: 'Unknown'};
-  if (AppGlobalData.useNoImageMode) {
-    imageSrc = null;
-  }
-  // ???
-  defaultSrc = null;
+  let imageSrc: ImageSourcePropType = {uri: item.image ? item.image : item.icon};
+  // let defaultSrc: ImageSourcePropType = {uri: 'Unknown'};
 
   if (warship) {
     return (
@@ -48,7 +45,8 @@ export const WikiIcon = ({item, scale, warship, selected, ...otherProps}: WikiIc
         <Image
           source={imageSrc}
           resizeMode="contain"
-          defaultSource={defaultSrc}
+          // defaultSource={defaultSrc}
+          tintColor={themeIcon ? theme[500] : undefined}
           style={{width: width, height: width / 1.7}}
         />
       </View>
@@ -68,8 +66,9 @@ export const WikiIcon = ({item, scale, warship, selected, ...otherProps}: WikiIc
         ) : null}
         <Image
           source={imageSrc}
+          tintColor={themeIcon ? theme[500] : undefined}
           resizeMode="contain"
-          defaultSource={defaultSrc}
+          // defaultSource={defaultSrc}
           style={{height: width, width: width}}
         />
       </Touchable>
