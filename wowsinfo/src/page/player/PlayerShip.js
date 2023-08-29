@@ -8,7 +8,15 @@ import {
   FooterPlus,
   SimpleRating,
 } from '../../component';
-import {getOverallRating, SafeAction, filterShip, Guard, getColour, bestCellWidth, bestCellWidthEven} from '../../core';
+import {
+  getOverallRating,
+  SafeAction,
+  filterShip,
+  Guard,
+  getColour,
+  bestCellWidth,
+  bestCellWidthEven,
+} from '../../core';
 import {FlatGrid} from 'react-native-super-grid';
 import {SAVED} from '../../value/data';
 import {lang} from '../../value/lang';

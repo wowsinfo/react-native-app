@@ -9,8 +9,13 @@ import {
 } from '../../component';
 import {SAVED} from '../../value/data';
 import {Actions} from 'react-native-router-flux';
-import {SafeAction, roundTo} from '../../core';
+import {SafeAction, getColour, roundTo} from '../../core';
 import {lang} from '../../value/lang';
+import {
+  DefaultTheme,
+  Provider as ThemeProvider,
+  withTheme,
+} from 'react-native-paper';
 
 class Detailed extends Component {
   constructor(props) {
@@ -18,7 +23,14 @@ class Detailed extends Component {
     console.log(props.data);
     this.state = {
       data: props.data,
+      previous: DefaultTheme.colors.primary,
     };
+  }
+
+  // TODO: revert the theme colour, should be fixed in the future
+  componentWillUnmount() {
+    const {previous} = this.state;
+    this.props.theme.colors.primary = previous;
   }
 
   render() {
@@ -31,21 +43,30 @@ class Detailed extends Component {
     const {pvp, ship_id, rating} = data;
     const ship = AppGlobalData.get(SAVED.warship)[ship_id];
     const overall = AppGlobalData.get(SAVED.pr)[ship_id];
+
+    // set the theme colour
+    const theme = DefaultTheme;
+    theme.colors.primary = getColour(rating);
+
     return (
-      <WoWsInfo
-        onPress={
-          ship == null ? null : () => SafeAction('WarshipDetail', {item: ship})
-        }
-        title={lang.wiki_section_title}>
-        <ScrollView
-          contentContainerStyle={{paddingBottom: 16, paddingTop: 16}}
-          showsVerticalScrollIndicator={false}>
-          <WarshipCell item={ship} scale={3} />
-          {this.renderNumberDiff(pvp, overall)}
-          <RatingButton rating={rating} />
-          <DetailedInfo data={data} />
-        </ScrollView>
-      </WoWsInfo>
+      <ThemeProvider theme={theme}>
+        <WoWsInfo
+          onPress={
+            ship == null
+              ? null
+              : () => SafeAction('WarshipDetail', {item: ship})
+          }
+          title={lang.wiki_section_title}>
+          <ScrollView
+            contentContainerStyle={{paddingBottom: 16, paddingTop: 16}}
+            showsVerticalScrollIndicator={false}>
+            <WarshipCell item={ship} scale={3} />
+            {this.renderNumberDiff(pvp, overall)}
+            <RatingButton rating={rating} />
+            <DetailedInfo data={data} />
+          </ScrollView>
+        </WoWsInfo>
+      </ThemeProvider>
     );
   }
 
@@ -114,4 +135,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {Detailed};
+export default withTheme(Detailed);

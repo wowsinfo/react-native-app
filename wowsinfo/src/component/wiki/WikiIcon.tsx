@@ -23,7 +23,14 @@ interface IconUri {
   uri: string;
 }
 
-export const WikiIcon = ({item, scale, warship, selected, themeIcon, ...otherProps}: WikiIconProps) => {
+export const WikiIcon = ({
+  item,
+  scale,
+  warship,
+  selected,
+  themeIcon,
+  ...otherProps
+}: WikiIconProps) => {
   const {container, newLabel} = styles;
   let width = 80;
   if (scale) {
@@ -31,7 +38,9 @@ export const WikiIcon = ({item, scale, warship, selected, themeIcon, ...otherPro
   }
   let theme = AppGlobalData.get(LOCAL.theme);
 
-  let imageSrc: ImageSourcePropType = {uri: item.image ? item.image : item.icon};
+  let imageSrc: ImageSourcePropType = {
+    uri: item.image ? item.image : item.icon,
+  };
   // let defaultSrc: ImageSourcePropType = {uri: 'Unknown'};
 
   if (warship) {
@@ -74,7 +83,7 @@ export const WikiIcon = ({item, scale, warship, selected, themeIcon, ...otherPro
       </Touchable>
     );
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -93,4 +102,3 @@ const styles = StyleSheet.create({
     width: 8,
   },
 });
-

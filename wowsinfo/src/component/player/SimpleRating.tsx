@@ -52,7 +52,7 @@ export const SimpleRating = ({info}: any) => {
       />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   horizontal: {
@@ -69,4 +69,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-

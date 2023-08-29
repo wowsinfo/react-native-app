@@ -99,6 +99,11 @@ class Statistics extends Component {
     }
   }
 
+  componentWillUnmount() {
+    // reset the theme colour back
+    this.props.theme.colors.primary = TintColour()[500];
+  }
+
   /**
    * Get basic player info
    */
@@ -256,10 +261,7 @@ class Statistics extends Component {
       const ratingColor = getColour(rating);
       // Display player data
       // get current theme from react-native-paper
-      this.props.theme.colors = {
-        ...this.props.colors,
-        primary: ratingColor,
-      };
+      this.props.theme.colors.primary = ratingColor;
 
       return (
         <WoWsInfo

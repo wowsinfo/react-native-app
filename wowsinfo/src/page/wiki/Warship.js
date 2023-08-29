@@ -10,7 +10,12 @@ import {WoWsInfo, WarshipCell} from '../../component';
 import {FlatGrid} from 'react-native-super-grid';
 import {SAVED, setLastLocation} from '../../value/data';
 import {lang} from '../../value/lang';
-import {SafeAction, filterShip, bestCellWidth, bestCellWidthEven} from '../../core';
+import {
+  SafeAction,
+  filterShip,
+  bestCellWidth,
+  bestCellWidthEven,
+} from '../../core';
 
 class Warship extends PureComponent {
   constructor(props) {

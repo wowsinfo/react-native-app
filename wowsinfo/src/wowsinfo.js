@@ -35,7 +35,7 @@ import {GREY, RED} from 'react-native-material-color';
 import {TintColour} from './value/colour';
 import {lang} from './value/lang';
 import PlayerShip from './page/player/PlayerShip';
-import {Detailed} from './page/player/Detailed';
+import Detailed from './page/player/Detailed';
 import {Rank} from './page/player/Rank';
 import {
   setJSExceptionHandler,

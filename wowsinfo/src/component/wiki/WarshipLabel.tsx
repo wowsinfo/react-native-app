@@ -13,7 +13,7 @@ import {lang} from '../../value/lang';
 export interface WarshipLabelProps {
   style?: any;
   item?: any;
-};
+}
 
 export const WarshipLabel = ({style, item}: WarshipLabelProps) => {
   const {label} = styles;
@@ -33,7 +33,7 @@ export const WarshipLabel = ({style, item}: WarshipLabelProps) => {
       </Paragraph>
     );
   }
-}
+};
 
 const styles = StyleSheet.create({
   label: {
