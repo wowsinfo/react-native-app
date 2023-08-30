@@ -3,7 +3,8 @@ export * from './common/Filter';
 export * from './common/Loading';
 
 // Go to this page when app is first launched
-export * from './home/Menu';
+import Menu from './home/Menu';
+export {Menu};
 export * from './home/Setup';
 export * from './home/Friend';
 export * from './home/RS';

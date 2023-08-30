@@ -1,4 +1,3 @@
-import { DefaultTheme } from 'react-native-paper';
 import {Actions} from 'react-native-router-flux';
 
 // Add safe action to check if that screen already exists in the stack

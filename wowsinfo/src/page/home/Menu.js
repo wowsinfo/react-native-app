@@ -15,7 +15,7 @@ import {
   Share,
 } from 'react-native';
 import {isAndroid, isIos} from 'react-native-device-detection';
-import {List, Colors, FAB, Button} from 'react-native-paper';
+import {List, Colors, FAB, Button, withTheme} from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
 import {WoWsInfo, SectionTitle, AppName} from '../../component';
 import {lang} from '../../value/lang';
@@ -58,6 +58,9 @@ class Menu extends Component {
   }
 
   componentDidUpdate() {
+    // ensure the theme is correct
+    // this.props.theme.colors.primary = TintColour()[500];
+
     this.getData();
     const {main} = this.state;
     let curr = AppGlobalData.get(LOCAL.userInfo);
@@ -517,4 +520,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {Menu};
+export default withTheme(Menu);

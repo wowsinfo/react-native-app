@@ -1,14 +1,6 @@
 import React, {Component} from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
-import {
-  Text,
-  IconButton,
-  Title,
-  Button,
-  DefaultTheme,
-  Provider,
-  withTheme,
-} from 'react-native-paper';
+import {Text, IconButton, Title, Button, withTheme} from 'react-native-paper';
 import {
   LoadingIndicator,
   WoWsInfo,
@@ -35,7 +27,6 @@ import {getDomain, getPrefix, LOCAL, setLastLocation} from '../../value/data';
 import {TintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
-import {GREY} from 'react-native-material-color';
 
 class Statistics extends Component {
   constructor(props) {
