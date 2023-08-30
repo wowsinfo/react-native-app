@@ -4,7 +4,7 @@
  * The classic 6 icons
  */
 
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, LayoutChangeEvent} from 'react-native';
 import {IconLabel} from './IconLabel';
 import {roundTo, bestWidth} from '../../core';

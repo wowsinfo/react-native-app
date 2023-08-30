@@ -24,7 +24,7 @@ export const PlayerAchievement = ({data}: any) => {
 
     formatted.sort((a, b) => b.num - a.num);
     setDisplayData(formatted);
-  }, []);
+  }, [data]);
 
   return (
     <WoWsInfo title={`${lang.tab_achievement_title} - ${displayData.length}`}>

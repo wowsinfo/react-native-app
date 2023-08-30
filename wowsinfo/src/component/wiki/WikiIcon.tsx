@@ -19,10 +19,6 @@ export interface WikiIconProps {
   otherProps?: any;
 }
 
-interface IconUri {
-  uri: string;
-}
-
 export const WikiIcon = ({
   item,
   scale,

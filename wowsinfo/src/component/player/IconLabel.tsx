@@ -7,7 +7,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {IconButton, Text, useTheme} from 'react-native-paper';
-import {TintColour} from '../../value/colour';
 
 export interface IconLabelProps {
   info: number | string;

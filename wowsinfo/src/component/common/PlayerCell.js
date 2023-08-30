@@ -12,14 +12,13 @@ import {SafeAction} from '../../core';
 class PlayerCell extends Component {
   render() {
     const {item, player, clan, width} = this.props;
-    const {ID} = styles;
 
     if (player) {
       return (
         <List.Item
           title={item.nickname}
           style={{width: width}}
-          right={() => <Caption style={ID}>{item.account_id}</Caption>}
+          right={this.renderPlayerRight(item.account_id)}
           onPress={() => this.pushPlayer(item)}
         />
       );
@@ -28,13 +27,21 @@ class PlayerCell extends Component {
         <List.Item
           title={item.tag}
           style={{width: width}}
-          right={() => <Caption style={ID}>{item.clan_id}</Caption>}
+          right={this.renderClanRight(item.clan_id)}
           onPress={() => this.pushClan(item)}
         />
       );
     } else {
       return <Text>???</Text>;
     }
+  }
+
+  renderPlayerRight(account_id) {
+    return <Caption style={styles.ID}>{account_id}</Caption>;
+  }
+
+  renderClanRight(clan_id) {
+    return <Caption style={styles.ID}>{clan_id}</Caption>;
   }
 
   pushPlayer(item) {

@@ -3,7 +3,7 @@ module.exports = {
   extends: '@react-native',
   // error on undefined variables and undeclared variables
   rules: {
-    // 'no-undef': 0,
+    'no-undef': 0,
     'no-unused-vars': 0,
     'react-native/no-inline-styles': 0,
     eqeqeq: 0,

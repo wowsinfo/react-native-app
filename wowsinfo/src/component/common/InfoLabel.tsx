@@ -4,7 +4,7 @@
  * A normal label with a caption on top
  */
 
-import React, {Component} from 'react';
+import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Caption, Text} from 'react-native-paper';
 import {Touchable} from './Touchable';

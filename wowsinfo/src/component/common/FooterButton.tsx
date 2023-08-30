@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {IconButton, Colors} from 'react-native-paper';
 import {Actions} from 'react-native-router-flux';

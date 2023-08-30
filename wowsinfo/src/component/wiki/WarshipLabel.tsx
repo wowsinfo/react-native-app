@@ -6,7 +6,7 @@
 
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {Caption, Paragraph, Subheading} from 'react-native-paper';
+import {Paragraph} from 'react-native-paper';
 import {getTierLabel} from '../../core';
 import {lang} from '../../value/lang';
 

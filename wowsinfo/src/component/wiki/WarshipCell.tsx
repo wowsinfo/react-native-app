@@ -4,7 +4,7 @@
  * It is a cell with a WikiIcon and a WarshipLabel below it
  */
 
-import React, {Component} from 'react';
+import React from 'react';
 import {Image, StyleSheet} from 'react-native';
 import {WikiIcon, WarshipLabel} from '..';
 import {Touchable} from '../common/Touchable';

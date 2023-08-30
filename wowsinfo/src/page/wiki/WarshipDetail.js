@@ -316,13 +316,13 @@ class WarshipDetail extends PureComponent {
     // Get all guns
     var mainGun = '',
       gunName = '';
-    for (gun in slots) {
+    for (const gun in slots) {
       mainGun += slots[gun].guns + ' x ' + slots[gun].barrels + '  ';
     }
     gunName = slots[gun].name;
 
     // Get gun penetration
-    let calibar = parseInt(gunName.split(' ')[0]);
+    let calibar = parseInt(gunName.split(' ')[0], 10);
     if (HE) {
       var fireRate = calibar > 160 ? 4 : 3;
       var oneFourth = Number(calibar / 4).toFixed(1);
@@ -446,7 +446,7 @@ class WarshipDetail extends PureComponent {
     const {distance, slots} = secondary;
 
     var guns = [];
-    for (gun in slots) {
+    for (const gun in slots) {
       guns.push(slots[gun]);
     }
     return (
@@ -579,7 +579,7 @@ class WarshipDetail extends PureComponent {
 
     let dist = Number(distance).toFixed(1);
     let torps = '';
-    for (torp in slots) {
+    for (const torp in slots) {
       torps += slots[torp].guns + ' x ' + slots[torp].barrels + '  ';
     }
     let reactionTime = Number(
@@ -642,7 +642,7 @@ class WarshipDetail extends PureComponent {
     const {slots} = anti_aircraft;
 
     var AAValues = [];
-    for (aa in slots) {
+    for (const aa in slots) {
       AAValues.push(slots[aa]);
     }
     return (
@@ -832,10 +832,10 @@ class WarshipDetail extends PureComponent {
     console.log(next_ships);
     // Get all ships from next_ships
     var ships = [];
-    for (key in next_ships) {
+    for (const key in next_ships) {
       ships.push({key: key, exp: next_ships[key]});
     }
-    shipKey = index => String(index);
+    const shipKey = index => String(index);
 
     return (
       <View style={styles.margin}>

@@ -4,9 +4,9 @@
  * A themed title
  */
 
-import React, {Component} from 'react';
+import React from 'react';
 import {StyleSheet} from 'react-native';
-import {ThemeBackColour, TintTextColour} from '../../value/colour';
+import {ThemeBackColour} from '../../value/colour';
 import {Title, useTheme} from 'react-native-paper';
 
 export interface SectionTitleProps {
