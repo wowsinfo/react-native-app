@@ -18,7 +18,7 @@ class PlayerCell extends Component {
         <List.Item
           title={item.nickname}
           style={{width: width}}
-          right={this.renderPlayerRight(item.account_id)}
+          right={() => this.renderPlayerRight(item.account_id)}
           onPress={() => this.pushPlayer(item)}
         />
       );
@@ -27,7 +27,7 @@ class PlayerCell extends Component {
         <List.Item
           title={item.tag}
           style={{width: width}}
-          right={this.renderClanRight(item.clan_id)}
+          right={() => this.renderClanRight(item.clan_id)}
           onPress={() => this.pushClan(item)}
         />
       );
