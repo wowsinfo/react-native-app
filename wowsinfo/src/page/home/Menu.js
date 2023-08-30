@@ -58,9 +58,6 @@ class Menu extends Component {
   }
 
   componentDidUpdate() {
-    // ensure the theme is correct
-    // this.props.theme.colors.primary = TintColour()[500];
-
     this.getData();
     const {main} = this.state;
     let curr = AppGlobalData.get(LOCAL.userInfo);
