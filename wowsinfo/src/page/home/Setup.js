@@ -62,7 +62,7 @@ class Setup extends Component {
   }
 
   render() {
-    const {loading, server, selected_server, langList, selected_lang, error} =
+    const {loading, server, selected_server, langList, selected_lang} =
       this.state;
     const {fab, titleStyle, wrapView, scroll} = styles;
     return (
@@ -83,7 +83,7 @@ class Setup extends Component {
               return <Button onPress={() => this.updateServer(index)}>{lang.server_name[index]}</Button>
             }} keyExtractor={i => i} numColumns={2}/> */}
           <Subheading style={titleStyle}>
-            {`${lang.setting_api_language}: ${langList[selected_lang]}`}
+            {`${lang.setting_api_language}: ${langList[selected_lang] ?? ''}`}
           </Subheading>
           {this.renderAPILanguage()}
         </ScrollView>

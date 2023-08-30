@@ -20,7 +20,6 @@ import {
   SafeStorage,
   getOverallRating,
   getColour,
-  getColourList,
 } from '../../core';
 import {WoWsAPI} from '../../value/api';
 import {getDomain, getPrefix, LOCAL, setLastLocation} from '../../value/data';
@@ -63,14 +62,13 @@ class Statistics extends Component {
         graph: false,
         // Whether show everything
         showMore: false,
+        ratingColor: '#607D8B',
       };
 
       // Save domain
       this.domain = getDomain(server);
       this.prefix = getPrefix(server);
       console.log(this.domain);
-      // start with unknown colour
-      this.props.theme.colors.primary = getColourList()[0];
 
       if (this.domain != null) {
         this.getBasic();
@@ -222,15 +220,30 @@ class Statistics extends Component {
       if (ship != null) {
         // Calculate personal rating for each ship and get an overall rating for this player
         let rating = getOverallRating(ship);
-        this.setState({ship: ship, rating: rating, graph: ship});
+        this.setState({
+          ship: ship,
+          rating: rating,
+          graph: ship,
+          ratingColor: getColour(rating),
+        });
       }
     });
   }
 
   render() {
     const {error, container, footer} = styles;
-    const {name, id, valid, achievement, rank, rankShip, basic, ship, graph} =
-      this.state;
+    const {
+      name,
+      id,
+      valid,
+      achievement,
+      rank,
+      rankShip,
+      basic,
+      ship,
+      graph,
+      ratingColor,
+    } = this.state;
 
     console.log(this.state);
     if (id == null || id === '') {
@@ -248,10 +261,6 @@ class Statistics extends Component {
         </WoWsInfo>
       );
     } else {
-      const {rating} = this.state;
-      const ratingColor = getColour(rating);
-      // Display player data
-      // get current theme from react-native-paper
       this.props.theme.colors.primary = ratingColor;
 
       return (
