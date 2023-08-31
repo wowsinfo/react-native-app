@@ -6,7 +6,7 @@
 
 import React, {PureComponent} from 'react';
 import {View, FlatList, ScrollView, StyleSheet} from 'react-native';
-import {Text, Title, Headline, Button, Paragraph} from 'react-native-paper';
+import {Text, Title, Button, Paragraph} from 'react-native-paper';
 import * as Anime from 'react-native-animatable';
 import {
   WoWsInfo,
@@ -278,9 +278,7 @@ class WarshipDetail extends PureComponent {
     const {horizontal} = styles;
     return (
       <View style={styles.margin}>
-        <Headline style={this.sectionTitle}>
-          {lang.warship_survivability}
-        </Headline>
+        <SectionTitle title={lang.warship_survivability} />
         <View style={horizontal}>
           <InfoLabel
             title={lang.warship_survivability_health}
@@ -316,7 +314,7 @@ class WarshipDetail extends PureComponent {
     // Get all guns
     var mainGun = '',
       gunName = '';
-    for (const gun in slots) {
+    for (var gun in slots) {
       mainGun += slots[gun].guns + ' x ' + slots[gun].barrels + '  ';
     }
     gunName = slots[gun].name;
@@ -363,9 +361,7 @@ class WarshipDetail extends PureComponent {
 
     return (
       <View style={styles.margin}>
-        <Headline style={this.sectionTitle}>
-          {lang.warship_artillery_main}
-        </Headline>
+        <SectionTitle title={lang.warship_artillery_main} />
         <View style={horizontal}>
           <InfoLabel title={lang.warship_weapon_reload} info={reloadMsg} />
           <InfoLabel title={lang.warship_weapon_range} info={rangeMsg} />
@@ -451,10 +447,7 @@ class WarshipDetail extends PureComponent {
     }
     return (
       <View style={styles.margin}>
-        <Headline
-          style={
-            this.sectionTitle
-          }>{`${lang.warship_artillery_secondary} (${distance} km)`}</Headline>
+        <SectionTitle title={`${lang.warship_artillery_secondary} (${distance} km)`} />
         {guns.map((value, index) => {
           const {burn_probability, bullet_speed, name, gun_rate, damage, type} =
             value;
@@ -600,7 +593,7 @@ class WarshipDetail extends PureComponent {
 
     return (
       <View style={styles.margin}>
-        <Headline style={this.sectionTitle}>{lang.warship_torpedoes}</Headline>
+        <SectionTitle title={lang.warship_torpedoes} />
         <View style={horizontal}>
           <InfoLabel
             title={lang.warship_weapon_reload}
@@ -647,9 +640,7 @@ class WarshipDetail extends PureComponent {
     }
     return (
       <View style={styles.margin}>
-        <Headline style={this.sectionTitle}>
-          {lang.warship_antiaircraft}
-        </Headline>
+        <SectionTitle title={lang.warship_antiaircraft} />
         {AAValues.map((value, index) => {
           const {avg_damage, name, guns} = value;
           return (
@@ -701,9 +692,7 @@ class WarshipDetail extends PureComponent {
 
     return (
       <View style={styles.margin}>
-        <Headline style={this.sectionTitle}>
-          {lang.warship_maneuverability}
-        </Headline>
+        <SectionTitle title={lang.warship_maneuverability} />
         <View style={horizontal}>
           <InfoLabel
             title={lang.warship_maneuverability_rudder_time}
@@ -748,9 +737,7 @@ class WarshipDetail extends PureComponent {
 
     return (
       <View style={styles.margin}>
-        <Headline style={this.sectionTitle}>
-          {lang.warship_concealment}
-        </Headline>
+        <SectionTitle title={lang.warship_concealment} />
         <View style={horizontal}>
           <InfoLabel
             title={lang.warship_concealment_detect_by_plane}
@@ -797,7 +784,7 @@ class WarshipDetail extends PureComponent {
     const {upgradeView} = styles;
     return (
       <View style={styles.margin}>
-        <Headline style={this.sectionTitle}>{lang.warship_upgrades}</Headline>
+        <SectionTitle title={lang.warship_upgrades} />
         <ScrollView
           horizontal
           contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}>
@@ -839,7 +826,7 @@ class WarshipDetail extends PureComponent {
 
     return (
       <View style={styles.margin}>
-        <Headline style={this.sectionTitle}>{lang.warship_next_ship}</Headline>
+        <SectionTitle title={lang.warship_next_ship} />
         <FlatList
           data={ships}
           horizontal
