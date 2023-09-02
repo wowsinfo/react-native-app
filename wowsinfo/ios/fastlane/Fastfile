@@ -22,7 +22,7 @@ platform :ios do
   end
 
   desc "Building the app for release"
-  lane :testflight do
+  lane :beta do
     bundle_react_native
     # gym exports to testflight directly once the app is built
     gym(
