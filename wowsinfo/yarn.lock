@@ -5567,10 +5567,10 @@ mute-stream@0.0.7:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   integrity sha512-r65nCZhrbXXb6dXOACihYApHw2Q6pV0M3V0PSxd74N0+D8nzAdEAITq2oAjA1jVnKI+tGvEBUpqiMh0+rW6zDQ==
 
-native-chart-experiment@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/native-chart-experiment/-/native-chart-experiment-1.0.1.tgz#a78c159332c0e42aa432577360243d431bbd92a4"
-  integrity sha512-gXh03ixwTmILV4GMU+AZsr6xdQi/NfNnxEOyntGeTP4OQjPOG8YrMm0bwqqRQUdOXzsWfjKaGv9BX95OffoEJw==
+native-chart-experiment@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/native-chart-experiment/-/native-chart-experiment-1.0.2.tgz#2b729ffdc86f0c33d119c532d14b22eafcc7f9e9"
+  integrity sha512-z3MSzQnAkm0HRydMm/w84IZC8V8T461BCHjWea9VvHct+GFKhTjAVWXfmCLa40b3M7YgDTa+NJ5WOgrQ/FLHsw==
 
 natural-compare-lite@^1.4.0:
   version "1.4.0"

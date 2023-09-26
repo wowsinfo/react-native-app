@@ -29,6 +29,12 @@ platform :ios do
       scheme: "wowsinfo",
       configuration: "Release",
       export_method: "app-store",
+      # use the correct provisioning profile
+      export_options: {
+        provisioningProfiles: {
+          "com.yihengquan.WoWs-Info": "match AppStore com.yihengquan.WoWs-Info",
+        },
+      },
     )
   end
 
