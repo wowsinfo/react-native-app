@@ -9,6 +9,7 @@
 #
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
+actions_path "../../../fastlane/fastlane/actions"
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
@@ -23,6 +24,27 @@ platform :ios do
 
   desc "Building the app for release"
   lane :beta do
+    ios_testflight(
+      ipa_path: "../wowsinfo.ipa",
+      display_name: "WoWs Info",
+    )
+  end
+
+  desc "Building the app for testing on simulators"
+  lane :build_simulator do
+    bundle_react_native
+    build_any_simulator(
+      scheme: "wowsinfo",
+      workspace: "wowsinfo.xcworkspace",
+      output_directory: "build/",
+    )
+  end
+
+  # required by the fastlane module
+  private_lane :build do |options|
+    # cd inside the fastlane folder
+    Dir.chdir("fastlane")
+
     bundle_react_native
     # gym exports to testflight directly once the app is built
     gym(
@@ -36,31 +58,5 @@ platform :ios do
         },
       },
     )
-  end
-
-  desc "Building the app for testing on simulators"
-  lane :build_simulator do
-    bundle_react_native
-    workspace = "wowsinfo.xcworkspace"
-    scheme = "wowsinfo"
-
-    # building command
-    command = "xcodebuild clean archive -workspace #{workspace} -scheme #{scheme} "
-    command += "-configuration Release -destination 'generic/platform=iOS Simulator' "
-    command += "-archivePath build/wowsinfo.xcarchive"
-    UI.message "Building for simulator..."
-    sh "cd .. && #{command}" # pwd is in fastlane
-
-    begin
-      build_folder = "../build/wowsinfo"
-      sh "rm -rf #{build_folder}.app"
-      sh "mv -f #{build_folder}.xcarchive/Products/Applications/wowsinfo.app #{build_folder}.app"
-      sh "rm -rf #{build_folder}.xcarchive"
-    rescue
-      UI.message "Failed to move wowsinfo.app"
-      UI.message "The app is at build/wowsinfo.xcarchive/Products/Applications/"
-    end
-
-    UI.message "Done"
   end
 end
