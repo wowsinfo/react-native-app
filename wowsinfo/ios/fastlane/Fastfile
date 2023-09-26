@@ -40,7 +40,7 @@ platform :ios do
     )
   end
 
-  # required by the fastlane module
+  # required by the fastlane module, called by ios_testflight internally
   private_lane :build do |options|
     # cd inside the fastlane folder
     Dir.chdir("fastlane")
