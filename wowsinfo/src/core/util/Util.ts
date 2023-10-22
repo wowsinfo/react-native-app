@@ -99,8 +99,8 @@ export const bestCellWidthEven = (target: number) => {
  * @param {number} width
  */
 export const bestWidth = (width: number, deviceWidth = currDeviceWidth()) => {
-  console.log(width, deviceWidth);
-  return deviceWidth / Math.max(1, Number(deviceWidth / width));
+  const maxCount = Math.round(deviceWidth / width);
+  return deviceWidth / Math.max(1, maxCount);
 };
 
 export const currDeviceWidth = () => {
