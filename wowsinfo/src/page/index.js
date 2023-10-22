@@ -7,7 +7,8 @@ import Menu from './home/Menu';
 export {Menu};
 export * from './home/Setup';
 export * from './home/Friend';
-export * from './home/RS';
+import RS from './home/RS';
+export {RS};
 export * from './home/Search';
 
 export * from './wiki/Consumable';

@@ -17,6 +17,7 @@ import {
   List,
   Text,
   Title,
+  withTheme,
 } from 'react-native-paper';
 import {
   WoWsInfo,
@@ -48,6 +49,7 @@ import {FlatGrid} from 'react-native-super-grid';
 import {lang} from '../../value/lang';
 import KeepAwake from 'react-native-keep-awake';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+import { TintColour } from '../../value/colour';
 
 class RS extends Component {
   constructor(props) {
@@ -84,6 +86,8 @@ class RS extends Component {
 
   componentWillUnmount() {
     KeepAwake.deactivate();
+    // reset the theme colour back
+    this.props.theme.colors.primary = TintColour()[500];
   }
 
   render() {
@@ -366,4 +370,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {RS};
+export default withTheme(RS);

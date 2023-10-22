@@ -381,7 +381,8 @@ class Menu extends Component {
             description={lang.extra_rs_beta}
             style={{width: bestItemWidth}}
             titleStyle={{color: Colors.orange500}}
-            onPress={() => (onlyProVersion() ? SafeAction('RS') : null)}
+            // onPress={() => (onlyProVersion() ? SafeAction('RS') : null)}
+            onPress={() => (SafeAction('RS'))}
           />
           <List.Item
             key="review"
