@@ -152,17 +152,16 @@ class RS extends Component {
           <FlatGrid
             data={allay}
             itemDimension={120}
-            spacing={0}
             renderItem={({item}) => this.renderPlayerCell(item)}
             keyExtractor={p => String(p.account_id)}
-            style={{margin: 8, width: '50%'}}
+            style={{width: '50%'}}
           />
           <FlatGrid
             data={enemy}
             itemDimension={120}
             renderItem={({item}) => this.renderPlayerCell(item)}
             keyExtractor={p => String(p.account_id)}
-            style={{margin: 8, width: '50%'}}
+            style={{width: '50%'}}
           />
         </View>
       </ScrollView>
