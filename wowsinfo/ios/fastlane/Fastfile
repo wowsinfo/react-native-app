@@ -24,6 +24,8 @@ platform :ios do
 
   desc "Building the app for release"
   lane :beta do
+    # increment the build number
+    increment_build_number
     ios_testflight(
       ipa_path: "../wowsinfo.ipa",
       display_name: "WoWs Info",
