@@ -186,7 +186,9 @@ export const lang = new LocalizedStrings({
     // CC
     content_creator_title: 'Content Creator',
     content_creator_official: 'WoWs Official',
-    content_creator_fubuki: 'FubukiFubukiDance',
+    content_creator_official_link: 'https://www.youtube.com/user/worldofwarshipscom',
+    content_creator_fubuki: 'AozoraFubuki',
+    content_creator_fubuki_link: 'https://www.youtube.com/@SYC-HANQ/videos',
     // Tools
     tool_title: 'Tools',
     /// Player section
@@ -483,9 +485,11 @@ export const lang = new LocalizedStrings({
     website_ingame_warehouse: '我的仓库',
     website_my_logbook: '我的航海日志',
     // CC
-    content_creator_title: '油管主',
+    content_creator_title: '內容創作者',
     content_creator_official: '战舰世界官方频道',
+    content_creator_official_link: 'bilibili://space/573693898',
     content_creator_fubuki: '青空雪舞Channel',
+    content_creator_fubuki_link: 'bilibili://space/15653565',
     // Tools
     tool_title: '工具',
     /// Player section
@@ -781,9 +785,11 @@ export const lang = new LocalizedStrings({
     website_ingame_warehouse: '我的倉庫',
     website_my_logbook: '我的航海日誌',
     // CC
-    content_creator_title: '油管主',
+    content_creator_title: '社區貢獻者',
     content_creator_official: '戰艦世界官方頻道',
+    content_creator_official_link: 'bilibili://space/573693898',
     content_creator_fubuki: '青空雪舞Channel',
+    content_creator_fubuki_link: 'bilibili://space/15653565',
     // Tools
     tool_title: '工具',
     /// Player section
@@ -1080,7 +1086,9 @@ export const lang = new LocalizedStrings({
     // content_creators
     content_creator_title: 'コンテンツクリエイター',
     content_creator_official: 'WoWs公式チャンネル',
+    content_creator_official_link: 'https://www.youtube.com/user/worldofwarshipscom',
     content_creator_fubuki: '青空雪舞Channel',
+    content_creator_fubuki_link: 'bilibili://space/15653565',
     // Tools
     tool_title: 'ツール',
     /// Player section

@@ -242,6 +242,17 @@ class Menu extends Component {
       },
     ];
 
+    this.links = [
+      {
+        t: lang.content_creator_official,
+        d: lang.content_creator_official_link,
+      },
+      {
+        t: lang.content_creator_fubuki,
+        d: lang.content_creator_fubuki_link,
+      }
+    ];
+
     this.youtubers = [
       {
         t: lang.youtuber_official,
@@ -427,6 +438,18 @@ class Menu extends Component {
                 description={item.d}
                 style={{width: bestItemWidth}}
                 onPress={() => SimpleViewHandler.openURL(item.d)}
+              />
+            ))}
+          </View>
+        </List.Section>
+        <List.Section title={lang.content_creator_title} expanded>
+          <View style={wrap}>
+            {this.links.map(item => (
+              <List.Item key={item.t}
+                title={item.t}
+                description={item.d}
+                style={{width: bestItemWidth}}
+                onPress={() => SimpleViewHandler.openExternalURL(item.d)}
               />
             ))}
           </View>

@@ -11,6 +11,10 @@ export class SimpleViewHandler {
       }
     }
 
+    this.openExternalURL(url);
+  }
+
+  static async openExternalURL(url: string) {
     Linking.openURL(url);
   }
 }
