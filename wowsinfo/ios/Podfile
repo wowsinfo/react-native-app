@@ -12,7 +12,6 @@ prepare_react_native_project!
 # https://stackoverflow.com/a/78265475
 # See https://github.com/facebook/react-native/issues/43335
 # Upgrade React Native later and see if this is still needed.
-$flipper_config = ENV["NO_FLIPPER"] == "1" ? FlipperConfiguration.disabled : FlipperConfiguration.enabled(["Debug"], { "Flipper" => "0.250.0" })
 $rn_config = use_native_modules!
 
 linkage = ENV["USE_FRAMEWORKS"]
@@ -54,5 +53,4 @@ post_install do |installer|
     :mac_catalyst_enabled => false,
     # :ccache_enabled => true
   )
-  __apply_Xcode_12_5_M1_post_install_workaround(installer)
 end
