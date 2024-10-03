@@ -1,5 +1,5 @@
 import {SafeStorage, SafeValue} from '../core';
-import {Actions} from 'react-native-router-flux';
+
 import {getAvailablePurchases} from 'react-native-iap';
 import {Alert, Platform} from 'react-native';
 import {lang} from './lang';

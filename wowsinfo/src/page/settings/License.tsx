@@ -47,8 +47,8 @@ const libraries = [
     link: 'https://github.com/callstack/react-native-paper',
   },
   {
-    name: 'react-native-router-flux',
-    link: 'https://github.com/aksonov/react-native-router-flux',
+    name: 'react-navigation',
+    link: 'https://github.com/react-navigation/react-navigation',
   },
   {
     name: 'react-native-super-grid',

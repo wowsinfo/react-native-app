@@ -38,7 +38,7 @@ import {
   APP,
 } from '../../value/data';
 import {Loading} from '../common/Loading';
-import {Actions} from 'react-native-router-flux';
+
 import {ReactNativeManager} from '../../core/native/ReactNativeManager';
 import {QuickAction} from '../../core/native/QuickAction';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';

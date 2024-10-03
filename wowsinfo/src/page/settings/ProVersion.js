@@ -11,7 +11,7 @@ import {
   purchaseErrorListener,
 } from 'react-native-iap';
 import {setProVersion, validateProVersion} from '../../value/data';
-import {Actions} from 'react-native-router-flux';
+
 import {lang} from '../../value/lang';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
