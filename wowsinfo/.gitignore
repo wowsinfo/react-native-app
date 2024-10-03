@@ -1,4 +1,6 @@
 **/key.js
+# Can keep if zero install is needed
+.yarn/cache
 
 # OSX
 #
