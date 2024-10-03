@@ -27,11 +27,13 @@ import {
 import {Downloader} from '../../core';
 import {WoWsInfo, SectionTitle, LoadingIndicator} from '../../component';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+import { getNavigator } from '../../core/util/Navigation';
 
 class Setup extends Component {
   constructor(props) {
     super(props);
-
+    
+    this.navigator = getNavigator(props);
     this.state = {
       loading: true,
       error: false,
@@ -141,7 +143,7 @@ class Setup extends Component {
 
   // Get selection and download data from api
   finishSetup() {
-    Actions.reset('Menu');
+    this.navigator.replace('Menu');
   }
 }
 

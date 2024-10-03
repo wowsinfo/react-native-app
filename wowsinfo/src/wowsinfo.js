@@ -43,6 +43,7 @@ import {
 import { ReactNativeManager } from './core/native/ReactNativeManager';
 import { SimpleViewHandler } from './core/native/SimpleViewHandler';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { getNavigator } from './core/util/Navigation';
 
 setJSExceptionHandler((e, fatal) => {
   if (fatal) {
@@ -90,6 +91,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.navigator = getNavigator(props);
     ReactNativeManager.Instance.setup();
 
     // const json = {};
@@ -174,6 +176,7 @@ class App extends Component {
         });
       } else {
         this.setState({ loading: false, dark: AppGlobalData.isDarkMode });
+        this.navigator.replace('Setup');
       }
     });
   }
@@ -183,10 +186,12 @@ class App extends Component {
     if (loading) {
       return <Loading />;
     }
+
+    const initialName = getFirstLaunch() ? 'Setup' : 'Menu';
     return (
-      <Stack.Navigator screenOptions={stackScreenOptions} initialRouteName="Menu">
+      <Stack.Navigator screenOptions={stackScreenOptions} initialRouteName={initialName}>
         <Stack.Screen name="Menu" component={Menu} />
-        <Stack.Screen name="Setup" component={Setup} initial={getFirstLaunch()} />
+        <Stack.Screen name="Setup" component={Setup} />
         <Stack.Screen name="Search" component={Search} />
         <Stack.Screen name="RS" component={RS} />
 
@@ -220,9 +225,10 @@ class App extends Component {
   }
 
   handleBack = () => {
-    if (Actions.state.routes.length === 1) {
-      BackHandler.exitApp();
-    }
+    // todo: to be updated
+    // if (Actions.state.routes.length === 1) {
+    //   BackHandler.exitApp();
+    // }
   };
 }
 

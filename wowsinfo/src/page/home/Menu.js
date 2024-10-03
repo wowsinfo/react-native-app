@@ -42,11 +42,13 @@ import {Loading} from '../common/Loading';
 import {ReactNativeManager} from '../../core/native/ReactNativeManager';
 import {QuickAction} from '../../core/native/QuickAction';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+import { getNavigator } from '../../core/util/Navigation';
 
 class Menu extends Component {
   constructor(props) {
     super(props);
 
+    this.navigator = getNavigator(props);
     this.first = getFirstLaunch();
     this.state = {
       loading: true,
@@ -140,33 +142,33 @@ class Menu extends Component {
       {
         t: lang.wiki_achievement,
         i: {uri: 'Achievement'},
-        p: () => SafeAction('Achievement'),
+        p: () => SafeAction(this.navigator, 'Achievement'),
       },
       {
         t: lang.wiki_warships,
         i: {uri: 'Warship'},
-        p: () => SafeAction('Warship'),
+        p: () => SafeAction(this.navigator, 'Warship'),
       },
       {
         t: lang.wiki_upgrades,
         i: {uri: 'Upgrade'},
-        p: () => SafeAction('Consumable', {upgrade: true}),
+        p: () => SafeAction(this.navigator, 'Consumable', {upgrade: true}),
       },
       {
         t: lang.wiki_flags,
         i: {uri: 'Camouflage'},
-        p: () => SafeAction('Consumable'),
+        p: () => SafeAction(this.navigator, 'Consumable'),
       },
       // {
       //   t: lang.wiki_skills,
       //   i: {uri: 'CommanderSkill'},
-      //   p: () => SafeAction('CommanderSkill'),
+      //   p: () => SafeAction(this.navigator, 'CommanderSkill'),
       // },
-      {t: lang.wiki_maps, i: 'map', p: () => SafeAction('Map')},
+      {t: lang.wiki_maps, i: 'map', p: () => SafeAction(this.navigator, 'Map')},
       {
         t: lang.wiki_collections,
         i: {uri: 'Collection'},
-        p: () => SafeAction('Collection'),
+        p: () => SafeAction(this.navigator, 'Collection'),
       },
     ];
 
@@ -307,7 +309,7 @@ class Menu extends Component {
       <WoWsInfo
         noRight
         title={title}
-        onPress={enabled ? () => SafeAction('Statistics', {info: main}) : null}
+        onPress={enabled ? () => SafeAction(this.navigator, 'Statistics', {info: main}) : null}
         home
         upper={false}>
         <ScrollView
@@ -325,7 +327,7 @@ class Menu extends Component {
         <FAB
           icon="magnify"
           style={styles.fab}
-          onPress={() => SafeAction('Search')}
+          onPress={() => SafeAction(this.navigator, 'Search')}
         />
       </WoWsInfo>
     );
@@ -392,9 +394,9 @@ class Menu extends Component {
             description={lang.extra_rs_beta}
             style={{width: bestItemWidth}}
             titleStyle={{color: Colors.orange500}}
-            onPress={() => (onlyProVersion() ? SafeAction('RS') : null)}
+            onPress={() => (onlyProVersion() ? SafeAction(this.navigator, 'RS') : null)}
             // TODO: only enable this safe if we want to make it free
-            // onPress={() => (SafeAction('RS'))}
+            // onPress={() => (SafeAction(this.navigator, 'RS'))}
           />
           <List.Item
             key="review"
