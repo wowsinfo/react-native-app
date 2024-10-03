@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {Alert, BackHandler} from 'react-native';
-import {Router, Stack, Scene, Actions} from 'react-native-router-flux';
-import {withTheme, DarkTheme, DefaultTheme} from 'react-native-paper';
+import React, { Component } from 'react';
+import { Alert, BackHandler, View } from 'react-native';
+import { Router, Stack, Scene, Actions } from 'react-native-router-flux';
+import { withTheme, DarkTheme, DefaultTheme } from 'react-native-paper';
 import {
   Menu,
   Settings,
@@ -29,20 +29,20 @@ import {
   RS,
   ProVersion,
 } from './page';
-import {LOCAL, getFirstLaunch, getCurrServer, APP} from './value/data';
-import {DataLoader, Downloader} from './core';
-import {GREY, RED} from 'react-native-material-color';
-import {TintColour} from './value/colour';
-import {lang} from './value/lang';
+import { LOCAL, getFirstLaunch, getCurrServer, APP } from './value/data';
+import { DataLoader, Downloader } from './core';
+import { GREY, RED } from 'react-native-material-color';
+import { TintColour } from './value/colour';
+import { lang } from './value/lang';
 import PlayerShip from './page/player/PlayerShip';
 import Detailed from './page/player/Detailed';
-import {Rank} from './page/player/Rank';
+import { Rank } from './page/player/Rank';
 import {
   setJSExceptionHandler,
   setNativeExceptionHandler,
 } from 'react-native-exception-handler';
-import {ReactNativeManager} from './core/native/ReactNativeManager';
-import {SimpleViewHandler} from './core/native/SimpleViewHandler';
+import { ReactNativeManager } from './core/native/ReactNativeManager';
+import { SimpleViewHandler } from './core/native/SimpleViewHandler';
 
 setJSExceptionHandler((e, fatal) => {
   if (fatal) {
@@ -76,7 +76,7 @@ function showAlert(msg, mode) {
           ),
       },
     ],
-    {cancelable: false},
+    { cancelable: false },
   );
 }
 
@@ -157,7 +157,7 @@ class App extends Component {
         let dn = new Downloader(getCurrServer());
         dn.updateAll(false).then(obj => {
           // Since data are loaded even if user is offline, it should be fine
-          this.setState({loading: false, dark: AppGlobalData.isDarkMode});
+          this.setState({ loading: false, dark: AppGlobalData.isDarkMode });
           // Display message if it is not success
           if (!obj.status) {
             Alert.alert(
@@ -167,19 +167,19 @@ class App extends Component {
           }
         });
       } else {
-        this.setState({loading: false, dark: AppGlobalData.isDarkMode});
+        this.setState({ loading: false, dark: AppGlobalData.isDarkMode });
       }
     });
   }
 
   render() {
-    const {loading, dark} = this.state;
+    const { loading, dark } = this.state;
     if (loading) {
       return <Loading />;
     }
     return (
       <Router
-        sceneStyle={{flex: 1, backgroundColor: dark ? 'black' : 'white'}}
+        sceneStyle={{ flex: 1, backgroundColor: dark ? 'black' : 'white' }}
         backAndroidHandler={this.handleBack}>
         <Stack key="root" hideNavBar>
           <Scene key="Menu" component={Menu} />
