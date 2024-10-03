@@ -68,7 +68,7 @@ class DataLoader {
     await this.loadEntry(data, proVersion, false);
 
     // Add support to save clans as well
-    let list = {
+    const list = {
       clan: {
         2000020641: {tag: 'ICBC', clan_id: '2000020641', server: 3},
       },
@@ -82,7 +82,7 @@ class DataLoader {
     };
 
     await this.loadEntry(data, friendList, list);
-    let friendInfo = data[friendList];
+    const friendInfo = data[friendList];
     if (friendInfo.player == null) {
       // Previously, it was all players
       let saved: any = {clan: {}, player: {}};

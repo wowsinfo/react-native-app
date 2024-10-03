@@ -13,6 +13,7 @@ import {SafeAction, getColour, roundTo} from '../../core';
 import {lang} from '../../value/lang';
 import {withTheme} from 'react-native-paper';
 import {TintColour} from '../../value/colour';
+import { useGlobalNavigator } from '../../core/util/Navigation';
 
 class Detailed extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class Detailed extends Component {
   render() {
     const {data} = this.state;
     if (data == null) {
-      Actions.pop();
+      useGlobalNavigator.pop();
       return null;
     }
 

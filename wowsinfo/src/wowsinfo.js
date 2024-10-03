@@ -43,55 +43,56 @@ import {
 import { ReactNativeManager } from './core/native/ReactNativeManager';
 import { SimpleViewHandler } from './core/native/SimpleViewHandler';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { getNavigator } from './core/util/Navigation';
 
-setJSExceptionHandler((e, fatal) => {
-  if (fatal) {
-    showAlert(`${e.name}\n${e.message}`, 'JS');
-  } else {
-    console.log(`JSException\n${e}`);
+// while developing, just crash and fix it
+if (!__DEV__) {
+  setJSExceptionHandler((e, fatal) => {
+    if (fatal) {
+      showAlert(`${e.name}\n${e.message}`, 'JS');
+    } else {
+      console.log(`JSException\n${e}`);
+    }
+  }, true);
+
+  setNativeExceptionHandler(e => {
+    showAlert(e, 'NATIVE');
+    console.log(`NativeException\n${e}`);
+  });
+
+  // Ask user to email me the log
+  function showAlert(msg, mode) {
+    Alert.alert(
+      `FATAL ${mode} ERROR`,
+      `${msg}\n\nPlease contact developer`,
+      [
+        {
+          text: 'OK',
+          style: 'cancel',
+          onPress: () => null,
+        },
+        {
+          text: 'E-mail',
+          onPress: () =>
+            SimpleViewHandler.openURL(
+              `mailto:development.henryquan@gmail.com?subject=[WoWs Info ${APP.Version}] &body=${msg}`,
+            ),
+        },
+      ],
+      { cancelable: false },
+    );
   }
-}, true);
-
-setNativeExceptionHandler(e => {
-  showAlert(e, 'NATIVE');
-  console.log(`NativeException\n${e}`);
-});
-
-// Ask user to email me the log
-function showAlert(msg, mode) {
-  Alert.alert(
-    `FATAL ${mode} ERROR`,
-    `${msg}\n\nPlease contact developer`,
-    [
-      {
-        text: 'OK',
-        style: 'cancel',
-        onPress: () => null,
-      },
-      {
-        text: 'E-mail',
-        onPress: () =>
-          SimpleViewHandler.openURL(
-            `mailto:development.henryquan@gmail.com?subject=[WoWs Info ${APP.Version}] &body=${msg}`,
-          ),
-      },
-    ],
-    { cancelable: false },
-  );
 }
 
 const Stack = createNativeStackNavigator();
 
 const stackScreenOptions = {
   headerShown: false, // Hide the header by default
-}; 
+};
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.navigator = getNavigator(props);
     ReactNativeManager.Instance.setup();
 
     // const json = {};
@@ -176,7 +177,6 @@ class App extends Component {
         });
       } else {
         this.setState({ loading: false, dark: AppGlobalData.isDarkMode });
-        this.navigator.replace('Setup');
       }
     });
   }

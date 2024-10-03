@@ -52,6 +52,7 @@ import {
 import {lang} from '../../value/lang';
 import {WikiAPI} from '../../value/api';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+import { useGlobalNavigator } from '../../core/util/Navigation';
 
 class Settings extends Component {
   constructor(props) {
@@ -432,7 +433,7 @@ class Settings extends Component {
 
     setFirstLaunch(true);
     AppGlobalData.shouldUpdateAPI = false;
-    Actions.reset('Menu');
+    useGlobalNavigator.popToTop();
   }
 
   updateUserLang(code) {

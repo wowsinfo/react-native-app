@@ -1,8 +1,9 @@
-import {SafeStorage, SafeValue} from '../core';
+import {SafeAction, SafeStorage, SafeValue} from '../core';
 
 import {getAvailablePurchases} from 'react-native-iap';
 import {Alert, Platform} from 'react-native';
 import {lang} from './lang';
+import { useGlobalNavigator } from '../core/util/Navigation';
 
 /**
  * App information
@@ -208,7 +209,7 @@ export const onlyProVersion = () => {
     return true;
   }
   // Only push if user is not using pro version
-  Actions.ProVersion();
+  SafeAction('ProVersion');
   return false;
 };
 
@@ -256,7 +257,7 @@ const restorePurchase = (shouldRestore: boolean, showAlert?: boolean) => {
   if (shouldRestore === true) {
     setProVersion(true);
     if (showAlert) {
-      Actions.pop();
+      useGlobalNavigator().pop();
       Alert.alert(lang.pro_title, lang.iap_thx_for_support);
       setTimeout(() => {
         Actions.refresh();

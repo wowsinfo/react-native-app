@@ -1,10 +1,10 @@
 import React  from 'react';
 import {SafeAreaView} from 'react-native';
 import {IconButton, Colors} from 'react-native-paper';
-
 import {SafeAction} from '../../core';
 import {lang} from '../../value/lang';
 import {setLastLocation} from '../../value/data';
+import { useGlobalNavigator } from '../../core/util/Navigation';
 
 export interface FooterButtonProps {
   icon: string;
@@ -26,19 +26,20 @@ export const FooterButton = ({icon, left}: FooterButtonProps) => {
   }
 
   const pressEvent = () => {
+    const navigator = useGlobalNavigator();
     if (icon === 'cog') {
       SafeAction('Settings');
     } else if (icon === 'arrow-left') {
-      Actions.pop();
+      navigator.pop();
       // @ts-ignore
-      if (Actions.state.routes.length === 2) {
-        setTimeout(() => Actions.refresh(), 1000);
-      }
+      // if (Actions.state.routes.length === 2) {
+      //   setTimeout(() => navigator.refresh(), 1000);
+      // }
     } else if (icon === 'home') {
-      Actions.popTo('Menu');
+      navigator.popToTop();
       // Clear last location
       setLastLocation('');
-      setTimeout(() => Actions.refresh(), 1000);
+      // setTimeout(() => navigator.refresh(), 1000);
     } else {
       SafeAction('Search');
     }
