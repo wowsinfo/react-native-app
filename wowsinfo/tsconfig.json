@@ -1,13 +1,3 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@wowsinfo/model": ["io.github.henryquan.model"],
-      "@wowsinfo/service": ["io.github.henryquan.service"]
-    }
-  },
-  "include": [
-    "node_modules/wowsinfo-service/kotlin/wowsinfo-service.d.ts",
-  ]
+  "extends": "@react-native/typescript-config/tsconfig.json"
 }

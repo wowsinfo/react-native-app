@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet, ScrollView, KeyboardAvoidingView} from 'react-native';
+import {View, StyleSheet, ScrollView, KeyboardAvoidingView, Alert} from 'react-native';
 import {Searchbar} from 'react-native-paper';
 import {WoWsInfo, SectionTitle, PlayerCell} from '../../component';
 import {
@@ -186,14 +186,38 @@ class Search extends Component {
 
       if (length > 2) {
         // For player, 3+
+        const startTime = new Date().getTime();
         this.playerService.getPlayerListJs(text).then(result => {
+          console.log(
+            'Search player time: ' + (new Date().getTime() - startTime),
+          );
+          alert(JSON.stringify(result));
           if (result.isOk) {
             const playerList = result.getOrThrow.toArray();
             playerList.forEach(v => (v.server = getCurrServer()));
             all.player = playerList;
             this.setState({result: all});
           }
+        }).catch(e => {
+          Alert.alert('Error', e.message);
         });
+
+        // SafeFetch.get(WoWsAPI.PlayerSearch, domain, text).then(result => {
+        //   let data = Guard(result, 'data', null);
+        //   console.log(
+        //     'Search player time: ' + (new Date().getTime() - startTime),
+        //   );
+        //   if (data == null) {
+        //     // Error here
+        //   } else {
+        //     data.forEach(v => {
+        //       v.server = getCurrServer();
+        //       v.accountId = v.account_id;
+        //     });
+        //     all.player = data;
+        //     this.setState({result: all});
+        //   }
+        // });
       }
     }, 500);
   };

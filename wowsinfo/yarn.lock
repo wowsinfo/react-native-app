@@ -3994,6 +3994,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"big-integer@npm:^1.6.51":
+  version: 1.6.52
+  resolution: "big-integer@npm:1.6.52"
+  checksum: 6e86885787a20fed96521958ae9086960e4e4b5e74d04f3ef7513d4d0ad631a9f3bde2730fc8aaa4b00419fc865f6ec573e5320234531ef37505da7da192c40b
+  languageName: node
+  linkType: hard
+
 "bl@npm:^4.1.0":
   version: 4.1.0
   resolution: "bl@npm:4.1.0"
@@ -5516,6 +5523,13 @@ __metadata:
     flatted: ^3.1.0
     rimraf: ^3.0.2
   checksum: 4fdd10ecbcbf7d520f9040dd1340eb5dfe951e6f0ecf2252edeec03ee68d989ec8b9a20f4434270e71bcfd57800dc09b3344fca3966b2eb8f613072c7d9a2365
+  languageName: node
+  linkType: hard
+
+"flatbuffers@npm:2.0.6":
+  version: 2.0.6
+  resolution: "flatbuffers@npm:2.0.6"
+  checksum: 88d907d3c9404c2e10c3e45e23a39ed5517b77c036738f88973933f50454a44f49336cbfbc5f3758b3eeb8e644902d84fdedd94c3fd0a54dfda724d4adb1155f
   languageName: node
   linkType: hard
 
@@ -8786,6 +8800,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-fast-encoder@npm:^0.1.12":
+  version: 0.1.12
+  resolution: "react-native-fast-encoder@npm:0.1.12"
+  dependencies:
+    big-integer: ^1.6.51
+    flatbuffers: 2.0.6
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 19a2c96c7cf7b4dcffcabadc8a6d2b06649c40d1f030d852647bf6e5484f9a1ef97a5ec508e35dff8c54dfdbce113013d54eaeddb0b3a12f32f292af0d84c026
+  languageName: node
+  linkType: hard
+
 "react-native-gesture-handler@npm:^1.10.3":
   version: 1.10.3
   resolution: "react-native-gesture-handler@npm:1.10.3"
@@ -10413,6 +10440,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"web-streams-polyfill@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "web-streams-polyfill@npm:4.0.0"
+  checksum: df1abcb0f811621fa3ed95491c3d281eb7c82aa898b9759e47c3c9dffe73eb65c0459433da60a76a1ea08e6158c8b33fdf3a2ea2a44b9c4c252965507d54edc4
+  languageName: node
+  linkType: hard
+
 "webidl-conversions@npm:^3.0.0":
   version: 3.0.1
   resolution: "webidl-conversions@npm:3.0.1"
@@ -10526,13 +10560,13 @@ __metadata:
 
 "wowsinfo-service@file:../res/3rd/wowsinfo-service::locator=wowsinfo%40workspace%3A.":
   version: 0.0.0-unspecified
-  resolution: "wowsinfo-service@file:../res/3rd/wowsinfo-service#../res/3rd/wowsinfo-service::hash=703cdc&locator=wowsinfo%40workspace%3A."
+  resolution: "wowsinfo-service@file:../res/3rd/wowsinfo-service#../res/3rd/wowsinfo-service::hash=270c8f&locator=wowsinfo%40workspace%3A."
   dependencies:
     abort-controller: 3.0.0
     format-util: ^1.0.5
     node-fetch: 2.6.7
     ws: 8.5.0
-  checksum: 7a8953dd028e3d5f488e3ed97fe0174b82bb24afdcade69280a74c64406ebceb53d5cf3f8878dbf442d9ea11995a2b810988eb1a8271ad6a1c6cb6eb5e0d35fc
+  checksum: 8468b4fd3809fe4a6482ba1fd87160fce738859c5d63d36d78ecd49a3b70c84d9f7588bd43e28f6fff1d9ba8f654e329bd3565821a054c0e5a15a369feca8da0
   languageName: node
   linkType: hard
 
@@ -10563,6 +10597,7 @@ __metadata:
     react-native-animatable: ^1.4.0
     react-native-device-detection: ^0.2.1
     react-native-exception-handler: ^2.10.10
+    react-native-fast-encoder: ^0.1.12
     react-native-gesture-handler: ^1.10.3
     react-native-iap: ^7.0.3
     react-native-keep-awake: ^4.0.0
@@ -10577,6 +10612,7 @@ __metadata:
     react-test-renderer: 18.3.1
     string-format: ^2.0.0
     typescript: 5.0.4
+    web-streams-polyfill: ^4.0.0
     wowsinfo-service: ../res/3rd/wowsinfo-service
   languageName: unknown
   linkType: soft
