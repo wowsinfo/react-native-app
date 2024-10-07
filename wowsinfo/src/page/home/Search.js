@@ -18,6 +18,8 @@ import {Guard, SafeFetch, bestWidth} from '../../core';
 import {WoWsAPI} from '../../value/api';
 import {Friend} from './Friend';
 import {lang} from '../../value/lang';
+import { AppKey } from '../../value/key';
+import { Player, WarGamingLanguage, WarGamingRegion, WarGamingServiceJs } from 'wowsinfo-service';
 
 class Search extends Component {
   constructor(props) {
@@ -31,6 +33,12 @@ class Search extends Component {
       showFriend: true,
       goodWidth: bestWidth(400),
     };
+
+    this.playerService = new WarGamingServiceJs(
+      WarGamingRegion.ASIA,
+      WarGamingLanguage.EN,
+      AppKey,
+    );
 
     const domain = getCurrDomain();
     // com -> na
@@ -131,7 +139,7 @@ class Search extends Component {
         <View style={styles.wrap}>
           {player.map(item => (
             <PlayerCell
-              key={item.account_id}
+              key={item.accountId}
               item={item}
               player
               width={this.state.goodWidth}
@@ -178,13 +186,11 @@ class Search extends Component {
 
       if (length > 2) {
         // For player, 3+
-        SafeFetch.get(WoWsAPI.PlayerSearch, domain, text).then(result => {
-          let data = Guard(result, 'data', null);
-          if (data == null) {
-            // Error here
-          } else {
-            data.forEach(v => (v.server = getCurrServer()));
-            all.player = data;
+        this.playerService.getPlayerListJs(text).then(result => {
+          if (result.isOk) {
+            const playerList = result.getOrThrow.toArray();
+            playerList.forEach(v => (v.server = getCurrServer()));
+            all.player = playerList;
             this.setState({result: all});
           }
         });
