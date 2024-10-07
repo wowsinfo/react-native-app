@@ -19,7 +19,7 @@ import {WoWsAPI} from '../../value/api';
 import {Friend} from './Friend';
 import {lang} from '../../value/lang';
 import { AppKey } from '../../value/key';
-import { Player, WarGamingLanguage, WarGamingRegion, WarGamingServiceJs } from 'wowsinfo-service';
+import { WarGamingLanguage, WarGamingRegion, WarGamingServiceJs } from 'wowsinfo-service';
 
 class Search extends Component {
   constructor(props) {
