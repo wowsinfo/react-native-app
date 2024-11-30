@@ -9,15 +9,15 @@ import { useGlobalNavigator } from '../core/util/Navigation';
  * App information
  */
 export const APP = {
-  Version: '1.7.1',
-  IOSVersion: '1.7.1',
+  Version: '1.7.7',
+  IOSVersion: '1.7.7',
   GameVersion: '12.7.0.0',
   Github: 'https://github.com/wowsinfo/react-native-app',
   AppStore: 'https://itunes.apple.com/app/id1202750166',
   GooglePlay:
     'https://play.google.com/store/apps/details?id=com.yihengquan.wowsinfo',
   Developer:
-    'mailto:development.henryquan@gmail.com?subject=[WoWs Info 1.7.1] ',
+    'mailto:development.henryquan@gmail.com?subject=[WoWs Info 1.7.7] ',
   Patreon: 'https://www.patreon.com/henryquan',
   PayPal: 'https://www.paypal.me/YihengQuan',
   WeChat:

@@ -1,6 +1,7 @@
 **/key.js
 # Can keep if zero install is needed
 .yarn/cache
+.yarn/install-state.gz
 
 # OSX
 #
