@@ -106,6 +106,15 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+
+    // setup IAP for Google Play and other stores potentially
+    flavorDimensions = ["appstore"]
+    productFlavors {
+        googlePlay {
+            dimension "appstore"
+            missingDimensionStrategy "store", "play"
+        }
+    }
 }
 
 dependencies {
