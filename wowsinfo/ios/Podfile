@@ -5,7 +5,7 @@ require Pod::Executable.execute_command("node", ["-p",
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
-$IOS_TARGET = "14.0"
+$IOS_TARGET = "15.1"
 platform :ios, $IOS_TARGET
 prepare_react_native_project!
 
