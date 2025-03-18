@@ -25,7 +25,7 @@ import {SafeFetch, Guard, SafeAction, copy, roundTo} from '../../core';
 import {WoWsAPI} from '../../value/api';
 
 import {TintTextColour} from '../../value/colour';
-import {HorizontalBarChart} from 'native-chart-experiment';
+// import {HorizontalBarChart} from 'native-chart-experiment';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
 class WarshipDetail extends PureComponent {
@@ -891,6 +891,7 @@ class WarshipDetail extends PureComponent {
   }
 
   buildCharts(similar) {
+    return;
     // Build charts
     let damageChart = [];
     let winrateChart = [];
@@ -921,13 +922,13 @@ class WarshipDetail extends PureComponent {
       return (
         <View>
           <SectionTitle center title={c.n} />
-          <HorizontalBarChart
+          {/* <HorizontalBarChart
             style={{height: names.length * 20}}
             chartData={values}
             xAxisLabels={names}
             darkMode={AppGlobalData.isDarkMode}
             themeColor={c.c}
-          />
+          /> */}
         </View>
       );
     });

@@ -93,7 +93,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    ReactNativeManager.Instance.setup();
+    // ReactNativeManager.Instance.setup();
 
     // const json = {};
     // AsyncStorage.getAllKeys().then(keys => {
@@ -186,6 +186,8 @@ class App extends Component {
     if (loading) {
       return <Loading />;
     }
+
+    console.log("what?")
 
     const initialName = getFirstLaunch() ? 'Setup' : 'Menu';
     return (

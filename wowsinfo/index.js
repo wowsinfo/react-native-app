@@ -18,6 +18,7 @@ if (typeof window !== 'undefined') {
 }
 
 export function Main() {
+  console.log('Main');
   return (
     <PaperProvider theme={DefaultTheme}>
       <NavigationContainer>

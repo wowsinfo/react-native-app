@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
-import {BarChart, PieChart} from 'native-chart-experiment';
+// import {BarChart, PieChart} from 'native-chart-experiment';
 import {WoWsInfo} from '../../component';
 import {SAVED} from '../../value/data';
 import {SafeValue, roundTo} from '../../core';
@@ -86,7 +86,7 @@ class Graph extends PureComponent {
       <WoWsInfo hideAds>
         <ScrollView>
           {/* <Title style={{textAlign: 'center'}}>{`Average Tier - ${avgTier}`}</Title> */}
-          <BarChart
+          {/* <BarChart
             style={{height: 300}}
             darkMode={AppGlobalData.isDarkMode}
             themeColor={TintColour()[500]}
@@ -104,11 +104,11 @@ class Graph extends PureComponent {
             darkMode={AppGlobalData.isDarkMode}
             chartData={type.y}
             dataLabels={type.x}
-          />
+          /> */}
         </ScrollView>
       </WoWsInfo>
     );
   }
 }
 
-export {Graph};
+// export {Graph};

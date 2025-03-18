@@ -2990,7 +2990,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"abort-controller@npm:^3.0.0":
+"abort-controller@npm:3.0.0, abort-controller@npm:^3.0.0":
   version: 3.0.0
   resolution: "abort-controller@npm:3.0.0"
   dependencies:
@@ -5066,6 +5066,13 @@ __metadata:
     cross-spawn: ^7.0.6
     signal-exit: ^4.0.1
   checksum: b2c1a6fc0bf0233d645d9fefdfa999abf37db1b33e5dab172b3cbfb0662b88bfbd2c9e7ab853533d199050ec6b65c03fcf078fc212d26e4990220e98c6930eef
+  languageName: node
+  linkType: hard
+
+"format-util@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "format-util@npm:1.0.5"
+  checksum: 0c8622e54ad899ca184ff0b4999e9ff9567965051bade140911209d60554c2ea4d43075763c1cf574d2f740966afe46469c9284357919505cdddf1a0b65ff85c
   languageName: node
   linkType: hard
 
@@ -7371,6 +7378,20 @@ __metadata:
   version: 3.0.4
   resolution: "nocache@npm:3.0.4"
   checksum: 6be9ee67eb561ecedc56d805c024c0fda55b9836ecba659c720073b067929aa4fe04bb7121480e004c9cf52989e62d8720f29a7fe0269f1a4941221a1e4be1c2
+  languageName: node
+  linkType: hard
+
+"node-fetch@npm:2.6.7":
+  version: 2.6.7
+  resolution: "node-fetch@npm:2.6.7"
+  dependencies:
+    whatwg-url: ^5.0.0
+  peerDependencies:
+    encoding: ^0.1.0
+  peerDependenciesMeta:
+    encoding:
+      optional: true
+  checksum: 8d816ffd1ee22cab8301c7756ef04f3437f18dace86a1dae22cf81db8ef29c0bf6655f3215cb0cdb22b420b6fe141e64b26905e7f33f9377a7fa59135ea3e10b
   languageName: node
   linkType: hard
 
@@ -9856,6 +9877,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"wowsinfo-service@file:../res/3rd/wowsinfo-service::locator=wowsinfo%40workspace%3A.":
+  version: 0.0.0-unspecified
+  resolution: "wowsinfo-service@file:../res/3rd/wowsinfo-service#../res/3rd/wowsinfo-service::hash=70ae01&locator=wowsinfo%40workspace%3A."
+  dependencies:
+    abort-controller: 3.0.0
+    format-util: ^1.0.5
+    node-fetch: 2.6.7
+    ws: 8.5.0
+  checksum: 18bcd3906c657a0f78b92e0a10215ee163fdb6d28c13e282df12b579b3bcdeaa7b94bc9b7f0f858d13bdbe669b7c4f7cd2e0a2164301cdafe18f5eb6e6c08104
+  languageName: node
+  linkType: hard
+
 "wowsinfo@workspace:.":
   version: 0.0.0-use.local
   resolution: "wowsinfo@workspace:."
@@ -9901,6 +9934,7 @@ __metadata:
     string-format: ^2.0.0
     typescript: 5.0.4
     web-streams-polyfill: ^4.0.0
+    wowsinfo-service: "file:../res/3rd/wowsinfo-service"
   languageName: unknown
   linkType: soft
 
@@ -9961,6 +9995,21 @@ __metadata:
     imurmurhash: ^0.1.4
     signal-exit: ^4.0.1
   checksum: 8dbb0e2512c2f72ccc20ccedab9986c7d02d04039ed6e8780c987dc4940b793339c50172a1008eed7747001bfacc0ca47562668a069a7506c46c77d7ba3926a9
+  languageName: node
+  linkType: hard
+
+"ws@npm:8.5.0":
+  version: 8.5.0
+  resolution: "ws@npm:8.5.0"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ^5.0.2
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 76f2f90e40344bf18fd544194e7067812fb1372b2a37865678d8f12afe4b478ff2ebc0c7c0aff82cd5e6b66fc43d889eec0f1865c2365d8f7a66d92da7744a77
   languageName: node
   linkType: hard
 

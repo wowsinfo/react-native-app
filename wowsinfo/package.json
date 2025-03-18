@@ -55,7 +55,8 @@
     "react-test-renderer": "19.0.0",
     "string-format": "^2.0.0",
     "typescript": "5.0.4",
-    "web-streams-polyfill": "^4.0.0"
+    "web-streams-polyfill": "^4.0.0",
+    "wowsinfo-service": "file:../res/3rd/wowsinfo-service"
   },
   "engines": {
     "node": ">=18"
