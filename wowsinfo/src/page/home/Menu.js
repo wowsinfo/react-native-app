@@ -317,7 +317,7 @@ class Menu extends Component {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="always"
           onLayout={this.updateBestWidth}>
-          <Animatable.View ref="AppName" animation="fadeInDown" easing="ease">
+          <Animatable.View animation="fadeInDown" easing="ease">
             <AppName />
           </Animatable.View>
           {this.renderProButton()}
