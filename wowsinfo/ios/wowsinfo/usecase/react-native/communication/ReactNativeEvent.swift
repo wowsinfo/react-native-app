@@ -17,7 +17,7 @@ class ReactNativeEvent: RCTEventEmitter {
     public static var shared: ReactNativeEvent!
     
     override init() {
-      super.init()
+        super.init()
         ReactNativeEvent.shared = self
     }
     

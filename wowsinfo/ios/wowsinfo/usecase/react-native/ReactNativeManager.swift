@@ -7,11 +7,16 @@
 
 import Foundation
 import React
+import React_RCTAppDelegate
+import ReactAppDependencyProvider
 
 typealias ReactNativeDictionary = [NSObject: Any]
 
 @objc(ReactNativeManager)
-class ReactNativeManager: NSObject, RCTBridgeModule {
+class ReactNativeManager: NSObject {
+    
+    private(set) var reactNativeDelegate: ReactNativeDelegate!
+    private(set) var reactNativeFactory: RCTReactNativeFactory!
     
     // Singleton
     static let shared = ReactNativeManager()
@@ -19,9 +24,6 @@ class ReactNativeManager: NSObject, RCTBridgeModule {
         super.init()
     }
     
-    /// Setup the bridge so only one JSC VM is created to save resources and simplify the communication between RN views in different parts of your native app,
-    /// you can have multiple views powered by React Native that are associated with a single JS runtime.
-    private(set) var bridge: RCTBridge!
     // An instance of the root view controller to show native alert or controllers
     private(set) weak var rootViewController: UIViewController?
     // From React Native side, to inform whether the Home Page is loaded
@@ -35,8 +37,10 @@ class ReactNativeManager: NSObject, RCTBridgeModule {
     #endif
     }()
     
-    func setup(with delegate: RCTBridgeDelegate, and launchOptions: [AnyHashable: Any]?) {
-        bridge = RCTBridge(delegate: delegate, launchOptions: launchOptions)
+    func setup() {
+        reactNativeDelegate = ReactNativeDelegate()
+        reactNativeFactory = RCTReactNativeFactory(delegate: reactNativeDelegate)
+        reactNativeDelegate?.dependencyProvider = RCTAppDependencyProvider()
     }
     
     func attach(rootViewController: UIViewController) {
@@ -44,8 +48,8 @@ class ReactNativeManager: NSObject, RCTBridgeModule {
     }
     
     /// The wrapper of RCTRootView
-    func getRCTRootView(with name: String, and props: ReactNativeDictionary? = nil) -> RCTRootView {
-        RCTRootView(bridge: bridge, moduleName: name, initialProperties: props)
+    func getRCTRootView(with name: String, and props: ReactNativeDictionary? = nil) -> UIView {
+        return reactNativeFactory.rootViewFactory.view(withModuleName: name, initialProperties: props)
     }
     
     /// Get a RCTRootView and wrap it in a view controller
@@ -66,5 +70,19 @@ class ReactNativeManager: NSObject, RCTBridgeModule {
     
     static func moduleName() -> String! {
         Self.description()
+    }
+}
+
+class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
+    override func sourceURL(for bridge: RCTBridge) -> URL? {
+        bundleURL()
+    }
+
+    override func bundleURL() -> URL? {
+#if DEBUG
+        RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+#else
+        Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+#endif
     }
 }

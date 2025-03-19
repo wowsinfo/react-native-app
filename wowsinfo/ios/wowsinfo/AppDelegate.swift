@@ -9,13 +9,13 @@ import UIKit
 import React
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // This is required or bottomSafeViewHeight from React-CoreModules/RCTRedBox.mm will complain
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        ReactNativeManager.shared.setup(with: self, and: launchOptions)
+        ReactNativeManager.shared.setup()
 //        QuickActionManager.shared.setDefaultActions()
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
 
@@ -31,9 +31,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         QuickActionManager.shared.performShortcut(shortcutItem: shortcutItem)
-    }
-    
-    func sourceURL(for bridge: RCTBridge!) -> URL! {
-        ReactNativeManager.shared.jsBundleURL
     }
 }

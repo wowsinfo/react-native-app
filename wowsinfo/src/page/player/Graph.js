@@ -111,4 +111,4 @@ class Graph extends PureComponent {
   }
 }
 
-// export {Graph};
+export {Graph};
