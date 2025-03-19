@@ -1,3 +1,9 @@
 {
+  "compilerOptions": {
+    "jsx": "react",
+    "paths": {
+      "wowsinfo-service": ["../res/3rd/wowsinfo-service/kotlin/wowsinfo-service.d.ts"],
+    },
+  },
   "extends": "@react-native/typescript-config/tsconfig.json"
 }
