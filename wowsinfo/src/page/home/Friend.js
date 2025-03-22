@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {List, Colors, IconButton} from 'react-native-paper';
+import {List, MD2Colors as Colors, IconButton} from 'react-native-paper';
 import {LOCAL} from '../../value/data';
 import {SafeAction, SafeStorage, SafeValue, bestWidth} from '../../core';
 import {SectionTitle} from '../../component';

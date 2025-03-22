@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Alert, BackHandler, View } from 'react-native';
-import { withTheme, DarkTheme, DefaultTheme } from 'react-native-paper';
+import { Alert, View } from 'react-native';
+import { withTheme, MD2DarkTheme as DarkTheme, MD2LightTheme as DefaultTheme } from 'react-native-paper';
 import {
   Menu,
   Settings,
@@ -227,7 +227,7 @@ class App extends Component {
   }
 
   handleBack = () => {
-    // todo: to be updated
+    // TODO: to be updated
     // if (Actions.state.routes.length === 1) {
     //   BackHandler.exitApp();
     // }

@@ -1,6 +1,6 @@
 import React  from 'react';
 import {SafeAreaView} from 'react-native';
-import {IconButton, Colors} from 'react-native-paper';
+import {IconButton, MD2Colors as Colors} from 'react-native-paper';
 import {SafeAction} from '../../core';
 import {lang} from '../../value/lang';
 import {setLastLocation} from '../../value/data';

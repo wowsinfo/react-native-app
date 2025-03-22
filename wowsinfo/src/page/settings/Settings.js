@@ -8,8 +8,8 @@ import {
   withTheme,
   Portal,
   Dialog,
-  DarkTheme,
-  DefaultTheme,
+  MD2DarkTheme as DarkTheme,
+  MD2LightTheme as DefaultTheme,
 } from 'react-native-paper';
 
 import {WoWsInfo, Touchable, SectionTitle} from '../../component';
@@ -91,7 +91,7 @@ class Settings extends Component {
   }
 
   componentWillUnmount() {
-    setTimeout(() => Actions.refresh(), 300);
+    // setTimeout(() => Actions.refresh(), 300);
   }
 
   render() {

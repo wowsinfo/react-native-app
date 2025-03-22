@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, ScrollView, Alert} from 'react-native';
 import {WoWsInfo, LoadingIndicator} from '../../component';
-import {Title, List, Button, Text, Colors} from 'react-native-paper';
+import {Title, List, Button, Text, MD2Colors as Colors} from 'react-native-paper';
 import {
   initConnection,
   getSubscriptions,

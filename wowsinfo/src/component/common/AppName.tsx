@@ -7,7 +7,7 @@
 import React from 'react';
 import {View, Image, Platform, StyleSheet} from 'react-native';
 import * as Anime from 'react-native-animatable';
-import {Title, Caption, Colors} from 'react-native-paper';
+import {Title, Caption, MD2Colors as Colors} from 'react-native-paper';
 import {lang} from '../../value/lang';
 import {LOCAL, APP, isProVersion} from '../../value/data';
 import {TintColour} from '../../value/colour';
@@ -28,7 +28,7 @@ export const AppName = () => {
     <Touchable style={horizontal}>
       <View style={container}>
         <Title
-          style={[appName, isProVersion() ? {color: Colors.orange500} : {}]}>
+          style={[appName, isProVersion() ? {color: MD2Colors as Colors.orange500} : {}]}>
           {lang.app_name}
         </Title>
         <Caption style={game}>{getVersion()}</Caption>

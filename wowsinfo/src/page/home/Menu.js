@@ -15,7 +15,7 @@ import {
   Share,
 } from 'react-native';
 import {isAndroid, isIos} from 'react-native-device-detection';
-import {List, Colors, FAB, Button, withTheme} from 'react-native-paper';
+import {List, MD2Colors as Colors, FAB, Button, withTheme} from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
 import {WoWsInfo, SectionTitle, AppName} from '../../component';
 import {lang} from '../../value/lang';

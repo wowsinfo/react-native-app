@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AppRegistry } from 'react-native';
 import App from './src/wowsinfo';
-import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
+import { Provider as PaperProvider, MD2LightTheme as DefaultTheme } from 'react-native-paper';
 import './src/value/global';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -18,7 +18,6 @@ if (typeof window !== 'undefined') {
 }
 
 export function Main() {
-  console.log('Main');
   return (
     <PaperProvider theme={DefaultTheme}>
       <NavigationContainer>
