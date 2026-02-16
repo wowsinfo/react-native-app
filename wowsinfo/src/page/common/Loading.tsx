@@ -1,5 +1,5 @@
 /**
- * Loading.js
+ * Loading.tsx
  *
  * The loading screen with loading animation
  */
@@ -12,8 +12,12 @@ import {RED} from 'react-native-material-color';
 import {getRandomAnimation} from '../../core';
 import {lang} from '../../value/lang';
 
-class Loading extends Component {
-  constructor(props) {
+interface LoadingProps {}
+
+interface LoadingState {}
+
+class Loading extends Component<LoadingProps, LoadingState> {
+  constructor(props: LoadingProps) {
     super(props);
 
     // this.state = {
@@ -35,7 +39,7 @@ class Loading extends Component {
   //   clearInterval();
   // }
 
-  render() {
+  render(): JSX.Element {
     const {container, logo, label} = styles;
 
     return (

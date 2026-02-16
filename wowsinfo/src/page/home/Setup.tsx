@@ -1,5 +1,5 @@
 /**
- * Setup.js
+ * Setup.tsx
  * This page is for setuping API language and server
  * It only displays when you first launched WoWs Info
  */
@@ -23,13 +23,26 @@ import {
   getCurrServer,
   setCurrServer,
   setAPILanguage,
+  APP,
 } from '../../value/data';
 import {Downloader} from '../../core';
 import {WoWsInfo, SectionTitle, LoadingIndicator} from '../../component';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
-class Setup extends Component {
-  constructor(props) {
+interface SetupProps {}
+
+interface SetupState {
+  loading: boolean;
+  error: boolean;
+  server: string[];
+  selected_server: number;
+  langList: Record<string, string>;
+  langData: string[];
+  selected_lang: string;
+}
+
+class Setup extends Component<SetupProps, SetupState> {
+  constructor(props: SetupProps) {
     super(props);
 
     this.state = {
@@ -37,16 +50,16 @@ class Setup extends Component {
       error: false,
       server: SERVER,
       selected_server: 3,
-      langList: [],
-      langData: {},
+      langList: {},
+      langData: [],
       selected_lang: 'en',
     };
 
     let d = new Downloader(getCurrServer());
-    d.getLanguage().then(data => {
+    d.getLanguage().then((data: Record<string, string> | null) => {
       if (data) {
         const langList = data;
-        const langData = [];
+        const langData: string[] = [];
 
         for (const key in langList) {
           langData.push(key);
@@ -61,7 +74,7 @@ class Setup extends Component {
     });
   }
 
-  render() {
+  render(): JSX.Element {
     const {loading, server, selected_server, langList, selected_lang} =
       this.state;
     const {fab, titleStyle, wrapView, scroll} = styles;
@@ -74,7 +87,7 @@ class Setup extends Component {
           </Subheading>
           <View style={wrapView}>
             {server.map((_, index) => (
-              <Button onPress={() => this.updateServer(index)}>
+              <Button key={index} onPress={() => this.updateServer(index)}>
                 {lang.server_name[index]}
               </Button>
             ))}
@@ -98,7 +111,7 @@ class Setup extends Component {
     );
   }
 
-  renderAPILanguage() {
+  renderAPILanguage(): JSX.Element {
     const {loading, error, langData, langList} = this.state;
     const {titleStyle, wrapView} = styles;
 
@@ -120,8 +133,8 @@ class Setup extends Component {
 
     return (
       <View style={wrapView}>
-        {langData.map(item => (
-          <Button onPress={() => this.updateApiLanguage(item)}>
+        {langData.map((item: string) => (
+          <Button key={item} onPress={() => this.updateApiLanguage(item)}>
             {langList[item]}
           </Button>
         ))}
@@ -129,18 +142,18 @@ class Setup extends Component {
     );
   }
 
-  updateServer(index) {
+  updateServer(index: number): void {
     setCurrServer(index);
     this.setState({selected_server: index});
   }
 
-  updateApiLanguage(lang) {
+  updateApiLanguage(lang: string): void {
     setAPILanguage(lang);
     this.setState({selected_lang: lang});
   }
 
   // Get selection and download data from api
-  finishSetup() {
+  finishSetup(): void {
     Actions.reset('Menu');
   }
 }

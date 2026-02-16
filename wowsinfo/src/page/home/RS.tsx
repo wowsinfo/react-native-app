@@ -49,10 +49,64 @@ import {FlatGrid} from 'react-native-super-grid';
 import {lang} from '../../value/lang';
 import KeepAwake from 'react-native-keep-awake';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
-import { TintColour } from '../../value/colour';
+import {TintColour} from '../../value/colour';
 
-class RS extends Component {
-  constructor(props) {
+interface PvpData {
+  battles: number;
+  wins: number;
+  damage_dealt: number;
+  xp: number;
+  frags: number;
+  survived_battles: number;
+}
+
+interface PlayerInfo {
+  account_id: number | null;
+  nickname?: string;
+  name?: string;
+  ship_id: number;
+  relation: number;
+  pvp?: PvpData;
+  ap?: number;
+  server?: number;
+  shipId?: number;
+  id?: number;
+}
+
+interface RSData {
+  clientVersionFromExe: string;
+  dateTime: string;
+  duration: number;
+  gameLogic: string;
+  mapDisplayName: string;
+  matchGroup: string;
+  name: string;
+  weatherParams: Record<string, string[]>;
+  vehicles: any[];
+}
+
+interface RSProps {
+  theme: any;
+}
+
+interface RSState {
+  ip: string;
+  rs: RSData | null;
+  valid: boolean;
+  info: boolean;
+  loading: boolean;
+  battleTime: string;
+  allay: PlayerInfo[];
+  allayInfo: Record<string, any>;
+  enemy: PlayerInfo[];
+  enemyInfo: Record<string, any>;
+}
+
+class RS extends Component<RSProps, RSState> {
+  private domain: string;
+  private interval?: NodeJS.Timeout;
+
+  constructor(props: RSProps) {
     super(props);
     setLastLocation('RS');
     this.state = {
@@ -75,7 +129,7 @@ class RS extends Component {
     this.domain = getCurrDomain();
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     const {ip} = this.state;
     KeepAwake.activate();
     // Enter rs mode when there is a valid ip
@@ -84,13 +138,13 @@ class RS extends Component {
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     KeepAwake.deactivate();
     // reset the theme colour back
     this.props.theme.colors.primary = TintColour()[500];
   }
 
-  render() {
+  render(): JSX.Element {
     const {container, input} = styles;
     const {ip, rs, valid} = this.state;
 
@@ -129,7 +183,7 @@ class RS extends Component {
     );
   }
 
-  renderPlayer() {
+  renderPlayer(): JSX.Element {
     const {loading, allay, enemy} = this.state;
     if (loading) {
       return <LoadingIndicator />;
@@ -168,7 +222,7 @@ class RS extends Component {
     );
   }
 
-  renderPlayerCell(info) {
+  renderPlayerCell(info: PlayerInfo): JSX.Element {
     const {playerName, cell} = styles;
     const {nickname, name} = info;
     let pName = SafeValue(nickname, name);
@@ -195,7 +249,7 @@ class RS extends Component {
     );
   }
 
-  renderMapInfo(rs) {
+  renderMapInfo(rs: RSData | null): JSX.Element | null {
     if (rs === null) {
       return null;
     }
@@ -251,7 +305,7 @@ class RS extends Component {
    * Check the IP format and try to send a request to it
    * @param {string} ip
    */
-  async validIP(ip) {
+  async validIP(ip: string): Promise<void> {
     let url = 'http://' + ip.split('/').join('') + ':8605';
     try {
       // Only want to know if we can access it
@@ -267,7 +321,7 @@ class RS extends Component {
     }
   }
 
-  async getArenaInfo(url) {
+  async getArenaInfo(url: string): Promise<void> {
     try {
       let text = await fetch(url).then(html => html.text());
       if (text !== '[]') {
@@ -314,15 +368,15 @@ class RS extends Component {
     }
   }
 
-  async appendExtraInfo(player) {
+  async appendExtraInfo(player: PlayerInfo): Promise<PlayerInfo> {
     const {name, shipId} = player;
-    if (name.startsWith(':')) {
+    if (name && name.startsWith(':')) {
       return player;
     }
     let idInfo = await SafeFetch.get(WoWsAPI.PlayerSearch, this.domain, name);
     let playerID = Guard(idInfo, 'data.0', null);
     if (playerID != null) {
-      player.ship_id = player.shipId;
+      player.ship_id = player.shipId!;
       delete player.shipId;
       delete player.id;
       delete player.name;

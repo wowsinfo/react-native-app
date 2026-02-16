@@ -1,11 +1,11 @@
 /**
- * Search.js
+ * Search.tsx
  *
  * This is the search screen to find players and clans
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet, ScrollView, KeyboardAvoidingView} from 'react-native';
+import {View, StyleSheet, ScrollView, KeyboardAvoidingView, LayoutChangeEvent} from 'react-native';
 import {Searchbar} from 'react-native-paper';
 import {WoWsInfo, SectionTitle, PlayerCell} from '../../component';
 import {
@@ -19,8 +19,40 @@ import {WoWsAPI} from '../../value/api';
 import {Friend} from './Friend';
 import {lang} from '../../value/lang';
 
-class Search extends Component {
-  constructor(props) {
+interface PlayerItem {
+  account_id: number;
+  nickname: string;
+  server: number;
+}
+
+interface ClanItem {
+  clan_id: number;
+  tag: string;
+  server: number;
+}
+
+interface SearchResult {
+  player: PlayerItem[];
+  clan: ClanItem[];
+}
+
+interface SearchProps {}
+
+interface SearchState {
+  search: string;
+  server: string;
+  result: SearchResult;
+  online: string | number;
+  showFriend: boolean;
+  goodWidth: number;
+}
+
+class Search extends Component<SearchProps, SearchState> {
+  private prefix: string;
+  private delayedRequest?: NodeJS.Timeout;
+  private refs: any;
+
+  constructor(props: SearchProps) {
     super(props);
     setLastLocation('Search');
     this.state = {
@@ -36,18 +68,18 @@ class Search extends Component {
     // com -> na
     this.prefix = getCurrPrefix();
 
-    SafeFetch.get(WoWsAPI.PlayerOnline, domain).then(num => {
+    SafeFetch.get(WoWsAPI.PlayerOnline, domain).then((num: any) => {
       let online = Guard(num, 'data.wows.0.players_online', '???');
       this.setState({online: online});
     });
   }
 
-  updateWidth = event => {
+  updateWidth = (event: LayoutChangeEvent): void => {
     const newWidth = event.nativeEvent.layout.width;
     this.setState({goodWidth: bestWidth(400, newWidth)});
   };
 
-  render() {
+  render(): JSX.Element {
     const {search, online} = this.state;
     const {searchBar, scroll} = styles;
     return (
@@ -80,7 +112,7 @@ class Search extends Component {
     );
   }
 
-  renderContent() {
+  renderContent(): JSX.Element {
     const {search, result, showFriend} = this.state;
     if (showFriend && search.length < 2) {
       return <Friend />;
@@ -100,9 +132,9 @@ class Search extends Component {
 
   /**
    *
-   * @param {any[]} clan
+   * @param {ClanItem[]} clan
    */
-  renderClan(clan) {
+  renderClan(clan: ClanItem[]): JSX.Element | null {
     if (clan.length > 0) {
       return (
         <View style={styles.wrap}>
@@ -123,9 +155,9 @@ class Search extends Component {
 
   /**
    *
-   * @param {any[]} player
+   * @param {PlayerItem[]} player
    */
-  renderPlayer(player) {
+  renderPlayer(player: PlayerItem[]): JSX.Element | null {
     if (player.length > 0) {
       return (
         <View style={styles.wrap}>
@@ -147,7 +179,7 @@ class Search extends Component {
   /**
    * Search player and clan
    */
-  searchAll = text => {
+  searchAll = (text: string): void => {
     // Reset search
     if (text.length < 2) {
       this.setState({result: {player: [], clan: []}});
@@ -159,17 +191,17 @@ class Search extends Component {
     this.delayedRequest = setTimeout(() => {
       let domain = getCurrDomain();
       // Save all clans and players
-      let all = {player: [], clan: []};
+      let all: SearchResult = {player: [], clan: []};
       let length = text.length;
 
       if (length > 1 && length < 6) {
         // For clan, only 2 - 5
-        SafeFetch.get(WoWsAPI.ClanSearch, domain, text).then(result => {
+        SafeFetch.get(WoWsAPI.ClanSearch, domain, text).then((result: any) => {
           let data = Guard(result, 'data', null);
           if (data == null) {
             // Error here
           } else {
-            data.forEach(v => (v.server = getCurrServer()));
+            data.forEach((v: ClanItem) => (v.server = getCurrServer()));
             all.clan = data;
             this.setState({result: all});
           }
@@ -178,12 +210,12 @@ class Search extends Component {
 
       if (length > 2) {
         // For player, 3+
-        SafeFetch.get(WoWsAPI.PlayerSearch, domain, text).then(result => {
+        SafeFetch.get(WoWsAPI.PlayerSearch, domain, text).then((result: any) => {
           let data = Guard(result, 'data', null);
           if (data == null) {
             // Error here
           } else {
-            data.forEach(v => (v.server = getCurrServer()));
+            data.forEach((v: PlayerItem) => (v.server = getCurrServer()));
             all.player = data;
             this.setState({result: all});
           }

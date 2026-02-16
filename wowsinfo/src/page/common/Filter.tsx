@@ -1,5 +1,5 @@
 /**
- * Filter.js
+ * Filter.tsx
  *
  * Filter ships in wiki and player profile
  */
@@ -8,9 +8,30 @@ import React, {Component} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {lang} from '../../value/lang';
 import {Button, Checkbox, List, TextInput} from 'react-native-paper';
+import {ThemeColour, TintColour} from '../../value/colour';
 
-class Filter extends Component {
-  constructor(props) {
+interface FilterProps {
+  applyFunc: () => void;
+  resetFunc: () => void;
+  wiki?: boolean;
+}
+
+interface FilterState {
+  filter: boolean;
+  tier: string;
+  nation: string;
+  type: string;
+  name: string;
+  premium: boolean;
+  accordion: number;
+}
+
+class Filter extends Component<FilterProps, FilterState> {
+  private tierList: string[];
+  private nationList: string[];
+  private typeList: string[];
+
+  constructor(props: FilterProps) {
     super(props);
 
     this.state = {
@@ -24,21 +45,35 @@ class Filter extends Component {
       // 0 for none expanded
       accordion: 0,
     };
+
+    this.tierList = [];
+    this.nationList = [];
+    this.typeList = [];
   }
 
-  render() {
+  hideAccordion = (id: number): void => {
+    const {accordion} = this.state;
+    if (accordion === id) {
+      this.setState({accordion: 0});
+    } else {
+      this.setState({accordion: id});
+    }
+  };
+
+  render(): JSX.Element | null {
     const {input, apply} = styles;
     const {applyFunc, resetFunc, wiki} = this.props;
 
     if (wiki) {
       const {filter, tier, nation, type, name, premium, accordion} = this.state;
+      const textColour = TintColour()[500];
 
       return (
         <View style={{flex: 1, backgroundColor: ThemeColour()}}>
           <TextInput
             style={input}
             value={name}
-            onChangeText={text => this.setState({name: text})}
+            onChangeText={(text: string) => this.setState({name: text})}
             autoCorrect={false}
             autoCapitalize="none"
             placeholder={lang.wiki_warship_filter_placeholder}
@@ -67,7 +102,7 @@ class Filter extends Component {
                 );
               }}
               numColumns={2}
-              keyExtractor={item => item}
+              keyExtractor={(item: string) => item}
             />
           </List.Accordion>
           <List.Accordion
@@ -75,7 +110,7 @@ class Filter extends Component {
             expanded={accordion === 2}
             onPress={() => this.hideAccordion(2)}>
             <FlatList
-              data={nationList}
+              data={this.nationList}
               renderItem={({item}) => {
                 return (
                   <Button
@@ -87,7 +122,7 @@ class Filter extends Component {
                 );
               }}
               numColumns={2}
-              keyExtractor={item => item}
+              keyExtractor={(item: string) => item}
             />
           </List.Accordion>
           <List.Accordion
@@ -95,7 +130,7 @@ class Filter extends Component {
             expanded={accordion === 3}
             onPress={() => this.hideAccordion(3)}>
             <FlatList
-              data={typeList}
+              data={this.typeList}
               renderItem={({item}) => {
                 return (
                   <Button
@@ -107,7 +142,7 @@ class Filter extends Component {
                 );
               }}
               numColumns={2}
-              keyExtractor={item => item}
+              keyExtractor={(item: string) => item}
             />
           </List.Accordion>
           <Button style={apply} onPress={() => resetFunc()}>
@@ -119,6 +154,8 @@ class Filter extends Component {
         </View>
       );
     }
+
+    return null;
   }
 }
 

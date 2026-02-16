@@ -1,5 +1,5 @@
 /**
- * Menu.js
+ * Menu.tsx
  *
  * Menu shows wiki and extra
  * It also has the ability to search players and clans
@@ -13,6 +13,7 @@ import {
   Linking,
   View,
   Share,
+  LayoutChangeEvent,
 } from 'react-native';
 import {isAndroid, isIos} from 'react-native-device-detection';
 import {List, Colors, FAB, Button, withTheme} from 'react-native-paper';
@@ -43,8 +44,40 @@ import {ReactNativeManager} from '../../core/native/ReactNativeManager';
 import {QuickAction} from '../../core/native/QuickAction';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
-class Menu extends Component {
-  constructor(props) {
+interface MenuItem {
+  t: string;
+  i?: any;
+  p?: () => void;
+  d?: string;
+}
+
+interface UserInfo {
+  account_id: string;
+  nickname: string;
+}
+
+interface MenuProps {
+  theme: any;
+}
+
+interface MenuState {
+  loading: boolean;
+  main: UserInfo;
+  bestItemWidth: number;
+}
+
+class Menu extends Component<MenuProps, MenuState> {
+  private first: boolean;
+  private wiki: MenuItem[];
+  private prefix: string;
+  private offical_websites: MenuItem[];
+  private stats_info_website: MenuItem[];
+  private ultility_websites: MenuItem[];
+  private ingame_websites: MenuItem[];
+  private links: MenuItem[];
+  private youtubers: MenuItem[];
+
+  constructor(props: MenuProps) {
     super(props);
 
     this.first = getFirstLaunch();
@@ -54,10 +87,19 @@ class Menu extends Component {
       bestItemWidth: bestWidth(400),
     };
 
+    this.wiki = [];
+    this.prefix = '';
+    this.offical_websites = [];
+    this.stats_info_website = [];
+    this.ultility_websites = [];
+    this.ingame_websites = [];
+    this.links = [];
+    this.youtubers = [];
+
     this.getData();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(): void {
     this.getData();
     const {main} = this.state;
     let curr = AppGlobalData.get(LOCAL.userInfo);
@@ -67,7 +109,7 @@ class Menu extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     ReactNativeManager.appHasLoaded();
     QuickAction.performPendingShortcut();
 
@@ -77,12 +119,12 @@ class Menu extends Component {
       // Update data here if it is not first launch
       let dn = new Downloader(getCurrServer());
       const update = new Promise(async (r, _) => {
-        const data = await dn.updateAll(true);
+        const data: any = await dn.updateAll(true);
         r(data);
       });
 
       Promise.race([time, update])
-        .then(obj => {
+        .then((obj: any) => {
           if (!obj) {
             Alert.alert(lang.error_title, lang.error_timeout);
             this.setState({loading: false});
@@ -134,7 +176,7 @@ class Menu extends Component {
     }
   }
 
-  getData() {
+  getData(): void {
     // Data for the list
     this.wiki = [
       {
@@ -285,12 +327,12 @@ class Menu extends Component {
     ];
   }
 
-  updateBestWidth = event => {
+  updateBestWidth = (event: LayoutChangeEvent): void => {
     const goodWidth = event.nativeEvent.layout.width;
     this.setState({bestItemWidth: bestWidth(400, goodWidth)});
   };
 
-  render() {
+  render(): JSX.Element {
     const {loading, main} = this.state;
     if (loading) {
       return <Loading />;
@@ -331,7 +373,7 @@ class Menu extends Component {
     );
   }
 
-  renderProButton() {
+  renderProButton(): JSX.Element | null {
     if (isProVersion()) {
       return null;
     }
@@ -348,7 +390,7 @@ class Menu extends Component {
     );
   }
 
-  renderContent() {
+  renderContent(): JSX.Element {
     const {icon, wrap} = styles;
     const {bestItemWidth} = this.state;
     const store = isAndroid ? APP.GooglePlay : APP.AppStore;
@@ -356,12 +398,12 @@ class Menu extends Component {
       <View style={{marginBottom: 80}}>
         <SectionTitle title={lang.wiki_section_title} />
         <View style={wrap}>
-          {this.wiki.map(item => (
+          {this.wiki.map((item: MenuItem) => (
             <List.Item
               key={item.t}
               title={item.t}
               style={{padding: 0, paddingLeft: 8, width: bestItemWidth}}
-              onPress={() => item.p()}
+              onPress={() => item.p && item.p()}
               left={() => (
                 <List.Icon
                   style={[icon, ThemeBackColour()]}
@@ -432,58 +474,59 @@ class Menu extends Component {
         <SectionTitle title={lang.website_title} />
         <List.Section title={lang.website_official_title} expanded>
           <View style={wrap}>
-            {this.offical_websites.map(item => (
+            {this.offical_websites.map((item: MenuItem) => (
               <List.Item
                 key={item.t}
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => SimpleViewHandler.openURL(item.d)}
+                onPress={() => SimpleViewHandler.openURL(item.d!)}
               />
             ))}
           </View>
         </List.Section>
         <List.Section title={lang.content_creator_title} expanded>
           <View style={wrap}>
-            {this.links.map(item => (
-              <List.Item key={item.t}
+            {this.links.map((item: MenuItem) => (
+              <List.Item
+                key={item.t}
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => SimpleViewHandler.openExternalURL(item.d)}
+                onPress={() => SimpleViewHandler.openExternalURL(item.d!)}
               />
             ))}
           </View>
         </List.Section>
         <List.Section title={lang.website_stats_news_title} expanded>
           <View style={wrap}>
-            {this.stats_info_website.map(item => (
+            {this.stats_info_website.map((item: MenuItem) => (
               <List.Item
                 key={item.t}
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => SimpleViewHandler.openURL(item.d)}
+                onPress={() => SimpleViewHandler.openURL(item.d!)}
               />
             ))}
           </View>
         </List.Section>
         <List.Section title={lang.website_utility_title} expanded>
           <View style={wrap}>
-            {this.ultility_websites.map(item => (
+            {this.ultility_websites.map((item: MenuItem) => (
               <List.Item
                 key={item.t}
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => SimpleViewHandler.openURL(item.d)}
+                onPress={() => SimpleViewHandler.openURL(item.d!)}
               />
             ))}
           </View>
         </List.Section>
         {/* <List.Section title={lang.youtuber_title} expanded>
           <View style={wrap}>
-            {this.youtubers.map(item => (
+            {this.youtubers.map((item: MenuItem) => (
               <List.Item key={item.t}
                 title={item.t}
                 description={item.d}
@@ -497,13 +540,13 @@ class Menu extends Component {
           title={lang.website_ingame_title}
           description={lang.website_wargaming_login_subtitle}>
           <View style={wrap}>
-            {this.ingame_websites.map(item => (
+            {this.ingame_websites.map((item: MenuItem) => (
               <List.Item
                 key={item.t}
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => SimpleViewHandler.openURL(item.d)}
+                onPress={() => SimpleViewHandler.openURL(item.d!)}
               />
             ))}
           </View>
@@ -514,7 +557,7 @@ class Menu extends Component {
     );
   }
 
-  shareApp = store => {
+  shareApp = (store: string): void => {
     if (isIos) {
       Share.share({url: store});
     } else {

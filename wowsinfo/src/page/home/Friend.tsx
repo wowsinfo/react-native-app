@@ -1,15 +1,40 @@
 import React, {PureComponent} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, LayoutChangeEvent} from 'react-native';
 import {List, Colors, IconButton} from 'react-native-paper';
 import {LOCAL} from '../../value/data';
 import {SafeAction, SafeStorage, SafeValue, bestWidth} from '../../core';
 import {SectionTitle} from '../../component';
 import {lang} from '../../value/lang';
 
-class Friend extends PureComponent {
-  constructor(props) {
+interface PlayerItem {
+  account_id: number;
+  nickname: string;
+  server: number;
+}
+
+interface ClanItem {
+  clan_id: number;
+  tag: string;
+  server: number;
+}
+
+interface FriendList {
+  player: Record<string, PlayerItem>;
+  clan: Record<string, ClanItem>;
+}
+
+interface FriendProps {}
+
+interface FriendState {
+  player: PlayerItem[];
+  clan: ClanItem[];
+  goodWidth: number;
+}
+
+class Friend extends PureComponent<FriendProps, FriendState> {
+  constructor(props: FriendProps) {
     super(props);
-    let all = AppGlobalData.get(LOCAL.friendList);
+    let all: FriendList = AppGlobalData.get(LOCAL.friendList);
 
     let player = this.getPlayer(all);
     let clan = this.getClan(all);
@@ -21,28 +46,28 @@ class Friend extends PureComponent {
     };
   }
 
-  updateBestWidth = event => {
+  updateBestWidth = (event: LayoutChangeEvent): void => {
     const newWidth = event.nativeEvent.layout.width;
     this.setState({goodWidth: bestWidth(400, newWidth)});
   };
 
-  getPlayer = all => {
-    let player = [];
+  getPlayer = (all: FriendList): PlayerItem[] => {
+    let player: PlayerItem[] = [];
     for (let ID in all.player) {
       player.push(all.player[ID]);
     }
     return player;
   };
 
-  getClan = all => {
-    let clan = [];
+  getClan = (all: FriendList): ClanItem[] => {
+    let clan: ClanItem[] = [];
     for (let ID in all.clan) {
       clan.push(all.clan[ID]);
     }
     return clan;
   };
 
-  render() {
+  render(): JSX.Element {
     const {player, clan, goodWidth} = this.state;
 
     return (
@@ -72,7 +97,7 @@ class Friend extends PureComponent {
           title={`${lang.friend_player_title} - ${SafeValue(player.length, 0)}`}
         />
         <View style={styles.wrap}>
-          {player.map(item => (
+          {player.map((item: PlayerItem) => (
             <List.Item
               style={{width: goodWidth}}
               title={item.nickname}
@@ -93,25 +118,25 @@ class Friend extends PureComponent {
     );
   }
 
-  removeFriend(info) {
+  removeFriend(info: PlayerItem): void {
     let str = LOCAL.friendList;
     delete AppGlobalData.get(str).player[info.account_id];
     SafeStorage.set(str, AppGlobalData.get(str));
     this.setState({player: this.getPlayer(AppGlobalData.get(str))});
   }
 
-  removeClan(info) {
+  removeClan(info: ClanItem): void {
     let str = LOCAL.friendList;
     delete AppGlobalData.get(str).clan[info.clan_id];
     SafeStorage.set(str, AppGlobalData.get(str));
     this.setState({clan: this.getClan(AppGlobalData.get(str))});
   }
 
-  pushToPlayer(info) {
+  pushToPlayer(info: PlayerItem): void {
     SafeAction('Statistics', {info: info});
   }
 
-  pushToClan(info) {
+  pushToClan(info: ClanItem): void {
     SafeAction('ClanInfo', {info: info});
   }
 }
