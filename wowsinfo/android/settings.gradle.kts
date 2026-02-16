@@ -6,6 +6,8 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+    
+    includeBuild("../node_modules/@react-native/gradle-plugin")
 }
 
 plugins {
