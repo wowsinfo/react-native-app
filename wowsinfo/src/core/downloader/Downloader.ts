@@ -19,6 +19,7 @@ class Downloader {
   private new: boolean;
 
   constructor(_server: number) {
+    // _server parameter is intentionally unused - server domain is retrieved from getCurrDomain()
     // Convert server index to string
     this.domain = getCurrDomain();
     this.language = langStr();

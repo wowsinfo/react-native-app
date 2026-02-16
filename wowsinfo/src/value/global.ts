@@ -1,3 +1,5 @@
+import { Theme } from 'react-native-paper';
+
 /**
  * This file contains all the global data that is used throughout the app.
  * This is an improvement over the previous version where we used a global.
@@ -41,8 +43,8 @@ class AppGlobalData {
   }
 
   // Theme
-  static lightTheme: any = {};
-  static darkTheme: any = {};
+  static lightTheme: Theme = {} as Theme;
+  static darkTheme: Theme = {} as Theme;
   static isDarkMode: boolean = false;
 
   // App Settings

@@ -46,7 +46,7 @@ class Rank extends PureComponent<RankProps, RankState> {
   render(): JSX.Element | null {
     const {centerText} = styles;
     const {data, ship} = this.state;
-    if (data == null || data.length == 0) {
+    if (data === null || data.length === 0) {
       return null;
     }
 
@@ -66,7 +66,7 @@ class Rank extends PureComponent<RankProps, RankState> {
             return (
               <Touchable
                 onPress={
-                  shipData == null || shipData.length == 0
+                  shipData === null || shipData.length === 0
                     ? null
                     : () => SafeAction('PlayerShip', {data: shipData})
                 }
@@ -91,19 +91,19 @@ class Rank extends PureComponent<RankProps, RankState> {
       return null;
     }
     // find the other key which is not season
-    const rank_key = Object.keys(data).find(key => key != 'season');
-    if (rank_key == null) {
+    const rank_key = Object.keys(data).find(key => key !== 'season');
+    if (rank_key === null) {
       return null;
     }
     const {rank_solo, rank_div2, rank_div3} = data[rank_key];
     let info = rank_solo;
-    if (info == null) {
+    if (info === null) {
       info = rank_div2;
     }
-    if (info == null) {
+    if (info === null) {
       info = rank_div3;
     }
-    if (info == null) {
+    if (info === null) {
       return null;
     }
     return <Info6Icon data={info} compact />;

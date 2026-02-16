@@ -345,7 +345,7 @@ class RS extends Component<RSProps, RSState> {
                 }
 
                 // Set a random id (1 in 88888888 is really small but it can happens)
-                if (player.account_id == null) {
+                if (player.account_id === null) {
                   player.account_id = random(88888888);
                 }
 

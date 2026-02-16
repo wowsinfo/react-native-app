@@ -338,7 +338,7 @@ class WarshipDetail extends PureComponent<
             title={lang.warship_survivability_armour}
             info={`${range.min} - ${range.max} mm`}
           />
-          {flood_prob == 0 ? null : (
+          {flood_prob === 0 ? null : (
             <InfoLabel
               title={lang.warship_survivability_protection}
               info={`${flood_prob}%`}
@@ -515,7 +515,7 @@ class WarshipDetail extends PureComponent<
                   title={lang.warship_weapon_speed}
                   info={`${bullet_speed} m/s`}
                 />
-                {burn_probability == null ? null : (
+                {burn_probability === null ? null : (
                   <InfoLabel
                     title={lang.warship_weapon_fire_chance}
                     info={`🔥${burn_probability}%`}
@@ -865,7 +865,7 @@ class WarshipDetail extends PureComponent<
    * Render next ship
    */
   renderNextShip(next_ships) {
-    if (!next_ships || Object.keys(next_ships).length == 0) {
+    if (!next_ships || Object.keys(next_ships).length === 0) {
       return null;
     }
     console.log(next_ships);
