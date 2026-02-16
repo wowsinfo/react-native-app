@@ -7,7 +7,6 @@ buildscript {
         set("compileSdkVersion", 35)
         set("targetSdkVersion", 35)
         set("ndkVersion", "26.1.10909125")
-        set("kotlinVersion", "1.9.25")
     }
     repositories {
         google()
