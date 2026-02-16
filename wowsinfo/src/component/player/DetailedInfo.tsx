@@ -127,7 +127,6 @@ class DetailedInfo extends Component<DetailedInfoProps, DetailedInfoState> {
 
   renderInfo(data: PvpData, playerMode: boolean): JSX.Element {
     const {container, horizontal} = styles;
-    console.log(data);
     const {
       art_agro,
       torpedo_agro,
@@ -306,8 +305,7 @@ class DetailedInfo extends Component<DetailedInfoProps, DetailedInfoState> {
     }
     const {container, horizontal} = styles;
     const {frags, max_frags_battle, hits, shots} = weapon.data!;
-    console.log(weapon);
-    if (frags == 0) {
+    if (frags === 0) {
       return null;
     }
     return (

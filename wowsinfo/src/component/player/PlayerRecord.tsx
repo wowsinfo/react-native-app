@@ -156,7 +156,7 @@ class PlayerRecord extends Component<PlayerRecordProps, PlayerRecordState> {
     if (!id) {
       return null;
     }
-    let ship = AppGlobalData.get(SAVED.warship)[id];
+    const ship = AppGlobalData.get(SAVED.warship)[id];
     return (
       <View style={[record, {width: this.state.goodWidth}]} key={name}>
         <View style={container}>
@@ -183,7 +183,7 @@ class PlayerRecord extends Component<PlayerRecordProps, PlayerRecordState> {
     if (!max_frags_ship_id) {
       return null;
     }
-    let bestShip = AppGlobalData.get(SAVED.warship)[max_frags_ship_id];
+    const bestShip = AppGlobalData.get(SAVED.warship)[max_frags_ship_id];
     return (
       <View style={{width: this.state.goodWidth}} key={name}>
         <SectionTitle title={name} center />
