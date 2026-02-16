@@ -210,7 +210,7 @@ yarn start --reset-cache
 
 - [React Native 0.83 Release Notes](https://reactnative.dev/blog)
 - [React 19 Release Notes](https://react.dev/blog/2024/12/05/react-19)
-- [Kotlin 2.0 Release Notes](https://kotlinlang.org/docs/whatsnew20.html)
+- [Kotlin 2.1 Release Notes](https://kotlinlang.org/docs/whatsnew21.html)
 - [Swift 6.0 Documentation](https://www.swift.org/documentation/)
 - [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/)
 - [Android Gradle Plugin Release Notes](https://developer.android.com/studio/releases/gradle-plugin)
