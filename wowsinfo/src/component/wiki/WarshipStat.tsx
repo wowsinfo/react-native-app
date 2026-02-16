@@ -1,5 +1,5 @@
 /**
- * WarshipStat.js
+ * WarshipStat.tsx
  *
  * It renders a horizontal bar with a label and number on top
  */
@@ -9,8 +9,38 @@ import {View, StyleSheet} from 'react-native';
 import {ProgressBar, Caption} from 'react-native-paper';
 import {lang} from '../../value/lang';
 
-class WarshipStat extends Component {
-  render() {
+interface Weaponry {
+  anti_aircraft?: number;
+  aircraft?: number;
+  artillery?: number;
+  torpedoes?: number;
+}
+
+interface Mobility {
+  total?: number;
+}
+
+interface Armour {
+  total?: number;
+}
+
+interface Concealment {
+  total?: number;
+}
+
+interface WarshipProfile {
+  mobility: Mobility;
+  weaponry: Weaponry;
+  concealment: Concealment;
+  armour: Armour;
+}
+
+interface WarshipStatProps {
+  profile: WarshipProfile;
+}
+
+class WarshipStat extends Component<WarshipStatProps> {
+  render(): JSX.Element {
     const {container} = styles;
     const {mobility, weaponry, concealment, armour} = this.props.profile;
     const {anti_aircraft, aircraft, artillery, torpedoes} = weaponry;
@@ -28,7 +58,7 @@ class WarshipStat extends Component {
     );
   }
 
-  renderProgress(value, title) {
+  renderProgress(value: number | undefined, title: string): JSX.Element | null {
     if (value && value > 0) {
       const {header} = styles;
       return (

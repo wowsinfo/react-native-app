@@ -1,11 +1,11 @@
 /**
- * DetailedInfo.js
+ * DetailedInfo.tsx
  *
  * Render detailed information for player and player ships
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, LayoutChangeEvent} from 'react-native';
 import {InfoLabel} from '../common/InfoLabel';
 import {roundTo, humanTimeString, currDeviceWidth} from '../../core';
 import {lang} from '../../value/lang';
@@ -15,8 +15,60 @@ import {Space} from '../common/Space';
 import {SectionTitle} from '../common/SectionTitle';
 import {onlyProVersion} from '../../value/data';
 
-class DetailedInfo extends Component {
-  constructor(props) {
+interface WeaponData {
+  frags: number;
+  max_frags_battle: number;
+  max_frags_ship_id?: number;
+  hits?: number;
+  shots?: number;
+}
+
+interface PvpData {
+  art_agro?: number;
+  torpedo_agro?: number;
+  battles: number;
+  wins: number;
+  losses: number;
+  draws: number;
+  survived_battles: number;
+  survived_wins: number;
+  damage_dealt: number;
+  damage_scouting?: number;
+  planes_killed: number;
+  ships_spotted: number;
+  xp: number;
+  frags: number;
+  max_damage_dealt?: number;
+  max_damage_scouting?: number;
+  max_frags_battle?: number;
+  max_planes_killed?: number;
+  max_ships_spotted?: number;
+  max_xp?: number;
+  max_damage_dealt_ship_id?: number;
+  aircraft?: WeaponData;
+  main_battery: WeaponData;
+  ramming?: WeaponData;
+  second_battery?: WeaponData;
+  torpedoes?: WeaponData;
+}
+
+interface DetailedInfoData {
+  last_battle_time: number;
+  pvp: PvpData;
+}
+
+interface DetailedInfoProps {
+  data?: DetailedInfoData;
+  more?: boolean;
+}
+
+interface DetailedInfoState {
+  more?: boolean;
+  width: number;
+}
+
+class DetailedInfo extends Component<DetailedInfoProps, DetailedInfoState> {
+  constructor(props: DetailedInfoProps) {
     super(props);
     this.state = {
       more: props.more,
@@ -24,12 +76,12 @@ class DetailedInfo extends Component {
     };
   }
 
-  updateBestWidth = event => {
+  updateBestWidth = (event: LayoutChangeEvent): void => {
     const newWidth = event.nativeEvent.layout.width;
     this.setState({width: newWidth});
   };
 
-  render() {
+  render(): JSX.Element | null {
     const {container} = styles;
     const {data} = this.props;
     if (!data) {
@@ -68,12 +120,12 @@ class DetailedInfo extends Component {
     );
   }
 
-  renderMore(playerMode) {
-    const {pvp} = this.props.data;
+  renderMore(playerMode: boolean): JSX.Element {
+    const {pvp} = this.props.data!;
     return this.renderInfo(pvp, playerMode);
   }
 
-  renderInfo(data, playerMode) {
+  renderInfo(data: PvpData, playerMode: boolean): JSX.Element {
     const {container, horizontal} = styles;
     console.log(data);
     const {
@@ -141,7 +193,7 @@ class DetailedInfo extends Component {
               />
               <InfoLabel
                 title={lang.detailed_avg_torp_potential_damage}
-                info={roundTo(torpedo_agro / battles)}
+                info={roundTo(torpedo_agro! / battles)}
               />
             </View>
             <View style={horizontal}>
@@ -151,7 +203,7 @@ class DetailedInfo extends Component {
               />
               <InfoLabel
                 title={lang.detailed_avg_scouting_damage}
-                info={roundTo(damage_scouting / battles)}
+                info={roundTo(damage_scouting! / battles)}
               />
             </View>
             <View style={horizontal}>
@@ -230,7 +282,7 @@ class DetailedInfo extends Component {
     );
   }
 
-  renderAllShipRecord(data, playerMode) {
+  renderAllShipRecord(data: PvpData, playerMode: boolean): (JSX.Element | null)[] | null {
     const {aircraft, main_battery, ramming, second_battery, torpedoes} = data;
 
     let weapons = [
@@ -247,13 +299,13 @@ class DetailedInfo extends Component {
     return null;
   }
 
-  renderShipRecord(weapon) {
+  renderShipRecord(weapon: {name: string; data?: WeaponData}): JSX.Element | null {
     const {data, name} = weapon;
     if (data == null) {
       return null;
     }
     const {container, horizontal} = styles;
-    const {frags, max_frags_battle, hits, shots} = weapon.data;
+    const {frags, max_frags_battle, hits, shots} = weapon.data!;
     console.log(weapon);
     if (frags == 0) {
       return null;
@@ -264,7 +316,7 @@ class DetailedInfo extends Component {
         <View style={horizontal}>
           <InfoLabel title={lang.weapon_total_frags} info={frags} />
           <InfoLabel title={lang.weapon_max_frags} info={max_frags_battle} />
-          {hits ? (
+          {hits && shots ? (
             <InfoLabel
               title={lang.weapon_hit_ratio}
               info={`${roundTo((hits / shots) * 100, 1)}%`}

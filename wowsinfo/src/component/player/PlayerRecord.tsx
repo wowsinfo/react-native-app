@@ -1,11 +1,11 @@
 /**
- * PlayerRecord.js
+ * PlayerRecord.tsx
  *
  * Records for all weapons
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, LayoutChangeEvent} from 'react-native';
 import {Paragraph} from 'react-native-paper';
 import {SAVED} from '../../value/data';
 import {WarshipCell} from '../wiki/WarshipCell';
@@ -14,12 +14,56 @@ import {roundTo, SafeAction, bestWidth} from '../../core';
 import {lang} from '../../value/lang';
 import {SectionTitle} from '../common/SectionTitle';
 
-class PlayerRecord extends Component {
-  state = {
+interface WeaponRecord {
+  frags: number;
+  max_frags_battle: number;
+  max_frags_ship_id?: number;
+  hits?: number;
+  shots?: number;
+}
+
+interface MaxRecord {
+  name: string;
+  num?: number;
+  id?: number;
+}
+
+interface PlayerRecordData {
+  aircraft?: WeaponRecord;
+  main_battery: WeaponRecord;
+  ramming?: WeaponRecord;
+  second_battery?: WeaponRecord;
+  torpedoes?: WeaponRecord;
+  max_damage_dealt?: number;
+  max_damage_dealt_ship_id?: number;
+  max_frags_battle?: number;
+  max_frags_ship_id?: number;
+  max_planes_killed?: number;
+  max_planes_killed_ship_id?: number;
+  max_ships_spotted?: number;
+  max_ships_spotted_ship_id?: number;
+  max_xp?: number;
+  max_xp_ship_id?: number;
+  max_damage_scouting?: number;
+  max_scouting_damage_ship_id?: number;
+  max_total_agro?: number;
+  max_total_agro_ship_id?: number;
+}
+
+interface PlayerRecordProps {
+  data?: PlayerRecordData;
+}
+
+interface PlayerRecordState {
+  goodWidth: number;
+}
+
+class PlayerRecord extends Component<PlayerRecordProps, PlayerRecordState> {
+  state: PlayerRecordState = {
     goodWidth: bestWidth(400),
   };
 
-  render() {
+  render(): JSX.Element | null {
     const {container, wrap} = styles;
     const {data} = this.props;
     if (!data) {
@@ -101,12 +145,12 @@ class PlayerRecord extends Component {
     );
   }
 
-  updateBestWidth = event => {
+  updateBestWidth = (event: LayoutChangeEvent): void => {
     const newWidth = event.nativeEvent.layout.width;
     this.setState({goodWidth: bestWidth(400, newWidth)});
   };
 
-  renderMax(data) {
+  renderMax(data: MaxRecord): JSX.Element | null {
     const {record, container} = styles;
     const {num, id, name} = data;
     if (!id) {
@@ -129,9 +173,12 @@ class PlayerRecord extends Component {
     );
   }
 
-  renderRecord(item) {
+  renderRecord(item: {name: string; data?: WeaponRecord}): JSX.Element | null {
     const {record, container} = styles;
     const {name, data} = item;
+    if (!data) {
+      return null;
+    }
     const {frags, max_frags_battle, max_frags_ship_id, hits, shots} = data;
     if (!max_frags_ship_id) {
       return null;
@@ -152,7 +199,7 @@ class PlayerRecord extends Component {
           <View style={container}>
             <InfoLabel title={lang.weapon_total_frags} info={frags} />
             <InfoLabel title={lang.weapon_max_frags} info={max_frags_battle} />
-            {hits ? (
+            {hits && shots ? (
               <InfoLabel
                 title={lang.weapon_hit_ratio}
                 info={`${roundTo((hits / shots) * 100, 2)}%`}
