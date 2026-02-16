@@ -41,8 +41,8 @@ class AppGlobalData {
   }
 
   // Theme
-  static lightTheme: object = {};
-  static darkTheme: object = {};
+  static lightTheme: any = {};
+  static darkTheme: any = {};
   static isDarkMode: boolean = false;
 
   // App Settings

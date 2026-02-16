@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Alert, BackHandler} from 'react-native';
 import {Router, Stack, Scene, Actions} from 'react-native-router-flux';
-import {withTheme, DarkTheme, DefaultTheme} from 'react-native-paper';
+import {withTheme, DarkTheme, DefaultTheme, Theme} from 'react-native-paper';
 import {
   Menu,
   Settings,
@@ -43,8 +43,9 @@ import {
 } from 'react-native-exception-handler';
 import {ReactNativeManager} from './core/native/ReactNativeManager';
 import {SimpleViewHandler} from './core/native/SimpleViewHandler';
+import './value/global';
 
-setJSExceptionHandler((e, fatal) => {
+setJSExceptionHandler((e: Error, fatal: boolean) => {
   if (fatal) {
     showAlert(`${e.name}\n${e.message}`, 'JS');
   } else {
@@ -52,13 +53,13 @@ setJSExceptionHandler((e, fatal) => {
   }
 }, true);
 
-setNativeExceptionHandler(e => {
+setNativeExceptionHandler((e: string) => {
   showAlert(e, 'NATIVE');
   console.log(`NativeException\n${e}`);
 });
 
 // Ask user to email me the log
-function showAlert(msg, mode) {
+function showAlert(msg: string, mode: string): void {
   Alert.alert(
     `FATAL ${mode} ERROR`,
     `${msg}\n\nPlease contact developer`,
@@ -80,8 +81,17 @@ function showAlert(msg, mode) {
   );
 }
 
-class App extends Component {
-  constructor(props) {
+interface AppProps {
+  theme: Theme;
+}
+
+interface AppState {
+  loading: boolean;
+  dark: boolean;
+}
+
+class App extends Component<AppProps, AppState> {
+  constructor(props: AppProps) {
     super(props);
 
     ReactNativeManager.Instance.setup();
@@ -100,7 +110,7 @@ class App extends Component {
     };
 
     // Load all data from AsyncStorage
-    DataLoader.loadAll().then(data => {
+    DataLoader.loadAll().then((data: any) => {
       // console.log(data);
 
       AppGlobalData.setupWith(data);
@@ -155,7 +165,7 @@ class App extends Component {
       if (!first) {
         // Update data here if it is not first launch
         let dn = new Downloader(getCurrServer());
-        dn.updateAll(false).then(obj => {
+        dn.updateAll(false).then((obj: any) => {
           // Since data are loaded even if user is offline, it should be fine
           this.setState({loading: false, dark: AppGlobalData.isDarkMode});
           // Display message if it is not success
@@ -172,7 +182,7 @@ class App extends Component {
     });
   }
 
-  render() {
+  render(): JSX.Element {
     const {loading, dark} = this.state;
     if (loading) {
       return <Loading />;
@@ -217,10 +227,11 @@ class App extends Component {
     );
   }
 
-  handleBack = () => {
+  handleBack = (): boolean => {
     if (Actions.state.routes.length === 1) {
       BackHandler.exitApp();
     }
+    return true;
   };
 }
 
