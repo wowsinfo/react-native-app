@@ -14,15 +14,35 @@ import {lang} from '../../value/lang';
 import {withTheme} from 'react-native-paper';
 import {TintColour} from '../../value/colour';
 
-class Detailed extends Component {
-  constructor(props) {
+interface ShipDetailData {
+  ship_id: number;
+  pvp: {
+    battles: number;
+    wins: number;
+    damage_dealt: number;
+    frags: number;
+  };
+  rating: number;
+}
+
+interface DetailedProps {
+  data: ShipDetailData;
+  theme: any;
+}
+
+interface DetailedState {
+  data: ShipDetailData | null;
+}
+
+class Detailed extends Component<DetailedProps, DetailedState> {
+  constructor(props: DetailedProps) {
     super(props);
     this.state = {
       data: props.data,
     };
   }
 
-  render() {
+  render(): JSX.Element | null {
     const {data} = this.state;
     if (data == null) {
       Actions.pop();
@@ -54,7 +74,7 @@ class Detailed extends Component {
     );
   }
 
-  renderNumberDiff(data, overall) {
+  renderNumberDiff(data: any, overall: any): JSX.Element | null {
     if (overall == null || data == null) {
       return null;
     }
@@ -90,14 +110,14 @@ class Detailed extends Component {
     );
   }
 
-  getColor = diff => {
+  getColor = (diff: number): {color: string} | null => {
     if (diff === 0) {
       return null;
     }
     return {color: diff > 0 ? 'green' : 'red'};
   };
 
-  normalise = (diff, digit) => {
+  normalise = (diff: number, digit: number): string | number => {
     let rounded = roundTo(diff, digit);
     if (rounded <= 0) {
       return rounded;

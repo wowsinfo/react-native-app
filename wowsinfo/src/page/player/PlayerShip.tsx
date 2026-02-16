@@ -22,8 +22,35 @@ import {SAVED} from '../../value/data';
 import {lang} from '../../value/lang';
 import {Button, withTheme} from 'react-native-paper';
 
-class PlayerShip extends PureComponent {
-  constructor(props) {
+interface ShipData {
+  ship_id: number;
+  last_battle_time: number;
+  pvp: any;
+  avgDmg?: number;
+  avgWinrate?: number;
+  avgFrags?: number;
+  rating?: number;
+  ap?: number;
+}
+
+interface PlayerShipProps {
+  data: ShipData[];
+  rating?: number;
+  filter?: any;
+  theme: any;
+}
+
+interface PlayerShipState {
+  data: ShipData[];
+  rating: number;
+  filter: any;
+  sortStr: string;
+}
+
+class PlayerShip extends PureComponent<PlayerShipProps, PlayerShipState> {
+  private original: ShipData[];
+
+  constructor(props: PlayerShipProps) {
     super(props);
 
     let ships = props.data;
@@ -45,7 +72,7 @@ class PlayerShip extends PureComponent {
     };
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(): void {
     const {filter} = this.props;
     if (filter) {
       // Prevent repetitive update
@@ -58,7 +85,7 @@ class PlayerShip extends PureComponent {
     }
   }
 
-  render() {
+  render(): JSX.Element {
     const {data, rating} = this.state;
     const sortingMethod = [
       {n: lang.ship_sort_battle, v: 'pvp.battles'},
@@ -112,7 +139,7 @@ class PlayerShip extends PureComponent {
     );
   }
 
-  sortData(v) {
+  sortData(v: string): void {
     const {data, sortStr} = this.state;
     console.log(sortStr, v);
     if (v === sortStr) {
@@ -126,7 +153,7 @@ class PlayerShip extends PureComponent {
     }
   }
 
-  renderShip(item) {
+  renderShip(item: ShipData): JSX.Element {
     let ship = AppGlobalData.get(SAVED.warship)[item.ship_id];
     return (
       <Touchable
@@ -138,7 +165,7 @@ class PlayerShip extends PureComponent {
     );
   }
 
-  updateShip(data) {
+  updateShip(data: any): void {
     let sorted = filterShip(data, this.original);
     if (sorted == null) {
       this.setState({data: this.original});

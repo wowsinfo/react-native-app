@@ -27,8 +27,49 @@ import {TintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
-class Statistics extends Component {
-  constructor(props) {
+interface PlayerBasicData {
+  created_at: number;
+  leveling_tier: number;
+  last_battle_time: number;
+  nickname: string;
+  statistics: any;
+}
+
+interface StatisticsProps {
+  info: {
+    account_id: number;
+    nickname: string;
+    server: number;
+  };
+  theme: any;
+}
+
+interface StatisticsState {
+  name: string;
+  id: number | null;
+  server?: number;
+  valid: boolean;
+  hidden: boolean;
+  canBeMaster?: boolean;
+  canBeFriend?: boolean;
+  clan: string;
+  currRank: number;
+  rating: number;
+  achievement: any | false;
+  rank: any | false;
+  rankShip: any | false;
+  ship: any[] | false;
+  basic: PlayerBasicData | false;
+  graph: any[] | false;
+  showMore: boolean;
+  ratingColor: string;
+}
+
+class Statistics extends Component<StatisticsProps, StatisticsState> {
+  private domain?: string;
+  private prefix: string = '';
+
+  constructor(props: StatisticsProps) {
     super(props);
     setLastLocation('Statistics');
     let ID = Guard(props, 'info.account_id', null);
@@ -88,7 +129,7 @@ class Statistics extends Component {
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     // reset the theme colour back
     this.props.theme.colors.primary = TintColour()[500];
   }
@@ -96,9 +137,9 @@ class Statistics extends Component {
   /**
    * Get basic player info
    */
-  getBasic() {
+  getBasic(): void {
     const {server, id} = this.state;
-    SafeFetch.get(WoWsAPI.PlayerInfo, getDomain(server), id).then(data => {
+    SafeFetch.get(WoWsAPI.PlayerInfo, getDomain(server!), id).then((data: any) => {
       // Check if account is hidden
       console.log(data);
       let hidden = Guard(data, 'meta.hidden', null);
@@ -125,9 +166,9 @@ class Statistics extends Component {
     });
   }
 
-  getClan() {
+  getClan(): void {
     const {id} = this.state;
-    SafeFetch.get(WoWsAPI.PlayerClan, this.domain, id).then(data => {
+    SafeFetch.get(WoWsAPI.PlayerClan, this.domain, id).then((data: any) => {
       let tag = Guard(data, `data.${id}.clan.tag`, '');
       if (tag !== '') {
         this.setState({clan: tag});
@@ -138,9 +179,9 @@ class Statistics extends Component {
   /**
    * Get player achievement
    */
-  getAchievement() {
+  getAchievement(): void {
     const {id} = this.state;
-    SafeFetch.get(WoWsAPI.PlayerAchievement, this.domain, id).then(data => {
+    SafeFetch.get(WoWsAPI.PlayerAchievement, this.domain, id).then((data: any) => {
       let achievement = Guard(data, `data.${id}.battle`, null);
       if (achievement != null) {
         this.setState({achievement: achievement});
@@ -151,10 +192,10 @@ class Statistics extends Component {
   /**
    * Get player past rank info
    */
-  getRank() {
+  getRank(): void {
     const {id} = this.state;
     // Get current rank info
-    SafeFetch.get(WoWsAPI.RankInfo, this.domain, id).then(data => {
+    SafeFetch.get(WoWsAPI.RankInfo, this.domain, id).then((data: any) => {
       let rank = Guard(data, `data.${id}.seasons`, null);
       if (rank != null) {
         let keys = Object.keys(rank);
@@ -170,7 +211,7 @@ class Statistics extends Component {
     });
 
     // Get rank ship info
-    SafeFetch.get(WoWsAPI.RankShipInfo, this.domain, id).then(data => {
+    SafeFetch.get(WoWsAPI.RankShipInfo, this.domain, id).then((data: any) => {
       console.log(data);
       let ships = Guard(data, `data.${id}`, null);
       if (ships != null) {
@@ -212,9 +253,9 @@ class Statistics extends Component {
   /**
    * Get all player ship info
    */
-  getShip() {
+  getShip(): void {
     const {id} = this.state;
-    SafeFetch.get(WoWsAPI.ShipInfo, this.domain, id).then(data => {
+    SafeFetch.get(WoWsAPI.ShipInfo, this.domain, id).then((data: any) => {
       let ship = Guard(data, `data.${id}`, null);
       console.log(ship);
       if (ship != null) {
@@ -230,7 +271,7 @@ class Statistics extends Component {
     });
   }
 
-  render() {
+  render(): JSX.Element {
     const {error, container, footer} = styles;
     const {
       name,
@@ -289,7 +330,7 @@ class Statistics extends Component {
   // their own state to check if the button could be rendered
   ///
 
-  renderBasic(basic) {
+  renderBasic(basic: PlayerBasicData | false): JSX.Element {
     const {container, horizontal, playerName, level} = styles;
     if (!basic) {
       const {name} = this.state;
@@ -378,19 +419,19 @@ class Statistics extends Component {
     }
   }
 
-  getPlayerInfo() {
+  getPlayerInfo(): {nickname: string; account_id: number; server: number} {
     const {account_id, nickname, server} = this.props.info;
     return {nickname: nickname, account_id: account_id, server: server};
   }
 
-  setMainAccount = () => {
+  setMainAccount = (): void => {
     let info = this.getPlayerInfo();
     AppGlobalData.set(LOCAL.userInfo, info);
     SafeStorage.set(LOCAL.userInfo, info);
     this.setState({canBeMaster: false});
   };
 
-  addFriend = () => {
+  addFriend = (): void => {
     let info = this.getPlayerInfo();
 
     // Update object
@@ -401,7 +442,7 @@ class Statistics extends Component {
     this.setState({canBeFriend: false});
   };
 
-  renderStatistics(statistics) {
+  renderStatistics(statistics: any): JSX.Element | null {
     if (!statistics) {
       return null;
     }
@@ -414,7 +455,7 @@ class Statistics extends Component {
     );
   }
 
-  renderAchievement(achievement) {
+  renderAchievement(achievement: any | false): JSX.Element {
     let loading = true;
     if (achievement && Object.keys(achievement).length > 0) {
       loading = false;
@@ -428,7 +469,7 @@ class Statistics extends Component {
     );
   }
 
-  renderShip(ship) {
+  renderShip(ship: any[] | false): JSX.Element {
     let loading = true;
     if (ship && ship.length > 0) {
       loading = false;
@@ -443,7 +484,7 @@ class Statistics extends Component {
     );
   }
 
-  renderRank(rank, rankShip) {
+  renderRank(rank: any | false, rankShip: any | false): JSX.Element {
     let loading = true;
     if (rank && rankShip) {
       loading = false;
@@ -458,7 +499,7 @@ class Statistics extends Component {
     );
   }
 
-  renderGraph(graph) {
+  renderGraph(graph: any[] | false): JSX.Element {
     let loading = true;
     if (graph && graph.length > 0) {
       loading = false;

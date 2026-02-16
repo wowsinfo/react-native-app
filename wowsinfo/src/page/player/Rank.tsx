@@ -6,8 +6,23 @@ import {FlatGrid} from 'react-native-super-grid';
 import {Headline} from 'react-native-paper';
 import {SafeAction} from '../../core';
 
-class Rank extends PureComponent {
-  constructor(props) {
+interface RankData {
+  season: number;
+  [key: string]: any;
+}
+
+interface RankProps {
+  data: {[key: string]: any};
+  ship: {[key: string]: any[]};
+}
+
+interface RankState {
+  data: RankData[];
+  ship: {[key: string]: any[]};
+}
+
+class Rank extends PureComponent<RankProps, RankState> {
+  constructor(props: RankProps) {
     super(props);
     let list = [];
     console.log(props);
@@ -28,7 +43,7 @@ class Rank extends PureComponent {
     // SafeFetch.get(WoWsAPI.RankShipInfo, )
   }
 
-  render() {
+  render(): JSX.Element | null {
     const {centerText} = styles;
     const {data, ship} = this.state;
     if (data == null || data.length == 0) {
@@ -71,7 +86,7 @@ class Rank extends PureComponent {
     );
   }
 
-  renderSeasonInfo(data) {
+  renderSeasonInfo(data: RankData | null): JSX.Element | null {
     if (data == null) {
       return null;
     }

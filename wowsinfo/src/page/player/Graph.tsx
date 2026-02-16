@@ -6,8 +6,29 @@ import {SAVED} from '../../value/data';
 import {SafeValue, roundTo} from '../../core';
 import {TintColour} from '../../value/colour';
 
-class Graph extends PureComponent {
-  constructor(props) {
+interface ChartData {
+  x: string[];
+  y: number[];
+}
+
+interface GraphProps {
+  data: Array<{
+    ship_id: number;
+    pvp: {
+      battles: number;
+    };
+  }>;
+}
+
+interface GraphState {
+  tier: ChartData;
+  avgTier: number;
+  nation: ChartData;
+  type: ChartData;
+}
+
+class Graph extends PureComponent<GraphProps, GraphState> {
+  constructor(props: GraphProps) {
     super(props);
     const {data} = this.props;
     console.log(data);
@@ -48,7 +69,7 @@ class Graph extends PureComponent {
     };
   }
 
-  objToChart(obj, name, min = 0) {
+  objToChart(obj: {[key: string]: number}, name?: {[key: string]: string}, min: number = 0): ChartData {
     // Key will be x and Value will be y
     let chart = {x: [], y: []};
     for (let key in obj) {
@@ -69,7 +90,7 @@ class Graph extends PureComponent {
     return chart;
   }
 
-  getAvgTier = tier => {
+  getAvgTier = (tier: {[key: string]: number}): number => {
     let weight = 0;
     let total = 0;
     for (let key in tier) {
@@ -80,7 +101,7 @@ class Graph extends PureComponent {
     return roundTo(weight / total, 1);
   };
 
-  render() {
+  render(): JSX.Element {
     const {tier, nation, type} = this.state;
     return (
       <WoWsInfo hideAds>

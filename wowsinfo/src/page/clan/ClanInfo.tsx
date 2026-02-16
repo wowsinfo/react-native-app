@@ -1,5 +1,5 @@
 /**
- * ClanInfo.js
+ * ClanInfo.tsx
  *
  * Display Clan information and can access each member's data
  */
@@ -35,8 +35,49 @@ import {lang} from '../../value/lang';
 import {FlatGrid} from 'react-native-super-grid';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
-class ClanInfo extends Component {
-  constructor(props) {
+interface ClanMember {
+  account_id: number;
+  account_name: string;
+  joined_at: number;
+  role: string;
+}
+
+interface ClanData {
+  clan_id: number;
+  created_at: number;
+  creator_name: string;
+  creator_id: number;
+  leader_name: string;
+  leader_id: number;
+  description: string;
+  name: string;
+  members: {[key: string]: ClanMember};
+  members_count: number;
+  tag: string;
+}
+
+interface ClanInfoProps {
+  info: {
+    clan_id: number | null;
+    tag: string;
+    server: number;
+  };
+}
+
+interface ClanInfoState {
+  id: string | number;
+  tag: string;
+  info?: ClanData | false;
+  valid?: boolean;
+  canBeFriend?: boolean;
+}
+
+class ClanInfo extends Component<ClanInfoProps, ClanInfoState> {
+  private server?: number;
+  private domain?: string;
+  private prefix?: string;
+
+  constructor(props: ClanInfoProps) {
     super(props);
 
     const {clan_id, tag, server} = props.info;
@@ -62,7 +103,7 @@ class ClanInfo extends Component {
       this.domain = getDomain(server);
       this.prefix = getPrefix(server);
 
-      SafeFetch.get(WoWsAPI.ClanInfo, this.domain, clan_id).then(data => {
+      SafeFetch.get(WoWsAPI.ClanInfo, this.domain, clan_id).then((data: any) => {
         let clanInfo = Guard(data, `data.${clan_id}`, null);
         if (clanInfo != null) {
           this.setState({info: clanInfo});
@@ -73,7 +114,7 @@ class ClanInfo extends Component {
     }
   }
 
-  render() {
+  render(): JSX.Element {
     const {clanTag, container} = styles;
     const {info, tag, id, valid} = this.state;
     if (valid) {
@@ -97,7 +138,7 @@ class ClanInfo extends Component {
     }
   }
 
-  renderClanInfo(data) {
+  renderClanInfo(data: ClanData | false | undefined): JSX.Element {
     if (data) {
       console.log(data);
       const {horizontal, clanTag} = styles;
@@ -115,7 +156,7 @@ class ClanInfo extends Component {
       } = data;
       const {canBeFriend} = this.state;
 
-      let memberInfo = [];
+      let memberInfo: ClanMember[] = [];
       for (let ID in members) {
         memberInfo.push(members[ID]);
       }
@@ -189,23 +230,26 @@ class ClanInfo extends Component {
     }
   }
 
-  addFriend = () => {
+  addFriend = (): void => {
     const {clan_id, tag, server} = this.props.info;
     let str = LOCAL.friendList;
-    AppGlobalData.get(str).clan[clan_id] = {clan_id, tag, server};
+    AppGlobalData.get(str).clan[clan_id!] = {clan_id: clan_id!, tag, server};
     SafeStorage.set(str, AppGlobalData.get(str));
     this.setState({canBeFriend: false});
   };
 
-  pushToMaster(name, id) {
+  pushToMaster(name: string, id: number): void {
     let item = {nickname: name, account_id: id, server: this.server};
     SafeAction('Statistics', {info: item});
   }
 
-  pushToPlayer(item) {
-    item.nickname = item.account_name;
-    item.server = this.server;
-    SafeAction('Statistics', {info: item});
+  pushToPlayer(item: ClanMember): void {
+    let playerItem: any = {
+      nickname: item.account_name,
+      account_id: item.account_id,
+      server: this.server,
+    };
+    SafeAction('Statistics', {info: playerItem});
   }
 }
 
