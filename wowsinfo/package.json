@@ -24,6 +24,7 @@
     "react-native-super-grid": "^5.1.0"
   },
   "devDependencies": {
+    "@react-native-community/cli": "latest",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "@babel/core": "^7.26.0",
     "@babel/preset-env": "^7.26.0",
@@ -53,6 +54,6 @@
     "typescript": "5.7.3"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=20.19.4"
   }
 }
