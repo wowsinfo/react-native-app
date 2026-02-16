@@ -3,9 +3,13 @@ import {List} from 'react-native-paper';
 import {lang} from '../../value/lang';
 import {SafeAction} from '../../core';
 
+interface AdmobBannerState {
+  success: boolean;
+}
+
 // mark as deprecated
-class AdmobBanner extends Component {
-  constructor(props) {
+class AdmobBanner extends Component<{}, AdmobBannerState> {
+  constructor(props: {}) {
     super(props);
     this.state = {
       success: true,
@@ -24,7 +28,7 @@ class AdmobBanner extends Component {
   }
 
   hideAds = () => this.setState({success: false});
-  logError = err => {
+  logError = (err: any) => {
     console.log('err', err);
     this.setState({success: false});
   };

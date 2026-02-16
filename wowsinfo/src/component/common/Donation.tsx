@@ -6,6 +6,11 @@ import {lang} from '../../value/lang';
 import {APP} from '../../value/data';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
+// Declare global AppGlobalData
+declare const AppGlobalData: {
+  githubVersion: boolean;
+};
+
 // Now, we have 4 tiers ($1, $3, $5 and $10) for donations
 const itemSkus = [
   'com.yihengquan.wowsinfo.support1',
@@ -14,8 +19,21 @@ const itemSkus = [
   'com.yihengquan.wowsinfo.support10',
 ];
 
-class Donation extends Component {
-  constructor(props) {
+interface SupportItem {
+  t: string;
+  d: string;
+  c: string;
+}
+
+interface DonationState {
+  products: RNIap.Product[] | null;
+  receipt?: string;
+}
+
+class Donation extends Component<{}, DonationState> {
+  support: SupportItem[] = [];
+
+  constructor(props: {}) {
     super(props);
     this.state = {
       products: null,
@@ -79,7 +97,7 @@ class Donation extends Component {
     );
   }
 
-  async supportWoWsInfo(item) {
+  async supportWoWsInfo(item: RNIap.Product) {
     try {
       // Will return a purchase object with a receipt which can be used to validate on your server.
       const purchase = await RNIap.buyProduct(item.productId);
@@ -88,13 +106,13 @@ class Donation extends Component {
       this.setState({
         receipt: purchase.transactionReceipt, // save the receipt if you need it, whether locally, or to your server.
       });
-    } catch (err) {
+    } catch (err: any) {
       // standardized err.code and err.message available
       console.error(err.code, err.message);
       const subscription = RNIap.addAdditionalSuccessPurchaseListenerIOS(
-        async purchase => {
+        async (purchase: RNIap.Purchase) => {
           this.setState({receipt: purchase.transactionReceipt}, () =>
-            this.goToNext(),
+            (this as any).goToNext(),
           );
           subscription.remove();
         },
