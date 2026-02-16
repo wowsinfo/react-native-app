@@ -139,31 +139,33 @@ class Statistics extends Component<StatisticsProps, StatisticsState> {
    */
   getBasic(): void {
     const {server, id} = this.state;
-    SafeFetch.get(WoWsAPI.PlayerInfo, getDomain(server!), id).then((data: any) => {
-      // Check if account is hidden
-      console.log(data);
-      let hidden = Guard(data, 'meta.hidden', null);
-      let hiddenAccount = false;
-      if (hidden != null) {
-        // If hidden is not null, it is hidden
-        hiddenAccount = true;
-        this.setState({hidden: true});
-      }
-
-      // Get player data here
-      let player = Guard(data, `data.${id}`, null);
-      if (player == null) {
-        // Invalid data
-        this.setState({valid: false});
-      } else {
-        let battle = Guard(player, 'statistics.pvp.battles', 0);
-        // Treat zero battle account as hidden not for hidden accounts
-        if (!hiddenAccount && battle == 0) {
+    SafeFetch.get(WoWsAPI.PlayerInfo, getDomain(server!), id).then(
+      (data: any) => {
+        // Check if account is hidden
+        console.log(data);
+        let hidden = Guard(data, 'meta.hidden', null);
+        let hiddenAccount = false;
+        if (hidden != null) {
+          // If hidden is not null, it is hidden
+          hiddenAccount = true;
           this.setState({hidden: true});
         }
-        this.setState({basic: player});
-      }
-    });
+
+        // Get player data here
+        let player = Guard(data, `data.${id}`, null);
+        if (player == null) {
+          // Invalid data
+          this.setState({valid: false});
+        } else {
+          let battle = Guard(player, 'statistics.pvp.battles', 0);
+          // Treat zero battle account as hidden not for hidden accounts
+          if (!hiddenAccount && battle == 0) {
+            this.setState({hidden: true});
+          }
+          this.setState({basic: player});
+        }
+      },
+    );
   }
 
   getClan(): void {
@@ -181,12 +183,14 @@ class Statistics extends Component<StatisticsProps, StatisticsState> {
    */
   getAchievement(): void {
     const {id} = this.state;
-    SafeFetch.get(WoWsAPI.PlayerAchievement, this.domain, id).then((data: any) => {
-      let achievement = Guard(data, `data.${id}.battle`, null);
-      if (achievement != null) {
-        this.setState({achievement: achievement});
-      }
-    });
+    SafeFetch.get(WoWsAPI.PlayerAchievement, this.domain, id).then(
+      (data: any) => {
+        let achievement = Guard(data, `data.${id}.battle`, null);
+        if (achievement != null) {
+          this.setState({achievement: achievement});
+        }
+      },
+    );
   }
 
   /**

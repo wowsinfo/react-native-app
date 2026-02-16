@@ -5,17 +5,11 @@
  */
 
 import React, {PureComponent} from 'react';
-import {StyleSheet} from 'react-native';
 import {WoWsInfo, WarshipCell} from '../../component';
 import {FlatGrid} from 'react-native-super-grid';
 import {SAVED, setLastLocation} from '../../value/data';
 import {lang} from '../../value/lang';
-import {
-  SafeAction,
-  filterShip,
-  bestCellWidth,
-  bestCellWidthEven,
-} from '../../core';
+import {SafeAction, filterShip, bestCellWidthEven} from '../../core';
 import {WarshipFilterData} from './WarshipFilter';
 
 interface WarshipItem {
@@ -61,7 +55,7 @@ class Warship extends PureComponent<WarshipProps, WarshipState> {
 
     // Remove extra information (ship id)
     let sortedData: WarshipItem[] = [];
-    sorted.forEach((s) => sortedData.push(Object.assign(s[1])));
+    sorted.forEach(s => sortedData.push(Object.assign(s[1])));
     this.original = sortedData;
     console.log(sortedData);
 

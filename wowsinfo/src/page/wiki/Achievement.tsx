@@ -39,7 +39,7 @@ class Achievement extends PureComponent<{}, AchievementState> {
     });
 
     let sortedData: AchievementItem[] = [];
-    sorted.forEach((item) => {
+    sorted.forEach(item => {
       // Make it an object
       sortedData.push(Object.assign(item[1]));
     });

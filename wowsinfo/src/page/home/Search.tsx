@@ -5,7 +5,13 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet, ScrollView, KeyboardAvoidingView, LayoutChangeEvent} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  KeyboardAvoidingView,
+  LayoutChangeEvent,
+} from 'react-native';
 import {Searchbar} from 'react-native-paper';
 import {WoWsInfo, SectionTitle, PlayerCell} from '../../component';
 import {
@@ -210,16 +216,18 @@ class Search extends Component<SearchProps, SearchState> {
 
       if (length > 2) {
         // For player, 3+
-        SafeFetch.get(WoWsAPI.PlayerSearch, domain, text).then((result: any) => {
-          let data = Guard(result, 'data', null);
-          if (data == null) {
-            // Error here
-          } else {
-            data.forEach((v: PlayerItem) => (v.server = getCurrServer()));
-            all.player = data;
-            this.setState({result: all});
-          }
-        });
+        SafeFetch.get(WoWsAPI.PlayerSearch, domain, text).then(
+          (result: any) => {
+            let data = Guard(result, 'data', null);
+            if (data == null) {
+              // Error here
+            } else {
+              data.forEach((v: PlayerItem) => (v.server = getCurrServer()));
+              all.player = data;
+              this.setState({result: all});
+            }
+          },
+        );
       }
     }, 500);
   };

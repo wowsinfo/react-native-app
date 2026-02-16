@@ -4,11 +4,9 @@ import {
   ScrollView,
   StyleSheet,
   KeyboardAvoidingView,
-  Linking,
   Alert,
-  Vibration,
 } from 'react-native';
-import {isAndroid, isTablet} from 'react-native-device-detection';
+import {isAndroid} from 'react-native-device-detection';
 import {
   Portal,
   TextInput,

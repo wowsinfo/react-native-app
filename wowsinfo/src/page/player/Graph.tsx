@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ScrollView} from 'react-native';
 import {BarChart, PieChart} from 'native-chart-experiment';
 import {WoWsInfo} from '../../component';
 import {SAVED} from '../../value/data';
@@ -36,7 +36,6 @@ class Graph extends PureComponent<GraphProps, GraphState> {
     let tierInfo = {};
     let nationInfo = {};
     let typeInfo = {};
-    let totalBattle = 0;
     for (let ship of data) {
       // Get info we need
       const {pvp, ship_id} = ship;
@@ -51,7 +50,6 @@ class Graph extends PureComponent<GraphProps, GraphState> {
       tierInfo[tier] = SafeValue(tierInfo[tier], 0) + battles;
       nationInfo[nation] = SafeValue(nationInfo[nation], 0) + battles;
       typeInfo[type] = SafeValue(typeInfo[type], 0) + battles;
-      totalBattle += battles;
     }
 
     this.state = {
@@ -69,7 +67,11 @@ class Graph extends PureComponent<GraphProps, GraphState> {
     };
   }
 
-  objToChart(obj: {[key: string]: number}, name?: {[key: string]: string}, min: number = 0): ChartData {
+  objToChart(
+    obj: {[key: string]: number},
+    name?: {[key: string]: string},
+    min: number = 0,
+  ): ChartData {
     // Key will be x and Value will be y
     let chart = {x: [], y: []};
     for (let key in obj) {

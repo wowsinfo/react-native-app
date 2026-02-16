@@ -6,16 +6,7 @@
 
 import React, {Component} from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
-import {
-  Button,
-  List,
-  Paragraph,
-  FAB,
-  Text,
-  Headline,
-  Title,
-  Subheading,
-} from 'react-native-paper';
+import {Button, List, Paragraph, FAB, Subheading} from 'react-native-paper';
 import {Actions} from 'react-native-router-flux';
 import {lang} from '../../value/lang';
 import {

@@ -12,7 +12,6 @@ import {Actions} from 'react-native-router-flux';
 import {SafeAction, getColour, roundTo} from '../../core';
 import {lang} from '../../value/lang';
 import {withTheme} from 'react-native-paper';
-import {TintColour} from '../../value/colour';
 
 interface ShipDetailData {
   ship_id: number;

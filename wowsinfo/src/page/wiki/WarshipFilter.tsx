@@ -49,7 +49,11 @@ class WarshipFilter extends Component<{}, WarshipFilterState> {
 
   componentDidMount() {
     // After component has been rendered or it will be undefined
-    (this.refs.scrollview as ScrollView).scrollTo({x: 0, y: 128, animated: false});
+    (this.refs.scrollview as ScrollView).scrollTo({
+      x: 0,
+      y: 128,
+      animated: false,
+    });
   }
 
   render() {
@@ -179,7 +183,9 @@ class WarshipFilter extends Component<{}, WarshipFilterState> {
         break;
     }
 
-    if (!arr) return;
+    if (!arr) {
+      return;
+    }
 
     // Same as last added item
     if (arr.slice(-1)[0] === item) {

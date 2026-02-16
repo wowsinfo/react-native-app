@@ -4,7 +4,7 @@
  * Display detailed info of a ship and also show similar ships
  */
 
-import React, {PureComponent, ReactNode} from 'react';
+import React, {PureComponent} from 'react';
 import {View, FlatList, ScrollView, StyleSheet} from 'react-native';
 import {Text, Title, Button, Paragraph} from 'react-native-paper';
 import * as Anime from 'react-native-animatable';
@@ -100,7 +100,7 @@ class WarshipDetail extends PureComponent<
 
     // Remove extra information (ship id)
     let similarData: WarshipItem[] = [];
-    similar.forEach((s) => similarData.push(Object.assign(s[1])));
+    similar.forEach(s => similarData.push(Object.assign(s[1])));
     console.log(similarData);
 
     this.state = {
@@ -497,7 +497,9 @@ class WarshipDetail extends PureComponent<
     }
     return (
       <View style={styles.margin}>
-        <SectionTitle title={`${lang.warship_artillery_secondary} (${distance} km)`} />
+        <SectionTitle
+          title={`${lang.warship_artillery_secondary} (${distance} km)`}
+        />
         {guns.map((value, index) => {
           const {burn_probability, bullet_speed, name, gun_rate, damage, type} =
             value;

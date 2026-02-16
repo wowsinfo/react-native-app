@@ -18,7 +18,7 @@ class Downloader {
   private language: string;
   private new: boolean;
 
-  constructor(server: number) {
+  constructor(_server: number) {
     // Convert server index to string
     this.domain = getCurrDomain();
     this.language = langStr();

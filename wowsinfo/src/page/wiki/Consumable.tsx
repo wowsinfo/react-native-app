@@ -6,7 +6,7 @@
  */
 
 import React, {PureComponent} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 import {LoadingModal, WikiIcon, WoWsInfo} from '../../component';
 import {SAVED, setLastLocation} from '../../value/data';
@@ -110,13 +110,5 @@ class Consumable extends PureComponent<ConsumableProps, ConsumableState> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export {Consumable};

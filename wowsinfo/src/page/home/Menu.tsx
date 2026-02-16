@@ -30,11 +30,9 @@ import {
   getFirstLaunch,
   setFirstLaunch,
   setLastLocation,
-  SAVED,
   isProVersion,
   onlyProVersion,
   validateProVersion,
-  setProVersion,
   differentMonth,
   APP,
 } from '../../value/data';
@@ -292,7 +290,7 @@ class Menu extends Component<MenuProps, MenuState> {
       {
         t: lang.content_creator_fubuki,
         d: lang.content_creator_fubuki_link,
-      }
+      },
     ];
 
     this.youtubers = [

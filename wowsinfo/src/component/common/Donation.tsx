@@ -55,7 +55,6 @@ class Donation extends Component<{}, DonationState> {
   }
 
   render() {
-    const {products} = this.state;
     console.log(this.state);
 
     this.support = [

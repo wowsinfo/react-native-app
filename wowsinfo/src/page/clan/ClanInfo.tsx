@@ -103,14 +103,16 @@ class ClanInfo extends Component<ClanInfoProps, ClanInfoState> {
       this.domain = getDomain(server);
       this.prefix = getPrefix(server);
 
-      SafeFetch.get(WoWsAPI.ClanInfo, this.domain, clan_id).then((data: any) => {
-        let clanInfo = Guard(data, `data.${clan_id}`, null);
-        if (clanInfo != null) {
-          this.setState({info: clanInfo});
-        } else {
-          this.setState({valid: false});
-        }
-      });
+      SafeFetch.get(WoWsAPI.ClanInfo, this.domain, clan_id).then(
+        (data: any) => {
+          let clanInfo = Guard(data, `data.${clan_id}`, null);
+          if (clanInfo != null) {
+            this.setState({info: clanInfo});
+          } else {
+            this.setState({valid: false});
+          }
+        },
+      );
     }
   }
 

@@ -281,7 +281,10 @@ class DetailedInfo extends Component<DetailedInfoProps, DetailedInfoState> {
     );
   }
 
-  renderAllShipRecord(data: PvpData, playerMode: boolean): (JSX.Element | null)[] | null {
+  renderAllShipRecord(
+    data: PvpData,
+    playerMode: boolean,
+  ): (JSX.Element | null)[] | null {
     const {aircraft, main_battery, ramming, second_battery, torpedoes} = data;
 
     let weapons = [
@@ -298,7 +301,10 @@ class DetailedInfo extends Component<DetailedInfoProps, DetailedInfoState> {
     return null;
   }
 
-  renderShipRecord(weapon: {name: string; data?: WeaponData}): JSX.Element | null {
+  renderShipRecord(weapon: {
+    name: string;
+    data?: WeaponData;
+  }): JSX.Element | null {
     const {data, name} = weapon;
     if (data == null) {
       return null;

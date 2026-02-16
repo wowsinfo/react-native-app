@@ -14,7 +14,10 @@ export const Guard = <T>(obj: any, path: string, dval: T): T => {
       // o is the object (accumulator), and n is from path (current value)
       // o && o[n] -> to go further or just return default value
       // only asking for the object
-      return p.reduce((o: any, n: string) => (o != null && o[n] != null ? o[n] : dval), obj);
+      return p.reduce(
+        (o: any, n: string) => (o != null && o[n] != null ? o[n] : dval),
+        obj,
+      );
     }
   }
   return dval;

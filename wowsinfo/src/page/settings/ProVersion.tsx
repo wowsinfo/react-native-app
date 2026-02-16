@@ -62,9 +62,11 @@ class ProVersion extends Component<{}, ProVersionState> {
       },
     );
 
-    this.purchaseErrorSubscription = purchaseErrorListener((error: PurchaseError) => {
-      console.warn('purchaseErrorListener', error);
-    });
+    this.purchaseErrorSubscription = purchaseErrorListener(
+      (error: PurchaseError) => {
+        console.warn('purchaseErrorListener', error);
+      },
+    );
 
     // Init connection
     const allgood = await initConnection();

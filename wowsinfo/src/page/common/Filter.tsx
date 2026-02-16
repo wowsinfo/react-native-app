@@ -65,7 +65,7 @@ class Filter extends Component<FilterProps, FilterState> {
     const {applyFunc, resetFunc, wiki} = this.props;
 
     if (wiki) {
-      const {filter, tier, nation, type, name, premium, accordion} = this.state;
+      const {tier, nation, type, name, premium, accordion} = this.state;
       const textColour = TintColour()[500];
 
       return (

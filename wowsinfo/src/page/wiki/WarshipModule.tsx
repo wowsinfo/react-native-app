@@ -199,7 +199,8 @@ class WarshipModule extends Component<WarshipModuleProps, WarshipModuleState> {
    */
   normaliseKey(key: string) {
     let names = key.split('_');
-    const upperFirst = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+    const upperFirst = (str: string) =>
+      str.charAt(0).toUpperCase() + str.slice(1);
     names.map((n, i) => (names[i] = upperFirst(n)));
 
     console.log(names);

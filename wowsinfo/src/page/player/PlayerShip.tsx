@@ -14,7 +14,6 @@ import {
   filterShip,
   Guard,
   getColour,
-  bestCellWidth,
   bestCellWidthEven,
 } from '../../core';
 import {FlatGrid} from 'react-native-super-grid';
