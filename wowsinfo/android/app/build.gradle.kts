@@ -72,16 +72,23 @@ val enableProguardInReleaseBuilds = false
 val jscFlavor = "org.webkit:android-jsc:+"
 
 android {
-    ndkVersion = rootProject.extra["ndkVersion"].toString()
+    val buildToolsVersionValue = rootProject.findProperty("buildToolsVersion")?.toString() ?: "35.0.0"
+    val minSdkVersionValue = rootProject.findProperty("minSdkVersion")?.toString()?.toInt() ?: 24
+    val compileSdkVersionValue = rootProject.findProperty("compileSdkVersion")?.toString()?.toInt() ?: 35
+    val targetSdkVersionValue = rootProject.findProperty("targetSdkVersion")?.toString()?.toInt() ?: 35
+    val ndkVersionValue = rootProject.findProperty("ndkVersion")?.toString() ?: "26.1.10909125"
+
+    buildToolsVersion = buildToolsVersionValue
+    ndkVersion = ndkVersionValue
     
-    compileSdk = rootProject.extra["compileSdkVersion"].toString().toInt()
+    compileSdk = compileSdkVersionValue
     
     namespace = "com.wowsinfo"
     
     defaultConfig {
         applicationId = "com.wowsinfo"
-        minSdk = rootProject.extra["minSdkVersion"].toString().toInt()
-        targetSdk = rootProject.extra["targetSdkVersion"].toString().toInt()
+        minSdk = minSdkVersionValue
+        targetSdk = targetSdkVersionValue
         versionCode = 1
         versionName = "1.0"
     }
