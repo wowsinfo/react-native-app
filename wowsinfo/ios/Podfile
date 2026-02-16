@@ -38,6 +38,8 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings["IPHONEOS_DEPLOYMENT_TARGET"] = $IOS_TARGET
+      # Set Swift version to 6.0 (or latest available: 5.5-6.0+)
+      config.build_settings["SWIFT_VERSION"] = "6.0"
       # https://github.com/facebook/react-native/issues/36763#issuecomment-1512798923
       # clang warns when we use the RCT_EXTERN_MODULE
       config.build_settings["CLANG_WARN_STRICT_PROTOTYPES"] = "NO"

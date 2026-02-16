@@ -1,11 +1,13 @@
-# React Native 0.76.8 Upgrade Guide
+# React Native 0.83.2 Upgrade Guide
 
-This document details the changes made during the upgrade from React Native 0.72.4 to 0.76.8.
+This document details the changes made during the upgrade from React Native 0.72.4 to 0.83.2.
 
 ## Overview
 
-- **React Native**: 0.72.4 → 0.76.8
-- **React**: 18.2.0 → 18.3.1
+- **React Native**: 0.72.4 → 0.83.2
+- **React**: 18.2.0 → 19.2.0
+- **Kotlin**: 1.x → 2.1.0
+- **Swift**: → 6.0
 - **Gradle**: 8.0.1 → 8.11.1
 - **Android Gradle Plugin**: → 8.3.0
 - **iOS Deployment Target**: 14.0 → 15.1
@@ -39,16 +41,21 @@ All Android build files have been migrated from Groovy (`.gradle`) to Kotlin DSL
 #### Core Dependencies
 ```json
 {
-  "react": "18.3.1",
-  "react-native": "0.76.8"
+  "react": "^19.2.0",
+  "react-native": "0.83.2"
 }
 ```
 
+#### Build Tools
+- **Kotlin**: 2.1.0 (Kotlin 2.0+)
+- **Swift**: 6.0 (configured in Podfile)
+
 #### Dev Dependencies (Major Updates)
-- `@react-native/babel-preset`: 0.76.8
-- `@react-native/eslint-config`: 0.76.8
-- `@react-native/metro-config`: 0.76.8
-- `@react-native/typescript-config`: 0.76.8
+- `@react-native/babel-preset`: 0.83.2
+- `@react-native/eslint-config`: 0.83.2
+- `@react-native/metro-config`: 0.83.2
+- `@react-native/typescript-config`: 0.83.2
+- `@types/react`: ^19.1.1
 - `typescript`: 5.7.3
 - `@babel/core`: ^7.26.0
 
@@ -189,16 +196,22 @@ yarn start --reset-cache
 
 ## Benefits of This Upgrade
 
-1. **Performance**: React Native 0.76 includes significant performance improvements
-2. **Bug Fixes**: Numerous bug fixes from 0.72.4 to 0.76.8
-3. **New Architecture Ready**: Better prepared for React Native's new architecture
-4. **Better Build System**: Kotlin DSL provides better type safety and IDE support
-5. **Security**: Updated dependencies with latest security patches
-6. **Modern Standards**: Uses latest Android SDK and iOS deployment targets
+1. **Performance**: React Native 0.83 includes significant performance improvements over 0.72
+2. **React 19**: Access to latest React features including improved hooks and concurrent rendering
+3. **Kotlin 2.0+**: Modern Kotlin with improved compiler performance and new language features
+4. **Swift 6.0**: Latest Swift version with improved concurrency and safety features
+5. **Bug Fixes**: Numerous bug fixes from 0.72.4 to 0.83.2
+6. **New Architecture Ready**: Better prepared for React Native's new architecture
+7. **Better Build System**: Kotlin DSL provides better type safety and IDE support
+8. **Security**: Updated dependencies with latest security patches
+9. **Modern Standards**: Uses latest Android SDK and iOS deployment targets
 
 ## References
 
-- [React Native 0.76 Release Notes](https://reactnative.dev/blog)
+- [React Native 0.83 Release Notes](https://reactnative.dev/blog)
+- [React 19 Release Notes](https://react.dev/blog/2024/12/05/react-19)
+- [Kotlin 2.0 Release Notes](https://kotlinlang.org/docs/whatsnew20.html)
+- [Swift 6.0 Documentation](https://www.swift.org/documentation/)
 - [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/)
 - [Android Gradle Plugin Release Notes](https://developer.android.com/studio/releases/gradle-plugin)
 - [Gradle 8.11 Release Notes](https://docs.gradle.org/8.11/release-notes.html)
