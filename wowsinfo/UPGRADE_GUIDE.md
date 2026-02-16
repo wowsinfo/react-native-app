@@ -17,19 +17,61 @@ This document details the changes made during the upgrade from React Native 0.72
 
 ## Major Changes
 
-### 1. Android Build System Migration to Kotlin DSL
+### 1. Android Build System Migration to Kotlin DSL and Modern Gradle
 
-All Android build files have been migrated from Groovy (`.gradle`) to Kotlin DSL (`.gradle.kts`):
+All Android build files have been migrated from Groovy (`.gradle`) to Kotlin DSL (`.gradle.kts`) and modernized to follow best practices:
 
 - `android/build.gradle` → `android/build.gradle.kts`
 - `android/settings.gradle` → `android/settings.gradle.kts`
 - `android/app/build.gradle` → `android/app/build.gradle.kts`
 
-**Benefits:**
+**Key Improvements:**
+- **No more `buildscript`/`classpath`**: Uses modern `plugins` DSL block
+- **Centralized plugin management**: Plugin versions defined in `settings.gradle.kts`
+- **Dependency resolution management**: Proper repository configuration
 - Better IDE support and autocompletion
-- Type safety
-- Better refactoring support
-- Improved build performance
+- Type safety and better refactoring support
+- Follows 2026 Android/Gradle best practices
+
+**Modern build.gradle.kts structure:**
+```kotlin
+// No buildscript block - uses plugins DSL instead
+plugins {
+    id("com.android.application") version "8.3.0" apply false
+    id("com.android.library") version "8.3.0" apply false
+    id("org.jetbrains.kotlin.android") version "2.1.0" apply false
+}
+```
+
+**Modern settings.gradle.kts with plugin management:**
+```kotlin
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    
+    resolutionStrategy {
+        eachPlugin {
+            // Maps plugin IDs to Maven coordinates
+            if (requested.id.id == "com.android.application" || 
+                requested.id.id == "com.android.library") {
+                useModule("com.android.tools.build:gradle:${requested.version}")
+            }
+        }
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+    repositories {
+        google()
+        mavenCentral()
+        // React Native specific repositories
+    }
+}
+```
 
 ### 2. Removed Deprecated Features
 
