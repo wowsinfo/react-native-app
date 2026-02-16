@@ -17,8 +17,8 @@ export interface Info6IconProps {
 
 export const Info6Icon = ({data, compact, topOnly}: Info6IconProps) => {
   // What is going on here?
-  const [cellWidth, setCellWidth] = useState(bestWidth(100));
-  const [bestItemWidth, setBestItemWidth] = useState<number | null>(null);
+  const [_cellWidth, _setCellWidth] = useState(bestWidth(100));
+  const [_bestItemWidth, setBestItemWidth] = useState<number | null>(null);
 
   const updateBestWidth = (event: LayoutChangeEvent) => {
     const goodWidth = event.nativeEvent.layout.width;
