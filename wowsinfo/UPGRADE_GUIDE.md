@@ -52,12 +52,13 @@ pluginManagement {
         gradlePluginPortal()
     }
     
+    // Map plugin IDs to Maven coordinates for Android plugins
     resolutionStrategy {
         eachPlugin {
-            // Maps plugin IDs to Maven coordinates
-            if (requested.id.id == "com.android.application" || 
-                requested.id.id == "com.android.library") {
-                useModule("com.android.tools.build:gradle:${requested.version}")
+            when (requested.id.id) {
+                "com.android.application", "com.android.library" -> {
+                    useModule("com.android.tools.build:gradle:${requested.version}")
+                }
             }
         }
     }

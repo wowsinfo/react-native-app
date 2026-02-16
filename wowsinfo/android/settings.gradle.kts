@@ -7,15 +7,13 @@ pluginManagement {
         gradlePluginPortal()
     }
     
-    // Map plugin IDs to Maven coordinates
+    // Map plugin IDs to Maven coordinates for Android plugins
+    // Kotlin plugin resolves automatically from gradlePluginPortal()
     resolutionStrategy {
         eachPlugin {
             when (requested.id.id) {
                 "com.android.application", "com.android.library" -> {
                     useModule("com.android.tools.build:gradle:${requested.version}")
-                }
-                "org.jetbrains.kotlin.android" -> {
-                    useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
                 }
             }
         }
