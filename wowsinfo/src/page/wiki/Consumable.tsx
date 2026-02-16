@@ -12,8 +12,27 @@ import {LoadingModal, WikiIcon, WoWsInfo} from '../../component';
 import {SAVED, setLastLocation} from '../../value/data';
 import {SafeAction} from '../../core';
 
-class Consumable extends PureComponent {
-  constructor(props) {
+interface ConsumableItem {
+  type: string;
+  price_gold: number;
+  price_credit: number;
+  consumable_id: string;
+  name: string;
+  description: string;
+  profile?: Record<string, any>;
+  icon?: string;
+}
+
+interface ConsumableProps {
+  upgrade?: boolean;
+}
+
+interface ConsumableState {
+  data: ConsumableItem[];
+}
+
+class Consumable extends PureComponent<ConsumableProps, ConsumableState> {
+  constructor(props: ConsumableProps) {
     super(props);
     const {upgrade} = props;
     let loc = 'Consumable';
@@ -23,7 +42,7 @@ class Consumable extends PureComponent {
     setLastLocation(loc);
 
     // Load data depending on 'upgrade' prop
-    let data = [];
+    let data: ConsumableItem[] = [];
     let consumable = AppGlobalData.get(SAVED.consumable);
     for (let key in consumable) {
       let curr = consumable[key];

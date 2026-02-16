@@ -11,8 +11,21 @@ import {SAVED, setLastLocation} from '../../value/data';
 import {List, Portal, Dialog} from 'react-native-paper';
 import {FlatGrid} from 'react-native-super-grid';
 
-class Map extends Component {
-  constructor(props) {
+interface MapItem {
+  name: string;
+  description: string;
+  icon: string;
+}
+
+interface MapState {
+  data: MapItem[];
+  shown: boolean;
+  map: string;
+  loading: boolean;
+}
+
+class Map extends Component<{}, MapState> {
+  constructor(props: {}) {
     super(props);
     setLastLocation('Map');
     console.log('WIKI - Map');

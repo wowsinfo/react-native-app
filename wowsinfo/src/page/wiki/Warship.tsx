@@ -16,14 +16,35 @@ import {
   bestCellWidth,
   bestCellWidthEven,
 } from '../../core';
+import {WarshipFilterData} from './WarshipFilter';
 
-class Warship extends PureComponent {
-  constructor(props) {
+interface WarshipItem {
+  ship_id: number;
+  tier: number;
+  type: string;
+  new?: boolean;
+  name: string;
+  nation: string;
+}
+
+interface WarshipProps {
+  filter?: WarshipFilterData;
+}
+
+interface WarshipState {
+  data: WarshipItem[];
+  filter: WarshipFilterData | {};
+}
+
+class Warship extends PureComponent<WarshipProps, WarshipState> {
+  original: WarshipItem[];
+
+  constructor(props: WarshipProps) {
     super(props);
     setLastLocation('Warship');
     console.log('WIKI - Warship');
     let warship = AppGlobalData.get(SAVED.warship);
-    let sorted = Object.entries(warship).sort((a, b) => {
+    let sorted: [string, any][] = Object.entries(warship).sort((a, b) => {
       // Sort by tier, then by type
       if (a[1].new) {
         return -1;
@@ -39,12 +60,13 @@ class Warship extends PureComponent {
     });
 
     // Remove extra information (ship id)
-    sorted.forEach((s, i) => (sorted[i] = Object.assign(s[1])));
-    this.original = sorted;
-    console.log(sorted);
+    let sortedData: WarshipItem[] = [];
+    sorted.forEach((s) => sortedData.push(Object.assign(s[1])));
+    this.original = sortedData;
+    console.log(sortedData);
 
     this.state = {
-      data: sorted,
+      data: sortedData,
       filter: {},
     };
   }
@@ -75,7 +97,7 @@ class Warship extends PureComponent {
           itemDimension={width}
           spacing={0}
           data={data}
-          renderItem={({item}) => {
+          renderItem={({item}: {item: WarshipItem}) => {
             return (
               <WarshipCell
                 scale={width / 80}
@@ -92,14 +114,14 @@ class Warship extends PureComponent {
     );
   }
 
-  updateShip(data) {
+  updateShip = (data: WarshipFilterData) => {
     let sorted = filterShip(data);
     if (sorted == null) {
       this.setState({data: this.original});
     } else {
       this.setState({data: sorted});
     }
-  }
+  };
 }
 
 export {Warship};

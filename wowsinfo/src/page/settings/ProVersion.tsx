@@ -9,19 +9,29 @@ import {
   finishTransaction,
   purchaseUpdatedListener,
   purchaseErrorListener,
+  type PurchaseError,
+  type Purchase,
+  type EmitterSubscription,
 } from 'react-native-iap';
 import {setProVersion, validateProVersion} from '../../value/data';
 import {Actions} from 'react-native-router-flux';
 import {lang} from '../../value/lang';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
-class ProVersion extends Component {
-  purchaseUpdateSubscription = null;
-  purchaseErrorSubscription = null;
+interface ProVersionState {
+  loading: boolean;
+  error: boolean;
+  price: string;
+  discountPrice: string;
+}
+
+class ProVersion extends Component<{}, ProVersionState> {
+  purchaseUpdateSubscription: EmitterSubscription | null = null;
+  purchaseErrorSubscription: EmitterSubscription | null = null;
 
   sku = 'wowsinfo.proversion';
 
-  constructor(props) {
+  constructor(props: {}) {
     super(props);
     this.state = {
       loading: true,
@@ -34,12 +44,12 @@ class ProVersion extends Component {
   async componentDidMount() {
     /// Setup listeners
     this.purchaseUpdateSubscription = purchaseUpdatedListener(
-      async purchase => {
+      async (purchase: Purchase) => {
         console.log('purchaseUpdatedListener', purchase);
         const receipt = purchase.transactionReceipt;
         if (receipt) {
           // It wes successful
-          await finishTransaction(purchase, false);
+          await finishTransaction({purchase, isConsumable: false});
 
           setProVersion(true);
           // Go back automatically
@@ -52,7 +62,7 @@ class ProVersion extends Component {
       },
     );
 
-    this.purchaseErrorSubscription = purchaseErrorListener(error => {
+    this.purchaseErrorSubscription = purchaseErrorListener((error: PurchaseError) => {
       console.warn('purchaseErrorListener', error);
     });
 

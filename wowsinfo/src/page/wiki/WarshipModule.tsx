@@ -13,8 +13,52 @@ import {ThemeBackColour} from '../../value/colour';
 import {List, Caption} from 'react-native-paper';
 import {lang} from '../../value/lang';
 
-class WarshipModule extends Component {
-  constructor(props) {
+interface ModuleTree {
+  [key: string]: {
+    type: string;
+    name: string;
+    price_xp: number;
+    price_credit: number;
+    next_modules?: number[] | null;
+  };
+}
+
+interface ShipModule {
+  Artillery: string;
+  DiveBomber: string;
+  Engine: string;
+  Fighter: string;
+  FlightControl: string;
+  Hull: string;
+  Suo: string;
+  TorpedoBomber: string;
+  Torpedoes: string;
+}
+
+interface ModuleSection {
+  title: string;
+  data: string[];
+}
+
+interface WarshipModuleProps {
+  data: {
+    ship_id: number;
+    modules_tree: ModuleTree;
+    modules: Record<string, string[]>;
+  };
+}
+
+interface WarshipModuleState {
+  ship_id: number;
+  module: ShipModule;
+  tree: ModuleTree;
+  section: ModuleSection[];
+}
+
+class WarshipModule extends Component<WarshipModuleProps, WarshipModuleState> {
+  server: string;
+
+  constructor(props: WarshipModuleProps) {
     super(props);
 
     const {ship_id, modules_tree} = props.data;
@@ -74,14 +118,14 @@ class WarshipModule extends Component {
     });
   }
 
-  renderModule(ID) {
+  renderModule(ID: string) {
     const {tree, module} = this.state;
     const {name, price_xp, price_credit} = tree[ID];
     const {xp} = styles;
 
     let selected = false;
     for (let module_name in module) {
-      if (module[module_name] === ID) {
+      if (module[module_name as keyof ShipModule] === ID) {
         selected = true;
         break;
       }
@@ -107,23 +151,23 @@ class WarshipModule extends Component {
     );
   }
 
-  updateModule(tree, ID) {
+  updateModule(tree: ModuleTree, ID: string) {
     let module = Object.assign(this.state.module);
-    module[tree[ID].type] = ID;
+    module[tree[ID].type as keyof ShipModule] = ID;
     this.setState({module});
   }
 
-  makeSection(data) {
+  makeSection(data: WarshipModuleProps['data']) {
     const {modules, modules_tree} = data;
 
     let moduleName = AppGlobalData.get(SAVED.encyclopedia).ship_modules;
 
-    let section = [];
+    let section: ModuleSection[] = [];
     for (let key in modules) {
       let curr = modules[key];
       if (curr.length > 1) {
         // Ignore empty or one module, you cannot update them anyway
-        let sorted = curr.sort((a, b) => {
+        let sorted = curr.sort((a: string, b: string) => {
           let aM = modules_tree[a];
           let bM = modules_tree[b];
           if (aM.price_xp !== bM.price_xp) {
@@ -153,9 +197,9 @@ class WarshipModule extends Component {
    * hello_world becomes HelloWorld
    * @param {*} key
    */
-  normaliseKey(key) {
+  normaliseKey(key: string) {
     let names = key.split('_');
-    const upperFirst = str => str.charAt(0).toUpperCase() + str.slice(1);
+    const upperFirst = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
     names.map((n, i) => (names[i] = upperFirst(n)));
 
     console.log(names);

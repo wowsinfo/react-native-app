@@ -10,13 +10,26 @@ import {WikiIcon, WoWsInfo} from '../../component';
 import {SAVED, setLastLocation} from '../../value/data';
 import {SafeAction} from '../../core';
 
-class Achievement extends PureComponent {
-  constructor(props) {
+interface AchievementItem {
+  hidden: boolean;
+  name: string;
+  description: string;
+  achievement_id: string;
+  image: string;
+  image_inactive?: string;
+}
+
+interface AchievementState {
+  data: AchievementItem[];
+}
+
+class Achievement extends PureComponent<{}, AchievementState> {
+  constructor(props: {}) {
     super(props);
     setLastLocation('Achievement');
     console.log('WIKI - Achievement');
     let achievement = AppGlobalData.get(SAVED.achievement);
-    let sorted = Object.entries(achievement).sort((a, b) => {
+    let sorted: [string, any][] = Object.entries(achievement).sort((a, b) => {
       // Sort by hidden then by key
       if (a[1].hidden === b[1].hidden) {
         return a[0].localeCompare(b[0]);
@@ -25,14 +38,15 @@ class Achievement extends PureComponent {
       }
     });
 
-    sorted.forEach((item, index) => {
+    let sortedData: AchievementItem[] = [];
+    sorted.forEach((item) => {
       // Make it an object
-      sorted[index] = Object.assign(item[1]);
+      sortedData.push(Object.assign(item[1]));
     });
-    console.log(sorted);
+    console.log(sortedData);
 
     this.state = {
-      data: sorted,
+      data: sortedData,
     };
   }
 

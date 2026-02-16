@@ -19,8 +19,23 @@ const MODE = {
   TYPE: 3,
 };
 
-class WarshipFilter extends Component {
-  constructor(props) {
+export interface WarshipFilterData {
+  premium: boolean;
+  name: string;
+  nation: string[];
+  type: string[];
+  tier: string[];
+}
+
+interface WarshipFilterState extends WarshipFilterData {}
+
+class WarshipFilter extends Component<{}, WarshipFilterState> {
+  refs: {
+    scrollview: ScrollView;
+    search: TextInput;
+  };
+
+  constructor(props: {}) {
     super(props);
 
     this.state = {
@@ -34,7 +49,7 @@ class WarshipFilter extends Component {
 
   componentDidMount() {
     // After component has been rendered or it will be undefined
-    this.refs.scrollview.scrollTo({x: 0, y: 128, animated: false});
+    (this.refs.scrollview as ScrollView).scrollTo({x: 0, y: 128, animated: false});
   }
 
   render() {
@@ -44,11 +59,11 @@ class WarshipFilter extends Component {
     let tierList = getTierList();
 
     let nations = AppGlobalData.get(SAVED.encyclopedia).ship_nations;
-    let nationList = [];
+    let nationList: string[] = [];
     Object.keys(nations).forEach(k => nationList.push(nations[k]));
 
     let types = AppGlobalData.get(SAVED.encyclopedia).ship_types;
-    let typeList = [];
+    let typeList: string[] = [];
     Object.keys(types).forEach(k => typeList.push(types[k]));
 
     return (
@@ -141,7 +156,7 @@ class WarshipFilter extends Component {
     });
   };
 
-  renderButton(item, event) {
+  renderButton(item: string, event: () => void) {
     return (
       <Button key={item} onPress={event}>
         {item}
@@ -149,9 +164,9 @@ class WarshipFilter extends Component {
     );
   }
 
-  addData(item, mode) {
+  addData(item: string, mode: number) {
     const {tier, nation, type} = this.state;
-    let arr = null;
+    let arr: string[] | null = null;
     switch (mode) {
       case MODE.TIER:
         arr = tier;
@@ -163,6 +178,8 @@ class WarshipFilter extends Component {
         arr = type;
         break;
     }
+
+    if (!arr) return;
 
     // Same as last added item
     if (arr.slice(-1)[0] === item) {

@@ -13,17 +13,36 @@ import {SafeAction} from '../../core';
 import {Title, Paragraph} from 'react-native-paper';
 import {TintTextColour} from '../../value/colour';
 
-class Collection extends PureComponent {
-  constructor(props) {
+interface CollectionItem {
+  card_id?: string;
+  collection_id: string;
+  name: string;
+  description: string;
+  icon?: string;
+  image?: string;
+}
+
+interface CollectionProps {
+  item?: CollectionItem[];
+}
+
+interface CollectionState {
+  data: CollectionItem[];
+  collection: boolean;
+  header: CollectionItem | null;
+}
+
+class Collection extends PureComponent<CollectionProps, CollectionState> {
+  constructor(props: CollectionProps) {
     super(props);
     setLastLocation('Collection');
     console.log('WIKI - Collection');
 
-    let collection = [];
+    let collection: CollectionItem[] = [];
     let isCollection = false;
     if (props.item) {
       // Inside a single collection
-      collection = props.item;
+      collection = [...props.item];
       isCollection = true;
     } else {
       // Display all available collections
@@ -37,7 +56,7 @@ class Collection extends PureComponent {
     this.state = {
       data: collection,
       collection: isCollection,
-      header: isCollection ? collection.shift() : null,
+      header: isCollection ? collection.shift()! : null,
     };
   }
 
@@ -56,7 +75,7 @@ class Collection extends PureComponent {
         <FlatGrid
           itemDimension={80}
           data={data}
-          renderItem={({item}) => {
+          renderItem={({item}: {item: CollectionItem}) => {
             return (
               <WikiIcon
                 themeIcon={!collection}
@@ -88,7 +107,7 @@ class Collection extends PureComponent {
    * Filter collection items with id
    * @param {*} item
    */
-  itemOrCollection(item) {
+  itemOrCollection(item: CollectionItem) {
     if (item.card_id) {
       // This is an item
       SafeAction('BasicDetail', {item: item});
@@ -97,7 +116,7 @@ class Collection extends PureComponent {
       let id = item.collection_id;
       let items = AppGlobalData.get(SAVED.collection).item;
 
-      let collectionItems = [];
+      let collectionItems: CollectionItem[] = [];
       collectionItems.push(AppGlobalData.get(SAVED.collection).collection[id]);
       for (let one in items) {
         let curr = items[one];

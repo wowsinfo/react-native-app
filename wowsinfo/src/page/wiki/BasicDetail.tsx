@@ -12,7 +12,25 @@ import {Title, Paragraph, Caption} from 'react-native-paper';
 import {WikiIcon, WoWsInfo, PriceLabel} from '../../component';
 import {TintTextColour} from '../../value/colour';
 
-class BasicDetail extends Component {
+interface DetailItem {
+  consumable_id?: string;
+  achievement_id?: string;
+  collection_id?: string;
+  card_id?: string;
+  name: string;
+  description: string;
+  profile?: Record<string, {description: string}>;
+  perks?: Record<string, {description: string}>;
+  image?: string;
+  image_inactive?: string;
+  icon?: string;
+}
+
+interface BasicDetailProps {
+  item: DetailItem;
+}
+
+class BasicDetail extends Component<BasicDetailProps> {
   render() {
     const {item} = this.props;
     console.log(item);
@@ -23,7 +41,7 @@ class BasicDetail extends Component {
     } else if (item.achievement_id) {
       ID = item.achievement_id;
     } else if (item.collection_id) {
-      ID = item.card_id;
+      ID = item.card_id || '';
     }
 
     return <WoWsInfo title={ID}>{this.renderDetail()}</WoWsInfo>;

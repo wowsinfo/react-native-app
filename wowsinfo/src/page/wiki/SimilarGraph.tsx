@@ -4,12 +4,16 @@
  * Displaying all similar ships' average stats
  */
 
-import React, {PureComponent} from 'react';
+import React, {PureComponent, ReactNode} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import {WoWsInfo} from '../../component';
 
-class SimilarGraph extends PureComponent {
-  constructor(props) {
+interface SimilarGraphProps {
+  info: ReactNode;
+}
+
+class SimilarGraph extends PureComponent<SimilarGraphProps> {
+  constructor(props: SimilarGraphProps) {
     super(props);
   }
 

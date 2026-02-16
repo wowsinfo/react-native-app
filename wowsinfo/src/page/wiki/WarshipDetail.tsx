@@ -4,7 +4,7 @@
  * Display detailed info of a ship and also show similar ships
  */
 
-import React, {PureComponent} from 'react';
+import React, {PureComponent, ReactNode} from 'react';
 import {View, FlatList, ScrollView, StyleSheet} from 'react-native';
 import {Text, Title, Button, Paragraph} from 'react-native-paper';
 import * as Anime from 'react-native-animatable';
@@ -28,8 +28,55 @@ import {TintTextColour} from '../../value/colour';
 import {HorizontalBarChart} from 'native-chart-experiment';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
-class WarshipDetail extends PureComponent {
-  constructor(props) {
+interface WarshipItem {
+  ship_id: number;
+  ship_id_str: string;
+  tier: number;
+  type: string;
+  name: string;
+  nation: string;
+  model?: string;
+}
+
+interface ModuleData {
+  ship_id: number;
+  module: {
+    Artillery: string;
+    DiveBomber: string;
+    Engine: string;
+    Fighter: string;
+    FlightControl: string;
+    Hull: string;
+    Suo: string;
+    TorpedoBomber: string;
+    Torpedoes: string;
+  };
+}
+
+interface WarshipDetailProps {
+  item: WarshipItem;
+  module?: ModuleData;
+}
+
+interface WarshipDetailState {
+  curr: WarshipItem;
+  similar: WarshipItem[];
+  loading: boolean;
+  data: any;
+  compare: boolean;
+  module?: ModuleData;
+}
+
+class WarshipDetail extends PureComponent<
+  WarshipDetailProps,
+  WarshipDetailState
+> {
+  server: string;
+  delayedRequest: NodeJS.Timeout | null;
+  sectionTitle: any[];
+  upgrades: number[];
+
+  constructor(props: WarshipDetailProps) {
     super(props);
 
     this.server = getCurrDomain();
@@ -39,7 +86,7 @@ class WarshipDetail extends PureComponent {
 
     // Get all other same tier and same type ships
     let warship = AppGlobalData.get(SAVED.warship);
-    let similar = Object.entries(warship).filter(s => {
+    let similar: [string, any][] = Object.entries(warship).filter(s => {
       // Same tier, same type but not the same ship
       if (
         s[1].tier === curr.tier &&
@@ -48,15 +95,17 @@ class WarshipDetail extends PureComponent {
       ) {
         return true;
       }
+      return false;
     });
 
     // Remove extra information (ship id)
-    similar.forEach((s, i) => (similar[i] = Object.assign(s[1])));
-    console.log(similar);
+    let similarData: WarshipItem[] = [];
+    similar.forEach((s) => similarData.push(Object.assign(s[1])));
+    console.log(similarData);
 
     this.state = {
       curr: curr,
-      similar: similar,
+      similar: similarData,
       loading: true,
       data: {},
       compare: false,
@@ -64,6 +113,7 @@ class WarshipDetail extends PureComponent {
 
     this.delayedRequest = null;
     this.sectionTitle = [styles.centerText, TintTextColour()];
+    this.upgrades = [];
     this.efficientDataRequest(curr.ship_id);
   }
 
@@ -81,7 +131,7 @@ class WarshipDetail extends PureComponent {
         return;
       }
       this.setState({loading: true, module: module});
-      this.getNewModule(module).then(json => {
+      this.getNewModule(module).then((json: any) => {
         const newModule = Guard(json, `data.${module.ship_id}`, null);
         if (newModule) {
           // Copy data
@@ -96,7 +146,7 @@ class WarshipDetail extends PureComponent {
     }
   }
 
-  getNewModule(data) {
+  getNewModule(data: ModuleData) {
     const {ship_id, module} = data;
     const {
       Artillery,

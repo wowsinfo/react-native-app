@@ -10,6 +10,7 @@ import {
   Dialog,
   DarkTheme,
   DefaultTheme,
+  type Theme,
 } from 'react-native-paper';
 import {Actions} from 'react-native-router-flux';
 import {WoWsInfo, Touchable, SectionTitle} from '../../component';
@@ -48,13 +49,30 @@ import {
   BROWN,
   GREY,
   BLUEGREY,
+  type MaterialColor,
 } from 'react-native-material-color';
 import {lang} from '../../value/lang';
 import {WikiAPI} from '../../value/api';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
-class Settings extends Component {
-  constructor(props) {
+interface SettingsProps {
+  theme: Theme;
+}
+
+interface SettingsState {
+  darkMode: boolean;
+  tintColour: MaterialColor;
+  showColour: boolean;
+  server: number;
+  APILanguage: string;
+  userLanguage: string;
+  swapButton: boolean;
+}
+
+class Settings extends Component<SettingsProps, SettingsState> {
+  colourList: MaterialColor[];
+
+  constructor(props: SettingsProps) {
     super(props);
 
     this.state = {
@@ -134,13 +152,13 @@ class Settings extends Component {
     const {server, APILanguage, userLanguage} = this.state;
 
     const langList = getAPIList();
-    const appLang = {
+    const appLang: Record<string, string> = {
       en: 'English',
       ja: '日本語',
       zh: '简体中文',
       'zh-hant': '繁体中文',
     };
-    let appLangList = [];
+    let appLangList: Array<{code: string; lang: string}> = [];
     for (let code in appLang) {
       appLangList.push({code: code, lang: appLang[code]});
     }
@@ -192,7 +210,7 @@ class Settings extends Component {
     );
   }
 
-  renderAPILanguage(langList) {
+  renderAPILanguage(langList: Record<string, string>) {
     const langData = [];
     for (let key in langList) {
       langData.push(key);
@@ -315,7 +333,7 @@ class Settings extends Component {
   checkAppUpdate = () => {
     if (AppGlobalData.canCheckForUpdate) {
       AppGlobalData.canCheckForUpdate = false;
-      SafeFetch.normal(WikiAPI.Github_AppVersion).then(v => {
+      SafeFetch.normal(WikiAPI.Github_AppVersion).then((v: any) => {
         let version = Guard(v, 'version', null);
         if (version != null) {
           if (version > APP.Version) {
@@ -330,7 +348,7 @@ class Settings extends Component {
     }
   };
 
-  displayUpdate(result, version = null) {
+  displayUpdate(result: boolean, version: string | null = null) {
     if (result) {
       const format = require('string-format');
       Alert.alert(
@@ -355,7 +373,7 @@ class Settings extends Component {
   /**
    * Swap bottom buttons
    */
-  swapButton(curr) {
+  swapButton(curr: boolean) {
     setSwapButton(curr);
     this.setState({swapButton: getSwapButton()});
   }
@@ -400,7 +418,7 @@ class Settings extends Component {
    * UPdate app tint colour
    * @param {*} tint
    */
-  updateTint(tint) {
+  updateTint(tint: MaterialColor) {
     UpdateTintColour(tint);
 
     this.props.theme.colors.primary = tint[500];
@@ -412,7 +430,7 @@ class Settings extends Component {
   /**
    * Update server that's being used
    */
-  updateServer(index) {
+  updateServer(index: number) {
     setCurrServer(index);
     this.setState({server: index});
   }
@@ -422,7 +440,7 @@ class Settings extends Component {
    * @param {String} language
    * @param {Boolean} force foce update
    */
-  updateApiLanguage(language, force) {
+  updateApiLanguage(language: string, force?: boolean) {
     if (!force && language === this.state.APILanguage) {
       return;
     }
@@ -435,7 +453,7 @@ class Settings extends Component {
     Actions.reset('Menu');
   }
 
-  updateUserLang(code) {
+  updateUserLang(code: string) {
     setUserLang(code);
     lang.setLanguage(code);
     this.setState({userLanguage: code});

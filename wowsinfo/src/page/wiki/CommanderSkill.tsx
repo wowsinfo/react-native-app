@@ -12,16 +12,35 @@ import {SectionGrid} from 'react-native-super-grid';
 import {SafeAction, copy} from '../../core';
 import {lang} from '../../value/lang';
 
-class CommanderSkill extends Component {
-  constructor(props) {
+interface SkillItem {
+  tier: number;
+  name: string;
+  description?: string;
+  perks?: Record<string, any>;
+  icon: string;
+  selected?: boolean;
+}
+
+interface SkillSection {
+  title: string;
+  data: SkillItem[];
+}
+
+interface CommanderSkillState {
+  data: SkillSection[];
+  point: number | string;
+}
+
+class CommanderSkill extends Component<{}, CommanderSkillState> {
+  constructor(props: {}) {
     super(props);
     setLastLocation('CommanderSkill');
     console.log('WIKI - Commander Skill');
     let skill = AppGlobalData.get(SAVED.commanderSkill);
     let cloned = copy(skill);
 
-    let section = [];
-    cloned.forEach(i => {
+    let section: SkillSection[] = [];
+    cloned.forEach((i: SkillItem) => {
       let index = i.tier - 1;
       // Data is sorted so we wont need to worry about not in order
       if (!section[index]) {
@@ -46,7 +65,7 @@ class CommanderSkill extends Component {
         <SectionGrid
           itemDimension={80}
           sections={data}
-          renderItem={({item}) => {
+          renderItem={({item}: {item: SkillItem}) => {
             return (
               <WikiIcon
                 item={item}
@@ -64,7 +83,7 @@ class CommanderSkill extends Component {
     );
   }
 
-  skillSelected(item) {
+  skillSelected(item: SkillItem) {
     const {point} = this.state;
     let pointLeft = point;
     if (item.selected == true) {
@@ -72,12 +91,12 @@ class CommanderSkill extends Component {
       if (pointLeft == lang.wiki_skills_reset) {
         pointLeft = 0;
       }
-      pointLeft += item.tier;
+      pointLeft = (pointLeft as number) + item.tier;
       // Deselect this skill and return your points
       item.selected = false;
       this.setState({point: pointLeft});
     } else {
-      pointLeft -= item.tier;
+      pointLeft = (pointLeft as number) - item.tier;
       if (pointLeft >= 0) {
         item.selected = true;
         // If you do not have enough point do nothing
