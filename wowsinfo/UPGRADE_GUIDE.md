@@ -79,6 +79,28 @@ dependencyResolutionManagement {
 - **Flipper**: Removed Flipper integration as it's deprecated in React Native 0.76+
 - **32-bit x86**: Removed x86 architecture support (x86_64 retained for emulator support)
 
+### 2.1. React Native New Architecture (Disabled)
+
+**Important**: The React Native New Architecture (TurboModules and Fabric) is **explicitly disabled** for build stability:
+
+```properties
+# android/gradle.properties
+newArchEnabled=false
+```
+
+**Why Disabled?**
+- Several native modules may not be fully compatible with New Architecture
+- Codegen build issues with current dependency versions
+- Provides stable, reliable builds with React Native 0.83
+- Allows gradual migration path when all dependencies are ready
+
+**See `NEW_ARCHITECTURE.md` for:**
+- Detailed compatibility analysis
+- Migration checklist
+- When and how to enable New Architecture
+
+The Old Architecture (Bridge) is fully supported and provides excellent performance for most applications. The New Architecture can be enabled later when all dependencies are verified compatible.
+
 ### 3. Updated Dependencies
 
 #### Core Dependencies
