@@ -256,9 +256,10 @@ class App extends Component {
 
   handleBack = () => {
     if (Actions.state.routes.length === 1) {
-      return false;
+      return false; // Allow app to exit
     }
-    return false;
+    Actions.pop();
+    return true; // Event handled
   };
 }
 

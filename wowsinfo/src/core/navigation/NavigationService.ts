@@ -2,9 +2,13 @@ import {
   createNavigationContainerRef,
   StackActions,
   CommonActions,
+  NavigationState,
+  Route,
 } from '@react-navigation/native';
 
-export const navigationRef = createNavigationContainerRef();
+export type RootStackParamList = Record<string, any>;
+
+export const navigationRef = createNavigationContainerRef<RootStackParamList>();
 
 export const NavigationService = {
   push(name: string, params?: any) {
@@ -54,19 +58,19 @@ export const NavigationService = {
 
   navigate(name: string, params?: any) {
     if (navigationRef.isReady()) {
-      navigationRef.navigate(name as never, params as never);
+      navigationRef.navigate(name, params);
     }
   },
 
-  getState() {
+  getState(): NavigationState | null {
     return navigationRef.isReady() ? navigationRef.getState() : null;
   },
 
-  getCurrentRoute() {
-    return navigationRef.isReady() ? navigationRef.getCurrentRoute() : null;
+  getCurrentRoute(): Route<string> | undefined {
+    return navigationRef.isReady() ? navigationRef.getCurrentRoute() : undefined;
   },
 
-  currentScene() {
+  currentScene(): string {
     const route = this.getCurrentRoute();
     return route?.name || '';
   },
