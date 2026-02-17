@@ -1398,7 +1398,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@react-native-async-storage/async-storage@^2.1.0":
+"@react-native-async-storage/async-storage@^2.2.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-2.2.0.tgz#a3aa565253e46286655560172f4e366e8969f5ad"
   integrity sha512-gvRvjR5JAaUZF8tv2Kcq/Gbt3JHwbKFYfmb445rhOj6NUMx3qPLixmDx5pZAyb9at1bYvJ4/eTUipU5aki45xw==
@@ -5193,10 +5193,8 @@ mute-stream@0.0.7:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   integrity sha512-r65nCZhrbXXb6dXOACihYApHw2Q6pV0M3V0PSxd74N0+D8nzAdEAITq2oAjA1jVnKI+tGvEBUpqiMh0+rW6zDQ==
 
-native-chart-experiment@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/native-chart-experiment/-/native-chart-experiment-1.0.2.tgz#2b729ffdc86f0c33d119c532d14b22eafcc7f9e9"
-  integrity sha512-z3MSzQnAkm0HRydMm/w84IZC8V8T461BCHjWea9VvHct+GFKhTjAVWXfmCLa40b3M7YgDTa+NJ5WOgrQ/FLHsw==
+"native-chart-experiment@file:../../native-chart-experiment":
+  version "0.0.0"
 
 natural-compare@^1.4.0:
   version "1.4.0"

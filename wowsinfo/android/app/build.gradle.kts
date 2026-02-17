@@ -73,22 +73,19 @@ val jscFlavor = "org.webkit:android-jsc:+"
 
 android {
     val buildToolsVersionValue = rootProject.findProperty("buildToolsVersion")?.toString() ?: "35.0.0"
-    val minSdkVersionValue = rootProject.findProperty("minSdkVersion")?.toString()?.toInt() ?: 24
-    val compileSdkVersionValue = rootProject.findProperty("compileSdkVersion")?.toString()?.toInt() ?: 35
-    val targetSdkVersionValue = rootProject.findProperty("targetSdkVersion")?.toString()?.toInt() ?: 35
     val ndkVersionValue = rootProject.findProperty("ndkVersion")?.toString() ?: "26.1.10909125"
 
     buildToolsVersion = buildToolsVersionValue
     ndkVersion = ndkVersionValue
     
-    compileSdk = compileSdkVersionValue
+    compileSdk = 35
     
     namespace = "com.wowsinfo"
     
     defaultConfig {
         applicationId = "com.wowsinfo"
-        minSdk = minSdkVersionValue
-        targetSdk = targetSdkVersionValue
+        minSdk = 24
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }
