@@ -28,7 +28,12 @@ export const NavigationService = {
       const state = navigationRef.getState();
       const routeIndex = state.routes.findIndex(r => r.name === name);
       if (routeIndex !== -1) {
-        navigationRef.dispatch(StackActions.pop(state.routes.length - routeIndex - 1));
+        // Calculate how many screens to pop from the current position
+        const currentIndex = state.index;
+        const popCount = currentIndex - routeIndex;
+        if (popCount > 0) {
+          navigationRef.dispatch(StackActions.pop(popCount));
+        }
       }
     }
   },

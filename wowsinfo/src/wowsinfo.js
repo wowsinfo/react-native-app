@@ -59,6 +59,8 @@ setNativeExceptionHandler(e => {
   console.log(`NativeException\n${e}`);
 });
 
+const Stack = createStackNavigator();
+
 // Ask user to email me the log
 function showAlert(msg, mode) {
   Alert.alert(
@@ -193,7 +195,6 @@ class App extends Component {
       return <Loading />;
     }
 
-    const Stack = createStackNavigator();
     const initialRouteName = getFirstLaunch() ? 'Setup' : 'Menu';
 
     return (
@@ -256,6 +257,7 @@ class App extends Component {
 
   handleBack = () => {
     if (Actions.state.routes.length === 1) {
+      BackHandler.exitApp();
       return false; // Allow app to exit
     }
     Actions.pop();
