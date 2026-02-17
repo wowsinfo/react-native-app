@@ -90,6 +90,11 @@ android {
         versionName = "1.0"
     }
     
+    // Enable prefab for native library discovery
+    buildFeatures {
+        prefab = true
+    }
+    
     signingConfigs {
         getByName("debug") {
             storeFile = file("debug.keystore")
