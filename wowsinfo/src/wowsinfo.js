@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {Alert, BackHandler} from 'react-native';
-import {Router, Stack, Scene, Actions} from 'react-native-router-flux';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import {withTheme, DarkTheme, DefaultTheme} from 'react-native-paper';
+import {navigationRef, Actions} from './core/navigation/NavigationService';
 import {
   Menu,
   Settings,
@@ -172,55 +174,91 @@ class App extends Component {
     });
   }
 
+  componentDidMount() {
+    this.backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.handleBack,
+    );
+  }
+
+  componentWillUnmount() {
+    if (this.backHandler) {
+      this.backHandler.remove();
+    }
+  }
+
   render() {
     const {loading, dark} = this.state;
     if (loading) {
       return <Loading />;
     }
+
+    const Stack = createStackNavigator();
+    const initialRouteName = getFirstLaunch() ? 'Setup' : 'Menu';
+
     return (
-      <Router
-        sceneStyle={{flex: 1, backgroundColor: dark ? 'black' : 'white'}}
-        backAndroidHandler={this.handleBack}>
-        <Stack key="root" hideNavBar>
-          <Scene key="Menu" component={Menu} />
-          <Scene key="Setup" component={Setup} initial={getFirstLaunch()} />
-          <Scene key="Search" component={Search} />
-          <Scene key="RS" component={RS} />
+      <NavigationContainer
+        ref={navigationRef}
+        theme={{
+          dark: dark,
+          colors: {
+            primary: dark ? '#ffffff' : '#000000',
+            background: dark ? 'black' : 'white',
+            card: dark ? 'black' : 'white',
+            text: dark ? '#ffffff' : '#000000',
+            border: dark ? '#333333' : '#cccccc',
+            notification: dark ? '#ffffff' : '#000000',
+          },
+        }}>
+        <Stack.Navigator
+          initialRouteName={initialRouteName}
+          screenOptions={{
+            headerShown: false,
+            cardStyle: {
+              flex: 1,
+              backgroundColor: dark ? 'black' : 'white',
+            },
+          }}>
+          <Stack.Screen name="Menu" component={Menu} />
+          <Stack.Screen name="Setup" component={Setup} />
+          <Stack.Screen name="Search" component={Search} />
+          <Stack.Screen name="RS" component={RS} />
 
-          <Scene key="Rating" component={Rating} />
-          <Scene key="Statistics" component={Statistics} />
-          <Scene key="Graph" component={Graph} />
-          <Scene key="PlayerAchievement" component={PlayerAchievement} />
-          <Scene key="PlayerShip" component={PlayerShip} />
-          <Scene key="PlayerShipDetail" component={Detailed} />
-          <Scene key="Rank" component={Rank} />
-          <Scene key="ClanInfo" component={ClanInfo} />
+          <Stack.Screen name="Rating" component={Rating} />
+          <Stack.Screen name="Statistics" component={Statistics} />
+          <Stack.Screen name="Graph" component={Graph} />
+          <Stack.Screen name="PlayerAchievement" component={PlayerAchievement} />
+          <Stack.Screen name="PlayerShip" component={PlayerShip} />
+          <Stack.Screen name="PlayerShipDetail" component={Detailed} />
+          <Stack.Screen name="Rank" component={Rank} />
+          <Stack.Screen name="ClanInfo" component={ClanInfo} />
 
-          <Scene key="Consumable" component={Consumable} />
-          <Scene key="CommanderSkill" component={CommanderSkill} />
-          <Scene key="Achievement" component={Achievement} />
-          <Scene key="Map" component={GameMap} />
-          <Scene key="Collection" component={Collection} />
-          <Scene key="Warship" component={Warship} />
-          <Scene key="WarshipFilter" component={WarshipFilter} />
-          <Scene key="SimilarGraph" component={SimilarGraph} />
-          <Scene key="WarshipDetail" component={WarshipDetail} />
-          <Scene key="WarshipModule" component={WarshipModule} />
-          <Scene key="BasicDetail" component={BasicDetail} />
+          <Stack.Screen name="Consumable" component={Consumable} />
+          <Stack.Screen name="CommanderSkill" component={CommanderSkill} />
+          <Stack.Screen name="Achievement" component={Achievement} />
+          <Stack.Screen name="Map" component={GameMap} />
+          <Stack.Screen name="Collection" component={Collection} />
+          <Stack.Screen name="Warship" component={Warship} />
+          <Stack.Screen name="WarshipFilter" component={WarshipFilter} />
+          <Stack.Screen name="SimilarGraph" component={SimilarGraph} />
+          <Stack.Screen name="WarshipDetail" component={WarshipDetail} />
+          <Stack.Screen name="WarshipModule" component={WarshipModule} />
+          <Stack.Screen name="BasicDetail" component={BasicDetail} />
 
-          <Scene key="Settings" component={Settings} />
-          <Scene key="License" component={License} />
-          <Scene key="About" component={About} />
-          <Scene key="ProVersion" component={ProVersion} />
-        </Stack>
-      </Router>
+          <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="License" component={License} />
+          <Stack.Screen name="About" component={About} />
+          <Stack.Screen name="ProVersion" component={ProVersion} />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
   }
 
   handleBack = () => {
     if (Actions.state.routes.length === 1) {
-      BackHandler.exitApp();
+      return false;
     }
+    return false;
   };
 }
 

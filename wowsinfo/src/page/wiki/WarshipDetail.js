@@ -23,7 +23,7 @@ import {SAVED, langStr, getCurrDomain} from '../../value/data';
 import {lang} from '../../value/lang';
 import {SafeFetch, Guard, SafeAction, copy, roundTo} from '../../core';
 import {WoWsAPI} from '../../value/api';
-import {Actions} from 'react-native-router-flux';
+import {Actions} from '../../core/navigation/NavigationService';
 import {TintTextColour} from '../../value/colour';
 import {HorizontalBarChart} from 'native-chart-experiment';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
