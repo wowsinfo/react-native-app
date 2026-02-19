@@ -19,7 +19,7 @@ import {List, Colors, FAB, Button, withTheme} from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
 import {WoWsInfo, SectionTitle, AppName} from '../../component';
 import {lang} from '../../value/lang';
-import {SafeAction, Downloader, bestWidth} from '../../core';
+import {SafeAction, Downloader, bestWidth, Actions} from '../../core';
 import {ThemeBackColour, TintColour} from '../../value/colour';
 import {
   getCurrDomain,
@@ -38,7 +38,6 @@ import {
   APP,
 } from '../../value/data';
 import {Loading} from '../common/Loading';
-import {Actions} from 'react-native-router-flux';
 import {ReactNativeManager} from '../../core/native/ReactNativeManager';
 import {QuickAction} from '../../core/native/QuickAction';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';

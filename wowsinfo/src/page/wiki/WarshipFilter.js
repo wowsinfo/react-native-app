@@ -11,7 +11,7 @@ import {WoWsInfo, FooterPlus, Space} from '../../component';
 import {lang} from '../../value/lang';
 import {SAVED} from '../../value/data';
 import {getTierList} from '../../core';
-import {Actions} from 'react-native-router-flux';
+import {Actions} from '../../core/navigation/NavigationService';
 
 const MODE = {
   TIER: 1,

@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {FAB} from 'react-native-paper';
-import {Actions} from 'react-native-router-flux';
+import {Actions} from '../../core/navigation/NavigationService';
 
 export const FloatingButton = () => {
   const [menu, setMenu] = useState(false);
   const [icon, setIcon] = useState<any>({uri: 'Ship'});
 
   useEffect(() => {
-    // @ts-ignore
-    const hasMenu = Actions.state.routes.findIndex(r => r.routeName === 'Menu');
+    const hasMenu = Actions.state.routes.findIndex(r => r.name === 'Menu');
     setMenu(hasMenu > 0);
     setIcon(hasMenu > 0 ? 'home' : {uri: 'Ship'});
   }, []);

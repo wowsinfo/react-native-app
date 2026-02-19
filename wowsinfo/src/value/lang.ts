@@ -1,6 +1,75 @@
-﻿import LocalizedStrings from 'react-native-localization';
+﻿import * as RNLocalize from 'react-native-localize';
 
-export const lang = new LocalizedStrings({
+// Language configuration type
+interface LanguageStrings {
+  [key: string]: any;
+}
+
+// Create a wrapper class that mimics LocalizedStrings API
+class LocalizationManager {
+  private translations: {[lang: string]: LanguageStrings} = {};
+  private currentLanguage: string = 'en';
+
+  constructor(translations: {[lang: string]: LanguageStrings}) {
+    this.translations = translations;
+    // Auto-detect user's language
+    const locales = RNLocalize.getLocales();
+    if (locales && locales.length > 0) {
+      const userLang = locales[0].languageCode;
+      if (this.translations[userLang]) {
+        this.currentLanguage = userLang;
+      }
+    }
+  }
+
+  // Get string value with fallback
+  private getString(key: string): any {
+    const currentStrings = this.translations[this.currentLanguage];
+    if (currentStrings && currentStrings[key] !== undefined) {
+      return currentStrings[key];
+    }
+    // Fallback to English
+    return this.translations['en'][key] || key;
+  }
+
+  // Proxy to access strings as properties
+  public get(target: any, prop: string): any {
+    return this.getString(prop);
+  }
+
+  // Set language manually
+  public setLanguage(lang: string) {
+    if (this.translations[lang]) {
+      this.currentLanguage = lang;
+    }
+  }
+
+  public getLanguage(): string {
+    return this.currentLanguage;
+  }
+
+  public getAvailableLanguages(): string[] {
+    return Object.keys(this.translations);
+  }
+}
+
+// Create proxy to support property access like lang.setup_title
+function createLocalizedStringsProxy(translations: {[lang: string]: LanguageStrings}) {
+  const manager = new LocalizationManager(translations);
+  
+  return new Proxy(manager, {
+    get(target, prop: string) {
+      // If accessing manager methods, return them
+      if (prop === 'setLanguage' || prop === 'getLanguage' || prop === 'getAvailableLanguages') {
+        return target[prop as keyof LocalizationManager].bind(target);
+      }
+      // Otherwise, get the translation string
+      return target.get(target, prop);
+    }
+  });
+}
+
+export const lang = createLocalizedStringsProxy({
   en: {
     /// Setup section
     setup_title: 'Set up WoWs Info',

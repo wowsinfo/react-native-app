@@ -7,7 +7,7 @@
 import React, {Component} from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 import {WoWsInfo, Space, SectionTitle} from '../../component';
-import {Actions} from 'react-native-router-flux';
+import {Actions} from '../../core/navigation/NavigationService';
 import {SAVED, getCurrDomain} from '../../value/data';
 import {ThemeBackColour} from '../../value/colour';
 import {List, Caption} from 'react-native-paper';

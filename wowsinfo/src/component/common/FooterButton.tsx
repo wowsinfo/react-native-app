@@ -1,7 +1,7 @@
 import React  from 'react';
 import {SafeAreaView} from 'react-native';
 import {IconButton, Colors} from 'react-native-paper';
-import {Actions} from 'react-native-router-flux';
+import {Actions} from '../../core/navigation/NavigationService';
 import {SafeAction} from '../../core';
 import {lang} from '../../value/lang';
 import {setLastLocation} from '../../value/data';
@@ -30,7 +30,6 @@ export const FooterButton = ({icon, left}: FooterButtonProps) => {
       SafeAction('Settings');
     } else if (icon === 'arrow-left') {
       Actions.pop();
-      // @ts-ignore
       if (Actions.state.routes.length === 2) {
         setTimeout(() => Actions.refresh(), 1000);
       }

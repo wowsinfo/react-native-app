@@ -11,7 +11,7 @@ import {
   DarkTheme,
   DefaultTheme,
 } from 'react-native-paper';
-import {Actions} from 'react-native-router-flux';
+import {Actions} from '../../core/navigation/NavigationService';
 import {WoWsInfo, Touchable, SectionTitle} from '../../component';
 import {
   APP,
