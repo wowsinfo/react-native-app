@@ -1,8 +1,6 @@
-plugins {
-    id("org.jetbrains.kotlin.android")
-    id("com.android.application")
-    id("com.facebook.react")
-}
+apply(plugin = "com.android.application")
+apply(plugin = "org.jetbrains.kotlin.android")
+apply(plugin = "com.facebook.react")
 
 /**
  * This is the configuration block to customize your React Native Android app.
