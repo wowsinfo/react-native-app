@@ -1,15 +1,28 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
-import { useColorScheme } from 'react-native';
+import * as SystemUI from 'expo-system-ui';
+import { useEffect } from 'react';
+
+import { AppPalette, NavigationLightTheme } from '@/constants/theme';
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  useEffect(() => {
+    void SystemUI.setBackgroundColorAsync(AppPalette.appBackground);
+  }, []);
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={NavigationLightTheme}>
       <Stack
         screenOptions={{
           headerTitle: 'WoWs Info Next',
+          headerStyle: {
+            backgroundColor: AppPalette.surface,
+          },
+          headerTintColor: AppPalette.text,
+          headerShadowVisible: false,
+          contentStyle: {
+            backgroundColor: AppPalette.appBackground,
+          },
         }}
       >
         <Stack.Screen

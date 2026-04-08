@@ -26,9 +26,10 @@ import {
   Section,
   StateCard,
 } from '@/features/player/ui';
+import { AppPalette } from '@/constants/theme';
 import { getServerLabel, serverOptions, type GameServer } from '@/features/home/content';
 
-const accentColor = '#8b5e1a';
+const accentColor = AppPalette.accent;
 
 export default function SearchScreen() {
   const router = useRouter();
@@ -132,9 +133,9 @@ export default function SearchScreen() {
         options={{
           title: 'Search',
           headerStyle: {
-            backgroundColor: '#f7f1e4',
+            backgroundColor: AppPalette.surface,
           },
-          headerTintColor: '#1f2f25',
+          headerTintColor: AppPalette.text,
           headerShadowVisible: false,
         }}
       />
@@ -253,17 +254,17 @@ const styles = StyleSheet.create({
   inputLabel: {
     fontSize: 14,
     fontWeight: '700',
-    color: '#1f2f25',
+    color: AppPalette.text,
   },
   input: {
     minHeight: 52,
     borderRadius: 14,
     borderWidth: 1,
-    borderColor: '#d6c6a7',
-    backgroundColor: '#fff',
+    borderColor: AppPalette.border,
+    backgroundColor: AppPalette.surface,
     paddingHorizontal: 16,
     fontSize: 16,
-    color: '#1f2f25',
+    color: AppPalette.text,
   },
   loadingWrap: {
     paddingVertical: 8,

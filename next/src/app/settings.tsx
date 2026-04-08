@@ -25,6 +25,7 @@ import {
   tintOptions,
   type ChoiceOption,
 } from '@/features/settings/content';
+import { AppPalette } from '@/constants/theme';
 import { openUrl } from '@/lib/platform-actions';
 
 type SettingsActionRowProps = {
@@ -71,9 +72,9 @@ export default function SettingsScreen() {
         options={{
           title: 'Settings',
           headerStyle: {
-            backgroundColor: '#f7f1e4',
+            backgroundColor: AppPalette.surface,
           },
-          headerTintColor: '#1f2f25',
+          headerTintColor: AppPalette.text,
           headerShadowVisible: false,
         }}
       />
@@ -251,7 +252,7 @@ export default function SettingsScreen() {
                     style={[
                       styles.tintOption,
                       active && styles.tintOptionActive,
-                      { borderColor: active ? option.value : '#e4d7bf' },
+                      { borderColor: active ? option.value : AppPalette.border },
                     ]}
                     onPress={() => {
                       updateSetting('tint', option.key);
@@ -372,14 +373,14 @@ function SettingsActionRow({
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f2efe6',
+    backgroundColor: AppPalette.appBackground,
   },
   content: {
     padding: 24,
     gap: 20,
   },
   heroCard: {
-    backgroundColor: '#fffaf0',
+    backgroundColor: AppPalette.surface,
     borderRadius: 18,
     borderWidth: 1,
     padding: 20,
@@ -394,12 +395,12 @@ const styles = StyleSheet.create({
   heroTitle: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#1f2f25',
+    color: AppPalette.text,
   },
   heroBody: {
     fontSize: 15,
     lineHeight: 22,
-    color: '#4a5a50',
+    color: AppPalette.muted,
   },
   section: {
     gap: 10,
@@ -411,34 +412,34 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: '800',
-    color: '#1f2f25',
+    color: AppPalette.text,
     textAlign: 'center',
   },
   sectionSubtitle: {
     maxWidth: 620,
     fontSize: 13,
     lineHeight: 19,
-    color: '#5b675f',
+    color: AppPalette.muted,
     textAlign: 'center',
   },
   sectionBody: {
-    backgroundColor: '#fffaf0',
+    backgroundColor: AppPalette.surface,
     borderRadius: 18,
     borderWidth: 1,
-    borderColor: '#e5d8bf',
+    borderColor: AppPalette.border,
     overflow: 'hidden',
   },
   choiceGroup: {
     paddingHorizontal: 18,
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#efe5d3',
+    borderBottomColor: AppPalette.borderSoft,
     gap: 12,
   },
   choiceLabel: {
     fontSize: 15,
     fontWeight: '700',
-    color: '#1f2f25',
+    color: AppPalette.text,
   },
   choiceValue: {
     fontWeight: '800',
@@ -451,18 +452,18 @@ const styles = StyleSheet.create({
   choiceChip: {
     borderRadius: 999,
     borderWidth: 1,
-    borderColor: '#d6c6a7',
-    backgroundColor: '#f8f1e3',
+    borderColor: AppPalette.border,
+    backgroundColor: AppPalette.surfaceAlt,
     paddingHorizontal: 12,
     paddingVertical: 8,
   },
   choiceChipLabel: {
     fontSize: 13,
     fontWeight: '700',
-    color: '#5f4a23',
+    color: AppPalette.text,
   },
   choiceChipLabelActive: {
-    color: '#fffdf8',
+    color: AppPalette.inverseText,
   },
   blockButton: {
     margin: 18,
@@ -472,7 +473,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   blockButtonLabel: {
-    color: '#fffdf8',
+    color: AppPalette.inverseText,
     fontSize: 15,
     fontWeight: '800',
   },
@@ -484,10 +485,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#efe5d3',
+    borderBottomColor: AppPalette.borderSoft,
   },
   actionRowPressed: {
-    backgroundColor: '#f5eee0',
+    backgroundColor: AppPalette.pressed,
   },
   actionCopy: {
     flex: 1,
@@ -496,12 +497,12 @@ const styles = StyleSheet.create({
   actionTitle: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#1f2f25',
+    color: AppPalette.text,
   },
   actionBody: {
     fontSize: 13,
     lineHeight: 18,
-    color: '#5b675f',
+    color: AppPalette.muted,
   },
   actionTrailing: {
     minWidth: 44,
@@ -518,7 +519,7 @@ const styles = StyleSheet.create({
     width: 30,
     borderRadius: 15,
     borderWidth: 2,
-    borderColor: '#f9f4ea',
+    borderColor: AppPalette.surface,
   },
   modalScrim: {
     flex: 1,
@@ -531,11 +532,11 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 620,
     borderRadius: 20,
-    backgroundColor: '#fffaf0',
+    backgroundColor: AppPalette.surface,
     padding: 20,
     gap: 10,
     borderWidth: 1,
-    borderColor: '#e5d8bf',
+    borderColor: AppPalette.border,
   },
   modalCardCompact: {
     maxHeight: '80%',
@@ -543,12 +544,12 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 20,
     fontWeight: '800',
-    color: '#1f2f25',
+    color: AppPalette.text,
   },
   modalBody: {
     fontSize: 14,
     lineHeight: 20,
-    color: '#5b675f',
+    color: AppPalette.muted,
   },
   tintGrid: {
     flexDirection: 'row',
@@ -561,12 +562,12 @@ const styles = StyleSheet.create({
     minWidth: 130,
     borderRadius: 14,
     borderWidth: 1,
-    backgroundColor: '#fff',
+    backgroundColor: AppPalette.surface,
     padding: 12,
     gap: 10,
   },
   tintOptionActive: {
-    backgroundColor: '#f8f1e3',
+    backgroundColor: AppPalette.accentSurface,
   },
   tintSwatch: {
     height: 34,
@@ -575,6 +576,6 @@ const styles = StyleSheet.create({
   tintOptionLabel: {
     fontSize: 13,
     fontWeight: '700',
-    color: '#1f2f25',
+    color: AppPalette.text,
   },
 });

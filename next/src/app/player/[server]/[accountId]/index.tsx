@@ -34,10 +34,11 @@ import {
   Section,
   StateCard,
 } from '@/features/player/ui';
+import { AppPalette } from '@/constants/theme';
 import { getServerLabel, isGameServer } from '@/features/home/content';
 import { openUrl } from '@/lib/platform-actions';
 
-const accentColor = '#8b5e1a';
+const accentColor = AppPalette.accent;
 
 export default function PlayerOverviewScreen() {
   const router = useRouter();
@@ -109,9 +110,9 @@ export default function PlayerOverviewScreen() {
         options={{
           title: nickname,
           headerStyle: {
-            backgroundColor: '#f7f1e4',
+            backgroundColor: AppPalette.surface,
           },
-          headerTintColor: '#1f2f25',
+          headerTintColor: AppPalette.text,
           headerShadowVisible: false,
         }}
       />

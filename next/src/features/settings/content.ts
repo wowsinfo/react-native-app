@@ -32,7 +32,7 @@ export const defaultSettingsState = {
   appLanguage: 'en' as AppLanguage,
   darkMode: false,
   swapButtons: false,
-  tint: 'brown' as TintKey,
+  tint: 'blue' as TintKey,
 };
 
 export const settingsLinks = {
@@ -68,7 +68,7 @@ export const tintOptions: TintOption[] = [
   { key: 'pink', name: 'Pink', value: '#b3556f' },
   { key: 'purple', name: 'Purple', value: '#6f4d9b' },
   { key: 'indigo', name: 'Indigo', value: '#42568f' },
-  { key: 'blue', name: 'Blue', value: '#2f6690' },
+  { key: 'blue', name: 'Blue', value: '#2196f3' },
   { key: 'teal', name: 'Teal', value: '#2d7d76' },
   { key: 'green', name: 'Green', value: '#4e7d46' },
   { key: 'amber', name: 'Amber', value: '#b67a18' },
@@ -78,5 +78,5 @@ export const tintOptions: TintOption[] = [
 ];
 
 export function getTintValue(key: TintKey) {
-  return tintOptions.find(option => option.key === key)?.value ?? '#8b5e1a';
+  return tintOptions.find(option => option.key === key)?.value ?? '#2196f3';
 }

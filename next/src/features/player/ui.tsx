@@ -10,14 +10,16 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { AppPalette } from '@/constants/theme';
+
 export const playerPalette = {
-  background: '#f2efe6',
-  surface: '#fffaf0',
-  border: '#e5d8bf',
-  text: '#1f2f25',
-  muted: '#5b675f',
-  chip: '#f8f1e3',
-  pressed: '#f5eee0',
+  background: AppPalette.appBackground,
+  surface: AppPalette.surface,
+  border: AppPalette.border,
+  text: AppPalette.text,
+  muted: AppPalette.muted,
+  chip: AppPalette.surfaceAlt,
+  pressed: AppPalette.pressed,
 } as const;
 
 export function PageScroll({ children }: { children: ReactNode }) {
@@ -401,8 +403,8 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   stateCardWarning: {
-    borderColor: '#c79f59',
-    backgroundColor: '#fff7e8',
+    borderColor: AppPalette.warningBorder,
+    backgroundColor: AppPalette.warningSurface,
   },
   stateTitle: {
     fontSize: 16,
@@ -422,7 +424,7 @@ const styles = StyleSheet.create({
   chip: {
     borderRadius: 999,
     borderWidth: 1,
-    borderColor: '#d6c6a7',
+    borderColor: AppPalette.border,
     backgroundColor: playerPalette.chip,
     paddingHorizontal: 12,
     paddingVertical: 8,
@@ -430,7 +432,7 @@ const styles = StyleSheet.create({
   chipLabel: {
     fontSize: 13,
     fontWeight: '700',
-    color: '#5f4a23',
+    color: playerPalette.text,
   },
   chipLabelActive: {
     color: '#fffdf8',
@@ -461,7 +463,7 @@ const styles = StyleSheet.create({
   barTrack: {
     height: 10,
     borderRadius: 999,
-    backgroundColor: '#ecdfc8',
+    backgroundColor: AppPalette.borderSoft,
     overflow: 'hidden',
   },
   barFill: {

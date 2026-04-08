@@ -1,6 +1,7 @@
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { AppPalette } from '@/constants/theme';
 
 export default function ComingSoonScreen() {
   const router = useRouter();
@@ -31,7 +32,7 @@ export default function ComingSoonScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f2efe6',
+    backgroundColor: AppPalette.appBackground,
   },
   container: {
     flex: 1,
@@ -43,28 +44,28 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '700',
     letterSpacing: 1,
-    color: '#8b5e1a',
+    color: AppPalette.accent,
   },
   title: {
     fontSize: 32,
     fontWeight: '800',
-    color: '#1f2f25',
+    color: AppPalette.text,
   },
   body: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#425248',
+    color: AppPalette.muted,
   },
   button: {
     marginTop: 8,
     alignSelf: 'flex-start',
-    backgroundColor: '#1f2f25',
+    backgroundColor: AppPalette.accent,
     borderRadius: 999,
     paddingHorizontal: 16,
     paddingVertical: 10,
   },
   buttonText: {
-    color: '#fff',
+    color: AppPalette.inverseText,
     fontSize: 15,
     fontWeight: '700',
   },

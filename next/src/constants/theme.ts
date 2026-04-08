@@ -6,14 +6,32 @@
 import '@/global.css';
 
 import { Platform } from 'react-native';
+import { DefaultTheme, type Theme } from '@react-navigation/native';
+
+export const AppPalette = {
+  appBackground: '#f5f5f5',
+  surface: '#ffffff',
+  surfaceAlt: '#fafafa',
+  border: '#e0e0e0',
+  borderSoft: '#eeeeee',
+  text: '#212121',
+  muted: '#616161',
+  accent: '#2196f3',
+  accentMuted: '#64b5f6',
+  accentSurface: '#e3f2fd',
+  pressed: '#eeeeee',
+  warningSurface: '#fff8e1',
+  warningBorder: '#ffcc80',
+  inverseText: '#ffffff',
+} as const;
 
 export const Colors = {
   light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
+    text: AppPalette.text,
+    background: AppPalette.appBackground,
+    backgroundElement: AppPalette.surface,
+    backgroundSelected: AppPalette.pressed,
+    textSecondary: AppPalette.muted,
   },
   dark: {
     text: '#ffffff',
@@ -25,6 +43,19 @@ export const Colors = {
 } as const;
 
 export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
+
+export const NavigationLightTheme: Theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: AppPalette.accent,
+    background: AppPalette.appBackground,
+    card: AppPalette.surface,
+    text: AppPalette.text,
+    border: AppPalette.border,
+    notification: AppPalette.accent,
+  },
+};
 
 export const Fonts = Platform.select({
   ios: {

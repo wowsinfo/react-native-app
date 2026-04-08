@@ -13,9 +13,10 @@ import {
   Section,
   StateCard,
 } from '@/features/player/ui';
+import { AppPalette } from '@/constants/theme';
 import { isGameServer } from '@/features/home/content';
 
-const accentColor = '#8b5e1a';
+const accentColor = AppPalette.accent;
 
 export default function PlayerAchievementsScreen() {
   const params = useLocalSearchParams<{
@@ -83,8 +84,8 @@ export default function PlayerAchievementsScreen() {
       <Stack.Screen
         options={{
           title: 'Achievements',
-          headerStyle: {backgroundColor: '#f7f1e4'},
-          headerTintColor: '#1f2f25',
+          headerStyle: {backgroundColor: AppPalette.surface},
+          headerTintColor: AppPalette.text,
           headerShadowVisible: false,
         }}
       />

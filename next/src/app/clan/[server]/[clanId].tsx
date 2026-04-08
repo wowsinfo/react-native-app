@@ -19,10 +19,11 @@ import {
   Section,
   StateCard,
 } from '@/features/player/ui';
+import { AppPalette } from '@/constants/theme';
 import { getServerLabel, isGameServer } from '@/features/home/content';
 import { openUrl } from '@/lib/platform-actions';
 
-const accentColor = '#8b5e1a';
+const accentColor = AppPalette.accent;
 
 export default function ClanScreen() {
   const router = useRouter();
@@ -84,8 +85,8 @@ export default function ClanScreen() {
       <Stack.Screen
         options={{
           title: clan?.tag ?? 'Clan',
-          headerStyle: {backgroundColor: '#f7f1e4'},
-          headerTintColor: '#1f2f25',
+          headerStyle: {backgroundColor: AppPalette.surface},
+          headerTintColor: AppPalette.text,
           headerShadowVisible: false,
         }}
       />
@@ -93,11 +94,7 @@ export default function ClanScreen() {
         <HeroCard
           eyebrow="Clan"
           title={clan?.tag ?? 'Clan'}
-          body={
-            clan?.name
-              ? `${clan.name} · ${server ? getServerLabel(server) : 'Server'}`
-              : 'Clan roster and member links'
-          }
+          body={clan?.name ? `${clan.name} - ${server ? getServerLabel(server) : 'Server'}` : 'Clan roster and member links'}
           accentColor={accentColor}
         />
         {loading ? <StateCard title="Loading clan" body="Fetching clan metadata and member roster." /> : null}

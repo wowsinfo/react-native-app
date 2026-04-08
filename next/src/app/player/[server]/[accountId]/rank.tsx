@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 import { fetchPlayerRank, getWoWsAppKeyMessage, hasWoWsAppKey } from '@/features/player/api';
 import { formatNumber } from '@/features/player/format';
 import { HeroCard, ListRow, PageScroll, Section, StateCard } from '@/features/player/ui';
+import { AppPalette } from '@/constants/theme';
 import { isGameServer } from '@/features/home/content';
 
-const accentColor = '#8b5e1a';
+const accentColor = AppPalette.accent;
 
 export default function PlayerRankScreen() {
   const params = useLocalSearchParams<{
@@ -91,8 +92,8 @@ export default function PlayerRankScreen() {
       <Stack.Screen
         options={{
           title: 'Rank',
-          headerStyle: {backgroundColor: '#f7f1e4'},
-          headerTintColor: '#1f2f25',
+          headerStyle: {backgroundColor: AppPalette.surface},
+          headerTintColor: AppPalette.text,
           headerShadowVisible: false,
         }}
       />

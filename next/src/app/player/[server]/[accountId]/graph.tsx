@@ -10,9 +10,10 @@ import {
   getTopShipLists,
 } from '@/features/player/format';
 import { BarList, HeroCard, PageScroll, Section, StateCard } from '@/features/player/ui';
+import { AppPalette } from '@/constants/theme';
 import { isGameServer } from '@/features/home/content';
 
-const accentColor = '#8b5e1a';
+const accentColor = AppPalette.accent;
 
 export default function PlayerGraphScreen() {
   const params = useLocalSearchParams<{
@@ -76,8 +77,8 @@ export default function PlayerGraphScreen() {
       <Stack.Screen
         options={{
           title: 'Graph',
-          headerStyle: {backgroundColor: '#f7f1e4'},
-          headerTintColor: '#1f2f25',
+          headerStyle: {backgroundColor: AppPalette.surface},
+          headerTintColor: AppPalette.text,
           headerShadowVisible: false,
         }}
       />

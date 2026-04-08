@@ -22,9 +22,10 @@ import {
   Section,
   StateCard,
 } from '@/features/player/ui';
+import { AppPalette } from '@/constants/theme';
 import { isGameServer } from '@/features/home/content';
 
-const accentColor = '#8b5e1a';
+const accentColor = AppPalette.accent;
 
 export default function PlayerShipDetailScreen() {
   const params = useLocalSearchParams<{server?: string; accountId?: string; shipId?: string}>();
@@ -84,8 +85,8 @@ export default function PlayerShipDetailScreen() {
       <Stack.Screen
         options={{
           title: shipId ? `Ship ${shipId}` : 'Ship',
-          headerStyle: {backgroundColor: '#f7f1e4'},
-          headerTintColor: '#1f2f25',
+          headerStyle: {backgroundColor: AppPalette.surface},
+          headerTintColor: AppPalette.text,
           headerShadowVisible: false,
         }}
       />

@@ -19,9 +19,10 @@ import {
   Section,
   StateCard,
 } from '@/features/player/ui';
+import { AppPalette } from '@/constants/theme';
 import { isGameServer } from '@/features/home/content';
 
-const accentColor = '#8b5e1a';
+const accentColor = AppPalette.accent;
 const shipSortOptions = [
   {value: 'lastBattle', label: 'Last Battle'},
   {value: 'battles', label: 'Battles'},
@@ -93,8 +94,8 @@ export default function PlayerShipsScreen() {
       <Stack.Screen
         options={{
           title: 'Ships',
-          headerStyle: {backgroundColor: '#f7f1e4'},
-          headerTintColor: '#1f2f25',
+          headerStyle: {backgroundColor: AppPalette.surface},
+          headerTintColor: AppPalette.text,
           headerShadowVisible: false,
         }}
       />

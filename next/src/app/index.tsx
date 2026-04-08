@@ -20,6 +20,7 @@ import {
   serverOptions,
   type GameServer,
 } from '@/features/home/content';
+import { AppPalette } from '@/constants/theme';
 import { openUrl, shareUrl } from '@/lib/platform-actions';
 
 export default function HomeScreen() {
@@ -213,7 +214,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f2efe6',
+    backgroundColor: AppPalette.appBackground,
   },
   content: {
     padding: 24,
@@ -226,17 +227,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '700',
     letterSpacing: 1.4,
-    color: '#7a4b1f',
+    color: AppPalette.accent,
   },
   title: {
     fontSize: 34,
     fontWeight: '800',
-    color: '#1f2f25',
+    color: AppPalette.text,
   },
   subtitle: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#3d4d42',
+    color: AppPalette.muted,
   },
   actionRow: {
     flexDirection: 'row',
@@ -246,48 +247,48 @@ const styles = StyleSheet.create({
   primaryAction: {
     flexGrow: 1,
     minWidth: 220,
-    backgroundColor: '#1f2f25',
+    backgroundColor: AppPalette.accent,
     borderRadius: 18,
     padding: 18,
     gap: 4,
   },
   primaryActionLabel: {
-    color: '#fffdf8',
+    color: AppPalette.inverseText,
     fontSize: 20,
     fontWeight: '800',
   },
   primaryActionHint: {
-    color: '#d9e2dc',
+    color: '#dceeff',
     fontSize: 14,
   },
   secondaryAction: {
     minWidth: 140,
-    backgroundColor: '#fffaf0',
+    backgroundColor: AppPalette.surface,
     borderRadius: 18,
     paddingHorizontal: 16,
     paddingVertical: 18,
     borderWidth: 1,
-    borderColor: '#e5d8bf',
+    borderColor: AppPalette.border,
     justifyContent: 'center',
   },
   secondaryActionLabel: {
-    color: '#1f2f25',
+    color: AppPalette.text,
     fontSize: 15,
     fontWeight: '700',
     textAlign: 'center',
   },
   serverCard: {
-    backgroundColor: '#fffaf0',
+    backgroundColor: AppPalette.surface,
     borderRadius: 18,
     padding: 18,
     gap: 10,
     borderWidth: 1,
-    borderColor: '#e5d8bf',
+    borderColor: AppPalette.border,
   },
   serverCopy: {
     fontSize: 14,
     lineHeight: 20,
-    color: '#4f5f55',
+    color: AppPalette.muted,
   },
   serverRow: {
     flexDirection: 'row',
@@ -297,22 +298,22 @@ const styles = StyleSheet.create({
   serverButton: {
     borderRadius: 999,
     borderWidth: 1,
-    borderColor: '#d6c6a7',
+    borderColor: AppPalette.border,
     paddingHorizontal: 12,
     paddingVertical: 8,
-    backgroundColor: '#f6efe1',
+    backgroundColor: AppPalette.surfaceAlt,
   },
   serverButtonActive: {
-    backgroundColor: '#8b5e1a',
-    borderColor: '#8b5e1a',
+    backgroundColor: AppPalette.accent,
+    borderColor: AppPalette.accent,
   },
   serverButtonLabel: {
     fontSize: 13,
     fontWeight: '700',
-    color: '#5f4a23',
+    color: AppPalette.text,
   },
   serverButtonLabelActive: {
-    color: '#fff',
+    color: AppPalette.inverseText,
   },
   section: {
     gap: 12,
@@ -320,7 +321,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: '800',
-    color: '#1f2f25',
+    color: AppPalette.text,
   },
   grid: {
     flexDirection: 'row',
@@ -333,12 +334,12 @@ const styles = StyleSheet.create({
   card: {
     width: '48%',
     minWidth: 240,
-    backgroundColor: '#fff',
+    backgroundColor: AppPalette.surface,
     borderRadius: 16,
     padding: 16,
     gap: 8,
     borderWidth: 1,
-    borderColor: '#e6dcc9',
+    borderColor: AppPalette.border,
   },
   cardCompact: {
     width: '100%',
@@ -346,17 +347,17 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#1f2f25',
+    color: AppPalette.text,
   },
   cardBody: {
     fontSize: 14,
     lineHeight: 20,
-    color: '#4f5f55',
+    color: AppPalette.muted,
   },
   cardHint: {
     fontSize: 12,
     fontWeight: '700',
-    color: '#8b5e1a',
+    color: AppPalette.accent,
     textTransform: 'uppercase',
     letterSpacing: 0.8,
   },
