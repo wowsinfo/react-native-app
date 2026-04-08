@@ -49,9 +49,25 @@ export const serverOptions: Array<{key: GameServer; label: string}> = [
   {key: 'asia', label: 'Asia'},
 ];
 
+export function isGameServer(value: string): value is GameServer {
+  return serverOptions.some(option => option.key === value);
+}
+
+export function getServerDomain(server: GameServer) {
+  return serverDomainMap[server];
+}
+
+export function getServerPrefix(server: GameServer) {
+  return serverPrefixMap[server];
+}
+
+export function getServerLabel(server: GameServer) {
+  return serverOptions.find(option => option.key === server)?.label ?? server;
+}
+
 export function getHomeSections(server: GameServer): HomeSection[] {
-  const domain = serverDomainMap[server];
-  const prefix = serverPrefixMap[server];
+  const domain = getServerDomain(server);
+  const prefix = getServerPrefix(server);
 
   return [
     {

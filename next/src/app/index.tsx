@@ -36,10 +36,7 @@ export default function HomeScreen() {
     }
 
     if (routeKey === 'Search') {
-      router.push({
-        pathname: '/coming-soon',
-        params: { title: 'Search' },
-      });
+      router.push('/search');
       return;
     }
 
