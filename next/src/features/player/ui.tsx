@@ -10,22 +10,15 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { AppPalette } from '@/constants/theme';
-
-export const playerPalette = {
-  background: AppPalette.appBackground,
-  surface: AppPalette.surface,
-  border: AppPalette.border,
-  text: AppPalette.text,
-  muted: AppPalette.muted,
-  chip: AppPalette.surfaceAlt,
-  pressed: AppPalette.pressed,
-} as const;
+import { useAppPreferences } from '@/features/preferences/preferences-manager';
 
 export function PageScroll({ children }: { children: ReactNode }) {
+  const { palette, resolvedTheme } = useAppPreferences();
+  const styles = createStyles(palette);
+
   return (
     <SafeAreaView style={styles.safeArea} edges={['bottom']}>
-      <StatusBar style="dark" />
+      <StatusBar style={resolvedTheme === 'dark' ? 'light' : 'dark'} />
       <ScrollView contentContainerStyle={styles.content}>{children}</ScrollView>
     </SafeAreaView>
   );
@@ -44,6 +37,9 @@ export function HeroCard({
   accentColor: string;
   children?: ReactNode;
 }) {
+  const { palette } = useAppPreferences();
+  const styles = createStyles(palette);
+
   return (
     <View style={[styles.heroCard, { borderColor: accentColor }]}>
       <Text style={[styles.heroEyebrow, { color: accentColor }]}>{eyebrow}</Text>
@@ -63,6 +59,9 @@ export function Section({
   subtitle?: string;
   children: ReactNode;
 }) {
+  const { palette } = useAppPreferences();
+  const styles = createStyles(palette);
+
   return (
     <View style={styles.section}>
       <View style={styles.sectionHeader}>
@@ -75,6 +74,8 @@ export function Section({
 }
 
 export function MetricGrid({ children }: { children: ReactNode }) {
+  const { palette } = useAppPreferences();
+  const styles = createStyles(palette);
   return <View style={styles.metricGrid}>{children}</View>;
 }
 
@@ -85,6 +86,9 @@ export function MetricTile({
   label: string;
   value: string;
 }) {
+  const { palette } = useAppPreferences();
+  const styles = createStyles(palette);
+
   return (
     <View style={styles.metricTile}>
       <Text style={styles.metricLabel}>{label}</Text>
@@ -104,6 +108,9 @@ export function ActionTile({
   onPress?: () => void;
   accentColor: string;
 }) {
+  const { palette, t } = useAppPreferences();
+  const styles = createStyles(palette);
+
   return (
     <Pressable
       style={({ pressed }) => [
@@ -114,7 +121,7 @@ export function ActionTile({
     >
       <Text style={styles.actionTitle}>{title}</Text>
       <Text style={styles.actionBody}>{body}</Text>
-      <Text style={[styles.actionHint, { color: accentColor }]}>Open</Text>
+      <Text style={[styles.actionHint, { color: accentColor }]}>{t('common_open')}</Text>
     </Pressable>
   );
 }
@@ -130,6 +137,9 @@ export function ListRow({
   trailing?: string;
   onPress?: () => void;
 }) {
+  const { palette } = useAppPreferences();
+  const styles = createStyles(palette);
+
   return (
     <Pressable
       style={({ pressed }) => [styles.listRow, pressed && onPress ? styles.pressed : null]}
@@ -153,6 +163,9 @@ export function StateCard({
   body: string;
   tone?: 'default' | 'warning';
 }) {
+  const { palette } = useAppPreferences();
+  const styles = createStyles(palette);
+
   return (
     <View
       style={[
@@ -177,6 +190,9 @@ export function ChipRow<T extends string>({
   onChange: (next: T) => void;
   accentColor: string;
 }) {
+  const { palette } = useAppPreferences();
+  const styles = createStyles(palette);
+
   return (
     <View style={styles.chipRow}>
       {options.map(option => {
@@ -215,6 +231,8 @@ export function BarList({
   accentColor: string;
   renderValue: (value: number) => string;
 }) {
+  const { palette } = useAppPreferences();
+  const styles = createStyles(palette);
   const maxValue = Math.max(...items.map(item => item.value), 1);
 
   return (
@@ -249,233 +267,237 @@ export function InlineGroup({
   children: ReactNode;
   style?: ViewStyle;
 }) {
+  const { palette } = useAppPreferences();
+  const styles = createStyles(palette);
   return <View style={[styles.inlineGroup, style]}>{children}</View>;
 }
 
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: playerPalette.background,
-  },
-  content: {
-    padding: 24,
-    gap: 20,
-  },
-  heroCard: {
-    backgroundColor: playerPalette.surface,
-    borderRadius: 18,
-    borderWidth: 1,
-    padding: 20,
-    gap: 8,
-  },
-  heroEyebrow: {
-    fontSize: 12,
-    fontWeight: '800',
-    letterSpacing: 1.4,
-    textTransform: 'uppercase',
-  },
-  heroTitle: {
-    fontSize: 28,
-    fontWeight: '800',
-    color: playerPalette.text,
-  },
-  heroBody: {
-    fontSize: 15,
-    lineHeight: 22,
-    color: playerPalette.muted,
-  },
-  section: {
-    gap: 10,
-  },
-  sectionHeader: {
-    alignItems: 'center',
-    gap: 4,
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: playerPalette.text,
-    textAlign: 'center',
-  },
-  sectionSubtitle: {
-    maxWidth: 680,
-    fontSize: 13,
-    lineHeight: 19,
-    color: playerPalette.muted,
-    textAlign: 'center',
-  },
-  sectionBody: {
-    backgroundColor: playerPalette.surface,
-    borderRadius: 18,
-    borderWidth: 1,
-    borderColor: playerPalette.border,
-    overflow: 'hidden',
-  },
-  metricGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 12,
-    padding: 18,
-  },
-  metricTile: {
-    minWidth: 130,
-    flexGrow: 1,
-    borderRadius: 14,
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#eadfcf',
-    padding: 14,
-    gap: 6,
-  },
-  metricLabel: {
-    fontSize: 12,
-    fontWeight: '700',
-    letterSpacing: 0.8,
-    textTransform: 'uppercase',
-    color: playerPalette.muted,
-  },
-  metricValue: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: playerPalette.text,
-  },
-  actionTile: {
-    width: '48%',
-    minWidth: 220,
-    borderRadius: 16,
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#eadfcf',
-    padding: 16,
-    gap: 8,
-  },
-  actionTitle: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: playerPalette.text,
-  },
-  actionBody: {
-    fontSize: 14,
-    lineHeight: 20,
-    color: playerPalette.muted,
-  },
-  actionHint: {
-    fontSize: 12,
-    fontWeight: '800',
-    letterSpacing: 1,
-    textTransform: 'uppercase',
-  },
-  listRow: {
-    minHeight: 72,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    paddingHorizontal: 18,
-    paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#efe5d3',
-  },
-  listCopy: {
-    flex: 1,
-    gap: 4,
-  },
-  listTitle: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: playerPalette.text,
-  },
-  listDescription: {
-    fontSize: 13,
-    lineHeight: 18,
-    color: playerPalette.muted,
-  },
-  listTrailing: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: playerPalette.muted,
-  },
-  stateCard: {
-    borderRadius: 18,
-    borderWidth: 1,
-    borderColor: playerPalette.border,
-    backgroundColor: playerPalette.surface,
-    padding: 18,
-    gap: 8,
-  },
-  stateCardWarning: {
-    borderColor: AppPalette.warningBorder,
-    backgroundColor: AppPalette.warningSurface,
-  },
-  stateTitle: {
-    fontSize: 16,
-    fontWeight: '800',
-    color: playerPalette.text,
-  },
-  stateBody: {
-    fontSize: 14,
-    lineHeight: 20,
-    color: playerPalette.muted,
-  },
-  chipRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-  },
-  chip: {
-    borderRadius: 999,
-    borderWidth: 1,
-    borderColor: AppPalette.border,
-    backgroundColor: playerPalette.chip,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-  },
-  chipLabel: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: playerPalette.text,
-  },
-  chipLabelActive: {
-    color: '#fffdf8',
-  },
-  barList: {
-    gap: 12,
-    padding: 18,
-  },
-  barRow: {
-    gap: 6,
-  },
-  barHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 12,
-  },
-  barLabel: {
-    flex: 1,
-    fontSize: 14,
-    fontWeight: '700',
-    color: playerPalette.text,
-  },
-  barValue: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: playerPalette.muted,
-  },
-  barTrack: {
-    height: 10,
-    borderRadius: 999,
-    backgroundColor: AppPalette.borderSoft,
-    overflow: 'hidden',
-  },
-  barFill: {
-    height: '100%',
-    borderRadius: 999,
-  },
-  inlineGroup: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 12,
-  },
-  pressed: {
-    backgroundColor: playerPalette.pressed,
-  },
-});
+function createStyles(palette: ReturnType<typeof useAppPreferences>['palette']) {
+  return StyleSheet.create({
+    safeArea: {
+      flex: 1,
+      backgroundColor: palette.appBackground,
+    },
+    content: {
+      padding: 24,
+      gap: 20,
+    },
+    heroCard: {
+      backgroundColor: palette.surface,
+      borderRadius: 18,
+      borderWidth: 1,
+      padding: 20,
+      gap: 8,
+    },
+    heroEyebrow: {
+      fontSize: 12,
+      fontWeight: '800',
+      letterSpacing: 1.4,
+      textTransform: 'uppercase',
+    },
+    heroTitle: {
+      fontSize: 28,
+      fontWeight: '800',
+      color: palette.text,
+    },
+    heroBody: {
+      fontSize: 15,
+      lineHeight: 22,
+      color: palette.muted,
+    },
+    section: {
+      gap: 10,
+    },
+    sectionHeader: {
+      alignItems: 'center',
+      gap: 4,
+    },
+    sectionTitle: {
+      fontSize: 20,
+      fontWeight: '800',
+      color: palette.text,
+      textAlign: 'center',
+    },
+    sectionSubtitle: {
+      maxWidth: 680,
+      fontSize: 13,
+      lineHeight: 19,
+      color: palette.muted,
+      textAlign: 'center',
+    },
+    sectionBody: {
+      backgroundColor: palette.surface,
+      borderRadius: 18,
+      borderWidth: 1,
+      borderColor: palette.border,
+      overflow: 'hidden',
+    },
+    metricGrid: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 12,
+      padding: 18,
+    },
+    metricTile: {
+      minWidth: 130,
+      flexGrow: 1,
+      borderRadius: 14,
+      backgroundColor: palette.surface,
+      borderWidth: 1,
+      borderColor: palette.border,
+      padding: 14,
+      gap: 6,
+    },
+    metricLabel: {
+      fontSize: 12,
+      fontWeight: '700',
+      letterSpacing: 0.8,
+      textTransform: 'uppercase',
+      color: palette.muted,
+    },
+    metricValue: {
+      fontSize: 20,
+      fontWeight: '800',
+      color: palette.text,
+    },
+    actionTile: {
+      width: '48%',
+      minWidth: 220,
+      borderRadius: 16,
+      backgroundColor: palette.surface,
+      borderWidth: 1,
+      borderColor: palette.border,
+      padding: 16,
+      gap: 8,
+    },
+    actionTitle: {
+      fontSize: 16,
+      fontWeight: '700',
+      color: palette.text,
+    },
+    actionBody: {
+      fontSize: 14,
+      lineHeight: 20,
+      color: palette.muted,
+    },
+    actionHint: {
+      fontSize: 12,
+      fontWeight: '800',
+      letterSpacing: 1,
+      textTransform: 'uppercase',
+    },
+    listRow: {
+      minHeight: 72,
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 12,
+      paddingHorizontal: 18,
+      paddingVertical: 16,
+      borderBottomWidth: 1,
+      borderBottomColor: palette.borderSoft,
+    },
+    listCopy: {
+      flex: 1,
+      gap: 4,
+    },
+    listTitle: {
+      fontSize: 16,
+      fontWeight: '700',
+      color: palette.text,
+    },
+    listDescription: {
+      fontSize: 13,
+      lineHeight: 18,
+      color: palette.muted,
+    },
+    listTrailing: {
+      fontSize: 13,
+      fontWeight: '700',
+      color: palette.muted,
+    },
+    stateCard: {
+      borderRadius: 18,
+      borderWidth: 1,
+      borderColor: palette.border,
+      backgroundColor: palette.surface,
+      padding: 18,
+      gap: 8,
+    },
+    stateCardWarning: {
+      borderColor: palette.warningBorder,
+      backgroundColor: palette.warningSurface,
+    },
+    stateTitle: {
+      fontSize: 16,
+      fontWeight: '800',
+      color: palette.text,
+    },
+    stateBody: {
+      fontSize: 14,
+      lineHeight: 20,
+      color: palette.muted,
+    },
+    chipRow: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 8,
+    },
+    chip: {
+      borderRadius: 999,
+      borderWidth: 1,
+      borderColor: palette.border,
+      backgroundColor: palette.surfaceAlt,
+      paddingHorizontal: 12,
+      paddingVertical: 8,
+    },
+    chipLabel: {
+      fontSize: 13,
+      fontWeight: '700',
+      color: palette.text,
+    },
+    chipLabelActive: {
+      color: palette.inverseText,
+    },
+    barList: {
+      gap: 12,
+      padding: 18,
+    },
+    barRow: {
+      gap: 6,
+    },
+    barHeader: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      gap: 12,
+    },
+    barLabel: {
+      flex: 1,
+      fontSize: 14,
+      fontWeight: '700',
+      color: palette.text,
+    },
+    barValue: {
+      fontSize: 13,
+      fontWeight: '700',
+      color: palette.muted,
+    },
+    barTrack: {
+      height: 10,
+      borderRadius: 999,
+      backgroundColor: palette.borderSoft,
+      overflow: 'hidden',
+    },
+    barFill: {
+      height: '100%',
+      borderRadius: 999,
+    },
+    inlineGroup: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 12,
+    },
+    pressed: {
+      backgroundColor: palette.pressed,
+    },
+  });
+}

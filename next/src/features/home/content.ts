@@ -1,4 +1,30 @@
+import { type MessageKey } from '@/features/preferences/messages';
+
 export type GameServer = 'ru' | 'eu' | 'na' | 'asia';
+
+type Translator = (key: MessageKey) => string;
+
+type LinkDefinition = {
+  titleKey: MessageKey;
+  descriptionKey?: MessageKey;
+  url: (server: GameServer) => string;
+};
+
+type RouteDefinition = {
+  titleKey: MessageKey;
+  descriptionKey?: MessageKey;
+  routeKey: string;
+};
+
+type HomeSectionDefinition = {
+  titleKey: MessageKey;
+  items: Array<LinkDefinition | RouteDefinition>;
+};
+
+type ServerOptionDefinition = {
+  key: GameServer;
+  labelKey: MessageKey;
+};
 
 type LinkItem = {
   title: string;
@@ -42,15 +68,165 @@ const serverPrefixMap: Record<GameServer, string> = {
   asia: 'asia',
 };
 
-export const serverOptions: Array<{key: GameServer; label: string}> = [
-  {key: 'ru', label: 'Russia'},
-  {key: 'eu', label: 'Europe'},
-  {key: 'na', label: 'North America'},
-  {key: 'asia', label: 'Asia'},
+const serverOptionDefinitions: ServerOptionDefinition[] = [
+  { key: 'ru', labelKey: 'server_russia' },
+  { key: 'eu', labelKey: 'server_europe' },
+  { key: 'na', labelKey: 'server_north_america' },
+  { key: 'asia', labelKey: 'server_asia' },
 ];
 
+const homeSectionDefinitions: HomeSectionDefinition[] = [
+  {
+    titleKey: 'home_section_encyclopedia',
+    items: [
+      { titleKey: 'home_item_achievement', routeKey: 'Achievement' },
+      { titleKey: 'home_item_warships', routeKey: 'Warship' },
+      { titleKey: 'home_item_upgrades', routeKey: 'ConsumableUpgrade' },
+      { titleKey: 'home_item_flags', routeKey: 'Consumable' },
+      { titleKey: 'home_item_maps', routeKey: 'Map' },
+      { titleKey: 'home_item_collections', routeKey: 'Collection' },
+    ],
+  },
+  {
+    titleKey: 'home_section_quick_actions',
+    items: [
+      {
+        titleKey: 'common_search',
+        descriptionKey: 'home_search_hint',
+        routeKey: 'Search',
+      },
+      {
+        titleKey: 'common_settings',
+        descriptionKey: 'home_item_settings_desc',
+        routeKey: 'Settings',
+      },
+      {
+        titleKey: 'home_item_personal_rating',
+        descriptionKey: 'home_item_personal_rating_desc',
+        url: () => appLinks.personalRating,
+      },
+    ],
+  },
+  {
+    titleKey: 'home_section_extra',
+    items: [
+      {
+        titleKey: 'home_item_rs_beta',
+        descriptionKey: 'home_item_rs_beta_desc',
+        routeKey: 'RS',
+      },
+      {
+        titleKey: 'home_item_feedback',
+        descriptionKey: 'home_item_feedback_desc',
+        url: () => appLinks.developer,
+      },
+      {
+        titleKey: 'home_item_latest_release',
+        descriptionKey: 'home_item_latest_release_desc',
+        url: () => appLinks.latestRelease,
+      },
+    ],
+  },
+  {
+    titleKey: 'home_section_official_sites',
+    items: [
+      {
+        titleKey: 'home_item_world_of_warships',
+        url: server => `https://worldofwarships.${getServerDomain(server)}/`,
+      },
+      {
+        titleKey: 'home_item_premium_shop',
+        url: server => `https://${getServerPrefix(server)}.wargaming.net/shop/wows/`,
+      },
+      {
+        titleKey: 'home_item_global_wiki',
+        url: () => 'https://wiki.wargaming.net/en/World_of_Warships/',
+      },
+      {
+        titleKey: 'home_item_dev_blog',
+        url: () => 'https://blog.worldofwarships.com/',
+      },
+    ],
+  },
+  {
+    titleKey: 'home_section_creators',
+    items: [
+      {
+        titleKey: 'home_item_wows_official',
+        url: () => 'https://www.youtube.com/user/worldofwarshipscom',
+      },
+      {
+        titleKey: 'home_item_aozora',
+        url: () => 'https://www.youtube.com/@SYC-HANQ/videos',
+      },
+    ],
+  },
+  {
+    titleKey: 'home_section_stats_news',
+    items: [
+      {
+        titleKey: 'home_item_wows_numbers',
+        url: server => `https://${getServerPrefix(server)}.wows-numbers.com/`,
+      },
+      {
+        titleKey: 'home_item_gamemodels',
+        url: () => 'https://gamemodels3d.com/games/worldofwarships/',
+      },
+    ],
+  },
+  {
+    titleKey: 'home_section_utilities',
+    items: [
+      {
+        titleKey: 'home_item_fitting_tool',
+        url: () => 'https://wowsft.com/',
+      },
+    ],
+  },
+  {
+    titleKey: 'home_section_ingame_sites',
+    items: [
+      {
+        titleKey: 'home_item_wargaming_login',
+        descriptionKey: 'home_item_wargaming_login_desc',
+        url: server => `https://${getServerPrefix(server)}.wargaming.net/id/signin/`,
+      },
+      {
+        titleKey: 'home_item_my_bonus',
+        url: server => `https://worldofwarships.${getServerDomain(server)}/userbonus/`,
+      },
+      {
+        titleKey: 'home_item_ingame_news',
+        url: server => `https://worldofwarships.${getServerDomain(server)}/news_ingame/`,
+      },
+      {
+        titleKey: 'home_item_my_armory',
+        url: server => `https://armory.worldofwarships.${getServerDomain(server)}/`,
+      },
+      {
+        titleKey: 'home_item_my_clan',
+        url: server =>
+          `https://clans.worldofwarships.${getServerDomain(server)}/clans/gateway/wows/profile/`,
+      },
+      {
+        titleKey: 'home_item_my_warehouse',
+        url: server => `https://warehouse.worldofwarships.${getServerDomain(server)}/`,
+      },
+      {
+        titleKey: 'home_item_my_logbook',
+        url: server => `https://logbook.worldofwarships.${getServerDomain(server)}/`,
+      },
+    ],
+  },
+];
+
+export const serverOptions = serverOptionDefinitions.map(option => ({
+  key: option.key,
+  label: option.key,
+}));
+
 export function isGameServer(value: string): value is GameServer {
-  return serverOptions.some(option => option.key === value);
+  return serverOptionDefinitions.some(option => option.key === value);
 }
 
 export function getServerDomain(server: GameServer) {
@@ -61,145 +237,28 @@ export function getServerPrefix(server: GameServer) {
   return serverPrefixMap[server];
 }
 
-export function getServerLabel(server: GameServer) {
-  return serverOptions.find(option => option.key === server)?.label ?? server;
+export function getServerOptions(t: Translator) {
+  return serverOptionDefinitions.map(option => ({
+    value: option.key,
+    label: t(option.labelKey),
+  }));
 }
 
-export function getHomeSections(server: GameServer): HomeSection[] {
-  const domain = getServerDomain(server);
-  const prefix = getServerPrefix(server);
+export function getServerLabel(server: GameServer, t: Translator) {
+  return getServerOptions(t).find(option => option.value === server)?.label ?? server;
+}
 
-  return [
-    {
-      title: 'Encyclopedia',
-      items: [
-        {title: 'Achievement', routeKey: 'Achievement'},
-        {title: 'Warships', routeKey: 'Warship'},
-        {title: 'Upgrades', routeKey: 'ConsumableUpgrade'},
-        {title: 'Flags / Camouflages', routeKey: 'Consumable'},
-        {title: 'Maps', routeKey: 'Map'},
-        {title: 'Collections', routeKey: 'Collection'},
-      ],
-    },
-    {
-      title: 'Quick Actions',
-      items: [
-        {title: 'Search', description: 'Player and clan lookup', routeKey: 'Search'},
-        {title: 'Settings', description: 'App and API preferences', routeKey: 'Settings'},
-        {title: 'Personal Rating', description: 'Read the external rating guide', url: appLinks.personalRating},
-      ],
-    },
-    {
-      title: 'Extra',
-      items: [
-        {
-          title: 'RS Beta',
-          description: 'Realtime statistics companion for battles',
-          routeKey: 'RS',
-        },
-        {
-          title: 'Leave Feedback',
-          description: 'Contact the developer directly',
-          url: appLinks.developer,
-        },
-        {
-          title: 'Latest Release',
-          description: 'Track the current legacy app release',
-          url: appLinks.latestRelease,
-        },
-      ],
-    },
-    {
-      title: 'Official Websites',
-      items: [
-        {
-          title: 'World of Warships',
-          url: `https://worldofwarships.${domain}/`,
-        },
-        {
-          title: 'Premium Shop',
-          url: `https://${prefix}.wargaming.net/shop/wows/`,
-        },
-        {
-          title: 'Global Wiki',
-          url: 'https://wiki.wargaming.net/en/World_of_Warships/',
-        },
-        {
-          title: 'Developer Blog',
-          url: 'https://blog.worldofwarships.com/',
-        },
-      ],
-    },
-    {
-      title: 'Content Creators',
-      items: [
-        {
-          title: 'WoWs Official',
-          url: 'https://www.youtube.com/user/worldofwarshipscom',
-        },
-        {
-          title: 'AozoraFubuki',
-          url: 'https://www.youtube.com/@SYC-HANQ/videos',
-        },
-      ],
-    },
-    {
-      title: 'Stats & News',
-      items: [
-        {
-          title: 'WoWS Numbers',
-          url: `https://${prefix}.wows-numbers.com/`,
-        },
-        {
-          title: 'GameModels3D',
-          url: 'https://gamemodels3d.com/games/worldofwarships/',
-        },
-      ],
-    },
-    {
-      title: 'Utilities',
-      items: [
-        {
-          title: 'WoWs Fitting Tool',
-          url: 'https://wowsft.com/',
-        },
-      ],
-    },
-    {
-      title: 'In-Game Websites',
-      items: [
-        {
-          title: 'Wargaming Login',
-          description: 'Log in before opening armory or warehouse pages',
-          url: `https://${prefix}.wargaming.net/id/signin/`,
-        },
-        {
-          title: 'My Bonus',
-          url: `https://worldofwarships.${domain}/userbonus/`,
-        },
-        {
-          title: 'In-Game News',
-          url: `https://worldofwarships.${domain}/news_ingame/`,
-        },
-        {
-          title: 'My Armory',
-          url: `https://armory.worldofwarships.${domain}/`,
-        },
-        {
-          title: 'My Clan',
-          url: `https://clans.worldofwarships.${domain}/clans/gateway/wows/profile/`,
-        },
-        {
-          title: 'My Warehouse',
-          url: `https://warehouse.worldofwarships.${domain}/`,
-        },
-        {
-          title: 'My Logbook',
-          url: `https://logbook.worldofwarships.${domain}/`,
-        },
-      ],
-    },
-  ];
+export function getHomeSections(server: GameServer, t: Translator): HomeSection[] {
+  return homeSectionDefinitions.map(section => ({
+    title: t(section.titleKey),
+    items: section.items.map(item => ({
+      title: t(item.titleKey),
+      description: item.descriptionKey ? t(item.descriptionKey) : undefined,
+      ...('url' in item
+        ? { url: item.url(server) }
+        : { routeKey: item.routeKey }),
+    })),
+  }));
 }
 
 export function getStoreUrl() {

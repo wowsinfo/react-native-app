@@ -3,25 +3,35 @@ import { Stack } from 'expo-router';
 import * as SystemUI from 'expo-system-ui';
 import { useEffect } from 'react';
 
-import { AppPalette, NavigationLightTheme } from '@/constants/theme';
+import { PreferencesProvider, useAppPreferences } from '@/features/preferences/preferences-manager';
 
 export default function RootLayout() {
+  return (
+    <PreferencesProvider>
+      <ManagedRootLayout />
+    </PreferencesProvider>
+  );
+}
+
+function ManagedRootLayout() {
+  const { navigationTheme, palette, t } = useAppPreferences();
+
   useEffect(() => {
-    void SystemUI.setBackgroundColorAsync(AppPalette.appBackground);
-  }, []);
+    void SystemUI.setBackgroundColorAsync(palette.appBackground);
+  }, [palette.appBackground]);
 
   return (
-    <ThemeProvider value={NavigationLightTheme}>
+    <ThemeProvider value={navigationTheme}>
       <Stack
         screenOptions={{
-          headerTitle: 'WoWs Info Next',
+          headerTitle: t('app_title'),
           headerStyle: {
-            backgroundColor: AppPalette.surface,
+            backgroundColor: palette.surface,
           },
-          headerTintColor: AppPalette.text,
+          headerTintColor: palette.text,
           headerShadowVisible: false,
           contentStyle: {
-            backgroundColor: AppPalette.appBackground,
+            backgroundColor: palette.appBackground,
           },
         }}
       >

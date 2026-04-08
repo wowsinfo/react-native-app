@@ -10,12 +10,11 @@ import {
   getTopShipLists,
 } from '@/features/player/format';
 import { BarList, HeroCard, PageScroll, Section, StateCard } from '@/features/player/ui';
-import { AppPalette } from '@/constants/theme';
+import { useAppPreferences } from '@/features/preferences/preferences-manager';
 import { isGameServer } from '@/features/home/content';
 
-const accentColor = AppPalette.accent;
-
 export default function PlayerGraphScreen() {
+  const { palette, tintColor, t, tf } = useAppPreferences();
   const params = useLocalSearchParams<{
     server?: string;
     accountId?: string;
@@ -23,7 +22,7 @@ export default function PlayerGraphScreen() {
   }>();
   const server = params.server && isGameServer(params.server) ? params.server : null;
   const accountId = params.accountId ?? null;
-  const nickname = params.nickname ?? 'Player';
+  const nickname = params.nickname ?? t('player_title');
   const [ships, setShips] = useState<Awaited<ReturnType<typeof fetchPlayerShips>>>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -32,7 +31,7 @@ export default function PlayerGraphScreen() {
     let active = true;
 
     if (!server || !accountId) {
-      setError('Invalid player route.');
+      setError(t('player_route_invalid'));
       setLoading(false);
       return () => {
         active = false;
@@ -61,14 +60,14 @@ export default function PlayerGraphScreen() {
           return;
         }
 
-        setError(fetchError instanceof Error ? fetchError.message : 'Graph load failed.');
+        setError(fetchError instanceof Error ? fetchError.message : t('player_graph_unavailable'));
         setLoading(false);
       });
 
     return () => {
       active = false;
     };
-  }, [accountId, server]);
+  }, [accountId, server, t]);
 
   const topLists = getTopShipLists(ships);
 
@@ -76,51 +75,67 @@ export default function PlayerGraphScreen() {
     <>
       <Stack.Screen
         options={{
-          title: 'Graph',
-          headerStyle: {backgroundColor: AppPalette.surface},
-          headerTintColor: AppPalette.text,
+          title: t('player_graph'),
+          headerStyle: {backgroundColor: palette.surface},
+          headerTintColor: palette.text,
           headerShadowVisible: false,
         }}
       />
       <PageScroll>
         <HeroCard
-          eyebrow="Player"
-          title={`${nickname} graphs`}
-          body="The deprecated native chart library is replaced with web-safe bar summaries."
-          accentColor={accentColor}
+          eyebrow={t('player_title')}
+          title={tf('player_graph_title_full', nickname)}
+          body={t('player_graph_body_full')}
+          accentColor={tintColor}
         />
-        {loading ? <StateCard title="Loading graph data" body="Computing chart-friendly lists from player ship stats." /> : null}
-        {error ? <StateCard tone="warning" title="Graph unavailable" body={error} /> : null}
+        {loading ? (
+          <StateCard
+            title={t('player_graph_loading')}
+            body={t('player_graph_loading_body')}
+          />
+        ) : null}
+        {error ? (
+          <StateCard tone="warning" title={t('player_graph_unavailable')} body={error} />
+        ) : null}
         {!loading && !error ? (
           <>
-            <Section title="Most Played Ships" subtitle="Battle count by ship ID.">
+            <Section
+              title={t('player_graph_most_played')}
+              subtitle={t('player_graph_most_played_subtitle')}
+            >
               <BarList
-                accentColor={accentColor}
+                accentColor={tintColor}
                 items={topLists.byBattles.map(ship => ({
                   id: String(ship.ship_id),
-                  label: `Ship ${ship.ship_id}`,
+                  label: tf('player_ship_name', ship.ship_id),
                   value: ship.pvp?.battles ?? 0,
                 }))}
                 renderValue={value => formatNumber(value)}
               />
             </Section>
-            <Section title="Damage Leaders" subtitle="Average damage per battle.">
+            <Section
+              title={t('player_graph_damage_leaders')}
+              subtitle={t('player_graph_damage_subtitle')}
+            >
               <BarList
-                accentColor={accentColor}
+                accentColor={tintColor}
                 items={topLists.byDamage.map(ship => ({
                   id: String(ship.ship_id),
-                  label: `Ship ${ship.ship_id}`,
+                  label: tf('player_ship_name', ship.ship_id),
                   value: calculateAverageDamage(ship.pvp),
                 }))}
                 renderValue={value => formatNumber(value)}
               />
             </Section>
-            <Section title="Win Rate Leaders" subtitle="Minimum 20 battles.">
+            <Section
+              title={t('player_graph_win_rate_leaders')}
+              subtitle={t('player_graph_win_rate_subtitle')}
+            >
               <BarList
-                accentColor={accentColor}
+                accentColor={tintColor}
                 items={topLists.byWinRate.map(ship => ({
                   id: String(ship.ship_id),
-                  label: `Ship ${ship.ship_id}`,
+                  label: tf('player_ship_name', ship.ship_id),
                   value: calculateWinRate(ship.pvp),
                 }))}
                 renderValue={value => formatPercent(value)}

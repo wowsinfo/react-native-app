@@ -34,14 +34,13 @@ import {
   Section,
   StateCard,
 } from '@/features/player/ui';
-import { AppPalette } from '@/constants/theme';
+import { useAppPreferences } from '@/features/preferences/preferences-manager';
 import { getServerLabel, isGameServer } from '@/features/home/content';
 import { openUrl } from '@/lib/platform-actions';
 
-const accentColor = AppPalette.accent;
-
 export default function PlayerOverviewScreen() {
   const router = useRouter();
+  const { palette, tintColor, t, tf } = useAppPreferences();
   const params = useLocalSearchParams<{
     server?: string;
     accountId?: string;
@@ -49,7 +48,7 @@ export default function PlayerOverviewScreen() {
   }>();
   const server = params.server && isGameServer(params.server) ? params.server : null;
   const accountId = params.accountId ?? null;
-  const fallbackNickname = params.nickname ?? 'Player';
+  const fallbackNickname = params.nickname ?? t('player_title');
   const [data, setData] = useState<PlayerHubData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -58,7 +57,7 @@ export default function PlayerOverviewScreen() {
     let active = true;
 
     if (!server || !accountId) {
-      setError('Invalid player route.');
+      setError(t('player_route_invalid'));
       setLoading(false);
       return () => {
         active = false;
@@ -90,14 +89,14 @@ export default function PlayerOverviewScreen() {
           return;
         }
 
-        setError(fetchError instanceof Error ? fetchError.message : 'Player load failed.');
+        setError(fetchError instanceof Error ? fetchError.message : t('player_load_failed'));
         setLoading(false);
       });
 
     return () => {
       active = false;
     };
-  }, [accountId, server]);
+  }, [accountId, server, t]);
 
   const latestRank = data ? getLatestRank(data.rank) : null;
   const basic = data?.basic ?? null;
@@ -110,87 +109,93 @@ export default function PlayerOverviewScreen() {
         options={{
           title: nickname,
           headerStyle: {
-            backgroundColor: AppPalette.surface,
+            backgroundColor: palette.surface,
           },
-          headerTintColor: AppPalette.text,
+          headerTintColor: palette.text,
           headerShadowVisible: false,
         }}
       />
       <PageScroll>
         <HeroCard
-          eyebrow="Player"
+          eyebrow={t('player_title')}
           title={nickname}
           body={
             server && accountId
-              ? `${getServerLabel(server)} account ${accountId}`
-              : 'Player route'
+              ? tf('player_server_account', getServerLabel(server, t), accountId)
+              : t('player_route_fallback')
           }
-          accentColor={accentColor}
+          accentColor={tintColor}
         />
 
         {loading ? (
           <StateCard
-            title="Loading player"
-            body="Fetching the same account, ship, achievement, clan, and rank data that powered the legacy statistics screen."
+            title={t('player_loading')}
+            body={t('player_loading_body')}
           />
         ) : null}
 
-        {error ? <StateCard tone="warning" title="Player unavailable" body={error} /> : null}
+        {error ? (
+          <StateCard tone="warning" title={t('player_unavailable_title')} body={error} />
+        ) : null}
 
         {data && basic ? (
           <>
             <Section
-              title="Profile"
-              subtitle="This is the new Expo home for the old statistics overview."
+              title={t('player_profile_title')}
+              subtitle={t('player_profile_subtitle')}
             >
               <MetricGrid>
-                <MetricTile label="Battles" value={formatNumber(pvp?.battles)} />
-                <MetricTile label="Win Rate" value={formatPercent(calculateWinRate(pvp))} />
+                <MetricTile label={t('player_battles')} value={formatNumber(pvp?.battles)} />
+                <MetricTile label={t('player_win_rate')} value={formatPercent(calculateWinRate(pvp))} />
                 <MetricTile
-                  label="Avg Damage"
+                  label={t('player_avg_damage')}
                   value={formatNumber(calculateAverageDamage(pvp))}
                 />
                 <MetricTile
-                  label="Avg Frags"
+                  label={t('player_avg_frags')}
                   value={calculateAverageFrags(pvp).toFixed(2)}
                 />
-                <MetricTile label="Level" value={String(basic.leveling_tier ?? 0)} />
+                <MetricTile label={t('player_level')} value={String(basic.leveling_tier ?? 0)} />
                 <MetricTile
-                  label="Current Rank"
-                  value={latestRank ? `S${latestRank.season} #${latestRank.rank}` : 'None'}
+                  label={t('player_current_rank')}
+                  value={
+                    latestRank
+                      ? tf('player_season_rank', latestRank.season, latestRank.rank)
+                      : t('common_none')
+                  }
                 />
               </MetricGrid>
               <MetricGrid>
-                <MetricTile label="Registered" value={formatDateTime(basic.created_at)} />
+                <MetricTile label={t('player_registered')} value={formatDateTime(basic.created_at)} />
                 <MetricTile
-                  label="Last Battle"
+                  label={t('player_last_battle')}
                   value={formatDateTime(basic.last_battle_time)}
                 />
                 <MetricTile
-                  label="Clan"
-                  value={data.clanTag ? `[${data.clanTag}]` : 'No clan'}
+                  label={t('player_clan')}
+                  value={data.clanTag ? `[${data.clanTag}]` : t('player_no_clan')}
                 />
-                <MetricTile label="Ships" value={formatNumber(data.ships.length)} />
+                <MetricTile label={t('player_ships_count')} value={formatNumber(data.ships.length)} />
               </MetricGrid>
             </Section>
 
             {data.hidden ? (
               <StateCard
                 tone="warning"
-                title="Hidden or empty profile"
-                body="The account appears hidden, or it does not expose battle data. The route is still valid, but some subpages may remain sparse."
-              />
-            ) : null}
+              title={t('player_hidden_title')}
+              body={t('player_hidden_body')}
+            />
+          ) : null}
 
             <Section
-              title="Player Pages"
-              subtitle="The legacy footer tabs are now explicit Expo routes."
+              title={t('player_pages_title')}
+              subtitle={t('player_pages_subtitle')}
             >
               <InlineGroup style={{padding: 18}}>
                 <ActionTile
-                  title="Achievements"
-                  body="Browse the account's earned achievements and counts."
-                  accentColor={accentColor}
+                  title={t('player_achievements')}
+                  body={t('player_achievements_body')}
+                  accentColor={tintColor}
                   onPress={() =>
                     server && accountId
                       ? router.push(getPlayerAchievementsRoute(server, accountId, nickname))
@@ -198,9 +203,9 @@ export default function PlayerOverviewScreen() {
                   }
                 />
                 <ActionTile
-                  title="Ships"
-                  body="Inspect ship-by-ship performance and drill into a ship detail page."
-                  accentColor={accentColor}
+                  title={t('player_ships')}
+                  body={t('player_ships_body')}
+                  accentColor={tintColor}
                   onPress={() =>
                     server && accountId
                       ? router.push(getPlayerShipsRoute(server, accountId, nickname))
@@ -208,9 +213,9 @@ export default function PlayerOverviewScreen() {
                   }
                 />
                 <ActionTile
-                  title="Rank"
-                  body="Review ranked seasons and linked season ship counts."
-                  accentColor={accentColor}
+                  title={t('player_rank')}
+                  body={t('player_rank_body')}
+                  accentColor={tintColor}
                   onPress={() =>
                     server && accountId
                       ? router.push(getPlayerRankRoute(server, accountId, nickname))
@@ -218,9 +223,9 @@ export default function PlayerOverviewScreen() {
                   }
                 />
                 <ActionTile
-                  title="Graph"
-                  body="See chart-style summaries without the deprecated native chart library."
-                  accentColor={accentColor}
+                  title={t('player_graph')}
+                  body={t('player_graph_body')}
+                  accentColor={tintColor}
                   onPress={() =>
                     server && accountId
                       ? router.push(getPlayerGraphRoute(server, accountId, nickname))
@@ -229,9 +234,9 @@ export default function PlayerOverviewScreen() {
                 />
                 {data.clanId ? (
                   <ActionTile
-                    title="Clan"
-                    body={`Open ${data.clanTag || 'the clan'} roster and member links.`}
-                    accentColor={accentColor}
+                    title={t('player_clan')}
+                    body={`${t('player_clan_open')} ${data.clanTag || ''}`.trim()}
+                    accentColor={tintColor}
                     onPress={() =>
                       server && data.clanId
                         ? router.push(getClanRoute(server, data.clanId))
@@ -240,9 +245,9 @@ export default function PlayerOverviewScreen() {
                   />
                 ) : null}
                 <ActionTile
-                  title="WoWs Numbers"
-                  body="Open the external stats profile for comparison."
-                  accentColor={accentColor}
+                  title={t('player_wows_numbers')}
+                  body={t('player_external_body')}
+                  accentColor={tintColor}
                   onPress={() =>
                     server && accountId
                       ? void openUrl(getPlayerExternalUrl(server, accountId, nickname))

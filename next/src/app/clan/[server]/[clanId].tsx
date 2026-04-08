@@ -19,14 +19,13 @@ import {
   Section,
   StateCard,
 } from '@/features/player/ui';
-import { AppPalette } from '@/constants/theme';
+import { useAppPreferences } from '@/features/preferences/preferences-manager';
 import { getServerLabel, isGameServer } from '@/features/home/content';
 import { openUrl } from '@/lib/platform-actions';
 
-const accentColor = AppPalette.accent;
-
 export default function ClanScreen() {
   const router = useRouter();
+  const { palette, tintColor, t } = useAppPreferences();
   const params = useLocalSearchParams<{server?: string; clanId?: string}>();
   const server = params.server && isGameServer(params.server) ? params.server : null;
   const clanId = params.clanId ?? null;
@@ -38,7 +37,7 @@ export default function ClanScreen() {
     let active = true;
 
     if (!server || !clanId) {
-      setError('Invalid clan route.');
+      setError(t('clan_route_invalid'));
       setLoading(false);
       return () => {
         active = false;
@@ -67,14 +66,14 @@ export default function ClanScreen() {
           return;
         }
 
-        setError(fetchError instanceof Error ? fetchError.message : 'Clan load failed.');
+        setError(fetchError instanceof Error ? fetchError.message : t('clan_load_failed'));
         setLoading(false);
       });
 
     return () => {
       active = false;
     };
-  }, [clanId, server]);
+  }, [clanId, server, t]);
 
   const members = clan?.members
     ? Object.values(clan.members).sort((left, right) => left.joined_at - right.joined_at)
@@ -84,52 +83,60 @@ export default function ClanScreen() {
     <>
       <Stack.Screen
         options={{
-          title: clan?.tag ?? 'Clan',
-          headerStyle: {backgroundColor: AppPalette.surface},
-          headerTintColor: AppPalette.text,
+          title: clan?.tag ?? t('player_clan'),
+          headerStyle: {backgroundColor: palette.surface},
+          headerTintColor: palette.text,
           headerShadowVisible: false,
         }}
       />
       <PageScroll>
         <HeroCard
-          eyebrow="Clan"
-          title={clan?.tag ?? 'Clan'}
-          body={clan?.name ? `${clan.name} - ${server ? getServerLabel(server) : 'Server'}` : 'Clan roster and member links'}
-          accentColor={accentColor}
+          eyebrow={t('player_clan')}
+          title={clan?.tag ?? t('player_clan')}
+          body={
+            clan?.name
+              ? `${clan.name} - ${server ? getServerLabel(server, t) : t('common_server')}`
+              : t('clan_roster_body')
+          }
+          accentColor={tintColor}
         />
-        {loading ? <StateCard title="Loading clan" body="Fetching clan metadata and member roster." /> : null}
-        {error ? <StateCard tone="warning" title="Clan unavailable" body={error} /> : null}
+        {loading ? (
+          <StateCard title={t('clan_loading')} body={t('clan_loading_body')} />
+        ) : null}
+        {error ? (
+          <StateCard tone="warning" title={t('clan_unavailable')} body={error} />
+        ) : null}
         {clan ? (
           <>
-            <Section title="Overview" subtitle="Clan metadata now lives in its own Expo route.">
+            <Section title={t('clan_overview')} subtitle={t('clan_overview_subtitle')}>
               <MetricGrid>
-                <MetricTile label="Members" value={String(clan.members_count ?? 0)} />
-                <MetricTile label="Created" value={formatDateTime(clan.created_at)} />
-                <MetricTile label="Creator" value={clan.creator_name ?? 'Unknown'} />
-                <MetricTile label="Leader" value={clan.leader_name ?? 'Unknown'} />
+                <MetricTile label={t('clan_members_title')} value={String(clan.members_count ?? 0)} />
+                <MetricTile label={t('clan_created')} value={formatDateTime(clan.created_at)} />
+                <MetricTile label={t('clan_creator')} value={clan.creator_name ?? t('common_unknown')} />
+                <MetricTile label={t('clan_leader')} value={clan.leader_name ?? t('common_unknown')} />
               </MetricGrid>
               {server && clanId ? (
                 <ListRow
-                  title="WoWs Numbers"
-                  description="Open the external clan profile."
-                  trailing="Open"
+                  title={t('player_wows_numbers')}
+                  description={t('clan_external_desc')}
+                  trailing={t('common_open')}
                   onPress={() => void openUrl(getClanExternalUrl(server, clanId, clan.tag))}
                 />
               ) : null}
               {clan.description ? (
-                <ListRow title="Description" description={clan.description} />
+                <ListRow title={t('common_description')} description={clan.description} />
               ) : null}
             </Section>
 
             <Section
-              title={`Members - ${members.length}`}
-              subtitle="Selecting a member jumps into the new player overview route."
+              title={`${t('clan_members_title')} - ${members.length}`}
+              subtitle={t('clan_members_subtitle')}
             >
               {members.map(member => (
                 <ListRow
                   key={member.account_id}
                   title={member.account_name}
-                  description={`Joined ${formatDateTime(member.joined_at)}`}
+                  description={`${t('clan_joined')} ${formatDateTime(member.joined_at)}`}
                   trailing={String(member.account_id)}
                   onPress={() =>
                     server

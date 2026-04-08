@@ -19,19 +19,12 @@ import {
   Section,
   StateCard,
 } from '@/features/player/ui';
-import { AppPalette } from '@/constants/theme';
+import { useAppPreferences } from '@/features/preferences/preferences-manager';
 import { isGameServer } from '@/features/home/content';
-
-const accentColor = AppPalette.accent;
-const shipSortOptions = [
-  {value: 'lastBattle', label: 'Last Battle'},
-  {value: 'battles', label: 'Battles'},
-  {value: 'damage', label: 'Avg Damage'},
-  {value: 'winRate', label: 'Win Rate'},
-] as const;
 
 export default function PlayerShipsScreen() {
   const router = useRouter();
+  const { palette, tintColor, t, tf } = useAppPreferences();
   const params = useLocalSearchParams<{
     server?: string;
     accountId?: string;
@@ -39,7 +32,13 @@ export default function PlayerShipsScreen() {
   }>();
   const server = params.server && isGameServer(params.server) ? params.server : null;
   const accountId = params.accountId ?? null;
-  const nickname = params.nickname ?? 'Player';
+  const nickname = params.nickname ?? t('player_title');
+  const shipSortOptions = [
+    {value: 'lastBattle', label: t('player_ships_sort_last_battle')},
+    {value: 'battles', label: t('player_ships_sort_battles')},
+    {value: 'damage', label: t('player_ships_sort_damage')},
+    {value: 'winRate', label: t('player_ships_sort_win_rate')},
+  ] as const;
   const [ships, setShips] = useState<Awaited<ReturnType<typeof fetchPlayerShips>>>([]);
   const [sortMode, setSortMode] = useState<(typeof shipSortOptions)[number]['value']>('lastBattle');
   const [loading, setLoading] = useState(true);
@@ -49,7 +48,7 @@ export default function PlayerShipsScreen() {
     let active = true;
 
     if (!server || !accountId) {
-      setError('Invalid player route.');
+      setError(t('player_route_invalid'));
       setLoading(false);
       return () => {
         active = false;
@@ -78,14 +77,14 @@ export default function PlayerShipsScreen() {
           return;
         }
 
-        setError(fetchError instanceof Error ? fetchError.message : 'Ship load failed.');
+        setError(fetchError instanceof Error ? fetchError.message : t('player_ships_unavailable'));
         setLoading(false);
       });
 
     return () => {
       active = false;
     };
-  }, [accountId, server]);
+  }, [accountId, server, t]);
 
   const sortedShips = sortShips(ships, sortMode);
 
@@ -93,53 +92,66 @@ export default function PlayerShipsScreen() {
     <>
       <Stack.Screen
         options={{
-          title: 'Ships',
-          headerStyle: {backgroundColor: AppPalette.surface},
-          headerTintColor: AppPalette.text,
+          title: t('player_ships'),
+          headerStyle: {backgroundColor: palette.surface},
+          headerTintColor: palette.text,
           headerShadowVisible: false,
         }}
       />
       <PageScroll>
         <HeroCard
-          eyebrow="Player"
-          title={`${nickname} ships`}
-          body="The old ship grid is now a sortable route that can drill into one ship at a time."
-          accentColor={accentColor}
+          eyebrow={t('player_title')}
+          title={tf('player_ships_title_full', nickname)}
+          body={t('player_ships_body_full')}
+          accentColor={tintColor}
         />
-        {loading ? <StateCard title="Loading ships" body="Fetching player ship stats." /> : null}
-        {error ? <StateCard tone="warning" title="Ships unavailable" body={error} /> : null}
+        {loading ? (
+          <StateCard
+            title={t('player_ships_loading')}
+            body={t('player_ships_loading_body')}
+          />
+        ) : null}
+        {error ? (
+          <StateCard tone="warning" title={t('player_ships_unavailable')} body={error} />
+        ) : null}
         {!loading && !error ? (
           <>
             <Section
-              title="Sort"
-              subtitle="The sort controls mirror the old footer actions."
+              title={t('player_ships_sort_title')}
+              subtitle={t('player_ships_sort_subtitle')}
             >
-              <Section title="Mode" subtitle="Choose the primary ordering for the list.">
+              <Section
+                title={t('player_ships_mode_title')}
+                subtitle={t('player_ships_mode_subtitle')}
+              >
                 <ChipRow
                   value={sortMode}
                   options={shipSortOptions.map(option => ({...option}))}
                   onChange={setSortMode}
-                  accentColor={accentColor}
+                  accentColor={tintColor}
                 />
               </Section>
             </Section>
             <Section
-              title={`Ships - ${sortedShips.length}`}
-              subtitle="Names and encyclopedia images can be layered back in later without changing the route structure."
+              title={tf('player_ships_section_title', sortedShips.length)}
+              subtitle={t('player_ships_section_subtitle')}
             >
               {sortedShips.length === 0 ? (
-                <StateCard title="No ship stats" body="No per-ship battle data was returned for this account." />
+                <StateCard
+                  title={t('player_ships_empty_title')}
+                  body={t('player_ships_empty_body')}
+                />
               ) : (
                 sortedShips.map(ship => (
                   <ListRow
                     key={ship.ship_id}
-                    title={`Ship ${ship.ship_id}`}
-                    description={`Battles ${formatNumber(ship.pvp?.battles)} | WR ${formatPercent(
+                    title={tf('player_ship_name', ship.ship_id)}
+                    description={`${t('player_battles')} ${formatNumber(ship.pvp?.battles)} | ${t('player_win_rate')} ${formatPercent(
                       calculateWinRate(ship.pvp),
-                    )} | Avg DMG ${formatNumber(calculateAverageDamage(ship.pvp))} | Last battle ${formatDateTime(
+                    )} | ${t('player_avg_damage')} ${formatNumber(calculateAverageDamage(ship.pvp))} | ${t('player_last_battle')} ${formatDateTime(
                       ship.last_battle_time,
                     )}`}
-                    trailing="Detail"
+                    trailing={t('player_detail_label')}
                     onPress={() =>
                       server && accountId
                         ? router.push(getPlayerShipDetailRoute(server, accountId, ship.ship_id))

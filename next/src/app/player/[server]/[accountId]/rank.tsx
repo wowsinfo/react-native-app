@@ -4,12 +4,11 @@ import { useEffect, useState } from 'react';
 import { fetchPlayerRank, getWoWsAppKeyMessage, hasWoWsAppKey } from '@/features/player/api';
 import { formatNumber } from '@/features/player/format';
 import { HeroCard, ListRow, PageScroll, Section, StateCard } from '@/features/player/ui';
-import { AppPalette } from '@/constants/theme';
+import { useAppPreferences } from '@/features/preferences/preferences-manager';
 import { isGameServer } from '@/features/home/content';
 
-const accentColor = AppPalette.accent;
-
 export default function PlayerRankScreen() {
+  const { palette, tintColor, t, tf } = useAppPreferences();
   const params = useLocalSearchParams<{
     server?: string;
     accountId?: string;
@@ -17,7 +16,7 @@ export default function PlayerRankScreen() {
   }>();
   const server = params.server && isGameServer(params.server) ? params.server : null;
   const accountId = params.accountId ?? null;
-  const nickname = params.nickname ?? 'Player';
+  const nickname = params.nickname ?? t('player_title');
   const [items, setItems] = useState<
     Array<{
       season: string;
@@ -32,7 +31,7 @@ export default function PlayerRankScreen() {
     let active = true;
 
     if (!server || !accountId) {
-      setError('Invalid player route.');
+      setError(t('player_route_invalid'));
       setLoading(false);
       return () => {
         active = false;
@@ -78,47 +77,57 @@ export default function PlayerRankScreen() {
           return;
         }
 
-        setError(fetchError instanceof Error ? fetchError.message : 'Rank load failed.');
+        setError(fetchError instanceof Error ? fetchError.message : t('player_rank_unavailable'));
         setLoading(false);
       });
 
     return () => {
       active = false;
     };
-  }, [accountId, server]);
+  }, [accountId, server, t]);
 
   return (
     <>
       <Stack.Screen
         options={{
-          title: 'Rank',
-          headerStyle: {backgroundColor: AppPalette.surface},
-          headerTintColor: AppPalette.text,
+          title: t('player_rank'),
+          headerStyle: {backgroundColor: palette.surface},
+          headerTintColor: palette.text,
           headerShadowVisible: false,
         }}
       />
       <PageScroll>
         <HeroCard
-          eyebrow="Player"
-          title={`${nickname} rank history`}
-          body="Ranked seasons are now a dedicated route instead of a footer popup."
-          accentColor={accentColor}
+          eyebrow={t('player_title')}
+          title={tf('player_rank_title_full', nickname)}
+          body={t('player_rank_body_full')}
+          accentColor={tintColor}
         />
-        {loading ? <StateCard title="Loading rank data" body="Fetching ranked seasons and season ship counts." /> : null}
-        {error ? <StateCard tone="warning" title="Rank unavailable" body={error} /> : null}
+        {loading ? (
+          <StateCard
+            title={t('player_rank_loading')}
+            body={t('player_rank_loading_body')}
+          />
+        ) : null}
+        {error ? (
+          <StateCard tone="warning" title={t('player_rank_unavailable')} body={error} />
+        ) : null}
         {!loading && !error ? (
           <Section
-            title={`Seasons - ${items.length}`}
-            subtitle="Ship counts show how many ranked ship stat entries exist for each season."
+            title={tf('player_rank_seasons_title', items.length)}
+            subtitle={t('player_rank_seasons_subtitle')}
           >
             {items.length === 0 ? (
-              <StateCard title="No ranked history" body="No ranked season data was returned for this account." />
+              <StateCard
+                title={t('player_rank_empty_title')}
+                body={t('player_rank_empty_body')}
+              />
             ) : (
               items.map(item => (
                 <ListRow
                   key={item.season}
-                  title={`Season ${item.season}`}
-                  description={`Best rank ${item.rank} | Ships tracked ${formatNumber(item.shipCount)}`}
+                  title={`${t('player_rank_season')} ${item.season}`}
+                  description={`${t('player_rank_best_rank')} ${item.rank} | ${t('player_rank_ships_tracked')} ${formatNumber(item.shipCount)}`}
                   trailing={`#${item.rank}`}
                 />
               ))

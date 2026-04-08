@@ -15,22 +15,25 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   appLinks,
   getHomeSections,
+  getServerOptions,
   getStoreUrl,
   isLinkItem,
-  serverOptions,
   type GameServer,
 } from '@/features/home/content';
-import { AppPalette } from '@/constants/theme';
+import { useAppPreferences } from '@/features/preferences/preferences-manager';
 import { openUrl, shareUrl } from '@/lib/platform-actions';
 
 export default function HomeScreen() {
   const router = useRouter();
   const { width } = useWindowDimensions();
+  const { palette, tintColor, resolvedTheme, t } = useAppPreferences();
+  const styles = createStyles(palette, tintColor);
   const [server, setServer] = useState<GameServer>('asia');
-  const sections = useMemo(() => getHomeSections(server), [server]);
+  const localizedServerOptions = useMemo(() => getServerOptions(t), [t]);
+  const sections = useMemo(() => getHomeSections(server, t), [server, t]);
   const compact = width < 900;
 
-  async function handleRoutePress(title: string, routeKey: string) {
+  async function handleRoutePress(routeKey: string, title?: string) {
     if (routeKey === 'Settings') {
       router.push('/settings');
       return;
@@ -44,36 +47,36 @@ export default function HomeScreen() {
     if (routeKey === 'RS') {
       router.push({
         pathname: '/coming-soon',
-        params: { title: 'RS Beta' },
+        params: { title: t('home_item_rs_beta') },
       });
       return;
     }
 
     router.push({
       pathname: '/coming-soon',
-      params: { title: routeKey },
+      params: { title: title ?? routeKey },
     });
   }
 
   async function handleReviewPress() {
     Alert.alert(
-      'Review WoWs Info',
-      'Choose whether to contact the developer or open the store listing.',
+      t('home_review_title'),
+      t('home_review_body'),
       [
         {
-          text: 'Contact Developer',
+          text: t('common_contact_developer'),
           onPress: () => {
             void openUrl(appLinks.developer);
           },
         },
         {
-          text: 'Open Store',
+          text: t('common_open_store'),
           onPress: () => {
             void openUrl(getStoreUrl());
           },
         },
         {
-          text: 'Cancel',
+          text: t('common_cancel'),
           style: 'cancel',
         },
       ],
@@ -84,98 +87,56 @@ export default function HomeScreen() {
     await shareUrl('WoWs Info Next', getStoreUrl());
   }
 
-  async function handleItemPress(
-    title: string,
-    item: ReturnType<typeof getHomeSections>[number]['items'][number],
-  ) {
-    if (title === 'Leave Feedback') {
-      await openUrl(appLinks.developer);
-      return;
-    }
-
-    if (title === 'Latest Release') {
-      await openUrl(appLinks.latestRelease);
-      return;
-    }
-
-    if (title === 'Personal Rating') {
-      await openUrl(appLinks.personalRating);
-      return;
-    }
-
-    if (title === 'Share App') {
-      await handleSharePress();
-      return;
-    }
-
-    if (title === 'Leave a Review') {
-      await handleReviewPress();
-      return;
-    }
-
+  async function handleItemPress(item: (typeof sections)[number]['items'][number]) {
     if (isLinkItem(item)) {
       await openUrl(item.url);
       return;
     }
 
-    await handleRoutePress(item.title, item.routeKey);
+    await handleRoutePress(item.routeKey, item.title);
   }
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar style="auto" />
+      <StatusBar style={resolvedTheme === 'dark' ? 'light' : 'dark'} />
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.hero}>
-          <Text style={styles.eyebrow}>Home Screen Port</Text>
-          <Text style={styles.title}>WoWs Info Next</Text>
-          <Text style={styles.subtitle}>
-            Expo Router rewrite of the legacy home screen. This version is
-            TypeScript-first, web-safe, and no longer depends on custom native
-            bridge modules just to render.
-          </Text>
+          <Text style={styles.eyebrow}>{t('home_eyebrow')}</Text>
+          <Text style={styles.title}>{t('home_title')}</Text>
+          <Text style={styles.subtitle}>{t('home_subtitle')}</Text>
         </View>
 
         <View style={styles.actionRow}>
-          <Pressable
-            style={styles.primaryAction}
-            onPress={() =>
-              void handleRoutePress('Search', 'Search')
-            }>
-            <Text style={styles.primaryActionLabel}>Search</Text>
-            <Text style={styles.primaryActionHint}>Player and clan lookup</Text>
+          <Pressable style={styles.primaryAction} onPress={() => void handleRoutePress('Search')}>
+            <Text style={styles.primaryActionLabel}>{t('common_search')}</Text>
+            <Text style={styles.primaryActionHint}>{t('home_search_hint')}</Text>
           </Pressable>
-          <Pressable
-            style={styles.secondaryAction}
-            onPress={() =>
-              void handleRoutePress('Settings', 'Settings')
-            }>
-            <Text style={styles.secondaryActionLabel}>Settings</Text>
+          <Pressable style={styles.secondaryAction} onPress={() => void handleRoutePress('Settings')}>
+            <Text style={styles.secondaryActionLabel}>{t('common_settings')}</Text>
           </Pressable>
-          <Pressable
-            style={styles.secondaryAction}
-            onPress={() => void handleSharePress()}>
-            <Text style={styles.secondaryActionLabel}>Share App</Text>
+          <Pressable style={styles.secondaryAction} onPress={() => void handleSharePress()}>
+            <Text style={styles.secondaryActionLabel}>{t('common_share_app')}</Text>
           </Pressable>
         </View>
 
         <View style={styles.serverCard}>
-          <Text style={styles.sectionTitle}>Server</Text>
-          <Text style={styles.serverCopy}>
-            Website links below update based on the selected game server.
-          </Text>
+          <Text style={styles.sectionTitle}>{t('common_server')}</Text>
+          <Text style={styles.serverCopy}>{t('home_server_copy')}</Text>
           <View style={styles.serverRow}>
-            {serverOptions.map(option => {
-              const active = option.key === server;
+            {localizedServerOptions.map(option => {
+              const active = option.value === server;
               return (
                 <Pressable
-                  key={option.key}
+                  key={option.value}
                   style={[styles.serverButton, active && styles.serverButtonActive]}
-                  onPress={() => setServer(option.key)}>
+                  onPress={() => setServer(option.value)}
+                >
                   <Text
                     style={[
                       styles.serverButtonLabel,
                       active && styles.serverButtonLabelActive,
-                    ]}>
+                    ]}
+                  >
                     {option.label}
                   </Text>
                 </Pressable>
@@ -189,16 +150,18 @@ export default function HomeScreen() {
             <Text style={styles.sectionTitle}>{section.title}</Text>
             <View style={[styles.grid, compact && styles.gridCompact]}>
               {section.items.map(item => {
-                const description = item.description ?? 'Not migrated yet';
                 return (
                   <Pressable
                     key={item.title}
                     style={[styles.card, compact && styles.cardCompact]}
-                    onPress={() => void handleItemPress(item.title, item)}>
+                    onPress={() => void handleItemPress(item)}
+                  >
                     <Text style={styles.cardTitle}>{item.title}</Text>
-                    <Text style={styles.cardBody}>{description}</Text>
+                    <Text style={styles.cardBody}>{item.description ?? t('common_not_migrated')}</Text>
                     <Text style={styles.cardHint}>
-                      {isLinkItem(item) ? 'Open link' : 'Open placeholder route'}
+                      {isLinkItem(item)
+                        ? t('common_open_link')
+                        : t('common_open_placeholder')}
                     </Text>
                   </Pressable>
                 );
@@ -211,154 +174,159 @@ export default function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: AppPalette.appBackground,
-  },
-  content: {
-    padding: 24,
-    gap: 20,
-  },
-  hero: {
-    gap: 8,
-  },
-  eyebrow: {
-    fontSize: 12,
-    fontWeight: '700',
-    letterSpacing: 1.4,
-    color: AppPalette.accent,
-  },
-  title: {
-    fontSize: 34,
-    fontWeight: '800',
-    color: AppPalette.text,
-  },
-  subtitle: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: AppPalette.muted,
-  },
-  actionRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 12,
-  },
-  primaryAction: {
-    flexGrow: 1,
-    minWidth: 220,
-    backgroundColor: AppPalette.accent,
-    borderRadius: 18,
-    padding: 18,
-    gap: 4,
-  },
-  primaryActionLabel: {
-    color: AppPalette.inverseText,
-    fontSize: 20,
-    fontWeight: '800',
-  },
-  primaryActionHint: {
-    color: '#dceeff',
-    fontSize: 14,
-  },
-  secondaryAction: {
-    minWidth: 140,
-    backgroundColor: AppPalette.surface,
-    borderRadius: 18,
-    paddingHorizontal: 16,
-    paddingVertical: 18,
-    borderWidth: 1,
-    borderColor: AppPalette.border,
-    justifyContent: 'center',
-  },
-  secondaryActionLabel: {
-    color: AppPalette.text,
-    fontSize: 15,
-    fontWeight: '700',
-    textAlign: 'center',
-  },
-  serverCard: {
-    backgroundColor: AppPalette.surface,
-    borderRadius: 18,
-    padding: 18,
-    gap: 10,
-    borderWidth: 1,
-    borderColor: AppPalette.border,
-  },
-  serverCopy: {
-    fontSize: 14,
-    lineHeight: 20,
-    color: AppPalette.muted,
-  },
-  serverRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-  },
-  serverButton: {
-    borderRadius: 999,
-    borderWidth: 1,
-    borderColor: AppPalette.border,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    backgroundColor: AppPalette.surfaceAlt,
-  },
-  serverButtonActive: {
-    backgroundColor: AppPalette.accent,
-    borderColor: AppPalette.accent,
-  },
-  serverButtonLabel: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: AppPalette.text,
-  },
-  serverButtonLabelActive: {
-    color: AppPalette.inverseText,
-  },
-  section: {
-    gap: 12,
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: AppPalette.text,
-  },
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 12,
-  },
-  gridCompact: {
-    flexDirection: 'column',
-  },
-  card: {
-    width: '48%',
-    minWidth: 240,
-    backgroundColor: AppPalette.surface,
-    borderRadius: 16,
-    padding: 16,
-    gap: 8,
-    borderWidth: 1,
-    borderColor: AppPalette.border,
-  },
-  cardCompact: {
-    width: '100%',
-  },
-  cardTitle: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: AppPalette.text,
-  },
-  cardBody: {
-    fontSize: 14,
-    lineHeight: 20,
-    color: AppPalette.muted,
-  },
-  cardHint: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: AppPalette.accent,
-    textTransform: 'uppercase',
-    letterSpacing: 0.8,
-  },
-});
+function createStyles(
+  palette: ReturnType<typeof useAppPreferences>['palette'],
+  tintColor: string,
+) {
+  return StyleSheet.create({
+    safeArea: {
+      flex: 1,
+      backgroundColor: palette.appBackground,
+    },
+    content: {
+      padding: 24,
+      gap: 20,
+    },
+    hero: {
+      gap: 8,
+    },
+    eyebrow: {
+      fontSize: 12,
+      fontWeight: '700',
+      letterSpacing: 1.4,
+      color: tintColor,
+    },
+    title: {
+      fontSize: 34,
+      fontWeight: '800',
+      color: palette.text,
+    },
+    subtitle: {
+      fontSize: 16,
+      lineHeight: 24,
+      color: palette.muted,
+    },
+    actionRow: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 12,
+    },
+    primaryAction: {
+      flexGrow: 1,
+      minWidth: 220,
+      backgroundColor: tintColor,
+      borderRadius: 18,
+      padding: 18,
+      gap: 4,
+    },
+    primaryActionLabel: {
+      color: palette.inverseText,
+      fontSize: 20,
+      fontWeight: '800',
+    },
+    primaryActionHint: {
+      color: palette.inverseText,
+      fontSize: 14,
+    },
+    secondaryAction: {
+      minWidth: 140,
+      backgroundColor: palette.surface,
+      borderRadius: 18,
+      paddingHorizontal: 16,
+      paddingVertical: 18,
+      borderWidth: 1,
+      borderColor: palette.border,
+      justifyContent: 'center',
+    },
+    secondaryActionLabel: {
+      color: palette.text,
+      fontSize: 15,
+      fontWeight: '700',
+      textAlign: 'center',
+    },
+    serverCard: {
+      backgroundColor: palette.surface,
+      borderRadius: 18,
+      padding: 18,
+      gap: 10,
+      borderWidth: 1,
+      borderColor: palette.border,
+    },
+    serverCopy: {
+      fontSize: 14,
+      lineHeight: 20,
+      color: palette.muted,
+    },
+    serverRow: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 8,
+    },
+    serverButton: {
+      borderRadius: 999,
+      borderWidth: 1,
+      borderColor: palette.border,
+      paddingHorizontal: 12,
+      paddingVertical: 8,
+      backgroundColor: palette.surfaceAlt,
+    },
+    serverButtonActive: {
+      backgroundColor: tintColor,
+      borderColor: tintColor,
+    },
+    serverButtonLabel: {
+      fontSize: 13,
+      fontWeight: '700',
+      color: palette.text,
+    },
+    serverButtonLabelActive: {
+      color: palette.inverseText,
+    },
+    section: {
+      gap: 12,
+    },
+    sectionTitle: {
+      fontSize: 20,
+      fontWeight: '800',
+      color: palette.text,
+    },
+    grid: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 12,
+    },
+    gridCompact: {
+      flexDirection: 'column',
+    },
+    card: {
+      width: '48%',
+      minWidth: 240,
+      backgroundColor: palette.surface,
+      borderRadius: 16,
+      padding: 16,
+      gap: 8,
+      borderWidth: 1,
+      borderColor: palette.border,
+    },
+    cardCompact: {
+      width: '100%',
+    },
+    cardTitle: {
+      fontSize: 16,
+      fontWeight: '700',
+      color: palette.text,
+    },
+    cardBody: {
+      fontSize: 14,
+      lineHeight: 20,
+      color: palette.muted,
+    },
+    cardHint: {
+      fontSize: 12,
+      fontWeight: '700',
+      color: tintColor,
+      textTransform: 'uppercase',
+      letterSpacing: 0.8,
+    },
+  });
+}

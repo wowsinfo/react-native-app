@@ -13,12 +13,11 @@ import {
   Section,
   StateCard,
 } from '@/features/player/ui';
-import { AppPalette } from '@/constants/theme';
+import { useAppPreferences } from '@/features/preferences/preferences-manager';
 import { isGameServer } from '@/features/home/content';
 
-const accentColor = AppPalette.accent;
-
 export default function PlayerAchievementsScreen() {
+  const { palette, tintColor, t, tf } = useAppPreferences();
   const params = useLocalSearchParams<{
     server?: string;
     accountId?: string;
@@ -26,7 +25,7 @@ export default function PlayerAchievementsScreen() {
   }>();
   const server = params.server && isGameServer(params.server) ? params.server : null;
   const accountId = params.accountId ?? null;
-  const nickname = params.nickname ?? 'Player';
+  const nickname = params.nickname ?? t('player_title');
   const [items, setItems] = useState<
     Array<{
       achievementId: string;
@@ -41,7 +40,7 @@ export default function PlayerAchievementsScreen() {
     let active = true;
 
     if (!server || !accountId) {
-      setError('Invalid player route.');
+      setError(t('player_route_invalid'));
       setLoading(false);
       return () => {
         active = false;
@@ -70,52 +69,65 @@ export default function PlayerAchievementsScreen() {
           return;
         }
 
-        setError(fetchError instanceof Error ? fetchError.message : 'Achievement load failed.');
+        setError(
+          fetchError instanceof Error ? fetchError.message : t('player_load_failed'),
+        );
         setLoading(false);
       });
 
     return () => {
       active = false;
     };
-  }, [accountId, server]);
+  }, [accountId, server, t]);
 
   return (
     <>
       <Stack.Screen
         options={{
-          title: 'Achievements',
-          headerStyle: {backgroundColor: AppPalette.surface},
-          headerTintColor: AppPalette.text,
+          title: t('player_achievements'),
+          headerStyle: {backgroundColor: palette.surface},
+          headerTintColor: palette.text,
           headerShadowVisible: false,
         }}
       />
       <PageScroll>
         <HeroCard
-          eyebrow="Player"
-          title={`${nickname} achievements`}
-          body="Achievement counts are live API data matched against the encyclopedia metadata."
-          accentColor={accentColor}
+          eyebrow={t('player_title')}
+          title={tf('player_achievements_title_full', nickname)}
+          body={t('player_achievements_body_full')}
+          accentColor={tintColor}
         />
         {loading ? (
-          <StateCard title="Loading achievements" body="Fetching battle achievement totals." />
+          <StateCard
+            title={t('player_achievements_loading')}
+            body={t('player_achievements_loading_body')}
+          />
         ) : null}
-        {error ? <StateCard tone="warning" title="Achievements unavailable" body={error} /> : null}
+        {error ? (
+          <StateCard
+            tone="warning"
+            title={t('player_achievements_unavailable')}
+            body={error}
+          />
+        ) : null}
         {!loading && !error ? (
           <Section
-            title={`Achievements - ${items.length}`}
-            subtitle="This replaces the old grid with a route that also works on web."
+            title={tf('player_achievements_section_title', items.length)}
+            subtitle={t('player_achievements_subtitle')}
           >
             {items.length === 0 ? (
               <StateCard
-                title="No achievements"
-                body="This player has no exposed battle achievement data."
+                title={t('player_achievements_empty_title')}
+                body={t('player_achievements_empty_body')}
               />
             ) : (
               items.map(item => (
                 <ListRow
                   key={item.achievementId}
                   title={item.meta?.name ?? item.achievementId}
-                  description={item.meta?.description ?? 'Achievement metadata unavailable.'}
+                  description={
+                    item.meta?.description ?? t('player_achievement_metadata_unavailable')
+                  }
                   trailing={String(item.count)}
                 />
               ))

@@ -26,13 +26,18 @@ import {
   Section,
   StateCard,
 } from '@/features/player/ui';
-import { AppPalette } from '@/constants/theme';
-import { getServerLabel, serverOptions, type GameServer } from '@/features/home/content';
-
-const accentColor = AppPalette.accent;
+import { useAppPreferences } from '@/features/preferences/preferences-manager';
+import {
+  getServerLabel,
+  getServerOptions,
+  type GameServer,
+} from '@/features/home/content';
 
 export default function SearchScreen() {
   const router = useRouter();
+  const { palette, tintColor, t, tf } = useAppPreferences();
+  const styles = createStyles(palette);
+  const serverOptions = getServerOptions(t);
   const [server, setServer] = useState<GameServer>('asia');
   const [query, setQuery] = useState('');
   const [online, setOnline] = useState<number | null>(null);
@@ -117,7 +122,7 @@ export default function SearchScreen() {
           }
 
           setLoading(false);
-          setError(fetchError instanceof Error ? fetchError.message : 'Search failed.');
+          setError(fetchError instanceof Error ? fetchError.message : t('search_error_title'));
         });
     }, 350);
 
@@ -125,94 +130,83 @@ export default function SearchScreen() {
       active = false;
       clearTimeout(timeout);
     };
-  }, [query, server]);
+  }, [query, server, t]);
 
   return (
     <>
       <Stack.Screen
         options={{
-          title: 'Search',
-          headerStyle: {
-            backgroundColor: AppPalette.surface,
-          },
-          headerTintColor: AppPalette.text,
-          headerShadowVisible: false,
+          title: t('common_search'),
         }}
       />
       <PageScroll>
         <HeroCard
-          eyebrow="Search"
-          title="Players and clans"
-          body={`Server-aware lookup for player profiles, clan pages, and the new Expo player route chain. ${online != null ? `${getServerLabel(server)} online: ${online.toLocaleString()}` : ''}`}
-          accentColor={accentColor}
+          eyebrow={t('common_search')}
+          title={t('search_title')}
+          body={`${t('search_subtitle')}${online != null ? ` ${tf('search_online_suffix', getServerLabel(server, t), online.toLocaleString())}` : ''}`}
+          accentColor={tintColor}
         />
 
         {!hasWoWsAppKey() ? (
           <StateCard
             tone="warning"
-            title="API key required"
-            body={getWoWsAppKeyMessage()}
+            title={t('search_api_required_title')}
+            body={t('search_api_required_body')}
           />
         ) : null}
 
         <Section
-          title="Search Input"
-          subtitle="Clan search starts at 2 characters. Player search starts at 3."
+          title={t('search_input_title')}
+          subtitle={t('search_input_subtitle')}
         >
           <View style={styles.inputWrap}>
-            <Text style={styles.inputLabel}>Game Server</Text>
+            <Text style={styles.inputLabel}>{t('common_server')}</Text>
             <ChipRow
               value={server}
               options={serverOptions.map(option => ({
-                value: option.key,
+                value: option.value,
                 label: option.label,
               }))}
               onChange={setServer}
-              accentColor={accentColor}
+              accentColor={tintColor}
             />
-            <Text style={styles.inputLabel}>Search Text</Text>
+            <Text style={styles.inputLabel}>{t('search_text_label')}</Text>
             <TextInput
               value={query}
               onChangeText={setQuery}
               autoCapitalize="none"
               autoCorrect={false}
-              placeholder="Search players or clans"
-              placeholderTextColor="#7c7a73"
+              placeholder={t('search_placeholder')}
+              placeholderTextColor={palette.muted}
               style={styles.input}
             />
           </View>
         </Section>
 
         {loading ? (
-          <StateCard
-            title="Searching"
-            body="The new Expo route uses direct API calls instead of the legacy native shell."
-          />
+          <StateCard title={t('search_loading_title')} body={t('search_loading_body')} />
         ) : null}
 
-        {error ? <StateCard tone="warning" title="Search error" body={error} /> : null}
+        {error ? <StateCard tone="warning" title={t('search_error_title')} body={error} /> : null}
 
         {loading ? (
           <View style={styles.loadingWrap}>
-            <ActivityIndicator color={accentColor} size="large" />
+            <ActivityIndicator color={tintColor} size="large" />
           </View>
         ) : null}
 
         <Section
-          title={`Clans - ${clans.length}`}
-          subtitle="Legacy parity: clans remain visible beside player search results."
+          title={`${t('player_clan')} - ${clans.length}`}
+          subtitle={t('search_clans_subtitle')}
         >
           {clans.length === 0 ? (
-            <StateCard
-              title="No clan results"
-              body="Enter 2 to 5 characters to query clan tags."
-            />
+            <StateCard title={t('player_clan')} body={t('search_clans_empty')} />
           ) : (
             clans.map(clan => (
               <ListRow
                 key={clan.clan_id}
                 title={clan.tag}
-                description={`${getServerLabel(clan.server)} clan`}
+                description={tf('search_clan_description', getServerLabel(clan.server, t))}
                 trailing={String(clan.clan_id)}
                 onPress={() => router.push(getClanRoute(clan.server, clan.clan_id))}
               />
@@ -221,22 +215,21 @@ export default function SearchScreen() {
         </Section>
 
         <Section
-          title={`Players - ${players.length}`}
-          subtitle="Selecting a player opens the new statistics hub and subpages."
+          title={`${t('player_title')} - ${players.length}`}
+          subtitle={t('search_players_subtitle')}
         >
           {players.length === 0 ? (
-            <StateCard
-              title="No player results"
-              body="Enter at least 3 characters to search for players."
-            />
+            <StateCard title={t('player_title')} body={t('search_players_empty')} />
           ) : (
             players.map(player => (
               <ListRow
                 key={player.account_id}
                 title={player.nickname}
-                description={getServerLabel(player.server)}
+                description={getServerLabel(player.server, t)}
                 trailing={String(player.account_id)}
-                onPress={() => router.push(getPlayerRoute(player.server, player.account_id, player.nickname))}
+                onPress={() =>
+                  router.push(getPlayerRoute(player.server, player.account_id, player.nickname))
+                }
               />
             ))
           )}
@@ -246,27 +239,29 @@ export default function SearchScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  inputWrap: {
-    padding: 18,
-    gap: 12,
-  },
-  inputLabel: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: AppPalette.text,
-  },
-  input: {
-    minHeight: 52,
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: AppPalette.border,
-    backgroundColor: AppPalette.surface,
-    paddingHorizontal: 16,
-    fontSize: 16,
-    color: AppPalette.text,
-  },
-  loadingWrap: {
-    paddingVertical: 8,
-  },
-});
+function createStyles(palette: ReturnType<typeof useAppPreferences>['palette']) {
+  return StyleSheet.create({
+    inputWrap: {
+      padding: 18,
+      gap: 12,
+    },
+    inputLabel: {
+      fontSize: 14,
+      fontWeight: '700',
+      color: palette.text,
+    },
+    input: {
+      minHeight: 52,
+      borderRadius: 14,
+      borderWidth: 1,
+      borderColor: palette.border,
+      backgroundColor: palette.surface,
+      paddingHorizontal: 16,
+      fontSize: 16,
+      color: palette.text,
+    },
+    loadingWrap: {
+      paddingVertical: 8,
+    },
+  });
+}

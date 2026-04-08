@@ -22,12 +22,11 @@ import {
   Section,
   StateCard,
 } from '@/features/player/ui';
-import { AppPalette } from '@/constants/theme';
+import { useAppPreferences } from '@/features/preferences/preferences-manager';
 import { isGameServer } from '@/features/home/content';
 
-const accentColor = AppPalette.accent;
-
 export default function PlayerShipDetailScreen() {
+  const { palette, tintColor, t, tf } = useAppPreferences();
   const params = useLocalSearchParams<{server?: string; accountId?: string; shipId?: string}>();
   const server = params.server && isGameServer(params.server) ? params.server : null;
   const accountId = params.accountId ?? null;
@@ -40,7 +39,7 @@ export default function PlayerShipDetailScreen() {
     let active = true;
 
     if (!server || !accountId || !shipId) {
-      setError('Invalid ship route.');
+      setError(t('player_route_invalid'));
       setLoading(false);
       return () => {
         active = false;
@@ -69,14 +68,16 @@ export default function PlayerShipDetailScreen() {
           return;
         }
 
-        setError(fetchError instanceof Error ? fetchError.message : 'Ship detail load failed.');
+        setError(
+          fetchError instanceof Error ? fetchError.message : t('player_ship_detail_unavailable'),
+        );
         setLoading(false);
       });
 
     return () => {
       active = false;
     };
-  }, [accountId, server, shipId]);
+  }, [accountId, server, shipId, t]);
 
   const pvp = ship?.pvp;
 
@@ -84,32 +85,46 @@ export default function PlayerShipDetailScreen() {
     <>
       <Stack.Screen
         options={{
-          title: shipId ? `Ship ${shipId}` : 'Ship',
-          headerStyle: {backgroundColor: AppPalette.surface},
-          headerTintColor: AppPalette.text,
+          title: shipId ? tf('player_ship_name', shipId) : t('player_ship_detail_title'),
+          headerStyle: {backgroundColor: palette.surface},
+          headerTintColor: palette.text,
           headerShadowVisible: false,
         }}
       />
       <PageScroll>
         <HeroCard
-          eyebrow="Ship Detail"
-          title={`Ship ${shipId ?? 'Unknown'}`}
-          body="This replaces the old player ship detail screen without requiring cached wiki metadata."
-          accentColor={accentColor}
+          eyebrow={t('player_ships')}
+          title={tf('player_ship_name', shipId ?? t('common_unknown'))}
+          body={t('player_ship_detail_body')}
+          accentColor={tintColor}
         />
-        {loading ? <StateCard title="Loading ship detail" body="Fetching one ship stat line for this player." /> : null}
-        {error ? <StateCard tone="warning" title="Ship detail unavailable" body={error} /> : null}
+        {loading ? (
+          <StateCard
+            title={t('player_ship_detail_loading')}
+            body={t('player_ship_detail_loading_body')}
+          />
+        ) : null}
+        {error ? (
+          <StateCard
+            tone="warning"
+            title={t('player_ship_detail_unavailable')}
+            body={error}
+          />
+        ) : null}
         {ship ? (
-          <Section title="Performance" subtitle="Raw ship performance for this player account.">
+          <Section
+            title={t('player_ship_detail_performance')}
+            subtitle={t('player_ship_detail_performance_subtitle')}
+          >
             <MetricGrid>
-              <MetricTile label="Battles" value={formatNumber(pvp?.battles)} />
-              <MetricTile label="Win Rate" value={formatPercent(calculateWinRate(pvp))} />
-              <MetricTile label="Avg Damage" value={formatNumber(calculateAverageDamage(pvp))} />
-              <MetricTile label="Avg Frags" value={calculateAverageFrags(pvp).toFixed(2)} />
-              <MetricTile label="Max Damage" value={formatNumber(pvp?.max_damage_dealt)} />
-              <MetricTile label="Max XP" value={formatNumber(pvp?.max_xp)} />
-              <MetricTile label="Max Frags" value={formatNumber(pvp?.max_frags_battle)} />
-              <MetricTile label="Last Battle" value={formatDateTime(ship.last_battle_time)} />
+              <MetricTile label={t('player_battles')} value={formatNumber(pvp?.battles)} />
+              <MetricTile label={t('player_win_rate')} value={formatPercent(calculateWinRate(pvp))} />
+              <MetricTile label={t('player_avg_damage')} value={formatNumber(calculateAverageDamage(pvp))} />
+              <MetricTile label={t('player_avg_frags')} value={calculateAverageFrags(pvp).toFixed(2)} />
+              <MetricTile label={t('player_max_damage')} value={formatNumber(pvp?.max_damage_dealt)} />
+              <MetricTile label={t('player_max_xp')} value={formatNumber(pvp?.max_xp)} />
+              <MetricTile label={t('player_max_frags')} value={formatNumber(pvp?.max_frags_battle)} />
+              <MetricTile label={t('player_last_battle')} value={formatDateTime(ship.last_battle_time)} />
             </MetricGrid>
           </Section>
         ) : null}
