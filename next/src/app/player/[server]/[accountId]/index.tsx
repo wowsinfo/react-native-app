@@ -1,5 +1,6 @@
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 import {
   fetchPlayerHub,
@@ -17,6 +18,20 @@ import {
   formatPercent,
   getLatestRank,
 } from '@/features/player/format';
+import {
+  getDetailedSections,
+  getRecordItems,
+  getWeaponRecordItems,
+} from '@/features/player/overview';
+import {
+  ListSectionBlock,
+  MetricSectionBlock,
+} from '@/features/player/overview-ui';
+import {
+  calculateOverallRating,
+  getRatingColor,
+  getRatingLabelKey,
+} from '@/features/player/rating';
 import {
   getClanRoute,
   getPlayerAchievementsRoute,
@@ -41,6 +56,7 @@ import { openUrl } from '@/lib/platform-actions';
 export default function PlayerOverviewScreen() {
   const router = useRouter();
   const { palette, tintColor, t, tf } = useAppPreferences();
+  const styles = createStyles(palette);
   const params = useLocalSearchParams<{
     server?: string;
     accountId?: string;
@@ -102,6 +118,11 @@ export default function PlayerOverviewScreen() {
   const basic = data?.basic ?? null;
   const pvp = basic?.statistics?.pvp;
   const nickname = basic?.nickname ?? fallbackNickname;
+  const ratingSummary = data ? calculateOverallRating(data.ships) : {rating: null, ratedShipCount: 0};
+  const ratingColor = getRatingColor(ratingSummary.rating);
+  const detailedSections = getDetailedSections(pvp, t);
+  const recordItems = getRecordItems(pvp, t);
+  const weaponRecordItems = getWeaponRecordItems(pvp, t);
 
   return (
     <>
@@ -125,7 +146,23 @@ export default function PlayerOverviewScreen() {
               : t('player_route_fallback')
           }
           accentColor={tintColor}
-        />
+        >
+          {ratingSummary.rating ? (
+            <View style={styles.ratingCardWrap}>
+              <View style={[styles.ratingBadge, { backgroundColor: ratingColor }]}>
+                <Text style={styles.ratingBadgeLabel}>{t('player_personal_rating')}</Text>
+                <Text style={styles.ratingBadgeValue}>{formatNumber(ratingSummary.rating)}</Text>
+                <Text style={styles.ratingBadgeTier}>{t(getRatingLabelKey(ratingSummary.rating))}</Text>
+              </View>
+              <View style={styles.ratingMeta}>
+                <Text style={styles.ratingMetaTitle}>{t('player_rating_description')}</Text>
+                <Text style={styles.ratingMetaBody}>
+                  {t('player_rating_battles')}: {formatNumber(ratingSummary.ratedShipCount)}
+                </Text>
+              </View>
+            </View>
+          ) : null}
+        </HeroCard>
 
         {loading ? (
           <StateCard
@@ -176,16 +213,38 @@ export default function PlayerOverviewScreen() {
                   value={data.clanTag ? `[${data.clanTag}]` : t('player_no_clan')}
                 />
                 <MetricTile label={t('player_ships_count')} value={formatNumber(data.ships.length)} />
+                {ratingSummary.rating ? (
+                  <MetricTile
+                    label={t('player_rating_score')}
+                    value={formatNumber(ratingSummary.rating)}
+                  />
+                ) : null}
               </MetricGrid>
             </Section>
 
             {data.hidden ? (
               <StateCard
                 tone="warning"
-              title={t('player_hidden_title')}
-              body={t('player_hidden_body')}
-            />
-          ) : null}
+                title={t('player_hidden_title')}
+                body={t('player_hidden_body')}
+              />
+            ) : null}
+
+            {!data.hidden && detailedSections.length > 0 ? (
+              <MetricSectionBlock
+                title={t('player_detailed_title')}
+                subtitle={t('player_detailed_subtitle')}
+                sections={detailedSections}
+              />
+            ) : null}
+
+            {!data.hidden && (recordItems.length > 0 || weaponRecordItems.length > 0) ? (
+              <ListSectionBlock
+                title={t('player_records_title')}
+                subtitle={t('player_records_subtitle')}
+                items={[...recordItems, ...weaponRecordItems]}
+              />
+            ) : null}
 
             <Section
               title={t('player_pages_title')}
@@ -196,6 +255,7 @@ export default function PlayerOverviewScreen() {
                   title={t('player_achievements')}
                   body={t('player_achievements_body')}
                   accentColor={tintColor}
+                  iconName="AchievementTab"
                   onPress={() =>
                     server && accountId
                       ? router.push(getPlayerAchievementsRoute(server, accountId, nickname))
@@ -206,6 +266,7 @@ export default function PlayerOverviewScreen() {
                   title={t('player_ships')}
                   body={t('player_ships_body')}
                   accentColor={tintColor}
+                  iconName="Ship"
                   onPress={() =>
                     server && accountId
                       ? router.push(getPlayerShipsRoute(server, accountId, nickname))
@@ -216,6 +277,7 @@ export default function PlayerOverviewScreen() {
                   title={t('player_rank')}
                   body={t('player_rank_body')}
                   accentColor={tintColor}
+                  iconName="Rank"
                   onPress={() =>
                     server && accountId
                       ? router.push(getPlayerRankRoute(server, accountId, nickname))
@@ -226,6 +288,7 @@ export default function PlayerOverviewScreen() {
                   title={t('player_graph')}
                   body={t('player_graph_body')}
                   accentColor={tintColor}
+                  iconName="Graph"
                   onPress={() =>
                     server && accountId
                       ? router.push(getPlayerGraphRoute(server, accountId, nickname))
@@ -261,4 +324,64 @@ export default function PlayerOverviewScreen() {
       </PageScroll>
     </>
   );
+}
+
+function createStyles(
+  palette: ReturnType<typeof useAppPreferences>['palette'],
+) {
+  return StyleSheet.create({
+    ratingCardWrap: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 12,
+      marginTop: 10,
+      alignItems: 'stretch',
+    },
+    ratingBadge: {
+      minWidth: 170,
+      borderRadius: 16,
+      paddingHorizontal: 16,
+      paddingVertical: 14,
+      gap: 2,
+    },
+    ratingBadgeLabel: {
+      color: palette.inverseText,
+      fontSize: 11,
+      fontWeight: '800',
+      letterSpacing: 0.8,
+      textTransform: 'uppercase',
+    },
+    ratingBadgeValue: {
+      color: palette.inverseText,
+      fontSize: 28,
+      fontWeight: '800',
+    },
+    ratingBadgeTier: {
+      color: palette.inverseText,
+      fontSize: 13,
+      fontWeight: '700',
+    },
+    ratingMeta: {
+      flex: 1,
+      minWidth: 200,
+      borderRadius: 16,
+      borderWidth: 1,
+      borderColor: palette.border,
+      backgroundColor: palette.surfaceAlt,
+      paddingHorizontal: 16,
+      paddingVertical: 14,
+      gap: 4,
+    },
+    ratingMetaTitle: {
+      color: palette.text,
+      fontSize: 14,
+      fontWeight: '700',
+      lineHeight: 20,
+    },
+    ratingMetaBody: {
+      color: palette.muted,
+      fontSize: 13,
+      lineHeight: 18,
+    },
+  });
 }

@@ -7,14 +7,21 @@ import {
   hasWoWsAppKey,
 } from '@/features/player/api';
 import {
-  calculateAverageDamage,
-  calculateAverageFrags,
-  calculateWinRate,
   formatDateTime,
   formatNumber,
-  formatPercent,
 } from '@/features/player/format';
 import {
+  getClassicSummaryItems,
+  getDetailedSections,
+  getShipRecordSections,
+  getWeaponRecordItems,
+} from '@/features/player/overview';
+import {
+  ListSectionBlock,
+  MetricSectionBlock,
+} from '@/features/player/overview-ui';
+import {
+  ClassicSummaryStrip,
   HeroCard,
   MetricGrid,
   MetricTile,
@@ -80,6 +87,10 @@ export default function PlayerShipDetailScreen() {
   }, [accountId, server, shipId, t]);
 
   const pvp = ship?.pvp;
+  const classicSummaryItems = getClassicSummaryItems(pvp, t);
+  const detailedSections = getDetailedSections(pvp, t);
+  const shipRecordSections = getShipRecordSections(pvp, t);
+  const weaponRecordItems = getWeaponRecordItems(pvp, t);
 
   return (
     <>
@@ -112,21 +123,35 @@ export default function PlayerShipDetailScreen() {
           />
         ) : null}
         {ship ? (
-          <Section
-            title={t('player_ship_detail_performance')}
-            subtitle={t('player_ship_detail_performance_subtitle')}
-          >
-            <MetricGrid>
-              <MetricTile label={t('player_battles')} value={formatNumber(pvp?.battles)} />
-              <MetricTile label={t('player_win_rate')} value={formatPercent(calculateWinRate(pvp))} />
-              <MetricTile label={t('player_avg_damage')} value={formatNumber(calculateAverageDamage(pvp))} />
-              <MetricTile label={t('player_avg_frags')} value={calculateAverageFrags(pvp).toFixed(2)} />
-              <MetricTile label={t('player_max_damage')} value={formatNumber(pvp?.max_damage_dealt)} />
-              <MetricTile label={t('player_max_xp')} value={formatNumber(pvp?.max_xp)} />
-              <MetricTile label={t('player_max_frags')} value={formatNumber(pvp?.max_frags_battle)} />
-              <MetricTile label={t('player_last_battle')} value={formatDateTime(ship.last_battle_time)} />
-            </MetricGrid>
-          </Section>
+          <>
+            <Section
+              title={t('player_ship_detail_performance')}
+              subtitle={t('player_ship_detail_performance_subtitle')}
+            >
+              <ClassicSummaryStrip items={classicSummaryItems} accentColor={tintColor} />
+              <MetricGrid>
+                <MetricTile label={t('player_battles')} value={formatNumber(pvp?.battles)} />
+                <MetricTile label={t('player_win_rate')} value={classicSummaryItems[1]?.value ?? '0%'} />
+                <MetricTile label={t('player_avg_damage')} value={classicSummaryItems[2]?.value ?? '0'} />
+                <MetricTile label={t('player_last_battle')} value={formatDateTime(ship.last_battle_time)} />
+              </MetricGrid>
+            </Section>
+            <MetricSectionBlock
+              title={t('player_ship_detail_detailed_title')}
+              subtitle={t('player_ship_detail_detailed_subtitle')}
+              sections={detailedSections}
+            />
+            <MetricSectionBlock
+              title={t('player_ship_detail_records_title')}
+              subtitle={t('player_ship_detail_records_subtitle')}
+              sections={shipRecordSections}
+            />
+            <ListSectionBlock
+              title={t('player_records_title')}
+              subtitle={t('player_ship_detail_records_subtitle')}
+              items={weaponRecordItems}
+            />
+          </>
         ) : null}
       </PageScroll>
     </>

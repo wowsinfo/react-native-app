@@ -31,13 +31,45 @@ export type SearchClan = {
 export type PlayerPvpStats = {
   battles?: number;
   wins?: number;
+  losses?: number;
+  draws?: number;
   damage_dealt?: number;
+  damage_scouting?: number;
   frags?: number;
   xp?: number;
+  art_agro?: number;
+  torpedo_agro?: number;
+  ships_spotted?: number;
+  planes_killed?: number;
   survived_battles?: number;
+  survived_wins?: number;
   max_damage_dealt?: number;
+  max_damage_dealt_ship_id?: number;
   max_frags_battle?: number;
+  max_frags_ship_id?: number;
   max_xp?: number;
+  max_xp_ship_id?: number;
+  max_damage_scouting?: number;
+  max_scouting_damage_ship_id?: number;
+  max_planes_killed?: number;
+  max_planes_killed_ship_id?: number;
+  max_ships_spotted?: number;
+  max_ships_spotted_ship_id?: number;
+  max_total_agro?: number;
+  max_total_agro_ship_id?: number;
+  aircraft?: WeaponStats;
+  main_battery?: WeaponStats;
+  ramming?: WeaponStats;
+  second_battery?: WeaponStats;
+  torpedoes?: WeaponStats;
+};
+
+export type WeaponStats = {
+  frags?: number;
+  hits?: number;
+  shots?: number;
+  max_frags_battle?: number;
+  max_frags_ship_id?: number;
 };
 
 export type PlayerStatistics = {

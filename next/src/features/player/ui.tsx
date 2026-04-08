@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { type ReactNode } from 'react';
 import {
+  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -10,6 +11,10 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import {
+  getLegacyIconSource,
+  type LegacyIconName,
+} from '@/features/player/legacy-icons';
 import { useAppPreferences } from '@/features/preferences/preferences-manager';
 
 export function PageScroll({ children }: { children: ReactNode }) {
@@ -102,11 +107,13 @@ export function ActionTile({
   body,
   onPress,
   accentColor,
+  iconName,
 }: {
   title: string;
   body: string;
   onPress?: () => void;
   accentColor: string;
+  iconName?: LegacyIconName;
 }) {
   const { palette, t } = useAppPreferences();
   const styles = createStyles(palette);
@@ -119,10 +126,48 @@ export function ActionTile({
       ]}
       onPress={onPress}
     >
+      {iconName ? (
+        <Image
+          source={getLegacyIconSource(iconName)}
+          style={[styles.actionIcon, { tintColor: accentColor }]}
+          resizeMode="contain"
+        />
+      ) : null}
       <Text style={styles.actionTitle}>{title}</Text>
       <Text style={styles.actionBody}>{body}</Text>
       <Text style={[styles.actionHint, { color: accentColor }]}>{t('common_open')}</Text>
     </Pressable>
+  );
+}
+
+export function ClassicSummaryStrip({
+  items,
+  accentColor,
+}: {
+  items: Array<{icon: LegacyIconName; label: string; value: string}>;
+  accentColor: string;
+}) {
+  const { palette } = useAppPreferences();
+  const styles = createStyles(palette);
+
+  if (items.length === 0) {
+    return null;
+  }
+
+  return (
+    <View style={styles.summaryStrip}>
+      {items.map(item => (
+        <View key={`${item.icon}-${item.label}`} style={styles.summaryCard}>
+          <Image
+            source={getLegacyIconSource(item.icon)}
+            style={[styles.summaryIcon, { tintColor: accentColor }]}
+            resizeMode="contain"
+          />
+          <Text style={styles.summaryValue}>{item.value}</Text>
+          <Text style={styles.summaryLabel}>{item.label}</Text>
+        </View>
+      ))}
+    </View>
   );
 }
 
@@ -375,6 +420,10 @@ function createStyles(palette: ReturnType<typeof useAppPreferences>['palette']) 
       fontWeight: '700',
       color: palette.text,
     },
+    actionIcon: {
+      width: 30,
+      height: 30,
+    },
     actionBody: {
       fontSize: 14,
       lineHeight: 20,
@@ -495,6 +544,44 @@ function createStyles(palette: ReturnType<typeof useAppPreferences>['palette']) 
       flexDirection: 'row',
       flexWrap: 'wrap',
       gap: 12,
+    },
+    summaryStrip: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 12,
+      padding: 18,
+      justifyContent: 'center',
+    },
+    summaryCard: {
+      minWidth: 110,
+      flexGrow: 1,
+      maxWidth: 160,
+      alignItems: 'center',
+      gap: 4,
+      borderRadius: 14,
+      backgroundColor: palette.surface,
+      borderWidth: 1,
+      borderColor: palette.border,
+      paddingHorizontal: 12,
+      paddingVertical: 14,
+    },
+    summaryIcon: {
+      width: 28,
+      height: 28,
+    },
+    summaryValue: {
+      fontSize: 18,
+      fontWeight: '800',
+      color: palette.text,
+      textAlign: 'center',
+    },
+    summaryLabel: {
+      fontSize: 11,
+      fontWeight: '700',
+      color: palette.muted,
+      textAlign: 'center',
+      textTransform: 'uppercase',
+      letterSpacing: 0.6,
     },
     pressed: {
       backgroundColor: palette.pressed,
