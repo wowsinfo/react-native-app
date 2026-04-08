@@ -31,10 +31,7 @@ export default function HomeScreen() {
 
   async function handleRoutePress(title: string, routeKey: string) {
     if (routeKey === 'Settings') {
-      router.push({
-        pathname: '/coming-soon',
-        params: { title: 'Settings' },
-      });
+      router.push('/settings');
       return;
     }
 

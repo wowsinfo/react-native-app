@@ -1,4 +1,5 @@
 import * as WebBrowser from 'expo-web-browser';
+import * as Linking from 'expo-linking';
 import { Alert, Platform, Share } from 'react-native';
 
 type BrowserNavigator = {
@@ -10,7 +11,17 @@ type BrowserNavigator = {
 
 export async function openUrl(url: string) {
   if (Platform.OS === 'web' && typeof window !== 'undefined') {
-    window.open(url, '_blank', 'noopener,noreferrer');
+    if (/^https?:/i.test(url)) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    window.location.href = url;
+    return;
+  }
+
+  if (!/^https?:/i.test(url)) {
+    await Linking.openURL(url);
     return;
   }
 
