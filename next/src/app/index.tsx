@@ -1,61 +1,216 @@
+import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useMemo, useState } from 'react';
+import {
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { migrationPhases } from '@/constants/migration';
+import {
+  appLinks,
+  getHomeSections,
+  getStoreUrl,
+  isLinkItem,
+  serverOptions,
+  type GameServer,
+} from '@/features/home/content';
+import { openUrl, shareUrl } from '@/lib/platform-actions';
 
 export default function HomeScreen() {
+  const router = useRouter();
+  const { width } = useWindowDimensions();
+  const [server, setServer] = useState<GameServer>('asia');
+  const sections = useMemo(() => getHomeSections(server), [server]);
+  const compact = width < 900;
+
+  async function handleRoutePress(title: string, routeKey: string) {
+    if (routeKey === 'Settings') {
+      router.push({
+        pathname: '/coming-soon',
+        params: { title: 'Settings' },
+      });
+      return;
+    }
+
+    if (routeKey === 'Search') {
+      router.push({
+        pathname: '/coming-soon',
+        params: { title: 'Search' },
+      });
+      return;
+    }
+
+    if (routeKey === 'RS') {
+      router.push({
+        pathname: '/coming-soon',
+        params: { title: 'RS Beta' },
+      });
+      return;
+    }
+
+    router.push({
+      pathname: '/coming-soon',
+      params: { title: routeKey },
+    });
+  }
+
+  async function handleReviewPress() {
+    Alert.alert(
+      'Review WoWs Info',
+      'Choose whether to contact the developer or open the store listing.',
+      [
+        {
+          text: 'Contact Developer',
+          onPress: () => {
+            void openUrl(appLinks.developer);
+          },
+        },
+        {
+          text: 'Open Store',
+          onPress: () => {
+            void openUrl(getStoreUrl());
+          },
+        },
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+      ],
+    );
+  }
+
+  async function handleSharePress() {
+    await shareUrl('WoWs Info Next', getStoreUrl());
+  }
+
+  async function handleItemPress(
+    title: string,
+    item: ReturnType<typeof getHomeSections>[number]['items'][number],
+  ) {
+    if (title === 'Leave Feedback') {
+      await openUrl(appLinks.developer);
+      return;
+    }
+
+    if (title === 'Latest Release') {
+      await openUrl(appLinks.latestRelease);
+      return;
+    }
+
+    if (title === 'Personal Rating') {
+      await openUrl(appLinks.personalRating);
+      return;
+    }
+
+    if (title === 'Share App') {
+      await handleSharePress();
+      return;
+    }
+
+    if (title === 'Leave a Review') {
+      await handleReviewPress();
+      return;
+    }
+
+    if (isLinkItem(item)) {
+      await openUrl(item.url);
+      return;
+    }
+
+    await handleRoutePress(item.title, item.routeKey);
+  }
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="auto" />
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.hero}>
-          <Text style={styles.eyebrow}>Expo Migration</Text>
+          <Text style={styles.eyebrow}>Home Screen Port</Text>
           <Text style={styles.title}>WoWs Info Next</Text>
           <Text style={styles.subtitle}>
-            Fresh Expo-first workspace for the long-term rewrite. Legacy native
-            brownfield code stays isolated in the old app while screens and data
-            modules move here incrementally.
+            Expo Router rewrite of the legacy home screen. This version is
+            TypeScript-first, web-safe, and no longer depends on custom native
+            bridge modules just to render.
           </Text>
         </View>
 
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Current Direction</Text>
-          <Text style={styles.cardBody}>
-            Source app: <Text style={styles.code}>wowsinfo/</Text>
-          </Text>
-          <Text style={styles.cardBody}>
-            Target app: <Text style={styles.code}>next/</Text>
-          </Text>
-          <Text style={styles.cardBody}>
-            Runtime: Expo SDK 55, React Native 0.83, React 19.2, Expo Router,
-            Bun
-          </Text>
+        <View style={styles.actionRow}>
+          <Pressable
+            style={styles.primaryAction}
+            onPress={() =>
+              void handleRoutePress('Search', 'Search')
+            }>
+            <Text style={styles.primaryActionLabel}>Search</Text>
+            <Text style={styles.primaryActionHint}>Player and clan lookup</Text>
+          </Pressable>
+          <Pressable
+            style={styles.secondaryAction}
+            onPress={() =>
+              void handleRoutePress('Settings', 'Settings')
+            }>
+            <Text style={styles.secondaryActionLabel}>Settings</Text>
+          </Pressable>
+          <Pressable
+            style={styles.secondaryAction}
+            onPress={() => void handleSharePress()}>
+            <Text style={styles.secondaryActionLabel}>Share App</Text>
+          </Pressable>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Migration Phases</Text>
-          {migrationPhases.map(phase => (
-            <View key={phase.title} style={styles.phaseRow}>
-              <View style={[styles.badge, styles[phase.status]]}>
-                <Text style={styles.badgeText}>{phase.status.toUpperCase()}</Text>
-              </View>
-              <View style={styles.phaseCopy}>
-                <Text style={styles.phaseTitle}>{phase.title}</Text>
-                <Text style={styles.phaseSummary}>{phase.summary}</Text>
-              </View>
+        <View style={styles.serverCard}>
+          <Text style={styles.sectionTitle}>Server</Text>
+          <Text style={styles.serverCopy}>
+            Website links below update based on the selected game server.
+          </Text>
+          <View style={styles.serverRow}>
+            {serverOptions.map(option => {
+              const active = option.key === server;
+              return (
+                <Pressable
+                  key={option.key}
+                  style={[styles.serverButton, active && styles.serverButtonActive]}
+                  onPress={() => setServer(option.key)}>
+                  <Text
+                    style={[
+                      styles.serverButtonLabel,
+                      active && styles.serverButtonLabelActive,
+                    ]}>
+                    {option.label}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
+        </View>
+
+        {sections.map(section => (
+          <View key={section.title} style={styles.section}>
+            <Text style={styles.sectionTitle}>{section.title}</Text>
+            <View style={[styles.grid, compact && styles.gridCompact]}>
+              {section.items.map(item => {
+                const description = item.description ?? 'Not migrated yet';
+                return (
+                  <Pressable
+                    key={item.title}
+                    style={[styles.card, compact && styles.cardCompact]}
+                    onPress={() => void handleItemPress(item.title, item)}>
+                    <Text style={styles.cardTitle}>{item.title}</Text>
+                    <Text style={styles.cardBody}>{description}</Text>
+                    <Text style={styles.cardHint}>
+                      {isLinkItem(item) ? 'Open link' : 'Open placeholder route'}
+                    </Text>
+                  </Pressable>
+                );
+              })}
             </View>
-          ))}
-        </View>
-
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Immediate Next Move</Text>
-          <Text style={styles.cardBody}>
-            Extract Expo-safe shared modules first: app constants, localization,
-            storage, and API access. Then rebuild navigation route-by-route in
-            Expo Router.
-          </Text>
-        </View>
+          </View>
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
@@ -72,7 +227,6 @@ const styles = StyleSheet.create({
   },
   hero: {
     gap: 8,
-    paddingTop: 8,
   },
   eyebrow: {
     fontSize: 12,
@@ -90,80 +244,126 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     color: '#3d4d42',
   },
+  actionRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+  },
+  primaryAction: {
+    flexGrow: 1,
+    minWidth: 220,
+    backgroundColor: '#1f2f25',
+    borderRadius: 18,
+    padding: 18,
+    gap: 4,
+  },
+  primaryActionLabel: {
+    color: '#fffdf8',
+    fontSize: 20,
+    fontWeight: '800',
+  },
+  primaryActionHint: {
+    color: '#d9e2dc',
+    fontSize: 14,
+  },
+  secondaryAction: {
+    minWidth: 140,
+    backgroundColor: '#fffaf0',
+    borderRadius: 18,
+    paddingHorizontal: 16,
+    paddingVertical: 18,
+    borderWidth: 1,
+    borderColor: '#e5d8bf',
+    justifyContent: 'center',
+  },
+  secondaryActionLabel: {
+    color: '#1f2f25',
+    fontSize: 15,
+    fontWeight: '700',
+    textAlign: 'center',
+  },
+  serverCard: {
+    backgroundColor: '#fffaf0',
+    borderRadius: 18,
+    padding: 18,
+    gap: 10,
+    borderWidth: 1,
+    borderColor: '#e5d8bf',
+  },
+  serverCopy: {
+    fontSize: 14,
+    lineHeight: 20,
+    color: '#4f5f55',
+  },
+  serverRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  serverButton: {
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: '#d6c6a7',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    backgroundColor: '#f6efe1',
+  },
+  serverButtonActive: {
+    backgroundColor: '#8b5e1a',
+    borderColor: '#8b5e1a',
+  },
+  serverButtonLabel: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#5f4a23',
+  },
+  serverButtonLabelActive: {
+    color: '#fff',
+  },
   section: {
     gap: 12,
   },
   sectionTitle: {
     fontSize: 20,
-    fontWeight: '700',
+    fontWeight: '800',
     color: '#1f2f25',
+  },
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+  },
+  gridCompact: {
+    flexDirection: 'column',
   },
   card: {
-    backgroundColor: '#fffaf0',
-    borderRadius: 18,
-    padding: 18,
-    gap: 8,
-    borderWidth: 1,
-    borderColor: '#e5d8bf',
-  },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#1f2f25',
-  },
-  cardBody: {
-    fontSize: 15,
-    lineHeight: 22,
-    color: '#425248',
-  },
-  code: {
-    fontFamily: 'monospace',
-    color: '#7a4b1f',
-  },
-  phaseRow: {
-    flexDirection: 'row',
-    gap: 12,
-    alignItems: 'flex-start',
+    width: '48%',
+    minWidth: 240,
     backgroundColor: '#fff',
     borderRadius: 16,
-    padding: 14,
+    padding: 16,
+    gap: 8,
     borderWidth: 1,
     borderColor: '#e6dcc9',
   },
-  phaseCopy: {
-    flex: 1,
-    gap: 4,
+  cardCompact: {
+    width: '100%',
   },
-  phaseTitle: {
+  cardTitle: {
     fontSize: 16,
     fontWeight: '700',
     color: '#1f2f25',
   },
-  phaseSummary: {
+  cardBody: {
     fontSize: 14,
     lineHeight: 20,
     color: '#4f5f55',
   },
-  badge: {
-    minWidth: 64,
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    borderRadius: 999,
-    alignItems: 'center',
-  },
-  badgeText: {
-    fontSize: 10,
-    fontWeight: '800',
+  cardHint: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#8b5e1a',
+    textTransform: 'uppercase',
     letterSpacing: 0.8,
-    color: '#fff',
-  },
-  done: {
-    backgroundColor: '#2f7d4c',
-  },
-  next: {
-    backgroundColor: '#8b5e1a',
-  },
-  blocked: {
-    backgroundColor: '#8a3333',
   },
 });
