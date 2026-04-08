@@ -1,9 +1,11 @@
 import {Linking, NativeModules, Platform} from 'react-native';
-const handler: SimpleViewHandlerInterface = NativeModules.SimpleViewHandler;
+const handler = NativeModules.SimpleViewHandler as
+  | SimpleViewHandlerInterface
+  | undefined;
 
 export class SimpleViewHandler {
   static async openURL(url: string) {
-    if (Platform.OS === 'ios') {
+    if (Platform.OS === 'ios' && handler?.showSafariViewController) {
       const success = await handler.showSafariViewController(url);
       console.log('SimpleViewHandler.openURL', success);
       if (success) {

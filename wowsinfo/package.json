@@ -2,6 +2,7 @@
   "name": "wowsinfo",
   "version": "1.7.0",
   "private": true,
+  "packageManager": "bun@1.3.9",
   "scripts": {
     "start": "react-native start",
     "android": "react-native run-android",
@@ -9,7 +10,7 @@
     "pod": "cd ios && pod install",
     "clean-ios": "cd ios && rm -rf Pods/ Podfile.lock",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "format-all": "npx prettier --write '**/*.js' '**/*.ts*'",
+    "format-all": "prettier --write '**/*.js' '**/*.ts*'",
     "test": "jest"
   },
   "dependencies": {
@@ -53,6 +54,7 @@
     "typescript": "4.8.4"
   },
   "engines": {
+    "bun": ">=1.3.9",
     "node": ">=16"
   }
 }

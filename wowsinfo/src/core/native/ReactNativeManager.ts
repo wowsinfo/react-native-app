@@ -1,4 +1,3 @@
-import {NativeEvents} from './NativeEvents';
 import {QuickAction} from './QuickAction';
 import {NativeModules} from 'react-native';
 
@@ -15,13 +14,12 @@ export class ReactNativeManager {
 
   // Keep the listener alive
   private quickActionManager!: QuickAction;
-  private nativeEvents: NativeEvents = new NativeEvents();
 
   setup() {
     this.quickActionManager = new QuickAction();
   }
 
   static appHasLoaded() {
-    manager.reactNativeHasLoaded();
+    manager?.reactNativeHasLoaded?.();
   }
 }

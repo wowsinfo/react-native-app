@@ -5,6 +5,10 @@ const eventEmitter = NativeModules.QuickActionEventEmitter;
 
 class QuickAction {
   constructor() {
+    if (!eventEmitter) {
+      return;
+    }
+
     const emitter = new NativeEventEmitter(eventEmitter);
     emitter.addListener('quick_action', (type: string) => {
       console.log('quick action - ', type);
@@ -27,11 +31,11 @@ class QuickAction {
   }
 
   static addMainAccount(name: string) {
-    manager.addMainAccount(name);
+    manager?.addMainAccount?.(name);
   }
 
   static performPendingShortcut() {
-    manager.performPendingShortcut();
+    manager?.performPendingShortcut?.();
   }
 }
 

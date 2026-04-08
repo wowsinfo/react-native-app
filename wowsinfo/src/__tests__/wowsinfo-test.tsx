@@ -4,7 +4,7 @@
 
 import 'react-native';
 import React from 'react';
-import App from '../wowsinfo';
+import {Main as App} from '../../index';
 
 import {it} from '@jest/globals';
 
@@ -12,6 +12,6 @@ import {it} from '@jest/globals';
 import renderer from 'react-test-renderer';
 
 // Test app render correcly
-it('wows info renders correctly', () => {
+it('wows info main entry renders correctly', () => {
   renderer.create(<App />);
 });
