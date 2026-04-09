@@ -3,6 +3,7 @@ import {
   getServerPrefix,
   type GameServer,
 } from '@/features/home/content';
+import type { ApiLanguage } from '@/features/settings/content';
 
 const WOWS_APP_KEY = (process.env.EXPO_PUBLIC_WOWS_APP_KEY ?? '').trim();
 
@@ -347,6 +348,7 @@ export async function fetchPlayerHub(
 export async function fetchPlayerAchievements(
   server: GameServer,
   accountId: string,
+  language: ApiLanguage = 'en',
 ) {
   ensureAppKey();
 
@@ -354,12 +356,13 @@ export async function fetchPlayerAchievements(
     fetchJson<Record<string, {battle?: PlayerAchievementTotals}>>(
       createApiUrl(server, '/wows/account/achievements/', {
         account_id: accountId,
-        language: 'en',
+        language,
         fields: 'battle',
       }),
     ),
     fetchJson<Record<string, AchievementMeta>>(
       createApiUrl(server, '/wows/encyclopedia/achievements/', {
+        language,
         fields:
           'battle.achievement_id,battle.name,battle.description,battle.image',
       }),

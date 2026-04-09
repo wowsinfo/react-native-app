@@ -20,17 +20,18 @@ import {
   isLinkItem,
   type GameServer,
 } from '@/features/home/content';
+import { useAppStateManager } from '@/features/app-state/app-state-manager';
 import { useAppPreferences } from '@/features/preferences/preferences-manager';
 import { openUrl, shareUrl } from '@/lib/platform-actions';
 
 export default function HomeScreen() {
   const router = useRouter();
   const { width } = useWindowDimensions();
+  const { gameServer, setGameServer } = useAppStateManager();
   const { palette, tintColor, resolvedTheme, t } = useAppPreferences();
   const styles = createStyles(palette, tintColor);
-  const [server, setServer] = useState<GameServer>('asia');
   const localizedServerOptions = useMemo(() => getServerOptions(t), [t]);
-  const sections = useMemo(() => getHomeSections(server, t), [server, t]);
+  const sections = useMemo(() => getHomeSections(gameServer, t), [gameServer, t]);
   const compact = width < 900;
 
   async function handleRoutePress(routeKey: string, title?: string) {
@@ -124,12 +125,12 @@ export default function HomeScreen() {
           <Text style={styles.serverCopy}>{t('home_server_copy')}</Text>
           <View style={styles.serverRow}>
             {localizedServerOptions.map(option => {
-              const active = option.value === server;
+              const active = option.value === gameServer;
               return (
                 <Pressable
                   key={option.value}
                   style={[styles.serverButton, active && styles.serverButtonActive]}
-                  onPress={() => setServer(option.value)}
+                  onPress={() => setGameServer(option.value)}
                 >
                   <Text
                     style={[

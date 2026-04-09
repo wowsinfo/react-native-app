@@ -9,8 +9,11 @@ import {
 import { DarkTheme, DefaultTheme, type Theme } from '@react-navigation/native';
 import { useColorScheme } from 'react-native';
 
+import {
+  readStoredString,
+  writeStoredString,
+} from '@/features/app-state/storage';
 import { messages, type MessageKey, type MessageLanguage } from '@/features/preferences/messages';
-import { readPreference, writePreference } from '@/features/preferences/storage';
 import { getTintValue, type TintKey } from '@/features/settings/content';
 
 export type ThemeMode = 'light' | 'dark' | 'system';
@@ -153,13 +156,13 @@ function createNavigationTheme(
 export function PreferencesProvider({ children }: { children: ReactNode }) {
   const systemScheme = useColorScheme();
   const [themeMode, setThemeModeState] = useState<ThemeMode>(
-    readPreference(THEME_MODE_KEY, 'system') as ThemeMode,
+    readStoredString(THEME_MODE_KEY, 'system') as ThemeMode,
   );
   const [tintKey, setTintKeyState] = useState<TintKey>(
-    readPreference(TINT_KEY, 'blue') as TintKey,
+    readStoredString(TINT_KEY, 'blue') as TintKey,
   );
   const [appLanguage, setAppLanguageState] = useState<AppLanguagePreference>(
-    readPreference(LANGUAGE_KEY, 'system') as AppLanguagePreference,
+    readStoredString(LANGUAGE_KEY, 'system') as AppLanguagePreference,
   );
 
   const resolvedTheme =
@@ -177,15 +180,15 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
   );
 
   useEffect(() => {
-    writePreference(THEME_MODE_KEY, themeMode);
+    writeStoredString(THEME_MODE_KEY, themeMode);
   }, [themeMode]);
 
   useEffect(() => {
-    writePreference(TINT_KEY, tintKey);
+    writeStoredString(TINT_KEY, tintKey);
   }, [tintKey]);
 
   useEffect(() => {
-    writePreference(LANGUAGE_KEY, appLanguage);
+    writeStoredString(LANGUAGE_KEY, appLanguage);
   }, [appLanguage]);
 
   const value = useMemo<PreferencesContextValue>(() => {

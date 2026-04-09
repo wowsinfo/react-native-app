@@ -26,19 +26,19 @@ import {
   Section,
   StateCard,
 } from '@/features/player/ui';
+import { useAppStateManager } from '@/features/app-state/app-state-manager';
 import { useAppPreferences } from '@/features/preferences/preferences-manager';
 import {
   getServerLabel,
   getServerOptions,
-  type GameServer,
 } from '@/features/home/content';
 
 export default function SearchScreen() {
   const router = useRouter();
+  const { gameServer, setGameServer, recentPlayers, rememberPlayer } = useAppStateManager();
   const { palette, tintColor, t, tf } = useAppPreferences();
   const styles = createStyles(palette);
   const serverOptions = getServerOptions(t);
-  const [server, setServer] = useState<GameServer>('asia');
   const [query, setQuery] = useState('');
   const [online, setOnline] = useState<number | null>(null);
   const [players, setPlayers] = useState<SearchPlayer[]>([]);
@@ -56,7 +56,7 @@ export default function SearchScreen() {
       };
     }
 
-    void fetchPlayersOnline(server)
+    void fetchPlayersOnline(gameServer)
       .then(value => {
         if (active) {
           setOnline(value);
@@ -71,7 +71,7 @@ export default function SearchScreen() {
     return () => {
       active = false;
     };
-  }, [server]);
+  }, [gameServer]);
 
   useEffect(() => {
     let active = true;
@@ -102,9 +102,9 @@ export default function SearchScreen() {
 
     const timeout = setTimeout(() => {
       Promise.all([
-        trimmed.length > 2 ? searchPlayers(server, trimmed) : Promise.resolve([]),
+        trimmed.length > 2 ? searchPlayers(gameServer, trimmed) : Promise.resolve([]),
         trimmed.length > 1 && trimmed.length < 6
-          ? searchClans(server, trimmed)
+          ? searchClans(gameServer, trimmed)
           : Promise.resolve([]),
       ])
         .then(([nextPlayers, nextClans]) => {
@@ -130,7 +130,7 @@ export default function SearchScreen() {
       active = false;
       clearTimeout(timeout);
     };
-  }, [query, server, t]);
+  }, [gameServer, query, t]);
 
   return (
     <>
@@ -143,7 +143,7 @@ export default function SearchScreen() {
         <HeroCard
           eyebrow={t('common_search')}
           title={t('search_title')}
-          body={`${t('search_subtitle')}${online != null ? ` ${tf('search_online_suffix', getServerLabel(server, t), online.toLocaleString())}` : ''}`}
+          body={`${t('search_subtitle')}${online != null ? ` ${tf('search_online_suffix', getServerLabel(gameServer, t), online.toLocaleString())}` : ''}`}
           accentColor={tintColor}
         />
 
@@ -162,12 +162,12 @@ export default function SearchScreen() {
           <View style={styles.inputWrap}>
             <Text style={styles.inputLabel}>{t('common_server')}</Text>
             <ChipRow
-              value={server}
+              value={gameServer}
               options={serverOptions.map(option => ({
                 value: option.value,
                 label: option.label,
               }))}
-              onChange={setServer}
+              onChange={setGameServer}
               accentColor={tintColor}
             />
             <Text style={styles.inputLabel}>{t('search_text_label')}</Text>
@@ -227,13 +227,46 @@ export default function SearchScreen() {
                 title={player.nickname}
                 description={getServerLabel(player.server, t)}
                 trailing={String(player.account_id)}
-                onPress={() =>
-                  router.push(getPlayerRoute(player.server, player.account_id, player.nickname))
-                }
+                onPress={() => {
+                  rememberPlayer({
+                    accountId: String(player.account_id),
+                    nickname: player.nickname,
+                    server: player.server,
+                  });
+                  router.push(getPlayerRoute(player.server, player.account_id, player.nickname));
+                }}
               />
             ))
           )}
         </Section>
+
+        {!query.trim() ? (
+          <Section
+            title={t('search_recent_players')}
+            subtitle={t('search_recent_players_subtitle')}
+          >
+            {recentPlayers.length === 0 ? (
+              <StateCard
+                title={t('search_recent_players')}
+                body={t('search_recent_empty')}
+              />
+            ) : (
+              recentPlayers.map(player => (
+                <ListRow
+                  key={`${player.server}-${player.accountId}`}
+                  title={player.nickname}
+                  description={getServerLabel(player.server, t)}
+                  trailing={player.accountId}
+                  onPress={() =>
+                    router.push(
+                      getPlayerRoute(player.server, player.accountId, player.nickname),
+                    )
+                  }
+                />
+              ))
+            )}
+          </Section>
+        ) : null}
       </PageScroll>
     </>
   );

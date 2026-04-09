@@ -49,12 +49,15 @@ import {
   Section,
   StateCard,
 } from '@/features/player/ui';
+import { useAppStateManager } from '@/features/app-state/app-state-manager';
 import { useAppPreferences } from '@/features/preferences/preferences-manager';
 import { getServerLabel, isGameServer } from '@/features/home/content';
 import { openUrl } from '@/lib/platform-actions';
 
 export default function PlayerOverviewScreen() {
   const router = useRouter();
+  const { addFriendAccount, isFriendAccount, mainAccount, rememberPlayer, setMainAccount } =
+    useAppStateManager();
   const { palette, tintColor, t, tf } = useAppPreferences();
   const styles = createStyles(palette);
   const params = useLocalSearchParams<{
@@ -123,6 +126,23 @@ export default function PlayerOverviewScreen() {
   const detailedSections = getDetailedSections(pvp, t);
   const recordItems = getRecordItems(pvp, t);
   const weaponRecordItems = getWeaponRecordItems(pvp, t);
+  const accountTools = accountId && server
+    ? {
+        accountId,
+        nickname,
+        server,
+      }
+    : null;
+  const isFriend = accountId ? isFriendAccount(accountId) : false;
+  const isMainAccount = accountId ? mainAccount?.accountId === accountId : false;
+
+  useEffect(() => {
+    if (!accountTools) {
+      return;
+    }
+
+    rememberPlayer(accountTools);
+  }, [accountTools, rememberPlayer]);
 
   return (
     <>
@@ -244,6 +264,44 @@ export default function PlayerOverviewScreen() {
                 subtitle={t('player_records_subtitle')}
                 items={[...recordItems, ...weaponRecordItems]}
               />
+            ) : null}
+
+            {accountTools ? (
+              <Section
+                title={t('player_account_tools_title')}
+                subtitle={t('player_account_tools_subtitle')}
+              >
+                <InlineGroup style={{ padding: 18 }}>
+                  {!isMainAccount ? (
+                    <ActionTile
+                      title={t('player_set_main_account')}
+                      body={t('player_set_main_account_body')}
+                      accentColor={tintColor}
+                      onPress={() => setMainAccount(accountTools)}
+                    />
+                  ) : (
+                    <ActionTile
+                      title={t('player_set_main_account')}
+                      body={t('player_main_account_saved')}
+                      accentColor={tintColor}
+                    />
+                  )}
+                  {!isFriend ? (
+                    <ActionTile
+                      title={t('player_add_friend')}
+                      body={t('player_add_friend_body')}
+                      accentColor={tintColor}
+                      onPress={() => addFriendAccount(accountTools)}
+                    />
+                  ) : (
+                    <ActionTile
+                      title={t('player_add_friend')}
+                      body={t('player_friend_saved')}
+                      accentColor={tintColor}
+                    />
+                  )}
+                </InlineGroup>
+              </Section>
             ) : null}
 
             <Section

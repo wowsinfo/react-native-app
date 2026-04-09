@@ -6,6 +6,7 @@ import {
   getWoWsAppKeyMessage,
   hasWoWsAppKey,
 } from '@/features/player/api';
+import { useAppStateManager } from '@/features/app-state/app-state-manager';
 import {
   HeroCard,
   ListRow,
@@ -17,6 +18,7 @@ import { useAppPreferences } from '@/features/preferences/preferences-manager';
 import { isGameServer } from '@/features/home/content';
 
 export default function PlayerAchievementsScreen() {
+  const { apiLanguage } = useAppStateManager();
   const { palette, tintColor, t, tf } = useAppPreferences();
   const params = useLocalSearchParams<{
     server?: string;
@@ -55,7 +57,7 @@ export default function PlayerAchievementsScreen() {
       };
     }
 
-    void fetchPlayerAchievements(server, accountId)
+    void fetchPlayerAchievements(server, accountId, apiLanguage)
       .then(result => {
         if (!active) {
           return;
@@ -78,7 +80,7 @@ export default function PlayerAchievementsScreen() {
     return () => {
       active = false;
     };
-  }, [accountId, server, t]);
+  }, [accountId, apiLanguage, server, t]);
 
   return (
     <>

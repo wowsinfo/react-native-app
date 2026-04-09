@@ -16,10 +16,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {
   apiLanguageOptions,
-  defaultSettingsState,
   tintOptions,
   type ChoiceOption,
 } from '@/features/settings/content';
+import { useAppStateManager } from '@/features/app-state/app-state-manager';
 import {
   useAppPreferences,
   type AppLanguagePreference,
@@ -50,6 +50,14 @@ export default function SettingsScreen() {
   const { width } = useWindowDimensions();
   const compact = width < 820;
   const {
+    gameServer,
+    setGameServer,
+    apiLanguage,
+    setApiLanguage,
+    swapButtons,
+    setSwapButtons,
+  } = useAppStateManager();
+  const {
     themeMode,
     setThemeMode,
     tintKey,
@@ -64,9 +72,6 @@ export default function SettingsScreen() {
   const styles = createStyles(palette);
   const gameServerOptions = getServerOptions(t);
   const [showTintPicker, setShowTintPicker] = useState(false);
-  const [server, setServer] = useState(defaultSettingsState.server);
-  const [apiLanguage, setApiLanguage] = useState(defaultSettingsState.apiLanguage);
-  const [swapButtons, setSwapButtons] = useState(defaultSettingsState.swapButtons);
 
   const themeModeOptions: ChoiceOption<ThemeMode>[] = [
     { value: 'system', label: t('theme_mode_system') },
@@ -114,10 +119,10 @@ export default function SettingsScreen() {
         >
           <ChoiceGroup
             label={t('settings_game_server')}
-            value={server}
+            value={gameServer}
             options={gameServerOptions}
             accentColor={tintColor}
-            onChange={setServer}
+            onChange={setGameServer}
           />
           <ChoiceGroup
             label={t('settings_api_language')}

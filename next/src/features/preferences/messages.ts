@@ -145,6 +145,11 @@ export const messages = {
     search_players_subtitle:
       'Selecting a player opens the new statistics hub and subpages.',
     search_clan_description: '{0} clan',
+    search_recent_players: 'Recent Players',
+    search_recent_players_subtitle:
+      'Recent player routes are stored locally so you can jump back in quickly.',
+    search_recent_empty:
+      'Search for a player or open one from a clan roster to build this list.',
     search_no_clan_results_title: 'No clan results',
     search_no_player_results_title: 'No player results',
     player_title: 'Player',
@@ -205,6 +210,17 @@ export const messages = {
     player_records_title: 'Records',
     player_records_subtitle:
       'High-water marks and weapon records from the legacy player overview.',
+    player_account_tools_title: 'Account Tools',
+    player_account_tools_subtitle:
+      'Legacy shortcuts for your main account and friend list.',
+    player_set_main_account: 'Set as Main Account',
+    player_set_main_account_body:
+      'Save this player as the default account reference in the Expo app.',
+    player_main_account_saved: 'Main account saved',
+    player_add_friend: 'Add to Friends',
+    player_add_friend_body:
+      'Store this player in the local friend list for quick access later.',
+    player_friend_saved: 'Friend saved',
     player_wins: 'Wins',
     player_draws: 'Draws',
     player_losses: 'Losses',

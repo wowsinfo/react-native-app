@@ -3,13 +3,16 @@ import { Stack } from 'expo-router';
 import * as SystemUI from 'expo-system-ui';
 import { useEffect } from 'react';
 
+import { AppStateProvider } from '@/features/app-state/app-state-manager';
 import { PreferencesProvider, useAppPreferences } from '@/features/preferences/preferences-manager';
 
 export default function RootLayout() {
   return (
-    <PreferencesProvider>
-      <ManagedRootLayout />
-    </PreferencesProvider>
+    <AppStateProvider>
+      <PreferencesProvider>
+        <ManagedRootLayout />
+      </PreferencesProvider>
+    </AppStateProvider>
   );
 }
 
