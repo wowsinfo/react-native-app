@@ -1,76 +1,41 @@
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
 import { useAppPreferences } from '@/features/preferences/preferences-manager';
 
 export default function ComingSoonScreen() {
   const router = useRouter();
-  const { palette, tintColor, resolvedTheme, t } = useAppPreferences();
-  const styles = createStyles(palette, tintColor);
+  const { palette, tintColor, t } = useAppPreferences();
   const { title } = useLocalSearchParams<{ title?: string }>();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: palette.appBackground }}>
       <Stack.Screen
         options={{
           title: title ?? t('coming_soon_title'),
         }}
       />
-      <View style={styles.container}>
-        <Text style={styles.eyebrow}>{t('coming_soon_title')}</Text>
-        <Text style={styles.title}>{title ?? t('coming_soon_screen')}</Text>
-        <Text style={styles.body}>{t('coming_soon_body')}</Text>
-        <Pressable style={styles.button} onPress={() => router.back()}>
-          <Text style={styles.buttonText}>{t('common_back_home')}</Text>
+      <View className="flex-1 justify-center gap-3 p-6">
+        <Text className="text-[12px] font-bold" style={{ color: tintColor, letterSpacing: 1 }}>
+          {t('coming_soon_title')}
+        </Text>
+        <Text className="text-[32px] font-extrabold" style={{ color: palette.text }}>
+          {title ?? t('coming_soon_screen')}
+        </Text>
+        <Text className="text-[16px] leading-6" style={{ color: palette.muted }}>
+          {t('coming_soon_body')}
+        </Text>
+        <Pressable
+          className="mt-2 self-start rounded-full px-4 py-2.5"
+          style={{ backgroundColor: tintColor }}
+          onPress={() => router.back()}
+        >
+          <Text className="text-[15px] font-bold" style={{ color: palette.inverseText }}>
+            {t('common_back_home')}
+          </Text>
         </Pressable>
       </View>
     </SafeAreaView>
   );
-}
-
-function createStyles(
-  palette: ReturnType<typeof useAppPreferences>['palette'],
-  tintColor: string,
-) {
-  return StyleSheet.create({
-    safeArea: {
-      flex: 1,
-      backgroundColor: palette.appBackground,
-    },
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      padding: 24,
-      gap: 12,
-    },
-    eyebrow: {
-      fontSize: 12,
-      fontWeight: '700',
-      letterSpacing: 1,
-      color: tintColor,
-    },
-    title: {
-      fontSize: 32,
-      fontWeight: '800',
-      color: palette.text,
-    },
-    body: {
-      fontSize: 16,
-      lineHeight: 24,
-      color: palette.muted,
-    },
-    button: {
-      marginTop: 8,
-      alignSelf: 'flex-start',
-      backgroundColor: tintColor,
-      borderRadius: 999,
-      paddingHorizontal: 16,
-      paddingVertical: 10,
-    },
-    buttonText: {
-      color: palette.inverseText,
-      fontSize: 15,
-      fontWeight: '700',
-    },
-  });
 }

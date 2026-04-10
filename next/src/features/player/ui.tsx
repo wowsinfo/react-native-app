@@ -1,14 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { type ReactNode } from 'react';
-import {
-  Image,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  type ViewStyle,
-} from 'react-native';
+import { Image, Pressable, ScrollView, Text, View, type ViewStyle } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {
@@ -19,12 +11,13 @@ import { useAppPreferences } from '@/features/preferences/preferences-manager';
 
 export function PageScroll({ children }: { children: ReactNode }) {
   const { palette, resolvedTheme } = useAppPreferences();
-  const styles = createStyles(palette);
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: palette.appBackground }} edges={['bottom']}>
       <StatusBar style={resolvedTheme === 'dark' ? 'light' : 'dark'} />
-      <ScrollView contentContainerStyle={styles.content}>{children}</ScrollView>
+      <ScrollView>
+        <View className="gap-5 p-6">{children}</View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -43,13 +36,26 @@ export function HeroCard({
   children?: ReactNode;
 }) {
   const { palette } = useAppPreferences();
-  const styles = createStyles(palette);
 
   return (
-    <View style={[styles.heroCard, { borderColor: accentColor }]}>
-      <Text style={[styles.heroEyebrow, { color: accentColor }]}>{eyebrow}</Text>
-      <Text style={styles.heroTitle}>{title}</Text>
-      {body ? <Text style={styles.heroBody}>{body}</Text> : null}
+    <View
+      className="gap-2 rounded-[18px] border p-5"
+      style={{ backgroundColor: palette.surface, borderColor: accentColor }}
+    >
+      <Text
+        className="text-[12px] font-extrabold uppercase"
+        style={{ color: accentColor, letterSpacing: 1.4 }}
+      >
+        {eyebrow}
+      </Text>
+      <Text className="text-[28px] font-extrabold" style={{ color: palette.text }}>
+        {title}
+      </Text>
+      {body ? (
+        <Text className="text-[15px] leading-[22px]" style={{ color: palette.muted }}>
+          {body}
+        </Text>
+      ) : null}
       {children}
     </View>
   );
@@ -65,23 +71,34 @@ export function Section({
   children: ReactNode;
 }) {
   const { palette } = useAppPreferences();
-  const styles = createStyles(palette);
 
   return (
-    <View style={styles.section}>
-      <View style={styles.sectionHeader}>
-        <Text style={styles.sectionTitle}>{title}</Text>
-        {subtitle ? <Text style={styles.sectionSubtitle}>{subtitle}</Text> : null}
+    <View className="gap-[10px]">
+      <View className="items-center gap-1">
+        <Text className="text-center text-[20px] font-extrabold" style={{ color: palette.text }}>
+          {title}
+        </Text>
+        {subtitle ? (
+          <Text
+            className="max-w-[680px] text-center text-[13px] leading-[19px]"
+            style={{ color: palette.muted }}
+          >
+            {subtitle}
+          </Text>
+        ) : null}
       </View>
-      <View style={styles.sectionBody}>{children}</View>
+      <View
+        className="overflow-hidden rounded-[18px] border"
+        style={{ backgroundColor: palette.surface, borderColor: palette.border }}
+      >
+        {children}
+      </View>
     </View>
   );
 }
 
 export function MetricGrid({ children }: { children: ReactNode }) {
-  const { palette } = useAppPreferences();
-  const styles = createStyles(palette);
-  return <View style={styles.metricGrid}>{children}</View>;
+  return <View className="flex-row flex-wrap gap-3 p-[18px]">{children}</View>;
 }
 
 export function MetricTile({
@@ -92,12 +109,21 @@ export function MetricTile({
   value: string;
 }) {
   const { palette } = useAppPreferences();
-  const styles = createStyles(palette);
 
   return (
-    <View style={styles.metricTile}>
-      <Text style={styles.metricLabel}>{label}</Text>
-      <Text style={styles.metricValue}>{value}</Text>
+    <View
+      className="min-w-[130px] grow gap-1.5 rounded-[14px] border p-[14px]"
+      style={{ backgroundColor: palette.surface, borderColor: palette.border }}
+    >
+      <Text
+        className="text-[12px] font-bold uppercase"
+        style={{ color: palette.muted, letterSpacing: 0.8 }}
+      >
+        {label}
+      </Text>
+      <Text className="text-[20px] font-extrabold" style={{ color: palette.text }}>
+        {value}
+      </Text>
     </View>
   );
 }
@@ -116,26 +142,38 @@ export function ActionTile({
   iconName?: LegacyIconName;
 }) {
   const { palette, t } = useAppPreferences();
-  const styles = createStyles(palette);
 
   return (
     <Pressable
+      className="min-w-[220px] grow gap-2 rounded-2xl border p-4"
       style={({ pressed }) => [
-        styles.actionTile,
-        pressed && onPress ? styles.pressed : null,
+        {
+          width: '48%',
+          backgroundColor: pressed && onPress ? palette.pressed : palette.surface,
+          borderColor: palette.border,
+        },
       ]}
       onPress={onPress}
     >
       {iconName ? (
         <Image
           source={getLegacyIconSource(iconName)}
-          style={[styles.actionIcon, { tintColor: accentColor }]}
+          style={{ width: 30, height: 30, tintColor: accentColor }}
           resizeMode="contain"
         />
       ) : null}
-      <Text style={styles.actionTitle}>{title}</Text>
-      <Text style={styles.actionBody}>{body}</Text>
-      <Text style={[styles.actionHint, { color: accentColor }]}>{t('common_open')}</Text>
+      <Text className="text-[16px] font-bold" style={{ color: palette.text }}>
+        {title}
+      </Text>
+      <Text className="text-[14px] leading-5" style={{ color: palette.muted }}>
+        {body}
+      </Text>
+      <Text
+        className="text-[12px] font-extrabold uppercase"
+        style={{ color: accentColor, letterSpacing: 1 }}
+      >
+        {t('common_open')}
+      </Text>
     </Pressable>
   );
 }
@@ -148,23 +186,33 @@ export function ClassicSummaryStrip({
   accentColor: string;
 }) {
   const { palette } = useAppPreferences();
-  const styles = createStyles(palette);
 
   if (items.length === 0) {
     return null;
   }
 
   return (
-    <View style={styles.summaryStrip}>
+    <View className="flex-row flex-wrap justify-center gap-3 p-[18px]">
       {items.map(item => (
-        <View key={`${item.icon}-${item.label}`} style={styles.summaryCard}>
+        <View
+          key={`${item.icon}-${item.label}`}
+          className="max-w-[160px] min-w-[110px] grow items-center gap-1 rounded-[14px] border px-3 py-[14px]"
+          style={{ backgroundColor: palette.surface, borderColor: palette.border }}
+        >
           <Image
             source={getLegacyIconSource(item.icon)}
-            style={[styles.summaryIcon, { tintColor: accentColor }]}
+            style={{ width: 28, height: 28, tintColor: accentColor }}
             resizeMode="contain"
           />
-          <Text style={styles.summaryValue}>{item.value}</Text>
-          <Text style={styles.summaryLabel}>{item.label}</Text>
+          <Text className="text-center text-[18px] font-extrabold" style={{ color: palette.text }}>
+            {item.value}
+          </Text>
+          <Text
+            className="text-center text-[11px] font-bold uppercase"
+            style={{ color: palette.muted, letterSpacing: 0.6 }}
+          >
+            {item.label}
+          </Text>
         </View>
       ))}
     </View>
@@ -183,18 +231,33 @@ export function ListRow({
   onPress?: () => void;
 }) {
   const { palette } = useAppPreferences();
-  const styles = createStyles(palette);
 
   return (
     <Pressable
-      style={({ pressed }) => [styles.listRow, pressed && onPress ? styles.pressed : null]}
+      className="min-h-[72px] flex-row items-center gap-3 border-b px-[18px] py-4"
+      style={({ pressed }) => [
+        {
+          backgroundColor: pressed && onPress ? palette.pressed : palette.surface,
+          borderBottomColor: palette.borderSoft,
+        },
+      ]}
       onPress={onPress}
     >
-      <View style={styles.listCopy}>
-        <Text style={styles.listTitle}>{title}</Text>
-        {description ? <Text style={styles.listDescription}>{description}</Text> : null}
+      <View className="flex-1 gap-1">
+        <Text className="text-[16px] font-bold" style={{ color: palette.text }}>
+          {title}
+        </Text>
+        {description ? (
+          <Text className="text-[13px] leading-[18px]" style={{ color: palette.muted }}>
+            {description}
+          </Text>
+        ) : null}
       </View>
-      {trailing ? <Text style={styles.listTrailing}>{trailing}</Text> : null}
+      {trailing ? (
+        <Text className="text-[13px] font-bold" style={{ color: palette.muted }}>
+          {trailing}
+        </Text>
+      ) : null}
     </Pressable>
   );
 }
@@ -209,17 +272,22 @@ export function StateCard({
   tone?: 'default' | 'warning';
 }) {
   const { palette } = useAppPreferences();
-  const styles = createStyles(palette);
+  const warning = tone === 'warning';
 
   return (
     <View
-      style={[
-        styles.stateCard,
-        tone === 'warning' ? styles.stateCardWarning : null,
-      ]}
+      className="gap-2 rounded-[18px] border p-[18px]"
+      style={{
+        borderColor: warning ? palette.warningBorder : palette.border,
+        backgroundColor: warning ? palette.warningSurface : palette.surface,
+      }}
     >
-      <Text style={styles.stateTitle}>{title}</Text>
-      <Text style={styles.stateBody}>{body}</Text>
+      <Text className="text-[16px] font-extrabold" style={{ color: palette.text }}>
+        {title}
+      </Text>
+      <Text className="text-[14px] leading-5" style={{ color: palette.muted }}>
+        {body}
+      </Text>
     </View>
   );
 }
@@ -236,28 +304,26 @@ export function ChipRow<T extends string>({
   accentColor: string;
 }) {
   const { palette } = useAppPreferences();
-  const styles = createStyles(palette);
 
   return (
-    <View style={styles.chipRow}>
+    <View className="flex-row flex-wrap gap-2">
       {options.map(option => {
         const active = option.value === value;
 
         return (
           <Pressable
             key={option.value}
-            style={[
-              styles.chip,
-              active
-                ? {
-                    backgroundColor: accentColor,
-                    borderColor: accentColor,
-                  }
-                : null,
-            ]}
+            className="rounded-full border px-3 py-2"
+            style={{
+              borderColor: active ? accentColor : palette.border,
+              backgroundColor: active ? accentColor : palette.surfaceAlt,
+            }}
             onPress={() => onChange(option.value)}
           >
-            <Text style={[styles.chipLabel, active ? styles.chipLabelActive : null]}>
+            <Text
+              className="text-[13px] font-bold"
+              style={{ color: active ? palette.inverseText : palette.text }}
+            >
               {option.label}
             </Text>
           </Pressable>
@@ -277,26 +343,30 @@ export function BarList({
   renderValue: (value: number) => string;
 }) {
   const { palette } = useAppPreferences();
-  const styles = createStyles(palette);
   const maxValue = Math.max(...items.map(item => item.value), 1);
 
   return (
-    <View style={styles.barList}>
+    <View className="gap-3 p-[18px]">
       {items.map(item => (
-        <View key={item.id} style={styles.barRow}>
-          <View style={styles.barHeader}>
-            <Text style={styles.barLabel}>{item.label}</Text>
-            <Text style={styles.barValue}>{renderValue(item.value)}</Text>
+        <View key={item.id} className="gap-1.5">
+          <View className="flex-row justify-between gap-3">
+            <Text className="flex-1 text-[14px] font-bold" style={{ color: palette.text }}>
+              {item.label}
+            </Text>
+            <Text className="text-[13px] font-bold" style={{ color: palette.muted }}>
+              {renderValue(item.value)}
+            </Text>
           </View>
-          <View style={styles.barTrack}>
+          <View
+            className="h-[10px] overflow-hidden rounded-full"
+            style={{ backgroundColor: palette.borderSoft }}
+          >
             <View
-              style={[
-                styles.barFill,
-                {
-                  backgroundColor: accentColor,
-                  width: `${Math.max((item.value / maxValue) * 100, 6)}%`,
-                },
-              ]}
+              className="h-full rounded-full"
+              style={{
+                backgroundColor: accentColor,
+                width: `${Math.max((item.value / maxValue) * 100, 6)}%`,
+              }}
             />
           </View>
         </View>
@@ -312,279 +382,9 @@ export function InlineGroup({
   children: ReactNode;
   style?: ViewStyle;
 }) {
-  const { palette } = useAppPreferences();
-  const styles = createStyles(palette);
-  return <View style={[styles.inlineGroup, style]}>{children}</View>;
-}
-
-function createStyles(palette: ReturnType<typeof useAppPreferences>['palette']) {
-  return StyleSheet.create({
-    safeArea: {
-      flex: 1,
-      backgroundColor: palette.appBackground,
-    },
-    content: {
-      padding: 24,
-      gap: 20,
-    },
-    heroCard: {
-      backgroundColor: palette.surface,
-      borderRadius: 18,
-      borderWidth: 1,
-      padding: 20,
-      gap: 8,
-    },
-    heroEyebrow: {
-      fontSize: 12,
-      fontWeight: '800',
-      letterSpacing: 1.4,
-      textTransform: 'uppercase',
-    },
-    heroTitle: {
-      fontSize: 28,
-      fontWeight: '800',
-      color: palette.text,
-    },
-    heroBody: {
-      fontSize: 15,
-      lineHeight: 22,
-      color: palette.muted,
-    },
-    section: {
-      gap: 10,
-    },
-    sectionHeader: {
-      alignItems: 'center',
-      gap: 4,
-    },
-    sectionTitle: {
-      fontSize: 20,
-      fontWeight: '800',
-      color: palette.text,
-      textAlign: 'center',
-    },
-    sectionSubtitle: {
-      maxWidth: 680,
-      fontSize: 13,
-      lineHeight: 19,
-      color: palette.muted,
-      textAlign: 'center',
-    },
-    sectionBody: {
-      backgroundColor: palette.surface,
-      borderRadius: 18,
-      borderWidth: 1,
-      borderColor: palette.border,
-      overflow: 'hidden',
-    },
-    metricGrid: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      gap: 12,
-      padding: 18,
-    },
-    metricTile: {
-      minWidth: 130,
-      flexGrow: 1,
-      borderRadius: 14,
-      backgroundColor: palette.surface,
-      borderWidth: 1,
-      borderColor: palette.border,
-      padding: 14,
-      gap: 6,
-    },
-    metricLabel: {
-      fontSize: 12,
-      fontWeight: '700',
-      letterSpacing: 0.8,
-      textTransform: 'uppercase',
-      color: palette.muted,
-    },
-    metricValue: {
-      fontSize: 20,
-      fontWeight: '800',
-      color: palette.text,
-    },
-    actionTile: {
-      width: '48%',
-      minWidth: 220,
-      borderRadius: 16,
-      backgroundColor: palette.surface,
-      borderWidth: 1,
-      borderColor: palette.border,
-      padding: 16,
-      gap: 8,
-    },
-    actionTitle: {
-      fontSize: 16,
-      fontWeight: '700',
-      color: palette.text,
-    },
-    actionIcon: {
-      width: 30,
-      height: 30,
-    },
-    actionBody: {
-      fontSize: 14,
-      lineHeight: 20,
-      color: palette.muted,
-    },
-    actionHint: {
-      fontSize: 12,
-      fontWeight: '800',
-      letterSpacing: 1,
-      textTransform: 'uppercase',
-    },
-    listRow: {
-      minHeight: 72,
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: 12,
-      paddingHorizontal: 18,
-      paddingVertical: 16,
-      borderBottomWidth: 1,
-      borderBottomColor: palette.borderSoft,
-    },
-    listCopy: {
-      flex: 1,
-      gap: 4,
-    },
-    listTitle: {
-      fontSize: 16,
-      fontWeight: '700',
-      color: palette.text,
-    },
-    listDescription: {
-      fontSize: 13,
-      lineHeight: 18,
-      color: palette.muted,
-    },
-    listTrailing: {
-      fontSize: 13,
-      fontWeight: '700',
-      color: palette.muted,
-    },
-    stateCard: {
-      borderRadius: 18,
-      borderWidth: 1,
-      borderColor: palette.border,
-      backgroundColor: palette.surface,
-      padding: 18,
-      gap: 8,
-    },
-    stateCardWarning: {
-      borderColor: palette.warningBorder,
-      backgroundColor: palette.warningSurface,
-    },
-    stateTitle: {
-      fontSize: 16,
-      fontWeight: '800',
-      color: palette.text,
-    },
-    stateBody: {
-      fontSize: 14,
-      lineHeight: 20,
-      color: palette.muted,
-    },
-    chipRow: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      gap: 8,
-    },
-    chip: {
-      borderRadius: 999,
-      borderWidth: 1,
-      borderColor: palette.border,
-      backgroundColor: palette.surfaceAlt,
-      paddingHorizontal: 12,
-      paddingVertical: 8,
-    },
-    chipLabel: {
-      fontSize: 13,
-      fontWeight: '700',
-      color: palette.text,
-    },
-    chipLabelActive: {
-      color: palette.inverseText,
-    },
-    barList: {
-      gap: 12,
-      padding: 18,
-    },
-    barRow: {
-      gap: 6,
-    },
-    barHeader: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      gap: 12,
-    },
-    barLabel: {
-      flex: 1,
-      fontSize: 14,
-      fontWeight: '700',
-      color: palette.text,
-    },
-    barValue: {
-      fontSize: 13,
-      fontWeight: '700',
-      color: palette.muted,
-    },
-    barTrack: {
-      height: 10,
-      borderRadius: 999,
-      backgroundColor: palette.borderSoft,
-      overflow: 'hidden',
-    },
-    barFill: {
-      height: '100%',
-      borderRadius: 999,
-    },
-    inlineGroup: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      gap: 12,
-    },
-    summaryStrip: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      gap: 12,
-      padding: 18,
-      justifyContent: 'center',
-    },
-    summaryCard: {
-      minWidth: 110,
-      flexGrow: 1,
-      maxWidth: 160,
-      alignItems: 'center',
-      gap: 4,
-      borderRadius: 14,
-      backgroundColor: palette.surface,
-      borderWidth: 1,
-      borderColor: palette.border,
-      paddingHorizontal: 12,
-      paddingVertical: 14,
-    },
-    summaryIcon: {
-      width: 28,
-      height: 28,
-    },
-    summaryValue: {
-      fontSize: 18,
-      fontWeight: '800',
-      color: palette.text,
-      textAlign: 'center',
-    },
-    summaryLabel: {
-      fontSize: 11,
-      fontWeight: '700',
-      color: palette.muted,
-      textAlign: 'center',
-      textTransform: 'uppercase',
-      letterSpacing: 0.6,
-    },
-    pressed: {
-      backgroundColor: palette.pressed,
-    },
-  });
+  return (
+    <View className="flex-row flex-wrap gap-3" style={style}>
+      {children}
+    </View>
+  );
 }

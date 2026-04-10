@@ -7,7 +7,6 @@ import {
   Platform,
   Pressable,
   ScrollView,
-  StyleSheet,
   Text,
   useWindowDimensions,
   View,
@@ -16,6 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {
   apiLanguageOptions,
+  settingsLinks,
   tintOptions,
   type ChoiceOption,
 } from '@/features/settings/content';
@@ -27,7 +27,6 @@ import {
 } from '@/features/preferences/preferences-manager';
 import { getServerOptions } from '@/features/home/content';
 import { openUrl } from '@/lib/platform-actions';
-import { settingsLinks } from '@/features/settings/content';
 
 type SettingsActionRowProps = {
   title: string;
@@ -69,7 +68,6 @@ export default function SettingsScreen() {
     resolvedTheme,
     t,
   } = useAppPreferences();
-  const styles = createStyles(palette);
   const gameServerOptions = getServerOptions(t);
   const [showTintPicker, setShowTintPicker] = useState(false);
 
@@ -99,134 +97,156 @@ export default function SettingsScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['bottom']}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: palette.appBackground }} edges={['bottom']}>
       <Stack.Screen
         options={{
           title: t('settings_title'),
         }}
       />
       <StatusBar style={resolvedTheme === 'dark' ? 'light' : 'dark'} />
-      <ScrollView contentContainerStyle={styles.content}>
-        <View style={[styles.heroCard, { borderColor: tintColor }]}>
-          <Text style={[styles.heroEyebrow, { color: tintColor }]}>{t('settings_title')}</Text>
-          <Text style={styles.heroTitle}>{t('settings_subtitle')}</Text>
-          <Text style={styles.heroBody}>{t('settings_body')}</Text>
-        </View>
-
-        <SettingsSection
-          title={t('settings_api_title')}
-          subtitle={t('settings_api_subtitle')}
-        >
-          <ChoiceGroup
-            label={t('settings_game_server')}
-            value={gameServer}
-            options={gameServerOptions}
-            accentColor={tintColor}
-            onChange={setGameServer}
-          />
-          <ChoiceGroup
-            label={t('settings_api_language')}
-            value={apiLanguage}
-            options={localizedApiLanguageOptions}
-            accentColor={tintColor}
-            onChange={setApiLanguage}
-          />
-          <ChoiceGroup
-            label={t('settings_app_language')}
-            value={appLanguage}
-            options={appLanguageOptions}
-            accentColor={tintColor}
-            onChange={setAppLanguage}
-          />
-          <Pressable
-            style={[styles.blockButton, { backgroundColor: tintColor }]}
-            onPress={() =>
-              showPendingMessage(t('settings_update_data'), t('settings_update_data_unavailable'))
-            }
+      <ScrollView>
+        <View className="gap-5 p-6">
+          <View
+            className="gap-2 rounded-[18px] border p-5"
+            style={{ backgroundColor: palette.surface, borderColor: tintColor }}
           >
-            <Text style={styles.blockButtonLabel}>{t('settings_update_data')}</Text>
-          </Pressable>
-        </SettingsSection>
+            <Text
+              className="text-[12px] font-extrabold uppercase"
+              style={{ color: tintColor, letterSpacing: 1.4 }}
+            >
+              {t('settings_title')}
+            </Text>
+            <Text className="text-[28px] font-extrabold" style={{ color: palette.text }}>
+              {t('settings_subtitle')}
+            </Text>
+            <Text className="text-[15px] leading-[22px]" style={{ color: palette.muted }}>
+              {t('settings_body')}
+            </Text>
+          </View>
 
-        <SettingsSection
-          title={t('settings_appearance_title')}
-          subtitle={t('settings_appearance_subtitle')}
-        >
-          <ChoiceGroup
-            label={t('settings_theme_mode')}
-            value={themeMode}
-            options={themeModeOptions}
-            accentColor={tintColor}
-            onChange={setThemeMode}
-          />
-          <SettingsActionRow
-            title={t('common_theme_colour')}
-            description={t('settings_theme_colour_description')}
-            accentColor={tintColor}
-            onPress={() => setShowTintPicker(true)}
-            trailing={<View style={[styles.tintPreview, { backgroundColor: tintColor }]} />}
-          />
-          <SettingsActionRow
-            title={t('settings_swap_buttons')}
-            description={t('settings_swap_buttons_description')}
-            accentColor={tintColor}
-            onPress={() => setSwapButtons(!swapButtons)}
-            trailing={
-              <Text style={styles.trailingValue}>
-                {swapButtons ? t('common_on') : t('common_off')}
+          <SettingsSection
+            title={t('settings_api_title')}
+            subtitle={t('settings_api_subtitle')}
+          >
+            <ChoiceGroup
+              label={t('settings_game_server')}
+              value={gameServer}
+              options={gameServerOptions}
+              accentColor={tintColor}
+              onChange={setGameServer}
+            />
+            <ChoiceGroup
+              label={t('settings_api_language')}
+              value={apiLanguage}
+              options={localizedApiLanguageOptions}
+              accentColor={tintColor}
+              onChange={setApiLanguage}
+            />
+            <ChoiceGroup
+              label={t('settings_app_language')}
+              value={appLanguage}
+              options={appLanguageOptions}
+              accentColor={tintColor}
+              onChange={setAppLanguage}
+            />
+            <Pressable
+              className="mx-[18px] mt-0.5 items-center rounded-[14px] py-[14px]"
+              style={{ backgroundColor: tintColor }}
+              onPress={() =>
+                showPendingMessage(t('settings_update_data'), t('settings_update_data_unavailable'))
+              }
+            >
+              <Text className="text-[15px] font-extrabold" style={{ color: palette.inverseText }}>
+                {t('settings_update_data')}
               </Text>
-            }
-          />
-        </SettingsSection>
+            </Pressable>
+          </SettingsSection>
 
-        <SettingsSection
-          title={t('settings_wows_info_title')}
-          subtitle={t('settings_wows_info_subtitle')}
-        >
-          <SettingsActionRow
-            title={t('settings_send_feedback')}
-            description={t('settings_send_feedback_desc')}
-            accentColor={tintColor}
-            onPress={() => void openUrl(settingsLinks.developer)}
-          />
-          <SettingsActionRow
-            title={t('settings_report_issue')}
-            description={settingsLinks.reportIssue}
-            accentColor={tintColor}
-            onPress={() => void openUrl(settingsLinks.reportIssue)}
-          />
-          <SettingsActionRow
-            title={t('settings_check_update')}
-            description={t('settings_check_update_desc')}
-            accentColor={tintColor}
-            onPress={() =>
-              showPendingMessage(t('settings_check_update'), t('settings_check_update_unavailable'))
-            }
-          />
-        </SettingsSection>
+          <SettingsSection
+            title={t('settings_appearance_title')}
+            subtitle={t('settings_appearance_subtitle')}
+          >
+            <ChoiceGroup
+              label={t('settings_theme_mode')}
+              value={themeMode}
+              options={themeModeOptions}
+              accentColor={tintColor}
+              onChange={setThemeMode}
+            />
+            <SettingsActionRow
+              title={t('common_theme_colour')}
+              description={t('settings_theme_colour_description')}
+              accentColor={tintColor}
+              onPress={() => setShowTintPicker(true)}
+              trailing={
+                <View
+                  className="size-[30px] rounded-full border-2"
+                  style={{ backgroundColor: tintColor, borderColor: palette.surface }}
+                />
+              }
+            />
+            <SettingsActionRow
+              title={t('settings_swap_buttons')}
+              description={t('settings_swap_buttons_description')}
+              accentColor={tintColor}
+              onPress={() => setSwapButtons(!swapButtons)}
+              trailing={
+                <Text className="text-[13px] font-bold" style={{ color: palette.muted }}>
+                  {swapButtons ? t('common_on') : t('common_off')}
+                </Text>
+              }
+            />
+          </SettingsSection>
 
-        <SettingsSection
-          title={t('settings_open_source_title')}
-          subtitle={t('settings_open_source_subtitle')}
-        >
-          <SettingsActionRow
-            title={t('settings_github')}
-            description={settingsLinks.github}
-            accentColor={tintColor}
-            onPress={() => void openUrl(settingsLinks.github)}
-          />
-          <SettingsActionRow
-            title={t('settings_licences')}
-            description={t('settings_licences_desc')}
-            accentColor={tintColor}
-            onPress={() =>
-              router.push({
-                pathname: '/coming-soon',
-                params: { title: t('settings_licences') },
-              })
-            }
-          />
-        </SettingsSection>
+          <SettingsSection
+            title={t('settings_wows_info_title')}
+            subtitle={t('settings_wows_info_subtitle')}
+          >
+            <SettingsActionRow
+              title={t('settings_send_feedback')}
+              description={t('settings_send_feedback_desc')}
+              accentColor={tintColor}
+              onPress={() => void openUrl(settingsLinks.developer)}
+            />
+            <SettingsActionRow
+              title={t('settings_report_issue')}
+              description={settingsLinks.reportIssue}
+              accentColor={tintColor}
+              onPress={() => void openUrl(settingsLinks.reportIssue)}
+            />
+            <SettingsActionRow
+              title={t('settings_check_update')}
+              description={t('settings_check_update_desc')}
+              accentColor={tintColor}
+              onPress={() =>
+                showPendingMessage(t('settings_check_update'), t('settings_check_update_unavailable'))
+              }
+            />
+          </SettingsSection>
+
+          <SettingsSection
+            title={t('settings_open_source_title')}
+            subtitle={t('settings_open_source_subtitle')}
+          >
+            <SettingsActionRow
+              title={t('settings_github')}
+              description={settingsLinks.github}
+              accentColor={tintColor}
+              onPress={() => void openUrl(settingsLinks.github)}
+            />
+            <SettingsActionRow
+              title={t('settings_licences')}
+              description={t('settings_licences_desc')}
+              accentColor={tintColor}
+              onPress={() =>
+                router.push({
+                  pathname: '/coming-soon',
+                  params: { title: t('settings_licences') },
+                })
+              }
+            />
+          </SettingsSection>
+        </View>
       </ScrollView>
 
       <Modal
@@ -235,31 +255,50 @@ export default function SettingsScreen() {
         visible={showTintPicker}
         onRequestClose={() => setShowTintPicker(false)}
       >
-        <Pressable style={styles.modalScrim} onPress={() => setShowTintPicker(false)}>
+        <Pressable
+          className="flex-1 items-center justify-center bg-black/45 p-6"
+          onPress={() => setShowTintPicker(false)}
+        >
           <Pressable
-            style={[styles.modalCard, compact && styles.modalCardCompact]}
+            className="w-full max-w-[620px] gap-[10px] rounded-[20px] border p-5"
+            style={{
+              maxHeight: compact ? '80%' : undefined,
+              backgroundColor: palette.surface,
+              borderColor: palette.border,
+            }}
             onPress={() => null}
           >
-            <Text style={styles.modalTitle}>{t('settings_tint_picker_title')}</Text>
-            <Text style={styles.modalBody}>{t('settings_tint_picker_body')}</Text>
-            <View style={styles.tintGrid}>
+            <Text className="text-[20px] font-extrabold" style={{ color: palette.text }}>
+              {t('settings_tint_picker_title')}
+            </Text>
+            <Text className="text-[14px] leading-5" style={{ color: palette.muted }}>
+              {t('settings_tint_picker_body')}
+            </Text>
+            <View className="flex-row flex-wrap gap-[10px] pt-2">
               {tintOptions.map(option => {
                 const active = option.key === tintKey;
+
                 return (
                   <Pressable
                     key={option.key}
-                    style={[
-                      styles.tintOption,
-                      active && styles.tintOptionActive,
-                      { borderColor: active ? option.value : palette.border },
-                    ]}
+                    className="min-w-[130px] gap-[10px] rounded-[14px] border p-3"
+                    style={{
+                      width: '31%',
+                      backgroundColor: active ? palette.accentSurface : palette.surface,
+                      borderColor: active ? option.value : palette.border,
+                    }}
                     onPress={() => {
                       setTintKey(option.key);
                       setShowTintPicker(false);
                     }}
                   >
-                    <View style={[styles.tintSwatch, { backgroundColor: option.value }]} />
-                    <Text style={styles.tintOptionLabel}>{option.name}</Text>
+                    <View
+                      className="h-[34px] rounded-[10px]"
+                      style={{ backgroundColor: option.value }}
+                    />
+                    <Text className="text-[13px] font-bold" style={{ color: palette.text }}>
+                      {option.name}
+                    </Text>
                   </Pressable>
                 );
               })}
@@ -283,27 +322,15 @@ function SettingsSection({
   const { palette } = useAppPreferences();
 
   return (
-    <View style={{ gap: 10 }}>
-      <View style={{ alignItems: 'center', gap: 4 }}>
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: '800',
-            color: palette.text,
-            textAlign: 'center',
-          }}
-        >
+    <View className="gap-[10px]">
+      <View className="items-center gap-1">
+        <Text className="text-center text-[20px] font-extrabold" style={{ color: palette.text }}>
           {title}
         </Text>
         {subtitle ? (
           <Text
-            style={{
-              maxWidth: 620,
-              fontSize: 13,
-              lineHeight: 19,
-              color: palette.muted,
-              textAlign: 'center',
-            }}
+            className="max-w-[620px] text-center text-[13px] leading-[19px]"
+            style={{ color: palette.muted }}
           >
             {subtitle}
           </Text>
@@ -322,36 +349,36 @@ function ChoiceGroup<T extends string>({
   onChange,
 }: ChoiceGroupProps<T>) {
   const { palette } = useAppPreferences();
-  const styles = createStyles(palette);
   const currentLabel = options.find(option => option.value === value)?.label ?? value;
 
   return (
-    <View style={styles.choiceGroup}>
-      <Text style={styles.choiceLabel}>
+    <View
+      className="gap-3 border-x border-b px-[18px] py-4"
+      style={{ backgroundColor: palette.surface, borderColor: palette.borderSoft }}
+    >
+      <Text className="text-[15px] font-bold" style={{ color: palette.text }}>
         {label}{' '}
-        <Text style={[styles.choiceValue, { color: accentColor }]}>- {currentLabel}</Text>
+        <Text className="font-extrabold" style={{ color: accentColor }}>
+          - {currentLabel}
+        </Text>
       </Text>
-      <View style={styles.choiceRow}>
+      <View className="flex-row flex-wrap gap-2">
         {options.map(option => {
           const active = option.value === value;
 
           return (
             <Pressable
               key={option.value}
-              style={[
-                styles.choiceChip,
-                active && {
-                  backgroundColor: accentColor,
-                  borderColor: accentColor,
-                },
-              ]}
+              className="rounded-full border px-3 py-2"
+              style={{
+                borderColor: active ? accentColor : palette.border,
+                backgroundColor: active ? accentColor : palette.surfaceAlt,
+              }}
               onPress={() => onChange(option.value)}
             >
               <Text
-                style={[
-                  styles.choiceChipLabel,
-                  active && styles.choiceChipLabelActive,
-                ]}
+                className="text-[13px] font-bold"
+                style={{ color: active ? palette.inverseText : palette.text }}
               >
                 {option.label}
               </Text>
@@ -371,223 +398,42 @@ function SettingsActionRow({
   trailing,
 }: SettingsActionRowProps) {
   const { palette } = useAppPreferences();
-  const styles = createStyles(palette);
 
   return (
     <Pressable
+      className="min-h-[72px] flex-row items-center gap-3 border-x border-b px-[18px] py-4"
       style={({ pressed }) => [
-        styles.actionRow,
-        pressed && onPress ? styles.actionRowPressed : null,
+        {
+          backgroundColor: pressed && onPress ? palette.pressed : palette.surface,
+          borderColor: palette.borderSoft,
+        },
       ]}
       onPress={onPress}
     >
-      <View style={styles.actionCopy}>
-        <Text style={styles.actionTitle}>{title}</Text>
-        {description ? <Text style={styles.actionBody}>{description}</Text> : null}
+      <View className="flex-1 gap-1">
+        <Text className="text-[16px] font-bold" style={{ color: palette.text }}>
+          {title}
+        </Text>
+        {description ? (
+          <Text className="text-[13px] leading-[18px]" style={{ color: palette.muted }}>
+            {description}
+          </Text>
+        ) : null}
       </View>
-      <View style={styles.actionTrailing}>
-        {trailing ?? <Text style={[styles.actionArrow, { color: accentColor }]}>{'>'}</Text>}
+      <View className="min-w-[44px] items-end justify-center">
+        {trailing ?? (
+          <Text
+            className="text-[28px]"
+            style={{
+              color: accentColor,
+              lineHeight: 28,
+              fontWeight: Platform.OS === 'web' ? '700' : '400',
+            }}
+          >
+            {'>'}
+          </Text>
+        )}
       </View>
     </Pressable>
   );
-}
-
-function createStyles(
-  palette: ReturnType<typeof useAppPreferences>['palette'],
-) {
-  return StyleSheet.create({
-    safeArea: {
-      flex: 1,
-      backgroundColor: palette.appBackground,
-    },
-    content: {
-      padding: 24,
-      gap: 20,
-    },
-    heroCard: {
-      backgroundColor: palette.surface,
-      borderRadius: 18,
-      borderWidth: 1,
-      padding: 20,
-      gap: 8,
-    },
-    heroEyebrow: {
-      fontSize: 12,
-      fontWeight: '800',
-      letterSpacing: 1.4,
-      textTransform: 'uppercase',
-    },
-    heroTitle: {
-      fontSize: 28,
-      fontWeight: '800',
-      color: palette.text,
-    },
-    heroBody: {
-      fontSize: 15,
-      lineHeight: 22,
-      color: palette.muted,
-    },
-    choiceGroup: {
-      paddingHorizontal: 18,
-      paddingVertical: 16,
-      borderBottomWidth: 1,
-      borderBottomColor: palette.borderSoft,
-      gap: 12,
-      backgroundColor: palette.surface,
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-      borderColor: palette.border,
-    },
-    choiceLabel: {
-      fontSize: 15,
-      fontWeight: '700',
-      color: palette.text,
-    },
-    choiceValue: {
-      fontWeight: '800',
-    },
-    choiceRow: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      gap: 8,
-    },
-    choiceChip: {
-      borderRadius: 999,
-      borderWidth: 1,
-      borderColor: palette.border,
-      backgroundColor: palette.surfaceAlt,
-      paddingHorizontal: 12,
-      paddingVertical: 8,
-    },
-    choiceChipLabel: {
-      fontSize: 13,
-      fontWeight: '700',
-      color: palette.text,
-    },
-    choiceChipLabelActive: {
-      color: palette.inverseText,
-    },
-    blockButton: {
-      margin: 18,
-      marginTop: 2,
-      borderRadius: 14,
-      paddingVertical: 14,
-      alignItems: 'center',
-    },
-    blockButtonLabel: {
-      color: palette.inverseText,
-      fontSize: 15,
-      fontWeight: '800',
-    },
-    actionRow: {
-      minHeight: 72,
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: 12,
-      paddingHorizontal: 18,
-      paddingVertical: 16,
-      borderBottomWidth: 1,
-      borderBottomColor: palette.borderSoft,
-      backgroundColor: palette.surface,
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-      borderColor: palette.border,
-    },
-    actionRowPressed: {
-      backgroundColor: palette.pressed,
-    },
-    actionCopy: {
-      flex: 1,
-      gap: 4,
-    },
-    actionTitle: {
-      fontSize: 16,
-      fontWeight: '700',
-      color: palette.text,
-    },
-    actionBody: {
-      fontSize: 13,
-      lineHeight: 18,
-      color: palette.muted,
-    },
-    actionTrailing: {
-      minWidth: 44,
-      alignItems: 'flex-end',
-      justifyContent: 'center',
-    },
-    actionArrow: {
-      fontSize: 28,
-      lineHeight: 28,
-      fontWeight: Platform.OS === 'web' ? '700' : '400',
-    },
-    tintPreview: {
-      height: 30,
-      width: 30,
-      borderRadius: 15,
-      borderWidth: 2,
-      borderColor: palette.surface,
-    },
-    trailingValue: {
-      fontSize: 13,
-      fontWeight: '700',
-      color: palette.muted,
-    },
-    modalScrim: {
-      flex: 1,
-      backgroundColor: 'rgba(24, 28, 22, 0.45)',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: 24,
-    },
-    modalCard: {
-      width: '100%',
-      maxWidth: 620,
-      borderRadius: 20,
-      backgroundColor: palette.surface,
-      padding: 20,
-      gap: 10,
-      borderWidth: 1,
-      borderColor: palette.border,
-    },
-    modalCardCompact: {
-      maxHeight: '80%',
-    },
-    modalTitle: {
-      fontSize: 20,
-      fontWeight: '800',
-      color: palette.text,
-    },
-    modalBody: {
-      fontSize: 14,
-      lineHeight: 20,
-      color: palette.muted,
-    },
-    tintGrid: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      gap: 10,
-      paddingTop: 8,
-    },
-    tintOption: {
-      width: '31%',
-      minWidth: 130,
-      borderRadius: 14,
-      borderWidth: 1,
-      backgroundColor: palette.surface,
-      padding: 12,
-      gap: 10,
-    },
-    tintOptionActive: {
-      backgroundColor: palette.accentSurface,
-    },
-    tintSwatch: {
-      height: 34,
-      borderRadius: 10,
-    },
-    tintOptionLabel: {
-      fontSize: 13,
-      fontWeight: '700',
-      color: palette.text,
-    },
-  });
 }

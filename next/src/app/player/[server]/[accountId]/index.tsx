@@ -1,6 +1,6 @@
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 import {
   fetchPlayerHub,
@@ -59,7 +59,6 @@ export default function PlayerOverviewScreen() {
   const { addFriendAccount, isFriendAccount, mainAccount, rememberPlayer, setMainAccount } =
     useAppStateManager();
   const { palette, tintColor, t, tf } = useAppPreferences();
-  const styles = createStyles(palette);
   const params = useLocalSearchParams<{
     server?: string;
     accountId?: string;
@@ -168,15 +167,32 @@ export default function PlayerOverviewScreen() {
           accentColor={tintColor}
         >
           {ratingSummary.rating ? (
-            <View style={styles.ratingCardWrap}>
-              <View style={[styles.ratingBadge, { backgroundColor: ratingColor }]}>
-                <Text style={styles.ratingBadgeLabel}>{t('player_personal_rating')}</Text>
-                <Text style={styles.ratingBadgeValue}>{formatNumber(ratingSummary.rating)}</Text>
-                <Text style={styles.ratingBadgeTier}>{t(getRatingLabelKey(ratingSummary.rating))}</Text>
+            <View className="mt-[10px] flex-row flex-wrap items-stretch gap-3">
+              <View
+                className="min-w-[170px] gap-0.5 rounded-2xl px-4 py-[14px]"
+                style={{ backgroundColor: ratingColor }}
+              >
+                <Text
+                  className="text-[11px] font-extrabold uppercase"
+                  style={{ color: palette.inverseText, letterSpacing: 0.8 }}
+                >
+                  {t('player_personal_rating')}
+                </Text>
+                <Text className="text-[28px] font-extrabold" style={{ color: palette.inverseText }}>
+                  {formatNumber(ratingSummary.rating)}
+                </Text>
+                <Text className="text-[13px] font-bold" style={{ color: palette.inverseText }}>
+                  {t(getRatingLabelKey(ratingSummary.rating))}
+                </Text>
               </View>
-              <View style={styles.ratingMeta}>
-                <Text style={styles.ratingMetaTitle}>{t('player_rating_description')}</Text>
-                <Text style={styles.ratingMetaBody}>
+              <View
+                className="min-w-[200px] flex-1 gap-1 rounded-2xl border px-4 py-[14px]"
+                style={{ backgroundColor: palette.surfaceAlt, borderColor: palette.border }}
+              >
+                <Text className="text-[14px] font-bold leading-5" style={{ color: palette.text }}>
+                  {t('player_rating_description')}
+                </Text>
+                <Text className="text-[13px] leading-[18px]" style={{ color: palette.muted }}>
                   {t('player_rating_battles')}: {formatNumber(ratingSummary.ratedShipCount)}
                 </Text>
               </View>
@@ -382,64 +398,4 @@ export default function PlayerOverviewScreen() {
       </PageScroll>
     </>
   );
-}
-
-function createStyles(
-  palette: ReturnType<typeof useAppPreferences>['palette'],
-) {
-  return StyleSheet.create({
-    ratingCardWrap: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      gap: 12,
-      marginTop: 10,
-      alignItems: 'stretch',
-    },
-    ratingBadge: {
-      minWidth: 170,
-      borderRadius: 16,
-      paddingHorizontal: 16,
-      paddingVertical: 14,
-      gap: 2,
-    },
-    ratingBadgeLabel: {
-      color: palette.inverseText,
-      fontSize: 11,
-      fontWeight: '800',
-      letterSpacing: 0.8,
-      textTransform: 'uppercase',
-    },
-    ratingBadgeValue: {
-      color: palette.inverseText,
-      fontSize: 28,
-      fontWeight: '800',
-    },
-    ratingBadgeTier: {
-      color: palette.inverseText,
-      fontSize: 13,
-      fontWeight: '700',
-    },
-    ratingMeta: {
-      flex: 1,
-      minWidth: 200,
-      borderRadius: 16,
-      borderWidth: 1,
-      borderColor: palette.border,
-      backgroundColor: palette.surfaceAlt,
-      paddingHorizontal: 16,
-      paddingVertical: 14,
-      gap: 4,
-    },
-    ratingMetaTitle: {
-      color: palette.text,
-      fontSize: 14,
-      fontWeight: '700',
-      lineHeight: 20,
-    },
-    ratingMetaBody: {
-      color: palette.muted,
-      fontSize: 13,
-      lineHeight: 18,
-    },
-  });
 }

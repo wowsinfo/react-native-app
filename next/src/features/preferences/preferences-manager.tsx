@@ -7,6 +7,7 @@ import {
   type ReactNode,
 } from 'react';
 import { DarkTheme, DefaultTheme, type Theme } from '@react-navigation/native';
+import { useLocales } from 'expo-localization';
 import { useColorScheme } from 'react-native';
 
 import {
@@ -14,6 +15,7 @@ import {
   writeStoredString,
 } from '@/features/app-state/storage';
 import { messages, type MessageKey, type MessageLanguage } from '@/features/preferences/messages';
+import { resolveSystemLanguage } from '@/features/preferences/system-language';
 import { getTintValue, type TintKey } from '@/features/settings/content';
 
 export type ThemeMode = 'light' | 'dark' | 'system';
@@ -70,29 +72,6 @@ function formatMessage(
   });
 
   return formatted;
-}
-
-function detectSystemLanguage(): MessageLanguage {
-  const locale = Intl.DateTimeFormat().resolvedOptions().locale.toLowerCase();
-
-  if (locale.startsWith('ja')) {
-    return 'ja';
-  }
-
-  if (locale.startsWith('zh')) {
-    if (
-      locale.includes('hant') ||
-      locale.includes('tw') ||
-      locale.includes('hk') ||
-      locale.includes('mo')
-    ) {
-      return 'zh-hant';
-    }
-
-    return 'zh';
-  }
-
-  return 'en';
 }
 
 function createPalette(resolvedTheme: 'light' | 'dark', tintColor: string): Palette {
@@ -154,6 +133,7 @@ function createNavigationTheme(
 }
 
 export function PreferencesProvider({ children }: { children: ReactNode }) {
+  const locales = useLocales();
   const systemScheme = useColorScheme();
   const [themeMode, setThemeModeState] = useState<ThemeMode>(
     readStoredString(THEME_MODE_KEY, 'system') as ThemeMode,
@@ -168,7 +148,7 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
   const resolvedTheme =
     themeMode === 'system' ? (systemScheme === 'dark' ? 'dark' : 'light') : themeMode;
   const resolvedLanguage =
-    appLanguage === 'system' ? detectSystemLanguage() : appLanguage;
+    appLanguage === 'system' ? resolveSystemLanguage(locales) : appLanguage;
   const tintColor = getTintValue(tintKey);
   const palette = useMemo(
     () => createPalette(resolvedTheme, tintColor),

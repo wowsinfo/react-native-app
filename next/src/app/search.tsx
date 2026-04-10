@@ -2,7 +2,6 @@ import { Stack, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
-  StyleSheet,
   Text,
   TextInput,
   View,
@@ -17,6 +16,7 @@ import {
   type SearchClan,
   type SearchPlayer,
 } from '@/features/player/api';
+import { formatNumber } from '@/features/player/format';
 import { getClanRoute, getPlayerRoute } from '@/features/player/routes';
 import {
   ChipRow,
@@ -37,7 +37,6 @@ export default function SearchScreen() {
   const router = useRouter();
   const { gameServer, setGameServer, recentPlayers, rememberPlayer } = useAppStateManager();
   const { palette, tintColor, t, tf } = useAppPreferences();
-  const styles = createStyles(palette);
   const serverOptions = getServerOptions(t);
   const [query, setQuery] = useState('');
   const [online, setOnline] = useState<number | null>(null);
@@ -143,7 +142,7 @@ export default function SearchScreen() {
         <HeroCard
           eyebrow={t('common_search')}
           title={t('search_title')}
-          body={`${t('search_subtitle')}${online != null ? ` ${tf('search_online_suffix', getServerLabel(gameServer, t), online.toLocaleString())}` : ''}`}
+          body={`${t('search_subtitle')}${online != null ? ` ${tf('search_online_suffix', getServerLabel(gameServer, t), formatNumber(online))}` : ''}`}
           accentColor={tintColor}
         />
 
@@ -159,8 +158,10 @@ export default function SearchScreen() {
           title={t('search_input_title')}
           subtitle={t('search_input_subtitle')}
         >
-          <View style={styles.inputWrap}>
-            <Text style={styles.inputLabel}>{t('common_server')}</Text>
+          <View className="gap-3 p-[18px]">
+            <Text className="text-[14px] font-bold" style={{ color: palette.text }}>
+              {t('common_server')}
+            </Text>
             <ChipRow
               value={gameServer}
               options={serverOptions.map(option => ({
@@ -170,7 +171,9 @@ export default function SearchScreen() {
               onChange={setGameServer}
               accentColor={tintColor}
             />
-            <Text style={styles.inputLabel}>{t('search_text_label')}</Text>
+            <Text className="text-[14px] font-bold" style={{ color: palette.text }}>
+              {t('search_text_label')}
+            </Text>
             <TextInput
               value={query}
               onChangeText={setQuery}
@@ -178,7 +181,12 @@ export default function SearchScreen() {
               autoCorrect={false}
               placeholder={t('search_placeholder')}
               placeholderTextColor={palette.muted}
-              style={styles.input}
+              className="min-h-[52px] rounded-[14px] border px-4 text-[16px]"
+              style={{
+                borderColor: palette.border,
+                backgroundColor: palette.surface,
+                color: palette.text,
+              }}
             />
           </View>
         </Section>
@@ -190,7 +198,7 @@ export default function SearchScreen() {
         {error ? <StateCard tone="warning" title={t('search_error_title')} body={error} /> : null}
 
         {loading ? (
-          <View style={styles.loadingWrap}>
+          <View className="py-2">
             <ActivityIndicator color={tintColor} size="large" />
           </View>
         ) : null}
@@ -270,31 +278,4 @@ export default function SearchScreen() {
       </PageScroll>
     </>
   );
-}
-
-function createStyles(palette: ReturnType<typeof useAppPreferences>['palette']) {
-  return StyleSheet.create({
-    inputWrap: {
-      padding: 18,
-      gap: 12,
-    },
-    inputLabel: {
-      fontSize: 14,
-      fontWeight: '700',
-      color: palette.text,
-    },
-    input: {
-      minHeight: 52,
-      borderRadius: 14,
-      borderWidth: 1,
-      borderColor: palette.border,
-      backgroundColor: palette.surface,
-      paddingHorizontal: 16,
-      fontSize: 16,
-      color: palette.text,
-    },
-    loadingWrap: {
-      paddingVertical: 8,
-    },
-  });
 }

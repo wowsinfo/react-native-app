@@ -4,13 +4,17 @@ import type {
   RankShipStats,
   ShipStats,
 } from '@/features/player/api';
+import {
+  getDeviceLocaleTag,
+  getDeviceTimeZone,
+} from '@/features/preferences/device-localization';
 
 export function formatNumber(value: number | null | undefined) {
   if (value == null || Number.isNaN(value)) {
     return '0';
   }
 
-  return new Intl.NumberFormat('en-US').format(Math.round(value));
+  return new Intl.NumberFormat(getDeviceLocaleTag()).format(Math.round(value));
 }
 
 export function formatDecimal(value: number | null | undefined, digits = 1) {
@@ -18,7 +22,7 @@ export function formatDecimal(value: number | null | undefined, digits = 1) {
     return '0';
   }
 
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat(getDeviceLocaleTag(), {
     minimumFractionDigits: digits,
     maximumFractionDigits: digits,
   }).format(value);
@@ -33,10 +37,16 @@ export function formatDateTime(timestamp: number | null | undefined) {
     return 'Unknown';
   }
 
-  return new Intl.DateTimeFormat('en-AU', {
+  const timeZone = getDeviceTimeZone();
+  const formatOptions: Intl.DateTimeFormatOptions = {
     dateStyle: 'medium',
     timeStyle: 'short',
-  }).format(new Date(timestamp * 1000));
+    ...(timeZone ? { timeZone } : {}),
+  };
+
+  return new Intl.DateTimeFormat(getDeviceLocaleTag(), formatOptions).format(
+    new Date(timestamp * 1000),
+  );
 }
 
 export function calculateWinRate(stats: PlayerPvpStats | null | undefined) {
