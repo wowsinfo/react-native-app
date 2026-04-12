@@ -5,6 +5,7 @@ import { fetchPlayerRank, getWoWsAppKeyMessage, hasWoWsAppKey } from '@/features
 import { formatNumber } from '@/features/player/format';
 import { HeroCard, ListRow, PageScroll, Section, StateCard } from '@/features/player/ui';
 import { useAppPreferences } from '@/features/preferences/preferences-manager';
+import { createStackScreenOptions } from '@/features/preferences/theme';
 import { isGameServer } from '@/features/home/content';
 
 export default function PlayerRankScreen() {
@@ -89,12 +90,9 @@ export default function PlayerRankScreen() {
   return (
     <>
       <Stack.Screen
-        options={{
+        options={createStackScreenOptions(palette, {
           title: t('player_rank'),
-          headerStyle: {backgroundColor: palette.surface},
-          headerTintColor: palette.text,
-          headerShadowVisible: false,
-        }}
+        })}
       />
       <PageScroll>
         <HeroCard

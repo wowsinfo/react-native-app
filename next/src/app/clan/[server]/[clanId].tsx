@@ -20,6 +20,7 @@ import {
   StateCard,
 } from '@/features/player/ui';
 import { useAppPreferences } from '@/features/preferences/preferences-manager';
+import { createStackScreenOptions } from '@/features/preferences/theme';
 import { getServerLabel, isGameServer } from '@/features/home/content';
 import { openUrl } from '@/lib/platform-actions';
 
@@ -82,12 +83,9 @@ export default function ClanScreen() {
   return (
     <>
       <Stack.Screen
-        options={{
+        options={createStackScreenOptions(palette, {
           title: clan?.tag ?? t('player_clan'),
-          headerStyle: {backgroundColor: palette.surface},
-          headerTintColor: palette.text,
-          headerShadowVisible: false,
-        }}
+        })}
       />
       <PageScroll>
         <HeroCard

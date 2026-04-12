@@ -25,6 +25,7 @@ import {
   type AppLanguagePreference,
   type ThemeMode,
 } from '@/features/preferences/preferences-manager';
+import { createStackScreenOptions } from '@/features/preferences/theme';
 import { getServerOptions } from '@/features/home/content';
 import { openUrl } from '@/lib/platform-actions';
 
@@ -97,18 +98,18 @@ export default function SettingsScreen() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: palette.appBackground }} edges={['bottom']}>
+    <SafeAreaView className="flex-1 bg-app" edges={['bottom']}>
       <Stack.Screen
-        options={{
+        options={createStackScreenOptions(palette, {
           title: t('settings_title'),
-        }}
+        })}
       />
       <StatusBar style={resolvedTheme === 'dark' ? 'light' : 'dark'} />
       <ScrollView>
         <View className="gap-5 p-6">
           <View
-            className="gap-2 rounded-[18px] border p-5"
-            style={{ backgroundColor: palette.surface, borderColor: tintColor }}
+            className="gap-2 rounded-[18px] border bg-surface p-5"
+            style={{ borderColor: tintColor }}
           >
             <Text
               className="text-[12px] font-extrabold uppercase"
@@ -116,10 +117,10 @@ export default function SettingsScreen() {
             >
               {t('settings_title')}
             </Text>
-            <Text className="text-[28px] font-extrabold" style={{ color: palette.text }}>
+            <Text className="text-[28px] font-extrabold text-foreground">
               {t('settings_subtitle')}
             </Text>
-            <Text className="text-[15px] leading-[22px]" style={{ color: palette.muted }}>
+            <Text className="text-[15px] leading-[22px] text-muted">
               {t('settings_body')}
             </Text>
           </View>
@@ -150,13 +151,13 @@ export default function SettingsScreen() {
               onChange={setAppLanguage}
             />
             <Pressable
-              className="mx-[18px] mt-0.5 items-center rounded-[14px] py-[14px]"
+              className="mx-[18px] mt-0.5 items-center rounded-[14px] bg-accent py-[14px]"
               style={{ backgroundColor: tintColor }}
               onPress={() =>
                 showPendingMessage(t('settings_update_data'), t('settings_update_data_unavailable'))
               }
             >
-              <Text className="text-[15px] font-extrabold" style={{ color: palette.inverseText }}>
+              <Text className="text-[15px] font-extrabold text-inverse">
                 {t('settings_update_data')}
               </Text>
             </Pressable>
@@ -180,8 +181,8 @@ export default function SettingsScreen() {
               onPress={() => setShowTintPicker(true)}
               trailing={
                 <View
-                  className="size-[30px] rounded-full border-2"
-                  style={{ backgroundColor: tintColor, borderColor: palette.surface }}
+                  className="size-[30px] rounded-full border-2 border-surface"
+                  style={{ backgroundColor: tintColor }}
                 />
               }
             />
@@ -191,7 +192,7 @@ export default function SettingsScreen() {
               accentColor={tintColor}
               onPress={() => setSwapButtons(!swapButtons)}
               trailing={
-                <Text className="text-[13px] font-bold" style={{ color: palette.muted }}>
+                <Text className="text-[13px] font-bold text-muted">
                   {swapButtons ? t('common_on') : t('common_off')}
                 </Text>
               }
@@ -260,18 +261,16 @@ export default function SettingsScreen() {
           onPress={() => setShowTintPicker(false)}
         >
           <Pressable
-            className="w-full max-w-[620px] gap-[10px] rounded-[20px] border p-5"
+            className="w-full max-w-[620px] gap-[10px] rounded-[20px] border border-line bg-surface p-5"
             style={{
               maxHeight: compact ? '80%' : undefined,
-              backgroundColor: palette.surface,
-              borderColor: palette.border,
             }}
             onPress={() => null}
           >
-            <Text className="text-[20px] font-extrabold" style={{ color: palette.text }}>
+            <Text className="text-[20px] font-extrabold text-foreground">
               {t('settings_tint_picker_title')}
             </Text>
-            <Text className="text-[14px] leading-5" style={{ color: palette.muted }}>
+            <Text className="text-[14px] leading-5 text-muted">
               {t('settings_tint_picker_body')}
             </Text>
             <View className="flex-row flex-wrap gap-[10px] pt-2">
@@ -281,11 +280,10 @@ export default function SettingsScreen() {
                 return (
                   <Pressable
                     key={option.key}
-                    className="min-w-[130px] gap-[10px] rounded-[14px] border p-3"
+                    className={active ? 'min-w-[130px] gap-[10px] rounded-[14px] border bg-accent-surface p-3' : 'min-w-[130px] gap-[10px] rounded-[14px] border border-line bg-surface p-3'}
                     style={{
                       width: '31%',
-                      backgroundColor: active ? palette.accentSurface : palette.surface,
-                      borderColor: active ? option.value : palette.border,
+                      borderColor: active ? option.value : undefined,
                     }}
                     onPress={() => {
                       setTintKey(option.key);
@@ -296,7 +294,7 @@ export default function SettingsScreen() {
                       className="h-[34px] rounded-[10px]"
                       style={{ backgroundColor: option.value }}
                     />
-                    <Text className="text-[13px] font-bold" style={{ color: palette.text }}>
+                    <Text className="text-[13px] font-bold text-foreground">
                       {option.name}
                     </Text>
                   </Pressable>
@@ -319,19 +317,14 @@ function SettingsSection({
   subtitle?: string;
   children: ReactNode;
 }) {
-  const { palette } = useAppPreferences();
-
   return (
     <View className="gap-[10px]">
       <View className="items-center gap-1">
-        <Text className="text-center text-[20px] font-extrabold" style={{ color: palette.text }}>
+        <Text className="text-center text-[20px] font-extrabold text-foreground">
           {title}
         </Text>
         {subtitle ? (
-          <Text
-            className="max-w-[620px] text-center text-[13px] leading-[19px]"
-            style={{ color: palette.muted }}
-          >
+          <Text className="max-w-[620px] text-center text-[13px] leading-[19px] text-muted">
             {subtitle}
           </Text>
         ) : null}
@@ -348,15 +341,11 @@ function ChoiceGroup<T extends string>({
   accentColor,
   onChange,
 }: ChoiceGroupProps<T>) {
-  const { palette } = useAppPreferences();
   const currentLabel = options.find(option => option.value === value)?.label ?? value;
 
   return (
-    <View
-      className="gap-3 border-x border-b px-[18px] py-4"
-      style={{ backgroundColor: palette.surface, borderColor: palette.borderSoft }}
-    >
-      <Text className="text-[15px] font-bold" style={{ color: palette.text }}>
+    <View className="gap-3 border-x border-b border-line-soft bg-surface px-[18px] py-4">
+      <Text className="text-[15px] font-bold text-foreground">
         {label}{' '}
         <Text className="font-extrabold" style={{ color: accentColor }}>
           - {currentLabel}
@@ -369,17 +358,13 @@ function ChoiceGroup<T extends string>({
           return (
             <Pressable
               key={option.value}
-              className="rounded-full border px-3 py-2"
+              className={`rounded-full border px-3 py-2 ${active ? 'bg-accent' : 'border-line bg-surface-alt'}`}
               style={{
-                borderColor: active ? accentColor : palette.border,
-                backgroundColor: active ? accentColor : palette.surfaceAlt,
+                borderColor: active ? accentColor : undefined,
               }}
               onPress={() => onChange(option.value)}
             >
-              <Text
-                className="text-[13px] font-bold"
-                style={{ color: active ? palette.inverseText : palette.text }}
-              >
+              <Text className={`text-[13px] font-bold ${active ? 'text-inverse' : 'text-foreground'}`}>
                 {option.label}
               </Text>
             </Pressable>
@@ -401,21 +386,20 @@ function SettingsActionRow({
 
   return (
     <Pressable
-      className="min-h-[72px] flex-row items-center gap-3 border-x border-b px-[18px] py-4"
+      className="min-h-[72px] flex-row items-center gap-3 border-x border-b border-line-soft bg-surface px-[18px] py-4"
       style={({ pressed }) => [
         {
-          backgroundColor: pressed && onPress ? palette.pressed : palette.surface,
-          borderColor: palette.borderSoft,
+          backgroundColor: pressed && onPress ? palette.pressed : undefined,
         },
       ]}
       onPress={onPress}
     >
       <View className="flex-1 gap-1">
-        <Text className="text-[16px] font-bold" style={{ color: palette.text }}>
+        <Text className="text-[16px] font-bold text-foreground">
           {title}
         </Text>
         {description ? (
-          <Text className="text-[13px] leading-[18px]" style={{ color: palette.muted }}>
+          <Text className="text-[13px] leading-[18px] text-muted">
             {description}
           </Text>
         ) : null}

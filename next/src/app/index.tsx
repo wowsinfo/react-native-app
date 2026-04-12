@@ -26,7 +26,7 @@ export default function HomeScreen() {
   const router = useRouter();
   const { width } = useWindowDimensions();
   const { gameServer, setGameServer } = useAppStateManager();
-  const { palette, tintColor, resolvedTheme, t } = useAppPreferences();
+  const { tintColor, resolvedTheme, t } = useAppPreferences();
   const localizedServerOptions = useMemo(() => getServerOptions(t), [t]);
   const sections = useMemo(() => getHomeSections(gameServer, t), [gameServer, t]);
   const compact = width < 900;
@@ -100,7 +100,7 @@ export default function HomeScreen() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: palette.appBackground }}>
+    <SafeAreaView className="flex-1 bg-app">
       <StatusBar style={resolvedTheme === 'dark' ? 'light' : 'dark'} />
       <ScrollView>
         <View className="gap-5 p-6">
@@ -111,55 +111,50 @@ export default function HomeScreen() {
             >
               {t('home_eyebrow')}
             </Text>
-            <Text className="text-[34px] font-extrabold" style={{ color: palette.text }}>
+            <Text className="text-[34px] font-extrabold text-foreground">
               {t('home_title')}
             </Text>
-            <Text className="text-[16px] leading-6" style={{ color: palette.muted }}>
+            <Text className="text-[16px] leading-6 text-muted">
               {t('home_subtitle')}
             </Text>
           </View>
 
           <View className="flex-row flex-wrap gap-3">
             <Pressable
-              className="min-w-[220px] grow gap-1 rounded-[18px] p-[18px]"
+              className="min-w-[220px] grow gap-1 rounded-[18px] bg-accent p-[18px]"
               style={{ backgroundColor: tintColor }}
               onPress={() => void handleRoutePress('Search')}
             >
-              <Text className="text-[20px] font-extrabold" style={{ color: palette.inverseText }}>
+              <Text className="text-[20px] font-extrabold text-inverse">
                 {t('common_search')}
               </Text>
-              <Text className="text-[14px]" style={{ color: palette.inverseText }}>
+              <Text className="text-[14px] text-inverse">
                 {t('home_search_hint')}
               </Text>
             </Pressable>
             <Pressable
-              className="min-w-[140px] justify-center rounded-[18px] border px-4 py-[18px]"
-              style={{ backgroundColor: palette.surface, borderColor: palette.border }}
+              className="min-w-[140px] justify-center rounded-[18px] border border-line bg-surface px-4 py-[18px]"
               onPress={() => void handleRoutePress('Settings')}
             >
-              <Text className="text-center text-[15px] font-bold" style={{ color: palette.text }}>
+              <Text className="text-center text-[15px] font-bold text-foreground">
                 {t('common_settings')}
               </Text>
             </Pressable>
             <Pressable
-              className="min-w-[140px] justify-center rounded-[18px] border px-4 py-[18px]"
-              style={{ backgroundColor: palette.surface, borderColor: palette.border }}
+              className="min-w-[140px] justify-center rounded-[18px] border border-line bg-surface px-4 py-[18px]"
               onPress={() => void handleSharePress()}
             >
-              <Text className="text-center text-[15px] font-bold" style={{ color: palette.text }}>
+              <Text className="text-center text-[15px] font-bold text-foreground">
                 {t('common_share_app')}
               </Text>
             </Pressable>
           </View>
 
-          <View
-            className="gap-[10px] rounded-[18px] border p-[18px]"
-            style={{ backgroundColor: palette.surface, borderColor: palette.border }}
-          >
-            <Text className="text-[20px] font-extrabold" style={{ color: palette.text }}>
+          <View className="gap-[10px] rounded-[18px] border border-line bg-surface p-[18px]">
+            <Text className="text-[20px] font-extrabold text-foreground">
               {t('common_server')}
             </Text>
-            <Text className="text-[14px] leading-5" style={{ color: palette.muted }}>
+            <Text className="text-[14px] leading-5 text-muted">
               {t('home_server_copy')}
             </Text>
             <View className="flex-row flex-wrap gap-2">
@@ -169,17 +164,13 @@ export default function HomeScreen() {
                 return (
                   <Pressable
                     key={option.value}
-                    className="rounded-full border px-3 py-2"
+                    className={`rounded-full border px-3 py-2 ${active ? 'bg-accent' : 'border-line bg-surface-alt'}`}
                     style={{
-                      backgroundColor: active ? tintColor : palette.surfaceAlt,
-                      borderColor: active ? tintColor : palette.border,
+                      borderColor: active ? tintColor : undefined,
                     }}
                     onPress={() => setGameServer(option.value)}
                   >
-                    <Text
-                      className="text-[13px] font-bold"
-                      style={{ color: active ? palette.inverseText : palette.text }}
-                    >
+                    <Text className={`text-[13px] font-bold ${active ? 'text-inverse' : 'text-foreground'}`}>
                       {option.label}
                     </Text>
                   </Pressable>
@@ -190,26 +181,24 @@ export default function HomeScreen() {
 
           {sections.map(section => (
             <View key={section.title} className="gap-3">
-              <Text className="text-[20px] font-extrabold" style={{ color: palette.text }}>
+              <Text className="text-[20px] font-extrabold text-foreground">
                 {section.title}
               </Text>
               <View className={`flex-wrap gap-3 ${compact ? 'flex-col' : 'flex-row'}`}>
                 {section.items.map(item => (
                   <Pressable
                     key={item.title}
-                    className="gap-2 rounded-2xl border p-4"
+                    className="gap-2 rounded-2xl border border-line bg-surface p-4"
                     style={{
                       width: compact ? '100%' : '48%',
                       minWidth: 240,
-                      backgroundColor: palette.surface,
-                      borderColor: palette.border,
                     }}
                     onPress={() => void handleItemPress(item)}
                   >
-                    <Text className="text-[16px] font-bold" style={{ color: palette.text }}>
+                    <Text className="text-[16px] font-bold text-foreground">
                       {item.title}
                     </Text>
-                    <Text className="text-[14px] leading-5" style={{ color: palette.muted }}>
+                    <Text className="text-[14px] leading-5 text-muted">
                       {item.description ?? t('common_not_migrated')}
                     </Text>
                     <Text

@@ -51,6 +51,7 @@ import {
 } from '@/features/player/ui';
 import { useAppStateManager } from '@/features/app-state/app-state-manager';
 import { useAppPreferences } from '@/features/preferences/preferences-manager';
+import { createStackScreenOptions } from '@/features/preferences/theme';
 import { getServerLabel, isGameServer } from '@/features/home/content';
 import { openUrl } from '@/lib/platform-actions';
 
@@ -125,35 +126,28 @@ export default function PlayerOverviewScreen() {
   const detailedSections = getDetailedSections(pvp, t);
   const recordItems = getRecordItems(pvp, t);
   const weaponRecordItems = getWeaponRecordItems(pvp, t);
-  const accountTools = accountId && server
-    ? {
-        accountId,
-        nickname,
-        server,
-      }
-    : null;
+  const accountTools = accountId && server ? {accountId, nickname, server} : null;
   const isFriend = accountId ? isFriendAccount(accountId) : false;
   const isMainAccount = accountId ? mainAccount?.accountId === accountId : false;
 
   useEffect(() => {
-    if (!accountTools) {
+    if (!accountId || !server) {
       return;
     }
 
-    rememberPlayer(accountTools);
-  }, [accountTools, rememberPlayer]);
+    rememberPlayer({
+      accountId,
+      nickname,
+      server,
+    });
+  }, [accountId, nickname, rememberPlayer, server]);
 
   return (
     <>
       <Stack.Screen
-        options={{
+        options={createStackScreenOptions(palette, {
           title: nickname,
-          headerStyle: {
-            backgroundColor: palette.surface,
-          },
-          headerTintColor: palette.text,
-          headerShadowVisible: false,
-        }}
+        })}
       />
       <PageScroll>
         <HeroCard
@@ -173,26 +167,23 @@ export default function PlayerOverviewScreen() {
                 style={{ backgroundColor: ratingColor }}
               >
                 <Text
-                  className="text-[11px] font-extrabold uppercase"
-                  style={{ color: palette.inverseText, letterSpacing: 0.8 }}
+                  className="text-[11px] font-extrabold uppercase text-inverse"
+                  style={{ letterSpacing: 0.8 }}
                 >
                   {t('player_personal_rating')}
                 </Text>
-                <Text className="text-[28px] font-extrabold" style={{ color: palette.inverseText }}>
+                <Text className="text-[28px] font-extrabold text-inverse">
                   {formatNumber(ratingSummary.rating)}
                 </Text>
-                <Text className="text-[13px] font-bold" style={{ color: palette.inverseText }}>
+                <Text className="text-[13px] font-bold text-inverse">
                   {t(getRatingLabelKey(ratingSummary.rating))}
                 </Text>
               </View>
-              <View
-                className="min-w-[200px] flex-1 gap-1 rounded-2xl border px-4 py-[14px]"
-                style={{ backgroundColor: palette.surfaceAlt, borderColor: palette.border }}
-              >
-                <Text className="text-[14px] font-bold leading-5" style={{ color: palette.text }}>
+              <View className="min-w-[200px] flex-1 gap-1 rounded-2xl border border-line bg-surface-alt px-4 py-[14px]">
+                <Text className="text-[14px] font-bold leading-5 text-foreground">
                   {t('player_rating_description')}
                 </Text>
-                <Text className="text-[13px] leading-[18px]" style={{ color: palette.muted }}>
+                <Text className="text-[13px] leading-[18px] text-muted">
                   {t('player_rating_battles')}: {formatNumber(ratingSummary.ratedShipCount)}
                 </Text>
               </View>

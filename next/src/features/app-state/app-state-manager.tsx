@@ -1,4 +1,5 @@
 import {
+  useCallback,
   createContext,
   useContext,
   useEffect,
@@ -54,8 +55,21 @@ function normalizePlayer(player: SavedPlayer): SavedPlayer {
   };
 }
 
+function areSamePlayer(left: SavedPlayer, right: SavedPlayer) {
+  return (
+    left.accountId === right.accountId &&
+    left.nickname === right.nickname &&
+    left.server === right.server
+  );
+}
+
 function mergeRecentPlayers(players: SavedPlayer[], nextPlayer: SavedPlayer) {
   const normalized = normalizePlayer(nextPlayer);
+  const current = players[0];
+
+  if (current && areSamePlayer(current, normalized)) {
+    return players;
+  }
 
   return [
     normalized,
@@ -107,6 +121,35 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
     writeStoredJson(RECENT_PLAYERS_KEY, recentPlayers);
   }, [recentPlayers]);
 
+  const setMainAccount = useCallback((player: SavedPlayer) => {
+    const normalized = normalizePlayer(player);
+
+    setMainAccountState(current =>
+      current && areSamePlayer(current, normalized) ? current : normalized,
+    );
+    setRecentPlayers(prev => mergeRecentPlayers(prev, normalized));
+  }, []);
+
+  const addFriendAccount = useCallback((player: SavedPlayer) => {
+    const normalized = normalizePlayer(player);
+
+    setFriendAccounts(prev =>
+      prev.some(item => item.accountId === normalized.accountId)
+        ? prev
+        : [...prev, normalized],
+    );
+    setRecentPlayers(prev => mergeRecentPlayers(prev, normalized));
+  }, []);
+
+  const isFriendAccount = useCallback(
+    (accountId: string) => friendAccounts.some(player => player.accountId === String(accountId)),
+    [friendAccounts],
+  );
+
+  const rememberPlayer = useCallback((player: SavedPlayer) => {
+    setRecentPlayers(prev => mergeRecentPlayers(prev, player));
+  }, []);
+
   const value = useMemo<AppStateContextValue>(
     () => ({
       gameServer,
@@ -116,35 +159,23 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       swapButtons,
       setSwapButtons: setSwapButtonsState,
       mainAccount,
-      setMainAccount: player => {
-        const normalized = normalizePlayer(player);
-        setMainAccountState(normalized);
-        setRecentPlayers(prev => mergeRecentPlayers(prev, normalized));
-      },
+      setMainAccount,
       friendAccounts,
-      addFriendAccount: player => {
-        const normalized = normalizePlayer(player);
-
-        setFriendAccounts(prev =>
-          prev.some(item => item.accountId === normalized.accountId)
-            ? prev
-            : [...prev, normalized],
-        );
-        setRecentPlayers(prev => mergeRecentPlayers(prev, normalized));
-      },
-      isFriendAccount: accountId =>
-        friendAccounts.some(player => player.accountId === String(accountId)),
+      addFriendAccount,
+      isFriendAccount,
       recentPlayers,
-      rememberPlayer: player => {
-        setRecentPlayers(prev => mergeRecentPlayers(prev, player));
-      },
+      rememberPlayer,
     }),
     [
+      addFriendAccount,
       apiLanguage,
       friendAccounts,
       gameServer,
+      isFriendAccount,
       mainAccount,
+      rememberPlayer,
       recentPlayers,
+      setMainAccount,
       swapButtons,
     ],
   );

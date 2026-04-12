@@ -10,10 +10,10 @@ import {
 import { useAppPreferences } from '@/features/preferences/preferences-manager';
 
 export function PageScroll({ children }: { children: ReactNode }) {
-  const { palette, resolvedTheme } = useAppPreferences();
+  const { resolvedTheme } = useAppPreferences();
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: palette.appBackground }} edges={['bottom']}>
+    <SafeAreaView className="flex-1 bg-app" edges={['bottom']}>
       <StatusBar style={resolvedTheme === 'dark' ? 'light' : 'dark'} />
       <ScrollView>
         <View className="gap-5 p-6">{children}</View>
@@ -35,12 +35,10 @@ export function HeroCard({
   accentColor: string;
   children?: ReactNode;
 }) {
-  const { palette } = useAppPreferences();
-
   return (
     <View
-      className="gap-2 rounded-[18px] border p-5"
-      style={{ backgroundColor: palette.surface, borderColor: accentColor }}
+      className="gap-2 rounded-[18px] border bg-surface p-5"
+      style={{ borderColor: accentColor }}
     >
       <Text
         className="text-[12px] font-extrabold uppercase"
@@ -48,11 +46,11 @@ export function HeroCard({
       >
         {eyebrow}
       </Text>
-      <Text className="text-[28px] font-extrabold" style={{ color: palette.text }}>
+      <Text className="text-[28px] font-extrabold text-foreground">
         {title}
       </Text>
       {body ? (
-        <Text className="text-[15px] leading-[22px]" style={{ color: palette.muted }}>
+        <Text className="text-[15px] leading-[22px] text-muted">
           {body}
         </Text>
       ) : null}
@@ -70,27 +68,19 @@ export function Section({
   subtitle?: string;
   children: ReactNode;
 }) {
-  const { palette } = useAppPreferences();
-
   return (
     <View className="gap-[10px]">
       <View className="items-center gap-1">
-        <Text className="text-center text-[20px] font-extrabold" style={{ color: palette.text }}>
+        <Text className="text-center text-[20px] font-extrabold text-foreground">
           {title}
         </Text>
         {subtitle ? (
-          <Text
-            className="max-w-[680px] text-center text-[13px] leading-[19px]"
-            style={{ color: palette.muted }}
-          >
+          <Text className="max-w-[680px] text-center text-[13px] leading-[19px] text-muted">
             {subtitle}
           </Text>
         ) : null}
       </View>
-      <View
-        className="overflow-hidden rounded-[18px] border"
-        style={{ backgroundColor: palette.surface, borderColor: palette.border }}
-      >
+      <View className="overflow-hidden rounded-[18px] border border-line bg-surface">
         {children}
       </View>
     </View>
@@ -108,20 +98,15 @@ export function MetricTile({
   label: string;
   value: string;
 }) {
-  const { palette } = useAppPreferences();
-
   return (
-    <View
-      className="min-w-[130px] grow gap-1.5 rounded-[14px] border p-[14px]"
-      style={{ backgroundColor: palette.surface, borderColor: palette.border }}
-    >
+    <View className="min-w-[130px] grow gap-1.5 rounded-[14px] border border-line bg-surface p-[14px]">
       <Text
-        className="text-[12px] font-bold uppercase"
-        style={{ color: palette.muted, letterSpacing: 0.8 }}
+        className="text-[12px] font-bold uppercase text-muted"
+        style={{ letterSpacing: 0.8 }}
       >
         {label}
       </Text>
-      <Text className="text-[20px] font-extrabold" style={{ color: palette.text }}>
+      <Text className="text-[20px] font-extrabold text-foreground">
         {value}
       </Text>
     </View>
@@ -145,12 +130,11 @@ export function ActionTile({
 
   return (
     <Pressable
-      className="min-w-[220px] grow gap-2 rounded-2xl border p-4"
+      className="min-w-[220px] grow gap-2 rounded-2xl border border-line bg-surface p-4"
       style={({ pressed }) => [
         {
           width: '48%',
-          backgroundColor: pressed && onPress ? palette.pressed : palette.surface,
-          borderColor: palette.border,
+          backgroundColor: pressed && onPress ? palette.pressed : undefined,
         },
       ]}
       onPress={onPress}
@@ -162,10 +146,10 @@ export function ActionTile({
           resizeMode="contain"
         />
       ) : null}
-      <Text className="text-[16px] font-bold" style={{ color: palette.text }}>
+      <Text className="text-[16px] font-bold text-foreground">
         {title}
       </Text>
-      <Text className="text-[14px] leading-5" style={{ color: palette.muted }}>
+      <Text className="text-[14px] leading-5 text-muted">
         {body}
       </Text>
       <Text
@@ -185,8 +169,6 @@ export function ClassicSummaryStrip({
   items: Array<{icon: LegacyIconName; label: string; value: string}>;
   accentColor: string;
 }) {
-  const { palette } = useAppPreferences();
-
   if (items.length === 0) {
     return null;
   }
@@ -196,20 +178,19 @@ export function ClassicSummaryStrip({
       {items.map(item => (
         <View
           key={`${item.icon}-${item.label}`}
-          className="max-w-[160px] min-w-[110px] grow items-center gap-1 rounded-[14px] border px-3 py-[14px]"
-          style={{ backgroundColor: palette.surface, borderColor: palette.border }}
+          className="max-w-[160px] min-w-[110px] grow items-center gap-1 rounded-[14px] border border-line bg-surface px-3 py-[14px]"
         >
           <Image
             source={getLegacyIconSource(item.icon)}
             style={{ width: 28, height: 28, tintColor: accentColor }}
             resizeMode="contain"
           />
-          <Text className="text-center text-[18px] font-extrabold" style={{ color: palette.text }}>
+          <Text className="text-center text-[18px] font-extrabold text-foreground">
             {item.value}
           </Text>
           <Text
-            className="text-center text-[11px] font-bold uppercase"
-            style={{ color: palette.muted, letterSpacing: 0.6 }}
+            className="text-center text-[11px] font-bold uppercase text-muted"
+            style={{ letterSpacing: 0.6 }}
           >
             {item.label}
           </Text>
@@ -234,27 +215,26 @@ export function ListRow({
 
   return (
     <Pressable
-      className="min-h-[72px] flex-row items-center gap-3 border-b px-[18px] py-4"
+      className="min-h-[72px] flex-row items-center gap-3 border-b border-line-soft bg-surface px-[18px] py-4"
       style={({ pressed }) => [
         {
-          backgroundColor: pressed && onPress ? palette.pressed : palette.surface,
-          borderBottomColor: palette.borderSoft,
+          backgroundColor: pressed && onPress ? palette.pressed : undefined,
         },
       ]}
       onPress={onPress}
     >
       <View className="flex-1 gap-1">
-        <Text className="text-[16px] font-bold" style={{ color: palette.text }}>
+        <Text className="text-[16px] font-bold text-foreground">
           {title}
         </Text>
         {description ? (
-          <Text className="text-[13px] leading-[18px]" style={{ color: palette.muted }}>
+          <Text className="text-[13px] leading-[18px] text-muted">
             {description}
           </Text>
         ) : null}
       </View>
       {trailing ? (
-        <Text className="text-[13px] font-bold" style={{ color: palette.muted }}>
+        <Text className="text-[13px] font-bold text-muted">
           {trailing}
         </Text>
       ) : null}
@@ -271,21 +251,14 @@ export function StateCard({
   body: string;
   tone?: 'default' | 'warning';
 }) {
-  const { palette } = useAppPreferences();
   const warning = tone === 'warning';
 
   return (
-    <View
-      className="gap-2 rounded-[18px] border p-[18px]"
-      style={{
-        borderColor: warning ? palette.warningBorder : palette.border,
-        backgroundColor: warning ? palette.warningSurface : palette.surface,
-      }}
-    >
-      <Text className="text-[16px] font-extrabold" style={{ color: palette.text }}>
+    <View className={`gap-2 rounded-[18px] border p-[18px] ${warning ? 'border-warning-border bg-warning-surface' : 'border-line bg-surface'}`}>
+      <Text className="text-[16px] font-extrabold text-foreground">
         {title}
       </Text>
-      <Text className="text-[14px] leading-5" style={{ color: palette.muted }}>
+      <Text className="text-[14px] leading-5 text-muted">
         {body}
       </Text>
     </View>
@@ -313,16 +286,14 @@ export function ChipRow<T extends string>({
         return (
           <Pressable
             key={option.value}
-            className="rounded-full border px-3 py-2"
+            className={`rounded-full border px-3 py-2 ${active ? 'bg-accent' : 'border-line bg-surface-alt'}`}
             style={{
-              borderColor: active ? accentColor : palette.border,
-              backgroundColor: active ? accentColor : palette.surfaceAlt,
+              borderColor: active ? accentColor : undefined,
             }}
             onPress={() => onChange(option.value)}
           >
             <Text
-              className="text-[13px] font-bold"
-              style={{ color: active ? palette.inverseText : palette.text }}
+              className={`text-[13px] font-bold ${active ? 'text-inverse' : 'text-foreground'}`}
             >
               {option.label}
             </Text>
@@ -342,7 +313,6 @@ export function BarList({
   accentColor: string;
   renderValue: (value: number) => string;
 }) {
-  const { palette } = useAppPreferences();
   const maxValue = Math.max(...items.map(item => item.value), 1);
 
   return (
@@ -350,17 +320,14 @@ export function BarList({
       {items.map(item => (
         <View key={item.id} className="gap-1.5">
           <View className="flex-row justify-between gap-3">
-            <Text className="flex-1 text-[14px] font-bold" style={{ color: palette.text }}>
+            <Text className="flex-1 text-[14px] font-bold text-foreground">
               {item.label}
             </Text>
-            <Text className="text-[13px] font-bold" style={{ color: palette.muted }}>
+            <Text className="text-[13px] font-bold text-muted">
               {renderValue(item.value)}
             </Text>
           </View>
-          <View
-            className="h-[10px] overflow-hidden rounded-full"
-            style={{ backgroundColor: palette.borderSoft }}
-          >
+          <View className="h-[10px] overflow-hidden rounded-full bg-line-soft">
             <View
               className="h-full rounded-full"
               style={{

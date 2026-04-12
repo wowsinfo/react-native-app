@@ -1,27 +1,25 @@
 import { version } from 'expo/package.json';
 import { Image } from 'expo-image';
-import React from 'react';
-import { useColorScheme } from 'react-native';
+import { Text, View } from 'react-native';
 
-import { ThemedText } from './themed-text';
-import { ThemedView } from './themed-view';
+import { useAppPreferences } from '@/features/preferences/preferences-manager';
 
 export function WebBadge() {
-  const scheme = useColorScheme();
+  const { resolvedTheme } = useAppPreferences();
 
   return (
-    <ThemedView className="items-center gap-2 p-8">
-      <ThemedText type="code" themeColor="textSecondary" className="text-center">
+    <View className="items-center gap-2 p-8">
+      <Text className="font-mono text-[12px] text-center text-muted">
         v{version}
-      </ThemedText>
+      </Text>
       <Image
         source={
-          scheme === 'dark'
+          resolvedTheme === 'dark'
             ? require('@/assets/images/expo-badge-white.png')
             : require('@/assets/images/expo-badge.png')
         }
         style={{ width: 123, aspectRatio: 123 / 24 }}
       />
-    </ThemedView>
+    </View>
   );
 }

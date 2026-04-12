@@ -28,6 +28,7 @@ import {
 } from '@/features/player/ui';
 import { useAppStateManager } from '@/features/app-state/app-state-manager';
 import { useAppPreferences } from '@/features/preferences/preferences-manager';
+import { createStackScreenOptions } from '@/features/preferences/theme';
 import {
   getServerLabel,
   getServerOptions,
@@ -134,9 +135,9 @@ export default function SearchScreen() {
   return (
     <>
       <Stack.Screen
-        options={{
+        options={createStackScreenOptions(palette, {
           title: t('common_search'),
-        }}
+        })}
       />
       <PageScroll>
         <HeroCard
@@ -159,7 +160,7 @@ export default function SearchScreen() {
           subtitle={t('search_input_subtitle')}
         >
           <View className="gap-3 p-[18px]">
-            <Text className="text-[14px] font-bold" style={{ color: palette.text }}>
+            <Text className="text-[14px] font-bold text-foreground">
               {t('common_server')}
             </Text>
             <ChipRow
@@ -171,7 +172,7 @@ export default function SearchScreen() {
               onChange={setGameServer}
               accentColor={tintColor}
             />
-            <Text className="text-[14px] font-bold" style={{ color: palette.text }}>
+            <Text className="text-[14px] font-bold text-foreground">
               {t('search_text_label')}
             </Text>
             <TextInput
@@ -181,12 +182,7 @@ export default function SearchScreen() {
               autoCorrect={false}
               placeholder={t('search_placeholder')}
               placeholderTextColor={palette.muted}
-              className="min-h-[52px] rounded-[14px] border px-4 text-[16px]"
-              style={{
-                borderColor: palette.border,
-                backgroundColor: palette.surface,
-                color: palette.text,
-              }}
+              className="min-h-[52px] rounded-[14px] border border-line bg-surface px-4 text-[16px] text-foreground"
             />
           </View>
         </Section>

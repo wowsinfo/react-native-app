@@ -20,6 +20,7 @@ import {
   StateCard,
 } from '@/features/player/ui';
 import { useAppPreferences } from '@/features/preferences/preferences-manager';
+import { createStackScreenOptions } from '@/features/preferences/theme';
 import { isGameServer } from '@/features/home/content';
 
 export default function PlayerShipsScreen() {
@@ -91,12 +92,9 @@ export default function PlayerShipsScreen() {
   return (
     <>
       <Stack.Screen
-        options={{
+        options={createStackScreenOptions(palette, {
           title: t('player_ships'),
-          headerStyle: {backgroundColor: palette.surface},
-          headerTintColor: palette.text,
-          headerShadowVisible: false,
-        }}
+        })}
       />
       <PageScroll>
         <HeroCard

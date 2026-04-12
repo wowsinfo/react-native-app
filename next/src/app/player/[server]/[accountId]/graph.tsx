@@ -11,6 +11,7 @@ import {
 } from '@/features/player/format';
 import { BarList, HeroCard, PageScroll, Section, StateCard } from '@/features/player/ui';
 import { useAppPreferences } from '@/features/preferences/preferences-manager';
+import { createStackScreenOptions } from '@/features/preferences/theme';
 import { isGameServer } from '@/features/home/content';
 
 export default function PlayerGraphScreen() {
@@ -74,12 +75,9 @@ export default function PlayerGraphScreen() {
   return (
     <>
       <Stack.Screen
-        options={{
+        options={createStackScreenOptions(palette, {
           title: t('player_graph'),
-          headerStyle: {backgroundColor: palette.surface},
-          headerTintColor: palette.text,
-          headerShadowVisible: false,
-        }}
+        })}
       />
       <PageScroll>
         <HeroCard
