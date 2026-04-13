@@ -12,6 +12,7 @@ The rule for this folder is simple:
 
 - Bun for package management, scripts, and tests
 - Next.js App Router for the web surface
+- Tailwind CSS for the web styling layer
 - Strict TypeScript for domain, data, and bridge contracts
 
 ## Folder intent
@@ -29,7 +30,15 @@ The first slice ports the legacy `Search` + `Friend` intent from `wowsinfo/src/p
 - typed search rules
 - typed favorites storage
 - a web UI that depends on the shared engine
+- player overview, ships, and ship detail routes modeled after the legacy player flow
 - native bridge payload types for the same screen
+
+## Route map
+
+- `/search`
+- `/player/[server]/[accountId]`
+- `/player/[server]/[accountId]/ships`
+- `/player/[server]/[accountId]/ships/[shipId]`
 
 ## Local setup
 
@@ -42,4 +51,3 @@ The first slice ports the legacy `Search` + `Friend` intent from `wowsinfo/src/p
 
 - The Wargaming app id is kept server-side through Next.js route handlers.
 - The current native bridge is contract-first. The Protobuf schema and JSI transport should be generated from the payload contracts once the mobile shell is ready.
-

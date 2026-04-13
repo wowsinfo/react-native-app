@@ -1,6 +1,6 @@
-import {SearchExperience} from '@/features/search/web/search-experience';
+import {redirect} from 'next/navigation';
 
 export default function HomePage() {
-  return <SearchExperience />;
+  redirect('/search');
 }
 
