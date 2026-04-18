@@ -5,7 +5,6 @@
  */
 
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
 import {List, Caption, Text} from 'react-native-paper';
 import {SafeAction} from '../../core';
 
@@ -37,11 +36,11 @@ class PlayerCell extends Component {
   }
 
   renderPlayerRight(account_id) {
-    return <Caption style={styles.ID}>{account_id}</Caption>;
+    return <Caption style={{alignSelf: 'center', marginRight: 8}}>{account_id}</Caption>;
   }
 
   renderClanRight(clan_id) {
-    return <Caption style={styles.ID}>{clan_id}</Caption>;
+    return <Caption style={{alignSelf: 'center', marginRight: 8}}>{clan_id}</Caption>;
   }
 
   pushPlayer(item) {
@@ -52,12 +51,5 @@ class PlayerCell extends Component {
     SafeAction('ClanInfo', {info: item});
   }
 }
-
-const styles = StyleSheet.create({
-  ID: {
-    alignSelf: 'center',
-    marginRight: 8,
-  },
-});
 
 export {PlayerCell};

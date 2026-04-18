@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {
   WoWsInfo,
   LoadingIndicator,
@@ -74,7 +74,6 @@ class ClanInfo extends Component {
   }
 
   render() {
-    const {clanTag, container} = styles;
     const {info, tag, id, valid} = this.state;
     if (valid) {
       return (
@@ -90,8 +89,8 @@ class ClanInfo extends Component {
       );
     } else {
       return (
-        <WoWsInfo title={`- ${id} -`} style={container}>
-          <Title style={clanTag}>{tag}</Title>
+        <WoWsInfo title={`- ${id} -`} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <Title style={{alignSelf: 'center', fontSize: 36, fontWeight: '500', paddingTop: 16, textAlign: 'center'}}>{tag}</Title>
         </WoWsInfo>
       );
     }
@@ -100,7 +99,6 @@ class ClanInfo extends Component {
   renderClanInfo(data) {
     if (data) {
       console.log(data);
-      const {horizontal, clanTag} = styles;
       const {
         created_at,
         creator_name,
@@ -126,7 +124,7 @@ class ClanInfo extends Component {
         <FlatGrid
           ListHeaderComponent={() => (
             <View>
-              <Title style={clanTag}>{tag}</Title>
+              <Title style={{alignSelf: 'center', fontSize: 36, fontWeight: '500', paddingTop: 16, textAlign: 'center'}}>{tag}</Title>
               <Subheading
                 style={{color: TintColour()[500], alignSelf: 'center'}}>
                 {name}
@@ -135,8 +133,7 @@ class ClanInfo extends Component {
                 title={lang.clan_created_date}
                 info={humanTimeString(created_at)}
               />
-              <View
-                style={[horizontal, {flex: 1, justifyContent: 'space-around'}]}>
+              <View style={{flexDirection: 'row', flex: 1, justifyContent: 'space-around'}}>
                 <InfoLabel
                   title={lang.clan_creator_name}
                   info={creator_name}
@@ -208,23 +205,5 @@ class ClanInfo extends Component {
     SafeAction('Statistics', {info: item});
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  clanTag: {
-    alignSelf: 'center',
-    fontSize: 36,
-    fontWeight: '500',
-    paddingTop: 16,
-    textAlign: 'center',
-  },
-  horizontal: {
-    flexDirection: 'row',
-  },
-});
 
 export {ClanInfo};

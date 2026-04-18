@@ -1,3 +1,6 @@
+export * from '@repo/core';
+export * from '@repo/ui';
+
 export * from './downloader/Downloader';
 
 export * from './data/DataLoader';

@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {InfoLabel} from '../common/InfoLabel';
 import {roundTo, humanTimeString, currDeviceWidth} from '../../core';
 import {lang} from '../../value/lang';
@@ -30,7 +30,6 @@ class DetailedInfo extends Component {
   };
 
   render() {
-    const {container} = styles;
     const {data} = this.props;
     if (!data) {
       return null;
@@ -45,7 +44,7 @@ class DetailedInfo extends Component {
     const {more} = this.state;
 
     return (
-      <View style={container} onLayout={this.updateBestWidth}>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} onLayout={this.updateBestWidth}>
         {!playerMode ? (
           <InfoLabel
             title={lang.basic_last_battle}
@@ -74,7 +73,6 @@ class DetailedInfo extends Component {
   }
 
   renderInfo(data, playerMode) {
-    const {container, horizontal} = styles;
     console.log(data);
     const {
       art_agro,
@@ -100,18 +98,18 @@ class DetailedInfo extends Component {
     } = data;
 
     return (
-      <View style={container}>
-        <View style={horizontal}>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <View style={{flexDirection: 'row'}}>
           <InfoLabel title={lang.detailed_win} info={wins} />
           <InfoLabel title={lang.detailed_draw} info={draws} />
           <InfoLabel title={lang.detailed_loss} info={losses} />
         </View>
-        <View style={horizontal}>
+        <View style={{flexDirection: 'row'}}>
           <InfoLabel title={lang.detailed_survived} info={survived_battles} />
           <InfoLabel title={lang.detailed_total_xp} info={xp} />
           <InfoLabel title={lang.detailed_survived_win} info={survived_wins} />
         </View>
-        <View style={horizontal}>
+        <View style={{flexDirection: 'row'}}>
           <InfoLabel
             title={lang.detailed_survival_rate}
             info={`${roundTo((survived_battles / battles) * 100, 2)}%`}
@@ -123,8 +121,8 @@ class DetailedInfo extends Component {
         </View>
         <Space height={16} />
         {art_agro ? (
-          <View style={container}>
-            <View style={horizontal}>
+          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+            <View style={{flexDirection: 'row'}}>
               <InfoLabel
                 title={lang.detailed_total_potential_damage}
                 info={art_agro}
@@ -134,7 +132,7 @@ class DetailedInfo extends Component {
                 info={roundTo(art_agro / battles)}
               />
             </View>
-            <View style={horizontal}>
+            <View style={{flexDirection: 'row'}}>
               <InfoLabel
                 title={lang.detailed_total_torp_potential_damage}
                 info={torpedo_agro}
@@ -144,7 +142,7 @@ class DetailedInfo extends Component {
                 info={roundTo(torpedo_agro / battles)}
               />
             </View>
-            <View style={horizontal}>
+            <View style={{flexDirection: 'row'}}>
               <InfoLabel
                 title={lang.detailed_total_scouting_damage}
                 info={damage_scouting}
@@ -154,7 +152,7 @@ class DetailedInfo extends Component {
                 info={roundTo(damage_scouting / battles)}
               />
             </View>
-            <View style={horizontal}>
+            <View style={{flexDirection: 'row'}}>
               <InfoLabel
                 title={lang.detailed_total_damage}
                 info={damage_dealt}
@@ -177,14 +175,14 @@ class DetailedInfo extends Component {
             </View>
           </View>
         ) : null}
-        <View style={horizontal}>
+        <View style={{flexDirection: 'row'}}>
           <InfoLabel title={lang.detailed_total_frag} info={frags} />
           <InfoLabel
             title={lang.detailed_frag_spot_ratio}
             info={`${roundTo((frags / ships_spotted) * 100, 2)}%`}
           />
         </View>
-        <View style={horizontal}>
+        <View style={{flexDirection: 'row'}}>
           <InfoLabel
             title={lang.detailed_total_plane_killed}
             info={planes_killed}
@@ -195,9 +193,9 @@ class DetailedInfo extends Component {
           />
         </View>
         {!playerMode ? (
-          <View style={container}>
+          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             <SectionTitle title={lang.record_title} />
-            <View style={horizontal}>
+            <View style={{flexDirection: 'row'}}>
               <InfoLabel
                 title={lang.record_max_damage_dealt}
                 info={max_damage_dealt}
@@ -207,14 +205,14 @@ class DetailedInfo extends Component {
                 info={max_damage_scouting}
               />
             </View>
-            <View style={horizontal}>
+            <View style={{flexDirection: 'row'}}>
               <InfoLabel title={lang.record_max_xp} info={max_xp} />
               <InfoLabel
                 title={lang.record_max_frags_battle}
                 info={max_frags_battle}
               />
             </View>
-            <View style={horizontal}>
+            <View style={{flexDirection: 'row'}}>
               <InfoLabel
                 title={lang.record_max_ships_spotted}
                 info={max_ships_spotted}
@@ -275,16 +273,5 @@ class DetailedInfo extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  horizontal: {
-    flexDirection: 'row',
-  },
-});
 
 export {DetailedInfo};

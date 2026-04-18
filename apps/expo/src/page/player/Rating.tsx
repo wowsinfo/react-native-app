@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import {View, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import {WoWsInfo, SectionTitle} from '../../component';
 import {Text, Paragraph, Caption, Button} from 'react-native-paper';
 import {lang} from '../../value/lang';
@@ -14,7 +14,6 @@ import {APP} from '../../value/data';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
 export const Rating = () => {
-  const {container, range} = styles;
   const ratingRange = [
     '0',
     '1 - 750',
@@ -41,7 +40,7 @@ export const Rating = () => {
       }>
       <ScrollView>
         <SectionTitle title={lang.rating_title} />
-        <View style={container}>
+        <View style={{paddingLeft: 16, paddingRight: 16}}>
           <Paragraph>{lang.rating_description}</Paragraph>
           <Caption>{lang.rating_warning}</Caption>
         </View>
@@ -49,7 +48,7 @@ export const Rating = () => {
         {ratingRange.map((v, i) => {
           const color: any = {color: ratingColours[i], fontWeight: 'bold'};
           return (
-            <View style={range} key={v}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', padding: 16}} key={v}>
               <Text style={color}>{ratingComments[i]}</Text>
               <Text style={color}>{v}</Text>
             </View>
@@ -62,15 +61,3 @@ export const Rating = () => {
     </WoWsInfo>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    paddingLeft: 16,
-    paddingRight: 16,
-  },
-  range: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 16,
-  },
-});

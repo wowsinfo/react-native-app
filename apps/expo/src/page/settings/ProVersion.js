@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, ScrollView, Alert} from 'react-native';
+import {View, ScrollView, Alert} from 'react-native';
 import {WoWsInfo, LoadingIndicator} from '../../component';
 import {Title, List, Button, Text, Colors} from 'react-native-paper';
 import {
@@ -91,11 +91,10 @@ class ProVersion extends Component {
   }
 
   render() {
-    const {titleStyle, viewStyle} = styles;
     return (
       <WoWsInfo hideAds>
-        <ScrollView style={viewStyle}>
-          <Title style={titleStyle}>{lang.pro_title}</Title>
+        <ScrollView style={{flex: 1}}>
+          <Title style={{padding: 16, paddingTop: 32, fontSize: 32, fontWeight: 'bold', color: Colors.orange500}}>{lang.pro_title}</Title>
           <List.Item title={lang.pro_rs} description={lang.pro_rs_subtitle} />
           <List.Item
             title={lang.pro_more_stats}
@@ -113,9 +112,8 @@ class ProVersion extends Component {
   }
 
   renderPolicies() {
-    const {horizontal} = styles;
     return (
-      <View style={horizontal}>
+      <View style={{flexDirection: 'row', justifyContent: 'center'}}>
         <Button
           onPress={() =>
             SimpleViewHandler.openURL(
@@ -138,10 +136,9 @@ class ProVersion extends Component {
 
   renderPurchaseView() {
     const {loading, error, price} = this.state;
-    const {buttonView, restoreButton, discount, loader} = styles;
     if (loading) {
       return (
-        <View style={loader}>
+        <View style={{justifyContent: 'center', alignItems: 'center', padding: 16}}>
           <LoadingIndicator />
         </View>
       );
@@ -149,15 +146,15 @@ class ProVersion extends Component {
       return null;
     } else {
       return (
-        <View style={buttonView}>
-          <Text style={discount}>{lang.pro_50_off_until_re}</Text>
+        <View style={{padding: 16}}>
+          <Text style={{textAlign: 'center', marginBottom: 4}}>{lang.pro_50_off_until_re}</Text>
           <Button
             mode="contained"
             theme={{roundness: 0}}
             onPress={this.buy}>{`${price} / ${lang.pro_per_year}`}</Button>
           <Button
             mode="outlined"
-            style={restoreButton}
+            style={{marginTop: 8}}
             theme={{roundness: 0}}
             onPress={this.restore}>
             {lang.pro_restore_pro}
@@ -185,37 +182,5 @@ class ProVersion extends Component {
     await validateProVersion(true);
   };
 }
-
-const styles = StyleSheet.create({
-  viewStyle: {
-    flex: 1,
-  },
-  horizontal: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  titleStyle: {
-    padding: 16,
-    paddingTop: 32,
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: Colors.orange500,
-  },
-  buttonView: {
-    padding: 16,
-  },
-  restoreButton: {
-    marginTop: 8,
-  },
-  discount: {
-    textAlign: 'center',
-    marginBottom: 4,
-  },
-  loader: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
-  },
-});
 
 export {ProVersion};

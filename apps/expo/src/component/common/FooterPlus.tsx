@@ -1,28 +1,7 @@
-/**
- * FooterPlus.js
- *
- * This is a view that connect with WoWs Info footer
- */
-
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
 import {ThemeBackColour} from '../../value/colour';
+import {FooterPlus as SharedFooterPlus} from '@repo/ui';
+import type {FooterPlusProps} from '@repo/ui';
 
-export interface FooterPlusProps {
-  children: React.ReactNode;
-  style?: any;
+export function FooterPlus({style, ...props}: FooterPlusProps) {
+  return <SharedFooterPlus {...props} style={[ThemeBackColour(), style]} />;
 }
-
-export const FooterPlus = ({children, style}: FooterPlusProps) => {
-  const {similarView} = styles;
-  return (
-    <View style={[similarView, ThemeBackColour(), style]}>{children}</View>
-  );
-};
-
-const styles = StyleSheet.create({
-  similarView: {
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
-  },
-});

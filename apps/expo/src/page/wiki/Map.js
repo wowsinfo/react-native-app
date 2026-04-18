@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {Image, StyleSheet, Dimensions} from 'react-native';
+import {Image, Dimensions} from 'react-native';
 import {WoWsInfo, LoadingIndicator} from '../../component';
 import {SAVED, setLastLocation} from '../../value/data';
 import {List, Portal, Dialog} from 'react-native-paper';
@@ -29,7 +29,6 @@ class Map extends Component {
 
   render() {
     const {data, shown, map, loading} = this.state;
-    const {indicator} = styles;
 
     // Get map dimension
     const {width, height} = Dimensions.get('window');
@@ -70,22 +69,12 @@ class Map extends Component {
               onLoadEnd={() => this.setState({loading: false})}
               style={{flex: 1, height: null, width: null, borderRadius: 16}}
             />
-            {loading ? <LoadingIndicator style={indicator} /> : null}
+            {loading ? <LoadingIndicator style={{position: 'absolute', top: 0, bottom: 0, left: 0, right: 0}} /> : null}
           </Dialog>
         </Portal>
       </WoWsInfo>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  indicator: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
-});
 
 export {Map};

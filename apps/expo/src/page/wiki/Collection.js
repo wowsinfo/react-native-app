@@ -5,7 +5,7 @@
  */
 
 import React, {PureComponent} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 import {WoWsInfo, WikiIcon} from '../../component';
 import {SAVED, setLastLocation} from '../../value/data';
@@ -42,7 +42,6 @@ class Collection extends PureComponent {
   }
 
   render() {
-    const {label} = styles;
     const {data, collection, header} = this.state;
 
     let ID = '';
@@ -70,8 +69,8 @@ class Collection extends PureComponent {
               return (
                 <View style={{padding: 8}}>
                   <WikiIcon item={header} scale={1.6} />
-                  <Title style={[label, TintTextColour()]}>{header.name}</Title>
-                  <Paragraph style={label}>{header.description}</Paragraph>
+                  <Title style={[{textAlign: 'center', alignSelf: 'center'}, TintTextColour()]}>{header.name}</Title>
+                  <Paragraph style={{textAlign: 'center', alignSelf: 'center'}}>{header.description}</Paragraph>
                 </View>
               );
             } else {
@@ -109,17 +108,5 @@ class Collection extends PureComponent {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  label: {
-    textAlign: 'center',
-    alignSelf: 'center',
-  },
-});
 
 export {Collection};

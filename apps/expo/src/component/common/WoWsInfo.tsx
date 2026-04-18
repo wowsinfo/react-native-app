@@ -5,7 +5,7 @@
  */
 
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, StyleSheet, StatusBar} from 'react-native';
+import {SafeAreaView, StatusBar} from 'react-native';
 import {Button, Surface} from 'react-native-paper';
 import {lang} from '../../value/lang';
 import isAndroid from 'react-native-device-detection';
@@ -79,16 +79,21 @@ export const WoWsInfo = ({
   };
 
   const renderFooter = () => {
-    const {text, footer} = styles;
     let shouldDisable = !onPress && !about;
 
     return (
-      <View style={[footer, ThemeBackColour()]}>
+      <View style={[{height: 60, justifyContent: 'center'}, ThemeBackColour()]}>
         {AppGlobalData.shouldSwapButton ? renderRight() : renderLeft()}
         <Button
           disabled={shouldDisable}
           onPress={pressEvent}
-          style={text}
+          style={{
+            fontSize: 17,
+            fontWeight: isAndroid ? 'bold' : '300',
+            textAlign: 'center',
+            alignSelf: 'center',
+            width: '70%',
+          }}
           uppercase={upper}>
           {title ? title : lucky}
         </Button>
@@ -104,13 +109,13 @@ export const WoWsInfo = ({
 
   // Add a margin for android devices (full screen so add a margin)
   return (
-    <Surface style={[styles.container, style, ThemeBackColour()]}>
-      <SafeAreaView style={styles.safeView}>
+    <Surface style={[{flex: 1}, style, ThemeBackColour()]}>
+      <SafeAreaView style={{flex: 1}}>
         <StatusBar
           barStyle={AppGlobalData.isDarkMode ? 'light-content' : 'dark-content'}
           backgroundColor={ThemeColour()}
         />
-        <View style={[styles.child, ViewBackColour()]}>{children}</View>
+        <View style={[{flex: 1}, ViewBackColour()]}>{children}</View>
         {empty ? null : renderFooter()}
       </SafeAreaView>
     </Surface>
@@ -175,26 +180,3 @@ const name = [
   'CICN',
   'ICBC',
 ];
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  text: {
-    fontSize: 17,
-    fontWeight: isAndroid ? 'bold' : '300',
-    textAlign: 'center',
-    alignSelf: 'center',
-    width: '70%',
-  },
-  child: {
-    flex: 1,
-  },
-  safeView: {
-    flex: 1,
-  },
-  footer: {
-    height: 60,
-    justifyContent: 'center',
-  },
-});

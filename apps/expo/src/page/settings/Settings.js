@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, ScrollView, FlatList, StyleSheet, Alert} from 'react-native';
+import {View, ScrollView, FlatList, Alert} from 'react-native';
 import {isAndroid} from 'react-native-device-detection';
 import {
   List,
@@ -233,7 +233,6 @@ class Settings extends Component {
 
   renderAppSettings() {
     const {tintColour, swapButton, darkMode} = this.state;
-    const {tint} = styles;
 
     return (
       <View>
@@ -249,7 +248,7 @@ class Settings extends Component {
           title={lang.settings_app_theme_colour}
           onPress={() => this.setState({showColour: true})}
           right={() => (
-            <View style={[tint, {backgroundColor: tintColour[500]}]} />
+            <View style={{height: 36, width: 36, borderRadius: 18, backgroundColor: tintColour[500]}} />
           )}
         />
         <List.Item
@@ -441,22 +440,5 @@ class Settings extends Component {
     this.setState({userLanguage: code});
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  bottom: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
-  tint: {
-    height: 36,
-    width: 36,
-    borderRadius: 18,
-  },
-});
 
 export default withTheme(Settings);

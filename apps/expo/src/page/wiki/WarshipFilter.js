@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {View, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import {Text, TextInput, List, Checkbox, Button} from 'react-native-paper';
 import {WoWsInfo, FooterPlus, Space} from '../../component';
 import {lang} from '../../value/lang';
@@ -38,7 +38,6 @@ class WarshipFilter extends Component {
   }
 
   render() {
-    const {horizontal, button, selectionText, wrapView} = styles;
     const {premium, name, nation, type, tier} = this.state;
 
     let tierList = getTierList();
@@ -74,8 +73,8 @@ class WarshipFilter extends Component {
         <ScrollView ref="scrollview">
           <Space />
           <List.Section title={lang.wiki_warship_filter_tier}>
-            <Text style={selectionText}>{`${tier.join(' | ')} `}</Text>
-            <View style={wrapView}>
+            <Text style={{paddingLeft: 16, paddingRight: 16}}>{`${tier.join(' | ')} `}</Text>
+            <View style={{flexWrap: 'wrap', flexDirection: 'row'}}>
               {tierList.map(item =>
                 this.renderButton(item, () => this.addData(item, MODE.TIER)),
               )}
@@ -84,8 +83,8 @@ class WarshipFilter extends Component {
               renderItem={({item}) => this.renderButton(item, () => this.addData(item, MODE.TIER))}/> */}
           </List.Section>
           <List.Section title={lang.wiki_warship_filter_nation}>
-            <Text style={selectionText}>{`${nation.join(' | ')} `}</Text>
-            <View style={wrapView}>
+            <Text style={{paddingLeft: 16, paddingRight: 16}}>{`${nation.join(' | ')} `}</Text>
+            <View style={{flexWrap: 'wrap', flexDirection: 'row'}}>
               {nationList.map(item =>
                 this.renderButton(item, () => this.addData(item, MODE.NATION)),
               )}
@@ -94,8 +93,8 @@ class WarshipFilter extends Component {
               renderItem={({item}) => this.renderButton(item, () => this.addData(item, MODE.NATION))}/> */}
           </List.Section>
           <List.Section title={lang.wiki_warship_filter_type}>
-            <Text style={selectionText}>{`${type.join(' | ')} `}</Text>
-            <View style={wrapView}>
+            <Text style={{paddingLeft: 16, paddingRight: 16}}>{`${type.join(' | ')} `}</Text>
+            <View style={{flexWrap: 'wrap', flexDirection: 'row'}}>
               {typeList.map(item =>
                 this.renderButton(item, () => this.addData(item, MODE.TYPE)),
               )}
@@ -112,11 +111,11 @@ class WarshipFilter extends Component {
               <Checkbox status={premium ? 'checked' : 'unchecked'} />
             )}
           />
-          <View style={horizontal}>
-            <Button style={button} onPress={this.resetAll}>
+          <View style={{flexDirection: 'row'}}>
+            <Button style={{flex: 1}} onPress={this.resetAll}>
               {lang.wiki_warship_reset_btn}
             </Button>
-            <Button style={button} onPress={this.applyAll}>
+            <Button style={{flex: 1}} onPress={this.applyAll}>
               {lang.wiki_warship_filter_btn}
             </Button>
           </View>
@@ -183,22 +182,5 @@ class WarshipFilter extends Component {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  horizontal: {
-    flexDirection: 'row',
-  },
-  button: {
-    flex: 1,
-  },
-  selectionText: {
-    paddingLeft: 16,
-    paddingRight: 16,
-  },
-  wrapView: {
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-  },
-});
 
 export {WarshipFilter};

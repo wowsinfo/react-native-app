@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import {View, Image, StyleSheet, ImageSourcePropType} from 'react-native';
+import {View, Image, ImageSourcePropType} from 'react-native';
 import {LOCAL} from '../../value/data';
 import {Touchable} from '../common/Touchable';
 
@@ -27,7 +27,6 @@ export const WikiIcon = ({
   themeIcon,
   ...otherProps
 }: WikiIconProps) => {
-  const {container, newLabel} = styles;
   let width = 80;
   if (scale) {
     width *= scale;
@@ -41,10 +40,10 @@ export const WikiIcon = ({
 
   if (warship) {
     return (
-      <View style={container}>
+      <View className="items-center justify-center rounded-lg border border-transparent">
         {item ? (
           item.new ? (
-            <View style={[newLabel, {backgroundColor: theme[500]}]} />
+            <View className="absolute bottom-0 z-10 h-2 w-2 rounded-full" style={{backgroundColor: theme[500]}} />
           ) : null
         ) : null}
         <Image
@@ -59,15 +58,11 @@ export const WikiIcon = ({
   } else {
     return (
       <Touchable
-        style={[container, selected ? {borderColor: theme[500]} : null]}
+        className="items-center justify-center rounded-lg border border-transparent"
+        style={selected ? {borderColor: theme[500]} : null}
         {...otherProps}>
         {item.new ? (
-          <View
-            style={[
-              newLabel,
-              {backgroundColor: AppGlobalData.get(LOCAL.theme)[500]},
-            ]}
-          />
+          <View className="absolute bottom-0 z-10 h-2 w-2 rounded-full" style={{backgroundColor: AppGlobalData.get(LOCAL.theme)[500]}} />
         ) : null}
         <Image
           source={imageSrc}
@@ -80,21 +75,3 @@ export const WikiIcon = ({
     );
   }
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: 'transparent',
-  },
-  newLabel: {
-    position: 'absolute',
-    zIndex: 1,
-    borderRadius: 99,
-    bottom: 0,
-    height: 8,
-    width: 8,
-  },
-});

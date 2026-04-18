@@ -1,40 +1,7 @@
-import {lang} from '../../value/lang';
 import {Dimensions} from 'react-native';
-
-/**
- * Deep clone an object
- * @param {*} value
- */
-export const copy = (value: any) => {
-  return JSON.parse(JSON.stringify(value));
-};
-
-/**
- * Return a number between 0 to range - 1
- * @param {int} range
- */
-export const random = (range: number) => {
-  return Math.floor(Math.random() * range);
-};
-
-export const roundTo = (num?: number, digit = 0) => {
-  if (num == null) {
-    return Number(-1);
-  }
-  if (isNaN(num) || !isFinite(num)) {
-    return Number(-1);
-  }
-  return Number(Number(num).toFixed(digit));
-};
-
-/**
- * Get date difference in days
- * @param {*} time
- */
-export const dayDifference = (time: number) => {
-  let timeDiff = Math.abs(Date.now() / 1000 - time);
-  return Math.ceil(timeDiff / (3600 * 24));
-};
+import {lang} from '../../value/lang';
+export {copy, dayDifference, random, roundTo} from '@repo/core';
+export {getRandomAnimation} from '@repo/ui';
 
 /**
  * Get a readable date string
@@ -54,21 +21,6 @@ export const humanTimeString = (time?: number) => {
     .slice(0, 10)
     .split('-')
     .join('.')} ${obj.toLocaleTimeString()}`;
-};
-
-export const getRandomAnimation = () => {
-  const list = [
-    'bounce',
-    'flash',
-    'pulse',
-    'rotate',
-    'rubberBand',
-    'shake',
-    'swing',
-    'tada',
-    'wobble',
-  ];
-  return list[random(list.length)];
 };
 
 /**

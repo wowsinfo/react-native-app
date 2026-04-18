@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {View, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import {
   Button,
   List,
@@ -64,15 +64,14 @@ class Setup extends Component {
   render() {
     const {loading, server, selected_server, langList, selected_lang} =
       this.state;
-    const {fab, titleStyle, wrapView, scroll} = styles;
     return (
       <WoWsInfo hideAds empty>
-        <ScrollView contentContainerStyle={scroll}>
+        <ScrollView contentContainerStyle={{flexGrow: 1, alignItems: 'center', paddingTop: '15%'}}>
           <SectionTitle title={lang.settings_api_settings} center bold />
-          <Subheading style={titleStyle}>
+          <Subheading style={{alignSelf: 'center', textAlign: 'center', marginTop: 16}}>
             {`${lang.setting_game_server}: ${lang.server_name[selected_server]}`}
           </Subheading>
-          <View style={wrapView}>
+          <View style={{justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'row'}}>
             {server.map((_, index) => (
               <Button onPress={() => this.updateServer(index)}>
                 {lang.server_name[index]}
@@ -82,7 +81,7 @@ class Setup extends Component {
           {/* <FlatList data={server} renderItem={({index}) => {
               return <Button onPress={() => this.updateServer(index)}>{lang.server_name[index]}</Button>
             }} keyExtractor={i => i} numColumns={2}/> */}
-          <Subheading style={titleStyle}>
+          <Subheading style={{alignSelf: 'center', textAlign: 'center', marginTop: 16}}>
             {`${lang.setting_api_language}: ${langList[selected_lang] ?? ''}`}
           </Subheading>
           {this.renderAPILanguage()}
@@ -90,7 +89,7 @@ class Setup extends Component {
         <FAB
           visible={!loading}
           icon="check"
-          style={fab}
+          style={{position: 'absolute', bottom: 0, right: 0, left: 0, margin: 16}}
           label={lang.setup_done_button}
           onPress={loading ? null : () => this.finishSetup()}
         />
@@ -108,7 +107,7 @@ class Setup extends Component {
     if (error) {
       return (
         <View>
-          <Paragraph style={titleStyle}>{lang.error_download_issue}</Paragraph>
+          <Paragraph style={{alignSelf: 'center', textAlign: 'center', marginTop: 16}}>{lang.error_download_issue}</Paragraph>
           <List.Item
             title={lang.settings_app_send_feedback}
             description={lang.settings_app_send_feedback_subtitle}
@@ -119,7 +118,7 @@ class Setup extends Component {
     }
 
     return (
-      <View style={wrapView}>
+      <View style={{justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'row'}}>
         {langData.map(item => (
           <Button onPress={() => this.updateApiLanguage(item)}>
             {langList[item]}
@@ -144,36 +143,5 @@ class Setup extends Component {
     Actions.reset('Menu');
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scroll: {
-    flexGrow: 1,
-    alignItems: 'center',
-    paddingTop: '15%',
-  },
-  top: {
-    flex: 1,
-  },
-  fab: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    left: 0,
-    margin: 16,
-  },
-  titleStyle: {
-    alignSelf: 'center',
-    textAlign: 'center',
-    marginTop: 16,
-  },
-  wrapView: {
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-  },
-});
 
 export {Setup};

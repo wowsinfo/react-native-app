@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet, ScrollView, KeyboardAvoidingView} from 'react-native';
+import {View, ScrollView, KeyboardAvoidingView} from 'react-native';
 import {Searchbar} from 'react-native-paper';
 import {WoWsInfo, SectionTitle, PlayerCell} from '../../component';
 import {
@@ -49,7 +49,6 @@ class Search extends Component {
 
   render() {
     const {search, online} = this.state;
-    const {searchBar, scroll} = styles;
     return (
       <WoWsInfo
         hideAds
@@ -59,7 +58,7 @@ class Search extends Component {
           <Searchbar
             ref="search"
             value={search}
-            style={searchBar}
+            style={{position: 'absolute', zIndex: 2, top: 16, left: 16, right: 16, borderRadius: 100}}
             placeholder={`${this.prefix.toUpperCase()} - ${online} ${
               lang.search_player_online
             }`}
@@ -68,7 +67,7 @@ class Search extends Component {
             autoCapitalize="none"
           />
           <ScrollView
-            style={scroll}
+            style={{marginTop: 64}}
             keyboardShouldPersistTaps="always"
             keyboardDismissMode="on-drag"
             contentContainerStyle={{flexGrow: 1}}
@@ -105,7 +104,7 @@ class Search extends Component {
   renderClan(clan) {
     if (clan.length > 0) {
       return (
-        <View style={styles.wrap}>
+        <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
           {clan.map(item => (
             <PlayerCell
               key={item.clan_id}
@@ -128,7 +127,7 @@ class Search extends Component {
   renderPlayer(player) {
     if (player.length > 0) {
       return (
-        <View style={styles.wrap}>
+        <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
           {player.map(item => (
             <PlayerCell
               key={item.account_id}
@@ -192,28 +191,5 @@ class Search extends Component {
     }, 500);
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  searchBar: {
-    position: 'absolute',
-    zIndex: 2,
-    top: 16,
-    left: 16,
-    right: 16,
-    borderRadius: 100,
-  },
-  scroll: {
-    marginTop: 64,
-  },
-  wrap: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-});
 
 export {Search};

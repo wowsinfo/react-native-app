@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {StatusBar, Image, StyleSheet, Text} from 'react-native';
+import {StatusBar, Image, Text} from 'react-native';
 import * as Anime from 'react-native-animatable';
 import {Surface} from 'react-native-paper';
 import {RED} from 'react-native-material-color';
@@ -36,39 +36,20 @@ class Loading extends Component {
   // }
 
   render() {
-    const {container, logo, label} = styles;
-
     return (
-      <Surface style={container}>
+      <Surface style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: RED[500]}}>
         <StatusBar backgroundColor={RED[700]} />
         <Anime.View
           animation={getRandomAnimation()}
           iterationCount="infinite"
           easing="ease"
           useNativeDriver>
-          <Image style={logo} source={{uri: 'Logo'}} />
+          <Image style={{tintColor: 'white', width: 128, height: 128}} source={{uri: 'Logo'}} />
         </Anime.View>
-        <Text style={label}>{lang.setup_loading}</Text>
+        <Text style={{color: 'white'}}>{lang.setup_loading}</Text>
       </Surface>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: RED[500],
-  },
-  logo: {
-    tintColor: 'white',
-    width: 128,
-    height: 128,
-  },
-  label: {
-    color: 'white',
-  },
-});
 
 export {Loading};

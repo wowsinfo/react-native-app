@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import {
   WoWsInfo,
   WarshipCell,
@@ -58,7 +58,6 @@ class Detailed extends Component {
     if (overall == null || data == null) {
       return null;
     }
-    const {horizontal} = styles;
     const {battles, wins, damage_dealt, frags} = data;
     const {average_damage_dealt, average_frags, win_rate} = overall;
 
@@ -70,7 +69,7 @@ class Detailed extends Component {
     let fragDiff = this.normalise(frags / battles - average_frags, 2);
 
     return (
-      <View style={horizontal}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
         <InfoLabel
           style={this.getColor(dmgDiff)}
           info={dmgDiff}
@@ -106,17 +105,5 @@ class Detailed extends Component {
     }
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  horizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-});
 
 export default withTheme(Detailed);

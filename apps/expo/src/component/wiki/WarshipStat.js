@@ -5,18 +5,17 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {ProgressBar, Caption} from 'react-native-paper';
 import {lang} from '../../value/lang';
 
 class WarshipStat extends Component {
   render() {
-    const {container} = styles;
     const {mobility, weaponry, concealment, armour} = this.props.profile;
     const {anti_aircraft, aircraft, artillery, torpedoes} = weaponry;
 
     return (
-      <View style={container}>
+      <View style={{flex: 1, marginBottom: 16}}>
         {this.renderProgress(armour.total, lang.warship_survivability)}
         {this.renderProgress(artillery, lang.warship_artillery)}
         {this.renderProgress(torpedoes, lang.warship_torpedoes)}
@@ -30,10 +29,9 @@ class WarshipStat extends Component {
 
   renderProgress(value, title) {
     if (value && value > 0) {
-      const {header} = styles;
       return (
         <View>
-          <View style={header}>
+          <View style={{flex: 1, padding: 0, paddingLeft: 16, paddingRight: 16, flexDirection: 'row', justifyContent: 'space-between', marginTop: 8}}>
             <Caption>{title}</Caption>
             <Caption>{value}</Caption>
           </View>
@@ -44,21 +42,5 @@ class WarshipStat extends Component {
     return null;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginBottom: 16,
-  },
-  header: {
-    flex: 1,
-    padding: 0,
-    paddingLeft: 16,
-    paddingRight: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 8,
-  },
-});
 
 export {WarshipStat};

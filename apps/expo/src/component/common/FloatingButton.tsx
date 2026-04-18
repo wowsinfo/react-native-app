@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import {FAB} from 'react-native-paper';
 import {Actions} from 'react-native-router-flux';
 
@@ -21,20 +21,9 @@ export const FloatingButton = () => {
       Actions.Menu();
     }
   };
-
-  const {container} = styles;
-
   return (
-    <SafeAreaView style={container}>
+    <SafeAreaView className="absolute bottom-4 right-4">
       <FAB onPress={navigate} icon={icon} />
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    right: 16,
-    bottom: 16,
-  },
-});

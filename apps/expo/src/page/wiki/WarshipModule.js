@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {View, FlatList, StyleSheet} from 'react-native';
+import {View, FlatList} from 'react-native';
 import {WoWsInfo, Space, SectionTitle} from '../../component';
 import {Actions} from 'react-native-router-flux';
 import {SAVED, getCurrDomain} from '../../value/data';
@@ -77,7 +77,6 @@ class WarshipModule extends Component {
   renderModule(ID) {
     const {tree, module} = this.state;
     const {name, price_xp, price_credit} = tree[ID];
-    const {xp} = styles;
 
     let selected = false;
     for (let module_name in module) {
@@ -89,7 +88,7 @@ class WarshipModule extends Component {
 
     const right = () => {
       if (price_xp > 0) {
-        return <Caption style={xp}>{`${price_xp} xp`}</Caption>;
+        return <Caption style={{paddingRight: 4, alignSelf: 'center'}}>{`${price_xp} xp`}</Caption>;
       } else {
         return null;
       }
@@ -167,17 +166,5 @@ class WarshipModule extends Component {
     return name;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  xp: {
-    paddingRight: 4,
-    alignSelf: 'center',
-  },
-});
 
 export {WarshipModule};

@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import {IconButton, useTheme} from 'react-native-paper';
 import {Touchable} from '../common/Touchable';
 import {IconSource} from 'react-native-paper/lib/typescript/components/Icon';
@@ -25,10 +24,7 @@ export const TabButton = ({
 }: TabButtonProps) => {
   const themes = useTheme();
   return (
-    <Touchable
-      fill
-      style={styles.container}
-      onPress={disabled ? undefined : onPress}>
+    <Touchable fill className="items-center justify-center p-1" onPress={disabled ? undefined : onPress}>
       <IconButton
         icon={icon}
         size={26}
@@ -38,11 +34,3 @@ export const TabButton = ({
     </Touchable>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 4,
-  },
-});

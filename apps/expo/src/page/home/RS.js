@@ -1,13 +1,5 @@
 import React, {Component} from 'react';
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  KeyboardAvoidingView,
-  Linking,
-  Alert,
-  Vibration,
-} from 'react-native';
+import {View, ScrollView, KeyboardAvoidingView, Linking, Alert, Vibration} from 'react-native';
 import {isAndroid, isTablet} from 'react-native-device-detection';
 import {
   Portal,
@@ -91,7 +83,6 @@ class RS extends Component {
   }
 
   render() {
-    const {container, input} = styles;
     const {ip, rs, valid} = this.state;
 
     return (
@@ -99,9 +90,9 @@ class RS extends Component {
         onPress={rs ? () => this.setState({info: true}) : null}
         title="Map Information">
         {!valid ? (
-          <KeyboardAvoidingView style={container} behavior="padding" enabled>
+          <KeyboardAvoidingView style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} behavior="padding" enabled>
             <TextInput
-              style={input}
+              style={{width: '100%', marginBottom: 8}}
               theme={{roundness: 0}}
               value={ip}
               placeholder="192.168.1.x"
@@ -135,7 +126,6 @@ class RS extends Component {
       return <LoadingIndicator />;
     }
 
-    const {horizontal} = styles;
     let allayRating = getOverallRating(allay);
     let enemyRating = getOverallRating(enemy);
     allay.sort((a, b) => b.ap - a.ap);
@@ -143,12 +133,12 @@ class RS extends Component {
 
     return (
       <ScrollView>
-        <View style={[horizontal, {justifyContent: 'space-between'}]}>
+        <View style={{flexDirection: 'row', padding: 8, justifyContent: 'space-between'}}>
           <RatingButton rating={allayRating} number />
           <Title>RS Beta</Title>
           <RatingButton rating={enemyRating} number />
         </View>
-        <View style={horizontal}>
+        <View style={{flexDirection: 'row', padding: 8}}>
           <FlatGrid
             data={allay}
             itemDimension={120}
@@ -169,14 +159,13 @@ class RS extends Component {
   }
 
   renderPlayerCell(info) {
-    const {playerName, cell} = styles;
     const {nickname, name} = info;
     let pName = SafeValue(nickname, name);
     // For pushing to player
     info.server = getCurrServer();
     return (
       <Touchable
-        style={cell}
+        style={{margin: 4}}
         onPress={
           info.pvp ? () => SafeAction('PlayerShipDetail', {data: info}) : null
         }
@@ -187,7 +176,7 @@ class RS extends Component {
           item={AppGlobalData.get(SAVED.warship)[info.ship_id]}
           scale={1.4}
         />
-        <Text style={playerName} numberOfLines={1}>
+        <Text style={{fontWeight: '300', fontSize: 17, marginBottom: 8, textAlign: 'center'}} numberOfLines={1}>
           {pName}
         </Text>
         <SimpleRating info={info} />
@@ -344,30 +333,5 @@ class RS extends Component {
     return player;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    width: '100%',
-    marginBottom: 8,
-  },
-  horizontal: {
-    flexDirection: 'row',
-    padding: 8,
-  },
-  playerName: {
-    fontWeight: '300',
-    fontSize: 17,
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  cell: {
-    margin: 4,
-  },
-});
 
 export default withTheme(RS);

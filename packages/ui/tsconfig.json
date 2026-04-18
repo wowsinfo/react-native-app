@@ -10,6 +10,11 @@
     "jsx": "react-jsx",
     "module": "esnext",
     "moduleResolution": "bundler",
+    "moduleSuffixes": [
+      ".native",
+      ".web",
+      ""
+    ],
     "noEmit": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -17,6 +22,7 @@
     "target": "ES2022"
   },
   "include": [
+    "src/**/*.d.ts",
     "src/**/*.ts",
     "src/**/*.tsx"
   ]

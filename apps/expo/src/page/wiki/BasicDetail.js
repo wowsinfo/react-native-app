@@ -6,7 +6,7 @@
  */
 
 import React, {Component} from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ScrollView} from 'react-native';
 import * as Anime from 'react-native-animatable';
 import {Title, Paragraph, Caption} from 'react-native-paper';
 import {WikiIcon, WoWsInfo, PriceLabel} from '../../component';
@@ -31,9 +31,8 @@ class BasicDetail extends Component {
 
   renderDetail() {
     const {item} = this.props;
-    const {container, label} = styles;
     // Make title colour tint colour
-    let title = [label, TintTextColour()];
+    let title = [{textAlign: 'center', margin: 8, marginTop: 8}, TintTextColour()];
 
     if (item.profile) {
       // Consumables
@@ -43,7 +42,7 @@ class BasicDetail extends Component {
       }, '');
 
       return (
-        <ScrollView contentContainerStyle={container}>
+        <ScrollView contentContainerStyle={{flexGrow: 1, alignItems: 'center', justifyContent: 'center'}}>
           <Anime.View
             animation="pulse"
             iterationCount="infinite"
@@ -53,8 +52,8 @@ class BasicDetail extends Component {
           </Anime.View>
           <Title style={title}>{name}</Title>
           <PriceLabel item={item} />
-          <Paragraph style={label}>{description}</Paragraph>
-          <Caption style={label}>{bonus}</Caption>
+          <Paragraph style={{textAlign: 'center', margin: 8, marginTop: 8}}>{description}</Paragraph>
+          <Caption style={{textAlign: 'center', margin: 8, marginTop: 8}}>{bonus}</Caption>
         </ScrollView>
       );
     } else if (item.perks) {
@@ -65,7 +64,7 @@ class BasicDetail extends Component {
       }, '');
 
       return (
-        <ScrollView contentContainerStyle={container}>
+        <ScrollView contentContainerStyle={{flexGrow: 1, alignItems: 'center', justifyContent: 'center'}}>
           <Anime.View
             animation="pulse"
             iterationCount="infinite"
@@ -74,7 +73,7 @@ class BasicDetail extends Component {
             <WikiIcon scale={1.6} item={item} />
           </Anime.View>
           <Title style={title}>{name}</Title>
-          <Paragraph style={label}>{bonus}</Paragraph>
+          <Paragraph style={{textAlign: 'center', margin: 8, marginTop: 8}}>{bonus}</Paragraph>
         </ScrollView>
       );
     } else if (item.image_inactive || item.card_id) {
@@ -82,7 +81,7 @@ class BasicDetail extends Component {
       const {description, name} = item;
 
       return (
-        <ScrollView contentContainerStyle={container}>
+        <ScrollView contentContainerStyle={{flexGrow: 1, alignItems: 'center', justifyContent: 'center'}}>
           <Anime.View
             animation="pulse"
             iterationCount="infinite"
@@ -91,24 +90,11 @@ class BasicDetail extends Component {
             <WikiIcon scale={1.6} item={item} />
           </Anime.View>
           <Title style={title}>{name}</Title>
-          <Paragraph style={label}>{description}</Paragraph>
+          <Paragraph style={{textAlign: 'center', margin: 8, marginTop: 8}}>{description}</Paragraph>
         </ScrollView>
       );
     }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  label: {
-    textAlign: 'center',
-    margin: 8,
-    marginTop: 8,
-  },
-});
 
 export {BasicDetail};

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import type {ReactNode} from 'react';
 import {useEffect, useState} from 'react';
+import {SectionTitle} from '@repo/ui';
 import type {
   FavoriteClan,
   FavoritePlayer,
@@ -268,7 +269,10 @@ function SearchSection({
 }) {
   return (
     <section>
-      <div className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted">{title}</div>
+      <SectionTitle
+        title={title}
+        className="mb-3 px-0 pt-0 text-xs font-medium uppercase tracking-[0.2em] text-muted"
+      />
       <div className="grid gap-3">{children}</div>
     </section>
   );
@@ -406,4 +410,3 @@ function EmptyState({text}: {text: string}) {
     </div>
   );
 }
-

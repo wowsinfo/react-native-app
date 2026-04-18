@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {WoWsInfo, Touchable, Info6Icon} from '../../component';
 import {lang} from '../../value/lang';
 import {FlatGrid} from 'react-native-super-grid';
@@ -29,7 +29,6 @@ class Rank extends PureComponent {
   }
 
   render() {
-    const {centerText} = styles;
     const {data, ship} = this.state;
     if (data == null || data.length == 0) {
       return null;
@@ -56,10 +55,7 @@ class Rank extends PureComponent {
                     : () => SafeAction('PlayerShip', {data: shipData})
                 }
                 style={{margin: 8}}>
-                <Headline
-                  style={
-                    centerText
-                  }>{`- ${lang.rank_season_title} ${season} -`}</Headline>
+                <Headline style={{alignSelf: 'center', textAlign: 'center'}}>{`- ${lang.rank_season_title} ${season} -`}</Headline>
                 {/* <Title style={centerText}>{`${emoji} ${rank} ${emoji}`}</Title> */}
                 <View>{this.renderSeasonInfo(item)}</View>
               </Touchable>
@@ -94,17 +90,5 @@ class Rank extends PureComponent {
     return <Info6Icon data={info} compact />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingBottom: 8,
-    justifyContent: 'space-between',
-  },
-  centerText: {
-    alignSelf: 'center',
-    textAlign: 'center',
-  },
-});
 
 export {Rank};

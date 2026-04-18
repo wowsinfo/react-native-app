@@ -5,9 +5,10 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 import {lang} from '../../value/lang';
 import {Button, Checkbox, List, TextInput} from 'react-native-paper';
+import {ThemeColour} from '../../value/colour';
 
 class Filter extends Component {
   constructor(props) {
@@ -27,7 +28,6 @@ class Filter extends Component {
   }
 
   render() {
-    const {input, apply} = styles;
     const {applyFunc, resetFunc, wiki} = this.props;
 
     if (wiki) {
@@ -36,7 +36,7 @@ class Filter extends Component {
       return (
         <View style={{flex: 1, backgroundColor: ThemeColour()}}>
           <TextInput
-            style={input}
+            style={{padding: 4}}
             value={name}
             onChangeText={text => this.setState({name: text})}
             autoCorrect={false}
@@ -110,10 +110,10 @@ class Filter extends Component {
               keyExtractor={item => item}
             />
           </List.Accordion>
-          <Button style={apply} onPress={() => resetFunc()}>
+          <Button style={{padding: 8}} onPress={() => resetFunc()}>
             {lang.wiki_warship_reset_btn}
           </Button>
-          <Button style={apply} onPress={() => applyFunc()}>
+          <Button style={{padding: 8}} onPress={() => applyFunc()}>
             {lang.wiki_warship_filter_btn}
           </Button>
         </View>
@@ -121,19 +121,5 @@ class Filter extends Component {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    padding: 4,
-  },
-  apply: {
-    padding: 8,
-  },
-});
 
 export {Filter};

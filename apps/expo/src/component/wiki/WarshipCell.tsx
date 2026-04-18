@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import {Image, StyleSheet} from 'react-native';
+import {Image} from 'react-native';
 import {WikiIcon, WarshipLabel} from '..';
 import {Touchable} from '../common/Touchable';
 import {TintColour} from '../../value/colour';
@@ -17,15 +17,13 @@ export interface WarshipCellProps {
 }
 
 export const WarshipCell = ({item, scale, onPress}: WarshipCellProps) => {
-  const {container} = styles;
-
   let width = 80;
   if (scale) {
     width *= scale;
   }
 
   return (
-    <Touchable style={container} onPress={item ? onPress : undefined}>
+    <Touchable className="items-center justify-center" onPress={item ? onPress : undefined}>
       {item ? (
         <WikiIcon warship item={item} scale={scale} />
       ) : (
@@ -42,10 +40,3 @@ export const WarshipCell = ({item, scale, onPress}: WarshipCellProps) => {
     </Touchable>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});

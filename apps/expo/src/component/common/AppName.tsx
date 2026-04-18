@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import {View, Image, Platform, StyleSheet} from 'react-native';
+import {View, Image, Platform} from 'react-native';
 import * as Anime from 'react-native-animatable';
 import {Title, Caption, Colors} from 'react-native-paper';
 import {lang} from '../../value/lang';
@@ -14,8 +14,6 @@ import {TintColour} from '../../value/colour';
 import {Touchable} from './Touchable';
 
 export const AppName = () => {
-  const {container, game, appName, horizontal} = styles;
-
   const getVersion = () => {
     let app = APP.Version;
     if (Platform.OS === 'ios') {
@@ -25,13 +23,16 @@ export const AppName = () => {
   };
 
   return (
-    <Touchable style={horizontal}>
-      <View style={container}>
+    <Touchable className="mx-2 mb-0 mt-2 flex-row">
+      <View className="flex-1 justify-center pl-2">
         <Title
-          style={[appName, isProVersion() ? {color: Colors.orange500} : {}]}>
+          style={[
+            {fontWeight: 'bold'},
+            isProVersion() ? {color: Colors.orange500} : {},
+          ]}>
           {lang.app_name}
         </Title>
-        <Caption style={game}>{getVersion()}</Caption>
+        <Caption style={{marginTop: -8}}>{getVersion()}</Caption>
       </View>
       <Anime.View
         animation="pulse"
@@ -46,23 +47,3 @@ export const AppName = () => {
     </Touchable>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingLeft: 8,
-    justifyContent: 'center',
-  },
-  game: {
-    marginTop: -8,
-  },
-  appName: {
-    fontWeight: 'bold',
-  },
-  horizontal: {
-    flexDirection: 'row',
-    margin: 8,
-    marginLeft: 8,
-    marginBottom: 0,
-  },
-});

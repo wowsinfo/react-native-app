@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet} from 'react-native';
 import * as Anime from 'react-native-animatable';
 import {SAVED} from '../../value/data';
 import {WoWsInfo, WikiIcon, Touchable} from '../../component';
@@ -34,10 +33,10 @@ export const PlayerAchievement = ({data}: any) => {
           data={displayData}
           renderItem={({item}) => {
             return (
-              <Touchable
-                onPress={() => SafeAction('BasicDetail', {item: item.data})}>
+                <Touchable
+                  onPress={() => SafeAction('BasicDetail', {item: item.data})}>
                 <WikiIcon item={item.data} />
-                <Paragraph style={styles.number}>{item.num}</Paragraph>
+                <Paragraph style={{textAlign: 'center'}}>{item.num}</Paragraph>
               </Touchable>
             );
           }}
@@ -47,14 +46,3 @@ export const PlayerAchievement = ({data}: any) => {
     </WoWsInfo>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  number: {
-    textAlign: 'center',
-  },
-});

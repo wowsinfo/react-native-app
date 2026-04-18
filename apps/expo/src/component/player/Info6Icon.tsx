@@ -5,7 +5,7 @@
  */
 
 import React, {useState} from 'react';
-import {View, StyleSheet, LayoutChangeEvent} from 'react-native';
+import {View, LayoutChangeEvent} from 'react-native';
 import {IconLabel} from './IconLabel';
 import {roundTo, bestWidth} from '../../core';
 
@@ -47,7 +47,12 @@ export const Info6Icon = ({data, compact, topOnly}: Info6IconProps) => {
   return (
     <View
       style={[
-        styles.wrap,
+        {
+          flex: 1,
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+        },
         compact
           ? {marginTop: 0, marginBottom: 0}
           : {marginTop: 16, marginBottom: 16},
@@ -86,12 +91,3 @@ export const Info6Icon = ({data, compact, topOnly}: Info6IconProps) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  wrap: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-  },
-});

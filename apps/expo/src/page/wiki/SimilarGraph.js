@@ -5,7 +5,7 @@
  */
 
 import React, {PureComponent} from 'react';
-import {ScrollView, StyleSheet} from 'react-native';
+import {ScrollView} from 'react-native';
 import {WoWsInfo} from '../../component';
 
 class SimilarGraph extends PureComponent {
@@ -17,7 +17,7 @@ class SimilarGraph extends PureComponent {
     return (
       <WoWsInfo>
         <ScrollView
-          contentContainerStyle={styles.scroll}
+          contentContainerStyle={{padding: 8}}
           showsVerticalScrollIndicator={false}>
           {this.props.info}
         </ScrollView>
@@ -25,11 +25,5 @@ class SimilarGraph extends PureComponent {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  scroll: {
-    padding: 8,
-  },
-});
 
 export {SimilarGraph};

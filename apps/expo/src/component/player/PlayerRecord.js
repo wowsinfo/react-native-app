@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import {Paragraph} from 'react-native-paper';
 import {SAVED} from '../../value/data';
 import {WarshipCell} from '../wiki/WarshipCell';
@@ -20,7 +20,6 @@ class PlayerRecord extends Component {
   };
 
   render() {
-    const {container, wrap} = styles;
     const {data} = this.props;
     if (!data) {
       return null;
@@ -93,10 +92,10 @@ class PlayerRecord extends Component {
     ];
 
     return (
-      <View style={container} onLayout={this.updateBestWidth}>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} onLayout={this.updateBestWidth}>
         <SectionTitle title={lang.record_title} />
-        <View style={wrap}>{max.map(data => this.renderMax(data))}</View>
-        <View style={wrap}>{records.map(data => this.renderRecord(data))}</View>
+        <View style={{flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center'}}>{max.map(data => this.renderMax(data))}</View>
+        <View style={{flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center'}}>{records.map(data => this.renderRecord(data))}</View>
       </View>
     );
   }
@@ -107,22 +106,21 @@ class PlayerRecord extends Component {
   };
 
   renderMax(data) {
-    const {record, container} = styles;
     const {num, id, name} = data;
     if (!id) {
       return null;
     }
     let ship = AppGlobalData.get(SAVED.warship)[id];
     return (
-      <View style={[record, {width: this.state.goodWidth}]} key={name}>
-        <View style={container}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-around', width: this.state.goodWidth}} key={name}>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <WarshipCell
             item={ship}
             scale={2}
             onPress={() => SafeAction('WarshipDetail', {item: ship})}
           />
         </View>
-        <View style={container}>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <InfoLabel title={name} info={num} />
         </View>
       </View>
@@ -130,7 +128,6 @@ class PlayerRecord extends Component {
   }
 
   renderRecord(item) {
-    const {record, container} = styles;
     const {name, data} = item;
     const {frags, max_frags_battle, max_frags_ship_id, hits, shots} = data;
     if (!max_frags_ship_id) {
@@ -140,8 +137,8 @@ class PlayerRecord extends Component {
     return (
       <View style={{width: this.state.goodWidth}} key={name}>
         <SectionTitle title={name} center />
-        <View style={record}>
-          <View style={container}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             <Paragraph>{lang.record_best_ship}</Paragraph>
             <WarshipCell
               item={bestShip}
@@ -149,7 +146,7 @@ class PlayerRecord extends Component {
               onPress={() => SafeAction('WarshipDetail', {item: bestShip})}
             />
           </View>
-          <View style={container}>
+          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             <InfoLabel title={lang.weapon_total_frags} info={frags} />
             <InfoLabel title={lang.weapon_max_frags} info={max_frags_battle} />
             {hits ? (
@@ -164,22 +161,5 @@ class PlayerRecord extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  record: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  wrap: {
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-});
 
 export {PlayerRecord};

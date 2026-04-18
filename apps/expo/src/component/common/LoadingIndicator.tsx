@@ -1,27 +1,19 @@
-/**
- * LoadingIndicator.js
- *
- * A simple loading indicator following current theme
- */
-
-import React from 'react';
-import {ActivityIndicator} from 'react-native';
-import isIos from 'react-native-device-detection';
-// @ts-ignore
 import {Blue, Grey} from 'react-native-material-color';
+import isIos from 'react-native-device-detection';
+import {LoadingIndicator as SharedLoadingIndicator} from '@repo/ui';
 import {TintColour} from '../../value/colour';
+import type {LoadingIndicatorProps} from '@repo/ui';
 
-export const LoadingIndicator = ({style}: any) => {
+export function LoadingIndicator(props: LoadingIndicatorProps) {
   let appTheme = TintColour();
   if (!appTheme) {
     appTheme = Blue;
   }
 
   return (
-    <ActivityIndicator
-      size={isIos ? 'small' : 'large'}
+    <SharedLoadingIndicator
+      {...props}
       color={!isIos ? appTheme[500] : Grey}
-      style={[style, {marginTop: 8}]}
     />
   );
-};
+}
