@@ -1,28 +1,19 @@
 <div align="center">
-<img src="https://raw.githubusercontent.com/wowsinfo/react-native-app/master/wowsinfo/ios/wowsinfo/support/Assets.xcassets/AppIcon.appiconset/AppIcon.png" width="128px" height="128px" />
-<h1>WoWs Info Seven</h1>
-
-[中文](https://github.com/wowsinfo/react-native-app/blob/master/res/README.zh.md) | [日本語](https://github.com/wowsinfo/react-native-app/blob/master/res/README.ja.md)
-
+<h1>WoWs Info Monorepo</h1>
 </div>
 
-This app is not the official app for World of Warships. It is a personal project that is powered by React Native and supports both iOS and Android (work in progress). The app retrieves data from [Wargaming API](https://developers.wargaming.net), [WoWs Numbers](http://wows-numbers.com), and [Global Wiki](https://wiki.wargaming.net/en/World_of_Warships).
+Workspace layout:
 
-# Running the project
-- Setup [React Native](https://reactnative.dev/docs/environment-setup?guide=native)
-- Download Xcode
-- Setup Ruby for `cocoapods` and `fastlane`
-- Clone the repository
-- Install node packages with `npx yarn`
-- Install cocoapods dependencies
-- Run the iOS app with `npx yarn ios`
+- `apps/web`: Next.js web app
+- `apps/expo`: React Native app
+- `packages/core`: pure TypeScript shared logic
+- `packages/ui`: shared UI scaffold for cross-platform primitives
 
-## Obtaining the API key
-From [Wargaming Developer](https://developers.wargaming.net/), register your new app or website to and place it under `wowsinfo/src/value/key.js`.
-```
-export const AppKey = '<Your Key>';
-```
+## Running
 
-Feel free to run the app on your device. You are welcome to modify the source code to access all the paid features. However, please refrain from distributing it to others without the appropriate licence.
+- `bun install`
+- `bun run dev`
+- `bun run dev:web`
+- `bun run dev:expo`
 
-WoWs Info Seven will be focusing on maintainance and won't introduce many new features. It will be building upon what has already been implemented. There may be a new version or not. 
+The workspace is set up for Bun and Turborepo so common logic can move into `packages/` without duplicating it across the two apps.

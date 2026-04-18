@@ -1,4 +1,7 @@
-export async function fetchJson<T>(input: RequestInfo | URL, init?: RequestInit): Promise<T> {
+export async function fetchJson<T>(
+  input: RequestInfo | URL,
+  init?: RequestInit,
+): Promise<T> {
   const response = await fetch(input, init);
 
   if (!response.ok) {
@@ -7,4 +10,3 @@ export async function fetchJson<T>(input: RequestInfo | URL, init?: RequestInit)
 
   return (await response.json()) as T;
 }
-

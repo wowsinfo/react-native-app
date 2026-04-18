@@ -1,8 +1,9 @@
 {
-  "name": "wowsinfo",
+  "name": "@repo/expo",
   "version": "1.7.0",
   "private": true,
   "scripts": {
+    "dev": "react-native start",
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios --scheme wowsinfo-debug --simulator=\"iPhone 14 Pro\"",
@@ -10,9 +11,13 @@
     "clean-ios": "cd ios && rm -rf Pods/ Podfile.lock",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format-all": "npx prettier --write '**/*.js' '**/*.ts*'",
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@repo/core": "workspace:*",
+    "@repo/ui": "workspace:*",
     "react": "18.2.0",
     "react-native": "0.72.4",
     "native-chart-experiment": "^1.0.2",

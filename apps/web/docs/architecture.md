@@ -12,10 +12,10 @@ That makes a Next.js-first web surface and future native UI bridge harder than i
 
 ## Refactor shape
 
-`beyond/` is built around a narrow flow:
+`apps/web/` is built around a narrow flow:
 
 1. `domain/` defines stable game concepts and API contracts.
-2. `core/` provides low-level utilities such as template formatting and HTTP.
+2. `packages/core/` provides low-level utilities such as template formatting and HTTP.
 3. `features/` compose business rules into headless use cases.
 4. `app/` adapts those use cases to the web.
 5. `bridges/native/` exposes serializable payloads for SwiftUI and Compose.
@@ -33,12 +33,14 @@ Legacy source:
 
 New shape:
 
-- `src/domain/wows/server.ts`: region mapping and stable ids
-- `src/domain/wows/wows-api-client.ts`: typed Wargaming client
-- `src/features/search/search-engine.ts`: query rules and orchestration
-- `src/features/favorites/`: storage-independent favorites behavior
-- `src/features/search/web/`: the web surface
-- `src/bridges/native/screen-contracts.ts`: serialized screen payloads
+- `apps/web/src/domain/wows/server.ts`: region mapping and stable ids
+- `apps/web/src/domain/wows/wows-api-client.ts`: typed Wargaming client
+- `apps/web/src/features/search/search-engine.ts`: query rules and orchestration
+- `apps/web/src/features/favorites/`: storage-independent favorites behavior
+- `apps/web/src/features/search/web/`: the web surface
+- `apps/web/src/bridges/native/screen-contracts.ts`: serialized screen payloads
+- `packages/core/src/`: shared pure TypeScript helpers
+- `packages/ui/src/`: shared cross-platform UI surface
 
 ## Native bridge intent
 
@@ -52,4 +54,3 @@ The center is the payload contract. Once the mobile shell exists:
 - SwiftUI and Compose render native views from the same payload shape
 
 That keeps navigation and rendering native while business logic stays shared.
-
