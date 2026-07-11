@@ -26,8 +26,8 @@ class PlayerShip extends PureComponent {
   constructor(props) {
     super(props);
 
-    let ships = props.data;
-    let rating = props.rating;
+    let ships = props.route?.params?.data;
+    let rating = props.route?.params?.rating;
     if (rating == null) {
       // Prevent unnessary
       rating = getOverallRating(ships);

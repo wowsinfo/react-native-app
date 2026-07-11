@@ -18,7 +18,7 @@ class Detailed extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: props.data,
+      data: props.route?.params?.data,
     };
   }
 

@@ -34,7 +34,7 @@ class WarshipDetail extends PureComponent {
 
     this.server = getCurrDomain();
 
-    let curr = props.item;
+    let curr = props.route?.params?.item;
     console.log(curr);
 
     // Get all other same tier and same type ships

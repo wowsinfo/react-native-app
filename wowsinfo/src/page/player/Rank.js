@@ -11,8 +11,8 @@ class Rank extends PureComponent {
     super(props);
     let list = [];
     console.log(props);
-    for (let key in props.data) {
-      let curr = props.data[key];
+    for (let key in (props.route?.params?.data ?? {})) {
+      let curr = props.route?.params?.data[key];
       curr.season = Number(key);
       list.push(curr);
     }
@@ -20,7 +20,7 @@ class Rank extends PureComponent {
 
     this.state = {
       data: list,
-      ship: props.ship,
+      ship: props.route?.params?.ship,
     };
 
     // Request ship info

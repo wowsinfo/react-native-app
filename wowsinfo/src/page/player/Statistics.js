@@ -34,7 +34,7 @@ class Statistics extends Component {
     let ID = Guard(props, 'info.account_id', null);
     // ID must be valid
     if (ID != null && ID !== '') {
-      const {account_id, nickname, server} = props.info;
+      const {account_id, nickname, server} = props.route?.params?.info ?? {};
       // Check if this player is inside friend list
       let friend = AppGlobalData.get(LOCAL.friendList);
       let master = AppGlobalData.get(LOCAL.userInfo);
@@ -379,7 +379,7 @@ class Statistics extends Component {
   }
 
   getPlayerInfo() {
-    const {account_id, nickname, server} = this.props.info;
+    const {account_id, nickname, server} = this.props.route?.params?.info ?? {};
     return {nickname: nickname, account_id: account_id, server: server};
   }
 

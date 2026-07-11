@@ -17,7 +17,7 @@ class WarshipModule extends Component {
   constructor(props) {
     super(props);
 
-    const {ship_id, modules_tree} = props.data;
+    const {ship_id, modules_tree} = props.route?.params?.data ?? {};
     this.server = getCurrDomain();
 
     this.state = {
@@ -35,7 +35,7 @@ class WarshipModule extends Component {
       },
       tree: modules_tree,
       // Data needed for section grid
-      section: this.makeSection(props.data),
+      section: this.makeSection(props.route?.params?.data ?? {}),
     };
   }
 

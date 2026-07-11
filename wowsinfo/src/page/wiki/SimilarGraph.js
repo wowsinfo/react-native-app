@@ -19,7 +19,7 @@ class SimilarGraph extends PureComponent {
         <ScrollView
           contentContainerStyle={styles.scroll}
           showsVerticalScrollIndicator={false}>
-          {this.props.info}
+          {this.props.route?.params?.info}
         </ScrollView>
       </WoWsInfo>
     );

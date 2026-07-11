@@ -39,7 +39,7 @@ class ClanInfo extends Component {
   constructor(props) {
     super(props);
 
-    const {clan_id, tag, server} = props.info;
+    const {clan_id, tag, server} = props.route?.params?.info ?? {};
     if (clan_id == null) {
       // This should never happen but just in case
       this.state = {
@@ -190,7 +190,7 @@ class ClanInfo extends Component {
   }
 
   addFriend = () => {
-    const {clan_id, tag, server} = this.props.info;
+    const {clan_id, tag, server} = this.props.route?.params?.info ?? {};
     let str = LOCAL.friendList;
     AppGlobalData.get(str).clan[clan_id] = {clan_id, tag, server};
     SafeStorage.set(str, AppGlobalData.get(str));

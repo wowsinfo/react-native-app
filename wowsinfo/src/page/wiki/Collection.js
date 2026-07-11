@@ -21,9 +21,9 @@ class Collection extends PureComponent {
 
     let collection = [];
     let isCollection = false;
-    if (props.item) {
+    if (props.route?.params?.item) {
       // Inside a single collection
-      collection = props.item;
+      collection = props.route?.params?.item;
       isCollection = true;
     } else {
       // Display all available collections

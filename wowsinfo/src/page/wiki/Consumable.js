@@ -15,7 +15,7 @@ import {SafeAction} from '../../core';
 class Consumable extends PureComponent {
   constructor(props) {
     super(props);
-    const {upgrade} = props;
+    const {upgrade} = props.route?.params ?? {};
     let loc = 'Consumable';
     if (upgrade === true) {
       loc = 'Upgrade';
