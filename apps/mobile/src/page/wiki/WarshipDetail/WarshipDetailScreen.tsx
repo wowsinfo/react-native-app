@@ -910,12 +910,12 @@ class WarshipDetail extends PureComponent {
       {n: lang.warship_avg_winrate, d: winrateChart, c: '#4DA74D'},
       {n: lang.warship_avg_frag, d: fragChart, c: '#C94A4D'},
     ];
-    let charts = data.map(c => {
+    let charts = data.map((c, i) => {
       let names = c.d.map(v => v.x);
       let values = c.d.map(v => v.y);
       console.log(names, values, c);
       return (
-        <View>
+        <View key={i}>
           <SectionTitle center title={c.n} />
           <HorizontalBarChart
             style={{height: names.length * 20}}
