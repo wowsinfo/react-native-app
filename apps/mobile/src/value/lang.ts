@@ -3,7 +3,7 @@
 export const lang = new LocalizedStrings({
   en: {
     /// Setup section
-    setup_title: 'Set up WoWs Info',
+    setup_title: 'Set Up WoWs Info',
     setup_done_button: 'Done',
     setup_loading: 'Loading...',
     /// Home section
@@ -58,8 +58,8 @@ export const lang = new LocalizedStrings({
     warship_ramming: 'Ramming',
     warship_artillery_secondary: 'Secondary',
     warship_torpedoes: 'Torpedoes',
-    warship_torpedoes_visible_distance: 'Detection',
-    warship_antiaircraft: 'AA Defense',
+    warship_torpedoes_visible_distance: 'Torpedo Detection',
+    warship_antiaircraft: 'AA Defence',
     warship_maneuverability: 'Maneuverability',
     warship_maneuverability_turning: 'Turning Radius',
     warship_maneuverability_speed: 'Max Speed',
@@ -76,7 +76,7 @@ export const lang = new LocalizedStrings({
     server_name: ['Russia', 'Europe', 'North America', 'Asia'],
     setting_game_server: 'Game Server',
     setting_api_language: 'API Language',
-    setting_api_update_data: 'Update data from server',
+    setting_api_update_data: 'Update Data from Server',
     setting_api_update_data_title: 'Please only use this when data is missing',
     setting_api_update_data_update: 'Update',
     setting_api_update_data_cancel: 'Cancel',
@@ -148,7 +148,7 @@ export const lang = new LocalizedStrings({
     extra_support_wowsinfo: 'Support WoWs Info',
     extra_wowsinfo_re: 'WoWs Info Re',
     extra_wowsinfo_re_subtitle:
-      'Try out the new version currently under development',
+      'Try out the new version that is currently in development',
     extra_rs_beta: 'Realtime Statistics Beta',
     extra_rs_beta_download: 'Download RS on your computer',
     extra_support_wowsinfo_subtitle: 'Donations and Ads',
@@ -290,7 +290,7 @@ export const lang = new LocalizedStrings({
       'Please visit this GitHub repository and download the latest release. This program does not use a lot of RAM and storage. Currently, it is in its beta stage and has no GUI.\n',
     rs_tip_setup: '2. Setup',
     rs_tip_two:
-      "Copy and paste the path of your game folder into this program, and you have to run it with admin or it will not work. It won't do anything harmful to your computer.\n",
+      "Copy and paste the path of your game folder into this program, and you have to run it as administrator or it will not work. It won't do anything harmful to your computer.\n",
     rs_tip_enjoy: '3. Enjoy',
     rs_tip_three:
       'Enter the IP address you see on the screen, and WoWs Info will start giving you real-time statistics for both teams.\n',
@@ -313,7 +313,7 @@ export const lang = new LocalizedStrings({
     setup_loading: '加载中...',
     /// Home section
     // Friend section
-    friend_clan_title: '工会',
+    friend_clan_title: '公会',
     friend_player_title: '玩家',
     // Update section
     update_version_title: '版本信息',
@@ -438,10 +438,10 @@ export const lang = new LocalizedStrings({
     wiki_achievement: '成就',
     wiki_warships: '战舰',
     wiki_upgrades: '升级品',
-    wiki_flags: '旗子与迷彩',
+    wiki_flags: '旗帜与涂装',
     wiki_skills: '舰长技能',
     wiki_skills_tier: '等级',
-    wiki_skills_reset: '还原',
+    wiki_skills_reset: '重置',
     wiki_skills_point: '点',
     wiki_maps: '地图',
     wiki_collections: '收藏',
@@ -481,7 +481,7 @@ export const lang = new LocalizedStrings({
     website_userbonus: '我的奖赏',
     website_news_ingame: '游戏内新闻',
     website_ingame_armory: '我的武器库',
-    website_ingame_clan: '我的工会',
+    website_ingame_clan: '我的公会',
     website_ingame_warehouse: '我的仓库',
     website_my_logbook: '我的航海日志',
     // CC
@@ -560,10 +560,10 @@ export const lang = new LocalizedStrings({
     clan_member_title: '成员',
     // Record
     record_title: '记录',
-    record_best_ship: '最好',
+    record_best_ship: '最佳船只',
     record_max_damage_dealt: '最大伤害',
     record_max_frags_battle: '最多击杀',
-    record_max_planes_killed: '最多飞机击落',
+    record_max_planes_killed: '最多击落飞机',
     record_max_xp: '最多经验',
     record_max_ships_spotted: '最多侦测',
     record_max_total_agro: '最大潜在伤害',
@@ -781,7 +781,7 @@ export const lang = new LocalizedStrings({
     website_userbonus: '我的獎賞',
     website_news_ingame: '遊戲內新聞',
     website_ingame_armory: '我的武器庫',
-    website_ingame_clan: '我的工會',
+    website_ingame_clan: '我的公會',
     website_ingame_warehouse: '我的倉庫',
     website_my_logbook: '我的航海日誌',
     // CC
@@ -1099,7 +1099,7 @@ export const lang = new LocalizedStrings({
     tab_rank_title: 'ランク',
     // Rating
     rating_title: '操艦評価',
-    rating_description: 'プレイヤーレベルの評価方法',
+    rating_description: 'プレーヤーの実力を測る評価方法',
     rating_read_more: '- 詳細情報 -',
     rating_warning: '評価で人を判断しないでください',
     rating_author: 'Wiochi艦長による',
@@ -1159,7 +1159,7 @@ export const lang = new LocalizedStrings({
     clan_member_title: 'メンバー',
     // Record
     record_title: '最高記録',
-    record_best_ship: '最良の艦',
+    record_best_ship: 'ベスト艦',
     record_max_damage_dealt: '最大与ダメージ',
     record_max_frags_battle: '最大撃沈数',
     record_max_planes_killed: '最大撃墜数',
@@ -1186,7 +1186,7 @@ export const lang = new LocalizedStrings({
     // Tips
     rs_tip_download: '1. ダウンロード',
     rs_tip_one:
-      'このGitHubリポジトリを訪問し、最新リリースをダウンロードしてください。 このプログラムは多くのRAMとストレージを使用しません。 現在、ベータステージにあり、GUIはありません。\n',
+      'GitHubリポジトリにアクセスし、最新リリースをダウンロードしてください。このプログラムはRAMやストレージをほとんど消費しません。現在ベータ版のため、GUIはありません。\n',
     rs_tip_setup: '2. セットアップ',
     rs_tip_two:
       'ゲームフォルダーのパスをこのプログラムにコピーして貼り付け、管理者として実行する必要があります。 そうしないと動作しません。 あなたのコンピューターに有害なことはありません。\n',
