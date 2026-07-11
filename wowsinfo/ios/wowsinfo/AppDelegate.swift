@@ -1,39 +1,48 @@
-//
-//  AppDelegate.swift
-//  wowsinfo
-//
-//  Created by Yiheng Quan on 23/8/2023.
-//
-
 import UIKit
 import React
+import React_RCTAppDelegate
+import ReactAppDependencyProvider
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate, RCTBridgeDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
+  var window: UIWindow?
 
-    // This is required or bottomSafeViewHeight from React-CoreModules/RCTRedBox.mm will complain
-    var window: UIWindow?
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        ReactNativeManager.shared.setup(with: self, and: launchOptions)
-//        QuickActionManager.shared.setDefaultActions()
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+  var reactNativeDelegate: ReactNativeDelegate?
+  var reactNativeFactory: RCTReactNativeFactory?
 
-        // show the main view
-        let root = RootViewController.create(withMode: .uikit)
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = root
-        window?.makeKeyAndVisible()
-        ReactNativeManager.shared.attach(rootViewController: root)
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+  ) -> Bool {
+    let delegate = ReactNativeDelegate()
+    let factory = RCTReactNativeFactory(delegate: delegate)
+    delegate.dependencyProvider = RCTAppDependencyProvider()
 
-        return true
-    }
-    
-    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        QuickActionManager.shared.performShortcut(shortcutItem: shortcutItem)
-    }
-    
-    func sourceURL(for bridge: RCTBridge!) -> URL! {
-        ReactNativeManager.shared.jsBundleURL
-    }
+    reactNativeDelegate = delegate
+    reactNativeFactory = factory
+
+    window = UIWindow(frame: UIScreen.main.bounds)
+
+    factory.startReactNative(
+      withModuleName: "wowsinfo",
+      in: window,
+      launchOptions: launchOptions
+    )
+
+    return true
+  }
+}
+
+class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
+  override func sourceURL(for bridge: RCTBridge) -> URL? {
+    self.bundleURL()
+  }
+
+  override func bundleURL() -> URL? {
+#if DEBUG
+    RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+#else
+    Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+#endif
+  }
 }

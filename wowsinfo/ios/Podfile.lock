@@ -1905,7 +1905,7 @@ PODS:
     - React-Core
   - ReactNativeLocalization (2.3.2):
     - React-Core
-  - RNCAsyncStorage (1.19.2):
+  - RNCAsyncStorage (1.24.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2526,7 +2526,7 @@ SPEC CHECKSUMS:
   ReactNativeDependencies: fa0a54b3f5319ae0e3b9aff32bfee7a424b88e66
   ReactNativeExceptionHandler: a23922ca00122b050ae9412f960061791c232c47
   ReactNativeLocalization: 79b100588f6d7a68852b982ccbe57e329e8bb5a7
-  RNCAsyncStorage: 1f31d27e94b1c2493bd60a94faf5454a3b065a2b
+  RNCAsyncStorage: 5e197bc83d4c08d6efb9d7620b7ad2c73dbc2414
   RNGestureHandler: 92172e79df6e88e0e93b6341f9dcd8b5a02746ba
   RNIap: 3358ffe77a0b7866a3cb6013f973a94a7d68b105
   RNReanimated: fcf6a8cdd698fb09a811a8d6c5bcfe36575d965d
@@ -2536,6 +2536,6 @@ SPEC CHECKSUMS:
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   Yoga: fe50ab299e578f397fef753cf309c6703a4db29b
 
-PODFILE CHECKSUM: 40cb42babd4503ce69f1a8a1ba4762c11ac415a2
+PODFILE CHECKSUM: 179b207602d55f1d9a4d5e999157e27664fe298d
 
 COCOAPODS: 1.15.2

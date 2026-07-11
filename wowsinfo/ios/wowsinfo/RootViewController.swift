@@ -28,7 +28,9 @@ class RootViewController {
         case .swiftui:
             return SwiftUIViewController()
         case .uikit:
-            return ReactNativeManager.shared.getRCTRootViewController(with: "wowsinfo")
+            let vc = UIViewController()
+            vc.view = ReactNativeManager.shared.getRCTRootView(with: "wowsinfo")
+            return vc
         }
     }
     

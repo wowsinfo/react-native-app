@@ -42,7 +42,7 @@ import {
   setJSExceptionHandler,
   setNativeExceptionHandler,
 } from 'react-native-exception-handler';
-import {ReactNativeManager} from './core/native/ReactNativeManager';
+
 import {SimpleViewHandler} from './core/native/SimpleViewHandler';
 import {navigationRef} from './core/navigation/NavigationService';
 
@@ -54,7 +54,7 @@ setJSExceptionHandler((e, fatal) => {
   } else {
     console.log(`JSException\n${e}`);
   }
-}, true);
+}, false);
 
 setNativeExceptionHandler(e => {
   showAlert(e, 'NATIVE');
@@ -87,7 +87,6 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    ReactNativeManager.Instance.setup();
 
     this.state = {
       loading: true,

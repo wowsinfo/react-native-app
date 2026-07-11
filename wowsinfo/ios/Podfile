@@ -5,9 +5,7 @@ require Pod::Executable.execute_command('node', ['-p',
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
-min_target = min_ios_version_supported.to_f
-$ios_target = [min_target, 16.0].max.to_s
-platform :ios, $ios_target
+platform :ios, min_ios_version_supported
 prepare_react_native_project!
 
 linkage = ENV['USE_FRAMEWORKS']
@@ -16,62 +14,34 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-$rn_config = use_native_modules!
+react_native_path = Pod::Executable.execute_command('node', ['-p',
+  'require.resolve(
+    "react-native/scripts/react_native_pods.rb",
+    {paths: [process.argv[1]]},
+  )', __dir__]).strip.sub('/scripts/react_native_pods.rb', '')
 
-def setup_common_pods
+target 'wowsinfo' do
+  config = use_native_modules!
+
   use_react_native!(
-    :path => $rn_config[:reactNativePath],
+    :path => config[:reactNativePath],
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 end
 
-target "wowsinfo" do
-  setup_common_pods
-end
+target 'wowsinfo-debug' do
+  config = use_native_modules!
 
-target "wowsinfo-debug" do
-  setup_common_pods
-end
-
-post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      config.build_settings["IPHONEOS_DEPLOYMENT_TARGET"] = $ios_target
-      config.build_settings["CLANG_WARN_STRICT_PROTOTYPES"] = "NO"
-    end
-  end
-
-  react_native_post_install(
-    installer,
-    $rn_config[:reactNativePath],
-    :mac_catalyst_enabled => false
+  use_react_native!(
+    :path => config[:reactNativePath],
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 end
 
-post_integrate do |installer|
-  # Generate missing module maps for prebuilt pods AFTER everything is set up
-  headers_public = File.join(Pod::Config.instance.installation_root, "Pods/Headers/Public")
-
-  # Only generate the ones that are actually needed by our project
-  # Check which directories are referenced in the Swift compilation
-  modules_needed = {
-    "React" => "React-Core",
-    "FlipperKit" => "FlipperKit",
-    "ReactCommon" => "ReactCommon",
-    "RCTTypeSafety" => "RCTTypeSafety",
-    "React_Codegen" => "React-Codegen",
-    "React_NativeModulesApple" => "React-NativeModulesApple",
-    "folly" => "RCT-Folly",
-    "yoga" => "Yoga",
-  }
-
-  modules_needed.each do |dir_name, module_name|
-    dir_path = File.join(headers_public, dir_name)
-    module_map_path = File.join(dir_path, "#{module_name}.modulemap")
-    FileUtils.mkdir_p(dir_path)
-    # Use valid Clang module identifier (no hyphens, no special chars)
-    safe_name = module_name.gsub("-", "_")
-    File.write(module_map_path, "module #{safe_name} {\n}\n")
-    Pod::UI.puts "[ModuleMap] Generated module map: #{module_map_path}"
-  end
+post_install do |installer|
+  react_native_post_install(
+    installer,
+    react_native_path,
+    :mac_catalyst_enabled => false,
+  )
 end

@@ -6,12 +6,16 @@
   "scripts": {
     "start": "react-native start",
     "android": "react-native run-android",
-    "ios": "react-native run-ios --scheme wowsinfo-debug --simulator=\"iPhone 14 Pro\"",
+    "ios": "react-native run-ios --scheme wowsinfo-debug --simulator=\"iPhone 17 Pro\"",
     "pod": "cd ios && pod install",
     "clean-ios": "cd ios && rm -rf Pods/ Podfile.lock",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "format-all": "prettier --write '**/*.js' '**/*.ts*'",
-    "test": "jest"
+    "lint": "bunx eslint . --ext .js,.jsx,.ts,.tsx",
+    "format-all": "bunx prettier --write '**/*.js' '**/*.ts*'",
+    "test": "bunx jest",
+    "ios:dev": "bunx react-native run-ios --scheme wowsinfo-debug --simulator=\"iPhone 17 Pro\" --port 8088",
+    "ios:release": "bunx react-native run-ios --scheme wowsinfo --configuration Release",
+    "ios:prod": "bun run bundle:ios && bunx react-native run-ios --scheme wowsinfo --configuration Release",
+    "bundle:ios": "bunx react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle"
   },
   "dependencies": {
     "react": "19.2.3",
@@ -37,7 +41,7 @@
     "@react-native/eslint-config": "0.86.0",
     "@react-native/metro-config": "0.86.0",
     "@react-native/typescript-config": "0.86.0",
-    "@react-native-community/cli": "20.1.0",
+    "@react-native-community/cli": "latest",
     "@react-native-community/cli-platform-android": "20.1.0",
     "@react-native-community/cli-platform-ios": "20.1.0",
     "@types/react": "^19.2.0",
@@ -59,6 +63,6 @@
     "typescript": "^5.8.3"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20.12"
   }
 }
