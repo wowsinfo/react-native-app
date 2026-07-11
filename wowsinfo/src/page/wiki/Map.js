@@ -32,7 +32,7 @@ class Map extends Component {
     const {indicator} = styles;
 
     // Get map dimension
-    const {width, height} = Dimensions.get('window');
+    const {width = 390, height = 844} = Dimensions.get('window') || {};
     let imageWidth = width > height ? height : width;
     imageWidth -= 20;
 

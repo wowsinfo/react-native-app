@@ -74,7 +74,7 @@ class WarshipDetail extends PureComponent {
   }
 
   componentDidUpdate() {
-    const {module} = this.props;
+    const {module} = this.props.route?.params ?? {};
     const {data} = this.state;
     if (module) {
       if (this.state.module === module) {

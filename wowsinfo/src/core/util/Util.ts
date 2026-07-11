@@ -87,10 +87,10 @@ export const bestCellWidth = (target: number) => {
  * Get the cell width so that it fits the entire device width evenly
  */
 export const bestCellWidthEven = (target: number) => {
-  const deviceWidth = Dimensions.get('window').width;
+  const deviceWidth = Dimensions.get('window')?.width || 390;
   const usualCount = deviceWidth / target;
   const result = deviceWidth / Math.floor(usualCount);
-  return result;
+  return Number.isFinite(result) ? result : target;
 };
 
 /**
@@ -100,9 +100,10 @@ export const bestCellWidthEven = (target: number) => {
  */
 export const bestWidth = (width: number, deviceWidth = currDeviceWidth()) => {
   const maxCount = Math.round(deviceWidth / width);
-  return deviceWidth / Math.max(1, maxCount);
+  const result = deviceWidth / Math.max(1, maxCount);
+  return Number.isFinite(result) ? result : width;
 };
 
 export const currDeviceWidth = () => {
-  return Dimensions.get('window').width;
+  return Dimensions.get('window')?.width || 390;
 };

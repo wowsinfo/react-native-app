@@ -9,7 +9,7 @@ import {TintColour} from '../../value/colour';
 class Graph extends PureComponent {
   constructor(props) {
     super(props);
-    const {data} = this.props;
+    const {data} = this.props.route?.params ?? {};
     console.log(data);
 
     let tierInfo = {};

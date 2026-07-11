@@ -31,7 +31,7 @@ class Statistics extends Component {
   constructor(props) {
     super(props);
     setLastLocation('Statistics');
-    let ID = Guard(props, 'info.account_id', null);
+    let ID = Guard(props, 'route.params.info.account_id', null);
     // ID must be valid
     if (ID != null && ID !== '') {
       const {account_id, nickname, server} = props.route?.params?.info ?? {};

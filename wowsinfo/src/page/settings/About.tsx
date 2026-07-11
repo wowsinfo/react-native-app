@@ -10,7 +10,7 @@ import {getRandomAnimation} from '../../core';
 export const About = () => {
   const [animation, setAnimation] = useState('pulse');
   const {touch} = styles;
-  const {width, height} = Dimensions.get('window');
+  const {width = 390, height = 844} = Dimensions.get('window') || {};
   let imageWidth = width > height ? height * 0.5 : width * 0.5;
 
   useEffect(() => {

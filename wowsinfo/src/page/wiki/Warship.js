@@ -50,7 +50,7 @@ class Warship extends PureComponent {
   }
 
   componentDidUpdate() {
-    const {filter} = this.props;
+    const {filter} = this.props.route?.params ?? {};
     if (filter) {
       // Prevent repetitive update
       if (filter === this.state.filter) {

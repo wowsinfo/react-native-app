@@ -33,25 +33,22 @@ export const WikiIcon = ({
     width *= scale;
   }
   let theme = AppGlobalData.get(LOCAL.theme);
+  const tint = theme?.[500];
 
   let imageSrc: ImageSourcePropType = {
     uri: item.image ? item.image : item.icon,
   };
-  // let defaultSrc: ImageSourcePropType = {uri: 'Unknown'};
 
   if (warship) {
     return (
       <View style={container}>
-        {item ? (
-          item.new ? (
-            <View style={[newLabel, {backgroundColor: theme[500]}]} />
-          ) : null
+        {item?.new ? (
+          <View style={[newLabel, {backgroundColor: tint || '#F44336'}]} />
         ) : null}
         <Image
           source={imageSrc}
           resizeMode="contain"
-          // defaultSource={defaultSrc}
-          tintColor={themeIcon ? theme[500] : undefined}
+          tintColor={themeIcon ? tint : undefined}
           style={{width: width, height: width / 1.7}}
         />
       </View>
@@ -59,21 +56,15 @@ export const WikiIcon = ({
   } else {
     return (
       <Touchable
-        style={[container, selected ? {borderColor: theme[500]} : null]}
+        style={[container, selected ? {borderColor: tint} : null]}
         {...otherProps}>
-        {item.new ? (
-          <View
-            style={[
-              newLabel,
-              {backgroundColor: AppGlobalData.get(LOCAL.theme)[500]},
-            ]}
-          />
+        {item?.new ? (
+          <View style={[newLabel, {backgroundColor: tint || '#F44336'}]} />
         ) : null}
         <Image
           source={imageSrc}
-          tintColor={themeIcon ? theme[500] : undefined}
+          tintColor={themeIcon ? tint : undefined}
           resizeMode="contain"
-          // defaultSource={defaultSrc}
           style={{height: width, width: width}}
         />
       </Touchable>

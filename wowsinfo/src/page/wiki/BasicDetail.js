@@ -14,15 +14,15 @@ import {TintTextColour} from '../../value/colour';
 
 class BasicDetail extends Component {
   render() {
-    const {item} = this.props;
+    const {item} = this.props.route?.params ?? {};
     console.log(item);
 
     let ID = '';
-    if (item.consumable_id) {
+    if (item?.consumable_id) {
       ID = item.consumable_id;
-    } else if (item.achievement_id) {
+    } else if (item?.achievement_id) {
       ID = item.achievement_id;
-    } else if (item.collection_id) {
+    } else if (item?.collection_id) {
       ID = item.card_id;
     }
 
@@ -30,7 +30,7 @@ class BasicDetail extends Component {
   }
 
   renderDetail() {
-    const {item} = this.props;
+    const {item} = this.props.route?.params ?? {};
     const {container, label} = styles;
     // Make title colour tint colour
     let title = [label, TintTextColour()];
