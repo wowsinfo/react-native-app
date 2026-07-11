@@ -1,5 +1,6 @@
 export * from './common/FloatingButton';
 export * from './common/FooterButton';
+export * from './common/LoadingIndicator';
 export { Touchable, DividerPlus, Space } from '@wowsinfo/ui';
 export * from './common/AdmobBanner';
 

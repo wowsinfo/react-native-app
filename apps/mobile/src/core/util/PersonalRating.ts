@@ -1,4 +1,5 @@
-import {roundTo, SafeValue} from '../util/SafeGuard';
+import {SafeValue} from '../util/SafeGuard';
+import {roundTo} from '@wowsinfo/core';
 import {SAVED} from '../../value/data';
 import {lang} from '../../value/lang';
 import {getAP, getRatingRange, getRatingIndex, getColourList, getColour} from '@wowsinfo/core';

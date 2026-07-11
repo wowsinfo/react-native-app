@@ -242,7 +242,7 @@ class Settings extends Component {
           key="dark_mode"
           title={lang.settings_app_dark_mode}
           onPress={() => this.updateTheme()}
-          right={() => <Checkbox status={darkMode ? 'checked' : 'unchecked'} />}
+          right={() => <Checkbox status={darkMode ? 'checked' : 'unchecked'} color={tintColour?.[500]} />}
         />
         <List.Item
           key="theme_colour"
@@ -257,7 +257,7 @@ class Settings extends Component {
           title={lang.settings_app_swap_buttons}
           onPress={() => this.swapButton(!swapButton)}
           right={() => (
-            <Checkbox status={swapButton ? 'checked' : 'unchecked'} />
+            <Checkbox status={swapButton ? 'checked' : 'unchecked'} color={tintColour?.[500]} />
           )}
         />
       </View>

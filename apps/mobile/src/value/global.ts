@@ -1,4 +1,3 @@
-import AppGlobalData from '@wowsinfo/core';
+import { AppGlobalData } from '@wowsinfo/core';
 
-const appGlobalData = AppGlobalData;
-window.AppGlobalData = appGlobalData;
+window.AppGlobalData = AppGlobalData;
