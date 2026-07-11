@@ -3,7 +3,12 @@ import {Actions} from '../core/navigation/Actions';
 import {getAvailablePurchases} from 'react-native-iap';
 import {Alert, Platform} from 'react-native';
 import {lang} from './lang';
-import {APP, LOCAL, SAVED, SERVER} from '@wowsinfo/shared';
+import {APP as SharedAPP, LOCAL as SharedLOCAL, SAVED as SharedSAVED, SERVER as SharedSERVER} from '@wowsinfo/shared';
+
+export const APP = SharedAPP;
+export const LOCAL = SharedLOCAL;
+export const SAVED = SharedSAVED;
+export const SERVER = SharedSERVER;
 
 /**
  * First launch

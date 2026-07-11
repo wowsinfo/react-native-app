@@ -3,7 +3,7 @@ export * from './common/Filter';
 export * from './common/Loading';
 
 // Go to this page when app is first launched
-import Menu from './home/Menu';
+import { Menu } from './home/Menu';
 export {Menu};
 export * from './home/Setup';
 export * from './home/Friend';
@@ -23,8 +23,8 @@ export * from './wiki/WarshipFilter';
 export * from './wiki/WarshipModule';
 export * from './wiki/SimilarGraph';
 
-import Statistics from './player/Statistics';
-export {Statistics};
+import { Statistics } from './player/Statistics';
+export { Statistics };
 export * from './player/PlayerAchievement';
 export * from './player/Rating';
 export * from './player/Graph';
