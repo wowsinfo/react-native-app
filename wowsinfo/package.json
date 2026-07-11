@@ -2,6 +2,7 @@
   "name": "wowsinfo",
   "version": "1.7.0",
   "private": true,
+  "packageManager": "bun@1.2.9",
   "scripts": {
     "start": "react-native start",
     "android": "react-native run-android",
@@ -9,7 +10,7 @@
     "pod": "cd ios && pod install",
     "clean-ios": "cd ios && rm -rf Pods/ Podfile.lock",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "format-all": "npx prettier --write '**/*.js' '**/*.ts*'",
+    "format-all": "prettier --write '**/*.js' '**/*.ts*'",
     "test": "jest"
   },
   "dependencies": {
@@ -51,7 +52,6 @@
     "react-native-gesture-handler": "^2.24.0",
     "react-native-material-color": "^1.0.15",
     "react-native-reanimated": "^4.5.1",
-    "react-native-worklets": "^0.10.2",
     "react-native-worklets": "^0.10.2",
     "react-native-vector-icons": "^9.2.0",
     "react-test-renderer": "19.2.3",
