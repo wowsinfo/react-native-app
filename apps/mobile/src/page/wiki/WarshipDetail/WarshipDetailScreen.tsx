@@ -18,13 +18,13 @@ import {
   InfoLabel,
   FooterPlus,
   SectionTitle,
-} from '../../component';
-import {SAVED, langStr, getCurrDomain} from '../../value/data';
-import {lang} from '../../value/lang';
-import {SafeFetch, Guard, SafeAction, copy, roundTo} from '../../core';
-import {WoWsAPI} from '../../value/api';
-import {Actions} from '../../core/navigation/Actions';
-import {TintTextColour} from '../../value/colour';
+} from '../../../component';
+import {SAVED, langStr, getCurrDomain} from '../../../value/data';
+import {lang} from '../../../value/lang';
+import {SafeFetch, Guard, SafeAction, copy, roundTo} from '../../../core';
+import {WoWsAPI} from '../../../value/api';
+import {Actions} from '../../../core/navigation/Actions';
+import {TintTextColour} from '../../../value/colour';
 import {HorizontalBarChart} from 'native-chart-experiment';
 
 

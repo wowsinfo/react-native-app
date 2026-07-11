@@ -1,0 +1,1 @@
+export { WarshipDetail } from './WarshipDetailScreen';

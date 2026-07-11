@@ -11,7 +11,7 @@ import {
   PlayerRecord,
   DetailedInfo,
   RatingButton,
-} from '../../component';
+} from '../../../component';
 import {
   SafeFetch,
   Guard,
@@ -20,11 +20,11 @@ import {
   SafeStorage,
   getOverallRating,
   getColour,
-} from '../../core';
-import {WoWsAPI} from '../../value/api';
-import {getDomain, getPrefix, LOCAL, setLastLocation} from '../../value/data';
-import {TintColour} from '../../value/colour';
-import {lang} from '../../value/lang';
+} from '../../../core';
+import {WoWsAPI} from '../../../value/api';
+import {getDomain, getPrefix, LOCAL, setLastLocation} from '../../../value/data';
+import {TintColour} from '../../../value/colour';
+import {lang} from '../../../value/lang';
 
 
 class Statistics extends Component {

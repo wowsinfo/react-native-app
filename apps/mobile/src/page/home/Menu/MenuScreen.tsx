@@ -17,10 +17,10 @@ import {
 import {isAndroid, isIos} from 'react-native-device-detection';
 import {List, MD2Colors, FAB, Button, withTheme} from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
-import {WoWsInfo, SectionTitle, AppName} from '../../component';
-import {lang} from '../../value/lang';
-import {SafeAction, Downloader, bestWidth} from '../../core';
-import {ThemeBackColour, TintBackgroundColour, TintColour} from '../../value/colour';
+import {WoWsInfo, SectionTitle, AppName} from '../../../component';
+import {lang} from '../../../value/lang';
+import {SafeAction, Downloader, bestWidth} from '../../../core';
+import {ThemeBackColour, TintBackgroundColour, TintColour} from '../../../value/colour';
 import {
   getCurrDomain,
   getCurrServer,
@@ -36,9 +36,9 @@ import {
   setProVersion,
   differentMonth,
   APP,
-} from '../../value/data';
-import {Loading} from '../common/Loading';
-import {Actions} from '../../core/navigation/Actions';
+} from '../../../value/data';
+import {Loading} from '../../common/Loading';
+import {Actions} from '../../../core/navigation/Actions';
 
 class Menu extends Component {
   constructor(props) {
