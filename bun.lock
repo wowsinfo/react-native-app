@@ -78,9 +78,12 @@
       "name": "@wowsinfo/ui",
       "version": "0.1.0",
       "dependencies": {
+        "@babel/runtime": "^7.25.0",
         "@wowsinfo/shared": "workspace:*",
       },
       "devDependencies": {
+        "react": "^19.2.3",
+        "react-native": "^0.86.0",
         "typescript": "^5.8.3",
       },
       "peerDependencies": {

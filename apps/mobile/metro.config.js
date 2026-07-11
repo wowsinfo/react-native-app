@@ -13,6 +13,9 @@ const config = {
   ],
   resolver: {
     sourceExts: ['js', 'jsx', 'ts', 'tsx', 'json'],
+    extraNodeModules: {
+      '@babel/runtime': path.resolve(monorepoRoot, 'node_modules/@babel/runtime'),
+    },
   },
 };
 

@@ -10,9 +10,12 @@
     "react-native-paper": "^5.15.3"
   },
   "dependencies": {
-    "@wowsinfo/shared": "workspace:*"
+    "@wowsinfo/shared": "workspace:*",
+    "@babel/runtime": "^7.25.0"
   },
   "devDependencies": {
+    "react": "^19.2.3",
+    "react-native": "^0.86.0",
     "typescript": "^5.8.3"
   }
 }
