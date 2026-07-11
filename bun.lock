@@ -4,6 +4,10 @@
   "workspaces": {
     "": {
       "name": "wowsinfo-monorepo",
+      "devDependencies": {
+        "@babel/runtime": "^7.25.0",
+        "string-format": "^2.0.0",
+      },
     },
     "apps/mobile": {
       "name": "@wowsinfo/mobile",
@@ -57,11 +61,27 @@
         "typescript": "^5.8.3",
       },
     },
+    "apps/windows": {
+      "name": "@wowsinfo/windows",
+      "version": "0.1.0",
+      "dependencies": {
+        "@wowsinfo/core": "workspace:*",
+        "@wowsinfo/shared": "workspace:*",
+        "@wowsinfo/ui": "workspace:*",
+        "react": "^19.2.3",
+        "react-native": "0.86.0",
+      },
+      "devDependencies": {
+        "@types/react": "^19.2.0",
+        "typescript": "^5.8.3",
+      },
+    },
     "packages/core": {
       "name": "@wowsinfo/core",
       "version": "0.1.0",
       "dependencies": {
         "@wowsinfo/shared": "workspace:*",
+        "string-format": "^2.0.0",
       },
       "devDependencies": {
         "typescript": "^5.8.3",
@@ -82,12 +102,9 @@
       "name": "@wowsinfo/ui",
       "version": "0.1.0",
       "dependencies": {
-        "@babel/runtime": "^7.25.0",
         "@wowsinfo/shared": "workspace:*",
       },
       "devDependencies": {
-        "react": "^19.2.3",
-        "react-native": "^0.86.0",
         "typescript": "^5.8.3",
       },
       "peerDependencies": {
@@ -561,6 +578,8 @@
     "@wowsinfo/shared": ["@wowsinfo/shared@workspace:packages/shared"],
 
     "@wowsinfo/ui": ["@wowsinfo/ui@workspace:packages/ui"],
+
+    "@wowsinfo/windows": ["@wowsinfo/windows@workspace:apps/windows"],
 
     "abort-controller": ["abort-controller@3.0.0", "", { "dependencies": { "event-target-shim": "^5.0.0" } }, "sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg=="],
 

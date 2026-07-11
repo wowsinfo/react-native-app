@@ -5,7 +5,8 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "dependencies": {
-    "@wowsinfo/shared": "workspace:*"
+    "@wowsinfo/shared": "workspace:*",
+    "string-format": "^2.0.0"
   },
   "devDependencies": {
     "typescript": "^5.8.3"

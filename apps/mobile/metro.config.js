@@ -7,15 +7,12 @@ const config = {
   watchFolders: [
     path.resolve(monorepoRoot, 'packages'),
   ],
-  nodeModulesPaths: [
-    path.resolve(monorepoRoot, 'node_modules'),
-    path.resolve(__dirname, 'node_modules'),
-  ],
   resolver: {
     sourceExts: ['js', 'jsx', 'ts', 'tsx', 'json'],
-    extraNodeModules: {
-      '@babel/runtime': path.resolve(monorepoRoot, 'node_modules/@babel/runtime'),
-    },
+    nodeModulesPaths: [
+      path.resolve(monorepoRoot, 'node_modules'),
+      path.resolve(__dirname, 'node_modules'),
+    ],
   },
 };
 
