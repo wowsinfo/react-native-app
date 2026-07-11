@@ -20,6 +20,9 @@ const MODE = {
 };
 
 class WarshipFilter extends Component {
+  searchRef = React.createRef();
+  scrollRef = React.createRef();
+
   constructor(props) {
     super(props);
 
@@ -34,7 +37,7 @@ class WarshipFilter extends Component {
 
   componentDidMount() {
     // After component has been rendered or it will be undefined
-    this.refs.scrollview.scrollTo({x: 0, y: 128, animated: false});
+    this.scrollRef.current?.scrollTo({x: 0, y: 128, animated: false});
   }
 
   render() {
@@ -55,10 +58,10 @@ class WarshipFilter extends Component {
       <WoWsInfo
         hideAds
         title={lang.wiki_warship_filter_placeholder}
-        onPress={() => this.refs.search.focus()}>
+        onPress={() => this.searchRef.current?.focus()}>
         <TextInput
           label={lang.wiki_warship_filter_placeholder}
-          ref="search"
+          ref={this.searchRef}
           autoCorrect={false}
           theme={{roundness: 0}}
           onChangeText={t => this.setState({name: t})}
@@ -71,7 +74,7 @@ class WarshipFilter extends Component {
           clearButtonMode="while-editing"
           autoCapitalize="none"
         />
-        <ScrollView ref="scrollview">
+        <ScrollView ref={this.scrollRef}>
           <Space />
           <List.Section title={lang.wiki_warship_filter_tier}>
             <Text style={selectionText}>{`${tier.join(' | ')} `}</Text>

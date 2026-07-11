@@ -16,7 +16,6 @@ import {
   Title,
   Subheading,
 } from 'react-native-paper';
-import {RED} from 'react-native-material-color';
 import {Actions} from '../../core/navigation/Actions';
 import {lang} from '../../value/lang';
 import {
@@ -27,6 +26,7 @@ import {
 } from '../../value/data';
 import {Downloader} from '../../core';
 import {WoWsInfo, SectionTitle, LoadingIndicator} from '../../component';
+import {TintBackgroundColour} from '../../value/colour';
 
 
 class Setup extends Component {
@@ -92,7 +92,7 @@ class Setup extends Component {
           visible={!loading}
           icon="check"
           color="white"
-          style={[fab, {backgroundColor: RED[500]}]}
+          style={[fab, {backgroundColor: TintBackgroundColour()}]}
           label={lang.setup_done_button}
           onPress={loading ? null : () => this.finishSetup()}
         />

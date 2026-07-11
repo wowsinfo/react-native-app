@@ -20,6 +20,8 @@ import {Friend} from './Friend';
 import {lang} from '../../value/lang';
 
 class Search extends Component {
+  searchRef = React.createRef();
+
   constructor(props) {
     super(props);
     setLastLocation('Search');
@@ -54,10 +56,10 @@ class Search extends Component {
       <WoWsInfo
         hideAds
         title={lang.menu_footer}
-        onPress={() => this.refs.search.focus()}>
+        onPress={() => this.searchRef.current?.focus()}>
         <KeyboardAvoidingView behavior={undefined} style={{flex: 1}}>
           <Searchbar
-            ref="search"
+            ref={this.searchRef}
             value={search}
             style={searchBar}
             placeholder={`${this.prefix.toUpperCase()} - ${online} ${

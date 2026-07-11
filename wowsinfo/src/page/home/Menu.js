@@ -20,7 +20,7 @@ import * as Animatable from 'react-native-animatable';
 import {WoWsInfo, SectionTitle, AppName} from '../../component';
 import {lang} from '../../value/lang';
 import {SafeAction, Downloader, bestWidth} from '../../core';
-import {ThemeBackColour, TintColour} from '../../value/colour';
+import {ThemeBackColour, TintBackgroundColour, TintColour} from '../../value/colour';
 import {
   getCurrDomain,
   getCurrServer,
@@ -308,7 +308,7 @@ class Menu extends Component {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="always"
           onLayout={this.updateBestWidth}>
-          <Animatable.View ref="AppName" animation="fadeInDown" easing="ease">
+          <Animatable.View animation="fadeInDown" easing="ease">
             <AppName />
           </Animatable.View>
           {this.renderProButton()}
@@ -318,7 +318,8 @@ class Menu extends Component {
         </ScrollView>
         <FAB
           icon="magnify"
-          style={styles.fab}
+          color="white"
+          style={[styles.fab, {backgroundColor: TintBackgroundColour()}]}
           onPress={() => SafeAction('Search')}
         />
       </WoWsInfo>
