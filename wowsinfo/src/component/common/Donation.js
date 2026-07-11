@@ -26,12 +26,11 @@ class Donation extends Component {
     if (!AppGlobalData.githubVersion) {
       try {
         const products = await RNIap.getProducts(itemSkus);
-        // Do this just to ensure that all IAPs are available
         await RNIap.consumeAllItems();
         products.sort((a, b) => a.price.localeCompare(b.price));
         this.setState({products});
       } catch (err) {
-        console.warn(err); // standardized err.code and err.message available
+        console.warn(err);
       }
     }
   }
@@ -46,7 +45,6 @@ class Donation extends Component {
       {t: lang.support_wechat, d: APP.WeChat, c: 'green'},
     ];
 
-    // They won't allow wechat and paypal
     if (!AppGlobalData.githubVersion) {
       this.support = [
         {
@@ -59,12 +57,6 @@ class Donation extends Component {
 
     return (
       <View>
-        {/* { AppGlobalData.GITHUB_VERSION || products == null ? null :
-          <FlatList horizontal data={products} renderItem={({item}) =>
-            <Button style={{marginLeft: 4}} icon='favorite' color='red' compact
-              onPress={() => this.supportWoWsInfo(item)}>{item.localizedPrice}</Button>}
-          keyExtractor={p => p.price}/>
-        } */}
         {this.support.map(item => {
           return (
             <List.Item
@@ -81,15 +73,12 @@ class Donation extends Component {
 
   async supportWoWsInfo(item) {
     try {
-      // Will return a purchase object with a receipt which can be used to validate on your server.
       const purchase = await RNIap.buyProduct(item.productId);
-      // Consume it right away to buy multiple times
       await RNIap.consumePurchase(purchase.purchaseToken);
       this.setState({
-        receipt: purchase.transactionReceipt, // save the receipt if you need it, whether locally, or to your server.
+        receipt: purchase.transactionReceipt,
       });
     } catch (err) {
-      // standardized err.code and err.message available
       console.error(err.code, err.message);
       const subscription = RNIap.addAdditionalSuccessPurchaseListenerIOS(
         async purchase => {

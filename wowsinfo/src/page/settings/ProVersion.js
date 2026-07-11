@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, ScrollView, Alert} from 'react-native';
 import {WoWsInfo, LoadingIndicator} from '../../component';
-import {Title, List, Button, Text, Colors} from 'react-native-paper';
+import {Title, List, Button, Text, MD2Colors} from 'react-native-paper';
 import {
   initConnection,
   getSubscriptions,
@@ -11,7 +11,7 @@ import {
   purchaseErrorListener,
 } from 'react-native-iap';
 import {setProVersion, validateProVersion} from '../../value/data';
-import {Actions} from 'react-native-router-flux';
+import {Actions} from '../../core/navigation/Actions';
 import {lang} from '../../value/lang';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
 
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     paddingTop: 32,
     fontSize: 32,
     fontWeight: 'bold',
-    color: Colors.orange500,
+    color: MD2Colors.orange500,
   },
   buttonView: {
     padding: 16,

@@ -1,48 +1,27 @@
 # Resolve react_native_pods.rb with node to allow for hoisting
-require Pod::Executable.execute_command("node", ["-p",
-                                                 'require.resolve(
+require Pod::Executable.execute_command('node', ['-p',
+  'require.resolve(
     "react-native/scripts/react_native_pods.rb",
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
-$IOS_TARGET = "14.0"
-platform :ios, $IOS_TARGET
+min_target = min_ios_version_supported.to_f
+$ios_target = [min_target, 16.0].max.to_s
+platform :ios, $ios_target
 prepare_react_native_project!
 
-# If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
-# because `react-native-flipper` depends on (FlipperKit,...) that will be excluded
-#
-# To fix this you can also exclude `react-native-flipper` using a `react-native.config.js`
-# ```js
-# module.exports = {
-#   dependencies: {
-#     ...(process.env.NO_FLIPPER ? { 'react-native-flipper': { platforms: { ios: null } } } : {}),
-# ```
-$flipper_config = ENV["NO_FLIPPER"] == "1" ? FlipperConfiguration.disabled : FlipperConfiguration.enabled
-$rn_config = use_native_modules!
-
-linkage = ENV["USE_FRAMEWORKS"]
+linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
   use_frameworks! :linkage => linkage.to_sym
 end
 
-def setup_common_pods
-  # Flags change depending on the env values.
-  flags = get_default_flags()
+$rn_config = use_native_modules!
 
+def setup_common_pods
   use_react_native!(
     :path => $rn_config[:reactNativePath],
-    # Hermes is now enabled by default. Disable by setting this flag to false.
-    :hermes_enabled => flags[:hermes_enabled],
-    :fabric_enabled => flags[:fabric_enabled],
-    # Enables Flipper.
-    #
-    # Note that if you have use_frameworks! enabled, Flipper will not work and
-    # you should disable the next line.
-    :flipper_configuration => $flipper_config,
-    # An absolute path to your application root.
-    :app_path => "#{Pod::Config.instance.installation_root}/..",
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 end
 
@@ -57,18 +36,42 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings["IPHONEOS_DEPLOYMENT_TARGET"] = $IOS_TARGET
-      # https://github.com/facebook/react-native/issues/36763#issuecomment-1512798923
-      # clang warns when we use the RCT_EXTERN_MODULE
+      config.build_settings["IPHONEOS_DEPLOYMENT_TARGET"] = $ios_target
       config.build_settings["CLANG_WARN_STRICT_PROTOTYPES"] = "NO"
     end
   end
 
-  # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
   react_native_post_install(
     installer,
     $rn_config[:reactNativePath],
-    :mac_catalyst_enabled => false,
+    :mac_catalyst_enabled => false
   )
-  __apply_Xcode_12_5_M1_post_install_workaround(installer)
+end
+
+post_integrate do |installer|
+  # Generate missing module maps for prebuilt pods AFTER everything is set up
+  headers_public = File.join(Pod::Config.instance.installation_root, "Pods/Headers/Public")
+
+  # Only generate the ones that are actually needed by our project
+  # Check which directories are referenced in the Swift compilation
+  modules_needed = {
+    "React" => "React-Core",
+    "FlipperKit" => "FlipperKit",
+    "ReactCommon" => "ReactCommon",
+    "RCTTypeSafety" => "RCTTypeSafety",
+    "React_Codegen" => "React-Codegen",
+    "React_NativeModulesApple" => "React-NativeModulesApple",
+    "folly" => "RCT-Folly",
+    "yoga" => "Yoga",
+  }
+
+  modules_needed.each do |dir_name, module_name|
+    dir_path = File.join(headers_public, dir_name)
+    module_map_path = File.join(dir_path, "#{module_name}.modulemap")
+    FileUtils.mkdir_p(dir_path)
+    # Use valid Clang module identifier (no hyphens, no special chars)
+    safe_name = module_name.gsub("-", "_")
+    File.write(module_map_path, "module #{safe_name} {\n}\n")
+    Pod::UI.puts "[ModuleMap] Generated module map: #{module_map_path}"
+  end
 end

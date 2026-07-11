@@ -24,7 +24,7 @@ export const RatingButton = ({rating, number}: RatingButtonProps) => {
     if (rating == null || rating === 0) {
       // return a place holder button
       return (
-        <Button mode="contained" color="transparent" theme={{roundness: 0}} />
+        <Button mode="contained" color="transparent" theme={{roundness: 0}}>{' '}</Button>
       );
     }
 

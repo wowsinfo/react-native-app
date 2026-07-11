@@ -15,7 +15,7 @@ import {
   Share,
 } from 'react-native';
 import {isAndroid, isIos} from 'react-native-device-detection';
-import {List, Colors, FAB, Button, withTheme} from 'react-native-paper';
+import {List, MD2Colors, FAB, Button, withTheme} from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
 import {WoWsInfo, SectionTitle, AppName} from '../../component';
 import {lang} from '../../value/lang';
@@ -38,7 +38,7 @@ import {
   APP,
 } from '../../value/data';
 import {Loading} from '../common/Loading';
-import {Actions} from 'react-native-router-flux';
+import {Actions} from '../../core/navigation/Actions';
 import {ReactNativeManager} from '../../core/native/ReactNativeManager';
 import {QuickAction} from '../../core/native/QuickAction';
 import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
@@ -371,7 +371,7 @@ class Menu extends Component {
               )}
               right={() =>
                 isAndroid ? null : (
-                  <List.Icon color={Colors.grey500} icon="chevron-right" />
+                  <List.Icon color={MD2Colors.grey500} icon="chevron-right" />
                 )
               }
             />
@@ -383,7 +383,7 @@ class Menu extends Component {
             title={lang.extra_wowsinfo_re}
             description={lang.extra_wowsinfo_re_subtitle}
             style={{width: bestItemWidth}}
-            titleStyle={{color: Colors.orange500}}
+            titleStyle={{color: MD2Colors.orange500}}
             onPress={() => SimpleViewHandler.openURL('https://wowsinfo.firebaseapp.com/')}
           /> */}
           <List.Item
@@ -391,7 +391,7 @@ class Menu extends Component {
             title="RS Beta"
             description={lang.extra_rs_beta}
             style={{width: bestItemWidth}}
-            titleStyle={{color: Colors.orange500}}
+            titleStyle={{color: MD2Colors.orange500}}
             onPress={() => (onlyProVersion() ? SafeAction('RS') : null)}
             // TODO: only enable this safe if we want to make it free
             // onPress={() => (SafeAction('RS'))}

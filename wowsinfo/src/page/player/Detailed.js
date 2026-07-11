@@ -8,7 +8,7 @@ import {
   RatingButton,
 } from '../../component';
 import {SAVED} from '../../value/data';
-import {Actions} from 'react-native-router-flux';
+import {Actions} from '../../core/navigation/Actions';
 import {SafeAction, getColour, roundTo} from '../../core';
 import {lang} from '../../value/lang';
 import {withTheme} from 'react-native-paper';

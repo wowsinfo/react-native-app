@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {FAB} from 'react-native-paper';
-import {Actions} from 'react-native-router-flux';
+import {Actions} from '../../core/navigation/Actions';
 
 export const FloatingButton = () => {
   const [menu, setMenu] = useState(false);

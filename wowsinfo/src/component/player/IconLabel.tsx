@@ -30,7 +30,7 @@ export const IconLabel = ({
       <IconButton
         size={36}
         icon={icon}
-        color={theme.colors.primary}
+        iconColor={theme.colors.primary}
         {...otherProps}
       />
       <Text style={label}>{info}</Text>

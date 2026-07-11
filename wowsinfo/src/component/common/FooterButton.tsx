@@ -1,7 +1,7 @@
 import React  from 'react';
 import {SafeAreaView} from 'react-native';
-import {IconButton, Colors} from 'react-native-paper';
-import {Actions} from 'react-native-router-flux';
+import {IconButton, MD2Colors} from 'react-native-paper';
+import {Actions} from '../../core/navigation/Actions';
 import {SafeAction} from '../../core';
 import {lang} from '../../value/lang';
 import {setLastLocation} from '../../value/data';
@@ -52,7 +52,7 @@ export const FooterButton = ({icon, left}: FooterButtonProps) => {
         right: left ? null : 8,
       }}>
       <IconButton
-        color={Colors.grey500}
+        iconColor={MD2Colors.grey500}
         icon={icon}
         accessibilityLabel={al}
         style={{height: 48, width: 48, borderRadius: 24}}

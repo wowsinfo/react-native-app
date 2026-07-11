@@ -16,7 +16,7 @@ import {
   Title,
   Subheading,
 } from 'react-native-paper';
-import {Actions} from 'react-native-router-flux';
+import {Actions} from '../../core/navigation/Actions';
 import {lang} from '../../value/lang';
 import {
   SERVER,

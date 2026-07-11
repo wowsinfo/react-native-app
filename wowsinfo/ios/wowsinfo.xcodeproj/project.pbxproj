@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7BCAD8F72E8689ED09AA43DE /* libPods-wowsinfo-debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91C2EDCC608D13B394C6FB4E /* libPods-wowsinfo-debug.a */; };
+		5CBBE0D406F84E2451D2B0D1 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A26CC6EC2B2479FB6F7F0019 /* PrivacyInfo.xcprivacy */; };
+		7C71098F47C78265829A7020 /* libPods-wowsinfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6B403ED92A7867C22FDDA3 /* libPods-wowsinfo.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		92224B4D2A98B5630021F111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9232578A2A98AF9C0053E5F6 /* Assets.xcassets */; };
 		92224B4E2A98B5630021F111 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9232578A2A98AF9C0053E5F6 /* Assets.xcassets */; };
@@ -54,26 +55,23 @@
 		92C72AFA2A962F000056AD82 /* QuickActionEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AEF2A962F000056AD82 /* QuickActionEventEmitter.swift */; };
 		92C72AFD2A962F5D0056AD82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */; };
 		92C72B002A96306E0056AD82 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C72AFF2A96306E0056AD82 /* RootViewController.swift */; };
-		92D075EB2A9B049D00CFE9FC /* libPods-wowsinfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D075EA2A9B049D00CFE9FC /* libPods-wowsinfo.a */; };
 		92D075ED2A9B366B00CFE9FC /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 92D075EC2A9B366B00CFE9FC /* main.jsbundle */; };
 		92D075F02A9B613000CFE9FC /* SimpleViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D075EF2A9B613000CFE9FC /* SimpleViewHandler.swift */; };
 		92D075F12A9B613000CFE9FC /* SimpleViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D075EF2A9B613000CFE9FC /* SimpleViewHandler.swift */; };
 		92D075F32A9B623700CFE9FC /* SimpleViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D075F22A9B623700CFE9FC /* SimpleViewHandler.m */; };
 		92D075F42A9B623700CFE9FC /* SimpleViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D075F22A9B623700CFE9FC /* SimpleViewHandler.m */; };
+		C2C9C4E2DD4ADBC93199608E /* libPods-wowsinfo-debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 703D25CE10A956CB2096C719 /* libPods-wowsinfo-debug.a */; };
+		F3ABAFCDAEA8AEEF58E9C7CB /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A26CC6EC2B2479FB6F7F0019 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0598FE7496E68A730585A3D6 /* Pods-wowsinfo-debug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-debug.release.xcconfig"; path = "Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* wowsinfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wowsinfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = support/Info.plist; sourceTree = "<group>"; };
-		388ADB2D89B17E2D670EC186 /* Pods-wowsinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfo/Pods-wowsinfo.debug.xcconfig"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-wowsinfo-wowsinfoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-wowsinfoTests.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfo-wowsinfoTests/Pods-wowsinfo-wowsinfoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		62BC9D4810E163F4D27CCDA2 /* Pods-wowsinfo-debug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-debug.release.xcconfig"; path = "Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug.release.xcconfig"; sourceTree = "<group>"; };
-		6309FA9D9A4BF4413A44EE3A /* Pods-wowsinfotest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfotest.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfotest/Pods-wowsinfotest.debug.xcconfig"; sourceTree = "<group>"; };
-		6D901F95CD4FCE7372A062B8 /* libPods-wowsinfotest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wowsinfotest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		808D29D51443D5B687BC971D /* Pods-wowsinfotest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfotest.release.xcconfig"; path = "Target Support Files/Pods-wowsinfotest/Pods-wowsinfotest.release.xcconfig"; sourceTree = "<group>"; };
+		3E6B403ED92A7867C22FDDA3 /* libPods-wowsinfo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wowsinfo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D3D9849F4BC9F37A94B5B70 /* Pods-wowsinfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfo/Pods-wowsinfo.debug.xcconfig"; sourceTree = "<group>"; };
+		703D25CE10A956CB2096C719 /* libPods-wowsinfo-debug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wowsinfo-debug.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-wowsinfo-wowsinfoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-wowsinfoTests.release.xcconfig"; path = "Target Support Files/Pods-wowsinfo-wowsinfoTests/Pods-wowsinfo-wowsinfoTests.release.xcconfig"; sourceTree = "<group>"; };
-		91C2EDCC608D13B394C6FB4E /* libPods-wowsinfo-debug.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wowsinfo-debug.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9200E86F2A963881007605E1 /* objc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = objc.h; sourceTree = "<group>"; };
 		92224B502A98D4560021F111 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		92224B542A98D58B0021F111 /* SetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetupViewModel.swift; path = wowsinfo/view/SetupViewModel.swift; sourceTree = SOURCE_ROOT; };
@@ -115,15 +113,12 @@
 		92C72AEF2A962F000056AD82 /* QuickActionEventEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickActionEventEmitter.swift; sourceTree = "<group>"; };
 		92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92C72AFF2A96306E0056AD82 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		92D075EA2A9B049D00CFE9FC /* libPods-wowsinfo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-wowsinfo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92D075EC2A9B366B00CFE9FC /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		92D075EF2A9B613000CFE9FC /* SimpleViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleViewHandler.swift; sourceTree = "<group>"; };
 		92D075F22A9B623700CFE9FC /* SimpleViewHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleViewHandler.m; sourceTree = "<group>"; };
-		A45E42193C3FB61E81C20E9A /* Pods-wowsinfo-debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-debug.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug.debug.xcconfig"; sourceTree = "<group>"; };
-		B66C1C581B386FD45CBD0E97 /* Pods-wowsinfoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfoTests.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfoTests/Pods-wowsinfoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CBE9FEE413D6D88203233985 /* libPods-wowsinfoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-wowsinfoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2E2B1F66FB6C7096AAAD1F2 /* Pods-wowsinfoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfoTests.release.xcconfig"; path = "Target Support Files/Pods-wowsinfoTests/Pods-wowsinfoTests.release.xcconfig"; sourceTree = "<group>"; };
-		E89AE616A3CD58B795671FE5 /* Pods-wowsinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo.release.xcconfig"; path = "Target Support Files/Pods-wowsinfo/Pods-wowsinfo.release.xcconfig"; sourceTree = "<group>"; };
+		A26CC6EC2B2479FB6F7F0019 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = support/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		E0DB71C233818F95FC11873E /* Pods-wowsinfo-debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo-debug.debug.xcconfig"; path = "Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug.debug.xcconfig"; sourceTree = "<group>"; };
+		EAC0A953931DBFEF15FECD0D /* Pods-wowsinfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wowsinfo.release.xcconfig"; path = "Target Support Files/Pods-wowsinfo/Pods-wowsinfo.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -132,7 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92D075EB2A9B049D00CFE9FC /* libPods-wowsinfo.a in Frameworks */,
+				7C71098F47C78265829A7020 /* libPods-wowsinfo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BCAD8F72E8689ED09AA43DE /* libPods-wowsinfo-debug.a in Frameworks */,
+				C2C9C4E2DD4ADBC93199608E /* libPods-wowsinfo-debug.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +153,7 @@
 				92C72AFC2A962F5D0056AD82 /* AppDelegate.swift */,
 				92C72AFF2A96306E0056AD82 /* RootViewController.swift */,
 				9200E8702A963C48007605E1 /* support */,
+				A26CC6EC2B2479FB6F7F0019 /* PrivacyInfo.xcprivacy */,
 			);
 			name = wowsinfo;
 			path = "/Users/henryquan/Documents/GitHub/react-native-app/wowsinfo/ios/wowsinfo";
@@ -166,11 +162,9 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				92D075EA2A9B049D00CFE9FC /* libPods-wowsinfo.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				6D901F95CD4FCE7372A062B8 /* libPods-wowsinfotest.a */,
-				CBE9FEE413D6D88203233985 /* libPods-wowsinfoTests.a */,
-				91C2EDCC608D13B394C6FB4E /* libPods-wowsinfo-debug.a */,
+				3E6B403ED92A7867C22FDDA3 /* libPods-wowsinfo.a */,
+				703D25CE10A956CB2096C719 /* libPods-wowsinfo-debug.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -350,16 +344,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5B7EB9410499542E8C5724F5 /* Pods-wowsinfo-wowsinfoTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-wowsinfo-wowsinfoTests.release.xcconfig */,
-				388ADB2D89B17E2D670EC186 /* Pods-wowsinfo.debug.xcconfig */,
-				E89AE616A3CD58B795671FE5 /* Pods-wowsinfo.release.xcconfig */,
-				6309FA9D9A4BF4413A44EE3A /* Pods-wowsinfotest.debug.xcconfig */,
-				808D29D51443D5B687BC971D /* Pods-wowsinfotest.release.xcconfig */,
-				B66C1C581B386FD45CBD0E97 /* Pods-wowsinfoTests.debug.xcconfig */,
-				D2E2B1F66FB6C7096AAAD1F2 /* Pods-wowsinfoTests.release.xcconfig */,
-				A45E42193C3FB61E81C20E9A /* Pods-wowsinfo-debug.debug.xcconfig */,
-				62BC9D4810E163F4D27CCDA2 /* Pods-wowsinfo-debug.release.xcconfig */,
+				5D3D9849F4BC9F37A94B5B70 /* Pods-wowsinfo.debug.xcconfig */,
+				EAC0A953931DBFEF15FECD0D /* Pods-wowsinfo.release.xcconfig */,
+				E0DB71C233818F95FC11873E /* Pods-wowsinfo-debug.debug.xcconfig */,
+				0598FE7496E68A730585A3D6 /* Pods-wowsinfo-debug.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -371,14 +359,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "wowsinfo" */;
 			buildPhases = (
-				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				1D37F91E46F754FB5401C4F2 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
-				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				F2EEFC06C4952AE675F7B4C4 /* [CP] Embed Pods Frameworks */,
+				B7D840D27B8B0AA52D7E0B1A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -393,14 +381,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 923257C72A98B0D00053E5F6 /* Build configuration list for PBXNativeTarget "wowsinfo-debug" */;
 			buildPhases = (
-				923257AF2A98B0D00053E5F6 /* [CP] Check Pods Manifest.lock */,
+				5E6E6BC7FA93A69890B46EF1 /* [CP] Check Pods Manifest.lock */,
 				923257B02A98B0D00053E5F6 /* Start Packager */,
 				923257B12A98B0D00053E5F6 /* Sources */,
 				923257BD2A98B0D00053E5F6 /* Frameworks */,
 				923257C02A98B0D00053E5F6 /* Resources */,
 				923257C42A98B0D00053E5F6 /* Bundle React Native code and images */,
-				923257C52A98B0D00053E5F6 /* [CP] Embed Pods Frameworks */,
-				923257C62A98B0D00053E5F6 /* [CP] Copy Pods Resources */,
+				0676941D760CAF03F67812E0 /* [CP] Embed Pods Frameworks */,
+				562FF2D3021DEA04282E46C0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -456,6 +444,7 @@
 				92224B4D2A98B5630021F111 /* Assets.xcassets in Resources */,
 				92926A902A9786F200191FEC /* Localizable.xcstrings in Resources */,
 				92D075ED2A9B366B00CFE9FC /* main.jsbundle in Resources */,
+				F3ABAFCDAEA8AEEF58E9C7CB /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +455,7 @@
 				923257C12A98B0D00053E5F6 /* LaunchScreen.storyboard in Resources */,
 				92224B4E2A98B5630021F111 /* Assets.xcassets in Resources */,
 				923257C32A98B0D00053E5F6 /* Localizable.xcstrings in Resources */,
+				5CBBE0D406F84E2451D2B0D1 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,24 +478,63 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
+		0676941D760CAF03F67812E0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		923257AF2A98B0D00053E5F6 /* [CP] Check Pods Manifest.lock */ = {
+		1D37F91E46F754FB5401C4F2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-wowsinfo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		562FF2D3021DEA04282E46C0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5E6E6BC7FA93A69890B46EF1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -562,63 +591,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		923257C52A98B0D00053E5F6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		923257C62A98B0D00053E5F6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo-debug/Pods-wowsinfo-debug-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-wowsinfo-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
+		B7D840D27B8B0AA52D7E0B1A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -633,6 +606,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2EEFC06C4952AE675F7B4C4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-wowsinfo/Pods-wowsinfo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -720,7 +710,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 388ADB2D89B17E2D670EC186 /* Pods-wowsinfo.debug.xcconfig */;
+			baseConfigurationReference = 5D3D9849F4BC9F37A94B5B70 /* Pods-wowsinfo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -759,7 +749,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E89AE616A3CD58B795671FE5 /* Pods-wowsinfo.release.xcconfig */;
+			baseConfigurationReference = EAC0A953931DBFEF15FECD0D /* Pods-wowsinfo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -801,7 +791,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -859,16 +849,24 @@
 				MARKETING_VERSION = 1.7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "$(inherited)";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
 				);
+				PODFILE_DIR = "$(SRCROOT)";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				SWIFT_VERSION = 5.0;
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -877,7 +875,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -927,23 +925,30 @@
 				);
 				MARKETING_VERSION = 1.7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "$(inherited)";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
+					"-DRCT_REMOVE_LEGACY_ARCH=1",
 				);
+				PODFILE_DIR = "$(SRCROOT)";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				SWIFT_VERSION = 5.0;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		923257C82A98B0D00053E5F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A45E42193C3FB61E81C20E9A /* Pods-wowsinfo-debug.debug.xcconfig */;
+			baseConfigurationReference = E0DB71C233818F95FC11873E /* Pods-wowsinfo-debug.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -962,7 +967,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Charts/Charts.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/NativeChart/NativeChart.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftAlgorithms/Algorithms.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit/YogaKit.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/FlipperKit/FlipperKit.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/RCTTypeSafety/RCTTypeSafety.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/React/React-Core.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/ReactCommon/ReactCommon.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/React_Codegen/React-Codegen.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/React_NativeModulesApple/React-NativeModulesApple.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/folly/RCT-Folly.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/yoga/Yoga.modulemap\" -Xcc -DFB_SONARKIT_ENABLED=1 -DDEBUG";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yihengquan.wowsinfo-debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -979,7 +984,7 @@
 		};
 		923257C92A98B0D00053E5F6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 62BC9D4810E163F4D27CCDA2 /* Pods-wowsinfo-debug.release.xcconfig */;
+			baseConfigurationReference = 0598FE7496E68A730585A3D6 /* Pods-wowsinfo-debug.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

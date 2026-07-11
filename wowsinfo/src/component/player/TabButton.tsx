@@ -32,7 +32,7 @@ export const TabButton = ({
       <IconButton
         icon={icon}
         size={26}
-        color={themes.colors.primary}
+        iconColor={themes.colors.primary}
         {...otherProps}
       />
     </Touchable>

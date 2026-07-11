@@ -8,10 +8,10 @@ import {
   withTheme,
   Portal,
   Dialog,
-  DarkTheme,
-  DefaultTheme,
+  MD2DarkTheme,
+  MD2LightTheme,
 } from 'react-native-paper';
-import {Actions} from 'react-native-router-flux';
+import {Actions} from '../../core/navigation/Actions';
 import {WoWsInfo, Touchable, SectionTitle} from '../../component';
 import {
   APP,
@@ -372,7 +372,7 @@ class Settings extends Component {
     if (AppGlobalData.isDarkMode) {
       AppGlobalData.darkTheme = {
         colors: {
-          ...DarkTheme.colors,
+          ...MD2DarkTheme.colors,
           View: 'black',
           text: GREY[50],
           primary: tintColour[500],
@@ -384,7 +384,7 @@ class Settings extends Component {
       // Setup global light theme
       AppGlobalData.lightTheme = {
         colors: {
-          ...DefaultTheme.colors,
+          ...MD2LightTheme.colors,
           View: 'white',
           text: GREY[900],
           primary: tintColour[500],

@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import {Alert, BackHandler} from 'react-native';
-import {Router, Stack, Scene, Actions} from 'react-native-router-flux';
-import {withTheme, DarkTheme, DefaultTheme} from 'react-native-paper';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {withTheme, MD2DarkTheme, MD2LightTheme} from 'react-native-paper';
 import {
   Menu,
   Settings,
@@ -43,6 +44,9 @@ import {
 } from 'react-native-exception-handler';
 import {ReactNativeManager} from './core/native/ReactNativeManager';
 import {SimpleViewHandler} from './core/native/SimpleViewHandler';
+import {navigationRef} from './core/navigation/NavigationService';
+
+const Stack = createNativeStackNavigator();
 
 setJSExceptionHandler((e, fatal) => {
   if (fatal) {
@@ -57,7 +61,6 @@ setNativeExceptionHandler(e => {
   console.log(`NativeException\n${e}`);
 });
 
-// Ask user to email me the log
 function showAlert(msg, mode) {
   Alert.alert(
     `FATAL ${mode} ERROR`,
@@ -86,29 +89,16 @@ class App extends Component {
 
     ReactNativeManager.Instance.setup();
 
-    // const json = {};
-    // AsyncStorage.getAllKeys().then(keys => {
-    //   AsyncStorage.multiGet(keys).then(value => {
-    //     value.map(v => json[v[0]] = JSON.parse(v[1]));
-    //     console.log(JSON.stringify(json));
-    //   })
-    // })
-
     this.state = {
       loading: true,
       dark: false,
     };
 
-    // Load all data from AsyncStorage
     DataLoader.loadAll().then(data => {
-      // console.log(data);
-
       AppGlobalData.setupWith(data);
       AppGlobalData.shouldSwapButton = AppGlobalData.get(LOCAL.swapButton);
       AppGlobalData.lastLocation = AppGlobalData.get(LOCAL.lastLocation);
       AppGlobalData.isDarkMode = AppGlobalData.get(LOCAL.darkMode);
-
-      // No more auto dark mode
 
       let userLang = AppGlobalData.get(LOCAL.userLanguage);
       if (userLang !== '') {
@@ -122,25 +112,21 @@ class App extends Component {
         tint = RED;
       }
 
-      // Setup global dark theme
       AppGlobalData.darkTheme = {
         colors: {
-          ...DarkTheme.colors,
+          ...MD2DarkTheme.colors,
           surface: 'black',
           text: GREY[50],
           primary: tint[500],
-          accent: tint[300],
         },
       };
 
-      // Setup global light theme
       AppGlobalData.lightTheme = {
         colors: {
-          ...DefaultTheme.colors,
+          ...MD2LightTheme.colors,
           surface: 'white',
           text: GREY[900],
           primary: tint[500],
-          accent: tint[300],
         },
       };
 
@@ -153,12 +139,9 @@ class App extends Component {
 
       let first = getFirstLaunch();
       if (!first) {
-        // Update data here if it is not first launch
         let dn = new Downloader(getCurrServer());
         dn.updateAll(false).then(obj => {
-          // Since data are loaded even if user is offline, it should be fine
           this.setState({loading: false, dark: AppGlobalData.isDarkMode});
-          // Display message if it is not success
           if (!obj.status) {
             Alert.alert(
               lang.error_title,
@@ -172,56 +155,87 @@ class App extends Component {
     });
   }
 
+  componentDidMount() {
+    this.backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.handleBack,
+    );
+  }
+
+  componentWillUnmount() {
+    this.backHandler?.remove();
+  }
+
+  handleBack = () => {
+    if (navigationRef.isReady()) {
+      const routes = navigationRef.getState()?.routes ?? [];
+      if (routes.length <= 1) {
+        BackHandler.exitApp();
+        return true;
+      }
+    }
+    return false;
+  };
+
   render() {
     const {loading, dark} = this.state;
     if (loading) {
       return <Loading />;
     }
+    const navTheme = {
+      dark,
+      colors: {
+        primary: dark ? GREY[50] : GREY[900],
+        background: dark ? 'black' : 'white',
+        card: dark ? 'black' : 'white',
+        text: dark ? GREY[50] : GREY[900],
+        border: dark ? '#333' : '#ddd',
+        notification: dark ? GREY[50] : GREY[900],
+      },
+      fonts: {
+        regular: {fontFamily: 'System', fontWeight: '400'},
+        medium: {fontFamily: 'System', fontWeight: '500'},
+        bold: {fontFamily: 'System', fontWeight: '700'},
+        heavy: {fontFamily: 'System', fontWeight: '800'},
+      },
+    };
+
     return (
-      <Router
-        sceneStyle={{flex: 1, backgroundColor: dark ? 'black' : 'white'}}
-        backAndroidHandler={this.handleBack}>
-        <Stack key="root" hideNavBar>
-          <Scene key="Menu" component={Menu} />
-          <Scene key="Setup" component={Setup} initial={getFirstLaunch()} />
-          <Scene key="Search" component={Search} />
-          <Scene key="RS" component={RS} />
-
-          <Scene key="Rating" component={Rating} />
-          <Scene key="Statistics" component={Statistics} />
-          <Scene key="Graph" component={Graph} />
-          <Scene key="PlayerAchievement" component={PlayerAchievement} />
-          <Scene key="PlayerShip" component={PlayerShip} />
-          <Scene key="PlayerShipDetail" component={Detailed} />
-          <Scene key="Rank" component={Rank} />
-          <Scene key="ClanInfo" component={ClanInfo} />
-
-          <Scene key="Consumable" component={Consumable} />
-          <Scene key="CommanderSkill" component={CommanderSkill} />
-          <Scene key="Achievement" component={Achievement} />
-          <Scene key="Map" component={GameMap} />
-          <Scene key="Collection" component={Collection} />
-          <Scene key="Warship" component={Warship} />
-          <Scene key="WarshipFilter" component={WarshipFilter} />
-          <Scene key="SimilarGraph" component={SimilarGraph} />
-          <Scene key="WarshipDetail" component={WarshipDetail} />
-          <Scene key="WarshipModule" component={WarshipModule} />
-          <Scene key="BasicDetail" component={BasicDetail} />
-
-          <Scene key="Settings" component={Settings} />
-          <Scene key="License" component={License} />
-          <Scene key="About" component={About} />
-          <Scene key="ProVersion" component={ProVersion} />
-        </Stack>
-      </Router>
+      <NavigationContainer ref={navigationRef} theme={navTheme}>
+        <Stack.Navigator
+          screenOptions={{headerShown: false}}
+          initialRouteName={getFirstLaunch() ? 'Setup' : 'Menu'}>
+          <Stack.Screen name="Menu" component={Menu} />
+          <Stack.Screen name="Setup" component={Setup} />
+          <Stack.Screen name="Search" component={Search} />
+          <Stack.Screen name="RS" component={RS} />
+          <Stack.Screen name="Rating" component={Rating} />
+          <Stack.Screen name="Statistics" component={Statistics} />
+          <Stack.Screen name="Graph" component={Graph} />
+          <Stack.Screen name="PlayerAchievement" component={PlayerAchievement} />
+          <Stack.Screen name="PlayerShip" component={PlayerShip} />
+          <Stack.Screen name="PlayerShipDetail" component={Detailed} />
+          <Stack.Screen name="Rank" component={Rank} />
+          <Stack.Screen name="ClanInfo" component={ClanInfo} />
+          <Stack.Screen name="Consumable" component={Consumable} />
+          <Stack.Screen name="CommanderSkill" component={CommanderSkill} />
+          <Stack.Screen name="Achievement" component={Achievement} />
+          <Stack.Screen name="Map" component={GameMap} />
+          <Stack.Screen name="Collection" component={Collection} />
+          <Stack.Screen name="Warship" component={Warship} />
+          <Stack.Screen name="WarshipFilter" component={WarshipFilter} />
+          <Stack.Screen name="SimilarGraph" component={SimilarGraph} />
+          <Stack.Screen name="WarshipDetail" component={WarshipDetail} />
+          <Stack.Screen name="WarshipModule" component={WarshipModule} />
+          <Stack.Screen name="BasicDetail" component={BasicDetail} />
+          <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="License" component={License} />
+          <Stack.Screen name="About" component={About} />
+          <Stack.Screen name="ProVersion" component={ProVersion} />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
   }
-
-  handleBack = () => {
-    if (Actions.state.routes.length === 1) {
-      BackHandler.exitApp();
-    }
-  };
 }
 
 export default withTheme(App);
