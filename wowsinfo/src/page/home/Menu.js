@@ -40,9 +40,6 @@ import {
 import {Loading} from '../common/Loading';
 import {Actions} from '../../core/navigation/Actions';
 
-import {QuickAction} from '../../core/native/QuickAction';
-import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
-
 class Menu extends Component {
   constructor(props) {
     super(props);
@@ -68,8 +65,6 @@ class Menu extends Component {
   }
 
   componentDidMount() {
-    QuickAction.performPendingShortcut();
-
     if (this.first) {
       const time = new Promise((r, _) => setTimeout(() => r(false), 20000));
 
@@ -100,7 +95,7 @@ class Menu extends Component {
                   {
                     text: lang.settings_app_send_feedback_subtitle,
                     onPress: () =>
-                      SimpleViewHandler.openURL(
+                      Linking.openURL(
                         APP.Developer + `&body=${obj.log}`,
                       ),
                     style: 'default',
@@ -383,7 +378,7 @@ class Menu extends Component {
             description={lang.extra_wowsinfo_re_subtitle}
             style={{width: bestItemWidth}}
             titleStyle={{color: MD2Colors.orange500}}
-            onPress={() => SimpleViewHandler.openURL('https://wowsinfo.firebaseapp.com/')}
+            onPress={() => Linking.openURL('https://wowsinfo.firebaseapp.com/')}
           /> */}
           <List.Item
             key="rs"
@@ -437,7 +432,7 @@ class Menu extends Component {
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => SimpleViewHandler.openURL(item.d)}
+                onPress={() => Linking.openURL(item.d)}
               />
             ))}
           </View>
@@ -449,7 +444,7 @@ class Menu extends Component {
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => SimpleViewHandler.openExternalURL(item.d)}
+                onPress={() => Linking.openURL(item.d)}
               />
             ))}
           </View>
@@ -462,7 +457,7 @@ class Menu extends Component {
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => SimpleViewHandler.openURL(item.d)}
+                onPress={() => Linking.openURL(item.d)}
               />
             ))}
           </View>
@@ -475,7 +470,7 @@ class Menu extends Component {
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => SimpleViewHandler.openURL(item.d)}
+                onPress={() => Linking.openURL(item.d)}
               />
             ))}
           </View>
@@ -487,7 +482,7 @@ class Menu extends Component {
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => SimpleViewHandler.openURL(item.d)}
+                onPress={() => Linking.openURL(item.d)}
               />
             ))}
           </View>
@@ -502,7 +497,7 @@ class Menu extends Component {
                 title={item.t}
                 description={item.d}
                 style={{width: bestItemWidth}}
-                onPress={() => SimpleViewHandler.openURL(item.d)}
+                onPress={() => Linking.openURL(item.d)}
               />
             ))}
           </View>

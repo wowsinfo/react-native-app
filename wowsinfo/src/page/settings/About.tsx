@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, Dimensions} from 'react-native';
+import {Image, StyleSheet, Dimensions, Linking} from 'react-native';
 import * as Anime from 'react-native-animatable';
 import {WoWsInfo, Touchable} from '../../component';
 import {TintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
 import {getRandomAnimation} from '../../core';
-import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+
 
 export const About = () => {
   const [animation, setAnimation] = useState('pulse');
@@ -25,7 +25,7 @@ export const About = () => {
     <WoWsInfo>
       <Touchable
         style={touch}
-        onPress={() => SimpleViewHandler.openURL(lang.about_github_link)}>
+        onPress={() => Linking.openURL(lang.about_github_link)}>
         <Anime.View
           animation={animation}
           iterationCount="infinite"

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, ScrollView, FlatList, StyleSheet, Alert} from 'react-native';
+import {View, ScrollView, FlatList, StyleSheet, Alert, Linking} from 'react-native';
 import {isAndroid} from 'react-native-device-detection';
 import {
   List,
@@ -51,7 +51,7 @@ import {
 } from 'react-native-material-color';
 import {lang} from '../../value/lang';
 import {WikiAPI} from '../../value/api';
-import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+
 
 class Settings extends Component {
   constructor(props) {
@@ -274,13 +274,13 @@ class Settings extends Component {
           key="feedback"
           title={lang.settings_app_send_feedback}
           description={lang.settings_app_send_feedback_subtitle}
-          onPress={() => SimpleViewHandler.openURL(APP.Developer)}
+          onPress={() => Linking.openURL(APP.Developer)}
         />
         <List.Item
           key="report_issue"
           title={lang.settings_app_report_issues}
           description={issueLink}
-          onPress={() => SimpleViewHandler.openURL(issueLink)}
+          onPress={() => Linking.openURL(issueLink)}
         />
         {isAndroid ? (
           <List.Item
@@ -301,7 +301,7 @@ class Settings extends Component {
         <List.Item
           title={lang.settings_open_source_github}
           description={APP.Github}
-          onPress={() => SimpleViewHandler.openURL(APP.Github)}
+          onPress={() => Linking.openURL(APP.Github)}
         />
         <List.Item
           title={lang.settings_open_source_licence}
@@ -339,11 +339,11 @@ class Settings extends Component {
         [
           {
             text: 'Google Play',
-            onPress: () => SimpleViewHandler.openURL(APP.GooglePlay),
+            onPress: () => Linking.openURL(APP.GooglePlay),
           },
           {
             text: 'Github',
-            onPress: () => SimpleViewHandler.openURL(APP.LatestRelease),
+            onPress: () => Linking.openURL(APP.LatestRelease),
           },
         ],
       );

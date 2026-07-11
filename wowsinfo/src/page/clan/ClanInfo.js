@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Linking} from 'react-native';
 import {
   WoWsInfo,
   LoadingIndicator,
@@ -33,7 +33,7 @@ import {
 import {TintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
 import {FlatGrid} from 'react-native-super-grid';
-import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+
 
 class ClanInfo extends Component {
   constructor(props) {
@@ -81,7 +81,7 @@ class ClanInfo extends Component {
         <WoWsInfo
           title={`- ${id} -`}
           onPress={() =>
-            SimpleViewHandler.openURL(
+            Linking.openURL(
               `https://${this.prefix}.wows-numbers.com/clan/${id}, ${tag}/`,
             )
           }>

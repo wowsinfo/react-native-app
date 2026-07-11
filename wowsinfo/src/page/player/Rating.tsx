@@ -5,13 +5,13 @@
  */
 
 import React from 'react';
-import {View, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView, StyleSheet, Linking} from 'react-native';
 import {WoWsInfo, SectionTitle} from '../../component';
 import {Text, Paragraph, Caption, Button} from 'react-native-paper';
 import {lang} from '../../value/lang';
 import {getRatingList, getColourList, SafeAction} from '../../core';
 import {APP} from '../../value/data';
-import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+
 
 export const Rating = () => {
   const {container, range} = styles;
@@ -55,7 +55,7 @@ export const Rating = () => {
             </View>
           );
         })}
-        <Button onPress={() => SimpleViewHandler.openURL(APP.PersonalRating)}>
+        <Button onPress={() => Linking.openURL(APP.PersonalRating)}>
           {lang.rating_read_more}
         </Button>
       </ScrollView>

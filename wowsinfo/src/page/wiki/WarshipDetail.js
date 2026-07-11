@@ -5,7 +5,7 @@
  */
 
 import React, {PureComponent} from 'react';
-import {View, FlatList, ScrollView, StyleSheet} from 'react-native';
+import {View, FlatList, ScrollView, StyleSheet, Linking} from 'react-native';
 import {Text, Title, Button, Paragraph} from 'react-native-paper';
 import * as Anime from 'react-native-animatable';
 import {
@@ -26,7 +26,7 @@ import {WoWsAPI} from '../../value/api';
 import {Actions} from '../../core/navigation/Actions';
 import {TintTextColour} from '../../value/colour';
 import {HorizontalBarChart} from 'native-chart-experiment';
-import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+
 
 class WarshipDetail extends PureComponent {
   constructor(props) {
@@ -201,7 +201,7 @@ class WarshipDetail extends PureComponent {
           <Button
             style={modelBtn}
             onPress={() =>
-              SimpleViewHandler.openURL(
+              Linking.openURL(
                 `https://sketchfab.com/models/${model}/embed?autostart=1&preload=1`,
               )
             }>

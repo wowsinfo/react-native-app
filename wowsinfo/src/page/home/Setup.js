@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import {View, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView, StyleSheet, Linking} from 'react-native';
 import {
   Button,
   List,
@@ -16,6 +16,7 @@ import {
   Title,
   Subheading,
 } from 'react-native-paper';
+import {RED} from 'react-native-material-color';
 import {Actions} from '../../core/navigation/Actions';
 import {lang} from '../../value/lang';
 import {
@@ -26,7 +27,7 @@ import {
 } from '../../value/data';
 import {Downloader} from '../../core';
 import {WoWsInfo, SectionTitle, LoadingIndicator} from '../../component';
-import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+
 
 class Setup extends Component {
   constructor(props) {
@@ -74,7 +75,7 @@ class Setup extends Component {
           </Subheading>
           <View style={wrapView}>
             {server.map((_, index) => (
-              <Button onPress={() => this.updateServer(index)}>
+              <Button key={index} onPress={() => this.updateServer(index)}>
                 {lang.server_name[index]}
               </Button>
             ))}
@@ -90,7 +91,8 @@ class Setup extends Component {
         <FAB
           visible={!loading}
           icon="check"
-          style={fab}
+          color="white"
+          style={[fab, {backgroundColor: RED[500]}]}
           label={lang.setup_done_button}
           onPress={loading ? null : () => this.finishSetup()}
         />
@@ -112,7 +114,7 @@ class Setup extends Component {
           <List.Item
             title={lang.settings_app_send_feedback}
             description={lang.settings_app_send_feedback_subtitle}
-            onPress={() => SimpleViewHandler.openURL(APP.Developer)}
+            onPress={() => Linking.openURL(APP.Developer)}
           />
         </View>
       );
@@ -121,7 +123,7 @@ class Setup extends Component {
     return (
       <View style={wrapView}>
         {langData.map(item => (
-          <Button onPress={() => this.updateApiLanguage(item)}>
+          <Button key={item} onPress={() => this.updateApiLanguage(item)}>
             {langList[item]}
           </Button>
         ))}

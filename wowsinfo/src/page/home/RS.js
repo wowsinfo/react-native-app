@@ -48,7 +48,7 @@ import {
 import {FlatGrid} from 'react-native-super-grid';
 import {lang} from '../../value/lang';
 import KeepAwake from 'react-native-keep-awake';
-import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+
 import { TintColour } from '../../value/colour';
 
 class RS extends Component {
@@ -114,7 +114,7 @@ class RS extends Component {
             <Button
               uppercase={false}
               onPress={() =>
-                SimpleViewHandler.openURL(
+                Linking.openURL(
                   'https://github.com/wowsinfo/WoWs-RS//releases/latest',
                 )
               }>

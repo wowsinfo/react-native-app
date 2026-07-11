@@ -1,5 +1,5 @@
 import React, {Component, createRef} from 'react';
-import {Alert, BackHandler} from 'react-native';
+import {Alert, BackHandler, Linking} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {withTheme, MD2DarkTheme, MD2LightTheme} from 'react-native-paper';
@@ -43,7 +43,6 @@ import {
   setNativeExceptionHandler,
 } from 'react-native-exception-handler';
 
-import {SimpleViewHandler} from './core/native/SimpleViewHandler';
 import {navigationRef} from './core/navigation/NavigationService';
 
 const Stack = createNativeStackNavigator();
@@ -74,7 +73,7 @@ function showAlert(msg, mode) {
       {
         text: 'E-mail',
         onPress: () =>
-          SimpleViewHandler.openURL(
+          Linking.openURL(
             `mailto:development.henryquan@gmail.com?subject=[WoWs Info ${APP.Version}] &body=${msg}`,
           ),
       },

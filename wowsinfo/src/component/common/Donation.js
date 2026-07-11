@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import * as RNIap from 'react-native-iap';
-import {View} from 'react-native';
+import {View, Linking} from 'react-native';
 import {List} from 'react-native-paper';
 import {lang} from '../../value/lang';
 import {APP} from '../../value/data';
-import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+
 
 // Now, we have 4 tiers ($1, $3, $5 and $10) for donations
 const itemSkus = [
@@ -63,7 +63,7 @@ class Donation extends Component {
               title={item.t}
               key={item.t}
               description={item.d}
-              onPress={() => SimpleViewHandler.openURL(item.d)}
+              onPress={() => Linking.openURL(item.d)}
             />
           );
         })}

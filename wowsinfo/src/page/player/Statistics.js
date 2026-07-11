@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView, StyleSheet, Linking} from 'react-native';
 import {Text, IconButton, Title, Button, withTheme} from 'react-native-paper';
 import {
   LoadingIndicator,
@@ -25,7 +25,7 @@ import {WoWsAPI} from '../../value/api';
 import {getDomain, getPrefix, LOCAL, setLastLocation} from '../../value/data';
 import {TintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
-import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+
 
 class Statistics extends Component {
   constructor(props) {
@@ -268,7 +268,7 @@ class Statistics extends Component {
           style={container}
           title={`- ${id} -`}
           onPress={() =>
-            SimpleViewHandler.openURL(
+            Linking.openURL(
               `https://${this.prefix}.wows-numbers.com/player/${id},${name}/`,
             )
           }>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, ScrollView, Alert} from 'react-native';
+import {View, StyleSheet, ScrollView, Alert, Linking} from 'react-native';
 import {WoWsInfo, LoadingIndicator} from '../../component';
 import {Title, List, Button, Text, MD2Colors} from 'react-native-paper';
 import {
@@ -13,7 +13,7 @@ import {
 import {setProVersion, validateProVersion} from '../../value/data';
 import {Actions} from '../../core/navigation/Actions';
 import {lang} from '../../value/lang';
-import {SimpleViewHandler} from '../../core/native/SimpleViewHandler';
+
 
 class ProVersion extends Component {
   purchaseUpdateSubscription = null;
@@ -118,7 +118,7 @@ class ProVersion extends Component {
       <View style={horizontal}>
         <Button
           onPress={() =>
-            SimpleViewHandler.openURL(
+            Linking.openURL(
               'https://github.com/HenryQuan/WoWs-Info-Future/blob/legacy_version/Privacy%20Policy.md',
             )
           }>
@@ -126,7 +126,7 @@ class ProVersion extends Component {
         </Button>
         <Button
           onPress={() =>
-            SimpleViewHandler.openURL(
+            Linking.openURL(
               'https://github.com/HenryQuan/WoWs-Info-Future/blob/legacy_version/Term%20of%20Use.md',
             )
           }>
