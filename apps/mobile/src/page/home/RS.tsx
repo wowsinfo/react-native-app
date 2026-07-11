@@ -269,7 +269,8 @@ class RS extends Component {
 
   async getArenaInfo(url) {
     try {
-      let text = await fetch(url).then(html => html.text());
+      const response = await fetch(url);
+      let text = await response.text();
       if (text !== '[]') {
         const data = JSON.parse(text);
         this.setState({rs: data});
@@ -281,28 +282,21 @@ class RS extends Component {
           // Get allay and enemy
           let allayList = [];
           let enemyList = [];
-          for (let v of vehicles) {
-            setTimeout(() => {
-              this.appendExtraInfo(v).then(player => {
-                const team = player.relation;
-                // 0 and 1 are friends
-                if (team < 2) {
-                  allayList.push(player);
-                } else {
-                  enemyList.push(player);
-                }
+          for (const v of vehicles) {
+            setTimeout(async () => {
+              const player = await this.appendExtraInfo(v);
+              const team = player.relation;
+              if (team < 2) {
+                allayList.push(player);
+              } else {
+                enemyList.push(player);
+              }
 
-                // Set a random id (1 in 88888888 is really small but it can happens)
-                if (player.account_id == null) {
-                  player.account_id = random(88888888);
-                }
+              if (player.account_id == null) {
+                player.account_id = random(88888888);
+              }
 
-                this.setState({
-                  allay: allayList,
-                  enemy: enemyList,
-                  loading: false,
-                });
-              });
+              this.setState({allay: allayList, enemy: enemyList, loading: false});
             }, 300);
           }
         }

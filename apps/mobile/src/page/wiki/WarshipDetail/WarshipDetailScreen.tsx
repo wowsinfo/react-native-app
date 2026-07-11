@@ -77,22 +77,18 @@ class WarshipDetail extends PureComponent {
     const {module} = this.props.route?.params ?? {};
     const {data} = this.state;
     if (module) {
-      if (this.state.module === module) {
-        return;
-      }
-      this.setState({loading: true, module: module});
-      this.getNewModule(module).then(json => {
+      if (this.state.module === module) return;
+      this.setState({loading: true, module});
+      (async () => {
+        const json = await this.getNewModule(module);
         const newModule = Guard(json, `data.${module.ship_id}`, null);
         if (newModule) {
-          // Copy data
-          let newData = Object.assign(data);
-          // Update module info
+          const newData = Object.assign(data);
           delete newData.default_profile;
           newData.default_profile = newModule;
           this.setState({loading: false, data: newData});
-          console.log('Module updated');
         }
-      });
+      })();
     }
   }
 
@@ -936,14 +932,11 @@ class WarshipDetail extends PureComponent {
 
   efficientDataRequest(id) {
     clearTimeout(this.delayedRequest);
-    // This will not work if you device time is faster than actual time
-    this.delayedRequest = setTimeout(() => {
-      SafeFetch.get(WoWsAPI.ShipWiki, this.server, id, langStr()).then(json => {
-        let data = Guard(json, 'data', {});
-        console.log(data);
-        this.upgrades = Guard(data[id], 'upgrades', []);
-        this.setState({data: data[id], loading: false});
-      });
+    this.delayedRequest = setTimeout(async () => {
+      const json = await SafeFetch.get(WoWsAPI.ShipWiki, this.server, id, langStr());
+      const data = Guard(json, 'data', {});
+      this.upgrades = Guard(data[id], 'upgrades', []);
+      this.setState({data: data[id], loading: false});
     }, 1000);
   }
 }

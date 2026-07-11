@@ -65,67 +65,43 @@ class Menu extends Component {
   }
 
   componentDidMount() {
+    (async () => {
     if (this.first) {
       const time = new Promise((r, _) => setTimeout(() => r(false), 20000));
 
-      // Update data here if it is not first launch
-      let dn = new Downloader(getCurrServer());
-      const update = new Promise(async (r, _) => {
-        const data = await dn.updateAll(true);
-        r(data);
-      });
+      const dn = new Downloader(getCurrServer());
+      const update = dn.updateAll(true);
 
-      Promise.race([time, update])
-        .then(obj => {
-          if (!obj) {
-            Alert.alert(lang.error_title, lang.error_timeout);
-            this.setState({loading: false});
-          } else {
-            // Make sure it finishes downloading
-            if (obj.status) {
-              this.setState({loading: false});
-              setFirstLaunch(false);
-            } else {
-              // Reset to a special page
-              // For now, just an error message
-              Alert.alert(
-                lang.error_title,
-                lang.error_download_issue + '\n\n' + obj.log,
-                [
-                  {
-                    text: lang.settings_app_send_feedback_subtitle,
-                    onPress: () =>
-                      Linking.openURL(
-                        APP.Developer + `&body=${obj.log}`,
-                      ),
-                    style: 'default',
-                  },
-                  {
-                    text: 'OK',
-                    onPress: () => {},
-                  },
-                ],
-              );
-              this.setState({loading: false});
-            }
-          }
-        })
-        .catch(err => {
-          console.error(err);
+      try {
+        const obj = await Promise.race([time, update]);
+        if (!obj) {
+          Alert.alert(lang.error_title, lang.error_timeout);
           this.setState({loading: false});
-        });
+        } else if (obj.status) {
+          this.setState({loading: false});
+          setFirstLaunch(false);
+        } else {
+          Alert.alert(lang.error_title, lang.error_download_issue + '\n\n' + obj.log, [
+            {text: lang.settings_app_send_feedback_subtitle, onPress: () => Linking.openURL(APP.Developer + `&body=${obj.log}`), style: 'default'},
+            {text: 'OK', onPress: () => {}},
+          ]);
+          this.setState({loading: false});
+        }
+      } catch (err) {
+        console.error(err);
+        this.setState({loading: false});
+      }
     } else {
       if (differentMonth()) {
         this.setState({loading: false});
       } else {
-        // Valid pro version once a month
-        validateProVersion()
-          .then(() => {
-            this.setState({loading: false});
-          })
-          .catch();
+        try {
+          await validateProVersion();
+          this.setState({loading: false});
+        } catch {}
       }
     }
+    })();
   }
 
   getData() {

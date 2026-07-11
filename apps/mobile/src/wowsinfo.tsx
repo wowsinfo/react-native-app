@@ -92,40 +92,28 @@ class App extends Component {
       dark: false,
     };
 
-    DataLoader.loadAll().then(data => {
+    (async () => {
+      const data = await DataLoader.loadAll();
       AppGlobalData.setupWith(data);
       AppGlobalData.shouldSwapButton = AppGlobalData.get(LOCAL.swapButton);
       AppGlobalData.lastLocation = AppGlobalData.get(LOCAL.lastLocation);
       AppGlobalData.isDarkMode = AppGlobalData.get(LOCAL.darkMode);
 
-      let userLang = AppGlobalData.get(LOCAL.userLanguage);
+      const userLang = AppGlobalData.get(LOCAL.userLanguage);
       if (userLang !== '') {
         lang.setLanguage(userLang);
       }
 
-      console.log('state has been set');
-
       let tint = TintColour();
-      if (!tint[50]) {
+      if (!tint?.[50]) {
         tint = RED;
       }
 
       AppGlobalData.darkTheme = {
-        colors: {
-          ...MD2DarkTheme.colors,
-          surface: 'black',
-          text: GREY[50],
-          primary: tint[500],
-        },
+        colors: {...MD2DarkTheme.colors, surface: 'black', text: GREY[50], primary: tint[500]},
       };
-
       AppGlobalData.lightTheme = {
-        colors: {
-          ...MD2LightTheme.colors,
-          surface: 'white',
-          text: GREY[900],
-          primary: tint[500],
-        },
+        colors: {...MD2LightTheme.colors, surface: 'white', text: GREY[900], primary: tint[500]},
       };
 
       props.theme.roundness = 32;
@@ -133,24 +121,18 @@ class App extends Component {
       props.theme.colors = AppGlobalData.isDarkMode
         ? AppGlobalData.darkTheme.colors
         : AppGlobalData.lightTheme.colors;
-      console.log(props.theme);
 
-      let first = getFirstLaunch();
+      const first = getFirstLaunch();
       if (!first) {
-        let dn = new Downloader(getCurrServer());
-        dn.updateAll(false).then(obj => {
-          this.setState({loading: false, dark: AppGlobalData.isDarkMode});
-          if (!obj.status) {
-            Alert.alert(
-              lang.error_title,
-              lang.error_download_issue + '\n\n' + obj.log,
-            );
-          }
-        });
+        const obj = await new Downloader(getCurrServer()).updateAll(false);
+        this.setState({loading: false, dark: AppGlobalData.isDarkMode});
+        if (!obj.status) {
+          Alert.alert(lang.error_title, lang.error_download_issue + '\n\n' + obj.log);
+        }
       } else {
         this.setState({loading: false, dark: AppGlobalData.isDarkMode});
       }
-    });
+    })();
   }
 
   componentDidMount() {

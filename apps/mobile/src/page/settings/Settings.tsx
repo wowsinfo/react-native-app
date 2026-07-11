@@ -312,19 +312,18 @@ class Settings extends Component {
     );
   }
 
-  checkAppUpdate = () => {
+  checkAppUpdate = async () => {
     if (AppGlobalData.canCheckForUpdate) {
       AppGlobalData.canCheckForUpdate = false;
-      SafeFetch.normal(WikiAPI.Github_AppVersion).then(v => {
-        let version = Guard(v, 'version', null);
-        if (version != null) {
-          if (version > APP.Version) {
-            this.displayUpdate(true, version);
-          } else {
-            this.displayUpdate(false);
-          }
+      const v = await SafeFetch.normal(WikiAPI.Github_AppVersion);
+      const version = Guard(v, 'version', null);
+      if (version != null) {
+        if (version > APP.Version) {
+          this.displayUpdate(true, version);
+        } else {
+          this.displayUpdate(false);
         }
-      });
+      }
     } else {
       this.displayUpdate(false);
     }

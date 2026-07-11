@@ -96,138 +96,91 @@ class Statistics extends Component {
   /**
    * Get basic player info
    */
-  getBasic() {
+  async getBasic() {
     const {server, id} = this.state;
-    SafeFetch.get(WoWsAPI.PlayerInfo, getDomain(server), id).then(data => {
-      // Check if account is hidden
-      console.log(data);
-      let hidden = Guard(data, 'meta.hidden', null);
-      let hiddenAccount = false;
-      if (hidden != null) {
-        // If hidden is not null, it is hidden
-        hiddenAccount = true;
+    const data = await SafeFetch.get(WoWsAPI.PlayerInfo, getDomain(server), id);
+    const hidden = Guard(data, 'meta.hidden', null);
+    let hiddenAccount = false;
+    if (hidden != null) {
+      hiddenAccount = true;
+      this.setState({hidden: true});
+    }
+    const player = Guard(data, `data.${id}`, null);
+    if (player == null) {
+      this.setState({valid: false});
+    } else {
+      const battle = Guard(player, 'statistics.pvp.battles', 0);
+      if (!hiddenAccount && battle == 0) {
         this.setState({hidden: true});
       }
+      this.setState({basic: player});
+    }
+  }
 
-      // Get player data here
-      let player = Guard(data, `data.${id}`, null);
-      if (player == null) {
-        // Invalid data
-        this.setState({valid: false});
-      } else {
-        let battle = Guard(player, 'statistics.pvp.battles', 0);
-        // Treat zero battle account as hidden not for hidden accounts
-        if (!hiddenAccount && battle == 0) {
-          this.setState({hidden: true});
+  async getClan() {
+    const {id} = this.state;
+    const data = await SafeFetch.get(WoWsAPI.PlayerClan, this.domain, id);
+    const tag = Guard(data, `data.${id}.clan.tag`, '');
+    if (tag !== '') {
+      this.setState({clan: tag});
+    }
+  }
+
+  async getAchievement() {
+    const {id} = this.state;
+    const data = await SafeFetch.get(WoWsAPI.PlayerAchievement, this.domain, id);
+    const achievement = Guard(data, `data.${id}.battle`, null);
+    if (achievement != null) {
+      this.setState({achievement});
+    }
+  }
+
+  async getRank() {
+    const {id} = this.state;
+    const rankData = await SafeFetch.get(WoWsAPI.RankInfo, this.domain, id);
+    const rank = Guard(rankData, `data.${id}.seasons`, null);
+    if (rank != null) {
+      const keys = Object.keys(rank);
+      if (keys.length > 0) {
+        const last = keys.slice(-1)[0];
+        const currRank = Guard(rank[last], 'rank_info.rank', 0);
+        if (currRank > 0) {
+          this.setState({currRank});
         }
-        this.setState({basic: player});
       }
-    });
-  }
+      this.setState({rank});
+    }
 
-  getClan() {
-    const {id} = this.state;
-    SafeFetch.get(WoWsAPI.PlayerClan, this.domain, id).then(data => {
-      let tag = Guard(data, `data.${id}.clan.tag`, '');
-      if (tag !== '') {
-        this.setState({clan: tag});
-      }
-    });
-  }
-
-  /**
-   * Get player achievement
-   */
-  getAchievement() {
-    const {id} = this.state;
-    SafeFetch.get(WoWsAPI.PlayerAchievement, this.domain, id).then(data => {
-      let achievement = Guard(data, `data.${id}.battle`, null);
-      if (achievement != null) {
-        this.setState({achievement: achievement});
-      }
-    });
-  }
-
-  /**
-   * Get player past rank info
-   */
-  getRank() {
-    const {id} = this.state;
-    // Get current rank info
-    SafeFetch.get(WoWsAPI.RankInfo, this.domain, id).then(data => {
-      let rank = Guard(data, `data.${id}.seasons`, null);
-      if (rank != null) {
-        let keys = Object.keys(rank);
-        if (keys.length > 0) {
-          let last = keys.slice(-1)[0];
-          let currRank = Guard(rank[last], 'rank_info.rank', 0);
-          if (currRank > 0) {
-            this.setState({currRank: currRank});
-          }
+    const shipData = await SafeFetch.get(WoWsAPI.RankShipInfo, this.domain, id);
+    const ships = Guard(shipData, `data.${id}`, null);
+    if (ships != null) {
+      const formatted: any = {};
+      for (const ship of ships) {
+        const {seasons, ship_id} = ship;
+        for (const season in seasons) {
+          if (formatted[season] == null) formatted[season] = [];
+          const curr = seasons[season];
+          const {rank_solo, rank_div2, rank_div3} = curr;
+          if (rank_solo) { curr.pvp = curr.rank_solo; delete curr.rank_solo; }
+          else if (rank_div2) { curr.pvp = curr.rank_div2; delete curr.rank_div2; }
+          else if (rank_div3) { curr.pvp = curr.rank_div3; delete curr.rank_div3; }
+          else continue;
+          curr.ship_id = ship_id;
+          formatted[season].push(curr);
         }
-        this.setState({rank: rank});
       }
-    });
-
-    // Get rank ship info
-    SafeFetch.get(WoWsAPI.RankShipInfo, this.domain, id).then(data => {
-      console.log(data);
-      let ships = Guard(data, `data.${id}`, null);
-      if (ships != null) {
-        let formatted = {};
-        for (let ship of ships) {
-          const {seasons, ship_id} = ship;
-          for (let season in seasons) {
-            // Init if not already
-            if (formatted[season] == null) {
-              formatted[season] = [];
-            }
-            // Put this ship inside
-            let curr = seasons[season];
-            // TO make there is data there
-            const {rank_solo, rank_div2, rank_div3} = curr;
-            if (rank_solo) {
-              curr.pvp = curr.rank_solo;
-              delete curr.rank_solo;
-            } else if (rank_div2) {
-              curr.pvp = curr.rank_div2;
-              delete curr.rank_div2;
-            } else if (rank_div3) {
-              curr.pvp = curr.rank_div3;
-              delete curr.rank_div3;
-            } else {
-              continue;
-            }
-
-            curr.ship_id = ship_id;
-            formatted[season].push(curr);
-          }
-        }
-
-        this.setState({rankShip: formatted});
-      }
-    });
+      this.setState({rankShip: formatted});
+    }
   }
 
-  /**
-   * Get all player ship info
-   */
-  getShip() {
+  async getShip() {
     const {id} = this.state;
-    SafeFetch.get(WoWsAPI.ShipInfo, this.domain, id).then(data => {
-      let ship = Guard(data, `data.${id}`, null);
-      console.log(ship);
-      if (ship != null) {
-        // Calculate personal rating for each ship and get an overall rating for this player
-        let rating = getOverallRating(ship);
-        this.setState({
-          ship: ship,
-          rating: rating,
-          graph: ship,
-          ratingColor: getColour(rating),
-        });
-      }
-    });
+    const data = await SafeFetch.get(WoWsAPI.ShipInfo, this.domain, id);
+    const ship = Guard(data, `data.${id}`, null);
+    if (ship != null) {
+      const rating = getOverallRating(ship);
+      this.setState({ship, rating, graph: ship, ratingColor: getColour(rating)});
+    }
   }
 
   render() {

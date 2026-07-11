@@ -81,40 +81,27 @@ class DataLoader {
       },
     };
 
-    this.loadEntry(data, friendList, list).then(() => {
-      let info = data[friendList];
-      if (info.player == null) {
-        // Previously, it was all players
-        let saved: any = {clan: {}, player: {}};
-        info.forEach(
-          (v: any) => (saved.player[v.id] = this.formatConverter(v)),
-        );
-        data[friendList] = saved;
-        SafeStorage.set(friendList, saved);
-      }
-
-      // let's add ICBC if FFD is still present
-      if (info.clan[2000008934] != null) {
-        delete info.clan[2000008934];
-        info.clan[2000020641] = {tag: 'ICBC', clan_id: '2000020641', server: 3};
-        SafeStorage.set(friendList, info);
-      }
-    });
+    await this.loadEntry(data, friendList, list);
+    const friendInfo = data[friendList];
+    if (friendInfo.player == null) {
+      const saved: any = {clan: {}, player: {}};
+      friendInfo.forEach((v: any) => (saved.player[v.id] = this.formatConverter(v)));
+      data[friendList] = saved;
+      SafeStorage.set(friendList, saved);
+    }
+    if (friendInfo.clan[2000008934] != null) {
+      delete friendInfo.clan[2000008934];
+      friendInfo.clan[2000020641] = {tag: 'ICBC', clan_id: '2000020641', server: 3};
+      SafeStorage.set(friendList, friendInfo);
+    }
 
     this.loadEntry(data, userData, {});
-    this.loadEntry(data, userInfo, {
-      nickname: '',
-      account_id: '',
-      server: 3,
-    }).then(() => {
-      // Update format
-      let info = data[userInfo];
-      if (info.nickname == null) {
-        let formatted = this.formatConverter(info);
-        data[userInfo] = formatted;
-        SafeStorage.set(userInfo, formatted);
-      }
-    });
+    await this.loadEntry(data, userInfo, {nickname: '', account_id: '', server: 3});
+    const userInfoData = data[userInfo];
+    if (userInfoData.nickname == null) {
+      data[userInfo] = this.formatConverter(userInfoData);
+      SafeStorage.set(userInfo, data[userInfo]);
+    }
     this.loadEntry(data, userServer, 3);
     this.loadEntry(data, lastUpdate, new Date().toDateString());
     this.loadEntry(data, theme, RED);

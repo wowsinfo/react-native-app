@@ -43,14 +43,15 @@ const ClanInfo = ({route}: any) => {
 
   useEffect(() => {
     if (clan_id == null) return;
-    SafeFetch.get(WoWsAPI.ClanInfo, domain, clan_id).then(data => {
+    (async () => {
+      const data = await SafeFetch.get(WoWsAPI.ClanInfo, domain, clan_id);
       const clanInfo = Guard(data, `data.${clan_id}`, null);
       if (clanInfo != null) {
         setInfo(clanInfo);
       } else {
         setValid(false);
       }
-    });
+    })();
   }, [clan_id, domain]);
 
   const addFriend = useCallback(() => {

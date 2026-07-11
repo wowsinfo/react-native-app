@@ -43,23 +43,16 @@ class Setup extends Component {
       selected_lang: 'en',
     };
 
-    let d = new Downloader(getCurrServer());
-    d.getLanguage().then(data => {
+    (async () => {
+      const data = await new Downloader(getCurrServer()).getLanguage();
       if (data) {
         const langList = data;
-        const langData = [];
-
-        for (const key in langList) {
-          langData.push(key);
-        }
-        langData.sort();
-
-        this.setState({langList: langList, langData: langData, loading: false});
+        const langData = Object.keys(langList).sort();
+        this.setState({langList, langData, loading: false});
       } else {
-        // Issue getting language data, retry
         this.setState({error: true});
       }
-    });
+    })();
   }
 
   render() {

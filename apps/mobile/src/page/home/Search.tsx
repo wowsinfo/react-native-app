@@ -38,10 +38,11 @@ class Search extends Component {
     // com -> na
     this.prefix = getCurrPrefix();
 
-    SafeFetch.get(WoWsAPI.PlayerOnline, domain).then(num => {
-      let online = Guard(num, 'data.wows.0.players_online', '???');
-      this.setState({online: online});
-    });
+    (async () => {
+      const num = await SafeFetch.get(WoWsAPI.PlayerOnline, domain);
+      const online = Guard(num, 'data.wows.0.players_online', '???');
+      this.setState({online});
+    })();
   }
 
   updateWidth = event => {
@@ -158,38 +159,29 @@ class Search extends Component {
 
     // Clear timeout everytime for efficient data request
     clearTimeout(this.delayedRequest);
-    this.delayedRequest = setTimeout(() => {
-      let domain = getCurrDomain();
-      // Save all clans and players
-      let all = {player: [], clan: []};
-      let length = text.length;
+    this.delayedRequest = setTimeout(async () => {
+      const domain = getCurrDomain();
+      const all: any = {player: [], clan: []};
+      const length = text.length;
 
       if (length > 1 && length < 6) {
-        // For clan, only 2 - 5
-        SafeFetch.get(WoWsAPI.ClanSearch, domain, text).then(result => {
-          let data = Guard(result, 'data', null);
-          if (data == null) {
-            // Error here
-          } else {
-            data.forEach(v => (v.server = getCurrServer()));
-            all.clan = data;
-            this.setState({result: all});
-          }
-        });
+        const clanResult = await SafeFetch.get(WoWsAPI.ClanSearch, domain, text);
+        const clanData = Guard(clanResult, 'data', null);
+        if (clanData != null) {
+          clanData.forEach((v: any) => (v.server = getCurrServer()));
+          all.clan = clanData;
+          this.setState({result: all});
+        }
       }
 
       if (length > 2) {
-        // For player, 3+
-        SafeFetch.get(WoWsAPI.PlayerSearch, domain, text).then(result => {
-          let data = Guard(result, 'data', null);
-          if (data == null) {
-            // Error here
-          } else {
-            data.forEach(v => (v.server = getCurrServer()));
-            all.player = data;
-            this.setState({result: all});
-          }
-        });
+        const playerResult = await SafeFetch.get(WoWsAPI.PlayerSearch, domain, text);
+        const playerData = Guard(playerResult, 'data', null);
+        if (playerData != null) {
+          playerData.forEach((v: any) => (v.server = getCurrServer()));
+          all.player = playerData;
+          this.setState({result: all});
+        }
       }
     }, 500);
   };
