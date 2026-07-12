@@ -44,6 +44,9 @@ import {
 } from 'react-native-exception-handler';
 
 import {navigationRef} from './core/navigation/NavigationService';
+import {SafeFetch} from './core';
+import {AppKey} from './value/key';
+SafeFetch.setAppKey(AppKey);
 
 const Stack = createNativeStackNavigator();
 
