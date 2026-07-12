@@ -33,7 +33,7 @@ import {
 import {LOCAL, getFirstLaunch, getCurrServer, APP} from './value/data';
 import {DataLoader, Downloader} from './core';
 import {GREY, RED} from 'react-native-material-color';
-import {TintColour} from './value/colour';
+import {TintColour, buildElevationColors} from './value/colour';
 import {lang} from './value/lang';
 import PlayerShip from './page/player/PlayerShip';
 import Detailed from './page/player/Detailed';
@@ -113,13 +113,24 @@ class App extends Component {
       }
 
       AppGlobalData.darkTheme = {
-        colors: {...MD3DarkTheme.colors, primary: tint[500], surface: 'black', onSurface: GREY[50]},
+        colors: {
+          ...MD3DarkTheme.colors,
+          primary: tint[500],
+          surface: 'black',
+          onSurface: GREY[50],
+          elevation: buildElevationColors(tint[500]),
+        },
       };
       AppGlobalData.lightTheme = {
-        colors: {...MD3LightTheme.colors, primary: tint[500], surface: 'white', onSurface: GREY[900]},
+        colors: {
+          ...MD3LightTheme.colors,
+          primary: tint[500],
+          surface: 'white',
+          onSurface: GREY[900],
+          elevation: buildElevationColors(tint[500]),
+        },
       };
 
-      props.theme.roundness = 32;
       props.theme.dark = AppGlobalData.isDarkMode;
       props.theme.colors = AppGlobalData.isDarkMode
         ? AppGlobalData.darkTheme.colors

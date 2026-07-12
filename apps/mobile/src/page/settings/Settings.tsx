@@ -27,7 +27,7 @@ import {
   setUserLang,
   setFirstLaunch,
 } from '../../value/data';
-import {TintColour, UpdateTintColour, UpdateDarkMode} from '../../value/colour';
+import {TintColour, UpdateTintColour, UpdateDarkMode, buildElevationColors} from '../../value/colour';
 import {SafeAction, SafeFetch, Guard} from '../../core';
 import {
   BLUE,
@@ -107,23 +107,24 @@ class Settings extends Component {
           <Dialog
             visible={showColour}
             dismissable={true}
-            theme={{roundness: 16}}
-            style={{maxHeight: '61.8%'}}
             onDismiss={() => this.setState({showColour: false})}>
-            <FlatList
-              bounces={false}
-              data={this.colourList}
-              keyExtractor={(item, index) => String(index)}
-              showsVerticalScrollIndicator={false}
-              renderItem={({item}) => {
-                return (
-                  <Touchable
-                    style={{backgroundColor: item[500], height: 64}}
-                    onPress={() => this.updateTint(item)}
-                  />
-                );
-              }}
-            />
+            <Dialog.ScrollArea style={{maxHeight: 380, paddingHorizontal: 0}}>
+              <FlatList
+                bounces={false}
+                data={this.colourList}
+                keyExtractor={(item, index) => String(index)}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{padding: 12, gap: 6}}
+                renderItem={({item}) => {
+                  return (
+                    <Touchable
+                      style={{backgroundColor: item[500], height: 48, borderRadius: 12}}
+                      onPress={() => this.updateTint(item)}
+                    />
+                  );
+                }}
+              />
+            </Dialog.ScrollArea>
           </Dialog>
         </Portal>
       </WoWsInfo>
@@ -377,6 +378,7 @@ class Settings extends Component {
           secondaryContainer: tintColour[100],
           surface: 'black',
           onSurface: GREY[50],
+          elevation: buildElevationColors(tintColour[500]),
         },
       };
       this.props.theme.colors = AppGlobalData.darkTheme.colors;
@@ -389,6 +391,7 @@ class Settings extends Component {
           secondaryContainer: tintColour[100],
           surface: 'white',
           onSurface: GREY[900],
+          elevation: buildElevationColors(tintColour[500]),
         },
       };
       this.props.theme.colors = AppGlobalData.lightTheme.colors;

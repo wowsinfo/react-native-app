@@ -18,6 +18,7 @@ import {Guard, SafeFetch, bestWidth} from '../../core';
 import {WoWsAPI} from '../../value/api';
 import {Friend} from './Friend';
 import {lang} from '../../value/lang';
+import {TintBackgroundColour} from '../../value/colour';
 
 class Search extends Component {
   searchRef = React.createRef();
@@ -63,6 +64,7 @@ class Search extends Component {
             ref={this.searchRef}
             value={search}
             style={searchBar}
+            iconColor={TintBackgroundColour()}
             placeholder={`${this.prefix.toUpperCase()} - ${online} ${
               lang.search_player_online
             }`}

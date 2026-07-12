@@ -59,7 +59,6 @@ class Collection extends PureComponent {
           renderItem={({item}) => {
             return (
               <WikiIcon
-                themeIcon={!collection}
                 item={item}
                 onPress={() => this.itemOrCollection(item)}
               />
