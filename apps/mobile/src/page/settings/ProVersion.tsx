@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, ScrollView, Alert, Linking} from 'react-native';
 import {WoWsInfo, LoadingIndicator} from '../../component';
-import {Title, List, Button, Text, MD2Colors} from 'react-native-paper';
+import {Title, List, Button, Text} from 'react-native-paper';
 import {
   initConnection,
   getSubscriptions,
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     paddingTop: 32,
     fontSize: 32,
     fontWeight: 'bold',
-    color: MD2Colors.orange500,
+    color: '#FF9800',
   },
   buttonView: {
     padding: 16,

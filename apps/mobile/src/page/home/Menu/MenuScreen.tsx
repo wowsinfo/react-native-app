@@ -15,7 +15,7 @@ import {
   Share,
 } from 'react-native';
 import {isAndroid, isIos} from 'react-native-device-detection';
-import {List, MD2Colors, FAB, Button, withTheme} from 'react-native-paper';
+import {List, FAB, Button, withTheme} from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
 import {WoWsInfo, SectionTitle, AppName} from '../../../component';
 import {lang} from '../../../value/lang';
@@ -342,7 +342,7 @@ class Menu extends Component {
               )}
               right={() =>
                 isAndroid ? null : (
-                  <List.Icon color={MD2Colors.grey500} icon="chevron-right" />
+                  <List.Icon color={'#9E9E9E'} icon="chevron-right" />
                 )
               }
             />
@@ -354,7 +354,7 @@ class Menu extends Component {
             title={lang.extra_wowsinfo_re}
             description={lang.extra_wowsinfo_re_subtitle}
             style={{width: bestItemWidth}}
-            titleStyle={{color: MD2Colors.orange500}}
+            titleStyle={{color: '#FF9800'}}
             onPress={() => Linking.openURL('https://wowsinfo.firebaseapp.com/')}
           /> */}
           <List.Item
@@ -362,7 +362,7 @@ class Menu extends Component {
             title="RS Beta"
             description={lang.extra_rs_beta}
             style={{width: bestItemWidth}}
-            titleStyle={{color: MD2Colors.orange500}}
+            titleStyle={{color: '#FF9800'}}
             onPress={() => (onlyProVersion() ? SafeAction('RS') : null)}
             // TODO: only enable this safe if we want to make it free
             // onPress={() => (SafeAction('RS'))}

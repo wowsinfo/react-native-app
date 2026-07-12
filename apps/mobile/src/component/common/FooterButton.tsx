@@ -1,6 +1,6 @@
 import React  from 'react';
 import {SafeAreaView} from 'react-native';
-import {IconButton, MD2Colors} from 'react-native-paper';
+import {IconButton} from 'react-native-paper';
 import {Actions} from '../../core/navigation/Actions';
 import {SafeAction} from '../../core';
 import {lang} from '../../value/lang';
@@ -52,7 +52,7 @@ export const FooterButton = ({icon, left}: FooterButtonProps) => {
         right: left ? null : 8,
       }}>
       <IconButton
-        iconColor={MD2Colors.grey500}
+        iconColor="#9E9E9E"
         icon={icon}
         accessibilityLabel={al}
         style={{height: 48, width: 48, borderRadius: 24}}

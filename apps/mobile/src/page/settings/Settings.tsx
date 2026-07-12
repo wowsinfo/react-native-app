@@ -8,8 +8,8 @@ import {
   withTheme,
   Portal,
   Dialog,
-  MD2DarkTheme,
-  MD2LightTheme,
+  MD3DarkTheme,
+  MD3LightTheme,
 } from 'react-native-paper';
 import {Actions} from '../../core/navigation/Actions';
 import {WoWsInfo, Touchable, SectionTitle} from '../../component';
@@ -371,23 +371,24 @@ class Settings extends Component {
     if (AppGlobalData.isDarkMode) {
       AppGlobalData.darkTheme = {
         colors: {
-          ...MD2DarkTheme.colors,
-          View: 'black',
-          text: GREY[50],
+          ...MD3DarkTheme.colors,
           primary: tintColour[500],
-          accent: tintColour[300],
+          secondary: tintColour[300],
+          secondaryContainer: tintColour[100],
+          surface: 'black',
+          onSurface: GREY[50],
         },
       };
       this.props.theme.colors = AppGlobalData.darkTheme.colors;
     } else {
-      // Setup global light theme
       AppGlobalData.lightTheme = {
         colors: {
-          ...MD2LightTheme.colors,
-          View: 'white',
-          text: GREY[900],
+          ...MD3LightTheme.colors,
           primary: tintColour[500],
-          accent: tintColour[300],
+          secondary: tintColour[300],
+          secondaryContainer: tintColour[100],
+          surface: 'white',
+          onSurface: GREY[900],
         },
       };
       this.props.theme.colors = AppGlobalData.lightTheme.colors;
@@ -403,7 +404,7 @@ class Settings extends Component {
     UpdateTintColour(tint);
 
     this.props.theme.colors.primary = tint[500];
-    this.props.theme.colors.accent = tint[300];
+    this.props.theme.colors.secondary = tint[300];
 
     this.setState({showColour: false, tintColour: tint});
   }

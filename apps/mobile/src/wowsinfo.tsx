@@ -2,7 +2,7 @@ import React, {Component, createRef} from 'react';
 import {Alert, BackHandler, Linking} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {withTheme, MD2DarkTheme, MD2LightTheme} from 'react-native-paper';
+import {withTheme, MD3DarkTheme, MD3LightTheme} from 'react-native-paper';
 import {
   Menu,
   Settings,
@@ -113,10 +113,10 @@ class App extends Component {
       }
 
       AppGlobalData.darkTheme = {
-        colors: {...MD2DarkTheme.colors, surface: 'black', text: GREY[50], primary: tint[500]},
+        colors: {...MD3DarkTheme.colors, primary: tint[500], surface: 'black', onSurface: GREY[50]},
       };
       AppGlobalData.lightTheme = {
-        colors: {...MD2LightTheme.colors, surface: 'white', text: GREY[900], primary: tint[500]},
+        colors: {...MD3LightTheme.colors, primary: tint[500], surface: 'white', onSurface: GREY[900]},
       };
 
       props.theme.roundness = 32;

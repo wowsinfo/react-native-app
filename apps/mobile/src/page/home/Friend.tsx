@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {List, MD2Colors, IconButton} from 'react-native-paper';
+import {List, IconButton} from 'react-native-paper';
 import {LOCAL} from '../../value/data';
 import {SafeAction, SafeStorage, SafeValue, bestWidth} from '../../core';
 import {SectionTitle} from '../../component';
@@ -60,7 +60,7 @@ class Friend extends PureComponent {
               key={String(item.clan_id)}
               right={() => (
                 <IconButton
-                  iconColor={MD2Colors.grey500}
+                  iconColor={'#9E9E9E'}
                   icon="close"
                   onPress={() => this.removeClan(item)}
                 />
@@ -81,7 +81,7 @@ class Friend extends PureComponent {
               key={String(item.account_id)}
               right={() => (
                 <IconButton
-                  iconColor={MD2Colors.grey500}
+                  iconColor={'#9E9E9E'}
                   icon="close"
                   onPress={() => this.removeFriend(item)}
                 />
