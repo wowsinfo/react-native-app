@@ -7,17 +7,15 @@ class SafeFetch {
     SafeFetch.appKey = key;
   }
 
-  private static injectKey(url: string): string {
-    return SafeFetch.appKey ? url.replace(/\{appkey\}/g, SafeFetch.appKey) : url;
-  }
-
   static async get(api: string, ...extra: any) {
     const format = require('string-format');
     let lang = '';
     if (extra.length > 1) {
       lang = extra.pop();
     }
-    const link = SafeFetch.injectKey(format(api, ...extra) + lang);
+    // Inject key before format() since string-format eats {appkey}
+    const withKey = SafeFetch.appKey ? api.replace('{appkey}', SafeFetch.appKey) : api;
+    const link = format(withKey, ...extra) + lang;
     try {
       const res = await fetch(link);
       if (res.status === 200) {
@@ -31,7 +29,7 @@ class SafeFetch {
   }
 
   static async normal(api: string) {
-    const link = SafeFetch.injectKey(api);
+    const link = SafeFetch.appKey ? api.replace('{appkey}', SafeFetch.appKey) : api;
     try {
       const res = await fetch(link);
       if (res.status === 200) {
