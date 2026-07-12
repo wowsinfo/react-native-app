@@ -67,9 +67,9 @@ class Setup extends Component {
             {`${lang.setting_game_server}: ${lang.server_name[selected_server]}`}
           </Subheading>
           <View style={wrapView}>
-            {server.map((_, index) => (
-              <Button key={index} onPress={() => this.updateServer(index)}>
-                {lang.server_name[index]}
+            {server.slice(1).map((_, index) => (
+              <Button key={index} onPress={() => this.updateServer(index + 1)}>
+                {lang.server_name[index + 1]}
               </Button>
             ))}
           </View>

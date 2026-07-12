@@ -78,7 +78,7 @@ class Statistics extends Component {
         this.getAchievement();
       } else {
         // Invalid domain
-        this.setState({valid: false});
+        this.state.valid = false;
       }
     } else {
       this.state = {
@@ -88,8 +88,20 @@ class Statistics extends Component {
     }
   }
 
+  _mounted = false;
+
+  componentDidMount() {
+    this._mounted = true;
+  }
+
+  safeSetState(partial: any) {
+    if (this._mounted === undefined || this._mounted) {
+      this.setState(partial);
+    }
+  }
+
   componentWillUnmount() {
-    // reset the theme colour back
+    this._mounted = false;
     this.props.theme.colors.primary = TintColour()[500];
   }
 
@@ -103,17 +115,17 @@ class Statistics extends Component {
     let hiddenAccount = false;
     if (hidden != null) {
       hiddenAccount = true;
-      this.setState({hidden: true});
+      this.safeSetState({hidden: true});
     }
     const player = Guard(data, `data.${id}`, null);
     if (player == null) {
-      this.setState({valid: false});
+      this.safeSetState({valid: false});
     } else {
       const battle = Guard(player, 'statistics.pvp.battles', 0);
       if (!hiddenAccount && battle == 0) {
-        this.setState({hidden: true});
+        this.safeSetState({hidden: true});
       }
-      this.setState({basic: player});
+      this.safeSetState({basic: player});
     }
   }
 
@@ -122,7 +134,7 @@ class Statistics extends Component {
     const data = await SafeFetch.get(WoWsAPI.PlayerClan, this.domain, id);
     const tag = Guard(data, `data.${id}.clan.tag`, '');
     if (tag !== '') {
-      this.setState({clan: tag});
+      this.safeSetState({clan: tag});
     }
   }
 
@@ -131,7 +143,7 @@ class Statistics extends Component {
     const data = await SafeFetch.get(WoWsAPI.PlayerAchievement, this.domain, id);
     const achievement = Guard(data, `data.${id}.battle`, null);
     if (achievement != null) {
-      this.setState({achievement});
+      this.safeSetState({achievement});
     }
   }
 
@@ -145,10 +157,10 @@ class Statistics extends Component {
         const last = keys.slice(-1)[0];
         const currRank = Guard(rank[last], 'rank_info.rank', 0);
         if (currRank > 0) {
-          this.setState({currRank});
+          this.safeSetState({currRank});
         }
       }
-      this.setState({rank});
+      this.safeSetState({rank});
     }
 
     const shipData = await SafeFetch.get(WoWsAPI.RankShipInfo, this.domain, id);
@@ -169,7 +181,7 @@ class Statistics extends Component {
           formatted[season].push(curr);
         }
       }
-      this.setState({rankShip: formatted});
+      this.safeSetState({rankShip: formatted});
     }
   }
 
@@ -179,7 +191,7 @@ class Statistics extends Component {
     const ship = Guard(data, `data.${id}`, null);
     if (ship != null) {
       const rating = getOverallRating(ship);
-      this.setState({ship, rating, graph: ship, ratingColor: getColour(rating)});
+      this.safeSetState({ship, rating, graph: ship, ratingColor: getColour(rating)});
     }
   }
 
@@ -340,7 +352,7 @@ class Statistics extends Component {
     let info = this.getPlayerInfo();
     AppGlobalData.set(LOCAL.userInfo, info);
     SafeStorage.set(LOCAL.userInfo, info);
-    this.setState({canBeMaster: false});
+    this.safeSetState({canBeMaster: false});
   };
 
   addFriend = () => {
@@ -351,7 +363,7 @@ class Statistics extends Component {
     AppGlobalData.get(str).player[info.account_id] = info;
 
     SafeStorage.set(str, AppGlobalData.get(str));
-    this.setState({canBeFriend: false});
+    this.safeSetState({canBeFriend: false});
   };
 
   renderStatistics(statistics) {

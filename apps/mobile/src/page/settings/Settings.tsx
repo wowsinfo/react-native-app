@@ -156,11 +156,11 @@ class Settings extends Component {
         <List.Section
           title={`${lang.setting_game_server} - ${lang.server_name[server]}`}>
           <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            {SERVER.map((key, index) => (
+            {SERVER.slice(1).map((key, index) => (
               <Button
                 key={key + '_server'}
-                onPress={() => this.updateServer(index)}>
-                {lang.server_name[index]}
+                onPress={() => this.updateServer(index + 1)}>
+                {lang.server_name[index + 1]}
               </Button>
             ))}
           </View>
