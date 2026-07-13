@@ -1,10 +1,4 @@
-/**
- * Setup.js
- * This page is for setuping API language and server
- * It only displays when you first launched WoWs Info
- */
-
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, ScrollView, StyleSheet, Linking} from 'react-native';
 import {
   Button,
@@ -19,6 +13,7 @@ import {
 import {Actions} from '../../core/navigation/Actions';
 import {lang} from '../../value/lang';
 import {
+  APP,
   SERVER,
   getCurrServer,
   setCurrServer,
@@ -28,82 +23,50 @@ import {Downloader} from '../../core';
 import {WoWsInfo, SectionTitle, LoadingIndicator} from '../../component';
 import {TintBackgroundColour} from '../../value/colour';
 
+const Setup = () => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [server] = useState(SERVER);
+  const [selectedServer, setSelectedServer] = useState(3);
+  const [langList, setLangList] = useState([]);
+  const [langData, setLangData] = useState([]);
+  const [selectedLang, setSelectedLang] = useState('en');
 
-class Setup extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loading: true,
-      error: false,
-      server: SERVER,
-      selected_server: 3,
-      langList: [],
-      langData: {},
-      selected_lang: 'en',
-    };
-
+  useEffect(() => {
     (async () => {
       const data = await new Downloader(getCurrServer()).getLanguage();
       if (data) {
-        const langList = data;
-        const langData = Object.keys(langList).sort();
-        this.setState({langList, langData, loading: false});
+        setLangList(data);
+        setLangData(Object.keys(data).sort());
+        setLoading(false);
       } else {
-        this.setState({error: true});
+        setError(true);
       }
     })();
-  }
+  }, []);
 
-  render() {
-    const {loading, server, selected_server, langList, selected_lang} =
-      this.state;
-    const {fab, titleStyle, wrapView, scroll} = styles;
-    return (
-      <WoWsInfo hideAds empty>
-        <ScrollView contentContainerStyle={scroll}>
-          <SectionTitle title={lang.settings_api_settings} center bold />
-          <Subheading style={titleStyle}>
-            {`${lang.setting_game_server}: ${lang.server_name[selected_server]}`}
-          </Subheading>
-          <View style={wrapView}>
-            {server.slice(1).map((_, index) => (
-              <Button key={index} onPress={() => this.updateServer(index + 1)}>
-                {lang.server_name[index + 1]}
-              </Button>
-            ))}
-          </View>
-          {/* <FlatList data={server} renderItem={({index}) => {
-              return <Button onPress={() => this.updateServer(index)}>{lang.server_name[index]}</Button>
-            }} keyExtractor={i => i} numColumns={2}/> */}
-          <Subheading style={titleStyle}>
-            {`${lang.setting_api_language}: ${langList[selected_lang] ?? ''}`}
-          </Subheading>
-          {this.renderAPILanguage()}
-        </ScrollView>
-        <FAB
-          visible={!loading}
-          icon="check"
-          color="white"
-          style={[fab, {backgroundColor: TintBackgroundColour()}]}
-          label={lang.setup_done_button}
-          onPress={loading ? null : () => this.finishSetup()}
-        />
-      </WoWsInfo>
-    );
-  }
+  const updateServer = (index: number) => {
+    setCurrServer(index);
+    setSelectedServer(index);
+  };
 
-  renderAPILanguage() {
-    const {loading, error, langData, langList} = this.state;
-    const {titleStyle, wrapView} = styles;
+  const updateApiLanguage = (lang: string) => {
+    setAPILanguage(lang);
+    setSelectedLang(lang);
+  };
 
+  const finishSetup = () => {
+    Actions.reset('Menu');
+  };
+
+  const renderAPILanguage = () => {
     if (loading) {
       return <LoadingIndicator />;
     }
     if (error) {
       return (
         <View>
-          <Paragraph style={titleStyle}>{lang.error_download_issue}</Paragraph>
+          <Paragraph style={styles.titleStyle}>{lang.error_download_issue}</Paragraph>
           <List.Item
             title={lang.settings_app_send_feedback}
             description={lang.settings_app_send_feedback_subtitle}
@@ -114,31 +77,46 @@ class Setup extends Component {
     }
 
     return (
-      <View style={wrapView}>
+      <View style={styles.wrapView}>
         {langData.map(item => (
-          <Button key={item} onPress={() => this.updateApiLanguage(item)}>
+          <Button key={item} onPress={() => updateApiLanguage(item)}>
             {langList[item]}
           </Button>
         ))}
       </View>
     );
-  }
+  };
 
-  updateServer(index) {
-    setCurrServer(index);
-    this.setState({selected_server: index});
-  }
-
-  updateApiLanguage(lang) {
-    setAPILanguage(lang);
-    this.setState({selected_lang: lang});
-  }
-
-  // Get selection and download data from api
-  finishSetup() {
-    Actions.reset('Menu');
-  }
-}
+  return (
+    <WoWsInfo hideAds empty>
+      <ScrollView contentContainerStyle={styles.scroll}>
+        <SectionTitle title={lang.settings_api_settings} center bold />
+        <Subheading style={styles.titleStyle}>
+          {`${lang.setting_game_server}: ${lang.server_name[selectedServer]}`}
+        </Subheading>
+        <View style={styles.wrapView}>
+          {server.slice(1).map((_, index) => (
+            <Button key={index} onPress={() => updateServer(index + 1)}>
+              {lang.server_name[index + 1]}
+            </Button>
+          ))}
+        </View>
+        <Subheading style={styles.titleStyle}>
+          {`${lang.setting_api_language}: ${langList[selectedLang] ?? ''}`}
+        </Subheading>
+        {renderAPILanguage()}
+      </ScrollView>
+      <FAB
+        visible={!loading}
+        icon="check"
+        color="white"
+        style={[styles.fab, {backgroundColor: TintBackgroundColour()}]}
+        label={lang.setup_done_button}
+        onPress={loading ? undefined : finishSetup}
+      />
+    </WoWsInfo>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
