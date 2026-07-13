@@ -1,12 +1,11 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import * as RNIap from 'react-native-iap';
 import {View, Linking} from 'react-native';
 import {List} from 'react-native-paper';
 import {lang} from '../../value/lang';
 import {APP} from '../../value/data';
+import {useAppStore} from '../../store/useAppStore';
 
-
-// Now, we have 4 tiers ($1, $3, $5 and $10) for donations
 const itemSkus = [
   'com.yihengquan.wowsinfo.support1',
   'com.yihengquan.wowsinfo.support3',
@@ -14,82 +13,50 @@ const itemSkus = [
   'com.yihengquan.wowsinfo.support10',
 ];
 
-class Donation extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: null,
-    };
-  }
+const Donation = () => {
+  const [products, setProducts] = useState(null);
+  const githubVersion = useAppStore.getState().githubVersion;
 
-  async componentDidMount() {
-    if (!AppGlobalData.githubVersion) {
-      try {
-        const products = await RNIap.getProducts(itemSkus);
-        await RNIap.consumeAllItems();
-        products.sort((a, b) => a.price.localeCompare(b.price));
-        this.setState({products});
-      } catch (err) {
-        console.warn(err);
-      }
+  useEffect(() => {
+    if (!githubVersion) {
+      (async () => {
+        try {
+          const items = await RNIap.getProducts(itemSkus);
+          await RNIap.consumeAllItems();
+          items.sort((a: any, b: any) => a.price.localeCompare(b.price));
+          setProducts(items);
+        } catch (err) {
+          console.warn(err);
+        }
+      })();
     }
-  }
+  }, [githubVersion]);
 
-  render() {
-    const {products} = this.state;
-    console.log(this.state);
-
-    this.support = [
-      {t: lang.support_patreon, d: APP.Patreon, c: 'orange'},
-      {t: lang.support_paypal, d: APP.PayPal, c: 'blue'},
-      {t: lang.support_wechat, d: APP.WeChat, c: 'green'},
-    ];
-
-    if (!AppGlobalData.githubVersion) {
-      this.support = [
-        {
-          t: 'GitHub',
-          d: 'https://github.com/HenryQuan/WoWs-Info-Origin',
-          c: 'black',
-        },
+  let support = useMemo(() => {
+    if (!githubVersion) {
+      return [
+        {t: lang.support_patreon, d: APP.Patreon, c: 'orange'},
+        {t: lang.support_paypal, d: APP.PayPal, c: 'blue'},
+        {t: lang.support_wechat, d: APP.WeChat, c: 'green'},
       ];
     }
+    return [
+      {t: 'GitHub', d: 'https://github.com/HenryQuan/WoWs-Info-Origin', c: 'black'},
+    ];
+  }, [githubVersion]);
 
-    return (
-      <View>
-        {this.support.map(item => {
-          return (
-            <List.Item
-              title={item.t}
-              key={item.t}
-              description={item.d}
-              onPress={() => Linking.openURL(item.d)}
-            />
-          );
-        })}
-      </View>
-    );
-  }
-
-  async supportWoWsInfo(item) {
-    try {
-      const purchase = await RNIap.buyProduct(item.productId);
-      await RNIap.consumePurchase(purchase.purchaseToken);
-      this.setState({
-        receipt: purchase.transactionReceipt,
-      });
-    } catch (err) {
-      console.error(err.code, err.message);
-      const subscription = RNIap.addAdditionalSuccessPurchaseListenerIOS(
-        async purchase => {
-          this.setState({receipt: purchase.transactionReceipt}, () =>
-            this.goToNext(),
-          );
-          subscription.remove();
-        },
-      );
-    }
-  }
-}
+  return (
+    <View>
+      {support.map(item => (
+        <List.Item
+          title={item.t}
+          key={item.t}
+          description={item.d}
+          onPress={() => Linking.openURL(item.d)}
+        />
+      ))}
+    </View>
+  );
+};
 
 export {Donation};

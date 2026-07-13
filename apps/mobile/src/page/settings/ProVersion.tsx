@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, ScrollView, Alert, Linking} from 'react-native';
 import {WoWsInfo, LoadingIndicator} from '../../component';
 import {Title, List, Button, Text} from 'react-native-paper';
@@ -14,108 +14,113 @@ import {setProVersion, validateProVersion} from '../../value/data';
 import {Actions} from '../../core/navigation/Actions';
 import {lang} from '../../value/lang';
 
+const sku = 'wowsinfo.proversion';
 
-class ProVersion extends Component {
-  purchaseUpdateSubscription = null;
-  purchaseErrorSubscription = null;
+const ProVersion = () => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [price, setPrice] = useState('');
+  const [discountPrice, setDiscountPrice] = useState('');
 
-  sku = 'wowsinfo.proversion';
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      error: false,
-      price: '',
-      discountPrice: '',
-    };
-  }
-
-  async componentDidMount() {
-    /// Setup listeners
-    this.purchaseUpdateSubscription = purchaseUpdatedListener(
-      async purchase => {
+  useEffect(() => {
+    const purchaseUpdateSubscription = purchaseUpdatedListener(
+      async (purchase: any) => {
         console.log('purchaseUpdatedListener', purchase);
         const receipt = purchase.transactionReceipt;
         if (receipt) {
-          // It wes successful
           await finishTransaction(purchase, false);
-
           setProVersion(true);
-          // Go back automatically
           Actions.pop();
           Alert.alert(lang.pro_title, lang.iap_thx_for_support);
-          setTimeout(() => {
-            Actions.refresh();
-          }, 500);
+          setTimeout(() => Actions.refresh(), 500);
         }
       },
     );
 
-    this.purchaseErrorSubscription = purchaseErrorListener(error => {
+    const purchaseErrorSubscription = purchaseErrorListener((error: any) => {
       console.warn('purchaseErrorListener', error);
     });
 
-    // Init connection
-    const allgood = await initConnection();
-    console.log(allgood);
-    this.setState({
-      error: !allgood,
-    });
+    (async () => {
+      const allgood = await initConnection();
+      console.log(allgood);
+      setError(!allgood);
 
-    if (allgood) {
-      console.info('This device can make purchases');
-      const items = await getSubscriptions([this.sku]);
-      console.log(items);
-      if (items.length === 1) {
-        // There should only be one item which is wows info pro
-        const pro = items[0];
-        this.setState({
-          price: pro.localizedPrice,
-          discountPrice: pro.introductoryPrice,
-          loading: false,
-        });
+      if (allgood) {
+        console.info('This device can make purchases');
+        const items = await getSubscriptions([sku]);
+        console.log(items);
+        if (items.length === 1) {
+          const pro: any = items[0];
+          setPrice(pro.localizedPrice);
+          setDiscountPrice(pro.introductoryPrice);
+          setLoading(false);
+        }
       }
-    }
-  }
+    })();
 
-  componentWillUnmount() {
-    if (this.purchaseUpdateSubscription) {
-      this.purchaseUpdateSubscription.remove();
-      this.purchaseUpdateSubscription = null;
-    }
-    if (this.purchaseErrorSubscription) {
-      this.purchaseErrorSubscription.remove();
-      this.purchaseErrorSubscription = null;
-    }
-  }
+    return () => {
+      purchaseUpdateSubscription?.remove();
+      purchaseErrorSubscription?.remove();
+    };
+  }, []);
 
-  render() {
-    const {titleStyle, viewStyle} = styles;
+  const buy = async () => {
+    try {
+      await requestSubscription(sku, false);
+    } catch (err: any) {
+      console.warn(err.code, err.message);
+    }
+  };
+
+  const restore = async () => {
+    await validateProVersion(true);
+  };
+
+  const renderPurchaseView = () => {
+    if (loading) {
+      return (
+        <View style={styles.loader}>
+          <LoadingIndicator />
+        </View>
+      );
+    }
+    if (error) return null;
+
     return (
-      <WoWsInfo hideAds>
-        <ScrollView style={viewStyle}>
-          <Title style={titleStyle}>{lang.pro_title}</Title>
-          <List.Item title={lang.pro_rs} description={lang.pro_rs_subtitle} />
-          <List.Item
-            title={lang.pro_more_stats}
-            description={lang.pro_more_stats_subtitle}
-          />
-          <List.Item
-            title={lang.pro_support_development}
-            description={lang.pro_support_development_subtitle}
-          />
-        </ScrollView>
-        {this.renderPurchaseView()}
-        {this.renderPolicies()}
-      </WoWsInfo>
+      <View style={styles.buttonView}>
+        <Text style={styles.discount}>{lang.pro_50_off_until_re}</Text>
+        <Button
+          mode="contained"
+          theme={{roundness: 0}}
+          onPress={buy}>{`${price} / ${lang.pro_per_year}`}</Button>
+        <Button
+          mode="outlined"
+          style={styles.restoreButton}
+          theme={{roundness: 0}}
+          onPress={restore}>
+          {lang.pro_restore_pro}
+        </Button>
+      </View>
     );
-  }
+  };
 
-  renderPolicies() {
-    const {horizontal} = styles;
-    return (
-      <View style={horizontal}>
+  return (
+    <WoWsInfo hideAds>
+      <ScrollView style={styles.viewStyle}>
+        <Title style={styles.titleStyle}>{lang.pro_title}</Title>
+        <List.Item title={lang.pro_rs} description={lang.pro_rs_subtitle} />
+        <List.Item
+          title={lang.pro_more_stats}
+          description={lang.pro_more_stats_subtitle}
+        />
+        <List.Item
+          title={lang.pro_support_development}
+          description={lang.pro_support_development_subtitle}
+        />
+      </ScrollView>
+      {renderPurchaseView()}
+      <View style={styles.horizontal}>
         <Button
           onPress={() =>
             Linking.openURL(
@@ -133,58 +138,9 @@ class ProVersion extends Component {
           Term of use
         </Button>
       </View>
-    );
-  }
-
-  renderPurchaseView() {
-    const {loading, error, price} = this.state;
-    const {buttonView, restoreButton, discount, loader} = styles;
-    if (loading) {
-      return (
-        <View style={loader}>
-          <LoadingIndicator />
-        </View>
-      );
-    } else if (error) {
-      return null;
-    } else {
-      return (
-        <View style={buttonView}>
-          <Text style={discount}>{lang.pro_50_off_until_re}</Text>
-          <Button
-            mode="contained"
-            theme={{roundness: 0}}
-            onPress={this.buy}>{`${price} / ${lang.pro_per_year}`}</Button>
-          <Button
-            mode="outlined"
-            style={restoreButton}
-            theme={{roundness: 0}}
-            onPress={this.restore}>
-            {lang.pro_restore_pro}
-          </Button>
-        </View>
-      );
-    }
-  }
-
-  /**
-   * Subscribe to pro version
-   */
-  buy = async () => {
-    try {
-      await requestSubscription(this.sku, false);
-    } catch (err) {
-      console.warn(err.code, err.message);
-    }
-  };
-
-  /**
-   * Get all purchases history and check for the last one
-   */
-  restore = async () => {
-    await validateProVersion(true);
-  };
-}
+    </WoWsInfo>
+  );
+};
 
 const styles = StyleSheet.create({
   viewStyle: {

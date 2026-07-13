@@ -1,11 +1,5 @@
-/**
- * Search.js
- *
- * This is the search screen to find players and clans
- */
-
-import React, {Component} from 'react';
-import {View, StyleSheet, ScrollView, KeyboardAvoidingView} from 'react-native';
+import React, {useState, useRef, useEffect, useCallback} from 'react';
+import {View, StyleSheet, ScrollView, KeyboardAvoidingView, LayoutChangeEvent} from 'react-native';
 import {Searchbar} from 'react-native-paper';
 import {WoWsInfo, SectionTitle, PlayerCell} from '../../component';
 import {
@@ -20,148 +14,42 @@ import {Friend} from './Friend';
 import {lang} from '../../value/lang';
 import {TintBackgroundColour} from '../../value/colour';
 
-class Search extends Component {
-  searchRef = React.createRef();
+const Search = () => {
+  const searchRef = useRef(null);
+  const prefix = getCurrPrefix();
+  const [search, setSearch] = useState('');
+  const [server] = useState('');
+  const [result, setResult] = useState({player: [], clan: []});
+  const [online, setOnline] = useState('???');
+  const [showFriend, setShowFriend] = useState(true);
+  const [goodWidth, setGoodWidth] = useState(bestWidth(400));
 
-  constructor(props) {
-    super(props);
+  useEffect(() => {
     setLastLocation('Search');
-    this.state = {
-      search: '',
-      server: '',
-      result: {player: [], clan: []},
-      online: '???',
-      showFriend: true,
-      goodWidth: bestWidth(400),
-    };
-
-    const domain = getCurrDomain();
-    // com -> na
-    this.prefix = getCurrPrefix();
-
     (async () => {
+      const domain = getCurrDomain();
       const num = await SafeFetch.get(WoWsAPI.PlayerOnline, domain);
-      const online = Guard(num, 'data.wows.0.players_online', '???');
-      this.setState({online});
+      const n = Guard(num, 'data.wows.0.players_online', '???');
+      setOnline(n);
     })();
-  }
+  }, []);
 
-  updateWidth = event => {
+  const updateWidth = useCallback((event: LayoutChangeEvent) => {
     const newWidth = event.nativeEvent.layout.width;
-    this.setState({goodWidth: bestWidth(400, newWidth)});
-  };
+    setGoodWidth(bestWidth(400, newWidth));
+  }, []);
 
-  render() {
-    const {search, online} = this.state;
-    const {searchBar, scroll} = styles;
-    return (
-      <WoWsInfo
-        hideAds
-        title={lang.menu_footer}
-        onPress={() => this.searchRef.current?.focus()}>
-        <KeyboardAvoidingView behavior={undefined} style={{flex: 1}}>
-          <Searchbar
-            ref={this.searchRef}
-            value={search}
-            style={searchBar}
-            iconColor={TintBackgroundColour()}
-            placeholder={`${this.prefix.toUpperCase()} - ${online} ${
-              lang.search_player_online
-            }`}
-            onChangeText={this.searchAll}
-            autoCorrect={false}
-            autoCapitalize="none"
-          />
-          <ScrollView
-            style={scroll}
-            keyboardShouldPersistTaps="always"
-            keyboardDismissMode="on-drag"
-            contentContainerStyle={{flexGrow: 1}}
-            onLayout={this.updateWidth}>
-            {this.renderContent()}
-          </ScrollView>
-        </KeyboardAvoidingView>
-      </WoWsInfo>
-    );
-  }
+  const delayedRequest = useRef<ReturnType<typeof setTimeout>>();
 
-  renderContent() {
-    const {search, result, showFriend} = this.state;
-    if (showFriend && search.length < 2) {
-      return <Friend />;
-    } else {
-      const playerLen = result.player.length;
-      const clanLen = result.clan.length;
-      return (
-        <View>
-          <SectionTitle title={`${lang.menu_search_clan} - ${clanLen}`} />
-          {this.renderClan(result.clan)}
-          <SectionTitle title={`${lang.menu_search_player} - ${playerLen}`} />
-          {this.renderPlayer(result.player)}
-        </View>
-      );
-    }
-  }
-
-  /**
-   *
-   * @param {any[]} clan
-   */
-  renderClan(clan) {
-    if (clan.length > 0) {
-      return (
-        <View style={styles.wrap}>
-          {clan.map(item => (
-            <PlayerCell
-              key={item.clan_id}
-              item={item}
-              clan
-              width={this.state.goodWidth}
-            />
-          ))}
-        </View>
-      );
-    }
-
-    return null;
-  }
-
-  /**
-   *
-   * @param {any[]} player
-   */
-  renderPlayer(player) {
-    if (player.length > 0) {
-      return (
-        <View style={styles.wrap}>
-          {player.map(item => (
-            <PlayerCell
-              key={item.account_id}
-              item={item}
-              player
-              width={this.state.goodWidth}
-            />
-          ))}
-        </View>
-      );
-    }
-
-    return null;
-  }
-
-  /**
-   * Search player and clan
-   */
-  searchAll = text => {
-    // Reset search
+  const searchAll = useCallback((text: string) => {
     if (text.length < 2) {
-      this.setState({result: {player: [], clan: []}});
+      setResult({player: [], clan: []});
     }
-    this.setState({search: text});
+    setSearch(text);
+    setShowFriend(text.length < 2);
 
-    // Clear timeout everytime for efficient data request
-    clearTimeout(this.delayedRequest);
-    this.delayedRequest = setTimeout(async () => {
+    clearTimeout(delayedRequest.current);
+    delayedRequest.current = setTimeout(async () => {
       const domain = getCurrDomain();
       const all: any = {player: [], clan: []};
       const length = text.length;
@@ -172,7 +60,7 @@ class Search extends Component {
         if (clanData != null) {
           clanData.forEach((v: any) => (v.server = getCurrServer()));
           all.clan = clanData;
-          this.setState({result: all});
+          setResult({...all});
         }
       }
 
@@ -182,12 +70,82 @@ class Search extends Component {
         if (playerData != null) {
           playerData.forEach((v: any) => (v.server = getCurrServer()));
           all.player = playerData;
-          this.setState({result: all});
+          setResult({...all});
         }
       }
     }, 500);
+  }, []);
+
+  const renderClan = (clan: any[]) => {
+    if (clan.length > 0) {
+      return (
+        <View style={styles.wrap}>
+          {clan.map(item => (
+            <PlayerCell key={item.clan_id} item={item} clan width={goodWidth} />
+          ))}
+        </View>
+      );
+    }
+    return null;
   };
-}
+
+  const renderPlayer = (player: any[]) => {
+    if (player.length > 0) {
+      return (
+        <View style={styles.wrap}>
+          {player.map(item => (
+            <PlayerCell key={item.account_id} item={item} player width={goodWidth} />
+          ))}
+        </View>
+      );
+    }
+    return null;
+  };
+
+  const renderContent = () => {
+    if (showFriend && search.length < 2) {
+      return <Friend />;
+    }
+    const playerLen = result.player.length;
+    const clanLen = result.clan.length;
+    return (
+      <View>
+        <SectionTitle title={`${lang.menu_search_clan} - ${clanLen}`} />
+        {renderClan(result.clan)}
+        <SectionTitle title={`${lang.menu_search_player} - ${playerLen}`} />
+        {renderPlayer(result.player)}
+      </View>
+    );
+  };
+
+  return (
+    <WoWsInfo
+      hideAds
+      title={lang.menu_footer}
+      onPress={() => (searchRef.current as any)?.focus()}>
+      <KeyboardAvoidingView behavior={undefined} style={{flex: 1}}>
+        <Searchbar
+          ref={searchRef}
+          value={search}
+          style={styles.searchBar}
+          iconColor={TintBackgroundColour()}
+          placeholder={`${prefix.toUpperCase()} - ${online} ${lang.search_player_online}`}
+          onChangeText={searchAll}
+          autoCorrect={false}
+          autoCapitalize="none"
+        />
+        <ScrollView
+          style={styles.scroll}
+          keyboardShouldPersistTaps="always"
+          keyboardDismissMode="on-drag"
+          contentContainerStyle={{flexGrow: 1}}
+          onLayout={updateWidth}>
+          {renderContent()}
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </WoWsInfo>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
