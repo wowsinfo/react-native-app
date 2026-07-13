@@ -320,7 +320,7 @@ const renderNextShip = (next_ships: any) => {
       <FlatList
         data={ships}
         horizontal
-        keyExtractor={(_, index) => String(index)}
+        keyExtractor={(item: any) => String(item.key)}
         renderItem={({item}) => {
           let curr = useAppStore.getState().getData(SAVED.warship)[item.key];
           return (
@@ -368,7 +368,7 @@ const renderSimilar = (similar: any[], compare: any, onShipPress: (item: any) =>
   return (
     <FooterPlus>
       <FlatList
-        keyExtractor={item => item.name}
+        keyExtractor={item => String(item.ship_id)}
         horizontal
         data={similar}
         renderItem={({item}) => (

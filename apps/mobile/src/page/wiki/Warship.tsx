@@ -68,10 +68,10 @@ const Warship = ({route}: any) => {
         itemDimension={width}
         spacing={0}
         data={data}
+        keyExtractor={item => String(item.ship_id)}
         renderItem={({item}) => (
           <WarshipCell
             scale={width / 80}
-            key={item.ship_id}
             item={item}
             onPress={() => SafeAction('WarshipDetail', {item: item})}
           />

@@ -124,6 +124,7 @@ const PlayerShip = ({route}: any) => {
         itemDimension={cellWidth}
         spacing={0}
         data={data}
+        keyExtractor={item => String(item.ship_id)}
         renderItem={({item}) => renderShip(item)}
         showsVerticalScrollIndicator={false}
       />
