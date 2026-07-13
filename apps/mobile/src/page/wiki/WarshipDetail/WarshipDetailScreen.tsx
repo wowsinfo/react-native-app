@@ -18,11 +18,8 @@ import {lang} from '../../../value/lang';
 import {SafeFetch, Guard, SafeAction, copy, roundTo} from '../../../core';
 import {WoWsAPI} from '../../../value/api';
 import {Actions} from '../../../core/navigation/Actions';
-import {TintTextColour} from '../../../value/colour';
 import {HorizontalBarChart} from 'native-chart-experiment';
 import {useAppStore} from '../../../store/useAppStore';
-
-const sectionTitle = [styles.centerText, TintTextColour()];
 
 const renderStatus = (profile: any) => {
   if (!profile) return null;
