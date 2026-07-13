@@ -46,6 +46,7 @@ import {
 import {navigationRef} from './core/navigation/NavigationService';
 import {SafeFetch} from './core';
 import {AppKey} from './value/key';
+import {useAppStore} from './store/useAppStore';
 SafeFetch.setAppKey(AppKey);
 
 const Stack = createNativeStackNavigator();
@@ -95,14 +96,16 @@ class App extends Component {
       dark: false,
     };
 
+    const store = useAppStore.getState();
     (async () => {
       const data = await DataLoader.loadAll();
       AppGlobalData.setupWith(data);
-      AppGlobalData.shouldSwapButton = AppGlobalData.get(LOCAL.swapButton);
-      AppGlobalData.lastLocation = AppGlobalData.get(LOCAL.lastLocation);
-      AppGlobalData.isDarkMode = AppGlobalData.get(LOCAL.darkMode);
+      store.hydrate(data);
+      store.setSwapButton(data[LOCAL.swapButton] ?? false);
+      store.setLastLocation(data[LOCAL.lastLocation] ?? '');
+      store.setDarkMode(data[LOCAL.darkMode] ?? false);
 
-      const userLang = AppGlobalData.get(LOCAL.userLanguage);
+      const userLang = data[LOCAL.userLanguage];
       if (userLang !== '') {
         lang.setLanguage(userLang);
       }
@@ -112,7 +115,7 @@ class App extends Component {
         tint = RED;
       }
 
-      AppGlobalData.darkTheme = {
+      const darkTheme = {
         colors: {
           ...MD3DarkTheme.colors,
           primary: tint[500],
@@ -121,7 +124,7 @@ class App extends Component {
           elevation: buildElevationColors(tint[500]),
         },
       };
-      AppGlobalData.lightTheme = {
+      const lightTheme = {
         colors: {
           ...MD3LightTheme.colors,
           primary: tint[500],
@@ -131,20 +134,21 @@ class App extends Component {
         },
       };
 
-      props.theme.dark = AppGlobalData.isDarkMode;
-      props.theme.colors = AppGlobalData.isDarkMode
-        ? AppGlobalData.darkTheme.colors
-        : AppGlobalData.lightTheme.colors;
+      store.setTheme(lightTheme, darkTheme);
+      props.theme.dark = store.isDarkMode;
+      props.theme.colors = store.isDarkMode
+        ? darkTheme.colors
+        : lightTheme.colors;
 
       const first = getFirstLaunch();
       if (!first) {
         const obj = await new Downloader(getCurrServer()).updateAll(false);
-        this.setState({loading: false, dark: AppGlobalData.isDarkMode});
+        this.setState({loading: false, dark: store.isDarkMode});
         if (!obj.status) {
           Alert.alert(lang.error_title, lang.error_download_issue + '\n\n' + obj.log);
         }
       } else {
-        this.setState({loading: false, dark: AppGlobalData.isDarkMode});
+        this.setState({loading: false, dark: store.isDarkMode});
       }
     })();
   }

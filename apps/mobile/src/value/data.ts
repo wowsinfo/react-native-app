@@ -1,25 +1,27 @@
-import {SafeStorage, SafeValue} from '../core';
+import {SafeValue} from '../core';
 import {Actions} from '../core/navigation/Actions';
 import {getAvailablePurchases} from 'react-native-iap';
 import {Alert, Platform} from 'react-native';
 import {lang} from './lang';
 import {APP as SharedAPP, LOCAL as SharedLOCAL, SAVED as SharedSAVED, SERVER as SharedSERVER} from '@wowsinfo/shared';
+import {useAppStore} from '../store/useAppStore';
 
 export const APP = SharedAPP;
 export const LOCAL = SharedLOCAL;
 export const SAVED = SharedSAVED;
 export const SERVER = SharedSERVER;
 
+const s = () => useAppStore.getState();
+
 /**
  * First launch
  */
 export const getFirstLaunch = () => {
-  return AppGlobalData.get(LOCAL.firstLaunch);
+  return s().getData(LOCAL.firstLaunch);
 };
 
 export const setFirstLaunch = (mode: boolean) => {
-  AppGlobalData.set(LOCAL.firstLaunch, mode);
-  SafeStorage.set(LOCAL.firstLaunch, mode);
+  s().setData(LOCAL.firstLaunch, mode);
 };
 
 export const getCurrDomain = () => {
@@ -47,33 +49,29 @@ export const getPrefix = (index: number) => {
 };
 
 export const getCurrServer = () => {
-  return SafeValue(AppGlobalData.get(LOCAL.userServer), 3);
+  return SafeValue(s().getData(LOCAL.userServer), 3);
 };
 
 export const setCurrServer = (index: number) => {
-  let str = LOCAL.userServer;
-  AppGlobalData.set(str, index);
-  SafeStorage.set(str, index);
+  s().setData(LOCAL.userServer, index);
 };
 
 /**
  * User Language
  */
 export const getUserLang = () => {
-  return SafeValue(AppGlobalData.get(LOCAL.userLanguage), 'en');
+  return SafeValue(s().getData(LOCAL.userLanguage), 'en');
 };
 
 export const setUserLang = (lang: string) => {
-  let str = LOCAL.userLanguage;
-  AppGlobalData.set(str, lang);
-  SafeStorage.set(str, lang);
+  s().setData(LOCAL.userLanguage, lang);
 };
 
 /**
  * API Language
  */
 export const getAPILanguage = () => {
-  return SafeValue(AppGlobalData.get(LOCAL.apiLanguage), 'en');
+  return SafeValue(s().getData(LOCAL.apiLanguage), 'en');
 };
 
 export const getAPILangName = () => {
@@ -85,46 +83,38 @@ export const langStr = () => {
 };
 
 export const getAPIList = () => {
-  return AppGlobalData.get(SAVED.language);
+  return s().getData(SAVED.language);
 };
 
 export const setAPILanguage = (lang: string) => {
-  let str = LOCAL.apiLanguage;
-  AppGlobalData.set(str, lang);
-  SafeStorage.set(str, lang);
+  s().setData(LOCAL.apiLanguage, lang);
 };
 
 /**
  * Swap Button
  */
 export const getSwapButton = () => {
-  return AppGlobalData.get(LOCAL.swapButton);
+  return s().getData(LOCAL.swapButton);
 };
 
 export const setSwapButton = (swap: boolean) => {
-  AppGlobalData.shouldSwapButton = swap;
-  let str = LOCAL.swapButton;
-  AppGlobalData.set(str, swap);
-  SafeStorage.set(str, swap);
+  s().setSwapButton(swap);
+  s().setData(LOCAL.swapButton, swap);
 };
 
 /**
  * Last Location
  */
 export const setLastLocation = (str: string) => {
-  let loc = LOCAL.lastLocation;
-  AppGlobalData.set(loc, str);
-  SafeStorage.set(loc, str);
+  s().setData(LOCAL.lastLocation, str);
 };
 
 export const isProVersion = () => {
-  return AppGlobalData.get(LOCAL.proVersion) === true;
+  return s().getData(LOCAL.proVersion) === true;
 };
 
 export const setProVersion = (pro: boolean) => {
-  let str = LOCAL.proVersion;
-  AppGlobalData.set(str, pro);
-  SafeStorage.set(str, pro);
+  s().setData(LOCAL.proVersion, pro);
 };
 
 /**
@@ -197,7 +187,7 @@ const restorePurchase = (shouldRestore: boolean, showAlert?: boolean) => {
 };
 
 export const getCurrDate = () => {
-  return AppGlobalData.get(LOCAL.date);
+  return s().getData(LOCAL.date);
 };
 
 /**
@@ -205,9 +195,7 @@ export const getCurrDate = () => {
  */
 export const updateCurrData = () => {
   const today = new Date().toDateString();
-  let str = LOCAL.date;
-  AppGlobalData.set(str, today);
-  SafeStorage.set(str, today);
+  s().setData(LOCAL.date, today);
 };
 
 export const differentMonth = () => {
@@ -219,7 +207,7 @@ export const differentMonth = () => {
 };
 
 export const getLastUpdate = () => {
-  return AppGlobalData.get(LOCAL.lastUpdate);
+  return s().getData(LOCAL.lastUpdate);
 };
 
 /**

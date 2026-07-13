@@ -1,27 +1,28 @@
 // @ts-ignore
 import {GREY, BLUE, RED} from 'react-native-material-color';
 import {LOCAL} from './data';
-import {SafeStorage} from '../core';
+import {useAppStore} from '../store/useAppStore';
+
+const s = () => useAppStore.getState();
 
 export const ThemeBackColour = () => {
-  return {backgroundColor: AppGlobalData.isDarkMode ? GREY[900] : GREY[100]};
+  return {backgroundColor: s().isDarkMode ? GREY[900] : GREY[100]};
 };
 
 export const ViewBackColour = () => {
-  return {backgroundColor: AppGlobalData.isDarkMode ? 'black' : 'white'};
+  return {backgroundColor: s().isDarkMode ? 'black' : 'white'};
 };
 
 export const ThemeColour = () => {
-  return AppGlobalData.isDarkMode ? GREY[900] : GREY[100];
+  return s().isDarkMode ? GREY[900] : GREY[100];
 };
 
 export const UpdateDarkMode = () => {
-  AppGlobalData.isDarkMode = !AppGlobalData.isDarkMode;
-  SafeStorage.set(LOCAL.darkMode, AppGlobalData.isDarkMode);
+  s().setDarkMode(!s().isDarkMode);
 };
 
 export const TintColour = () => {
-  return AppGlobalData.get(LOCAL.theme);
+  return s().getData(LOCAL.theme);
 };
 
 export const TintTextColour = () => {
@@ -41,8 +42,7 @@ export const TintBackgroundColour = () => {
 };
 
 export const UpdateTintColour = (tint: any) => {
-  AppGlobalData.set(LOCAL.theme, tint);
-  SafeStorage.set(LOCAL.theme, tint);
+  s().setData(LOCAL.theme, tint);
 };
 
 const hexToRgb = (hex: string) => {

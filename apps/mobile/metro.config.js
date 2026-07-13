@@ -12,10 +12,15 @@ const babelRuntimeDir = path.dirname(
   require.resolve('@babel/runtime/package.json', {paths: [__dirname]}),
 );
 
+// Bun caches resolved packages under node_modules/.bun/<pkg>@<version>/node_modules/<pkg>/
+// Metro cannot compute SHA-1 for files there unless the directory is watched.
+const bunCacheDir = path.resolve(monorepoRoot, 'node_modules', '.bun');
+
 const config = {
   watchFolders: [
     path.resolve(monorepoRoot, 'packages'),
     path.resolve(babelRuntimeDir),
+    path.resolve(bunCacheDir),
   ],
   resolver: {
     sourceExts: ['js', 'jsx', 'ts', 'tsx', 'json'],
@@ -24,7 +29,7 @@ const config = {
       path.resolve(__dirname, 'node_modules'),
     ],
     resolveRequest: (context, moduleName, platform) => {
-      if (moduleName.startsWith('@babel/') || moduleName.startsWith('string-format')) {
+      if (moduleName.startsWith('@babel/') || moduleName === 'string-format' || moduleName.startsWith('zustand')) {
         try {
           const resolved = require.resolve(moduleName, {paths: [__dirname]});
           return {type: 'sourceFile', filePath: resolved};

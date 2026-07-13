@@ -18,11 +18,11 @@
     "bundle:ios": "bunx react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle"
   },
   "dependencies": {
-    "@wowsinfo/shared": "workspace:*",
-    "@wowsinfo/core": "workspace:*",
-    "@wowsinfo/ui": "workspace:*",
     "@react-navigation/native": "^7.3.8",
     "@react-navigation/native-stack": "^7.17.10",
+    "@wowsinfo/core": "workspace:*",
+    "@wowsinfo/shared": "workspace:*",
+    "@wowsinfo/ui": "workspace:*",
     "native-chart-experiment": "^1.0.2",
     "react": "19.2.3",
     "react-native": "0.86.0",
@@ -32,7 +32,8 @@
     "react-native-paper": "^5.15.3",
     "react-native-safe-area-context": "^5.8.0",
     "react-native-screens": "^4.26.0",
-    "react-native-super-grid": "^6.0.2"
+    "react-native-super-grid": "^6.0.2",
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "babel-plugin-transform-remove-console": "^6.9.4",
