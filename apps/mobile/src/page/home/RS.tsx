@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {
   View,
   ScrollView,
@@ -17,7 +17,7 @@ import {
   List,
   Text,
   Title,
-  withTheme,
+  useTheme,
 } from 'react-native-paper';
 import {
   WoWsInfo,
@@ -34,7 +34,6 @@ import {
   getOverallRating,
   SafeAction,
   SafeValue,
-  SafeStorage,
   random,
 } from '../../core';
 import {WoWsAPI} from '../../value/api';
@@ -48,168 +47,168 @@ import {
 import {FlatGrid} from 'react-native-super-grid';
 import {lang} from '../../value/lang';
 import KeepAwake from 'react-native-keep-awake';
+import {TintColour} from '../../value/colour';
+import {useAppStore} from '../../store/useAppStore';
 
-import { TintColour } from '../../value/colour';
+const RS = () => {
+  const store = useAppStore;
+  const gs = () => store.getState();
+  const theme = useTheme();
+  const domain = getCurrDomain();
 
-class RS extends Component {
-  constructor(props) {
-    super(props);
+  const [ip, setIp] = useState(() => gs().getData(LOCAL.rsIP) ?? '');
+  const [rs, setRs] = useState<any>(null);
+  const [valid, setValid] = useState(false);
+  const [info, setInfo] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [battleTime, setBattleTime] = useState('');
+  const [allay, setAllay] = useState<any[]>([]);
+  const [allayInfo, setAllayInfo] = useState({});
+  const [enemy, setEnemy] = useState<any[]>([]);
+  const [enemyInfo, setEnemyInfo] = useState({});
+
+  const intervalRef = useRef<ReturnType<typeof setInterval>>();
+
+  useEffect(() => {
     setLastLocation('RS');
-    this.state = {
-      // Controls whether ip if valid
-      ip: AppGlobalData.get(LOCAL.rsIP), // load saved ip
-      rs: null,
-      valid: false,
-      // Whether show map info
-      info: false,
-      // Whether we are loading player info
-      loading: true,
-      battleTime: '',
-      // array is player list and Info is for each team (winrate, damage and so on)
-      allay: [],
-      allayInfo: {},
-      enemy: [],
-      enemyInfo: {},
-    };
-
-    this.domain = getCurrDomain();
-  }
-
-  componentDidMount() {
-    const {ip} = this.state;
     KeepAwake.activate();
-    // Enter rs mode when there is a valid ip
     if (ip !== '') {
-      this.validIP(ip);
+      validIP(ip);
     }
-  }
+    return () => {
+      KeepAwake.deactivate();
+      clearInterval(intervalRef.current);
+      theme.colors.primary = TintColour()[500];
+    };
+  }, []);
 
-  componentWillUnmount() {
-    KeepAwake.deactivate();
-    // reset the theme colour back
-    this.props.theme.colors.primary = TintColour()[500];
-  }
+  const validIP = useCallback(async (ipStr: string) => {
+    let url = 'http://' + ipStr.split('/').join('') + ':8605';
+    try {
+      await fetch(url);
+      setValid(true);
+      gs().setData(LOCAL.rsIP, ipStr);
+      getArenaInfo(url);
+      intervalRef.current = setInterval(() => getArenaInfo(url), 22222);
+    } catch {
+      Alert.alert('Error', `${url} is not valid`);
+    }
+  }, []);
 
-  render() {
-    const {container, input} = styles;
-    const {ip, rs, valid} = this.state;
+  const appendExtraInfo = useCallback(async (player: any) => {
+    const {name, shipId} = player;
+    if (name.startsWith(':')) return player;
+    let idInfo = await SafeFetch.get(WoWsAPI.PlayerSearch, domain, name);
+    let playerID: any = Guard(idInfo, 'data.0', null);
+    if (playerID != null) {
+      player.ship_id = player.shipId;
+      delete player.shipId;
+      delete player.id;
+      delete player.name;
+      player.account_id = playerID.account_id;
+      player.nickname = playerID.nickname;
+      let shipInfo = await SafeFetch.get(WoWsAPI.OneShipInfo, domain, shipId, player.account_id);
+      let pvp = Guard(shipInfo, `data.${player.account_id}.0.pvp`, null);
+      if (pvp != null) player.pvp = pvp;
+    }
+    return player;
+  }, [domain]);
 
-    return (
-      <WoWsInfo
-        onPress={rs ? () => this.setState({info: true}) : null}
-        title="Map Information">
-        {!valid ? (
-          <KeyboardAvoidingView style={container} behavior="padding" enabled>
-            <TextInput
-              style={input}
-              theme={{roundness: 0}}
-              value={ip}
-              placeholder="192.168.1.x"
-              keyboardType={
-                isAndroid ? 'decimal-pad' : 'numbers-and-punctuation'
+  const getArenaInfo = useCallback(async (url: string) => {
+    try {
+      const response = await fetch(url);
+      let text = await response.text();
+      if (text !== '[]') {
+        const data = JSON.parse(text);
+        setRs(data);
+        if (data.dateTime !== battleTime) {
+          setLoading(true);
+          setBattleTime(data.dateTime);
+          const vehicles = data.vehicles;
+          let allayList: any[] = [];
+          let enemyList: any[] = [];
+          for (const v of vehicles) {
+            setTimeout(async () => {
+              const player = await appendExtraInfo(v);
+              const team = player.relation;
+              if (team < 2) {
+                allayList.push(player);
+              } else {
+                enemyList.push(player);
               }
-              onChangeText={t => this.setState({ip: t})}
-              onEndEditing={() => this.validIP(ip)}
-            />
-            <Button
-              uppercase={false}
-              onPress={() =>
-                Linking.openURL(
-                  'https://github.com/wowsinfo/WoWs-RS//releases/latest',
-                )
-              }>
-              {lang.extra_rs_beta_download}
-            </Button>
-          </KeyboardAvoidingView>
-        ) : (
-          this.renderPlayer()
-        )}
-        {this.renderMapInfo(rs)}
-      </WoWsInfo>
-    );
-  }
-
-  renderPlayer() {
-    const {loading, allay, enemy} = this.state;
-    if (loading) {
-      return <LoadingIndicator />;
+              if (player.account_id == null) {
+                player.account_id = random(88888888);
+              }
+              setAllay([...allayList]);
+              setEnemy([...enemyList]);
+              setLoading(false);
+            }, 300);
+          }
+        }
+      }
+    } catch {
+      clearInterval(intervalRef.current);
+      setValid(false);
+      setRs(null);
     }
+  }, [battleTime, appendExtraInfo]);
 
-    const {horizontal} = styles;
+  const renderPlayerCell = useCallback((info: any) => {
+    const {nickname, name} = info;
+    let pName = SafeValue(nickname, name);
+    info.server = getCurrServer();
+    const ship = gs().getData(SAVED.warship)[info.ship_id];
+    return (
+      <Touchable
+        style={styles.cell}
+        onPress={info.pvp ? () => SafeAction('PlayerShipDetail', {data: info}) : null}
+        onLongPress={info.account_id ? () => SafeAction('Statistics', {info: info}) : null}>
+        <WarshipCell item={ship} scale={1.4} />
+        <Text style={styles.playerName} numberOfLines={1}>{pName}</Text>
+        <SimpleRating info={info} />
+      </Touchable>
+    );
+  }, []);
+
+  const renderPlayer = () => {
+    if (loading) return <LoadingIndicator />;
     let allayRating = getOverallRating(allay);
     let enemyRating = getOverallRating(enemy);
-    allay.sort((a, b) => b.ap - a.ap);
-    enemy.sort((a, b) => b.ap - a.ap);
+    const sortedAllay = [...allay].sort((a: any, b: any) => b.ap - a.ap);
+    const sortedEnemy = [...enemy].sort((a: any, b: any) => b.ap - a.ap);
 
     return (
       <ScrollView>
-        <View style={[horizontal, {justifyContent: 'space-between'}]}>
+        <View style={[styles.horizontal, {justifyContent: 'space-between'}]}>
           <RatingButton rating={allayRating} number />
           <Title>RS Beta</Title>
           <RatingButton rating={enemyRating} number />
         </View>
-        <View style={horizontal}>
+        <View style={styles.horizontal}>
           <FlatGrid
-            data={allay}
+            data={sortedAllay}
             itemDimension={120}
-            renderItem={({item}) => this.renderPlayerCell(item)}
+            renderItem={({item}) => renderPlayerCell(item)}
             keyExtractor={p => String(p.account_id)}
             style={{width: '50%'}}
           />
           <FlatGrid
-            data={enemy}
+            data={sortedEnemy}
             itemDimension={120}
-            renderItem={({item}) => this.renderPlayerCell(item)}
+            renderItem={({item}) => renderPlayerCell(item)}
             keyExtractor={p => String(p.account_id)}
             style={{width: '50%'}}
           />
         </View>
       </ScrollView>
     );
-  }
+  };
 
-  renderPlayerCell(info) {
-    const {playerName, cell} = styles;
-    const {nickname, name} = info;
-    let pName = SafeValue(nickname, name);
-    // For pushing to player
-    info.server = getCurrServer();
-    return (
-      <Touchable
-        style={cell}
-        onPress={
-          info.pvp ? () => SafeAction('PlayerShipDetail', {data: info}) : null
-        }
-        onLongPress={
-          info.account_id ? () => SafeAction('Statistics', {info: info}) : null
-        }>
-        <WarshipCell
-          item={AppGlobalData.get(SAVED.warship)[info.ship_id]}
-          scale={1.4}
-        />
-        <Text style={playerName} numberOfLines={1}>
-          {pName}
-        </Text>
-        <SimpleRating info={info} />
-      </Touchable>
-    );
-  }
-
-  renderMapInfo(rs) {
-    if (rs === null) {
-      return null;
-    }
-    const {info} = this.state;
-
+  const renderMapInfo = () => {
+    if (rs === null) return null;
     const {
-      clientVersionFromExe,
-      dateTime,
-      duration,
-      gameLogic,
-      mapDisplayName,
-      matchGroup,
-      name,
-      weatherParams,
+      clientVersionFromExe, dateTime, duration, gameLogic,
+      mapDisplayName, matchGroup, name, weatherParams,
     } = rs;
     let params = '';
     for (let ID in weatherParams) {
@@ -224,144 +223,55 @@ class RS extends Component {
           dismissable={true}
           theme={{roundness: 16}}
           style={{maxHeight: '61.8%'}}
-          onDismiss={() => this.setState({info: false})}>
+          onDismiss={() => setInfo(false)}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <List.Item
-              title="Client Version"
-              description={clientVersionFromExe}
-            />
+            <List.Item title="Client Version" description={clientVersionFromExe} />
             <List.Item title="Time" description={dateTime} />
-            <List.Item
-              title="Game Mode"
-              description={`${matchGroup} - ${gameLogic} - ${name}`}
-            />
+            <List.Item title="Game Mode" description={`${matchGroup} - ${gameLogic} - ${name}`} />
             <List.Item title="Map" description={mapDisplayName} />
-            <List.Item
-              title="Duration"
-              description={`${roundTo(duration / 60)} min`}
-            />
+            <List.Item title="Duration" description={`${roundTo(duration / 60)} min`} />
             <Text style={{paddingLeft: 16}}>{params}</Text>
           </ScrollView>
         </Dialog>
       </Portal>
     );
-  }
+  };
 
-  /**
-   * Check the IP format and try to send a request to it
-   * @param {string} ip
-   */
-  async validIP(ip) {
-    let url = 'http://' + ip.split('/').join('') + ':8605';
-    try {
-      // Only want to know if we can access it
-      await fetch(url);
-      this.setState({valid: true}, () => {
-        // Update IP when it is valid
-        SafeStorage.set(LOCAL.rsIP, ip);
-      });
-      this.getArenaInfo(url);
-      this.interval = setInterval(() => this.getArenaInfo(url), 22222);
-    } catch {
-      Alert.alert('Error', `${url} is not valid`);
-    }
-  }
-
-  async getArenaInfo(url) {
-    try {
-      const response = await fetch(url);
-      let text = await response.text();
-      if (text !== '[]') {
-        const data = JSON.parse(text);
-        this.setState({rs: data});
-        const {battleTime} = this.state;
-        // Make sure it is a new date
-        if (data.dateTime !== battleTime) {
-          this.setState({loading: true, battleTime: data.dateTime});
-          const vehicles = data.vehicles;
-          // Get allay and enemy
-          let allayList = [];
-          let enemyList = [];
-          for (const v of vehicles) {
-            setTimeout(async () => {
-              const player = await this.appendExtraInfo(v);
-              const team = player.relation;
-              if (team < 2) {
-                allayList.push(player);
-              } else {
-                enemyList.push(player);
-              }
-
-              if (player.account_id == null) {
-                player.account_id = random(88888888);
-              }
-
-              this.setState({allay: allayList, enemy: enemyList, loading: false});
-            }, 300);
-          }
-        }
-      }
-    } catch {
-      // Some error so no longer valid
-      clearTimeout(this.interval);
-      this.setState({valid: false, rs: null});
-    }
-  }
-
-  async appendExtraInfo(player) {
-    const {name, shipId} = player;
-    if (name.startsWith(':')) {
-      return player;
-    }
-    let idInfo = await SafeFetch.get(WoWsAPI.PlayerSearch, this.domain, name);
-    let playerID = Guard(idInfo, 'data.0', null);
-    if (playerID != null) {
-      player.ship_id = player.shipId;
-      delete player.shipId;
-      delete player.id;
-      delete player.name;
-      player.account_id = playerID.account_id;
-      player.nickname = playerID.nickname;
-
-      // Get player ship info
-      let shipInfo = await SafeFetch.get(
-        WoWsAPI.OneShipInfo,
-        this.domain,
-        shipId,
-        player.account_id,
-      );
-      let pvp = Guard(shipInfo, `data.${player.account_id}.0.pvp`, null);
-      if (pvp != null) {
-        player.pvp = pvp;
-      }
-    }
-    return player;
-  }
-}
+  return (
+    <WoWsInfo
+      onPress={rs ? () => setInfo(true) : null}
+      title="Map Information">
+      {!valid ? (
+        <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+          <TextInput
+            style={styles.input}
+            theme={{roundness: 0}}
+            value={ip}
+            placeholder="192.168.1.x"
+            keyboardType={isAndroid ? 'decimal-pad' : 'numbers-and-punctuation'}
+            onChangeText={setIp}
+            onEndEditing={() => validIP(ip)}
+          />
+          <Button
+            uppercase={false}
+            onPress={() => Linking.openURL('https://github.com/wowsinfo/WoWs-RS//releases/latest')}>
+            {lang.extra_rs_beta_download}
+          </Button>
+        </KeyboardAvoidingView>
+      ) : (
+        renderPlayer()
+      )}
+      {renderMapInfo()}
+    </WoWsInfo>
+  );
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    width: '100%',
-    marginBottom: 8,
-  },
-  horizontal: {
-    flexDirection: 'row',
-    padding: 8,
-  },
-  playerName: {
-    fontWeight: '300',
-    fontSize: 17,
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  cell: {
-    margin: 4,
-  },
+  container: {flex: 1, alignItems: 'center', justifyContent: 'center'},
+  input: {width: '100%', marginBottom: 8},
+  horizontal: {flexDirection: 'row', padding: 8},
+  playerName: {fontWeight: '300', fontSize: 17, marginBottom: 8, textAlign: 'center'},
+  cell: {margin: 4},
 });
 
-export default withTheme(RS);
+export default RS;

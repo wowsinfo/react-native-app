@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {View, ScrollView, FlatList, StyleSheet, Alert, Linking} from 'react-native';
 import {isAndroid} from 'react-native-device-detection';
 import {
   List,
   Button,
   Checkbox,
-  withTheme,
   Portal,
   Dialog,
   MD3DarkTheme,
   MD3LightTheme,
+  useTheme,
 } from 'react-native-paper';
 import {Actions} from '../../core/navigation/Actions';
 import {WoWsInfo, Touchable, SectionTitle} from '../../component';
@@ -30,188 +30,150 @@ import {
 import {TintColour, UpdateTintColour, UpdateDarkMode, buildElevationColors} from '../../value/colour';
 import {SafeAction, SafeFetch, Guard} from '../../core';
 import {
-  BLUE,
-  RED,
-  GREEN,
-  PINK,
-  PURPLE,
-  DEEPPRUPLE,
-  INDIGO,
-  LIGHTBLUE,
-  CYAN,
-  TEAL,
-  LIGHTGREEN,
-  LIME,
-  YELLOW,
-  AMBER,
-  DEEPORANGE,
-  BROWN,
-  GREY,
-  BLUEGREY,
+  BLUE, RED, GREEN, PINK, PURPLE, DEEPPRUPLE, INDIGO,
+  LIGHTBLUE, CYAN, TEAL, LIGHTGREEN, LIME, YELLOW,
+  AMBER, DEEPORANGE, BROWN, GREY, BLUEGREY,
 } from 'react-native-material-color';
 import {lang} from '../../value/lang';
 import {WikiAPI} from '../../value/api';
+import {useAppStore} from '../../store/useAppStore';
 
+const colourList = [
+  RED, PINK, PURPLE, DEEPPRUPLE, INDIGO, BLUE, LIGHTBLUE,
+  CYAN, TEAL, GREEN, LIGHTGREEN, LIME, YELLOW, AMBER,
+  DEEPORANGE, BROWN, GREY, BLUEGREY,
+];
 
-class Settings extends Component {
-  constructor(props) {
-    super(props);
+const Settings = () => {
+  const store = useAppStore;
+  const gs = () => store.getState();
+  const theme = useTheme();
 
-    this.state = {
-      darkMode: AppGlobalData.isDarkMode,
-      tintColour: TintColour(),
-      showColour: false,
-      server: getCurrServer(),
-      APILanguage: getAPILanguage(),
-      userLanguage: getUserLang(),
-      swapButton: getSwapButton(),
+  const [darkMode, setDarkMode] = useState(gs().isDarkMode);
+  const [tintColour, setLocalTint] = useState(TintColour());
+  const [showColour, setShowColour] = useState(false);
+  const [server, setServer] = useState(getCurrServer());
+  const [APILanguage, setApiLang] = useState(getAPILanguage());
+  const [userLanguage, setUserLangState] = useState(getUserLang());
+  const [swapButton, setSwapBtn] = useState(getSwapButton());
+
+  useEffect(() => {
+    return () => {
+      setTimeout(() => Actions.refresh(), 300);
     };
+  }, []);
 
-    this.colourList = [
-      RED,
-      PINK,
-      PURPLE,
-      DEEPPRUPLE,
-      INDIGO,
-      BLUE,
-      LIGHTBLUE,
-      CYAN,
-      TEAL,
-      GREEN,
-      LIGHTGREEN,
-      LIME,
-      YELLOW,
-      AMBER,
-      DEEPORANGE,
-      BROWN,
-      GREY,
-      BLUEGREY,
-    ];
-  }
+  const updateTheme = useCallback(() => {
+    UpdateDarkMode();
+    const nextDark = gs().isDarkMode;
+    setDarkMode(nextDark);
+    theme.dark = nextDark;
 
-  componentWillUnmount() {
-    setTimeout(() => Actions.refresh(), 300);
-  }
-
-  render() {
-    const {showColour} = this.state;
-    return (
-      <WoWsInfo about>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {this.renderAPISettings()}
-          {this.renderAppSettings()}
-          {this.renderWoWsInfo()}
-          {this.renderOpenSource()}
-        </ScrollView>
-        <Portal>
-          <Dialog
-            visible={showColour}
-            dismissable={true}
-            onDismiss={() => this.setState({showColour: false})}>
-            <Dialog.ScrollArea style={{maxHeight: 380, paddingHorizontal: 0}}>
-              <FlatList
-                bounces={false}
-                data={this.colourList}
-                keyExtractor={(item, index) => String(index)}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{padding: 12, gap: 6}}
-                renderItem={({item}) => {
-                  return (
-                    <Touchable
-                      style={{backgroundColor: item[500], height: 48, borderRadius: 12}}
-                      onPress={() => this.updateTint(item)}
-                    />
-                  );
-                }}
-              />
-            </Dialog.ScrollArea>
-          </Dialog>
-        </Portal>
-      </WoWsInfo>
-    );
-  }
-
-  renderAPISettings() {
-    const {server, APILanguage, userLanguage} = this.state;
-
-    const langList = getAPIList();
-    const appLang = {
-      en: 'English',
-      ja: '日本語',
-      zh: '简体中文',
-      'zh-hant': '繁体中文',
-    };
-    let appLangList = [];
-    for (let code in appLang) {
-      appLangList.push({code: code, lang: appLang[code]});
+    const tint = tintColour?.[500];
+    if (nextDark) {
+      const dark = {
+        colors: {
+          ...MD3DarkTheme.colors,
+          primary: tint,
+          secondary: tintColour?.[300],
+          secondaryContainer: tintColour?.[100],
+          surface: 'black',
+          onSurface: GREY[50],
+          elevation: buildElevationColors(tint),
+        },
+      };
+      store.getState().setTheme({}, dark);
+      theme.colors = dark.colors;
+    } else {
+      const light = {
+        colors: {
+          ...MD3LightTheme.colors,
+          primary: tint,
+          secondary: tintColour?.[300],
+          secondaryContainer: tintColour?.[100],
+          surface: 'white',
+          onSurface: GREY[900],
+          elevation: buildElevationColors(tint),
+        },
+      };
+      store.getState().setTheme(light, {});
+      theme.colors = light.colors;
     }
+  }, [tintColour, theme, store]);
 
-    let display = appLang[userLanguage];
-    if (display == null) {
-      display = '???';
+  const updateTint = useCallback((tint: any) => {
+    UpdateTintColour(tint);
+    theme.colors.primary = tint[500];
+    theme.colors.secondary = tint[300];
+    setShowColour(false);
+    setLocalTint(tint);
+  }, [theme]);
+
+  const updateServer = useCallback((index: number) => {
+    setCurrServer(index);
+    setServer(index);
+  }, []);
+
+  const updateApiLanguage = useCallback((language: string, force?: boolean) => {
+    if (!force && language === APILanguage) return;
+    setAPILanguage(language);
+    setApiLang(language);
+    setFirstLaunch(true);
+    store.getState().setShouldUpdateAPI(false);
+    Actions.reset('Menu');
+  }, [APILanguage, store]);
+
+  const updateUserLang = useCallback((code: string) => {
+    setUserLang(code);
+    lang.setLanguage(code);
+    setUserLangState(code);
+  }, []);
+
+  const swapBtnHandler = useCallback((curr: boolean) => {
+    setSwapButton(curr);
+    setSwapBtn(getSwapButton());
+  }, []);
+
+  const checkAppUpdate = useCallback(async () => {
+    if (gs().canCheckForUpdate) {
+      store.getState().setCanCheckForUpdate(false);
+      const v = await SafeFetch.normal(WikiAPI.Github_AppVersion);
+      const version = Guard(v, 'version', null);
+      if (version != null) {
+        if (version > APP.Version) {
+          displayUpdate(true, version);
+        } else {
+          displayUpdate(false);
+        }
+      }
+    } else {
+      displayUpdate(false);
     }
+  }, [store]);
 
-    return (
-      <View>
-        <SectionTitle title={lang.settings_api_settings} />
-        <List.Section
-          title={`${lang.setting_game_server} - ${lang.server_name[server]}`}>
-          <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            {SERVER.slice(1).map((key, index) => (
-              <Button
-                key={key + '_server'}
-                onPress={() => this.updateServer(index + 1)}>
-                {lang.server_name[index + 1]}
-              </Button>
-            ))}
-          </View>
-          {/* <FlatList data={SERVER} renderItem={({index}) => {
-            return <Button onPress={() => this.updateServer(index)}>{lang.server_name[index]}</Button>
-          }} keyExtractor={i => i} numColumns={2}/> */}
-        </List.Section>
-        <List.Section
-          title={`${lang.setting_api_language} - ${langList[APILanguage]}`}>
-          {AppGlobalData.shouldUpdateAPI
-            ? this.renderAPILanguage(langList)
-            : null}
-        </List.Section>
-        <List.Section title={`${lang.setting_app_language} - ${display}`}>
-          <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            {appLangList.map(item => (
-              <Button
-                key={item.code}
-                onPress={() => this.updateUserLang(item.code)}>
-                {item.lang}
-              </Button>
-            ))}
-          </View>
-          {/* <FlatList data={appLangList} renderItem={({item}) => {
-            return <Button onPress={() => this.updateUserLang(item.code)}>{item.lang}</Button>
-          }} keyExtractor={i => i.code} numColumns={3} style={{flexWrap: 'wrap'}}/> */}
-        </List.Section>
-      </View>
-    );
-  }
-
-  renderAPILanguage(langList) {
-    const langData = [];
-    for (let key in langList) {
-      langData.push(key);
+  const displayUpdate = (result: boolean, version?: string) => {
+    if (result) {
+      const format = require('string-format');
+      Alert.alert(lang.app_name, format(lang.settings_app_has_update, version), [
+        {text: 'Google Play', onPress: () => Linking.openURL(APP.GooglePlay)},
+        {text: 'Github', onPress: () => Linking.openURL(APP.LatestRelease)},
+      ]);
+    } else {
+      Alert.alert(lang.app_name, lang.settings_app_no_update);
     }
-    langData.sort();
+  };
 
+  const renderAPILanguage = (langList: any) => {
+    const langData = Object.keys(langList).sort();
     return (
       <View>
         <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
           {langData.map(item => (
-            <Button key={item} onPress={() => this.updateApiLanguage(item)}>
+            <Button key={item} onPress={() => updateApiLanguage(item)}>
               {langList[item]}
             </Button>
           ))}
         </View>
-        {/* <FlatList data={langData} renderItem={({item}) => {
-            return <Button onPress={() => this.updateApiLanguage(item)}>{langList[item]}</Button>
-          }} keyExtractor={i => i} horizontal/> */}
         <Button
           mode="contained"
           theme={{roundness: 0}}
@@ -219,8 +181,7 @@ class Settings extends Component {
             Alert.alert(lang.app_name, lang.setting_api_update_data_title, [
               {
                 text: lang.setting_api_update_data_update,
-                onPress: () =>
-                  this.updateApiLanguage(this.state.APILanguage, true),
+                onPress: () => updateApiLanguage(APILanguage, true),
                 style: 'destructive',
               },
               {text: lang.setting_api_update_data_cancel, onPress: () => null},
@@ -230,46 +191,61 @@ class Settings extends Component {
         </Button>
       </View>
     );
-  }
+  };
 
-  renderAppSettings() {
-    const {tintColour, swapButton, darkMode} = this.state;
-    const {tint} = styles;
+  const langList = getAPIList();
+  const appLang: Record<string, string> = {
+    en: 'English', ja: '日本語', zh: '简体中文', 'zh-hant': '繁体中文',
+  };
+  const appLangList = Object.entries(appLang).map(([code, l]) => ({code, lang: l}));
+  const display = appLang[userLanguage] ?? '???';
 
-    return (
-      <View>
+  return (
+    <WoWsInfo about>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <SectionTitle title={lang.settings_api_settings} />
+        <List.Section title={`${lang.setting_game_server} - ${lang.server_name[server]}`}>
+          <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+            {SERVER.slice(1).map((key, index) => (
+              <Button key={key + '_server'} onPress={() => updateServer(index + 1)}>
+                {lang.server_name[index + 1]}
+              </Button>
+            ))}
+          </View>
+        </List.Section>
+        <List.Section title={`${lang.setting_api_language} - ${langList[APILanguage]}`}>
+          {gs().shouldUpdateAPI ? renderAPILanguage(langList) : null}
+        </List.Section>
+        <List.Section title={`${lang.setting_app_language} - ${display}`}>
+          <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+            {appLangList.map(item => (
+              <Button key={item.code} onPress={() => updateUserLang(item.code)}>
+                {item.lang}
+              </Button>
+            ))}
+          </View>
+        </List.Section>
+
         <SectionTitle title={lang.settings_app_settings} />
         <List.Item
           key="dark_mode"
           title={lang.settings_app_dark_mode}
-          onPress={() => this.updateTheme()}
+          onPress={updateTheme}
           right={() => <Checkbox status={darkMode ? 'checked' : 'unchecked'} color={tintColour?.[500]} />}
         />
         <List.Item
           key="theme_colour"
           title={lang.settings_app_theme_colour}
-          onPress={() => this.setState({showColour: true})}
-          right={() => (
-            <View style={[tint, {backgroundColor: tintColour[500]}]} />
-          )}
+          onPress={() => setShowColour(true)}
+          right={() => <View style={[styles.tint, {backgroundColor: tintColour[500]}]} />}
         />
         <List.Item
           key="swap_button"
           title={lang.settings_app_swap_buttons}
-          onPress={() => this.swapButton(!swapButton)}
-          right={() => (
-            <Checkbox status={swapButton ? 'checked' : 'unchecked'} color={tintColour?.[500]} />
-          )}
+          onPress={() => swapBtnHandler(!swapButton)}
+          right={() => <Checkbox status={swapButton ? 'checked' : 'unchecked'} color={tintColour?.[500]} />}
         />
-      </View>
-    );
-  }
 
-  renderWoWsInfo() {
-    let issueLink = `${APP.Github}/issues/new`;
-
-    return (
-      <View>
         <SectionTitle title={lang.app_name} />
         <List.Item
           key="feedback"
@@ -280,24 +256,18 @@ class Settings extends Component {
         <List.Item
           key="report_issue"
           title={lang.settings_app_report_issues}
-          description={issueLink}
-          onPress={() => Linking.openURL(issueLink)}
+          description={`${APP.Github}/issues/new`}
+          onPress={() => Linking.openURL(`${APP.Github}/issues/new`)}
         />
         {isAndroid ? (
           <List.Item
             key="check_update"
             title={lang.settings_app_check_for_update}
-            onPress={this.checkAppUpdate}
+            onPress={checkAppUpdate}
             description={`v${APP.Version}`}
           />
         ) : null}
-      </View>
-    );
-  }
 
-  renderOpenSource() {
-    return (
-      <View>
         <SectionTitle title={lang.settings_open_source} />
         <List.Item
           title={lang.settings_open_source_github}
@@ -309,157 +279,37 @@ class Settings extends Component {
           description={lang.settings_open_source_licence_subtitle}
           onPress={() => SafeAction('License')}
         />
-      </View>
-    );
-  }
-
-  checkAppUpdate = async () => {
-    if (AppGlobalData.canCheckForUpdate) {
-      AppGlobalData.canCheckForUpdate = false;
-      const v = await SafeFetch.normal(WikiAPI.Github_AppVersion);
-      const version = Guard(v, 'version', null);
-      if (version != null) {
-        if (version > APP.Version) {
-          this.displayUpdate(true, version);
-        } else {
-          this.displayUpdate(false);
-        }
-      }
-    } else {
-      this.displayUpdate(false);
-    }
-  };
-
-  displayUpdate(result, version = null) {
-    if (result) {
-      const format = require('string-format');
-      Alert.alert(
-        lang.app_name,
-        format(lang.settings_app_has_update, version),
-        [
-          {
-            text: 'Google Play',
-            onPress: () => Linking.openURL(APP.GooglePlay),
-          },
-          {
-            text: 'Github',
-            onPress: () => Linking.openURL(APP.LatestRelease),
-          },
-        ],
-      );
-    } else {
-      Alert.alert(lang.app_name, lang.settings_app_no_update);
-    }
-  }
-
-  /**
-   * Swap bottom buttons
-   */
-  swapButton(curr) {
-    setSwapButton(curr);
-    this.setState({swapButton: getSwapButton()});
-  }
-
-  /**
-   * Update app theme real time
-   */
-  updateTheme() {
-    const {tintColour} = this.state;
-    // Switch mode
-    UpdateDarkMode();
-    this.setState({darkMode: AppGlobalData.isDarkMode});
-    this.props.theme.dark = AppGlobalData.isDarkMode;
-    if (AppGlobalData.isDarkMode) {
-      AppGlobalData.darkTheme = {
-        colors: {
-          ...MD3DarkTheme.colors,
-          primary: tintColour[500],
-          secondary: tintColour[300],
-          secondaryContainer: tintColour[100],
-          surface: 'black',
-          onSurface: GREY[50],
-          elevation: buildElevationColors(tintColour[500]),
-        },
-      };
-      this.props.theme.colors = AppGlobalData.darkTheme.colors;
-    } else {
-      AppGlobalData.lightTheme = {
-        colors: {
-          ...MD3LightTheme.colors,
-          primary: tintColour[500],
-          secondary: tintColour[300],
-          secondaryContainer: tintColour[100],
-          surface: 'white',
-          onSurface: GREY[900],
-          elevation: buildElevationColors(tintColour[500]),
-        },
-      };
-      this.props.theme.colors = AppGlobalData.lightTheme.colors;
-    }
-    console.log(this.props.theme);
-  }
-
-  /**
-   * UPdate app tint colour
-   * @param {*} tint
-   */
-  updateTint(tint) {
-    UpdateTintColour(tint);
-
-    this.props.theme.colors.primary = tint[500];
-    this.props.theme.colors.secondary = tint[300];
-
-    this.setState({showColour: false, tintColour: tint});
-  }
-
-  /**
-   * Update server that's being used
-   */
-  updateServer(index) {
-    setCurrServer(index);
-    this.setState({server: index});
-  }
-
-  /**
-   * Update apiLanguage that's being used
-   * @param {String} language
-   * @param {Boolean} force foce update
-   */
-  updateApiLanguage(language, force) {
-    if (!force && language === this.state.APILanguage) {
-      return;
-    }
-
-    setAPILanguage(language);
-    this.setState({APILanguage: language});
-
-    setFirstLaunch(true);
-    AppGlobalData.shouldUpdateAPI = false;
-    Actions.reset('Menu');
-  }
-
-  updateUserLang(code) {
-    setUserLang(code);
-    lang.setLanguage(code);
-    this.setState({userLanguage: code});
-  }
-}
+      </ScrollView>
+      <Portal>
+        <Dialog
+          visible={showColour}
+          dismissable={true}
+          onDismiss={() => setShowColour(false)}>
+          <Dialog.ScrollArea style={{maxHeight: 380, paddingHorizontal: 0}}>
+            <FlatList
+              bounces={false}
+              data={colourList}
+              keyExtractor={(_, index) => String(index)}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{padding: 12, gap: 6}}
+              renderItem={({item}) => (
+                <Touchable
+                  style={{backgroundColor: item[500], height: 48, borderRadius: 12}}
+                  onPress={() => updateTint(item)}
+                />
+              )}
+            />
+          </Dialog.ScrollArea>
+        </Dialog>
+      </Portal>
+    </WoWsInfo>
+  );
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  bottom: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
-  tint: {
-    height: 36,
-    width: 36,
-    borderRadius: 18,
-  },
+  container: {flex: 1},
+  bottom: {position: 'absolute', left: 0, right: 0, bottom: 0},
+  tint: {height: 36, width: 36, borderRadius: 18},
 });
 
-export default withTheme(Settings);
+export default Settings;
