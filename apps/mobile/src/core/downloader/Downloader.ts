@@ -12,8 +12,13 @@ import {
 } from '../../value/data';
 import {SafeFetch, Guard, SafeStorage} from '..';
 import {lang} from '../../value/lang';
+import {useAppStore} from '../../store/useAppStore';
 
 class Downloader {
+  private syncStore(key: string, value: any) {
+    AppGlobalData.set(key, value);
+    useAppStore.getState().setData(key, value);
+  }
   private domain: string;
   private language: string;
   private new: boolean;
@@ -99,40 +104,40 @@ class Downloader {
         log += 'Updating Data\n';
         console.log('Downloader\nUpdating all data from API');
         // Download language
-        AppGlobalData.set(SAVED.language, await this.getLanguage());
+        this.syncStore(SAVED.language, await this.getLanguage());
         log += `${lang.setting_api_language}\n`;
         // Download ship type, nation and module names for Wiki
-        AppGlobalData.set(SAVED.encyclopedia, await this.getEncyclopedia());
+        this.syncStore(SAVED.encyclopedia, await this.getEncyclopedia());
         log += `${lang.wiki_section_title}\n`;
 
         // Wiki
-        AppGlobalData.set(SAVED.warship, await this.getWarship());
+        this.syncStore(SAVED.warship, await this.getWarship());
         log += `${lang.wiki_warships}\n`;
 
-        AppGlobalData.set(SAVED.achievement, await this.getAchievement());
+        this.syncStore(SAVED.achievement, await this.getAchievement());
         log += `${lang.wiki_achievement}\n`;
 
-        AppGlobalData.set(SAVED.collection, await this.getCollectionAndItem());
+        this.syncStore(SAVED.collection, await this.getCollectionAndItem());
         log += `${lang.wiki_collections}\n`;
 
-        AppGlobalData.set(SAVED.commanderSkill, await this.getCommanderSkill());
+        this.syncStore(SAVED.commanderSkill, await this.getCommanderSkill());
         log += `${lang.wiki_skills}\n`;
 
-        AppGlobalData.set(SAVED.consumable, await this.getConsumable());
+        this.syncStore(SAVED.consumable, await this.getConsumable());
         log += `${lang.wiki_upgrades}\n`;
 
-        AppGlobalData.set(SAVED.map, await this.getMap());
+        this.syncStore(SAVED.map, await this.getMap());
         log += `${lang.wiki_maps}\n`;
 
-        AppGlobalData.set(SAVED.pr, await this.getPR());
+        this.syncStore(SAVED.pr, await this.getPR());
         log += `${lang.rating_title}\n`;
 
-        let PR = AppGlobalData.get(SAVED.pr);
+        let PR = useAppStore.getState().getData(SAVED.pr);
         if (PR == null || Object.keys(PR).length < 10) {
           // Use the local version as a backup
-          AppGlobalData.set(SAVED.pr, this.readLocalPR());
+          this.syncStore(SAVED.pr, this.readLocalPR());
           log += `${lang.rating_title} - local\n`;
-          PR = AppGlobalData.get(SAVED.pr);
+          PR = useAppStore.getState().getData(SAVED.pr);
           // Check if local is valid
           if (PR == null || Object.keys(PR).length < 10) {
             log += `${lang.error_pr_corrupted}\n`;

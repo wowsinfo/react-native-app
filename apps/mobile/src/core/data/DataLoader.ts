@@ -70,7 +70,7 @@ class DataLoader {
     // Add support to save clans as well
     let list = {
       clan: {
-        2000020641: {tag: 'ICBC', clan_id: '2000020641', server: 3},
+        2000022706: {tag: 'YU_RI', clan_id: '2000022706', server: 3},
       },
       player: {
         2011774448: {

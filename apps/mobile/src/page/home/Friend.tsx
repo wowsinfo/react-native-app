@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useMemo, useCallback} from 'react';
 import {View, StyleSheet, LayoutChangeEvent} from 'react-native';
 import {List, IconButton} from 'react-native-paper';
 import {LOCAL} from '../../value/data';
@@ -7,23 +7,23 @@ import {SectionTitle} from '../../component';
 import {lang} from '../../value/lang';
 import {useAppStore} from '../../store/useAppStore';
 
-const getPlayer = (all: any) => {
-  let player: any[] = [];
-  for (let ID in all.player) player.push(all.player[ID]);
-  return player;
-};
-
-const getClan = (all: any) => {
-  let clan: any[] = [];
-  for (let ID in all.clan) clan.push(all.clan[ID]);
-  return clan;
-};
-
 const Friend = () => {
-  const all = useAppStore.getState().getData(LOCAL.friendList);
-  const [player, setPlayer] = useState(() => getPlayer(all));
-  const [clan, setClan] = useState(() => getClan(all));
-  const [goodWidth, setGoodWidth] = useState(bestWidth(400));
+  const friendList = useAppStore(s => s.data[LOCAL.friendList]);
+  const [goodWidth, setGoodWidth] = React.useState(bestWidth(400));
+
+  const player = useMemo(() => {
+    if (!friendList?.player) return [];
+    const list: any[] = [];
+    for (const ID in friendList.player) list.push(friendList.player[ID]);
+    return list;
+  }, [friendList]);
+
+  const clan = useMemo(() => {
+    if (!friendList?.clan) return [];
+    const list: any[] = [];
+    for (const ID in friendList.clan) list.push(friendList.clan[ID]);
+    return list;
+  }, [friendList]);
 
   const updateBestWidth = useCallback((event: LayoutChangeEvent) => {
     const newWidth = event.nativeEvent.layout.width;
@@ -37,7 +37,6 @@ const Friend = () => {
     );
     delete allData.player[info.account_id];
     useAppStore.getState().setData(str, allData);
-    setPlayer(getPlayer(allData));
   }, []);
 
   const removeClan = useCallback((info: any) => {
@@ -47,7 +46,6 @@ const Friend = () => {
     );
     delete allData.clan[info.clan_id];
     useAppStore.getState().setData(str, allData);
-    setClan(getClan(allData));
   }, []);
 
   const pushToPlayer = useCallback((info: any) => {

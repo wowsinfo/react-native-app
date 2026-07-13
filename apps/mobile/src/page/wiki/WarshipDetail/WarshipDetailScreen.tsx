@@ -44,12 +44,12 @@ const renderSurvivability = (curr: any) => {
           title={lang.warship_survivability_armour}
           info={`${range.min} - ${range.max} mm`}
         />
-        {flood_prob == 0 ? null : (
-          <InfoLabel
-            title={lang.warship_survivability_protection}
-            info={`${flood_prob}%`}
-          />
-        )}
+        {flood_prob == null || flood_prob == 0 ? null : (
+            <InfoLabel
+              title={lang.warship_survivability_protection}
+              info={`${flood_prob}%`}
+            />
+          )}
       </View>
     </View>
   );
