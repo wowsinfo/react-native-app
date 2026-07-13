@@ -13,6 +13,7 @@ import {FooterButton} from './FooterButton';
 import {SafeAction, random} from '../../core';
 import {ThemeBackColour, ThemeColour, ViewBackColour} from '../../value/colour';
 import {View} from 'react-native-animatable';
+import {useAppStore} from '../../store/useAppStore';
 
 export interface WoWsInfoProps {
   children?: React.ReactNode;
@@ -55,7 +56,7 @@ export const WoWsInfo = ({
     return noLeft ? null : (
       <FooterButton
         icon={home ? 'cog' : 'home'}
-        left={!AppGlobalData.shouldSwapButton}
+        left={!useAppStore.getState().shouldSwapButton}
       />
     );
   };
@@ -64,7 +65,7 @@ export const WoWsInfo = ({
     return noRight ? null : (
       <FooterButton
         icon={home ? 'search' : 'arrow-left'}
-        left={AppGlobalData.shouldSwapButton}
+        left={useAppStore.getState().shouldSwapButton}
       />
     );
   };
@@ -84,7 +85,7 @@ export const WoWsInfo = ({
 
     return (
       <View style={[footer, ThemeBackColour()]}>
-        {AppGlobalData.shouldSwapButton ? renderRight() : renderLeft()}
+        {useAppStore.getState().shouldSwapButton ? renderRight() : renderLeft()}
         <Button
           disabled={shouldDisable}
           onPress={pressEvent}
@@ -92,7 +93,7 @@ export const WoWsInfo = ({
           uppercase={upper}>
           {title ? title : lucky}
         </Button>
-        {AppGlobalData.shouldSwapButton ? renderLeft() : renderRight()}
+        {useAppStore.getState().shouldSwapButton ? renderLeft() : renderRight()}
       </View>
     );
   };
@@ -107,7 +108,7 @@ export const WoWsInfo = ({
     <Surface style={[styles.container, style, ThemeBackColour()]}>
       <SafeAreaView style={styles.safeView}>
         <StatusBar
-          barStyle={AppGlobalData.isDarkMode ? 'light-content' : 'dark-content'}
+          barStyle={useAppStore.getState().isDarkMode ? 'light-content' : 'dark-content'}
           backgroundColor={ThemeColour()}
         />
         <View style={[styles.child, ViewBackColour()]}>{children}</View>

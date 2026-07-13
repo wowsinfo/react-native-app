@@ -11,8 +11,6 @@ import {
   Guard,
   humanTimeString,
   SafeAction,
-  SafeStorage,
-  SafeValue,
 } from '../../core';
 import {WoWsAPI} from '../../value/api';
 import {getDomain, getPrefix, LOCAL} from '../../value/data';
@@ -27,6 +25,7 @@ import {
 import {TintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
 import {FlatGrid} from 'react-native-super-grid';
+import {useAppStore} from '../../store/useAppStore';
 
 const ClanInfo = ({route}: any) => {
   const {clan_id, tag, server} = route?.params?.info ?? {};
@@ -34,7 +33,7 @@ const ClanInfo = ({route}: any) => {
   const [valid, setValid] = useState(clan_id != null);
   const [canBeFriend, setCanBeFriend] = useState(() => {
     if (clan_id == null) return true;
-    const friend = AppGlobalData.get(LOCAL.friendList);
+    const friend = useAppStore.getState().getData(LOCAL.friendList);
     return friend.clan[clan_id] == null;
   });
 
@@ -56,8 +55,9 @@ const ClanInfo = ({route}: any) => {
 
   const addFriend = useCallback(() => {
     const str = LOCAL.friendList;
-    AppGlobalData.get(str).clan[clan_id] = {clan_id, tag, server};
-    SafeStorage.set(str, AppGlobalData.get(str));
+    const cloned = JSON.parse(JSON.stringify(useAppStore.getState().getData(str)));
+    cloned.clan[clan_id] = {clan_id, tag, server};
+    useAppStore.getState().setData(str, cloned);
     setCanBeFriend(false);
   }, [clan_id, tag, server]);
 

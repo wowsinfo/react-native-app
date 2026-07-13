@@ -7,12 +7,13 @@ import {FlatGrid} from 'react-native-super-grid';
 import {Paragraph} from 'react-native-paper';
 import {SafeAction} from '../../core';
 import {lang} from '../../value/lang';
+import {useAppStore} from '../../store/useAppStore';
 
 export const PlayerAchievement = ({data}: any) => {
   const [displayData, setDisplayData] = useState<Array<any>>([]);
 
   useEffect(() => {
-    let saved = AppGlobalData.get(SAVED.achievement);
+    let saved = useAppStore.getState().getData(SAVED.achievement);
 
     let formatted = [];
     for (let key in data) {

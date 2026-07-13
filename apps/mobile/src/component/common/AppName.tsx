@@ -12,6 +12,7 @@ import {lang} from '../../value/lang';
 import {LOCAL, APP, isProVersion} from '../../value/data';
 import {TintColour} from '../../value/colour';
 import {Touchable} from './Touchable';
+import {useAppStore} from '../../store/useAppStore';
 
 export const AppName = () => {
   const {container, game, appName, horizontal} = styles;
@@ -21,7 +22,7 @@ export const AppName = () => {
     if (Platform.OS === 'ios') {
       app = APP.IOSVersion;
     }
-    return `${app} (${AppGlobalData.get(LOCAL.gameVersion)})`;
+    return `${app} (${useAppStore.getState().getData(LOCAL.gameVersion)})`;
   };
 
   return (

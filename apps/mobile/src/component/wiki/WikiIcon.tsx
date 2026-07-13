@@ -8,6 +8,7 @@ import React from 'react';
 import {View, Image, StyleSheet, ImageSourcePropType} from 'react-native';
 import {LOCAL} from '../../value/data';
 import {Touchable} from '../common/Touchable';
+import {useAppStore} from '../../store/useAppStore';
 
 export interface WikiIconProps {
   item?: any;
@@ -32,7 +33,7 @@ export const WikiIcon = ({
   if (scale) {
     width *= scale;
   }
-  let theme = AppGlobalData.get(LOCAL.theme);
+  let theme = useAppStore.getState().getData(LOCAL.theme);
   const tint = theme?.[500];
 
   let imageSrc: ImageSourcePropType = {
