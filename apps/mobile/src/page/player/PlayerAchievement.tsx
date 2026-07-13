@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
-import * as Anime from 'react-native-animatable';
 import {SAVED} from '../../value/data';
 import {WoWsInfo, WikiIcon, Touchable} from '../../component';
 import {FlatGrid} from 'react-native-super-grid';
@@ -9,15 +8,17 @@ import {SafeAction} from '../../core';
 import {lang} from '../../value/lang';
 import {useAppStore} from '../../store/useAppStore';
 
-export const PlayerAchievement = ({data}: any) => {
+export const PlayerAchievement = ({route}: any) => {
+  const {data} = route?.params ?? {};
   const [displayData, setDisplayData] = useState<Array<any>>([]);
 
   useEffect(() => {
+    if (!data) return;
     let saved = useAppStore.getState().getData(SAVED.achievement);
 
     let formatted = [];
     for (let key in data) {
-      let obj = saved[key];
+      let obj = saved?.[key];
       if (obj != null) {
         formatted.push({data: obj, num: data[key]});
       }
@@ -29,22 +30,20 @@ export const PlayerAchievement = ({data}: any) => {
 
   return (
     <WoWsInfo title={`${lang.tab_achievement_title} - ${displayData.length}`}>
-      <Anime.View useNativeDriver animation="fadeIn">
-        <FlatGrid
-          itemDimension={80}
-          data={displayData}
-          renderItem={({item}) => {
-            return (
-              <Touchable
-                onPress={() => SafeAction('BasicDetail', {item: item.data})}>
-                <WikiIcon item={item.data} />
-                <Paragraph style={styles.number}>{item.num}</Paragraph>
-              </Touchable>
-            );
-          }}
-          showsVerticalScrollIndicator={false}
-        />
-      </Anime.View>
+      <FlatGrid
+        itemDimension={80}
+        data={displayData}
+        renderItem={({item}) => {
+          return (
+            <Touchable
+              onPress={() => SafeAction('BasicDetail', {item: item.data})}>
+              <WikiIcon item={item.data} />
+              <Paragraph style={styles.number}>{item.num}</Paragraph>
+            </Touchable>
+          );
+        }}
+        showsVerticalScrollIndicator={false}
+      />
     </WoWsInfo>
   );
 };
