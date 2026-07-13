@@ -1,30 +1,16 @@
-/**
- * SimilarGraph.js
- *
- * Displaying all similar ships' average stats
- */
-
-import React, {PureComponent} from 'react';
+import React from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import {WoWsInfo} from '../../component';
 
-class SimilarGraph extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <WoWsInfo>
-        <ScrollView
-          contentContainerStyle={styles.scroll}
-          showsVerticalScrollIndicator={false}>
-          {this.props.route?.params?.info}
-        </ScrollView>
-      </WoWsInfo>
-    );
-  }
-}
+const SimilarGraph = ({route}: any) => (
+  <WoWsInfo>
+    <ScrollView
+      contentContainerStyle={styles.scroll}
+      showsVerticalScrollIndicator={false}>
+      {route?.params?.info}
+    </ScrollView>
+  </WoWsInfo>
+);
 
 const styles = StyleSheet.create({
   scroll: {
