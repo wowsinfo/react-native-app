@@ -28,9 +28,6 @@ import {useAppStore} from '../../../store/useAppStore';
 
 const Statistics = ({route}: any) => {
   const theme = useTheme();
-  const store = useAppStore;
-  const gs = () => store.getState();
-
   const ID = Guard(route, 'params.info.account_id', null);
   const {account_id, nickname, server} = route?.params?.info ?? {};
 
@@ -40,11 +37,11 @@ const Statistics = ({route}: any) => {
   const [valid, setValid] = useState(ID != null && ID !== '');
   const [hidden, setHidden] = useState(false);
   const [canBeMaster, setCanBeMaster] = useState(() => {
-    const master = gs().getData(LOCAL.userInfo);
-    return master.account_id != account_id;
+    const master = useAppStore.getState().getData(LOCAL.userInfo);
+    return master.account_id !== account_id;
   });
   const [canBeFriend, setCanBeFriend] = useState(() => {
-    const friend = gs().getData(LOCAL.friendList);
+    const friend = useAppStore.getState().getData(LOCAL.friendList);
     return friend.player[account_id] == null;
   });
   const [clan, setClan] = useState('');
@@ -62,6 +59,8 @@ const Statistics = ({route}: any) => {
   const domain = getDomain(serverState);
   const prefix = getPrefix(serverState);
   const mountedRef = useRef(true);
+  const showMoreRef = useRef(showMore);
+  showMoreRef.current = showMore;
 
   useEffect(() => {
     setLastLocation('Statistics');
@@ -86,7 +85,7 @@ const Statistics = ({route}: any) => {
         if (mountedRef.current) setValid(false);
       } else {
         const battle = Guard(player, 'statistics.pvp.battles', 0);
-        if (!hiddenAccount && battle == 0 && mountedRef.current) setHidden(true);
+        if (!hiddenAccount && battle === 0 && mountedRef.current) setHidden(true);
         if (mountedRef.current) setBasic(player);
       }
     })();
@@ -163,85 +162,23 @@ const Statistics = ({route}: any) => {
   }, [id, domain, valid]);
 
   const setMainAccount = useCallback(() => {
-    const info = {nickname: nickname, account_id: account_id, server: server};
-    gs().setData(LOCAL.userInfo, info);
+    const info = {nickname, account_id: account_id, server: serverState};
+    useAppStore.getState().setData(LOCAL.userInfo, info);
     if (mountedRef.current) setCanBeMaster(false);
-  }, [nickname, account_id, server]);
+  }, [nickname, account_id, serverState]);
 
   const addFriend = useCallback(() => {
-    const info = {nickname: nickname, account_id: account_id, server: server};
+    const info = {nickname, account_id: account_id, server: serverState};
     const str = LOCAL.friendList;
-    const cloned = JSON.parse(JSON.stringify(gs().getData(str)));
+    const cloned = JSON.parse(JSON.stringify(useAppStore.getState().getData(str)));
     cloned.player[info.account_id] = info;
-    gs().setData(str, cloned);
+    useAppStore.getState().setData(str, cloned);
     if (mountedRef.current) setCanBeFriend(false);
-  }, [nickname, account_id, server]);
+  }, [nickname, account_id, serverState]);
 
-  const renderStatistics = (statistics: any) => {
-    if (!statistics) return null;
-    return (
-      <View style={{paddingBottom: 8}}>
-        <DetailedInfo data={statistics} more={showMore} />
-        <PlayerRecord data={statistics.pvp} />
-      </View>
-    );
-  };
-
-  const renderBasic = (b: any) => {
-    if (!b) {
-      return (
-        <View style={styles.container}>
-          <Title style={styles.playerName}>{name}</Title>
-          <LoadingIndicator />
-        </View>
-      );
-    }
-    const {created_at, leveling_tier, last_battle_time, nickname: nick} = b;
-    let register = humanTimeString(created_at);
-    let lastBattle = humanTimeString(last_battle_time);
-    if (hidden) {
-      return (
-        <View style={styles.container}>
-          <View style={styles.horizontal}>
-            <SectionTitle title={nick} style={styles.playerName} />
-            <IconButton icon="https" size={24} style={{alignSelf: 'center'}} />
-          </View>
-          <View style={styles.hidden}>
-            {canBeFriend ? (
-              <Button icon="contacts" onPress={addFriend}>{lang.basic_add_friend}</Button>
-            ) : null}
-            <InfoLabel left title={lang.basic_register_date} info={register} />
-            <InfoLabel left title={lang.basic_last_battle} info={lastBattle} />
-            <InfoLabel left title={lang.basic_level_tier} info={lang.basic_data_unknown} />
-          </View>
-        </View>
-      );
-    }
-    let displayName = nick;
-    if (clan !== '') displayName = `[${clan}]\n${nick}`;
-    let extraInfo = `Lv ${leveling_tier}`;
-    if (currRank > 0) extraInfo += ` | ⭐${currRank}`;
-    return (
-      <View style={styles.container}>
-        <RatingButton rating={rating} />
-        <Title style={styles.playerName}>{displayName}</Title>
-        <Text style={styles.level}>{extraInfo}</Text>
-        <View style={styles.horizontal}>
-          <InfoLabel title={lang.basic_register_date} info={register} />
-          <InfoLabel title={lang.basic_last_battle} info={lastBattle} />
-        </View>
-        <View style={{padding: 4}}>
-          {canBeFriend ? (
-            <Button icon="contacts" onPress={addFriend}>{lang.basic_add_friend}</Button>
-          ) : null}
-          {canBeMaster ? (
-            <Button icon="heart" onPress={setMainAccount}>{lang.basic_set_main}</Button>
-          ) : null}
-        </View>
-        {renderStatistics(b.statistics)}
-      </View>
-    );
-  };
+  const toggleShowMore = useCallback(() => {
+    setShowMore(prev => !prev);
+  }, []);
 
   if (id == null || id === '') {
     return (
@@ -250,6 +187,7 @@ const Statistics = ({route}: any) => {
       </WoWsInfo>
     );
   }
+
   if (!valid) {
     return (
       <WoWsInfo style={styles.container}>
@@ -267,7 +205,65 @@ const Statistics = ({route}: any) => {
       onPress={() =>
         Linking.openURL(`https://${prefix}.wows-numbers.com/player/${id},${name}/`)
       }>
-      <ScrollView>{renderBasic(basic)}</ScrollView>
+      <ScrollView>
+        {!basic ? (
+          <View style={styles.container}>
+            <Title style={styles.playerName}>{name}</Title>
+            <LoadingIndicator />
+          </View>
+        ) : (() => {
+          const {created_at, leveling_tier, last_battle_time, nickname: nick} = basic;
+          const register = humanTimeString(created_at);
+          const lastBattle = humanTimeString(last_battle_time);
+          if (hidden) {
+            return (
+              <View style={styles.container}>
+                <View style={styles.horizontal}>
+                  <SectionTitle title={nick} style={styles.playerName} />
+                  <IconButton icon="https" size={24} style={{alignSelf: 'center'}} />
+                </View>
+                <View style={styles.hidden}>
+                  {canBeFriend ? (
+                    <Button icon="contacts" onPress={addFriend}>{lang.basic_add_friend}</Button>
+                  ) : null}
+                  <InfoLabel left title={lang.basic_register_date} info={register} />
+                  <InfoLabel left title={lang.basic_last_battle} info={lastBattle} />
+                  <InfoLabel left title={lang.basic_level_tier} info={lang.basic_data_unknown} />
+                </View>
+              </View>
+            );
+          }
+          let displayName = nick;
+          if (clan !== '') displayName = `[${clan}]\n${nick}`;
+          let extraInfo = `Lv ${leveling_tier}`;
+          if (currRank > 0) extraInfo += ` | ⭐${currRank}`;
+          return (
+            <View style={styles.container}>
+              <RatingButton rating={rating} />
+              <Title style={styles.playerName}>{displayName}</Title>
+              <Text style={styles.level}>{extraInfo}</Text>
+              <View style={styles.horizontal}>
+                <InfoLabel title={lang.basic_register_date} info={register} />
+                <InfoLabel title={lang.basic_last_battle} info={lastBattle} />
+              </View>
+              <View style={{padding: 4}}>
+                {canBeFriend ? (
+                  <Button icon="contacts" onPress={addFriend}>{lang.basic_add_friend}</Button>
+                ) : null}
+                {canBeMaster ? (
+                  <Button icon="heart" onPress={setMainAccount}>{lang.basic_set_main}</Button>
+                ) : null}
+              </View>
+              {basic.statistics ? (
+                <View style={{paddingBottom: 8}}>
+                  <DetailedInfo data={basic.statistics} more={showMore} />
+                  <PlayerRecord data={basic.statistics.pvp} />
+                </View>
+              ) : null}
+            </View>
+          );
+        })()}
+      </ScrollView>
       <FooterPlus style={styles.footer}>
         <TabButton
           icon={{uri: 'AchievementTab'}}
@@ -296,7 +292,6 @@ const Statistics = ({route}: any) => {
 
 const styles = StyleSheet.create({
   error: {flex: 1, justifyContent: 'center', alignItems: 'center'},
-  hiddenProfile: {},
   container: {flex: 1},
   horizontal: {flexDirection: 'row'},
   playerName: {alignSelf: 'center', fontSize: 32, fontWeight: '500', paddingTop: 32, paddingBottom: 8, textAlign: 'center'},
