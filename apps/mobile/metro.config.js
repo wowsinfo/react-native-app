@@ -25,10 +25,14 @@ const config = {
   resolver: {
     sourceExts: ['js', 'jsx', 'ts', 'tsx', 'json'],
     nodeModulesPaths: [
-      path.resolve(monorepoRoot, 'node_modules'),
       path.resolve(__dirname, 'node_modules'),
+      path.resolve(monorepoRoot, 'node_modules'),
     ],
     resolveRequest: (context, moduleName, platform) => {
+      if (moduleName === 'react' || moduleName.startsWith('react/')) {
+        const resolved = require.resolve(moduleName, {paths: [__dirname]});
+        return {type: 'sourceFile', filePath: resolved};
+      }
       if (moduleName.startsWith('@babel/') || moduleName === 'string-format' || moduleName.startsWith('zustand')) {
         try {
           const resolved = require.resolve(moduleName, {paths: [__dirname]});

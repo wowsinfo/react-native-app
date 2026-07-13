@@ -20,6 +20,7 @@ import {FlatGrid} from 'react-native-super-grid';
 import {SAVED} from '../../value/data';
 import {lang} from '../../value/lang';
 import {Button, useTheme} from 'react-native-paper';
+import {TintColour} from '../../value/colour';
 import {useAppStore} from '../../store/useAppStore';
 
 const PlayerShip = ({route}: any) => {
@@ -27,10 +28,12 @@ const PlayerShip = ({route}: any) => {
   const initialRating = route?.params?.rating;
 
   const original = useMemo(() => {
+    if (!ships) return [];
     return [...ships].sort((a: any, b: any) => b.last_battle_time - a.last_battle_time);
   }, [ships]);
 
   const initRating = useMemo(() => {
+    if (!ships) return 0;
     return initialRating ?? getOverallRating(ships);
   }, [initialRating, ships]);
 
@@ -39,6 +42,10 @@ const PlayerShip = ({route}: any) => {
   const [filter, setFilter] = useState({});
   const [sortStr, setSortStr] = useState('');
   const theme = useTheme();
+
+  useEffect(() => {
+    return () => { theme.colors.primary = TintColour()[500]; };
+  }, []);
 
   useEffect(() => {
     const {filter: f} = route?.params ?? {};

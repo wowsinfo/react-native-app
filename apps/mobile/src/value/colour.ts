@@ -52,7 +52,7 @@ const hexToRgb = (hex: string) => {
     : {r: 0, g: 0, b: 0};
 };
 
-const blendWithWhite = (hex: string, alpha: number): string => {
+export const blendWithWhite = (hex: string, alpha: number): string => {
   const {r, g, b} = hexToRgb(hex);
   const wr = 255, wg = 255, wb = 255;
   const rr = Math.round(r * alpha + wr * (1 - alpha));

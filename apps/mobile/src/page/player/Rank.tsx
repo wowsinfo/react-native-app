@@ -35,6 +35,7 @@ const Rank = ({route}: any) => {
       <FlatGrid
         itemDimension={300}
         data={list}
+        keyExtractor={item => String(item.season)}
         renderItem={({item}) => {
           const {season} = item;
           const shipData = ship[season];

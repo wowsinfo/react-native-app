@@ -510,12 +510,12 @@ const WarshipDetail = ({route}: any) => {
         <Anime.View animation="pulse" iterationCount="infinite" useNativeDriver>
           <WikiIcon warship item={curr} scale={3} />
         </Anime.View>
-        {loading ? <LoadingIndicator /> : (
-          <View>
-            {renderBasic(curr, data)}
-            {renderAll(curr, upgradesRef.current)}
-          </View>
-        )}
+      {loading ? <LoadingIndicator /> : (
+        <View>
+          {renderBasic(curr, data)}
+          {renderAll(data, upgradesRef.current)}
+        </View>
+      )}
       </ScrollView>
       {renderSimilar(similar, compare, (item: any) => {
         setCurr(item);

@@ -197,7 +197,6 @@ const Statistics = ({route}: any) => {
   }
 
   theme.colors.primary = ratingColor;
-
   return (
     <WoWsInfo
       style={styles.container}

@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
-import {Text, TextInput, List, Checkbox, Button} from 'react-native-paper';
+import {Text, TextInput, List, Checkbox, Button, useTheme} from 'react-native-paper';
+import {blendWithWhite} from '../../value/colour';
 import {WoWsInfo, FooterPlus, Space} from '../../component';
 import {lang} from '../../value/lang';
 import {SAVED} from '../../value/data';
@@ -13,6 +14,7 @@ const MODE = {TIER: 1, NATION: 2, TYPE: 3};
 const WarshipFilter = () => {
   const searchRef = useRef(null);
   const scrollRef = useRef<ScrollView>(null);
+  const theme = useTheme();
 
   const [premium, setPremium] = useState(false);
   const [name, setName] = useState('');
@@ -80,7 +82,8 @@ const WarshipFilter = () => {
         label={lang.wiki_warship_filter_placeholder}
         ref={searchRef}
         autoCorrect={false}
-        theme={{roundness: 0}}
+        style={{backgroundColor: blendWithWhite(theme.colors.primary, 0.15)}}
+        theme={{roundness: 0, colors: {primary: theme.colors.primary}}}
         onChangeText={setName}
         onEndEditing={() => {
           if (name.trim(' ').length > 0) applyAll();

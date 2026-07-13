@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
 import {
   WoWsInfo,
@@ -60,6 +60,10 @@ const Detailed = ({route}: any) => {
   const [data] = useState(route?.params?.data);
   const theme = useTheme();
   const store = useAppStore.getState();
+
+  useEffect(() => {
+    return () => { theme.colors.primary = TintColour()[500]; };
+  }, []);
 
   if (data == null) {
     Actions.pop();
