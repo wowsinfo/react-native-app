@@ -18,7 +18,9 @@ export const ThemeColour = () => {
 };
 
 export const UpdateDarkMode = () => {
-  s().setDarkMode(!s().isDarkMode);
+  const next = !s().isDarkMode;
+  s().setDarkMode(next);
+  s().setData(LOCAL.darkMode, next);
 };
 
 export const TintColour = () => {

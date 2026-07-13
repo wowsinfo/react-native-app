@@ -1,23 +1,18 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {List, Caption, Text} from 'react-native-paper';
+import {List, Caption, Text, useTheme} from 'react-native-paper';
 import {SafeAction} from '../../core';
 
-const renderPlayerRight = (account_id: string) => (
-  <Caption style={styles.ID}>{account_id}</Caption>
-);
-
-const renderClanRight = (clan_id: string) => (
-  <Caption style={styles.ID}>{clan_id}</Caption>
-);
-
 const PlayerCell = ({item, player, clan, width}: any) => {
+  const theme = useTheme();
+  const idColor = {color: theme.colors.onSurface};
+
   if (player) {
     return (
       <List.Item
         title={item.nickname}
         style={{width: width}}
-        right={() => renderPlayerRight(item.account_id)}
+        right={() => <Caption style={[styles.ID, idColor]}>{item.account_id}</Caption>}
         onPress={() => SafeAction('Statistics', {info: item})}
       />
     );
@@ -26,7 +21,7 @@ const PlayerCell = ({item, player, clan, width}: any) => {
       <List.Item
         title={item.tag}
         style={{width: width}}
-        right={() => renderClanRight(item.clan_id)}
+        right={() => <Caption style={[styles.ID, idColor]}>{item.clan_id}</Caption>}
         onPress={() => SafeAction('ClanInfo', {info: item})}
       />
     );

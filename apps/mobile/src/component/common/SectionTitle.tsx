@@ -30,7 +30,7 @@ export const SectionTitle = ({
     <Title
       style={[
         back ? ThemeBackColour() : null,
-        {color: theme.colors.primary},
+        {color: theme.dark ? theme.colors.onSurface : theme.colors.primary},
         styles.text,
         style,
         center ? {alignSelf: 'center'} : null,

@@ -42,7 +42,7 @@ export const useAppStore = create<AppState>()(
       lightTheme: {},
       darkTheme: {},
 
-      hydrate: initial => set(s => ({data: {...s.data, ...initial}})),
+      hydrate: initial => set(s => ({data: {...initial, ...s.data}})),
       setData: (key, value) => set(s => ({data: {...s.data, [key]: value}})),
       getData: key => get().data[key],
 

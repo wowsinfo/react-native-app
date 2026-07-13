@@ -8,13 +8,12 @@ import {
   Share,
 } from 'react-native';
 import {isAndroid, isIos} from 'react-native-device-detection';
-import {List, FAB, Button} from 'react-native-paper';
+import {List, FAB, Button, useTheme} from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
 import {WoWsInfo, SectionTitle, AppName} from '../../../component';
 import {lang} from '../../../value/lang';
 import {SafeAction, Downloader, bestWidth} from '../../../core';
 import {
-  ThemeBackColour,
   TintBackgroundColour,
   TintColour,
 } from '../../../value/colour';
@@ -38,6 +37,7 @@ import {Actions} from '../../../core/navigation/Actions';
 import {useAppStore} from '../../../store/useAppStore';
 
 const Menu = () => {
+  const theme = useTheme();
   const [loading, setLoading] = useState(true);
   const [main, setMain] = useState(() =>
     useAppStore.getState().getData(LOCAL.userInfo),
@@ -291,11 +291,10 @@ const Menu = () => {
                 <List.Item
                   key={item.t}
                   title={item.t}
-                  style={{padding: 0, paddingLeft: 8, width: bestItemWidth}}
+                  style={{paddingLeft: 16, width: bestItemWidth}}
                   onPress={() => item.p()}
                   left={() => (
                     <List.Icon
-                      style={[styles.icon, ThemeBackColour()]}
                       color={TintColour()[300]}
                       icon={item.i}
                     />
@@ -351,7 +350,7 @@ const Menu = () => {
               />
             </View>
             <SectionTitle title={lang.website_title} />
-            <List.Section title={lang.website_official_title} expanded>
+            <List.Section titleStyle={{color: theme.colors.onSurface}} title={lang.website_official_title} expanded>
               <View style={styles.wrap}>
                 {offical_websites.map(item => (
                   <List.Item
@@ -364,7 +363,7 @@ const Menu = () => {
                 ))}
               </View>
             </List.Section>
-            <List.Section title={lang.content_creator_title} expanded>
+            <List.Section titleStyle={{color: theme.colors.onSurface}} title={lang.content_creator_title} expanded>
               <View style={styles.wrap}>
                 {links.map(item => (
                   <List.Item
@@ -377,7 +376,7 @@ const Menu = () => {
                 ))}
               </View>
             </List.Section>
-            <List.Section title={lang.website_stats_news_title} expanded>
+            <List.Section titleStyle={{color: theme.colors.onSurface}} title={lang.website_stats_news_title} expanded>
               <View style={styles.wrap}>
                 {stats_info_website.map(item => (
                   <List.Item
@@ -390,7 +389,7 @@ const Menu = () => {
                 ))}
               </View>
             </List.Section>
-            <List.Section title={lang.website_utility_title} expanded>
+            <List.Section titleStyle={{color: theme.colors.onSurface}} title={lang.website_utility_title} expanded>
               <View style={styles.wrap}>
                 {ultility_websites.map(item => (
                   <List.Item
@@ -403,7 +402,8 @@ const Menu = () => {
                 ))}
               </View>
             </List.Section>
-            <List.Section
+             <List.Section
+              titleStyle={{color: theme.colors.onSurface}}
               title={lang.website_ingame_title}
               description={lang.website_wargaming_login_subtitle}>
               <View style={styles.wrap}>

@@ -115,11 +115,11 @@ const App = () => {
       const data = await DataLoader.loadAll();
       AppGlobalData.setupWith(data);
       gs().hydrate(data);
-      gs().setSwapButton(data[LOCAL.swapButton] ?? false);
-      gs().setLastLocation(data[LOCAL.lastLocation] ?? '');
-      gs().setDarkMode(data[LOCAL.darkMode] ?? false);
+      gs().setSwapButton(gs().getData(LOCAL.swapButton) ?? false);
+      gs().setLastLocation(gs().getData(LOCAL.lastLocation) ?? '');
+      gs().setDarkMode(gs().getData(LOCAL.darkMode) ?? false);
 
-      const userLang = data[LOCAL.userLanguage];
+      const userLang = gs().getData(LOCAL.userLanguage) ?? '';
       if (userLang !== '') {
         lang.setLanguage(userLang);
       }
@@ -135,6 +135,7 @@ const App = () => {
           primary: tint[500],
           surface: 'black',
           onSurface: GREY[50],
+          onSurfaceVariant: GREY[200],
           elevation: buildElevationColors(tint[500]),
         },
       };
@@ -144,6 +145,7 @@ const App = () => {
           primary: tint[500],
           surface: 'white',
           onSurface: GREY[900],
+          onSurfaceVariant: GREY[700],
           elevation: buildElevationColors(tint[500]),
         },
       };

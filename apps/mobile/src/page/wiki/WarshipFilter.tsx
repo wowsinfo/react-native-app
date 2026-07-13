@@ -8,6 +8,8 @@ import {
   Button,
   useTheme,
 } from 'react-native-paper';
+// @ts-ignore
+import {GREY} from 'react-native-material-color';
 import {blendWithWhite} from '../../value/colour';
 import {WoWsInfo, FooterPlus, Space} from '../../component';
 import {lang} from '../../value/lang';
@@ -108,7 +110,7 @@ const WarshipFilter = () => {
         label={lang.wiki_warship_filter_placeholder}
         ref={searchRef}
         autoCorrect={false}
-        style={{backgroundColor: blendWithWhite(theme.colors.primary, 0.15)}}
+        style={{backgroundColor: theme.dark ? GREY[900] : blendWithWhite(theme.colors.primary, 0.15)}}
         theme={{roundness: 0, colors: {primary: theme.colors.primary}}}
         onChangeText={setName}
         onEndEditing={() => {
@@ -119,7 +121,7 @@ const WarshipFilter = () => {
       />
       <ScrollView ref={scrollRef}>
         <Space />
-        <List.Section title={lang.wiki_warship_filter_tier}>
+        <List.Section titleStyle={{color: theme.colors.onSurface}} title={lang.wiki_warship_filter_tier}>
           <Text style={styles.selectionText}>{`${tier.join(' | ')} `}</Text>
           <View style={styles.wrapView}>
             {tierList.map(item =>
@@ -127,7 +129,7 @@ const WarshipFilter = () => {
             )}
           </View>
         </List.Section>
-        <List.Section title={lang.wiki_warship_filter_nation}>
+        <List.Section titleStyle={{color: theme.colors.onSurface}} title={lang.wiki_warship_filter_nation}>
           <Text style={styles.selectionText}>{`${nation.join(' | ')} `}</Text>
           <View style={styles.wrapView}>
             {nationList.map(item =>
@@ -135,7 +137,7 @@ const WarshipFilter = () => {
             )}
           </View>
         </List.Section>
-        <List.Section title={lang.wiki_warship_filter_type}>
+        <List.Section titleStyle={{color: theme.colors.onSurface}} title={lang.wiki_warship_filter_type}>
           <Text style={styles.selectionText}>{`${type.join(' | ')} `}</Text>
           <View style={styles.wrapView}>
             {typeList.map(item =>

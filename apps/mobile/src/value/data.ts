@@ -112,6 +112,7 @@ export const setSwapButton = (swap: boolean) => {
  */
 export const setLastLocation = (str: string) => {
   s().setData(LOCAL.lastLocation, str);
+  s().setLastLocation(str);
 };
 
 export const isProVersion = () => {

@@ -53,6 +53,8 @@ const GameMap = () => {
             height: imageWidth,
             width: imageWidth,
             alignSelf: 'center',
+            backgroundColor: 'transparent',
+            overflow: 'hidden',
           }}>
           <Image
             source={{uri: map}}
