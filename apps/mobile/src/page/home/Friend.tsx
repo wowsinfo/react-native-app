@@ -1,120 +1,106 @@
-import React, {PureComponent} from 'react';
-import {View, StyleSheet} from 'react-native';
+import React, {useState, useCallback} from 'react';
+import {View, StyleSheet, LayoutChangeEvent} from 'react-native';
 import {List, IconButton} from 'react-native-paper';
 import {LOCAL} from '../../value/data';
-import {SafeAction, SafeStorage, SafeValue, bestWidth} from '../../core';
+import {SafeAction, SafeValue, bestWidth} from '../../core';
 import {SectionTitle} from '../../component';
 import {lang} from '../../value/lang';
+import {useAppStore} from '../../store/useAppStore';
 
-class Friend extends PureComponent {
-  constructor(props) {
-    super(props);
-    let all = AppGlobalData.get(LOCAL.friendList);
+const getPlayer = (all: any) => {
+  let player: any[] = [];
+  for (let ID in all.player) player.push(all.player[ID]);
+  return player;
+};
 
-    let player = this.getPlayer(all);
-    let clan = this.getClan(all);
+const getClan = (all: any) => {
+  let clan: any[] = [];
+  for (let ID in all.clan) clan.push(all.clan[ID]);
+  return clan;
+};
 
-    this.state = {
-      player,
-      clan,
-      goodWidth: bestWidth(400),
-    };
-  }
+const Friend = () => {
+  const all = useAppStore.getState().getData(LOCAL.friendList);
+  const [player, setPlayer] = useState(() => getPlayer(all));
+  const [clan, setClan] = useState(() => getClan(all));
+  const [goodWidth, setGoodWidth] = useState(bestWidth(400));
 
-  updateBestWidth = event => {
+  const updateBestWidth = useCallback((event: LayoutChangeEvent) => {
     const newWidth = event.nativeEvent.layout.width;
-    this.setState({goodWidth: bestWidth(400, newWidth)});
-  };
+    setGoodWidth(bestWidth(400, newWidth));
+  }, []);
 
-  getPlayer = all => {
-    let player = [];
-    for (let ID in all.player) {
-      player.push(all.player[ID]);
-    }
-    return player;
-  };
+  const removeFriend = useCallback((info: any) => {
+    const str = LOCAL.friendList;
+    const allData = JSON.parse(JSON.stringify(useAppStore.getState().getData(str)));
+    delete allData.player[info.account_id];
+    useAppStore.getState().setData(str, allData);
+    setPlayer(getPlayer(allData));
+  }, []);
 
-  getClan = all => {
-    let clan = [];
-    for (let ID in all.clan) {
-      clan.push(all.clan[ID]);
-    }
-    return clan;
-  };
+  const removeClan = useCallback((info: any) => {
+    const str = LOCAL.friendList;
+    const allData = JSON.parse(JSON.stringify(useAppStore.getState().getData(str)));
+    delete allData.clan[info.clan_id];
+    useAppStore.getState().setData(str, allData);
+    setClan(getClan(allData));
+  }, []);
 
-  render() {
-    const {player, clan, goodWidth} = this.state;
-
-    return (
-      <View onLayout={this.updateBestWidth}>
-        <SectionTitle
-          title={`${lang.friend_clan_title} - ${SafeValue(clan.length, 0)}`}
-        />
-        <View style={styles.wrap}>
-          {clan.map(item => (
-            <List.Item
-              style={{width: goodWidth}}
-              title={item.tag}
-              onPress={() => this.pushToClan(item)}
-              description={`${item.clan_id}`}
-              key={String(item.clan_id)}
-              right={() => (
-                <IconButton
-                  iconColor={'#9E9E9E'}
-                  icon="close"
-                  onPress={() => this.removeClan(item)}
-                />
-              )}
-            />
-          ))}
-        </View>
-        <SectionTitle
-          title={`${lang.friend_player_title} - ${SafeValue(player.length, 0)}`}
-        />
-        <View style={styles.wrap}>
-          {player.map(item => (
-            <List.Item
-              style={{width: goodWidth}}
-              title={item.nickname}
-              onPress={() => this.pushToPlayer(item)}
-              description={`${item.account_id}`}
-              key={String(item.account_id)}
-              right={() => (
-                <IconButton
-                  iconColor={'#9E9E9E'}
-                  icon="close"
-                  onPress={() => this.removeFriend(item)}
-                />
-              )}
-            />
-          ))}
-        </View>
-      </View>
-    );
-  }
-
-  removeFriend(info) {
-    let str = LOCAL.friendList;
-    delete AppGlobalData.get(str).player[info.account_id];
-    SafeStorage.set(str, AppGlobalData.get(str));
-    this.setState({player: this.getPlayer(AppGlobalData.get(str))});
-  }
-
-  removeClan(info) {
-    let str = LOCAL.friendList;
-    delete AppGlobalData.get(str).clan[info.clan_id];
-    SafeStorage.set(str, AppGlobalData.get(str));
-    this.setState({clan: this.getClan(AppGlobalData.get(str))});
-  }
-
-  pushToPlayer(info) {
+  const pushToPlayer = useCallback((info: any) => {
     SafeAction('Statistics', {info: info});
-  }
+  }, []);
 
-  pushToClan(info) {
+  const pushToClan = useCallback((info: any) => {
     SafeAction('ClanInfo', {info: info});
-  }
-}
+  }, []);
+
+  return (
+    <View onLayout={updateBestWidth}>
+      <SectionTitle
+        title={`${lang.friend_clan_title} - ${SafeValue(clan.length, 0)}`}
+      />
+      <View style={styles.wrap}>
+        {clan.map(item => (
+          <List.Item
+            style={{width: goodWidth}}
+            title={item.tag}
+            onPress={() => pushToClan(item)}
+            description={`${item.clan_id}`}
+            key={String(item.clan_id)}
+            right={() => (
+              <IconButton
+                iconColor={'#9E9E9E'}
+                icon="close"
+                onPress={() => removeClan(item)}
+              />
+            )}
+          />
+        ))}
+      </View>
+      <SectionTitle
+        title={`${lang.friend_player_title} - ${SafeValue(player.length, 0)}`}
+      />
+      <View style={styles.wrap}>
+        {player.map(item => (
+          <List.Item
+            style={{width: goodWidth}}
+            title={item.nickname}
+            onPress={() => pushToPlayer(item)}
+            description={`${item.account_id}`}
+            key={String(item.account_id)}
+            right={() => (
+              <IconButton
+                iconColor={'#9E9E9E'}
+                icon="close"
+                onPress={() => removeFriend(item)}
+              />
+            )}
+          />
+        ))}
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -1,102 +1,84 @@
-/**
- * CommanderSkill.js
- *
- * Display commander skills in tiers
- */
-
-import React, {Component} from 'react';
+import React, {useEffect, useState, useMemo, useCallback} from 'react';
 import {StyleSheet} from 'react-native';
 import {SAVED, setLastLocation} from '../../value/data';
 import {WoWsInfo, WikiIcon, SectionTitle} from '../../component';
 import {SectionGrid} from 'react-native-super-grid';
 import {SafeAction, copy} from '../../core';
 import {lang} from '../../value/lang';
+import {useAppStore} from '../../store/useAppStore';
 
-class CommanderSkill extends Component {
-  constructor(props) {
-    super(props);
+const CommanderSkill = () => {
+  useEffect(() => {
     setLastLocation('CommanderSkill');
     console.log('WIKI - Commander Skill');
-    let skill = AppGlobalData.get(SAVED.commanderSkill);
-    let cloned = copy(skill);
+  }, []);
 
-    let section = [];
-    cloned.forEach(i => {
+  const initial = useMemo(() => {
+    let skill = useAppStore.getState().getData(SAVED.commanderSkill);
+    let cloned = copy(skill);
+    let section: any[] = [];
+    cloned.forEach((i: any) => {
       let index = i.tier - 1;
-      // Data is sorted so we wont need to worry about not in order
       if (!section[index]) {
         section.push({title: `${lang.wiki_skills_tier} ${i.tier}`, data: []});
       }
       section[index].data.push(Object.assign(i));
     });
+    return section;
+  }, []);
 
-    this.state = {
-      data: section,
-      point: 19,
-    };
-  }
+  const [data, setData] = useState(initial);
+  const [point, setPoint] = useState(19);
 
-  render() {
-    const {data, point} = this.state;
-
-    return (
-      <WoWsInfo
-        title={`${point} ${lang.wiki_skills_point}`}
-        onPress={() => this.reset()}>
-        <SectionGrid
-          itemDimension={80}
-          sections={data}
-          renderItem={({item}) => {
-            return (
-              <WikiIcon
-                item={item}
-                selected={item.selected}
-                onPress={() => this.skillSelected(item)}
-                onLongPress={() => SafeAction('BasicDetail', {item: item})}
-              />
-            );
-          }}
-          renderSectionHeader={({section}) => (
-            <SectionTitle title={section.title} />
-          )}
-        />
-      </WoWsInfo>
-    );
-  }
-
-  skillSelected(item) {
-    const {point} = this.state;
-    let pointLeft = point;
-    if (item.selected == true) {
-      // Remember to set it to a number otherwise you will have weird issues
-      if (pointLeft == lang.wiki_skills_reset) {
-        pointLeft = 0;
+  const skillSelected = useCallback((item: any) => {
+    setPoint(prev => {
+      if (item.selected == true) {
+        let next = prev;
+        if (next === lang.wiki_skills_reset) next = 0;
+        next += item.tier;
+        item.selected = false;
+        setData(d => [...d]);
+        return next;
       }
-      pointLeft += item.tier;
-      // Deselect this skill and return your points
-      item.selected = false;
-      this.setState({point: pointLeft});
-    } else {
-      pointLeft -= item.tier;
-      if (pointLeft >= 0) {
+      let next = prev - item.tier;
+      if (next >= 0) {
         item.selected = true;
-        // If you do not have enough point do nothing
-        if (pointLeft == 0) {
-          this.setState({point: lang.wiki_skills_reset});
-        } else {
-          this.setState({point: pointLeft});
-        }
+        setData(d => [...d]);
+        return next === 0 ? lang.wiki_skills_reset : next;
       }
-    }
-  }
-
-  reset() {
-    const {data} = this.state;
-    data.forEach(i => {
-      i.data.forEach(j => delete j.selected);
+      return prev;
     });
-    this.setState({point: 19, data: data});
-  }
-}
+  }, []);
+
+  const reset = useCallback(() => {
+    setData(d => {
+      d.forEach((i: any) => i.data.forEach((j: any) => delete j.selected));
+      return [...d];
+    });
+    setPoint(19);
+  }, []);
+
+  return (
+    <WoWsInfo
+      title={`${point} ${lang.wiki_skills_point}`}
+      onPress={reset}>
+      <SectionGrid
+        itemDimension={80}
+        sections={data}
+        renderItem={({item}) => (
+          <WikiIcon
+            item={item}
+            selected={item.selected}
+            onPress={() => skillSelected(item)}
+            onLongPress={() => SafeAction('BasicDetail', {item: item})}
+          />
+        )}
+        renderSectionHeader={({section}) => (
+          <SectionTitle title={section.title} />
+        )}
+      />
+    </WoWsInfo>
+  );
+};
 
 export {CommanderSkill};

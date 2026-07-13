@@ -1,10 +1,4 @@
-/**
- * Collection.js
- *
- * This is the wiki collection and it is reused for collection items as well
- */
-
-import React, {PureComponent} from 'react';
+import React, {useEffect, useMemo, useCallback} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 import {WoWsInfo, WikiIcon} from '../../component';
@@ -12,102 +6,79 @@ import {SAVED, setLastLocation} from '../../value/data';
 import {SafeAction} from '../../core';
 import {Title, Paragraph} from 'react-native-paper';
 import {TintTextColour} from '../../value/colour';
+import {useAppStore} from '../../store/useAppStore';
 
-class Collection extends PureComponent {
-  constructor(props) {
-    super(props);
+const Collection = ({route}: any) => {
+  useEffect(() => {
     setLastLocation('Collection');
     console.log('WIKI - Collection');
+  }, []);
 
-    let collection = [];
-    let isCollection = false;
-    if (props.route?.params?.item) {
-      // Inside a single collection
-      collection = props.route?.params?.item;
-      isCollection = true;
+  const {data, isCollection, header} = useMemo(() => {
+    let collection: any[] = [];
+    let coll = false;
+    if (route?.params?.item) {
+      collection = route?.params?.item;
+      coll = true;
     } else {
-      // Display all available collections
-      let saved = AppGlobalData.get(SAVED.collection).collection;
-      Object.keys(saved).forEach(k => {
-        collection.push(saved[k]);
-      });
+      let saved = useAppStore.getState().getData(SAVED.collection).collection;
+      Object.keys(saved).forEach(k => collection.push(saved[k]));
     }
+    const h = coll ? collection.shift() : null;
+    return {data: collection, isCollection: coll, header: h};
+  }, [route?.params?.item]);
 
-    console.log(collection);
-    this.state = {
-      data: collection,
-      collection: isCollection,
-      header: isCollection ? collection.shift() : null,
-    };
-  }
-
-  render() {
-    const {label} = styles;
-    const {data, collection, header} = this.state;
-
-    let ID = '';
-    // This is to prevent setting ID inside the collection page
-    if (data.length > 0 && data[0].card_id) {
-      ID = data[0].collection_id;
-    }
-
-    return (
-      <WoWsInfo title={ID}>
-        <FlatGrid
-          itemDimension={80}
-          data={data}
-          renderItem={({item}) => {
-            return (
-              <WikiIcon
-                item={item}
-                onPress={() => this.itemOrCollection(item)}
-              />
-            );
-          }}
-          ListHeaderComponent={() => {
-            if (collection) {
-              return (
-                <View style={{padding: 8}}>
-                  <WikiIcon item={header} scale={1.6} />
-                  <Title style={[label, TintTextColour()]}>{header.name}</Title>
-                  <Paragraph style={label}>{header.description}</Paragraph>
-                </View>
-              );
-            } else {
-              return null;
-            }
-          }}
-          showsVerticalScrollIndicator={false}
-        />
-      </WoWsInfo>
-    );
-  }
-
-  /**
-   * Filter collection items with id
-   * @param {*} item
-   */
-  itemOrCollection(item) {
+  const itemOrCollection = useCallback((item: any) => {
     if (item.card_id) {
-      // This is an item
       SafeAction('BasicDetail', {item: item});
     } else {
-      // This is an collection
       let id = item.collection_id;
-      let items = AppGlobalData.get(SAVED.collection).item;
-
-      let collectionItems = [];
-      collectionItems.push(AppGlobalData.get(SAVED.collection).collection[id]);
-      for (let one in items) {
-        let curr = items[one];
+      let saved = useAppStore.getState().getData(SAVED.collection);
+      let collectionItems: any[] = [];
+      collectionItems.push(saved.collection[id]);
+      for (let one in saved.item) {
+        let curr = saved.item[one];
         if (curr.collection_id === id) {
           collectionItems.push(curr);
         }
       }
       SafeAction('Collection', {item: collectionItems}, 1);
     }
+  }, []);
+
+  let ID = '';
+  if (data.length > 0 && data[0].card_id) {
+    ID = data[0].collection_id;
   }
-}
+
+  return (
+    <WoWsInfo title={ID}>
+      <FlatGrid
+        itemDimension={80}
+        data={data}
+        renderItem={({item}) => (
+          <WikiIcon
+            item={item}
+            onPress={() => itemOrCollection(item)}
+          />
+        )}
+        ListHeaderComponent={() => {
+          if (isCollection) {
+            return (
+              <View style={{padding: 8}}>
+                <WikiIcon item={header} scale={1.6} />
+                <Title style={[styles.label, TintTextColour()]}>{header.name}</Title>
+                <Paragraph style={styles.label}>{header.description}</Paragraph>
+              </View>
+            );
+          }
+          return null;
+        }}
+        showsVerticalScrollIndicator={false}
+      />
+    </WoWsInfo>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

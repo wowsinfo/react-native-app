@@ -1,96 +1,60 @@
-/**
- * Consumable.js
- *
- * Display flag and camouflage or upgrade.
- * There are two modes for this page
- */
-
-import React, {PureComponent} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {FlatGrid} from 'react-native-super-grid';
 import {LoadingModal, WikiIcon, WoWsInfo} from '../../component';
 import {SAVED, setLastLocation} from '../../value/data';
 import {SafeAction} from '../../core';
+import {useAppStore} from '../../store/useAppStore';
 
-class Consumable extends PureComponent {
-  constructor(props) {
-    super(props);
-    const {upgrade} = props.route?.params ?? {};
-    let loc = 'Consumable';
-    if (upgrade === true) {
-      loc = 'Upgrade';
-    }
-    setLastLocation(loc);
+const Consumable = ({route}: any) => {
+  const {upgrade} = route?.params ?? {};
 
-    // Load data depending on 'upgrade' prop
-    let data = [];
-    let consumable = AppGlobalData.get(SAVED.consumable);
-    for (let key in consumable) {
-      let curr = consumable[key];
+  useEffect(() => {
+    setLastLocation(upgrade === true ? 'Upgrade' : 'Consumable');
+  }, [upgrade]);
 
+  const consumable = useMemo(() => {
+    let data: any[] = [];
+    let saved = useAppStore.getState().getData(SAVED.consumable);
+    for (let key in saved) {
+      let curr = saved[key];
       if (upgrade && curr.type === 'Modernization') {
         data.push(curr);
       } else if (!upgrade && curr.type !== 'Modernization') {
         data.push(curr);
       }
     }
-
-    // Create sections for new and old consumables
-
     data.sort((a, b) => {
       if (!upgrade) {
-        // Flags first then camouflages
-        if (a.type === 'Flags') {
-          return -1;
-        } else {
-          return 1;
-        }
+        if (a.type === 'Flags') return -1;
+        return 1;
       }
-
-      // Sort by price
-      if (a.price_gold === 0) {
-        return a.price_credit - b.price_credit;
-      } else {
-        return a.price_gold - b.price_gold;
-      }
+      if (a.price_gold === 0) return a.price_credit - b.price_credit;
+      return a.price_gold - b.price_gold;
     });
+    return data;
+  }, [upgrade]);
 
-    console.log(data);
+  if (!consumable) return <LoadingModal />;
 
-    this.state = {
-      data: data,
-    };
-  }
-
-  render() {
-    return <WoWsInfo>{this.renderGrid()}</WoWsInfo>;
-  }
-
-  renderGrid() {
-    const {data} = this.state;
-    if (!data) {
-      return <LoadingModal />;
-    }
-
-    return (
+  return (
+    <WoWsInfo>
       <View style={{flex: 1}}>
         <FlatGrid
           itemDimension={80}
-          data={data}
-          renderItem={({item}) => {
-            return (
-              <WikiIcon
-                item={item}
-                onPress={() => SafeAction('BasicDetail', {item: item})}
-              />
-            );
-          }}
+          data={consumable}
+          renderItem={({item}) => (
+            <WikiIcon
+              item={item}
+              onPress={() => SafeAction('BasicDetail', {item: item})}
+            />
+          )}
           showsVerticalScrollIndicator={false}
         />
       </View>
-    );
-  }
-}
+    </WoWsInfo>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
