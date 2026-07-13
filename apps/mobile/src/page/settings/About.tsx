@@ -6,7 +6,6 @@ import {TintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
 import {getRandomAnimation} from '../../core';
 
-
 export const About = () => {
   const [animation, setAnimation] = useState('pulse');
   const {touch} = styles;

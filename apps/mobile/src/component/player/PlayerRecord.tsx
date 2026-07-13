@@ -33,7 +33,9 @@ const renderRecord = (item: any, goodWidth: number) => {
   const {name, data} = item;
   const {frags, max_frags_battle, max_frags_ship_id, hits, shots} = data;
   if (!max_frags_ship_id) return null;
-  const bestShip = useAppStore.getState().getData(SAVED.warship)[max_frags_ship_id];
+  const bestShip = useAppStore.getState().getData(SAVED.warship)[
+    max_frags_ship_id
+  ];
   return (
     <View style={{width: goodWidth}} key={name}>
       <SectionTitle title={name} center />
@@ -94,13 +96,37 @@ const PlayerRecord = ({data}: any) => {
   } = data;
 
   let max = [
-    {name: lang.record_max_damage_dealt, num: max_damage_dealt, id: max_damage_dealt_ship_id},
-    {name: lang.record_max_frags_battle, num: max_frags_battle, id: max_frags_ship_id},
-    {name: lang.record_max_planes_killed, num: max_planes_killed, id: max_planes_killed_ship_id},
+    {
+      name: lang.record_max_damage_dealt,
+      num: max_damage_dealt,
+      id: max_damage_dealt_ship_id,
+    },
+    {
+      name: lang.record_max_frags_battle,
+      num: max_frags_battle,
+      id: max_frags_ship_id,
+    },
+    {
+      name: lang.record_max_planes_killed,
+      num: max_planes_killed,
+      id: max_planes_killed_ship_id,
+    },
     {name: lang.record_max_xp, num: max_xp, id: max_xp_ship_id},
-    {name: lang.record_max_ships_spotted, num: max_ships_spotted, id: max_ships_spotted_ship_id},
-    {name: lang.record_max_total_agro, num: max_total_agro, id: max_total_agro_ship_id},
-    {name: lang.record_max_damage_scouting, num: max_damage_scouting, id: max_scouting_damage_ship_id},
+    {
+      name: lang.record_max_ships_spotted,
+      num: max_ships_spotted,
+      id: max_ships_spotted_ship_id,
+    },
+    {
+      name: lang.record_max_total_agro,
+      num: max_total_agro,
+      id: max_total_agro_ship_id,
+    },
+    {
+      name: lang.record_max_damage_scouting,
+      num: max_damage_scouting,
+      id: max_scouting_damage_ship_id,
+    },
   ];
 
   let records = [
@@ -115,7 +141,9 @@ const PlayerRecord = ({data}: any) => {
     <View style={styles.container} onLayout={updateBestWidth}>
       <SectionTitle title={lang.record_title} />
       <View style={styles.wrap}>{max.map(d => renderMax(d, goodWidth))}</View>
-      <View style={styles.wrap}>{records.map(d => renderRecord(d, goodWidth))}</View>
+      <View style={styles.wrap}>
+        {records.map(d => renderRecord(d, goodWidth))}
+      </View>
     </View>
   );
 };

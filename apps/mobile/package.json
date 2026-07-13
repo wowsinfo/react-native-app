@@ -10,7 +10,7 @@
     "pod": "cd ios && pod install",
     "clean-ios": "cd ios && rm -rf Pods/ Podfile.lock",
     "lint": "bunx eslint . --ext .js,.jsx,.ts,.tsx",
-    "format-all": "bunx prettier --write '**/*.js' '**/*.ts*'",
+    "format-all": "bunx prettier --write '**/*.{js,ts,tsx}' '../../packages/**/*.{ts,tsx}'",
     "test": "bunx jest",
     "ios:dev": "bunx react-native run-ios --scheme wowsinfo-debug --simulator=\"iPhone 17 Pro\" --port 8088",
     "ios:release": "bunx react-native run-ios --scheme wowsinfo --configuration Release",

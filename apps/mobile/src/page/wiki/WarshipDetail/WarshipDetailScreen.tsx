@@ -36,10 +36,19 @@ const renderSurvivability = (curr: any) => {
     <View style={styles.margin}>
       <SectionTitle title={lang.warship_survivability} />
       <View style={styles.horizontal}>
-        <InfoLabel title={lang.warship_survivability_health} info={`${health} - ${health + tier * 350}`} />
-        <InfoLabel title={lang.warship_survivability_armour} info={`${range.min} - ${range.max} mm`} />
+        <InfoLabel
+          title={lang.warship_survivability_health}
+          info={`${health} - ${health + tier * 350}`}
+        />
+        <InfoLabel
+          title={lang.warship_survivability_armour}
+          info={`${range.min} - ${range.max} mm`}
+        />
         {flood_prob == 0 ? null : (
-          <InfoLabel title={lang.warship_survivability_protection} info={`${flood_prob}%`} />
+          <InfoLabel
+            title={lang.warship_survivability_protection}
+            info={`${flood_prob}%`}
+          />
         )}
       </View>
     </View>
@@ -60,42 +69,67 @@ const renderBasic = (curr: any, data: any) => {
       <Title style={[styles.shipTitle, {marginTop: 8}]}>{name}</Title>
       {currShip ? (
         <View style={[styles.horizontal, {marginBottom: 16}]}>
-          <InfoLabel title={lang.warship_avg_damage} info={Number(avgDamage).toFixed(0)} />
-          <InfoLabel title={lang.warship_avg_winrate} info={`${Number(avgWinrate).toFixed(1)}%`} />
-          <InfoLabel title={lang.warship_avg_frag} info={Number(avgFrag).toFixed(2)} />
+          <InfoLabel
+            title={lang.warship_avg_damage}
+            info={Number(avgDamage).toFixed(0)}
+          />
+          <InfoLabel
+            title={lang.warship_avg_winrate}
+            info={`${Number(avgWinrate).toFixed(1)}%`}
+          />
+          <InfoLabel
+            title={lang.warship_avg_frag}
+            info={Number(avgFrag).toFixed(2)}
+          />
         </View>
       ) : null}
       <Text>{nation.toUpperCase()}</Text>
       <Text>{type}</Text>
       <PriceLabel item={data} />
       {model ? (
-        <Button style={styles.modelBtn} onPress={() => Linking.openURL(`https://sketchfab.com/models/${model}/embed?autostart=1&preload=1`)}>
+        <Button
+          style={styles.modelBtn}
+          onPress={() =>
+            Linking.openURL(
+              `https://sketchfab.com/models/${model}/embed?autostart=1&preload=1`,
+            )
+          }>
           {lang.warship_model}
         </Button>
       ) : null}
-      <Paragraph style={[styles.centerText, styles.margin]}>{description}</Paragraph>
+      <Paragraph style={[styles.centerText, styles.margin]}>
+        {description}
+      </Paragraph>
     </View>
   );
 };
 
 const renderMainBattery = (artillery: any, upgrades: any[]) => {
   if (!artillery) return null;
-  const {max_dispersion, gun_rate, distance, rotation_time, slots, shells} = artillery;
+  const {max_dispersion, gun_rate, distance, rotation_time, slots, shells} =
+    artillery;
   const {AP, HE} = shells;
 
-  var mainGun = '', gunName = '';
+  var mainGun = '',
+    gunName = '';
   for (var gun in slots) {
     mainGun += slots[gun].guns + ' x ' + slots[gun].barrels + '  ';
   }
   gunName = slots[gun].name;
   let calibar = parseInt(gunName.split(' ')[0], 10);
-  let fireRate = 0, penetration = '', overmatch = '';
+  let fireRate = 0,
+    penetration = '',
+    overmatch = '';
   if (HE) {
     fireRate = calibar > 160 ? 4 : 3;
     var oneFourth = Number(calibar / 4).toFixed(1);
     var oneFifth = Number(calibar / 5).toFixed(1);
     var oneSixth = Number(calibar / 6).toFixed(1);
-    penetration = `1/6 | ${oneSixth} - ${Number(oneSixth * 1.25).toFixed(1)} mm\n1/5 | ${oneFifth} - ${Number(oneFifth * 1.25).toFixed(1)} mm\n1/4 | ${oneFourth} - ${Number(oneFourth * 1.25).toFixed(1)} mm`;
+    penetration = `1/6 | ${oneSixth} - ${Number(oneSixth * 1.25).toFixed(
+      1,
+    )} mm\n1/5 | ${oneFifth} - ${Number(oneFifth * 1.25).toFixed(
+      1,
+    )} mm\n1/4 | ${oneFourth} - ${Number(oneFourth * 1.25).toFixed(1)} mm`;
     fireRate += HE.burn_probability;
   }
   if (AP) {
@@ -106,13 +140,15 @@ const renderMainBattery = (artillery: any, upgrades: any[]) => {
   let re1 = calibar <= 139 ? 0.9 : 1;
   let re2 = upgrades.findIndex(u => u === 4280471472) > -1 ? 0.88 : 1;
   let bestReload = Number((60 / gun_rate) * re1 * re2).toFixed(1);
-  let reloadMsg = reload === bestReload ? `${reload} s` : `${reload} - ${bestReload} s`;
+  let reloadMsg =
+    reload === bestReload ? `${reload} s` : `${reload} - ${bestReload} s`;
 
   let range = Number(distance).toFixed(1);
   let ra1 = calibar <= 139 ? 1.2 : 1;
   let ra2 = upgrades.findIndex(u => u === 4278374320) > -1 ? 1.16 : 1;
   let bestRange = Number(distance * ra1 * ra2).toFixed(1);
-  let rangeMsg = range === bestRange ? `${range} km` : `${range} - ${bestRange} km`;
+  let rangeMsg =
+    range === bestRange ? `${range} km` : `${range} - ${bestRange} km`;
 
   return (
     <View style={styles.margin}>
@@ -123,29 +159,62 @@ const renderMainBattery = (artillery: any, upgrades: any[]) => {
         <InfoLabel title={lang.warship_weapon_configuration} info={mainGun} />
       </View>
       <View style={styles.horizontal}>
-        <InfoLabel title={lang.warship_weapon_dispersion} info={`${max_dispersion} m`} />
-        <InfoLabel title={lang.warship_weapon_rotation} info={`${rotation_time} s`} />
+        <InfoLabel
+          title={lang.warship_weapon_dispersion}
+          info={`${max_dispersion} m`}
+        />
+        <InfoLabel
+          title={lang.warship_weapon_rotation}
+          info={`${rotation_time} s`}
+        />
       </View>
       <Title style={styles.centerText}>{gunName}</Title>
       <View style={styles.horizontal}>
         {HE == null ? null : (
           <View>
             <Title style={styles.centerText}>HE</Title>
-            <InfoLabel title={lang.warship_weapon_fire_chance} info={`🔥${HE.burn_probability} - ${fireRate}%`} />
-            <InfoLabel title={lang.warship_artillery_main_weight} info={`${HE.bullet_mass} kg`} />
-            <InfoLabel title={lang.warship_weapon_damage} info={`${HE.damage}`} />
-            <InfoLabel title={lang.warship_weapon_speed} info={`${HE.bullet_speed} m/s`} />
-            <InfoLabel title={lang.warship_weapon_he_penetration} info={penetration} />
+            <InfoLabel
+              title={lang.warship_weapon_fire_chance}
+              info={`🔥${HE.burn_probability} - ${fireRate}%`}
+            />
+            <InfoLabel
+              title={lang.warship_artillery_main_weight}
+              info={`${HE.bullet_mass} kg`}
+            />
+            <InfoLabel
+              title={lang.warship_weapon_damage}
+              info={`${HE.damage}`}
+            />
+            <InfoLabel
+              title={lang.warship_weapon_speed}
+              info={`${HE.bullet_speed} m/s`}
+            />
+            <InfoLabel
+              title={lang.warship_weapon_he_penetration}
+              info={penetration}
+            />
           </View>
         )}
         {AP == null ? null : (
           <View>
             <Title style={styles.centerText}>AP</Title>
             <InfoLabel title={lang.warship_weapon_fire_chance} info="0%🔥" />
-            <InfoLabel title={lang.warship_artillery_main_weight} info={`${AP.bullet_mass} kg`} />
-            <InfoLabel title={lang.warship_weapon_damage} info={`${AP.damage}`} />
-            <InfoLabel title={lang.warship_weapon_speed} info={`${AP.bullet_speed} m/s`} />
-            <InfoLabel title={lang.warship_weapon_ap_overmatch} info={overmatch} />
+            <InfoLabel
+              title={lang.warship_artillery_main_weight}
+              info={`${AP.bullet_mass} kg`}
+            />
+            <InfoLabel
+              title={lang.warship_weapon_damage}
+              info={`${AP.damage}`}
+            />
+            <InfoLabel
+              title={lang.warship_weapon_speed}
+              info={`${AP.bullet_speed} m/s`}
+            />
+            <InfoLabel
+              title={lang.warship_weapon_ap_overmatch}
+              info={overmatch}
+            />
           </View>
         )}
       </View>
@@ -160,16 +229,30 @@ const renderSecondary = (secondary: any) => {
   for (const gun in slots) guns.push(slots[gun]);
   return (
     <View style={styles.margin}>
-      <SectionTitle title={`${lang.warship_artillery_secondary} (${distance} km)`} />
+      <SectionTitle
+        title={`${lang.warship_artillery_secondary} (${distance} km)`}
+      />
       {guns.map((value, index) => {
-        const {burn_probability, bullet_speed, name, gun_rate, damage, type} = value;
+        const {burn_probability, bullet_speed, name, gun_rate, damage, type} =
+          value;
         return (
           <View key={index}>
             <Title style={styles.centerText}>{`${type} - ${name}`}</Title>
             <View style={styles.horizontal}>
-              <InfoLabel title={lang.warship_weapon_reload} info={Number(60 / gun_rate).toFixed(1) + ' s'} />
-              <InfoLabel title={lang.warship_weapon_speed} info={`${bullet_speed} m/s`} />
-              {burn_probability == null ? null : <InfoLabel title={lang.warship_weapon_fire_chance} info={`🔥${burn_probability}%`} />}
+              <InfoLabel
+                title={lang.warship_weapon_reload}
+                info={Number(60 / gun_rate).toFixed(1) + ' s'}
+              />
+              <InfoLabel
+                title={lang.warship_weapon_speed}
+                info={`${bullet_speed} m/s`}
+              />
+              {burn_probability == null ? null : (
+                <InfoLabel
+                  title={lang.warship_weapon_fire_chance}
+                  info={`🔥${burn_probability}%`}
+                />
+              )}
               <InfoLabel title={lang.warship_weapon_damage} info={damage} />
             </View>
           </View>
@@ -181,14 +264,27 @@ const renderSecondary = (secondary: any) => {
 
 const renderTorpedo = (torpedoes: any, upgrades: any[]) => {
   if (!torpedoes) return null;
-  const {visibility_dist, distance, torpedo_name, reload_time, torpedo_speed, slots, max_damage} = torpedoes;
+  const {
+    visibility_dist,
+    distance,
+    torpedo_name,
+    reload_time,
+    torpedo_speed,
+    slots,
+    max_damage,
+  } = torpedoes;
   let dist = Number(distance).toFixed(1);
   let torps = '';
-  for (const torp in slots) torps += slots[torp].guns + ' x ' + slots[torp].barrels + '  ';
-  let reactionTime = Number((visibility_dist * 1000) / 2.6 / torpedo_speed).toFixed(1);
+  for (const torp in slots)
+    torps += slots[torp].guns + ' x ' + slots[torp].barrels + '  ';
+  let reactionTime = Number(
+    (visibility_dist * 1000) / 2.6 / torpedo_speed,
+  ).toFixed(1);
   let shortDist = Number(distance * 0.8).toFixed(1);
   let fastestSpeed = Number((torpedo_speed + 5) * 1.05).toFixed(1);
-  let reactionTimeP = Number((visibility_dist * 1000) / 2.6 / fastestSpeed).toFixed(1);
+  let reactionTimeP = Number(
+    (visibility_dist * 1000) / 2.6 / fastestSpeed,
+  ).toFixed(1);
   let modifier = upgrades.findIndex(u => u === 4279422896) > -1 ? 0.85 : 1;
   let minReload = Number(reload_time * 0.9 * modifier).toFixed(1);
 
@@ -196,15 +292,30 @@ const renderTorpedo = (torpedoes: any, upgrades: any[]) => {
     <View style={styles.margin}>
       <SectionTitle title={lang.warship_torpedoes} />
       <View style={styles.horizontal}>
-        <InfoLabel title={lang.warship_weapon_reload} info={`${reload_time} - ${minReload} s`} />
-        <InfoLabel title={lang.warship_weapon_range} info={`${dist} - ${shortDist} km`} />
+        <InfoLabel
+          title={lang.warship_weapon_reload}
+          info={`${reload_time} - ${minReload} s`}
+        />
+        <InfoLabel
+          title={lang.warship_weapon_range}
+          info={`${dist} - ${shortDist} km`}
+        />
         <InfoLabel title={lang.warship_weapon_configuration} info={torps} />
       </View>
-      <Title style={styles.centerText}>{`${torpedo_name} (${reactionTime} - ${reactionTimeP}s)`}</Title>
+      <Title
+        style={
+          styles.centerText
+        }>{`${torpedo_name} (${reactionTime} - ${reactionTimeP}s)`}</Title>
       <View style={styles.horizontal}>
-        <InfoLabel title={lang.warship_torpedoes_visible_distance} info={`${visibility_dist} km`} />
+        <InfoLabel
+          title={lang.warship_torpedoes_visible_distance}
+          info={`${visibility_dist} km`}
+        />
         <InfoLabel title={lang.warship_weapon_damage} info={max_damage} />
-        <InfoLabel title={lang.warship_weapon_speed} info={`${torpedo_speed} - ${fastestSpeed} kt`} />
+        <InfoLabel
+          title={lang.warship_weapon_speed}
+          info={`${torpedo_speed} - ${fastestSpeed} kt`}
+        />
       </View>
     </View>
   );
@@ -224,8 +335,14 @@ const renderAADefense = (anti_aircraft: any) => {
           <View key={index}>
             <Title style={styles.centerText}>{name}</Title>
             <View style={styles.horizontal}>
-              <InfoLabel title={lang.warship_weapon_configuration} info={`${guns}x`} />
-              <InfoLabel title={lang.warship_weapon_damage} info={`${avg_damage} dps`} />
+              <InfoLabel
+                title={lang.warship_weapon_configuration}
+                info={`${guns}x`}
+              />
+              <InfoLabel
+                title={lang.warship_weapon_damage}
+                info={`${avg_damage} dps`}
+              />
             </View>
           </View>
         );
@@ -242,15 +359,27 @@ const renderMobility = (mobility: any, upgrades: any[]) => {
   let m2 = upgrades.findIndex(u => u === 4257402800) > -1 ? 0.6 : 1;
   let modifier = m1 + m2 - 1;
   let maxRudder = Number(rudder_time * modifier).toFixed(1);
-  var rudderMsg = maxRudder === rudder_time ? `${rudder_time} s` : `${rudder_time} - ${maxRudder} s`;
+  var rudderMsg =
+    maxRudder === rudder_time
+      ? `${rudder_time} s`
+      : `${rudder_time} - ${maxRudder} s`;
 
   return (
     <View style={styles.margin}>
       <SectionTitle title={lang.warship_maneuverability} />
       <View style={styles.horizontal}>
-        <InfoLabel title={lang.warship_maneuverability_rudder_time} info={rudderMsg} />
-        <InfoLabel title={lang.warship_maneuverability_speed} info={`${max_speed} - ${speedFlag} kt`} />
-        <InfoLabel title={lang.warship_maneuverability_turning} info={`${turning_radius} m`} />
+        <InfoLabel
+          title={lang.warship_maneuverability_rudder_time}
+          info={rudderMsg}
+        />
+        <InfoLabel
+          title={lang.warship_maneuverability_speed}
+          info={`${max_speed} - ${speedFlag} kt`}
+        />
+        <InfoLabel
+          title={lang.warship_maneuverability_turning}
+          info={`${turning_radius} m`}
+        />
       </View>
     </View>
   );
@@ -262,15 +391,25 @@ const renderConcealment = (concealment: any, upgrades: any[]) => {
   let modifier = upgrades.findIndex(u => u === 4265791408) > -1 ? 0.9 : 1;
   let camouflage = 0.97;
   let deduction = 0.9 * modifier * camouflage;
-  let max_ship_concealment = Number(detect_distance_by_ship * deduction).toFixed(1);
-  let max_plane_concealment = Number(detect_distance_by_plane * deduction).toFixed(1);
+  let max_ship_concealment = Number(
+    detect_distance_by_ship * deduction,
+  ).toFixed(1);
+  let max_plane_concealment = Number(
+    detect_distance_by_plane * deduction,
+  ).toFixed(1);
 
   return (
     <View style={styles.margin}>
       <SectionTitle title={lang.warship_concealment} />
       <View style={styles.horizontal}>
-        <InfoLabel title={lang.warship_concealment_detect_by_plane} info={`${detect_distance_by_plane} - ${max_plane_concealment} km`} />
-        <InfoLabel title={lang.warship_concealment_detect_by_ship} info={`${detect_distance_by_ship} - ${max_ship_concealment} km`} />
+        <InfoLabel
+          title={lang.warship_concealment_detect_by_plane}
+          info={`${detect_distance_by_plane} - ${max_plane_concealment} km`}
+        />
+        <InfoLabel
+          title={lang.warship_concealment_detect_by_ship}
+          info={`${detect_distance_by_ship} - ${max_ship_concealment} km`}
+        />
       </View>
     </View>
   );
@@ -285,7 +424,9 @@ const renderUpgrade = (curr: any) => {
   clone.sort((a: number, b: number) => b - a);
   for (let index in clone) {
     let id = clone[index];
-    clone[index] = Object.assign(useAppStore.getState().getData(SAVED.consumable)[id]);
+    clone[index] = Object.assign(
+      useAppStore.getState().getData(SAVED.consumable)[id],
+    );
   }
   let count = [];
   for (let i = 0; i < slots; i++) count.push(i);
@@ -293,14 +434,21 @@ const renderUpgrade = (curr: any) => {
   return (
     <View style={styles.margin}>
       <SectionTitle title={lang.warship_upgrades} />
-      <ScrollView horizontal contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}>
+      <ScrollView
+        horizontal
+        contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}>
         {count.map(num => {
           let all = clone.filter((u: any) => u.slot == num + 1);
           return (
             <View style={styles.upgradeView} key={num}>
               <Title style={styles.margin}>{`${num + 1}.`}</Title>
               {all.map((item: any) => (
-                <WikiIcon key={item.name} item={item} scale={0.8} onPress={() => SafeAction('BasicDetail', {item: item})} />
+                <WikiIcon
+                  key={item.name}
+                  item={item}
+                  scale={0.8}
+                  onPress={() => SafeAction('BasicDetail', {item: item})}
+                />
               ))}
             </View>
           );
@@ -325,8 +473,12 @@ const renderNextShip = (next_ships: any) => {
           let curr = useAppStore.getState().getData(SAVED.warship)[item.key];
           return (
             <WarshipCell
-              scale={1.4} item={curr}
-              onPress={() => { Actions.pop(); SafeAction('WarshipDetail', {item: curr}, 1); }}
+              scale={1.4}
+              item={curr}
+              onPress={() => {
+                Actions.pop();
+                SafeAction('WarshipDetail', {item: curr}, 1);
+              }}
             />
           );
         }}
@@ -339,31 +491,47 @@ const renderAll = (curr: any, upgrades: any[]) => {
   let module = Guard(curr, 'modules', {});
   let hasModule = false;
   for (let id in module) {
-    if (module[id].length > 1) { hasModule = true; break; }
+    if (module[id].length > 1) {
+      hasModule = true;
+      break;
+    }
   }
 
   return (
     <View>
       {renderStatus(Guard(curr, 'default_profile', null))}
       {hasModule ? (
-        <Button theme={{roundness: 0}} mode="contained" onPress={() => SafeAction('WarshipModule', {data: curr})}>
+        <Button
+          theme={{roundness: 0}}
+          mode="contained"
+          onPress={() => SafeAction('WarshipModule', {data: curr})}>
           {lang.warship_update_module}
         </Button>
       ) : null}
       {renderSurvivability(curr)}
-      {renderMainBattery(Guard(curr, 'default_profile.artillery', null), upgrades)}
+      {renderMainBattery(
+        Guard(curr, 'default_profile.artillery', null),
+        upgrades,
+      )}
       {renderSecondary(Guard(curr, 'default_profile.atbas', null))}
       {renderTorpedo(Guard(curr, 'default_profile.torpedoes', null), upgrades)}
       {renderAADefense(Guard(curr, 'default_profile.anti_aircraft', null))}
       {renderMobility(Guard(curr, 'default_profile.mobility', null), upgrades)}
-      {renderConcealment(Guard(curr, 'default_profile.concealment', null), upgrades)}
+      {renderConcealment(
+        Guard(curr, 'default_profile.concealment', null),
+        upgrades,
+      )}
       {renderUpgrade(curr)}
       {renderNextShip(Guard(curr, 'next_ships'))}
     </View>
   );
 };
 
-const renderSimilar = (similar: any[], compare: any, onShipPress: (item: any) => void) => {
+const renderSimilar = (
+  similar: any[],
+  compare: any,
+  onShipPress: (item: any) => void,
+) => {
   if (Object.keys(similar).length === 0) return null;
   return (
     <FooterPlus>
@@ -373,7 +541,8 @@ const renderSimilar = (similar: any[], compare: any, onShipPress: (item: any) =>
         data={similar}
         renderItem={({item}) => (
           <WarshipCell
-            item={item} scale={1.4}
+            item={item}
+            scale={1.4}
             onPress={() => onShipPress(item)}
           />
         )}
@@ -388,7 +557,11 @@ const renderSimilar = (similar: any[], compare: any, onShipPress: (item: any) =>
   );
 };
 
-const efficientDataRequest = async (id: string, server: string, onData: (d: any) => void) => {
+const efficientDataRequest = async (
+  id: string,
+  server: string,
+  onData: (d: any) => void,
+) => {
   const json = await SafeFetch.get(WoWsAPI.ShipWiki, server, id, langStr());
   const data = Guard(json, 'data', {});
   onData(data);
@@ -396,8 +569,32 @@ const efficientDataRequest = async (id: string, server: string, onData: (d: any)
 
 const getNewModule = (data: any, server: string) => {
   const {ship_id, module} = data;
-  const {Artillery, DiveBomber, Engine, Fighter, FlightControl, Hull, Suo, TorpedoBomber, Torpedoes} = module;
-  return SafeFetch.get(WoWsAPI.ShipModule, server, ship_id, Artillery, DiveBomber, Engine, Fighter, Suo, FlightControl, Hull, TorpedoBomber, Torpedoes, langStr());
+  const {
+    Artillery,
+    DiveBomber,
+    Engine,
+    Fighter,
+    FlightControl,
+    Hull,
+    Suo,
+    TorpedoBomber,
+    Torpedoes,
+  } = module;
+  return SafeFetch.get(
+    WoWsAPI.ShipModule,
+    server,
+    ship_id,
+    Artillery,
+    DiveBomber,
+    Engine,
+    Fighter,
+    Suo,
+    FlightControl,
+    Hull,
+    TorpedoBomber,
+    Torpedoes,
+    langStr(),
+  );
 };
 
 const buildCharts = (similar: any[]) => {
@@ -442,8 +639,11 @@ const WarshipDetail = ({route}: any) => {
 
   const {curr: initialCurr, similar: initialSimilar} = useMemo(() => {
     let warship = useAppStore.getState().getData(SAVED.warship);
-    let similar = Object.entries(warship).filter((s: any) =>
-      s[1].tier === currParam?.tier && s[1].type === currParam?.type && s[1].ship_id != currParam?.ship_id
+    let similar = Object.entries(warship).filter(
+      (s: any) =>
+        s[1].tier === currParam?.tier &&
+        s[1].type === currParam?.type &&
+        s[1].ship_id != currParam?.ship_id,
     );
     similar.forEach((s: any, i: number) => (similar[i] = Object.assign(s[1])));
     return {curr: currParam, similar};
@@ -458,18 +658,21 @@ const WarshipDetail = ({route}: any) => {
   const upgradesRef = useRef<any[]>([]);
 
   const debounceRef = useRef<ReturnType<typeof setTimeout>>();
-  const fetchData = useCallback((id: string) => {
-    setLoading(true);
-    clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(async () => {
-      await efficientDataRequest(id, server, (result: any) => {
-        const upgrades = Guard(result[id], 'upgrades', []);
-        upgradesRef.current = upgrades;
-        setData(result[id]);
-        setLoading(false);
-      });
-    }, 1000);
-  }, [server]);
+  const fetchData = useCallback(
+    (id: string) => {
+      setLoading(true);
+      clearTimeout(debounceRef.current);
+      debounceRef.current = setTimeout(async () => {
+        await efficientDataRequest(id, server, (result: any) => {
+          const upgrades = Guard(result[id], 'upgrades', []);
+          upgradesRef.current = upgrades;
+          setData(result[id]);
+          setLoading(false);
+        });
+      }, 1000);
+    },
+    [server],
+  );
 
   useEffect(() => {
     if (curr?.ship_id) fetchData(curr.ship_id);
@@ -510,12 +713,14 @@ const WarshipDetail = ({route}: any) => {
         <Anime.View animation="pulse" iterationCount="infinite" useNativeDriver>
           <WikiIcon warship item={curr} scale={3} />
         </Anime.View>
-      {loading ? <LoadingIndicator /> : (
-        <View>
-          {renderBasic(curr, data)}
-          {renderAll(data, upgradesRef.current)}
-        </View>
-      )}
+        {loading ? (
+          <LoadingIndicator />
+        ) : (
+          <View>
+            {renderBasic(curr, data)}
+            {renderAll(data, upgradesRef.current)}
+          </View>
+        )}
       </ScrollView>
       {renderSimilar(similar, compare, (item: any) => {
         setCurr(item);

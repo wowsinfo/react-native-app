@@ -133,10 +133,7 @@ const renderInfo = (data: any, playerMode: boolean) => {
             />
           </View>
           <View style={styles.horizontal}>
-            <InfoLabel
-              title={lang.detailed_total_damage}
-              info={damage_dealt}
-            />
+            <InfoLabel title={lang.detailed_total_damage} info={damage_dealt} />
             <InfoLabel
               title={lang.detailed_damage_potential_ratio}
               info={`${roundTo((damage_dealt / art_agro) * 100, 2)}%`}
@@ -242,10 +239,7 @@ const DetailedInfo = ({data, more: initialMore}: any) => {
       {more ? (
         renderMore(data, playerMode)
       ) : (
-        <Button
-          onPress={() =>
-            onlyProVersion() ? setMore(true) : null
-          }>
+        <Button onPress={() => (onlyProVersion() ? setMore(true) : null)}>
           {lang.basic_more_stat}
         </Button>
       )}

@@ -1,1 +1,1 @@
-export { SafeFetch } from '@wowsinfo/core';
+export {SafeFetch} from '@wowsinfo/core';

@@ -1,5 +1,11 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react';
-import {View, StyleSheet, ScrollView, KeyboardAvoidingView, LayoutChangeEvent} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  KeyboardAvoidingView,
+  LayoutChangeEvent,
+} from 'react-native';
 import {Searchbar} from 'react-native-paper';
 import {WoWsInfo, SectionTitle, PlayerCell} from '../../component';
 import {
@@ -55,7 +61,11 @@ const Search = () => {
       const length = text.length;
 
       if (length > 1 && length < 6) {
-        const clanResult = await SafeFetch.get(WoWsAPI.ClanSearch, domain, text);
+        const clanResult = await SafeFetch.get(
+          WoWsAPI.ClanSearch,
+          domain,
+          text,
+        );
         const clanData = Guard(clanResult, 'data', null);
         if (clanData != null) {
           clanData.forEach((v: any) => (v.server = getCurrServer()));
@@ -65,7 +75,11 @@ const Search = () => {
       }
 
       if (length > 2) {
-        const playerResult = await SafeFetch.get(WoWsAPI.PlayerSearch, domain, text);
+        const playerResult = await SafeFetch.get(
+          WoWsAPI.PlayerSearch,
+          domain,
+          text,
+        );
         const playerData = Guard(playerResult, 'data', null);
         if (playerData != null) {
           playerData.forEach((v: any) => (v.server = getCurrServer()));
@@ -94,7 +108,12 @@ const Search = () => {
       return (
         <View style={styles.wrap}>
           {player.map(item => (
-            <PlayerCell key={item.account_id} item={item} player width={goodWidth} />
+            <PlayerCell
+              key={item.account_id}
+              item={item}
+              player
+              width={goodWidth}
+            />
           ))}
         </View>
       );
@@ -129,7 +148,9 @@ const Search = () => {
           value={search}
           style={styles.searchBar}
           iconColor={TintBackgroundColour()}
-          placeholder={`${prefix.toUpperCase()} - ${online} ${lang.search_player_online}`}
+          placeholder={`${prefix.toUpperCase()} - ${online} ${
+            lang.search_player_online
+          }`}
           onChangeText={searchAll}
           autoCorrect={false}
           autoCapitalize="none"

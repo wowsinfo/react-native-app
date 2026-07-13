@@ -19,8 +19,15 @@ export const dayDifference = (time: number) => {
 
 export const getRandomAnimation = () => {
   const list = [
-    'bounce', 'flash', 'pulse', 'rotate', 'rubberBand',
-    'shake', 'swing', 'tada', 'wobble',
+    "bounce",
+    "flash",
+    "pulse",
+    "rotate",
+    "rubberBand",
+    "shake",
+    "swing",
+    "tada",
+    "wobble",
   ];
   return list[random(list.length)];
 };

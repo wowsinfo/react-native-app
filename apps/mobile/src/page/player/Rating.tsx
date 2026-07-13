@@ -12,7 +12,6 @@ import {lang} from '../../value/lang';
 import {getRatingList, getColourList, SafeAction} from '../../core';
 import {APP} from '../../value/data';
 
-
 export const Rating = () => {
   const {container, range} = styles;
   const ratingRange = [

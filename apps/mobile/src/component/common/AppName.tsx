@@ -28,8 +28,7 @@ export const AppName = () => {
   return (
     <Touchable style={horizontal}>
       <View style={container}>
-        <Title
-          style={[appName, isProVersion() ? {color: '#FF9800'} : {}]}>
+        <Title style={[appName, isProVersion() ? {color: '#FF9800'} : {}]}>
           {lang.app_name}
         </Title>
         <Caption style={game}>{getVersion()}</Caption>

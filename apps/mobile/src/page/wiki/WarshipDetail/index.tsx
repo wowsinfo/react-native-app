@@ -1,1 +1,1 @@
-export { WarshipDetail } from './WarshipDetailScreen';
+export {WarshipDetail} from './WarshipDetailScreen';

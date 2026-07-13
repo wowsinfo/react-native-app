@@ -1,1 +1,1 @@
-export { Guard, SafeValue } from '@wowsinfo/core';
+export {Guard, SafeValue} from '@wowsinfo/core';

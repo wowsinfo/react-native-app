@@ -59,9 +59,7 @@ const CommanderSkill = () => {
   }, []);
 
   return (
-    <WoWsInfo
-      title={`${point} ${lang.wiki_skills_point}`}
-      onPress={reset}>
+    <WoWsInfo title={`${point} ${lang.wiki_skills_point}`} onPress={reset}>
       <SectionGrid
         itemDimension={80}
         sections={data}

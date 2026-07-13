@@ -1,6 +1,13 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
-import {Text, TextInput, List, Checkbox, Button, useTheme} from 'react-native-paper';
+import {
+  Text,
+  TextInput,
+  List,
+  Checkbox,
+  Button,
+  useTheme,
+} from 'react-native-paper';
 import {blendWithWhite} from '../../value/colour';
 import {WoWsInfo, FooterPlus, Space} from '../../component';
 import {lang} from '../../value/lang';
@@ -26,26 +33,38 @@ const WarshipFilter = () => {
     scrollRef.current?.scrollTo({x: 0, y: 128, animated: false});
   }, []);
 
-  const addData = useCallback((item: string, mode: number) => {
-    const getArr = () => {
-      switch (mode) {
-        case MODE.TIER: return tier;
-        case MODE.NATION: return nation;
-        case MODE.TYPE: return type;
-      }
-    };
-    const setArr = (arr: string[]) => {
-      switch (mode) {
-        case MODE.TIER: setTier(arr); break;
-        case MODE.NATION: setNation(arr); break;
-        case MODE.TYPE: setType(arr); break;
-      }
-    };
-    const arr = getArr();
-    if (arr.slice(-1)[0] === item) return;
-    const next = [...arr, item];
-    setArr(next);
-  }, [tier, nation, type]);
+  const addData = useCallback(
+    (item: string, mode: number) => {
+      const getArr = () => {
+        switch (mode) {
+          case MODE.TIER:
+            return tier;
+          case MODE.NATION:
+            return nation;
+          case MODE.TYPE:
+            return type;
+        }
+      };
+      const setArr = (arr: string[]) => {
+        switch (mode) {
+          case MODE.TIER:
+            setTier(arr);
+            break;
+          case MODE.NATION:
+            setNation(arr);
+            break;
+          case MODE.TYPE:
+            setType(arr);
+            break;
+        }
+      };
+      const arr = getArr();
+      if (arr.slice(-1)[0] === item) return;
+      const next = [...arr, item];
+      setArr(next);
+    },
+    [tier, nation, type],
+  );
 
   const resetAll = useCallback(() => {
     setPremium(false);
@@ -57,15 +76,22 @@ const WarshipFilter = () => {
 
   const applyAll = useCallback(() => {
     Actions.pop();
-    setTimeout(() => Actions.refresh({filter: {premium, name, nation, type, tier}}), 0);
+    setTimeout(
+      () => Actions.refresh({filter: {premium, name, nation, type, tier}}),
+      0,
+    );
   }, [premium, name, nation, type, tier]);
 
   const renderButton = (item: string, onPress: () => void) => (
-    <Button key={item} onPress={onPress}>{item}</Button>
+    <Button key={item} onPress={onPress}>
+      {item}
+    </Button>
   );
 
   const tierList = getTierList();
-  const nations = useAppStore.getState().getData(SAVED.encyclopedia).ship_nations;
+  const nations = useAppStore
+    .getState()
+    .getData(SAVED.encyclopedia).ship_nations;
   const nationList: string[] = [];
   Object.keys(nations).forEach(k => nationList.push(nations[k]));
 
@@ -96,19 +122,25 @@ const WarshipFilter = () => {
         <List.Section title={lang.wiki_warship_filter_tier}>
           <Text style={styles.selectionText}>{`${tier.join(' | ')} `}</Text>
           <View style={styles.wrapView}>
-            {tierList.map(item => renderButton(item, () => addData(item, MODE.TIER)))}
+            {tierList.map(item =>
+              renderButton(item, () => addData(item, MODE.TIER)),
+            )}
           </View>
         </List.Section>
         <List.Section title={lang.wiki_warship_filter_nation}>
           <Text style={styles.selectionText}>{`${nation.join(' | ')} `}</Text>
           <View style={styles.wrapView}>
-            {nationList.map(item => renderButton(item, () => addData(item, MODE.NATION)))}
+            {nationList.map(item =>
+              renderButton(item, () => addData(item, MODE.NATION)),
+            )}
           </View>
         </List.Section>
         <List.Section title={lang.wiki_warship_filter_type}>
           <Text style={styles.selectionText}>{`${type.join(' | ')} `}</Text>
           <View style={styles.wrapView}>
-            {typeList.map(item => renderButton(item, () => addData(item, MODE.TYPE)))}
+            {typeList.map(item =>
+              renderButton(item, () => addData(item, MODE.TYPE)),
+            )}
           </View>
         </List.Section>
       </ScrollView>
@@ -116,9 +148,7 @@ const WarshipFilter = () => {
         <List.Item
           title={lang.wiki_warship_filter_premium}
           onPress={() => setPremium(!premium)}
-          right={() => (
-            <Checkbox status={premium ? 'checked' : 'unchecked'} />
-          )}
+          right={() => <Checkbox status={premium ? 'checked' : 'unchecked'} />}
         />
         <View style={styles.horizontal}>
           <Button style={styles.button} onPress={resetAll}>

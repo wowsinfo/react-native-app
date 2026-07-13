@@ -29,7 +29,9 @@ const PlayerShip = ({route}: any) => {
 
   const original = useMemo(() => {
     if (!ships) return [];
-    return [...ships].sort((a: any, b: any) => b.last_battle_time - a.last_battle_time);
+    return [...ships].sort(
+      (a: any, b: any) => b.last_battle_time - a.last_battle_time,
+    );
   }, [ships]);
 
   const initRating = useMemo(() => {
@@ -44,7 +46,9 @@ const PlayerShip = ({route}: any) => {
   const theme = useTheme();
 
   useEffect(() => {
-    return () => { theme.colors.primary = TintColour()[500]; };
+    return () => {
+      theme.colors.primary = TintColour()[500];
+    };
   }, []);
 
   useEffect(() => {
@@ -69,28 +73,36 @@ const PlayerShip = ({route}: any) => {
   const ratingColor = getColour(rating);
   theme.colors.primary = ratingColor;
 
-  const updateShip = useCallback((d: any) => {
-    const sorted = filterShip(d, original);
-    if (sorted == null) {
-      setData(original);
-      setRating(initRating);
-    } else {
-      const r = getOverallRating(sorted);
-      setData(sorted);
-      setRating(r);
-    }
-  }, [original, initRating]);
-
-  const sortData = useCallback((v: string) => {
-    setData(prev => {
-      if (v === sortStr) {
-        setSortStr('');
-        return [...prev.reverse()];
+  const updateShip = useCallback(
+    (d: any) => {
+      const sorted = filterShip(d, original);
+      if (sorted == null) {
+        setData(original);
+        setRating(initRating);
+      } else {
+        const r = getOverallRating(sorted);
+        setData(sorted);
+        setRating(r);
       }
-      setSortStr(v);
-      return [...prev.sort((a: any, b: any) => Guard(b, v, 0) - Guard(a, v, 0))];
-    });
-  }, [sortStr]);
+    },
+    [original, initRating],
+  );
+
+  const sortData = useCallback(
+    (v: string) => {
+      setData(prev => {
+        if (v === sortStr) {
+          setSortStr('');
+          return [...prev.reverse()];
+        }
+        setSortStr(v);
+        return [
+          ...prev.sort((a: any, b: any) => Guard(b, v, 0) - Guard(a, v, 0)),
+        ];
+      });
+    },
+    [sortStr],
+  );
 
   const renderShip = useCallback((item: any) => {
     const ship = useAppStore.getState().getData(SAVED.warship)[item.ship_id];
@@ -123,9 +135,7 @@ const PlayerShip = ({route}: any) => {
     <WoWsInfo
       hideAds
       title={`${lang.wiki_warship_footer} - ${data.length}`}
-      onPress={() =>
-        SafeAction('WarshipFilter', {applyFunc: updateShip})
-      }>
+      onPress={() => SafeAction('WarshipFilter', {applyFunc: updateShip})}>
       <RatingButton rating={rating} />
       <FlatGrid
         itemDimension={cellWidth}

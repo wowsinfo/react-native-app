@@ -62,7 +62,9 @@ const Detailed = ({route}: any) => {
   const store = useAppStore.getState();
 
   useEffect(() => {
-    return () => { theme.colors.primary = TintColour()[500]; };
+    return () => {
+      theme.colors.primary = TintColour()[500];
+    };
   }, []);
 
   if (data == null) {

@@ -95,63 +95,74 @@ const RS = () => {
     }
   }, []);
 
-  const appendExtraInfo = useCallback(async (player: any) => {
-    const {name, shipId} = player;
-    if (name.startsWith(':')) return player;
-    let idInfo = await SafeFetch.get(WoWsAPI.PlayerSearch, domain, name);
-    let playerID: any = Guard(idInfo, 'data.0', null);
-    if (playerID != null) {
-      player.ship_id = player.shipId;
-      delete player.shipId;
-      delete player.id;
-      delete player.name;
-      player.account_id = playerID.account_id;
-      player.nickname = playerID.nickname;
-      let shipInfo = await SafeFetch.get(WoWsAPI.OneShipInfo, domain, shipId, player.account_id);
-      let pvp = Guard(shipInfo, `data.${player.account_id}.0.pvp`, null);
-      if (pvp != null) player.pvp = pvp;
-    }
-    return player;
-  }, [domain]);
+  const appendExtraInfo = useCallback(
+    async (player: any) => {
+      const {name, shipId} = player;
+      if (name.startsWith(':')) return player;
+      let idInfo = await SafeFetch.get(WoWsAPI.PlayerSearch, domain, name);
+      let playerID: any = Guard(idInfo, 'data.0', null);
+      if (playerID != null) {
+        player.ship_id = player.shipId;
+        delete player.shipId;
+        delete player.id;
+        delete player.name;
+        player.account_id = playerID.account_id;
+        player.nickname = playerID.nickname;
+        let shipInfo = await SafeFetch.get(
+          WoWsAPI.OneShipInfo,
+          domain,
+          shipId,
+          player.account_id,
+        );
+        let pvp = Guard(shipInfo, `data.${player.account_id}.0.pvp`, null);
+        if (pvp != null) player.pvp = pvp;
+      }
+      return player;
+    },
+    [domain],
+  );
 
-  const getArenaInfo = useCallback(async (url: string) => {
-    try {
-      const response = await fetch(url);
-      let text = await response.text();
-      if (text !== '[]') {
-        const data = JSON.parse(text);
-        setRs(data);
-        if (data.dateTime !== battleTime) {
-          setLoading(true);
-          setBattleTime(data.dateTime);
-          const vehicles = data.vehicles;
-          let allayList: any[] = [];
-          let enemyList: any[] = [];
-          for (const v of vehicles) {
-            setTimeout(async () => {
-              const player = await appendExtraInfo(v);
-              const team = player.relation;
-              if (team < 2) {
-                allayList.push(player);
-              } else {
-                enemyList.push(player);
-              }
-              if (player.account_id == null) {
-                player.account_id = random(88888888);
-              }
-              setAllay([...allayList]);
-              setEnemy([...enemyList]);
-              setLoading(false);
-            }, 300);
+  const getArenaInfo = useCallback(
+    async (url: string) => {
+      try {
+        const response = await fetch(url);
+        let text = await response.text();
+        if (text !== '[]') {
+          const data = JSON.parse(text);
+          setRs(data);
+          if (data.dateTime !== battleTime) {
+            setLoading(true);
+            setBattleTime(data.dateTime);
+            const vehicles = data.vehicles;
+            let allayList: any[] = [];
+            let enemyList: any[] = [];
+            for (const v of vehicles) {
+              setTimeout(async () => {
+                const player = await appendExtraInfo(v);
+                const team = player.relation;
+                if (team < 2) {
+                  allayList.push(player);
+                } else {
+                  enemyList.push(player);
+                }
+                if (player.account_id == null) {
+                  player.account_id = random(88888888);
+                }
+                setAllay([...allayList]);
+                setEnemy([...enemyList]);
+                setLoading(false);
+              }, 300);
+            }
           }
         }
+      } catch {
+        clearInterval(intervalRef.current);
+        setValid(false);
+        setRs(null);
       }
-    } catch {
-      clearInterval(intervalRef.current);
-      setValid(false);
-      setRs(null);
-    }
-  }, [battleTime, appendExtraInfo]);
+    },
+    [battleTime, appendExtraInfo],
+  );
 
   const renderPlayerCell = useCallback((info: any) => {
     const {nickname, name} = info;
@@ -161,10 +172,16 @@ const RS = () => {
     return (
       <Touchable
         style={styles.cell}
-        onPress={info.pvp ? () => SafeAction('PlayerShipDetail', {data: info}) : null}
-        onLongPress={info.account_id ? () => SafeAction('Statistics', {info: info}) : null}>
+        onPress={
+          info.pvp ? () => SafeAction('PlayerShipDetail', {data: info}) : null
+        }
+        onLongPress={
+          info.account_id ? () => SafeAction('Statistics', {info: info}) : null
+        }>
         <WarshipCell item={ship} scale={1.4} />
-        <Text style={styles.playerName} numberOfLines={1}>{pName}</Text>
+        <Text style={styles.playerName} numberOfLines={1}>
+          {pName}
+        </Text>
         <SimpleRating info={info} />
       </Touchable>
     );
@@ -207,8 +224,14 @@ const RS = () => {
   const renderMapInfo = () => {
     if (rs === null) return null;
     const {
-      clientVersionFromExe, dateTime, duration, gameLogic,
-      mapDisplayName, matchGroup, name, weatherParams,
+      clientVersionFromExe,
+      dateTime,
+      duration,
+      gameLogic,
+      mapDisplayName,
+      matchGroup,
+      name,
+      weatherParams,
     } = rs;
     let params = '';
     for (let ID in weatherParams) {
@@ -225,11 +248,20 @@ const RS = () => {
           style={{maxHeight: '61.8%'}}
           onDismiss={() => setInfo(false)}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <List.Item title="Client Version" description={clientVersionFromExe} />
+            <List.Item
+              title="Client Version"
+              description={clientVersionFromExe}
+            />
             <List.Item title="Time" description={dateTime} />
-            <List.Item title="Game Mode" description={`${matchGroup} - ${gameLogic} - ${name}`} />
+            <List.Item
+              title="Game Mode"
+              description={`${matchGroup} - ${gameLogic} - ${name}`}
+            />
             <List.Item title="Map" description={mapDisplayName} />
-            <List.Item title="Duration" description={`${roundTo(duration / 60)} min`} />
+            <List.Item
+              title="Duration"
+              description={`${roundTo(duration / 60)} min`}
+            />
             <Text style={{paddingLeft: 16}}>{params}</Text>
           </ScrollView>
         </Dialog>
@@ -238,11 +270,12 @@ const RS = () => {
   };
 
   return (
-    <WoWsInfo
-      onPress={rs ? () => setInfo(true) : null}
-      title="Map Information">
+    <WoWsInfo onPress={rs ? () => setInfo(true) : null} title="Map Information">
       {!valid ? (
-        <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior="padding"
+          enabled>
           <TextInput
             style={styles.input}
             theme={{roundness: 0}}
@@ -254,7 +287,11 @@ const RS = () => {
           />
           <Button
             uppercase={false}
-            onPress={() => Linking.openURL('https://github.com/wowsinfo/WoWs-RS//releases/latest')}>
+            onPress={() =>
+              Linking.openURL(
+                'https://github.com/wowsinfo/WoWs-RS//releases/latest',
+              )
+            }>
             {lang.extra_rs_beta_download}
           </Button>
         </KeyboardAvoidingView>
@@ -270,7 +307,12 @@ const styles = StyleSheet.create({
   container: {flex: 1, alignItems: 'center', justifyContent: 'center'},
   input: {width: '100%', marginBottom: 8},
   horizontal: {flexDirection: 'row', padding: 8},
-  playerName: {fontWeight: '300', fontSize: 17, marginBottom: 8, textAlign: 'center'},
+  playerName: {
+    fontWeight: '300',
+    fontSize: 17,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
   cell: {margin: 4},
 });
 

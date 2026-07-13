@@ -94,16 +94,19 @@ const App = () => {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-      if (navigationRef.isReady()) {
-        const routes = navigationRef.getState()?.routes ?? [];
-        if (routes.length <= 1) {
-          BackHandler.exitApp();
-          return true;
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      () => {
+        if (navigationRef.isReady()) {
+          const routes = navigationRef.getState()?.routes ?? [];
+          if (routes.length <= 1) {
+            BackHandler.exitApp();
+            return true;
+          }
         }
-      }
-      return false;
-    });
+        return false;
+      },
+    );
     return () => backHandler.remove();
   }, []);
 
@@ -156,7 +159,10 @@ const App = () => {
         setLoading(false);
         setDark(isDark);
         if (!obj.status) {
-          Alert.alert(lang.error_title, lang.error_download_issue + '\n\n' + obj.log);
+          Alert.alert(
+            lang.error_title,
+            lang.error_download_issue + '\n\n' + obj.log,
+          );
         }
       } else {
         setLoading(false);

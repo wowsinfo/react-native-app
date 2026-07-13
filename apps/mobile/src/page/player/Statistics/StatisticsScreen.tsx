@@ -21,7 +21,12 @@ import {
   getColour,
 } from '../../../core';
 import {WoWsAPI} from '../../../value/api';
-import {getDomain, getPrefix, LOCAL, setLastLocation} from '../../../value/data';
+import {
+  getDomain,
+  getPrefix,
+  LOCAL,
+  setLastLocation,
+} from '../../../value/data';
 import {TintColour} from '../../../value/colour';
 import {lang} from '../../../value/lang';
 import {useAppStore} from '../../../store/useAppStore';
@@ -73,7 +78,11 @@ const Statistics = ({route}: any) => {
   useEffect(() => {
     if (!valid || !domain) return;
     (async () => {
-      const data = await SafeFetch.get(WoWsAPI.PlayerInfo, getDomain(serverState), id);
+      const data = await SafeFetch.get(
+        WoWsAPI.PlayerInfo,
+        getDomain(serverState),
+        id,
+      );
       const hiddenVal = Guard(data, 'meta.hidden', null);
       let hiddenAccount = false;
       if (hiddenVal != null) {
@@ -85,7 +94,8 @@ const Statistics = ({route}: any) => {
         if (mountedRef.current) setValid(false);
       } else {
         const battle = Guard(player, 'statistics.pvp.battles', 0);
-        if (!hiddenAccount && battle === 0 && mountedRef.current) setHidden(true);
+        if (!hiddenAccount && battle === 0 && mountedRef.current)
+          setHidden(true);
         if (mountedRef.current) setBasic(player);
       }
     })();
@@ -133,10 +143,16 @@ const Statistics = ({route}: any) => {
             if (formatted[season] == null) formatted[season] = [];
             const curr = seasons[season];
             const {rank_solo, rank_div2, rank_div3} = curr;
-            if (rank_solo) { curr.pvp = curr.rank_solo; delete curr.rank_solo; }
-            else if (rank_div2) { curr.pvp = curr.rank_div2; delete curr.rank_div2; }
-            else if (rank_div3) { curr.pvp = curr.rank_div3; delete curr.rank_div3; }
-            else continue;
+            if (rank_solo) {
+              curr.pvp = curr.rank_solo;
+              delete curr.rank_solo;
+            } else if (rank_div2) {
+              curr.pvp = curr.rank_div2;
+              delete curr.rank_div2;
+            } else if (rank_div3) {
+              curr.pvp = curr.rank_div3;
+              delete curr.rank_div3;
+            } else continue;
             curr.ship_id = ship_id;
             formatted[season].push(curr);
           }
@@ -170,7 +186,9 @@ const Statistics = ({route}: any) => {
   const addFriend = useCallback(() => {
     const info = {nickname, account_id: account_id, server: serverState};
     const str = LOCAL.friendList;
-    const cloned = JSON.parse(JSON.stringify(useAppStore.getState().getData(str)));
+    const cloned = JSON.parse(
+      JSON.stringify(useAppStore.getState().getData(str)),
+    );
     cloned.player[info.account_id] = info;
     useAppStore.getState().setData(str, cloned);
     if (mountedRef.current) setCanBeFriend(false);
@@ -202,7 +220,9 @@ const Statistics = ({route}: any) => {
       style={styles.container}
       title={`- ${id} -`}
       onPress={() =>
-        Linking.openURL(`https://${prefix}.wows-numbers.com/player/${id},${name}/`)
+        Linking.openURL(
+          `https://${prefix}.wows-numbers.com/player/${id},${name}/`,
+        )
       }>
       <ScrollView>
         {!basic ? (
@@ -210,58 +230,87 @@ const Statistics = ({route}: any) => {
             <Title style={styles.playerName}>{name}</Title>
             <LoadingIndicator />
           </View>
-        ) : (() => {
-          const {created_at, leveling_tier, last_battle_time, nickname: nick} = basic;
-          const register = humanTimeString(created_at);
-          const lastBattle = humanTimeString(last_battle_time);
-          if (hidden) {
+        ) : (
+          (() => {
+            const {
+              created_at,
+              leveling_tier,
+              last_battle_time,
+              nickname: nick,
+            } = basic;
+            const register = humanTimeString(created_at);
+            const lastBattle = humanTimeString(last_battle_time);
+            if (hidden) {
+              return (
+                <View style={styles.container}>
+                  <View style={styles.horizontal}>
+                    <SectionTitle title={nick} style={styles.playerName} />
+                    <IconButton
+                      icon="https"
+                      size={24}
+                      style={{alignSelf: 'center'}}
+                    />
+                  </View>
+                  <View style={styles.hidden}>
+                    {canBeFriend ? (
+                      <Button icon="contacts" onPress={addFriend}>
+                        {lang.basic_add_friend}
+                      </Button>
+                    ) : null}
+                    <InfoLabel
+                      left
+                      title={lang.basic_register_date}
+                      info={register}
+                    />
+                    <InfoLabel
+                      left
+                      title={lang.basic_last_battle}
+                      info={lastBattle}
+                    />
+                    <InfoLabel
+                      left
+                      title={lang.basic_level_tier}
+                      info={lang.basic_data_unknown}
+                    />
+                  </View>
+                </View>
+              );
+            }
+            let displayName = nick;
+            if (clan !== '') displayName = `[${clan}]\n${nick}`;
+            let extraInfo = `Lv ${leveling_tier}`;
+            if (currRank > 0) extraInfo += ` | ⭐${currRank}`;
             return (
               <View style={styles.container}>
+                <RatingButton rating={rating} />
+                <Title style={styles.playerName}>{displayName}</Title>
+                <Text style={styles.level}>{extraInfo}</Text>
                 <View style={styles.horizontal}>
-                  <SectionTitle title={nick} style={styles.playerName} />
-                  <IconButton icon="https" size={24} style={{alignSelf: 'center'}} />
+                  <InfoLabel title={lang.basic_register_date} info={register} />
+                  <InfoLabel title={lang.basic_last_battle} info={lastBattle} />
                 </View>
-                <View style={styles.hidden}>
+                <View style={{padding: 4}}>
                   {canBeFriend ? (
-                    <Button icon="contacts" onPress={addFriend}>{lang.basic_add_friend}</Button>
+                    <Button icon="contacts" onPress={addFriend}>
+                      {lang.basic_add_friend}
+                    </Button>
                   ) : null}
-                  <InfoLabel left title={lang.basic_register_date} info={register} />
-                  <InfoLabel left title={lang.basic_last_battle} info={lastBattle} />
-                  <InfoLabel left title={lang.basic_level_tier} info={lang.basic_data_unknown} />
+                  {canBeMaster ? (
+                    <Button icon="heart" onPress={setMainAccount}>
+                      {lang.basic_set_main}
+                    </Button>
+                  ) : null}
                 </View>
+                {basic.statistics ? (
+                  <View style={{paddingBottom: 8}}>
+                    <DetailedInfo data={basic.statistics} more={showMore} />
+                    <PlayerRecord data={basic.statistics.pvp} />
+                  </View>
+                ) : null}
               </View>
             );
-          }
-          let displayName = nick;
-          if (clan !== '') displayName = `[${clan}]\n${nick}`;
-          let extraInfo = `Lv ${leveling_tier}`;
-          if (currRank > 0) extraInfo += ` | ⭐${currRank}`;
-          return (
-            <View style={styles.container}>
-              <RatingButton rating={rating} />
-              <Title style={styles.playerName}>{displayName}</Title>
-              <Text style={styles.level}>{extraInfo}</Text>
-              <View style={styles.horizontal}>
-                <InfoLabel title={lang.basic_register_date} info={register} />
-                <InfoLabel title={lang.basic_last_battle} info={lastBattle} />
-              </View>
-              <View style={{padding: 4}}>
-                {canBeFriend ? (
-                  <Button icon="contacts" onPress={addFriend}>{lang.basic_add_friend}</Button>
-                ) : null}
-                {canBeMaster ? (
-                  <Button icon="heart" onPress={setMainAccount}>{lang.basic_set_main}</Button>
-                ) : null}
-              </View>
-              {basic.statistics ? (
-                <View style={{paddingBottom: 8}}>
-                  <DetailedInfo data={basic.statistics} more={showMore} />
-                  <PlayerRecord data={basic.statistics.pvp} />
-                </View>
-              ) : null}
-            </View>
-          );
-        })()}
+          })()
+        )}
       </ScrollView>
       <FooterPlus style={styles.footer}>
         <TabButton
@@ -293,7 +342,14 @@ const styles = StyleSheet.create({
   error: {flex: 1, justifyContent: 'center', alignItems: 'center'},
   container: {flex: 1},
   horizontal: {flexDirection: 'row'},
-  playerName: {alignSelf: 'center', fontSize: 32, fontWeight: '500', paddingTop: 32, paddingBottom: 8, textAlign: 'center'},
+  playerName: {
+    alignSelf: 'center',
+    fontSize: 32,
+    fontWeight: '500',
+    paddingTop: 32,
+    paddingBottom: 8,
+    textAlign: 'center',
+  },
   level: {alignSelf: 'center', textAlign: 'center'},
   hidden: {paddingLeft: 16, alignItems: 'flex-start'},
   footer: {flexDirection: 'row', justifyContent: 'space-around'},

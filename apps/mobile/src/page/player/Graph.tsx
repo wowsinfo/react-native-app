@@ -49,8 +49,15 @@ const Graph = ({route}: any) => {
     }
     return {
       tier: objToChart(tierInfo),
-      nation: objToChart(nationInfo, useAppStore.getState().getData(SAVED.encyclopedia).ship_nations, 10),
-      type: objToChart(typeInfo, useAppStore.getState().getData(SAVED.encyclopedia).ship_types),
+      nation: objToChart(
+        nationInfo,
+        useAppStore.getState().getData(SAVED.encyclopedia).ship_nations,
+        10,
+      ),
+      type: objToChart(
+        typeInfo,
+        useAppStore.getState().getData(SAVED.encyclopedia).ship_types,
+      ),
     };
   }, [data]);
 

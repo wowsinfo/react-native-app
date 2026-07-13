@@ -108,7 +108,9 @@ export const WoWsInfo = ({
     <Surface style={[styles.container, style, ThemeBackColour()]}>
       <SafeAreaView style={styles.safeView}>
         <StatusBar
-          barStyle={useAppStore.getState().isDarkMode ? 'light-content' : 'dark-content'}
+          barStyle={
+            useAppStore.getState().isDarkMode ? 'light-content' : 'dark-content'
+          }
           backgroundColor={ThemeColour()}
         />
         <View style={[styles.child, ViewBackColour()]}>{children}</View>

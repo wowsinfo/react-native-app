@@ -85,18 +85,28 @@ class DataLoader {
     const friendInfo = data[friendList];
     if (friendInfo.player == null) {
       const saved: any = {clan: {}, player: {}};
-      friendInfo.forEach((v: any) => (saved.player[v.id] = this.formatConverter(v)));
+      friendInfo.forEach(
+        (v: any) => (saved.player[v.id] = this.formatConverter(v)),
+      );
       data[friendList] = saved;
       SafeStorage.set(friendList, saved);
     }
     if (friendInfo.clan[2000008934] != null) {
       delete friendInfo.clan[2000008934];
-      friendInfo.clan[2000020641] = {tag: 'ICBC', clan_id: '2000020641', server: 3};
+      friendInfo.clan[2000020641] = {
+        tag: 'ICBC',
+        clan_id: '2000020641',
+        server: 3,
+      };
       SafeStorage.set(friendList, friendInfo);
     }
 
     this.loadEntry(data, userData, {});
-    await this.loadEntry(data, userInfo, {nickname: '', account_id: '', server: 3});
+    await this.loadEntry(data, userInfo, {
+      nickname: '',
+      account_id: '',
+      server: 3,
+    });
     const userInfoData = data[userInfo];
     if (userInfoData.nickname == null) {
       data[userInfo] = this.formatConverter(userInfoData);

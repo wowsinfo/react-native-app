@@ -1,6 +1,12 @@
 import {lang} from '../../value/lang';
 import {Dimensions} from 'react-native';
-import {copy, random, roundTo, dayDifference, getRandomAnimation} from '@wowsinfo/core';
+import {
+  copy,
+  random,
+  roundTo,
+  dayDifference,
+  getRandomAnimation,
+} from '@wowsinfo/core';
 
 export {copy, random, roundTo, dayDifference, getRandomAnimation};
 
@@ -8,7 +14,11 @@ export const humanTimeString = (time?: number) => {
   if (time == null) return lang.warship_unknown;
   if (time === 0) return '---';
   const obj = new Date(time * 1000);
-  return `${obj.toISOString().slice(0, 10).split('-').join('.')} ${obj.toLocaleTimeString()}`;
+  return `${obj
+    .toISOString()
+    .slice(0, 10)
+    .split('-')
+    .join('.')} ${obj.toLocaleTimeString()}`;
 };
 
 export const bestCellWidth = (target: number) => {

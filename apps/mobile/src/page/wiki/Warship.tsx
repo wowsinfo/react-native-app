@@ -4,11 +4,7 @@ import {WoWsInfo, WarshipCell} from '../../component';
 import {FlatGrid} from 'react-native-super-grid';
 import {SAVED, setLastLocation} from '../../value/data';
 import {lang} from '../../value/lang';
-import {
-  SafeAction,
-  filterShip,
-  bestCellWidthEven,
-} from '../../core';
+import {SafeAction, filterShip, bestCellWidthEven} from '../../core';
 import {useAppStore} from '../../store/useAppStore';
 
 const Warship = ({route}: any) => {
@@ -48,22 +44,23 @@ const Warship = ({route}: any) => {
     }
   }, [route?.params?.filter]);
 
-  const updateShip = useCallback((d: any) => {
-    const sorted = filterShip(d);
-    if (sorted == null) {
-      setData(original);
-    } else {
-      setData(sorted);
-    }
-  }, [original]);
+  const updateShip = useCallback(
+    (d: any) => {
+      const sorted = filterShip(d);
+      if (sorted == null) {
+        setData(original);
+      } else {
+        setData(sorted);
+      }
+    },
+    [original],
+  );
 
   const width = bestCellWidthEven(160);
   return (
     <WoWsInfo
       title={`${lang.wiki_warship_footer} - ${data.length}`}
-      onPress={() =>
-        SafeAction('WarshipFilter', {applyFunc: updateShip})
-      }>
+      onPress={() => SafeAction('WarshipFilter', {applyFunc: updateShip})}>
       <FlatGrid
         itemDimension={width}
         spacing={0}

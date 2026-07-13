@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
+import {create} from 'zustand';
+import {persist, createJSONStorage} from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface AppState {
@@ -42,23 +42,23 @@ export const useAppStore = create<AppState>()(
       lightTheme: {},
       darkTheme: {},
 
-      hydrate: (initial) => set((s) => ({ data: { ...s.data, ...initial } })),
-      setData: (key, value) => set((s) => ({ data: { ...s.data, [key]: value } })),
-      getData: (key) => get().data[key],
+      hydrate: initial => set(s => ({data: {...s.data, ...initial}})),
+      setData: (key, value) => set(s => ({data: {...s.data, [key]: value}})),
+      getData: key => get().data[key],
 
-      setDarkMode: (val) => set({ isDarkMode: val }),
-      setSwapButton: (val) => set({ shouldSwapButton: val }),
-      setLastLocation: (val) => set({ lastLocation: val }),
-      setTheme: (light, dark) => set({ lightTheme: light, darkTheme: dark }),
-      setShouldUpdateAPI: (val) => set({ shouldUpdateAPI: val }),
-      setGithubVersion: (val) => set({ githubVersion: val }),
-      setRealtimeBattleCount: (val) => set({ realtimeBattleCount: val }),
-      setCanCheckForUpdate: (val) => set({ canCheckForUpdate: val }),
+      setDarkMode: val => set({isDarkMode: val}),
+      setSwapButton: val => set({shouldSwapButton: val}),
+      setLastLocation: val => set({lastLocation: val}),
+      setTheme: (light, dark) => set({lightTheme: light, darkTheme: dark}),
+      setShouldUpdateAPI: val => set({shouldUpdateAPI: val}),
+      setGithubVersion: val => set({githubVersion: val}),
+      setRealtimeBattleCount: val => set({realtimeBattleCount: val}),
+      setCanCheckForUpdate: val => set({canCheckForUpdate: val}),
     }),
     {
       name: 'wowsinfo-storage',
       storage: createJSONStorage(() => AsyncStorage),
-      partialize: (state) => ({
+      partialize: state => ({
         data: state.data,
         isDarkMode: state.isDarkMode,
         shouldSwapButton: state.shouldSwapButton,

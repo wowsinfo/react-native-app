@@ -57,17 +57,16 @@ const Collection = ({route}: any) => {
         itemDimension={80}
         data={data}
         renderItem={({item}) => (
-          <WikiIcon
-            item={item}
-            onPress={() => itemOrCollection(item)}
-          />
+          <WikiIcon item={item} onPress={() => itemOrCollection(item)} />
         )}
         ListHeaderComponent={() => {
           if (isCollection) {
             return (
               <View style={{padding: 8}}>
                 <WikiIcon item={header} scale={1.6} />
-                <Title style={[styles.label, TintTextColour()]}>{header.name}</Title>
+                <Title style={[styles.label, TintTextColour()]}>
+                  {header.name}
+                </Title>
                 <Paragraph style={styles.label}>{header.description}</Paragraph>
               </View>
             );

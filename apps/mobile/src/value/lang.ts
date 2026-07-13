@@ -186,7 +186,8 @@ export const lang = new LocalizedStrings({
     // CC
     content_creator_title: 'Content Creator',
     content_creator_official: 'WoWs Official',
-    content_creator_official_link: 'https://www.youtube.com/user/worldofwarshipscom',
+    content_creator_official_link:
+      'https://www.youtube.com/user/worldofwarshipscom',
     content_creator_fubuki: 'AozoraFubuki',
     content_creator_fubuki_link: 'https://www.youtube.com/@SYC-HANQ/videos',
     // Tools
@@ -1086,7 +1087,8 @@ export const lang = new LocalizedStrings({
     // content_creators
     content_creator_title: 'コンテンツクリエイター',
     content_creator_official: 'WoWs公式チャンネル',
-    content_creator_official_link: 'https://www.youtube.com/user/worldofwarshipscom',
+    content_creator_official_link:
+      'https://www.youtube.com/user/worldofwarshipscom',
     content_creator_fubuki: '青空雪舞Channel',
     content_creator_fubuki_link: 'bilibili://space/15653565',
     // Tools

@@ -43,7 +43,10 @@ export function refresh(params?: any) {
 
 export function getCurrentScene(): string {
   if (navigationRef.isReady()) {
-    return (navigationRef.getCurrentRoute() as {name?: string} | undefined)?.name ?? '';
+    return (
+      (navigationRef.getCurrentRoute() as {name?: string} | undefined)?.name ??
+      ''
+    );
   }
   return '';
 }

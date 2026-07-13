@@ -1,1 +1,1 @@
-export { default as Statistics } from "./StatisticsScreen";
+export {default as Statistics} from './StatisticsScreen';

@@ -66,7 +66,9 @@ const Setup = () => {
     if (error) {
       return (
         <View>
-          <Paragraph style={styles.titleStyle}>{lang.error_download_issue}</Paragraph>
+          <Paragraph style={styles.titleStyle}>
+            {lang.error_download_issue}
+          </Paragraph>
           <List.Item
             title={lang.settings_app_send_feedback}
             description={lang.settings_app_send_feedback_subtitle}

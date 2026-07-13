@@ -1,11 +1,22 @@
 import {SAVED} from '../../value/data';
-import {getTierList, getTierLabel, getColourWithRange, getKeyByValue} from '@wowsinfo/core';
+import {
+  getTierList,
+  getTierLabel,
+  getColourWithRange,
+  getKeyByValue,
+} from '@wowsinfo/core';
 
 export {getTierList, getTierLabel, getColourWithRange, getKeyByValue};
 
 export const filterShip = (data: any, shipData?: Array<any>) => {
   const {premium, name, nation, type, tier} = data;
-  if (premium === false && name == '' && nation.length === 0 && type.length === 0 && tier.length === 0) {
+  if (
+    premium === false &&
+    name == '' &&
+    nation.length === 0 &&
+    type.length === 0 &&
+    tier.length === 0
+  ) {
     return null;
   }
   const fname = name.toLowerCase();
@@ -35,14 +46,23 @@ export const filterShip = (data: any, shipData?: Array<any>) => {
 };
 
 const validShip = (curr: any, fname: string, fdata: any, premium: boolean) => {
-  const ftier = fdata.tier, fnation = fdata.nation, ftype = fdata.type;
-  let filterTier = false, filterName = false, filterNation = false, filterType = false, filterPremium = false;
-  if (curr.name.toLowerCase().includes(fname) || fname.trim() === '') filterName = true;
+  const ftier = fdata.tier,
+    fnation = fdata.nation,
+    ftype = fdata.type;
+  let filterTier = false,
+    filterName = false,
+    filterNation = false,
+    filterType = false,
+    filterPremium = false;
+  if (curr.name.toLowerCase().includes(fname) || fname.trim() === '')
+    filterName = true;
   if (curr.premium === premium || premium === false) filterPremium = true;
   if (ftier[curr.tier] || isEmpty(ftier)) filterTier = true;
   if (fnation[curr.nation] || isEmpty(fnation)) filterNation = true;
   if (ftype[curr.type] || isEmpty(ftype)) filterType = true;
-  return filterName && filterNation && filterPremium && filterTier && filterType;
+  return (
+    filterName && filterNation && filterPremium && filterTier && filterType
+  );
 };
 
 const isEmpty = (obj: any) => Object.keys(obj).length === 0;
@@ -50,12 +70,18 @@ const isEmpty = (obj: any) => Object.keys(obj).length === 0;
 const normalise = (nation: any[], type: any[], tier: any[]) => {
   const data: any = {nation: {}, type: {}, tier: {}};
   nation.forEach(i => {
-    const key = getKeyByValue(AppGlobalData.get(SAVED.encyclopedia).ship_nations, i);
+    const key = getKeyByValue(
+      AppGlobalData.get(SAVED.encyclopedia).ship_nations,
+      i,
+    );
     if (key == null) console.error('normalise: Invalid ship nation: ' + i);
     else data.nation[key] = true;
   });
   type.forEach(i => {
-    const key = getKeyByValue(AppGlobalData.get(SAVED.encyclopedia).ship_types, i);
+    const key = getKeyByValue(
+      AppGlobalData.get(SAVED.encyclopedia).ship_types,
+      i,
+    );
     if (key == null) console.error('normalise: Invalid ship type: ' + i);
     else data.type[key] = true;
   });

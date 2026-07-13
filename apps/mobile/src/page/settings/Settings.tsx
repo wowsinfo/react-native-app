@@ -1,5 +1,12 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {View, ScrollView, FlatList, StyleSheet, Alert, Linking} from 'react-native';
+import {
+  View,
+  ScrollView,
+  FlatList,
+  StyleSheet,
+  Alert,
+  Linking,
+} from 'react-native';
 import {isAndroid} from 'react-native-device-detection';
 import {
   List,
@@ -27,21 +34,56 @@ import {
   setUserLang,
   setFirstLaunch,
 } from '../../value/data';
-import {TintColour, UpdateTintColour, UpdateDarkMode, buildElevationColors} from '../../value/colour';
+import {
+  TintColour,
+  UpdateTintColour,
+  UpdateDarkMode,
+  buildElevationColors,
+} from '../../value/colour';
 import {SafeAction, SafeFetch, Guard} from '../../core';
 import {
-  BLUE, RED, GREEN, PINK, PURPLE, DEEPPRUPLE, INDIGO,
-  LIGHTBLUE, CYAN, TEAL, LIGHTGREEN, LIME, YELLOW,
-  AMBER, DEEPORANGE, BROWN, GREY, BLUEGREY,
+  BLUE,
+  RED,
+  GREEN,
+  PINK,
+  PURPLE,
+  DEEPPRUPLE,
+  INDIGO,
+  LIGHTBLUE,
+  CYAN,
+  TEAL,
+  LIGHTGREEN,
+  LIME,
+  YELLOW,
+  AMBER,
+  DEEPORANGE,
+  BROWN,
+  GREY,
+  BLUEGREY,
 } from 'react-native-material-color';
 import {lang} from '../../value/lang';
 import {WikiAPI} from '../../value/api';
 import {useAppStore} from '../../store/useAppStore';
 
 const colourList = [
-  RED, PINK, PURPLE, DEEPPRUPLE, INDIGO, BLUE, LIGHTBLUE,
-  CYAN, TEAL, GREEN, LIGHTGREEN, LIME, YELLOW, AMBER,
-  DEEPORANGE, BROWN, GREY, BLUEGREY,
+  RED,
+  PINK,
+  PURPLE,
+  DEEPPRUPLE,
+  INDIGO,
+  BLUE,
+  LIGHTBLUE,
+  CYAN,
+  TEAL,
+  GREEN,
+  LIGHTGREEN,
+  LIME,
+  YELLOW,
+  AMBER,
+  DEEPORANGE,
+  BROWN,
+  GREY,
+  BLUEGREY,
 ];
 
 const Settings = () => {
@@ -101,27 +143,33 @@ const Settings = () => {
     }
   }, [tintColour, theme, store]);
 
-  const updateTint = useCallback((tint: any) => {
-    UpdateTintColour(tint);
-    theme.colors.primary = tint[500];
-    theme.colors.secondary = tint[300];
-    setShowColour(false);
-    setLocalTint(tint);
-  }, [theme]);
+  const updateTint = useCallback(
+    (tint: any) => {
+      UpdateTintColour(tint);
+      theme.colors.primary = tint[500];
+      theme.colors.secondary = tint[300];
+      setShowColour(false);
+      setLocalTint(tint);
+    },
+    [theme],
+  );
 
   const updateServer = useCallback((index: number) => {
     setCurrServer(index);
     setServer(index);
   }, []);
 
-  const updateApiLanguage = useCallback((language: string, force?: boolean) => {
-    if (!force && language === APILanguage) return;
-    setAPILanguage(language);
-    setApiLang(language);
-    setFirstLaunch(true);
-    store.getState().setShouldUpdateAPI(false);
-    Actions.reset('Menu');
-  }, [APILanguage, store]);
+  const updateApiLanguage = useCallback(
+    (language: string, force?: boolean) => {
+      if (!force && language === APILanguage) return;
+      setAPILanguage(language);
+      setApiLang(language);
+      setFirstLaunch(true);
+      store.getState().setShouldUpdateAPI(false);
+      Actions.reset('Menu');
+    },
+    [APILanguage, store],
+  );
 
   const updateUserLang = useCallback((code: string) => {
     setUserLang(code);
@@ -154,10 +202,14 @@ const Settings = () => {
   const displayUpdate = (result: boolean, version?: string) => {
     if (result) {
       const format = require('string-format');
-      Alert.alert(lang.app_name, format(lang.settings_app_has_update, version), [
-        {text: 'Google Play', onPress: () => Linking.openURL(APP.GooglePlay)},
-        {text: 'Github', onPress: () => Linking.openURL(APP.LatestRelease)},
-      ]);
+      Alert.alert(
+        lang.app_name,
+        format(lang.settings_app_has_update, version),
+        [
+          {text: 'Google Play', onPress: () => Linking.openURL(APP.GooglePlay)},
+          {text: 'Github', onPress: () => Linking.openURL(APP.LatestRelease)},
+        ],
+      );
     } else {
       Alert.alert(lang.app_name, lang.settings_app_no_update);
     }
@@ -195,25 +247,35 @@ const Settings = () => {
 
   const langList = getAPIList();
   const appLang: Record<string, string> = {
-    en: 'English', ja: '日本語', zh: '简体中文', 'zh-hant': '繁体中文',
+    en: 'English',
+    ja: '日本語',
+    zh: '简体中文',
+    'zh-hant': '繁体中文',
   };
-  const appLangList = Object.entries(appLang).map(([code, l]) => ({code, lang: l}));
+  const appLangList = Object.entries(appLang).map(([code, l]) => ({
+    code,
+    lang: l,
+  }));
   const display = appLang[userLanguage] ?? '???';
 
   return (
     <WoWsInfo about>
       <ScrollView showsVerticalScrollIndicator={false}>
         <SectionTitle title={lang.settings_api_settings} />
-        <List.Section title={`${lang.setting_game_server} - ${lang.server_name[server]}`}>
+        <List.Section
+          title={`${lang.setting_game_server} - ${lang.server_name[server]}`}>
           <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
             {SERVER.slice(1).map((key, index) => (
-              <Button key={key + '_server'} onPress={() => updateServer(index + 1)}>
+              <Button
+                key={key + '_server'}
+                onPress={() => updateServer(index + 1)}>
                 {lang.server_name[index + 1]}
               </Button>
             ))}
           </View>
         </List.Section>
-        <List.Section title={`${lang.setting_api_language} - ${langList[APILanguage]}`}>
+        <List.Section
+          title={`${lang.setting_api_language} - ${langList[APILanguage]}`}>
           {gs().shouldUpdateAPI ? renderAPILanguage(langList) : null}
         </List.Section>
         <List.Section title={`${lang.setting_app_language} - ${display}`}>
@@ -231,19 +293,31 @@ const Settings = () => {
           key="dark_mode"
           title={lang.settings_app_dark_mode}
           onPress={updateTheme}
-          right={() => <Checkbox status={darkMode ? 'checked' : 'unchecked'} color={tintColour?.[500]} />}
+          right={() => (
+            <Checkbox
+              status={darkMode ? 'checked' : 'unchecked'}
+              color={tintColour?.[500]}
+            />
+          )}
         />
         <List.Item
           key="theme_colour"
           title={lang.settings_app_theme_colour}
           onPress={() => setShowColour(true)}
-          right={() => <View style={[styles.tint, {backgroundColor: tintColour[500]}]} />}
+          right={() => (
+            <View style={[styles.tint, {backgroundColor: tintColour[500]}]} />
+          )}
         />
         <List.Item
           key="swap_button"
           title={lang.settings_app_swap_buttons}
           onPress={() => swapBtnHandler(!swapButton)}
-          right={() => <Checkbox status={swapButton ? 'checked' : 'unchecked'} color={tintColour?.[500]} />}
+          right={() => (
+            <Checkbox
+              status={swapButton ? 'checked' : 'unchecked'}
+              color={tintColour?.[500]}
+            />
+          )}
         />
 
         <SectionTitle title={lang.app_name} />
@@ -294,7 +368,11 @@ const Settings = () => {
               contentContainerStyle={{padding: 12, gap: 6}}
               renderItem={({item}) => (
                 <Touchable
-                  style={{backgroundColor: item[500], height: 48, borderRadius: 12}}
+                  style={{
+                    backgroundColor: item[500],
+                    height: 48,
+                    borderRadius: 12,
+                  }}
                   onPress={() => updateTint(item)}
                 />
               )}

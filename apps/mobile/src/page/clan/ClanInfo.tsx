@@ -6,12 +6,7 @@ import {
   InfoLabel,
   SectionTitle,
 } from '../../component';
-import {
-  SafeFetch,
-  Guard,
-  humanTimeString,
-  SafeAction,
-} from '../../core';
+import {SafeFetch, Guard, humanTimeString, SafeAction} from '../../core';
 import {WoWsAPI} from '../../value/api';
 import {getDomain, getPrefix, LOCAL} from '../../value/data';
 import {
@@ -55,21 +50,31 @@ const ClanInfo = ({route}: any) => {
 
   const addFriend = useCallback(() => {
     const str = LOCAL.friendList;
-    const cloned = JSON.parse(JSON.stringify(useAppStore.getState().getData(str)));
+    const cloned = JSON.parse(
+      JSON.stringify(useAppStore.getState().getData(str)),
+    );
     cloned.clan[clan_id] = {clan_id, tag, server};
     useAppStore.getState().setData(str, cloned);
     setCanBeFriend(false);
   }, [clan_id, tag, server]);
 
-  const pushToMaster = useCallback((name: string, id: number) => {
-    SafeAction('Statistics', {info: {nickname: name, account_id: id, server}});
-  }, [server]);
+  const pushToMaster = useCallback(
+    (name: string, id: number) => {
+      SafeAction('Statistics', {
+        info: {nickname: name, account_id: id, server},
+      });
+    },
+    [server],
+  );
 
-  const pushToPlayer = useCallback((item: any) => {
-    item.nickname = item.account_name;
-    item.server = server;
-    SafeAction('Statistics', {info: item});
-  }, [server]);
+  const pushToPlayer = useCallback(
+    (item: any) => {
+      item.nickname = item.account_name;
+      item.server = server;
+      SafeAction('Statistics', {info: item});
+    },
+    [server],
+  );
 
   const {container, clanTag, horizontal} = styles;
 
@@ -82,22 +87,37 @@ const ClanInfo = ({route}: any) => {
   }
 
   if (!info) {
-    return <WoWsInfo title={`- ${clan_id} -`}><LoadingIndicator /></WoWsInfo>;
+    return (
+      <WoWsInfo title={`- ${clan_id} -`}>
+        <LoadingIndicator />
+      </WoWsInfo>
+    );
   }
 
   const {
-    created_at, creator_name, creator_id,
-    leader_name, leader_id, description,
-    name, members, members_count, tag: clanTagName,
+    created_at,
+    creator_name,
+    creator_id,
+    leader_name,
+    leader_id,
+    description,
+    name,
+    members,
+    members_count,
+    tag: clanTagName,
   } = info;
 
-  const memberInfo = Object.values(members).sort((a: any, b: any) => a.joined_at - b.joined_at);
+  const memberInfo = Object.values(members).sort(
+    (a: any, b: any) => a.joined_at - b.joined_at,
+  );
 
   return (
     <WoWsInfo
       title={`- ${clan_id} -`}
       onPress={() =>
-        Linking.openURL(`https://${prefix}.wows-numbers.com/clan/${clan_id}, ${tag}/`)
+        Linking.openURL(
+          `https://${prefix}.wows-numbers.com/clan/${clan_id}, ${tag}/`,
+        )
       }>
       <FlatGrid
         ListHeaderComponent={() => (
@@ -106,8 +126,12 @@ const ClanInfo = ({route}: any) => {
             <Subheading style={{color: TintColour()[500], alignSelf: 'center'}}>
               {name}
             </Subheading>
-            <InfoLabel title={lang.clan_created_date} info={humanTimeString(created_at)} />
-            <View style={[horizontal, {flex: 1, justifyContent: 'space-around'}]}>
+            <InfoLabel
+              title={lang.clan_created_date}
+              info={humanTimeString(created_at)}
+            />
+            <View
+              style={[horizontal, {flex: 1, justifyContent: 'space-around'}]}>
               <InfoLabel
                 title={lang.clan_creator_name}
                 info={creator_name}
@@ -155,7 +179,13 @@ const ClanInfo = ({route}: any) => {
 
 const styles = StyleSheet.create({
   container: {flex: 1, alignItems: 'center', justifyContent: 'center'},
-  clanTag: {alignSelf: 'center', fontSize: 36, fontWeight: '500', paddingTop: 16, textAlign: 'center'},
+  clanTag: {
+    alignSelf: 'center',
+    fontSize: 36,
+    fontWeight: '500',
+    paddingTop: 16,
+    textAlign: 'center',
+  },
   horizontal: {flexDirection: 'row'},
 });
 

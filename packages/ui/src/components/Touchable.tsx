@@ -4,9 +4,9 @@
  * A basic touchable view
  */
 
-import React from 'react';
-import {View} from 'react-native';
-import {TouchableRipple} from 'react-native-paper';
+import React from "react";
+import { View } from "react-native";
+import { TouchableRipple } from "react-native-paper";
 
 export interface TouchableProps {
   style?: any;
@@ -26,8 +26,9 @@ export const Touchable = ({
   return (
     <TouchableRipple
       {...otherProps}
-      style={fill ? {flex: 1} : null}
-      onPress={onPress}>
+      style={fill ? { flex: 1 } : null}
+      onPress={onPress}
+    >
       <View style={style}>{children}</View>
     </TouchableRipple>
   );

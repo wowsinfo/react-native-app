@@ -11,7 +11,6 @@ import {FlatGrid} from 'react-native-super-grid';
 import {List} from 'react-native-paper';
 import {lang} from '../../value/lang';
 
-
 const libraries = [
   {name: 'react', link: 'https://github.com/facebook/react'},
   {name: 'react-native', link: 'https://github.com/facebook/react-native'},

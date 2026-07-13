@@ -2,16 +2,25 @@ import {SafeValue} from '../util/SafeGuard';
 import {roundTo} from '@wowsinfo/core';
 import {SAVED} from '../../value/data';
 import {lang} from '../../value/lang';
-import {getAP, getRatingRange, getRatingIndex, getColourList, getColour} from '@wowsinfo/core';
+import {
+  getAP,
+  getRatingRange,
+  getRatingIndex,
+  getColourList,
+  getColour,
+} from '@wowsinfo/core';
 
 export {getAP, getRatingRange, getRatingIndex, getColourList, getColour};
 
 const getOverall = (id: string) => AppGlobalData.get(SAVED.pr)[id];
 
 const calRating = (
-  actualDmg: number, expectedDmg: number,
-  actualWins: number, expectedWins: number,
-  actualFrags: number, expectedFrags: number,
+  actualDmg: number,
+  expectedDmg: number,
+  actualWins: number,
+  expectedWins: number,
+  actualFrags: number,
+  expectedFrags: number,
 ): number => {
   const rDmg = actualDmg / expectedDmg;
   const rWins = actualWins / expectedWins;
@@ -25,7 +34,12 @@ const calRating = (
 
 export const getOverallRating = (ships: any): number => {
   if (ships == null) return -1;
-  let actualDmg = 0, expectedDmg = 0, actualWins = 0, expectedWins = 0, actualFrags = 0, expectedFrags = 0;
+  let actualDmg = 0,
+    expectedDmg = 0,
+    actualWins = 0,
+    expectedWins = 0,
+    actualFrags = 0,
+    expectedFrags = 0;
   for (const ship of ships) {
     ship.rating = -1;
     ship.ap = 0;
@@ -48,18 +62,38 @@ export const getOverallRating = (ships: any): number => {
       expectedDmg += average_damage_dealt;
       expectedWins += win_rate;
       expectedFrags += average_frags;
-      const rating = calRating(currAvgDmg, average_damage_dealt, currWinrate, win_rate, currFrags, average_frags);
+      const rating = calRating(
+        currAvgDmg,
+        average_damage_dealt,
+        currWinrate,
+        win_rate,
+        currFrags,
+        average_frags,
+      );
       ship.rating = rating;
       ship.ap = getAP(rating, battles);
     }
   }
-  return calRating(actualDmg, expectedDmg, actualWins, expectedWins, actualFrags, expectedFrags);
+  return calRating(
+    actualDmg,
+    expectedDmg,
+    actualWins,
+    expectedWins,
+    actualFrags,
+    expectedFrags,
+  );
 };
 
 export const getRatingList = (): string[] => [
-  lang.rating_unknown, lang.rating_bad, lang.rating_below_average,
-  lang.rating_average, lang.rating_good, lang.rating_very_good,
-  lang.rating_great, lang.rating_unicum, lang.rating_super_unicum,
+  lang.rating_unknown,
+  lang.rating_bad,
+  lang.rating_below_average,
+  lang.rating_average,
+  lang.rating_good,
+  lang.rating_very_good,
+  lang.rating_great,
+  lang.rating_unicum,
+  lang.rating_super_unicum,
 ];
 
 export const getComment = (rating: number): string => {

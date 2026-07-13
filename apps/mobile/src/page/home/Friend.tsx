@@ -32,7 +32,9 @@ const Friend = () => {
 
   const removeFriend = useCallback((info: any) => {
     const str = LOCAL.friendList;
-    const allData = JSON.parse(JSON.stringify(useAppStore.getState().getData(str)));
+    const allData = JSON.parse(
+      JSON.stringify(useAppStore.getState().getData(str)),
+    );
     delete allData.player[info.account_id];
     useAppStore.getState().setData(str, allData);
     setPlayer(getPlayer(allData));
@@ -40,7 +42,9 @@ const Friend = () => {
 
   const removeClan = useCallback((info: any) => {
     const str = LOCAL.friendList;
-    const allData = JSON.parse(JSON.stringify(useAppStore.getState().getData(str)));
+    const allData = JSON.parse(
+      JSON.stringify(useAppStore.getState().getData(str)),
+    );
     delete allData.clan[info.clan_id];
     useAppStore.getState().setData(str, allData);
     setClan(getClan(allData));

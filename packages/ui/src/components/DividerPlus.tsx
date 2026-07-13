@@ -1,9 +1,9 @@
-import React from 'react';
-import {StyleSheet} from 'react-native';
-import {Divider} from 'react-native-paper';
+import React from "react";
+import { StyleSheet } from "react-native";
+import { Divider } from "react-native-paper";
 
 export const DividerPlus = () => {
-  const {divider} = styles;
+  const { divider } = styles;
   return <Divider style={divider} />;
 };
 

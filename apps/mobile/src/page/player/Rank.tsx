@@ -19,7 +19,7 @@ const renderSeasonInfo = (data: any) => {
 const Rank = ({route}: any) => {
   const {data: list, ship} = useMemo(() => {
     let l: any[] = [];
-    for (let key in (route?.params?.data ?? {})) {
+    for (let key in route?.params?.data ?? {}) {
       let curr = route?.params?.data[key];
       curr.season = Number(key);
       l.push(curr);

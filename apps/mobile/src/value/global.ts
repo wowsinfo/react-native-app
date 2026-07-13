@@ -1,3 +1,3 @@
-import { AppGlobalData } from '@wowsinfo/core';
+import {AppGlobalData} from '@wowsinfo/core';
 
 window.AppGlobalData = AppGlobalData;

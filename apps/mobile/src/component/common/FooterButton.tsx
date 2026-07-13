@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {IconButton} from 'react-native-paper';
 import {Actions} from '../../core/navigation/Actions';

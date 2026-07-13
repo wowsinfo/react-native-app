@@ -7,12 +7,14 @@ class AppGlobalData {
   static canCheckForUpdate: boolean = true;
   static shouldUpdateAPI: boolean = true;
   static realtimeBattleCount: number = 0;
-  static lastLocation: string = '';
+  static lastLocation: string = "";
   static githubVersion: boolean = false;
 
   public static setupWith(data: any): void {
     if (data == null) {
-      throw new Error('The app cannot continue because there is a problem with the data.');
+      throw new Error(
+        "The app cannot continue because there is a problem with the data.",
+      );
     }
     AppGlobalData.dataSource = data;
   }
@@ -23,12 +25,12 @@ class AppGlobalData {
 
   public static set(key: string, value: any): void {
     if (key == null || value == null) {
-      console.error('AppGlobalData.set() cannot set null key or value');
+      console.error("AppGlobalData.set() cannot set null key or value");
       console.trace();
       return;
     }
     if (value instanceof Promise) {
-      console.error('AppGlobalData.set() value is a Promise');
+      console.error("AppGlobalData.set() value is a Promise");
       console.trace();
       return;
     }

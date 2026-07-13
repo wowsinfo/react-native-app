@@ -41,7 +41,11 @@ const Donation = () => {
       ];
     }
     return [
-      {t: 'GitHub', d: 'https://github.com/HenryQuan/WoWs-Info-Origin', c: 'black'},
+      {
+        t: 'GitHub',
+        d: 'https://github.com/HenryQuan/WoWs-Info-Origin',
+        c: 'black',
+      },
     ];
   }, [githubVersion]);
 

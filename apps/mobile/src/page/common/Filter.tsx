@@ -36,9 +36,7 @@ const Filter = ({applyFunc, resetFunc, wiki}: any) => {
         <List.Item
           title={lang.wiki_warship_filter_premium}
           onPress={() => setPremium(!premium)}
-          right={() => (
-            <Checkbox status={premium ? 'checked' : 'unchecked'} />
-          )}
+          right={() => <Checkbox status={premium ? 'checked' : 'unchecked'} />}
         />
         <List.Accordion
           title={tier}
@@ -96,7 +94,7 @@ const Filter = ({applyFunc, resetFunc, wiki}: any) => {
                   setType(item);
                   setAccordion(0);
                 }}>
-              {item}
+                {item}
               </Button>
             )}
             numColumns={2}

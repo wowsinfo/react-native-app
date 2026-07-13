@@ -10,7 +10,8 @@ import {useAppStore} from '../../store/useAppStore';
 
 const normaliseKey = (key: string) => {
   let names = key.split('_');
-  const upperFirst = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+  const upperFirst = (str: string) =>
+    str.charAt(0).toUpperCase() + str.slice(1);
   names.map((n, i) => (names[i] = upperFirst(n)));
   let name = names.join('');
   if (name === 'FireControl') name = 'Suo';
@@ -22,15 +23,24 @@ const WarshipModule = ({route}: any) => {
   const server = useMemo(() => getCurrDomain(), []);
 
   const [module, setModule] = useState({
-    Artillery: '', DiveBomber: '', Engine: '', Fighter: '',
-    FlightControl: '', Hull: '', Suo: '', TorpedoBomber: '', Torpedoes: '',
+    Artillery: '',
+    DiveBomber: '',
+    Engine: '',
+    Fighter: '',
+    FlightControl: '',
+    Hull: '',
+    Suo: '',
+    TorpedoBomber: '',
+    Torpedoes: '',
   });
   const [tree] = useState(modules_tree);
 
   const section = useMemo(() => {
     const data = route?.params?.data ?? {};
     const {modules} = data;
-    let moduleName = useAppStore.getState().getData(SAVED.encyclopedia).ship_modules;
+    let moduleName = useAppStore
+      .getState()
+      .getData(SAVED.encyclopedia).ship_modules;
     let result: any[] = [];
     for (let key in modules) {
       let curr = modules[key];
@@ -69,16 +79,17 @@ const WarshipModule = ({route}: any) => {
         title={name}
         description={`${price_credit}`}
         onPress={() => updateModule(tree, ID)}
-        right={() => price_xp > 0 ? <Caption style={styles.xp}>{`${price_xp} xp`}</Caption> : null}
+        right={() =>
+          price_xp > 0 ? (
+            <Caption style={styles.xp}>{`${price_xp} xp`}</Caption>
+          ) : null
+        }
       />
     );
   };
 
   return (
-    <WoWsInfo
-      hideAds
-      title={lang.warship_apply_module}
-      onPress={apply}>
+    <WoWsInfo hideAds title={lang.warship_apply_module} onPress={apply}>
       <FlatList
         data={section}
         showsVerticalScrollIndicator={false}
