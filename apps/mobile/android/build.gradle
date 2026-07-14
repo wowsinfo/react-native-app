@@ -18,5 +18,5 @@ buildscript {
     }
 }
 
-apply from: "fix_compat.gradle"
 apply plugin: "com.facebook.react.rootproject"
+apply from: "fix_compat.gradle"

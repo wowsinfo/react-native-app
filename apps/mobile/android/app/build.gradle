@@ -2,6 +2,8 @@ apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
+
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -21,7 +23,7 @@ react {
     //   The list of variants to that are debuggable. For those we're going to
     //   skip the bundling of the JS bundle and the assets. Default is "debug", "debugOptimized".
     //   If you add flavors like lite, prod, etc. you'll have to list your debuggableVariants.
-    // debuggableVariants = ["liteDebug", "liteDebugOptimized", "prodDebug", "prodDebugOptimized"]
+    debuggableVariants = ["devDebug", "githubDebug", "playstoreDebug"]
 
     /* Bundling */
     //   A list containing the node command and its flags. Default is just 'node'.
@@ -78,8 +80,25 @@ android {
     compileSdk rootProject.ext.compileSdkVersion
 
     namespace "com.wowsinfo"
+    flavorDimensions "distribution"
+    productFlavors {
+        github {
+            dimension "distribution"
+            applicationId "com.wowsinfo.open"
+            resValue "string", "app_name", "WoWs Info"
+        }
+        playstore {
+            dimension "distribution"
+            applicationId "com.wowsinfo"
+            resValue "string", "app_name", "WoWs Info"
+        }
+        dev {
+            dimension "distribution"
+            applicationId "com.wowsinfo.debug"
+            resValue "string", "app_name", "wowsinfoDebug"
+        }
+    }
     defaultConfig {
-        applicationId "com.wowsinfo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -99,8 +118,6 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"

@@ -5,7 +5,9 @@
   "packageManager": "bun@1.3.14",
   "scripts": {
     "start": "react-native start",
-    "android": "react-native run-android",
+    "android": "react-native run-android --variant devDebug",
+    "android:github": "react-native run-android --variant githubRelease --mode release",
+    "android:playstore": "react-native run-android --variant playstoreRelease --mode release",
     "ios": "react-native run-ios --scheme wowsinfo-debug --simulator=\"iPhone 17 Pro\"",
     "pod": "cd ios && pod install",
     "clean-ios": "cd ios && rm -rf Pods/ Podfile.lock",

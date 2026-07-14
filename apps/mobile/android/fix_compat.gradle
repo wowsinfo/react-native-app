@@ -1,7 +1,37 @@
-// Compatibility fixes for old React Native packages targeting Gradle < 9
-// This script is applied from the root build.gradle
-
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 
 RepositoryHandler.metaClass.jcenter = { -> delegate.mavenCentral() }
 RepositoryHandler.metaClass.jcenter = { Closure c -> delegate.mavenCentral(c) }
+
+logger.lifecycle("fix_compat.gradle applied")
+
+subprojects { sp ->
+  logger.lifecycle("fix_compat: evaluating subproject ${sp.name}")
+  if (sp.name == 'react-native-iap') {
+    logger.lifecycle("fix_compat: found react-native-iap, registering patch")
+    sp.tasks.register('patchRNIapAnnotations') {
+      doLast {
+        def srcDir = sp.projectDir.toPath().resolve('src')
+        def flavorDirs = srcDir.toFile().listFiles().findAll { it.isDirectory() && it.name != 'main' }
+        flavorDirs.each { flavorDir ->
+          def javaFile = new File(flavorDir, "java/com/dooboolab/RNIap/RNIapModule.java")
+          if (javaFile.exists()) {
+            def text = javaFile.text
+            if (!text.contains('isBlockingSynchronousMethod')) {
+              javaFile.text = text.replace(
+                '@ReactMethod\n  public String getPackageName()',
+                '@ReactMethod(isBlockingSynchronousMethod = true)\n  public String getPackageName()'
+              )
+              logger.lifecycle("Patched $javaFile.name for TurboModule interop")
+            }
+          }
+        }
+      }
+    }
+    sp.tasks.configureEach { t ->
+      if (t.name.contains('compilePlay') && (t.name.contains('Java') || t.name.contains('Kotlin'))) {
+        t.dependsOn('patchRNIapAnnotations')
+      }
+    }
+  }
+}
