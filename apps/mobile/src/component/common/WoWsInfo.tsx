@@ -5,7 +5,8 @@
  */
 
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, StyleSheet, StatusBar} from 'react-native';
+import {StyleSheet, StatusBar} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {Button, Surface} from 'react-native-paper';
 import {lang} from '../../value/lang';
 import isAndroid from 'react-native-device-detection';
