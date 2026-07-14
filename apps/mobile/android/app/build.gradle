@@ -125,6 +125,19 @@ android {
     }
 }
 
+def genResDir = "$buildDir/generated/res/icons"
+task copySharedIcons(type: Copy) {
+    from file("${rootProject.projectDir}/../assets/icons")
+    into "$genResDir/drawable"
+    include "*.png"
+    exclude { d -> d.name.contains('@') }
+    rename { name -> name.toLowerCase() }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+preBuild.dependsOn copySharedIcons
+android.sourceSets.main.res.srcDirs += genResDir
+
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
