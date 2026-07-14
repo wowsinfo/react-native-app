@@ -8,6 +8,8 @@
 
 #include "NativeModules.h"
 
+#include <MddBootstrap.h>
+
 // A PackageProvider containing any turbo modules you define within this app project
 struct CompReactPackageProvider
     : winrt::implements<CompReactPackageProvider, winrt::Microsoft::ReactNative::IReactPackageProvider> {
@@ -21,6 +23,9 @@ struct CompReactPackageProvider
 _Use_decl_annotations_ int CALLBACK WinMain(HINSTANCE instance, HINSTANCE, PSTR /* commandLine */, int showCmd) {
   // Initialize WinRT
   winrt::init_apartment(winrt::apartment_type::single_threaded);
+
+  // Initialize Windows App SDK bootstrap
+  MddBootstrapInitialize(0x00010008, NULL, PACKAGE_VERSION{0});
 
   // Enable per monitor DPI scaling
   SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);

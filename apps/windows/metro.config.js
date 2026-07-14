@@ -3,9 +3,9 @@ const path = require('node:path');
 const fs = require('fs');
 
 const monorepoRoot = path.resolve(__dirname, '../..');
-const rnwPath = fs.realpathSync(
-  path.resolve(require.resolve('react-native-windows/package.json'), '..'),
-);
+const rnwPath = fs.realpathSync(path.resolve(
+  require.resolve('react-native-windows/package.json'), '..',
+));
 const babelRuntimeDir = path.dirname(
   require.resolve('@babel/runtime/package.json', {paths: [__dirname]}),
 );
@@ -31,25 +31,6 @@ const config = {
       new RegExp(`${rnwPath}/target/.*`),
       /.*\.ProjectImports\.zip/,
     ],
-    resolveRequest: (context, moduleName, platform) => {
-      if (moduleName === 'react' || moduleName.startsWith('react/')) {
-        const resolved = require.resolve(moduleName, {paths: [__dirname]});
-        return {type: 'sourceFile', filePath: resolved};
-      }
-      if (
-        moduleName.startsWith('@babel/') ||
-        moduleName === 'string-format' ||
-        moduleName.startsWith('zustand')
-      ) {
-        try {
-          const resolved = require.resolve(moduleName, {paths: [__dirname]});
-          return {type: 'sourceFile', filePath: resolved};
-        } catch {
-          return context.resolveRequest(context, moduleName, platform);
-        }
-      }
-      return context.resolveRequest(context, moduleName, platform);
-    },
   },
   transformer: {
     getTransformOptions: async () => ({

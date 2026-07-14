@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-native start --port 8081",
-    "windows": "npx @react-native-community/cli run-windows",
+    "windows": "cmd.exe /c build.cmd",
     "test:windows": "jest --config jest.config.windows.js"
   },
   "dependencies": {
@@ -13,12 +13,12 @@
     "@wowsinfo/ui": "workspace:*",
     "react": "^19.2.3",
     "react-native": "0.86.0",
-    "react-native-windows": "^0.0.0-canary.1056"
+    "react-native-windows": "0.84.0"
   },
   "devDependencies": {
     "@babel/runtime": "^7.25.0",
     "@react-native-community/cli": "latest",
-    "@react-native-windows/cli": "^0.0.0-canary.291",
+    "@react-native-windows/cli": "^0.84.0",
     "@react-native/babel-preset": "0.86.0",
     "@react-native/metro-config": "0.86.0",
     "@react-native/typescript-config": "0.86.0",
