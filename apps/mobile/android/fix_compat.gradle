@@ -1,0 +1,7 @@
+// Compatibility fixes for old React Native packages targeting Gradle < 9
+// This script is applied from the root build.gradle
+
+import org.gradle.api.artifacts.dsl.RepositoryHandler
+
+RepositoryHandler.metaClass.jcenter = { -> delegate.mavenCentral() }
+RepositoryHandler.metaClass.jcenter = { Closure c -> delegate.mavenCentral(c) }
