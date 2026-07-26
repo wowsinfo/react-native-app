@@ -110,7 +110,6 @@ const Setup = () => {
       </ScrollView>
       <FAB
         visible={!loading}
-        icon="check"
         color="white"
         style={[styles.fab, {backgroundColor: TintBackgroundColour()}]}
         label={lang.setup_done_button}

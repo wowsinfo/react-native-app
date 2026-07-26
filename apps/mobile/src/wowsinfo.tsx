@@ -52,16 +52,18 @@ SafeFetch.setAppKey(AppKey);
 const Stack = createNativeStackNavigator();
 
 setJSExceptionHandler((e, fatal) => {
+  const msg = `JSException [fatal=${fatal}]\n${e.name}\n${e.message}\n${e.stack}`;
+  console.log(msg);
+  try { (global as any).__errorLog(msg); } catch (_) {}
   if (fatal) {
     showAlert(`${e.name}\n${e.message}`, 'JS');
-  } else {
-    console.log(`JSException\n${e}`);
   }
 }, false);
 
 setNativeExceptionHandler(e => {
   showAlert(e, 'NATIVE');
   console.log(`NativeException\n${e}`);
+  try { (global as any).__errorLog(`NativeException\n${e}`); } catch (_) {}
 });
 
 function showAlert(msg: any, mode: any) {
