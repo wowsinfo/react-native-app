@@ -1,3 +1,4 @@
+/// <reference path="./globals.d.ts" />
 export { Guard, SafeValue } from "./utils/SafeGuard";
 export {
   copy,

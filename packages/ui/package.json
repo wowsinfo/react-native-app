@@ -10,9 +10,12 @@
     "react-native-paper": "^5.15.3"
   },
   "dependencies": {
+    "@wowsinfo/core": "workspace:*",
     "@wowsinfo/shared": "workspace:*"
   },
   "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-native": "^0.73.0",
     "typescript": "^5.8.3"
   }
 }

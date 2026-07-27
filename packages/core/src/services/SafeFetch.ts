@@ -1,4 +1,5 @@
 import { SafeValue } from "../utils/SafeGuard";
+import format from "string-format";
 
 class SafeFetch {
   private static appKey: string = "";
@@ -8,7 +9,6 @@ class SafeFetch {
   }
 
   static async get(api: string, ...extra: unknown[]) {
-    const format = require("string-format");
     let lang = "";
     if (extra.length > 1) {
       const last = extra.pop();
