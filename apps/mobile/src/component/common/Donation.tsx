@@ -14,7 +14,7 @@ const itemSkus = [
 ];
 
 const Donation = () => {
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState<RNIap.Product[] | null>(null);
   const githubVersion = useAppStore.getState().githubVersion;
 
   useEffect(() => {
@@ -22,7 +22,6 @@ const Donation = () => {
       (async () => {
         try {
           const items = await RNIap.getProducts(itemSkus);
-          await RNIap.consumeAllItems();
           items.sort((a: any, b: any) => a.price.localeCompare(b.price));
           setProducts(items);
         } catch (err) {

@@ -190,10 +190,10 @@ const App = () => {
       notification: dark ? GREY[50] : GREY[900],
     },
     fonts: {
-      regular: {fontFamily: 'System', fontWeight: '400'},
-      medium: {fontFamily: 'System', fontWeight: '500'},
-      bold: {fontFamily: 'System', fontWeight: '700'},
-      heavy: {fontFamily: 'System', fontWeight: '800'},
+      regular: {fontFamily: 'System', fontWeight: '400' as const},
+      medium: {fontFamily: 'System', fontWeight: '500' as const},
+      bold: {fontFamily: 'System', fontWeight: '700' as const},
+      heavy: {fontFamily: 'System', fontWeight: '800' as const},
     },
   };
 

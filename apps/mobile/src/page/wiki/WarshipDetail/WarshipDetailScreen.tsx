@@ -112,7 +112,8 @@ const renderMainBattery = (artillery: any, upgrades: any[]) => {
 
   var mainGun = '',
     gunName = '';
-  for (var gun in slots) {
+  let gun = "";
+  for (gun in slots) {
     mainGun += slots[gun].guns + ' x ' + slots[gun].barrels + '  ';
   }
   gunName = slots[gun].name;
@@ -125,11 +126,11 @@ const renderMainBattery = (artillery: any, upgrades: any[]) => {
     var oneFourth = Number(calibar / 4).toFixed(1);
     var oneFifth = Number(calibar / 5).toFixed(1);
     var oneSixth = Number(calibar / 6).toFixed(1);
-    penetration = `1/6 | ${oneSixth} - ${Number(oneSixth * 1.25).toFixed(
+    penetration = `1/6 | ${oneSixth} - ${Number(Number(oneSixth) * 1.25).toFixed(
       1,
-    )} mm\n1/5 | ${oneFifth} - ${Number(oneFifth * 1.25).toFixed(
+    )} mm\n1/5 | ${oneFifth} - ${Number(Number(oneFifth) * 1.25).toFixed(
       1,
-    )} mm\n1/4 | ${oneFourth} - ${Number(oneFourth * 1.25).toFixed(1)} mm`;
+    )} mm\n1/4 | ${oneFourth} - ${Number(Number(oneFourth) * 1.25).toFixed(1)} mm`;
     fireRate += HE.burn_probability;
   }
   if (AP) {
@@ -283,7 +284,7 @@ const renderTorpedo = (torpedoes: any, upgrades: any[]) => {
   let shortDist = Number(distance * 0.8).toFixed(1);
   let fastestSpeed = Number((torpedo_speed + 5) * 1.05).toFixed(1);
   let reactionTimeP = Number(
-    (visibility_dist * 1000) / 2.6 / fastestSpeed,
+    (visibility_dist * 1000) / 2.6 / Number(fastestSpeed),
   ).toFixed(1);
   let modifier = upgrades.findIndex(u => u === 4279422896) > -1 ? 0.85 : 1;
   let minReload = Number(reload_time * 0.9 * modifier).toFixed(1);
@@ -522,7 +523,7 @@ const renderAll = (curr: any, upgrades: any[]) => {
         upgrades,
       )}
       {renderUpgrade(curr)}
-      {renderNextShip(Guard(curr, 'next_ships'))}
+      {renderNextShip(Guard(curr, 'next_ships', []))}
     </View>
   );
 };
@@ -657,7 +658,7 @@ const WarshipDetail = ({route}: any) => {
   const [module, setModule] = useState<any>(null);
   const upgradesRef = useRef<any[]>([]);
 
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const fetchData = useCallback(
     (id: string) => {
       setLoading(true);

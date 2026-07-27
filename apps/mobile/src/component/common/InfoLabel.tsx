@@ -11,7 +11,7 @@ import {Touchable} from './Touchable';
 
 export interface InfoLabelProps {
   title: string;
-  info: string;
+  info: string | number;
   left?: boolean;
   right?: boolean;
   style?: any;

@@ -8,7 +8,7 @@ class SafeFetch {
     SafeFetch.appKey = key;
   }
 
-  static async get(api: string, ...extra: unknown[]) {
+  static async get(api: string, ...extra: unknown[]): Promise<unknown> {
     let lang = "";
     if (extra.length > 1) {
       const last = extra.pop();
@@ -29,10 +29,10 @@ class SafeFetch {
         }
       }
     } catch {}
-    return {};
+    return;
   }
 
-  static async normal(api: string) {
+  static async normal(api: string): Promise<unknown> {
     const link = SafeFetch.appKey
       ? api.replace("{appkey}", SafeFetch.appKey)
       : api;
@@ -40,12 +40,12 @@ class SafeFetch {
       const res = await fetch(link);
       if (res.status === 200) {
         const json = await res.json();
-        return SafeValue(json, {});
+        return json;
       }
     } catch (err) {
       console.error(err);
     }
-    return {};
+    return;
   }
 }
 

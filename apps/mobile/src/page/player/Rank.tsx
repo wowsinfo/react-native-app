@@ -43,7 +43,7 @@ const Rank = ({route}: any) => {
             <Touchable
               onPress={
                 shipData == null || shipData.length == 0
-                  ? null
+                  ? undefined
                   : () => SafeAction('PlayerShip', {data: shipData})
               }
               style={{margin: 8}}>

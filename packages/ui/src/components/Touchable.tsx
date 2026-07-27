@@ -13,6 +13,7 @@ export interface TouchableProps {
   children?: React.ReactNode;
   fill?: boolean;
   onPress?: () => void;
+  onLongPress?: () => void;
   otherProps?: any;
 }
 

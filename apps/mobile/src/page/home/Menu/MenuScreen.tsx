@@ -264,7 +264,7 @@ const Menu = () => {
     <WoWsInfo
       noRight
       title={title}
-      onPress={enabled ? () => SafeAction('Statistics', {info: main}) : null}
+      onPress={enabled ? () => SafeAction('Statistics', {info: main}) : undefined}
       home
       upper={false}>
       <ScrollView
@@ -350,7 +350,7 @@ const Menu = () => {
               />
             </View>
             <SectionTitle title={lang.website_title} />
-            <List.Section titleStyle={{color: theme.colors.onSurface}} title={lang.website_official_title} expanded>
+            <List.Accordion titleStyle={{color: theme.colors.onSurface}} title={lang.website_official_title} expanded>
               <View style={styles.wrap}>
                 {offical_websites.map(item => (
                   <List.Item
@@ -362,8 +362,8 @@ const Menu = () => {
                   />
                 ))}
               </View>
-            </List.Section>
-            <List.Section titleStyle={{color: theme.colors.onSurface}} title={lang.content_creator_title} expanded>
+            </List.Accordion>
+            <List.Accordion titleStyle={{color: theme.colors.onSurface}} title={lang.content_creator_title} expanded>
               <View style={styles.wrap}>
                 {links.map(item => (
                   <List.Item
@@ -375,8 +375,8 @@ const Menu = () => {
                   />
                 ))}
               </View>
-            </List.Section>
-            <List.Section titleStyle={{color: theme.colors.onSurface}} title={lang.website_stats_news_title} expanded>
+            </List.Accordion>
+            <List.Accordion titleStyle={{color: theme.colors.onSurface}} title={lang.website_stats_news_title} expanded>
               <View style={styles.wrap}>
                 {stats_info_website.map(item => (
                   <List.Item
@@ -388,8 +388,8 @@ const Menu = () => {
                   />
                 ))}
               </View>
-            </List.Section>
-            <List.Section titleStyle={{color: theme.colors.onSurface}} title={lang.website_utility_title} expanded>
+            </List.Accordion>
+            <List.Accordion titleStyle={{color: theme.colors.onSurface}} title={lang.website_utility_title} expanded>
               <View style={styles.wrap}>
                 {ultility_websites.map(item => (
                   <List.Item
@@ -401,8 +401,8 @@ const Menu = () => {
                   />
                 ))}
               </View>
-            </List.Section>
-             <List.Section
+            </List.Accordion>
+             <List.Accordion
               titleStyle={{color: theme.colors.onSurface}}
               title={lang.website_ingame_title}
               description={lang.website_wargaming_login_subtitle}>
@@ -417,7 +417,7 @@ const Menu = () => {
                   />
                 ))}
               </View>
-            </List.Section>
+            </List.Accordion>
           </View>
         </Animatable.View>
       </ScrollView>

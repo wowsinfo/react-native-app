@@ -11,7 +11,7 @@ const renderDetail = (item: any) => {
 
   if (item.profile) {
     const {name, description, profile} = item;
-    let bonus = Object.entries(profile).reduce((total, curr) => {
+    let bonus = Object.entries(profile as Record<string, {description: string}>).reduce((total, curr) => {
       return total + curr[1].description + '\n';
     }, '');
 
@@ -32,7 +32,7 @@ const renderDetail = (item: any) => {
     );
   } else if (item.perks) {
     const {name, perks} = item;
-    let bonus = Object.entries(perks).reduce((total, curr) => {
+    let bonus = Object.entries(perks as Record<string, {description: string}>).reduce((total, curr) => {
       return total + curr[1].description + '\n';
     }, '');
 

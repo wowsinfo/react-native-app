@@ -48,7 +48,7 @@ const Search = () => {
     setGoodWidth(bestWidth(400, newWidth));
   }, []);
 
-  const delayedRequest = useRef<ReturnType<typeof setTimeout>>();
+  const delayedRequest = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   const searchAll = useCallback((text: string) => {
     if (text.length < 2) {

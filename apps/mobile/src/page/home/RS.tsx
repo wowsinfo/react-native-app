@@ -67,7 +67,7 @@ const RS = () => {
   const [enemy, setEnemy] = useState<any[]>([]);
   const [enemyInfo, setEnemyInfo] = useState({});
 
-  const intervalRef = useRef<ReturnType<typeof setInterval>>();
+  const intervalRef = useRef<ReturnType<typeof setInterval>>(undefined);
 
   useEffect(() => {
     setLastLocation('RS');
@@ -173,10 +173,10 @@ const RS = () => {
       <Touchable
         style={styles.cell}
         onPress={
-          info.pvp ? () => SafeAction('PlayerShipDetail', {data: info}) : null
+          info.pvp ? () => SafeAction('PlayerShipDetail', {data: info}) : undefined
         }
         onLongPress={
-          info.account_id ? () => SafeAction('Statistics', {info: info}) : null
+          info.account_id ? () => SafeAction('Statistics', {info: info}) : undefined
         }>
         <WarshipCell item={ship} scale={1.4} />
         <Text style={styles.playerName} numberOfLines={1}>
@@ -270,7 +270,7 @@ const RS = () => {
   };
 
   return (
-    <WoWsInfo onPress={rs ? () => setInfo(true) : null} title="Map Information">
+    <WoWsInfo onPress={rs ? () => setInfo(true) : undefined} title="Map Information">
       {!valid ? (
         <KeyboardAvoidingView
           style={styles.container}

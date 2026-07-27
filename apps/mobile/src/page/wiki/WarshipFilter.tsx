@@ -60,7 +60,7 @@ const WarshipFilter = () => {
             break;
         }
       };
-      const arr = getArr();
+      const arr = getArr() ?? [];
       if (arr.slice(-1)[0] === item) return;
       const next = [...arr, item];
       setArr(next);
@@ -114,7 +114,7 @@ const WarshipFilter = () => {
         theme={{roundness: 0, colors: {primary: theme.colors.primary}}}
         onChangeText={setName}
         onEndEditing={() => {
-          if (name.trim(' ').length > 0) applyAll();
+          if (name.trim().length > 0) applyAll();
         }}
         clearButtonMode="while-editing"
         autoCapitalize="none"

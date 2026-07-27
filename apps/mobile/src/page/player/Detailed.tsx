@@ -15,9 +15,10 @@ import {useTheme} from 'react-native-paper';
 import {getTintColour} from '../../value/colour';
 import {useAppStore} from '../../store/useAppStore';
 
-const getColor = (diff: number) => {
-  if (diff === 0) return null;
-  return {color: diff > 0 ? 'green' : 'red'};
+const getColor = (diff: string | number) => {
+  const n = typeof diff === "string" ? Number(diff) : diff;
+  if (n === 0) return null;
+  return {color: n > 0 ? "green" : "red"};
 };
 
 const normalise = (diff: number, digit: number) => {
@@ -80,7 +81,7 @@ const Detailed = ({route}: any) => {
   return (
     <WoWsInfo
       onPress={
-        ship == null ? null : () => SafeAction('WarshipDetail', {item: ship})
+        ship == null ? undefined : () => SafeAction('WarshipDetail', {item: ship})
       }
       title={lang.wiki_section_title}>
       <RatingButton rating={rating} />

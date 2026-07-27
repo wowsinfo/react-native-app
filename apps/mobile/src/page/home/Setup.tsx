@@ -28,8 +28,8 @@ const Setup = () => {
   const [error, setError] = useState(false);
   const [server] = useState(SERVER);
   const [selectedServer, setSelectedServer] = useState(3);
-  const [langList, setLangList] = useState([]);
-  const [langData, setLangData] = useState([]);
+  const [langList, setLangList] = useState<Record<string, string>>({});
+  const [langData, setLangData] = useState<string[]>([]);
   const [selectedLang, setSelectedLang] = useState('en');
 
   useEffect(() => {

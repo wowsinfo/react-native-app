@@ -28,7 +28,7 @@ const CommanderSkill = () => {
   }, []);
 
   const [data, setData] = useState(initial);
-  const [point, setPoint] = useState(19);
+  const [point, setPoint] = useState<number | string>(19);
 
   const skillSelected = useCallback((item: any) => {
     setPoint(prev => {
@@ -40,7 +40,7 @@ const CommanderSkill = () => {
         setData(d => [...d]);
         return next;
       }
-      let next = prev - item.tier;
+      let next = Number(prev) - item.tier;
       if (next >= 0) {
         item.selected = true;
         setData(d => [...d]);

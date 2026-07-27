@@ -15,6 +15,7 @@ import {lang} from '../../value/lang';
 import {useAppStore} from '../../store/useAppStore';
 
 class Downloader {
+
   private syncStore(key: string, value: any) {
     AppGlobalData.set(key, value);
     useAppStore.getState().setData(key, value);
@@ -219,10 +220,10 @@ class Downloader {
     let all = {};
 
     // Download data from Github
-    const model3D = await SafeFetch.normal(WikiAPI.Github_Model);
+    const model3D: any = await SafeFetch.normal(WikiAPI.Github_Model);
 
     // For Chinese and Japanese users only
-    let JapaneseShips = null;
+    let JapaneseShips: any = null;
     let currLang = getAPILanguage();
     if (currLang.includes('zh') || currLang.includes('ja')) {
       JapaneseShips = await SafeFetch.normal(WikiAPI.Github_Alias);
@@ -298,19 +299,19 @@ class Downloader {
   async getCollectionAndItem() {
     let all: any = {};
 
-    let collection = await SafeFetch.get(
+    const rawCollection = await SafeFetch.get(
       WikiAPI.Collection,
       this.domain,
       `${this.language}`,
     );
-    let item = await SafeFetch.get(
+    const rawItem = await SafeFetch.get(
       WikiAPI.CollectionItem,
       this.domain,
       `${this.language}`,
     );
 
-    collection = Guard(collection, 'data', {});
-    item = Guard(item, 'data', {});
+    const collection = Guard(rawCollection, 'data', {});
+    const item = Guard(rawItem, 'data', {});
 
     for (let id in item) {
       let curr = item[id];

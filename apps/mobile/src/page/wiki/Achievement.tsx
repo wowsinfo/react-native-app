@@ -12,7 +12,7 @@ const Achievement = () => {
   }, []);
 
   const data = useMemo(() => {
-    let achievement = useAppStore.getState().getData(SAVED.achievement);
+    const achievement: Record<string, {hidden: number}> = useAppStore.getState().getData(SAVED.achievement);
     let sorted = Object.entries(achievement).sort((a, b) => {
       if (a[1].hidden === b[1].hidden) {
         return a[0].localeCompare(b[0]);

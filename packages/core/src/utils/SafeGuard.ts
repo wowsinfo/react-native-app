@@ -1,4 +1,4 @@
-export function Guard<T, D>(obj: T, path: string, dval: D): T | D {
+export function Guard(obj: any, path: string, dval: any): any {
   if (path === "" && obj != null) {
     return obj;
   }
@@ -19,7 +19,7 @@ export function Guard<T, D>(obj: T, path: string, dval: D): T | D {
   return dval;
 }
 
-export function SafeValue<T, D>(obj: T, dval: D) {
+export function SafeValue(obj: any, dval: any): any {
   if (obj == null) {
     return dval;
   }

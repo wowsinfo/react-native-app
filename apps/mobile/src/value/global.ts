@@ -1,7 +1,7 @@
-import {AppGlobalData} from '@wowsinfo/core';
+import {AppGlobalData as GlobalData} from '@wowsinfo/core';
 
 declare global {
-  var AppGlobalData: any;
+  var AppGlobalData: typeof GlobalData;
 }
 
-globalThis.AppGlobalData = AppGlobalData;
+globalThis.AppGlobalData = GlobalData;
