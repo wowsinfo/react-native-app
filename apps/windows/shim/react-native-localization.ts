@@ -1,3 +1,4 @@
+// @ts-nocheck
 var ReactLocalization = require('react-localization');
 function getInterfaceLanguage() {
   return 'en-US';

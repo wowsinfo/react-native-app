@@ -3,14 +3,13 @@ const path = require('node:path');
 const fs = require('fs');
 
 const root = path.resolve(__dirname, '../..');
-const emptyShim = path.resolve(__dirname, 'shim', '_empty.js');
+const emptyShim = path.resolve(__dirname, 'shim', '_empty.ts');
 
 const shimModules = {
-  'react-native-exception-handler': path.resolve(__dirname, 'shim', 'react-native-exception-handler.js'),
-  'react-native-localization': path.resolve(__dirname, 'shim', 'react-native-localization.js'),
-  '@react-native-async-storage/async-storage': path.resolve(__dirname, 'shim', 'async-storage.js'),
-  'react-native-screens': path.resolve(__dirname, 'shim', 'react-native-screens.js'),
-
+  'react-native-exception-handler': path.resolve(__dirname, 'shim', 'react-native-exception-handler.ts'),
+  'react-native-localization': path.resolve(__dirname, 'shim', 'react-native-localization.ts'),
+  'react-native-screens': path.resolve(__dirname, 'shim', 'react-native-screens.ts'),
+  '@react-native-async-storage/async-storage': path.resolve(__dirname, 'shim', 'async-storage.ts'),
 };
 
 const babelRuntimeDir = path.dirname(
@@ -36,7 +35,7 @@ const config = {
         return {type: 'sourceFile', filePath: shimModules[moduleName]};
       }
       if (moduleName === 'react-native-vector-icons/MaterialCommunityIcons') {
-        return {type: 'sourceFile', filePath: path.resolve(__dirname, 'shim', 'MaterialCommunityIcons.js')};
+        return {type: 'sourceFile', filePath: path.resolve(__dirname, 'shim', 'MaterialCommunityIcons.ts')};
       }
       if (moduleName === 'react-native' || moduleName.startsWith('react-native/')) {
         try {

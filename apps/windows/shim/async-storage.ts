@@ -1,3 +1,4 @@
+// @ts-nocheck
 var store = {};
 var AsyncStorage = {
   getItem: function (key, cb) {

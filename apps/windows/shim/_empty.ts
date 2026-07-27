@@ -1,3 +1,4 @@
+// @ts-nocheck
 const noop = function () { return module.exports; };
 noop.__esModule = true;
 noop.default = noop;

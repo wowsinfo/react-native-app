@@ -1,7 +1,5 @@
 import * as React from 'react';
 import {AppRegistry} from 'react-native';
-import {enableScreens} from 'react-native-screens';
-enableScreens(false);
 import App from '../mobile/src/wowsinfo.tsx';
 import {Provider as PaperProvider, MD3LightTheme} from 'react-native-paper';
 import {SafeAreaProvider} from 'react-native-safe-area-context';

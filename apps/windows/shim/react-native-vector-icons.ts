@@ -1,3 +1,4 @@
+// @ts-nocheck
 var React = require('react');
 var RN = require('react-native');
 
