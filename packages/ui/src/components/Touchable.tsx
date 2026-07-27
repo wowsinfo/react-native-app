@@ -10,7 +10,7 @@ import { TouchableRipple } from "react-native-paper";
 
 export interface TouchableProps {
   style?: any;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   fill?: boolean;
   onPress?: () => void;
   otherProps?: any;

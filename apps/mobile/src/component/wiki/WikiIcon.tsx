@@ -17,6 +17,8 @@ export interface WikiIconProps {
   selected?: boolean;
   /// Force the icon to use the current theme instead
   themeIcon?: boolean;
+  onPress?: () => void;
+  onLongPress?: () => void;
   otherProps?: any;
 }
 

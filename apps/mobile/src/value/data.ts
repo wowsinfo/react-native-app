@@ -38,7 +38,7 @@ export const getDomain = (index: number) => {
 };
 
 export const getCurrPrefix = () => {
-  let prefix = getCurrDomain();
+  let prefix: string = getCurrDomain();
   if (prefix === 'com') {
     prefix = 'na';
   }
@@ -46,7 +46,7 @@ export const getCurrPrefix = () => {
 };
 
 export const getPrefix = (index: number) => {
-  let prefix = getDomain(index);
+  let prefix: string = getDomain(index);
   if (prefix === 'com') {
     prefix = 'na';
   }

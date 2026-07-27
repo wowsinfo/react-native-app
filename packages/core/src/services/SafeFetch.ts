@@ -7,13 +7,15 @@ class SafeFetch {
     SafeFetch.appKey = key;
   }
 
-  static async get(api: string, ...extra: any) {
+  static async get(api: string, ...extra: unknown[]) {
     const format = require("string-format");
     let lang = "";
     if (extra.length > 1) {
-      lang = extra.pop();
+      const last = extra.pop();
+      if (typeof last === "string") {
+        lang = last;
+      }
     }
-    // Inject key before format() since string-format eats {appkey}
     const withKey = SafeFetch.appKey
       ? api.replace("{appkey}", SafeFetch.appKey)
       : api;
@@ -22,7 +24,7 @@ class SafeFetch {
       const res = await fetch(link);
       if (res.status === 200) {
         const json = await res.json();
-        if (json && json.status === "ok") {
+        if (typeof json === "object" && json && "status" in json && json.status === "ok") {
           return json;
         }
       }

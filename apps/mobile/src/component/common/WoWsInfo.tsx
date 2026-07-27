@@ -27,6 +27,7 @@ export interface WoWsInfoProps {
   noLeft?: boolean;
   home?: boolean;
   noRight?: boolean;
+  hideAds?: boolean;
 }
 
 export const WoWsInfo = ({
