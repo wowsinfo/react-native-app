@@ -8,7 +8,7 @@ import React from 'react';
 import {Image, StyleSheet} from 'react-native';
 import {WikiIcon, WarshipLabel} from '..';
 import {Touchable} from '../common/Touchable';
-import {TintColour} from '../../value/colour';
+import {getTintColour} from '../../value/colour';
 
 export interface WarshipCellProps {
   item: any;
@@ -33,7 +33,7 @@ export const WarshipCell = ({item, scale, onPress}: WarshipCellProps) => {
           style={{
             height: width / 1.7,
             width: width,
-            tintColor: TintColour()[500],
+            tintColor: getTintColour()[500],
           }}
           source={{uri: 'Unknown'}}
         />

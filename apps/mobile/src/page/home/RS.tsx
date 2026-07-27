@@ -47,7 +47,7 @@ import {
 import {FlatGrid} from 'react-native-super-grid';
 import {lang} from '../../value/lang';
 import KeepAwake from 'react-native-keep-awake';
-import {TintColour} from '../../value/colour';
+import {getTintColour} from '../../value/colour';
 import {useAppStore} from '../../store/useAppStore';
 
 const RS = () => {
@@ -78,7 +78,7 @@ const RS = () => {
     return () => {
       KeepAwake.deactivate();
       clearInterval(intervalRef.current);
-      theme.colors.primary = TintColour()[500];
+      theme.colors.primary = getTintColour()[500];
     };
   }, []);
 

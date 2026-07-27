@@ -9,10 +9,10 @@ import {ActivityIndicator} from 'react-native';
 import isIos from 'react-native-device-detection';
 // @ts-ignore
 import {Blue, Grey} from 'react-native-material-color';
-import {TintColour} from '../../value/colour';
+import {getTintColour} from '../../value/colour';
 
 export const LoadingIndicator = ({style}: any) => {
-  let appTheme = TintColour();
+  let appTheme = getTintColour();
   if (!appTheme) {
     appTheme = Blue;
   }

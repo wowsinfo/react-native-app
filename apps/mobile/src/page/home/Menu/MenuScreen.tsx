@@ -14,8 +14,8 @@ import {WoWsInfo, SectionTitle, AppName} from '../../../component';
 import {lang} from '../../../value/lang';
 import {SafeAction, Downloader, bestWidth} from '../../../core';
 import {
-  TintBackgroundColour,
-  TintColour,
+  getTintBackgroundColour,
+  getTintColour,
 } from '../../../value/colour';
 import {
   getCurrDomain,
@@ -295,7 +295,7 @@ const Menu = () => {
                   onPress={() => item.p()}
                   left={() => (
                     <List.Icon
-                      color={TintColour()[300]}
+                      color={getTintColour()[300]}
                       icon={item.i}
                     />
                   )}
@@ -424,7 +424,7 @@ const Menu = () => {
       <FAB
         icon="magnify"
         color="white"
-        style={[styles.fab, {backgroundColor: TintBackgroundColour()}]}
+        style={[styles.fab, {backgroundColor: getTintBackgroundColour()}]}
         onPress={() => SafeAction('Search')}
       />
     </WoWsInfo>

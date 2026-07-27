@@ -35,9 +35,9 @@ import {
   setFirstLaunch,
 } from '../../value/data';
 import {
-  TintColour,
-  UpdateTintColour,
-  UpdateDarkMode,
+  getTintColour,
+  setTintColour,
+  toggleDarkMode,
   buildElevationColors,
 } from '../../value/colour';
 import {SafeAction, SafeFetch, Guard} from '../../core';
@@ -92,7 +92,7 @@ const Settings = () => {
   const theme = useTheme();
 
   const [darkMode, setDarkMode] = useState(gs().isDarkMode);
-  const [tintColour, setLocalTint] = useState(TintColour());
+  const [tintColour, setLocalTint] = useState(getTintColour());
   const [showColour, setShowColour] = useState(false);
   const [server, setServer] = useState(getCurrServer());
   const [APILanguage, setApiLang] = useState(getAPILanguage());
@@ -106,7 +106,7 @@ const Settings = () => {
   }, []);
 
   const updateTheme = useCallback(() => {
-    UpdateDarkMode();
+    toggleDarkMode();
     const nextDark = gs().isDarkMode;
     setDarkMode(nextDark);
     theme.dark = nextDark;
@@ -145,7 +145,7 @@ const Settings = () => {
 
   const updateTint = useCallback(
     (tint: any) => {
-      UpdateTintColour(tint);
+      setTintColour(tint);
       theme.colors.primary = tint[500];
       theme.colors.secondary = tint[300];
       setShowColour(false);

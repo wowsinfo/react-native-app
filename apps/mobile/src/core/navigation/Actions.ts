@@ -19,7 +19,7 @@ export type ActionsType = {
   [scene: string]: any;
 };
 
-export const Actions: any = new Proxy(
+export const Actions: ActionsType = new Proxy(
   {
     push,
     pop,

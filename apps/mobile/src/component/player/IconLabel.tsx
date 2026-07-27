@@ -26,7 +26,7 @@ export const IconLabel = ({
   console.log(style);
   return (
     <View style={[container, style]}>
-      {/* color={TintColour()[500]} */}
+      {/* color={getTintColour()[500]} */}
       <IconButton
         size={36}
         icon={icon}

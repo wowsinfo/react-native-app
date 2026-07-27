@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Dimensions, Linking} from 'react-native';
 import * as Anime from 'react-native-animatable';
 import {WoWsInfo, Touchable} from '../../component';
-import {TintColour} from '../../value/colour';
+import {getTintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
 import {getRandomAnimation} from '../../core';
 
@@ -32,7 +32,7 @@ export const About = () => {
           useNativeDriver>
           <Image
             style={{
-              tintColor: TintColour()[500],
+              tintColor: getTintColour()[500],
               height: imageWidth,
               width: imageWidth,
             }}

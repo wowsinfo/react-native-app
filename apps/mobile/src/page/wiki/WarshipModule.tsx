@@ -3,7 +3,7 @@ import {View, FlatList, StyleSheet} from 'react-native';
 import {WoWsInfo, Space, SectionTitle} from '../../component';
 import {Actions} from '../../core/navigation/Actions';
 import {SAVED, getCurrDomain} from '../../value/data';
-import {ThemeBackColour} from '../../value/colour';
+import {getThemeBackColour} from '../../value/colour';
 import {List, Caption} from 'react-native-paper';
 import {lang} from '../../value/lang';
 import {useAppStore} from '../../store/useAppStore';
@@ -75,7 +75,7 @@ const WarshipModule = ({route}: any) => {
     return (
       <List.Item
         key={ID}
-        style={selected ? ThemeBackColour() : undefined}
+        style={selected ? getThemeBackColour() : undefined}
         title={name}
         description={`${price_credit}`}
         onPress={() => updateModule(tree, ID)}

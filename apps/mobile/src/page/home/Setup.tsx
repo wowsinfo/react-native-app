@@ -21,7 +21,7 @@ import {
 } from '../../value/data';
 import {Downloader} from '../../core';
 import {WoWsInfo, SectionTitle, LoadingIndicator} from '../../component';
-import {TintBackgroundColour} from '../../value/colour';
+import {getTintBackgroundColour} from '../../value/colour';
 
 const Setup = () => {
   const [loading, setLoading] = useState(true);
@@ -111,7 +111,7 @@ const Setup = () => {
       <FAB
         visible={!loading}
         color="white"
-        style={[styles.fab, {backgroundColor: TintBackgroundColour()}]}
+        style={[styles.fab, {backgroundColor: getTintBackgroundColour()}]}
         label={lang.setup_done_button}
         onPress={loading ? undefined : finishSetup}
       />

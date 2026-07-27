@@ -3,11 +3,11 @@ import {ScrollView, StyleSheet} from 'react-native';
 import * as Anime from 'react-native-animatable';
 import {Title, Paragraph, Caption} from 'react-native-paper';
 import {WikiIcon, WoWsInfo, PriceLabel} from '../../component';
-import {TintTextColour} from '../../value/colour';
+import {getTintTextColour} from '../../value/colour';
 
 const renderDetail = (item: any) => {
   const {container, label} = styles;
-  let title = [label, TintTextColour()];
+  let title = [label, getTintTextColour()];
 
   if (item.profile) {
     const {name, description, profile} = item;

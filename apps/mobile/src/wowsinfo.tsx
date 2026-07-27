@@ -33,7 +33,7 @@ import {
 import {LOCAL, getFirstLaunch, getCurrServer, APP} from './value/data';
 import {DataLoader, Downloader} from './core';
 import {GREY, RED} from 'react-native-material-color';
-import {TintColour, buildElevationColors} from './value/colour';
+import {getTintColour, buildElevationColors} from './value/colour';
 import {lang} from './value/lang';
 import PlayerShip from './page/player/PlayerShip';
 import Detailed from './page/player/Detailed';
@@ -126,7 +126,7 @@ const App = () => {
         lang.setLanguage(userLang);
       }
 
-      let tint = TintColour();
+      let tint = getTintColour();
       if (!tint?.[50]) {
         tint = RED;
       }

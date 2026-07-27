@@ -10,7 +10,7 @@ import * as Anime from 'react-native-animatable';
 import {Title, Caption} from 'react-native-paper';
 import {lang} from '../../value/lang';
 import {LOCAL, APP, isProVersion} from '../../value/data';
-import {TintColour} from '../../value/colour';
+import {getTintColour} from '../../value/colour';
 import {Touchable} from './Touchable';
 import {useAppStore} from '../../store/useAppStore';
 
@@ -40,7 +40,7 @@ export const AppName = () => {
         useNativeDriver>
         <Image
           source={{uri: 'Logo'}}
-          style={{height: 64, width: 64, tintColor: TintColour()[500]}}
+          style={{height: 64, width: 64, tintColor: getTintColour()[500]}}
         />
       </Anime.View>
     </Touchable>

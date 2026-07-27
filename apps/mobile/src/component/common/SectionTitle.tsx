@@ -6,7 +6,7 @@
 
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {ThemeBackColour} from '../../value/colour';
+import {getThemeBackColour} from '../../value/colour';
 import {Title, useTheme} from 'react-native-paper';
 
 export interface SectionTitleProps {
@@ -29,7 +29,7 @@ export const SectionTitle = ({
   return (
     <Title
       style={[
-        back ? ThemeBackColour() : null,
+        back ? getThemeBackColour() : null,
         {color: theme.colors.onSurface},
         styles.text,
         style,

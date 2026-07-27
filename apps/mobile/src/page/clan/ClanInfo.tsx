@@ -17,7 +17,7 @@ import {
   Caption,
   Button,
 } from 'react-native-paper';
-import {TintColour} from '../../value/colour';
+import {getTintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
 import {FlatGrid} from 'react-native-super-grid';
 import {useAppStore} from '../../store/useAppStore';
@@ -123,7 +123,7 @@ const ClanInfo = ({route}: any) => {
         ListHeaderComponent={() => (
           <View>
             <Title style={clanTag}>{clanTagName}</Title>
-            <Subheading style={{color: TintColour()[500], alignSelf: 'center'}}>
+            <Subheading style={{color: getTintColour()[500], alignSelf: 'center'}}>
               {name}
             </Subheading>
             <InfoLabel

@@ -12,7 +12,7 @@ import {lang} from '../../value/lang';
 import isAndroid from 'react-native-device-detection';
 import {FooterButton} from './FooterButton';
 import {SafeAction, random} from '../../core';
-import {ThemeBackColour, ThemeColour, ViewBackColour} from '../../value/colour';
+import {getThemeBackColour, getThemeColour, getViewBackColour} from '../../value/colour';
 import {View} from 'react-native-animatable';
 import {useAppStore} from '../../store/useAppStore';
 
@@ -85,7 +85,7 @@ export const WoWsInfo = ({
     let shouldDisable = !onPress && !about;
 
     return (
-      <View style={[footer, ThemeBackColour()]}>
+      <View style={[footer, getThemeBackColour()]}>
         {useAppStore.getState().shouldSwapButton ? renderRight() : renderLeft()}
         <Button
           disabled={shouldDisable}
@@ -106,15 +106,15 @@ export const WoWsInfo = ({
 
   // Add a margin for android devices (full screen so add a margin)
   return (
-    <Surface style={[styles.container, style, ThemeBackColour()]}>
+    <Surface style={[styles.container, style, getThemeBackColour()]}>
       <SafeAreaView style={styles.safeView}>
         <StatusBar
           barStyle={
             useAppStore.getState().isDarkMode ? 'light-content' : 'dark-content'
           }
-          backgroundColor={ThemeColour()}
+          backgroundColor={getThemeColour()}
         />
-        <View style={[styles.child, ViewBackColour()]}>{children}</View>
+        <View style={[styles.child, getViewBackColour()]}>{children}</View>
         {empty ? null : renderFooter()}
       </SafeAreaView>
     </Surface>

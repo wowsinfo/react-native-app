@@ -4,7 +4,7 @@ import {BarChart, PieChart} from 'native-chart-experiment';
 import {WoWsInfo} from '../../component';
 import {SAVED} from '../../value/data';
 import {SafeValue, roundTo} from '../../core';
-import {TintColour} from '../../value/colour';
+import {getTintColour} from '../../value/colour';
 import {useAppStore} from '../../store/useAppStore';
 
 const objToChart = (obj: any, name?: any, min = 0) => {
@@ -62,7 +62,7 @@ const Graph = ({route}: any) => {
   }, [data]);
 
   const darkMode = useAppStore.getState().isDarkMode;
-  const themeColor = TintColour()[500];
+  const themeColor = getTintColour()[500];
 
   return (
     <WoWsInfo hideAds>

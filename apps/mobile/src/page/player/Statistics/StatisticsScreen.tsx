@@ -27,7 +27,7 @@ import {
   LOCAL,
   setLastLocation,
 } from '../../../value/data';
-import {TintColour} from '../../../value/colour';
+import {getTintColour} from '../../../value/colour';
 import {lang} from '../../../value/lang';
 import {useAppStore} from '../../../store/useAppStore';
 
@@ -71,7 +71,7 @@ const Statistics = ({route}: any) => {
     setLastLocation('Statistics');
     return () => {
       mountedRef.current = false;
-      theme.colors.primary = TintColour()[500];
+      theme.colors.primary = getTintColour()[500];
     };
   }, []);
 

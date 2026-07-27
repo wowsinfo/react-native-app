@@ -6,7 +6,7 @@
 
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {ThemeBackColour} from '../../value/colour';
+import {getThemeBackColour} from '../../value/colour';
 
 export interface FooterPlusProps {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ export interface FooterPlusProps {
 export const FooterPlus = ({children, style}: FooterPlusProps) => {
   const {similarView} = styles;
   return (
-    <View style={[similarView, ThemeBackColour(), style]}>{children}</View>
+    <View style={[similarView, getThemeBackColour(), style]}>{children}</View>
   );
 };
 

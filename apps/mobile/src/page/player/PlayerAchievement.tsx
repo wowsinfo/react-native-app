@@ -8,7 +8,11 @@ import {SafeAction} from '../../core';
 import {lang} from '../../value/lang';
 import {useAppStore} from '../../store/useAppStore';
 
-export const PlayerAchievement = ({route}: any) => {
+interface PlayerAchievementProps {
+  route: {params?: {data?: Record<string, number>}};
+}
+
+export const PlayerAchievement = ({route}: PlayerAchievementProps) => {
   const {data} = route?.params ?? {};
   const [displayData, setDisplayData] = useState<Array<any>>([]);
 

@@ -12,7 +12,7 @@ import {Actions} from '../../core/navigation/Actions';
 import {SafeAction, getColour, roundTo} from '../../core';
 import {lang} from '../../value/lang';
 import {useTheme} from 'react-native-paper';
-import {TintColour} from '../../value/colour';
+import {getTintColour} from '../../value/colour';
 import {useAppStore} from '../../store/useAppStore';
 
 const getColor = (diff: number) => {
@@ -63,7 +63,7 @@ const Detailed = ({route}: any) => {
 
   useEffect(() => {
     return () => {
-      theme.colors.primary = TintColour()[500];
+      theme.colors.primary = getTintColour()[500];
     };
   }, []);
 

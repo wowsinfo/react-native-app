@@ -20,7 +20,7 @@ import {FlatGrid} from 'react-native-super-grid';
 import {SAVED} from '../../value/data';
 import {lang} from '../../value/lang';
 import {Button, useTheme} from 'react-native-paper';
-import {TintColour} from '../../value/colour';
+import {getTintColour} from '../../value/colour';
 import {useAppStore} from '../../store/useAppStore';
 
 const PlayerShip = ({route}: any) => {
@@ -47,7 +47,7 @@ const PlayerShip = ({route}: any) => {
 
   useEffect(() => {
     return () => {
-      theme.colors.primary = TintColour()[500];
+      theme.colors.primary = getTintColour()[500];
     };
   }, []);
 

@@ -5,45 +5,45 @@ import {useAppStore} from '../store/useAppStore';
 
 const s = () => useAppStore.getState();
 
-export const ThemeBackColour = () => {
+export const getThemeBackColour = () => {
   return {backgroundColor: s().isDarkMode ? GREY[900] : GREY[100]};
 };
 
-export const ViewBackColour = () => {
+export const getViewBackColour = () => {
   return {backgroundColor: s().isDarkMode ? 'black' : 'white'};
 };
 
-export const ThemeColour = () => {
+export const getThemeColour = () => {
   return s().isDarkMode ? GREY[900] : GREY[100];
 };
 
-export const UpdateDarkMode = () => {
+export const toggleDarkMode = () => {
   const next = !s().isDarkMode;
   s().setDarkMode(next);
   s().setData(LOCAL.darkMode, next);
 };
 
-export const TintColour = () => {
+export const getTintColour = () => {
   return s().getData(LOCAL.theme);
 };
 
-export const TintTextColour = () => {
-  let colour = TintColour();
+export const getTintTextColour = () => {
+  let colour = getTintColour();
   if (!colour) {
     colour = BLUE;
   }
   return {color: colour[500]};
 };
 
-export const TintBackgroundColour = () => {
-  let colour = TintColour();
+export const getTintBackgroundColour = () => {
+  let colour = getTintColour();
   if (!colour) {
     colour = RED;
   }
   return colour[500];
 };
 
-export const UpdateTintColour = (tint: any) => {
+export const setTintColour = (tint: any) => {
   s().setData(LOCAL.theme, tint);
 };
 

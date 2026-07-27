@@ -18,7 +18,7 @@ import {Guard, SafeFetch, bestWidth} from '../../core';
 import {WoWsAPI} from '../../value/api';
 import {Friend} from './Friend';
 import {lang} from '../../value/lang';
-import {TintBackgroundColour, ThemeColour} from '../../value/colour';
+import {getTintBackgroundColour, getThemeColour} from '../../value/colour';
 import {useAppStore} from '../../store/useAppStore';
 // @ts-ignore
 import {GREY} from 'react-native-material-color';
@@ -153,7 +153,7 @@ const Search = () => {
             styles.searchBar,
             useAppStore.getState().isDarkMode ? {backgroundColor: GREY[900]} : null,
           ]}
-          iconColor={useAppStore.getState().isDarkMode ? GREY[300] : TintBackgroundColour()}
+          iconColor={useAppStore.getState().isDarkMode ? GREY[300] : getTintBackgroundColour()}
           placeholderTextColor={useAppStore.getState().isDarkMode ? GREY[400] : GREY[600]}
           placeholder={`${prefix.toUpperCase()} - ${online} ${
             lang.search_player_online

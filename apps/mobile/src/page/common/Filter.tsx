@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {lang} from '../../value/lang';
 import {Button, Checkbox, List, TextInput} from 'react-native-paper';
-import {ThemeColour, TintTextColour} from '../../value/colour';
+import {getThemeColour, getTintTextColour} from '../../value/colour';
 
-const textColour = TintTextColour().color;
+const textColour = getTintTextColour().color;
 const tierList: string[] = [];
 const nationList: string[] = [];
 const typeList: string[] = [];
@@ -24,7 +24,7 @@ const Filter = ({applyFunc, resetFunc, wiki}: any) => {
 
   if (wiki) {
     return (
-      <View style={{flex: 1, backgroundColor: ThemeColour()}}>
+      <View style={{flex: 1, backgroundColor: getThemeColour()}}>
         <TextInput
           style={styles.input}
           value={name}

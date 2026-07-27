@@ -5,7 +5,7 @@ import {WoWsInfo, WikiIcon} from '../../component';
 import {SAVED, setLastLocation} from '../../value/data';
 import {SafeAction} from '../../core';
 import {Title, Paragraph} from 'react-native-paper';
-import {TintTextColour} from '../../value/colour';
+import {getTintTextColour} from '../../value/colour';
 import {useAppStore} from '../../store/useAppStore';
 
 const Collection = ({route}: any) => {
@@ -64,7 +64,7 @@ const Collection = ({route}: any) => {
             return (
               <View style={{padding: 8}}>
                 <WikiIcon item={header} scale={1.6} />
-                <Title style={[styles.label, TintTextColour()]}>
+                <Title style={[styles.label, getTintTextColour()]}>
                   {header.name}
                 </Title>
                 <Paragraph style={styles.label}>{header.description}</Paragraph>
