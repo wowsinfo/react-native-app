@@ -5,7 +5,7 @@ import {
 
 export const navigationRef = createNavigationContainerRef();
 
-export function push(name: string, params?: any) {
+export function push(name: string, params?: Record<string, unknown>) {
   if (navigationRef.isReady()) {
     navigationRef.dispatch(StackActions.push(name, params));
   }
@@ -32,11 +32,11 @@ export function reset(name: string) {
   }
 }
 
-export function refresh(params?: any) {
+export function refresh(params?: Record<string, unknown>) {
   if (navigationRef.isReady()) {
-    const route = navigationRef.getCurrentRoute() as {params?: any} | undefined;
+    const route = navigationRef.getCurrentRoute() as {params?: Record<string, unknown>} | undefined;
     if (route) {
-      navigationRef.setParams({...(route as any).params, ...(params ?? {})});
+      navigationRef.setParams({...route.params, ...(params ?? {})});
     }
   }
 }

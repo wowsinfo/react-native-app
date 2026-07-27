@@ -3,7 +3,7 @@ import {persist, createJSONStorage} from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface AppState {
-  data: Record<string, any>;
+  data: Record<string, unknown>;
 
   isDarkMode: boolean;
   shouldSwapButton: boolean;
@@ -12,12 +12,12 @@ interface AppState {
   lastLocation: string;
   githubVersion: boolean;
   realtimeBattleCount: number;
-  lightTheme: Record<string, any>;
-  darkTheme: Record<string, any>;
+  lightTheme: Record<string, unknown>;
+  darkTheme: Record<string, unknown>;
 
-  hydrate: (initial: Record<string, any>) => void;
+  hydrate: (initial: Record<string, unknown>) => void;
   setData: (key: string, value: unknown) => void;
-  getData: (key: string) => any;
+  getData: (key: string) => unknown;
   setDarkMode: (val: boolean) => void;
   setSwapButton: (val: boolean) => void;
   setLastLocation: (val: string) => void;

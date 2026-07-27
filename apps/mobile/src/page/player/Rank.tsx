@@ -6,7 +6,7 @@ import {FlatGrid} from 'react-native-super-grid';
 import {Headline} from 'react-native-paper';
 import {SafeAction} from '../../core';
 
-const renderSeasonInfo = (data: any) => {
+const renderSeasonInfo = (data: Record<string, unknown>) => {
   if (data == null) return null;
   const rank_key = Object.keys(data).find(key => key != 'season');
   if (rank_key == null) return null;
@@ -16,9 +16,12 @@ const renderSeasonInfo = (data: any) => {
   return <Info6Icon data={info} compact />;
 };
 
-const Rank = ({route}: any) => {
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {RootStackParamList} from '@wowsinfo/shared';
+
+const Rank = ({route}: NativeStackScreenProps<RootStackParamList, 'Rank'>) => {
   const {data: list, ship} = useMemo(() => {
-    let l: any[] = [];
+    let l: Array<Record<string, unknown>> = [];
     for (let key in route?.params?.data ?? {}) {
       let curr = route?.params?.data[key];
       curr.season = Number(key);

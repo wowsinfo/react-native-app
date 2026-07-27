@@ -54,7 +54,7 @@ const Stack = createNativeStackNavigator();
 setJSExceptionHandler((e, fatal) => {
   const msg = `JSException [fatal=${fatal}]\n${e.name}\n${e.message}\n${e.stack}`;
   console.log(msg);
-  try { (global as any).__errorLog(msg); } catch (_) {}
+  try { (global as Record<string, unknown>).__errorLog(msg); } catch (_) {}
   if (fatal) {
     showAlert(`${e.name}\n${e.message}`, 'JS');
   }
@@ -63,10 +63,10 @@ setJSExceptionHandler((e, fatal) => {
 setNativeExceptionHandler(e => {
   showAlert(e, 'NATIVE');
   console.log(`NativeException\n${e}`);
-  try { (global as any).__errorLog(`NativeException\n${e}`); } catch (_) {}
+  try { (global as Record<string, unknown>).__errorLog(`NativeException\n${e}`); } catch (_) {}
 });
 
-function showAlert(msg: any, mode: any) {
+function showAlert(msg: string | Error, mode: string) {
   Alert.alert(
     `FATAL ${mode} ERROR`,
     `${msg}\n\nPlease contact developer`,

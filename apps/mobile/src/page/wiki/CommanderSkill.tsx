@@ -16,8 +16,8 @@ const CommanderSkill = () => {
   const initial = useMemo(() => {
     let skill = useAppStore.getState().getData(SAVED.commanderSkill);
     let cloned = copy(skill);
-    let section: any[] = [];
-    cloned.forEach((i: any) => {
+    let section: Array<Record<string, unknown>> = [];
+    cloned.forEach((i: Record<string, unknown>) => {
       let index = i.tier - 1;
       if (!section[index]) {
         section.push({title: `${lang.wiki_skills_tier} ${i.tier}`, data: []});
@@ -30,7 +30,7 @@ const CommanderSkill = () => {
   const [data, setData] = useState(initial);
   const [point, setPoint] = useState<number | string>(19);
 
-  const skillSelected = useCallback((item: any) => {
+  const skillSelected = useCallback((item: Record<string, unknown>) => {
     setPoint(prev => {
       if (item.selected == true) {
         let next = prev;
@@ -52,7 +52,7 @@ const CommanderSkill = () => {
 
   const reset = useCallback(() => {
     setData(d => {
-      d.forEach((i: any) => i.data.forEach((j: any) => delete j.selected));
+      d.forEach((i: Record<string, unknown>) => (i.data as Array<Record<string, unknown>>).forEach((j: Record<string, unknown>) => delete j.selected));
       return [...d];
     });
     setPoint(19);

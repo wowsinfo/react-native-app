@@ -8,7 +8,7 @@ import React from 'react';
 import {Text} from 'react-native-paper';
 
 export interface PriceLabelProps {
-  item: any;
+  item: Record<string, unknown>;
 }
 
 export const PriceLabel = ({item}: PriceLabelProps) => {

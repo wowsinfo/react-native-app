@@ -5,12 +5,12 @@
  */
 
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ViewStyle} from 'react-native';
 import {getThemeBackColour} from '../../value/colour';
 
 export interface FooterPlusProps {
   children: React.ReactNode;
-  style?: any;
+  style?: ViewStyle;
 }
 
 export const FooterPlus = ({children, style}: FooterPlusProps) => {

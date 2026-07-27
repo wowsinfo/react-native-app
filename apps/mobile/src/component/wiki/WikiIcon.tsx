@@ -11,7 +11,7 @@ import {Touchable} from '../common/Touchable';
 import {useAppStore} from '../../store/useAppStore';
 
 export interface WikiIconProps {
-  item?: any;
+  item?: Record<string, unknown>;
   scale?: number;
   warship?: boolean;
   selected?: boolean;
@@ -19,7 +19,7 @@ export interface WikiIconProps {
   themeIcon?: boolean;
   onPress?: () => void;
   onLongPress?: () => void;
-  otherProps?: any;
+  otherProps?: Record<string, unknown>;
 }
 
 export const WikiIcon = ({

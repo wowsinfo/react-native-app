@@ -18,7 +18,7 @@ const renderProgress = (value: number, title: string) => {
   return null;
 };
 
-const WarshipStat = ({profile}: any) => {
+const WarshipStat = ({profile}: {profile: Record<string, unknown>}) => {
   const {mobility, weaponry, concealment, armour} = profile;
   const {anti_aircraft, aircraft, artillery, torpedoes} = weaponry;
 

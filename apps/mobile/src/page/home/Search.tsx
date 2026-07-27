@@ -24,7 +24,7 @@ import {useAppStore} from '../../store/useAppStore';
 import {GREY} from 'react-native-material-color';
 
 const Search = () => {
-  const searchRef = useRef(null);
+  const searchRef = useRef<{focus: () => void}>(null!);
   const prefix = getCurrPrefix();
   const [search, setSearch] = useState('');
   const [server] = useState('');
@@ -60,7 +60,7 @@ const Search = () => {
     clearTimeout(delayedRequest.current);
     delayedRequest.current = setTimeout(async () => {
       const domain = getCurrDomain();
-      const all: any = {player: [], clan: []};
+      const all: {player: unknown[]; clan: unknown[]} = {player: [], clan: []};
       const length = text.length;
 
       if (length > 1 && length < 6) {
@@ -93,7 +93,7 @@ const Search = () => {
     }, 500);
   }, []);
 
-  const renderClan = (clan: any[]) => {
+  const renderClan = (clan: Array<Record<string, unknown>>) => {
     if (clan.length > 0) {
       return (
         <View style={styles.wrap}>
@@ -106,7 +106,7 @@ const Search = () => {
     return null;
   };
 
-  const renderPlayer = (player: any[]) => {
+  const renderPlayer = (player: Array<Record<string, unknown>>) => {
     if (player.length > 0) {
       return (
         <View style={styles.wrap}>
@@ -144,7 +144,7 @@ const Search = () => {
     <WoWsInfo
       hideAds
       title={lang.menu_footer}
-      onPress={() => (searchRef.current as any)?.focus()}>
+      onPress={() => searchRef.current?.focus()}>
       <KeyboardAvoidingView behavior={undefined} style={{flex: 1}}>
         <Searchbar
           ref={searchRef}

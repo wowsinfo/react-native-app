@@ -13,10 +13,10 @@ export type ActionsType = {
   pop: typeof pop;
   popTo: typeof popTo;
   reset: (name: string) => void;
-  refresh: (params?: any) => void;
+  refresh: (params?: Record<string, unknown>) => void;
   readonly currentScene: string;
-  readonly state: {routes: any[]};
-  [scene: string]: any;
+  readonly state: {routes: Array<Record<string, unknown>>};
+  [scene: string]: unknown;
 };
 
 export const Actions: ActionsType = new Proxy(
@@ -25,7 +25,7 @@ export const Actions: ActionsType = new Proxy(
     pop,
     popTo,
     reset: (name: string) => navReset(name),
-    refresh: (params?: any) => navRefresh(params ?? new Date()),
+    refresh: (params?: Record<string, unknown>) => navRefresh(params ?? new Date() as unknown as Record<string, unknown>),
     get currentScene() {
       return getCurrentScene();
     },
@@ -38,7 +38,7 @@ export const Actions: ActionsType = new Proxy(
       if (prop in _target || typeof prop === 'symbol') {
         return _target[prop as keyof typeof _target];
       }
-      return (params?: any) => push(prop as string, params);
+      return (params?: Record<string, unknown>) => push(prop as string, params);
     },
   },
 );

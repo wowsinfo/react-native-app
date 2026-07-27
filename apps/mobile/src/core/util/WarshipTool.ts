@@ -8,7 +8,7 @@ import {
 
 export {getTierList, getTierLabel, getColourWithRange, getKeyByValue};
 
-export const filterShip = (data: any, shipData?: Array<any>) => {
+export const filterShip = (data: Record<string, unknown>, shipData?: Array<Record<string, unknown>>) => {
   const {premium, name, nation, type, tier} = data;
   if (
     premium === false &&
@@ -22,7 +22,7 @@ export const filterShip = (data: any, shipData?: Array<any>) => {
   const fname = name.toLowerCase();
   const fdata = normalise(nation, type, tier);
   const warship = AppGlobalData.get(SAVED.warship) as Record<string, unknown>;
-  const filtered: any[] = [];
+  const filtered: Array<Record<string, unknown>> = [];
   if (shipData != null) {
     for (const ship of shipData) {
       const curr = warship[ship.ship_id];
@@ -45,7 +45,7 @@ export const filterShip = (data: any, shipData?: Array<any>) => {
   return sorted;
 };
 
-const validShip = (curr: any, fname: string, fdata: any, premium: boolean) => {
+const validShip = (curr: Record<string, unknown>, fname: string, fdata: Record<string, unknown>, premium: boolean) => {
   const ftier = fdata.tier,
     fnation = fdata.nation,
     ftype = fdata.type;
@@ -65,10 +65,10 @@ const validShip = (curr: any, fname: string, fdata: any, premium: boolean) => {
   );
 };
 
-const isEmpty = (obj: any) => Object.keys(obj).length === 0;
+const isEmpty = (obj: Record<string, unknown>) => Object.keys(obj).length === 0;
 
-const normalise = (nation: any[], type: any[], tier: any[]) => {
-  const data: any = {nation: {}, type: {}, tier: {}};
+const normalise = (nation: string[], type: string[], tier: string[]) => {
+  const data: Record<string, Record<string, unknown>> = {nation: {}, type: {}, tier: {}};
   nation.forEach(i => {
     const key = getKeyByValue(
       (AppGlobalData.get(SAVED.encyclopedia) as Record<string, unknown>).ship_nations as Record<string, unknown>,

@@ -5,7 +5,7 @@ import {Actions} from '../../core/navigation/Actions';
 
 export const FloatingButton = () => {
   const [menu, setMenu] = useState(false);
-  const [icon, setIcon] = useState<any>({uri: 'Ship'});
+  const [icon, setIcon] = useState<string | {uri: string}>({uri: 'Ship'});
 
   useEffect(() => {
     // @ts-ignore

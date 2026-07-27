@@ -11,7 +11,7 @@ import {Touchable} from '../common/Touchable';
 import {getTintColour} from '../../value/colour';
 
 export interface WarshipCellProps {
-  item: any;
+  item: Record<string, unknown>;
   scale?: number;
   onPress?: () => void;
 }

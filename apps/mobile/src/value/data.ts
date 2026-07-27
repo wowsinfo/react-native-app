@@ -171,8 +171,8 @@ export const validateProVersion = async (showAlert?: boolean) => {
     if (showAlert) {
       throw new Error(lang.iap_no_purchase_history);
     }
-  } catch (err: any) {
-    Alert.alert(err.message);
+  } catch (err: unknown) {
+    Alert.alert((err as Error).message);
   }
 };
 

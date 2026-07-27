@@ -7,7 +7,10 @@ import {lang} from '../../value/lang';
 import {SafeAction, filterShip, bestCellWidthEven} from '../../core';
 import {useAppStore} from '../../store/useAppStore';
 
-const Warship = ({route}: any) => {
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {RootStackParamList} from '@wowsinfo/shared';
+
+const Warship = ({route}: NativeStackScreenProps<RootStackParamList, 'Warship'>) => {
   useEffect(() => {
     setLastLocation('Warship');
     console.log('WIKI - Warship');
@@ -15,7 +18,7 @@ const Warship = ({route}: any) => {
 
   const original = useMemo(() => {
     let warship = useAppStore.getState().getData(SAVED.warship);
-    let sorted: any[] = Object.entries(warship).sort((a: any, b: any) => {
+    let sorted: Array<Record<string, unknown>> = Object.entries(warship).sort((a: [string, Record<string, unknown>], b: [string, Record<string, unknown>]) => {
       if (a[1].new) return -1;
       if (b[1].new) return 1;
       if (a[1].tier === b[1].tier) {
@@ -45,7 +48,7 @@ const Warship = ({route}: any) => {
   }, [route?.params?.filter]);
 
   const updateShip = useCallback(
-    (d: any) => {
+    (d: Record<string, unknown>) => {
       const sorted = filterShip(d);
       if (sorted == null) {
         setData(original);

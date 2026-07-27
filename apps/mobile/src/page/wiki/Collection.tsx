@@ -8,14 +8,17 @@ import {Title, Paragraph} from 'react-native-paper';
 import {getTintTextColour} from '../../value/colour';
 import {useAppStore} from '../../store/useAppStore';
 
-const Collection = ({route}: any) => {
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {RootStackParamList} from '@wowsinfo/shared';
+
+const Collection = ({route}: NativeStackScreenProps<RootStackParamList, 'Collection'>) => {
   useEffect(() => {
     setLastLocation('Collection');
     console.log('WIKI - Collection');
   }, []);
 
   const {data, isCollection, header} = useMemo(() => {
-    let collection: any[] = [];
+    let collection: Array<Record<string, unknown>> = [];
     let coll = false;
     if (route?.params?.item) {
       collection = route?.params?.item;
@@ -28,13 +31,13 @@ const Collection = ({route}: any) => {
     return {data: collection, isCollection: coll, header: h};
   }, [route?.params?.item]);
 
-  const itemOrCollection = useCallback((item: any) => {
+  const itemOrCollection = useCallback((item: Record<string, unknown>) => {
     if (item.card_id) {
       SafeAction('BasicDetail', {item: item});
     } else {
       let id = item.collection_id;
       let saved = useAppStore.getState().getData(SAVED.collection);
-      let collectionItems: any[] = [];
+      let collectionItems: Array<Record<string, unknown>> = [];
       collectionItems.push(saved.collection[id]);
       for (let one in saved.item) {
         let curr = saved.item[one];

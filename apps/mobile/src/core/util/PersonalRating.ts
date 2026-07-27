@@ -32,7 +32,7 @@ const calRating = (
   return Math.min(Number(rating), 9999);
 };
 
-export const getOverallRating = (ships: any): number => {
+export const getOverallRating = (ships: Array<Record<string, unknown>> | undefined): number => {
   if (ships == null) return -1;
   let actualDmg = 0,
     expectedDmg = 0,

@@ -6,7 +6,10 @@ import {SAVED, setLastLocation} from '../../value/data';
 import {SafeAction} from '../../core';
 import {useAppStore} from '../../store/useAppStore';
 
-const Consumable = ({route}: any) => {
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {RootStackParamList} from '@wowsinfo/shared';
+
+const Consumable = ({route}: NativeStackScreenProps<RootStackParamList, 'Consumable'>) => {
   const {upgrade} = route?.params ?? {};
 
   useEffect(() => {
@@ -14,7 +17,7 @@ const Consumable = ({route}: any) => {
   }, [upgrade]);
 
   const consumable = useMemo(() => {
-    let data: any[] = [];
+    let data: Array<Record<string, unknown>> = [];
     let saved = useAppStore.getState().getData(SAVED.consumable);
     for (let key in saved) {
       let curr = saved[key];

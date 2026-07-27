@@ -11,8 +11,8 @@ import {getTierLabel} from '../../core';
 import {lang} from '../../value/lang';
 
 export interface WarshipLabelProps {
-  style?: any;
-  item?: any;
+  style?: Record<string, unknown>;
+  item?: Record<string, unknown>;
 }
 
 export const WarshipLabel = ({style, item}: WarshipLabelProps) => {

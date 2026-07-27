@@ -9,7 +9,7 @@ const tierList: string[] = [];
 const nationList: string[] = [];
 const typeList: string[] = [];
 
-const Filter = ({applyFunc, resetFunc, wiki}: any) => {
+const Filter = ({applyFunc, resetFunc, wiki}: {applyFunc?: (d: Record<string, unknown>) => void; resetFunc?: () => void; wiki?: boolean}) => {
   const [filter, setFilter] = useState(false);
   const [tier, setTier] = useState(lang.wiki_warship_filter_tier);
   const [nation, setNation] = useState(lang.wiki_warship_filter_nation);

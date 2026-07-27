@@ -243,7 +243,7 @@ const Menu = () => {
     }
   });
 
-  const updateBestWidth = useCallback((event: any) => {
+  const updateBestWidth = useCallback((event: {nativeEvent: {layout: {width: number}}}) => {
     const goodWidth = event.nativeEvent.layout.width;
     setBestItemWidth(bestWidth(400, goodWidth));
   }, []);

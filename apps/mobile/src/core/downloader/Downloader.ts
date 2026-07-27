@@ -33,7 +33,7 @@ interface SkillData {
 
 class Downloader {
 
-  private syncStore(key: string, value: any) {
+  private syncStore(key: string, value: unknown) {
     AppGlobalData.set(key, value);
     useAppStore.getState().setData(key, value);
   }
@@ -237,10 +237,10 @@ class Downloader {
     let all = {};
 
     // Download data from Github
-    const model3D: any = await SafeFetch.normal(WikiAPI.Github_Model);
+    const model3D: unknown = await SafeFetch.normal(WikiAPI.Github_Model);
 
     // For Chinese and Japanese users only
-    let JapaneseShips: any = null;
+    let JapaneseShips: Record<string, unknown> | null = null;
     let currLang = getAPILanguage();
     if (currLang.includes('zh') || currLang.includes('ja')) {
       JapaneseShips = await SafeFetch.normal(WikiAPI.Github_Alias);
@@ -314,7 +314,7 @@ class Downloader {
   }
 
   async getCollectionAndItem() {
-    let all: any = {};
+    let all: Record<string, unknown> = {};
 
     const rawCollection = await SafeFetch.get(
       WikiAPI.Collection,

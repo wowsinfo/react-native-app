@@ -21,12 +21,12 @@ import {Actions} from '../../../core/navigation/Actions';
 import {HorizontalBarChart} from 'native-chart-experiment';
 import {useAppStore} from '../../../store/useAppStore';
 
-const renderStatus = (profile: any) => {
+const renderStatus = (profile: Record<string, unknown>) => {
   if (!profile) return null;
   return <WarshipStat profile={profile} />;
 };
 
-const renderSurvivability = (curr: any) => {
+const renderSurvivability = (curr: Record<string, unknown>) => {
   if (!curr) return null;
   let armour = Guard(curr, 'default_profile.armour', null);
   let tier = Guard(curr, 'tier', 0);
@@ -55,7 +55,7 @@ const renderSurvivability = (curr: any) => {
   );
 };
 
-const renderBasic = (curr: any, data: any) => {
+const renderBasic = (curr: Record<string, unknown>, data: Record<string, unknown>) => {
   const {name, model, type, nation, ship_id} = curr;
   const {description} = data;
 
@@ -104,7 +104,7 @@ const renderBasic = (curr: any, data: any) => {
   );
 };
 
-const renderMainBattery = (artillery: any, upgrades: any[]) => {
+const renderMainBattery = (artillery: Record<string, unknown>, upgrades: Array<Record<string, unknown>>) => {
   if (!artillery) return null;
   const {max_dispersion, gun_rate, distance, rotation_time, slots, shells} =
     artillery;
@@ -223,7 +223,7 @@ const renderMainBattery = (artillery: any, upgrades: any[]) => {
   );
 };
 
-const renderSecondary = (secondary: any) => {
+const renderSecondary = (secondary: Record<string, unknown>) => {
   if (!secondary) return null;
   const {distance, slots} = secondary;
   var guns = [];
@@ -263,7 +263,7 @@ const renderSecondary = (secondary: any) => {
   );
 };
 
-const renderTorpedo = (torpedoes: any, upgrades: any[]) => {
+const renderTorpedo = (torpedoes: Record<string, unknown>, upgrades: Array<Record<string, unknown>>) => {
   if (!torpedoes) return null;
   const {
     visibility_dist,
@@ -322,7 +322,7 @@ const renderTorpedo = (torpedoes: any, upgrades: any[]) => {
   );
 };
 
-const renderAADefense = (anti_aircraft: any) => {
+const renderAADefense = (anti_aircraft: Record<string, unknown>) => {
   if (!anti_aircraft) return null;
   const {slots} = anti_aircraft;
   var AAValues = [];
@@ -352,7 +352,7 @@ const renderAADefense = (anti_aircraft: any) => {
   );
 };
 
-const renderMobility = (mobility: any, upgrades: any[]) => {
+const renderMobility = (mobility: Record<string, unknown>, upgrades: Array<Record<string, unknown>>) => {
   if (!mobility) return null;
   const {rudder_time, turning_radius, max_speed} = mobility;
   let speedFlag = Number(max_speed * 1.05).toFixed(0);
@@ -386,7 +386,7 @@ const renderMobility = (mobility: any, upgrades: any[]) => {
   );
 };
 
-const renderConcealment = (concealment: any, upgrades: any[]) => {
+const renderConcealment = (concealment: Record<string, unknown>, upgrades: Array<Record<string, unknown>>) => {
   if (!concealment) return null;
   const {detect_distance_by_plane, detect_distance_by_ship} = concealment;
   let modifier = upgrades.findIndex(u => u === 4265791408) > -1 ? 0.9 : 1;
@@ -416,7 +416,7 @@ const renderConcealment = (concealment: any, upgrades: any[]) => {
   );
 };
 
-const renderUpgrade = (curr: any) => {
+const renderUpgrade = (curr: Record<string, unknown>) => {
   if (!curr) return null;
   let upgrades = Guard(curr, 'upgrades', null);
   let slots = Guard(curr, 'mod_slots', null);
@@ -439,11 +439,11 @@ const renderUpgrade = (curr: any) => {
         horizontal
         contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}>
         {count.map(num => {
-          let all = clone.filter((u: any) => u.slot == num + 1);
+          let all = clone.filter((u: Record<string, unknown>) => u.slot == num + 1);
           return (
             <View style={styles.upgradeView} key={num}>
               <Title style={styles.margin}>{`${num + 1}.`}</Title>
-              {all.map((item: any) => (
+              {all.map((item: Record<string, unknown>) => (
                 <WikiIcon
                   key={item.name}
                   item={item}
@@ -459,7 +459,7 @@ const renderUpgrade = (curr: any) => {
   );
 };
 
-const renderNextShip = (next_ships: any) => {
+const renderNextShip = (next_ships: Record<string, unknown>) => {
   if (!next_ships || Object.keys(next_ships).length == 0) return null;
   var ships = [];
   for (const key in next_ships) ships.push({key: key, exp: next_ships[key]});
@@ -469,7 +469,7 @@ const renderNextShip = (next_ships: any) => {
       <FlatList
         data={ships}
         horizontal
-        keyExtractor={(item: any) => String(item.key)}
+        keyExtractor={(item: Record<string, unknown>) => String(item.key)}
         renderItem={({item}) => {
           let curr = useAppStore.getState().getData(SAVED.warship)[item.key];
           return (
@@ -488,7 +488,7 @@ const renderNextShip = (next_ships: any) => {
   );
 };
 
-const renderAll = (curr: any, upgrades: any[]) => {
+const renderAll = (curr: Record<string, unknown>, upgrades: Array<Record<string, unknown>>) => {
   let module = Guard(curr, 'modules', {} as Record<string, unknown>);
   let hasModule = false;
   for (let id in module) {
@@ -529,9 +529,9 @@ const renderAll = (curr: any, upgrades: any[]) => {
 };
 
 const renderSimilar = (
-  similar: any[],
-  compare: any,
-  onShipPress: (item: any) => void,
+  similar: Array<Record<string, unknown>>,
+  compare: Record<string, unknown>,
+  onShipPress: (item: Record<string, unknown>) => void,
 ) => {
   if (Object.keys(similar).length === 0) return null;
   return (
@@ -561,14 +561,14 @@ const renderSimilar = (
 const efficientDataRequest = async (
   id: string,
   server: string,
-  onData: (d: any) => void,
+  onData: (d: Record<string, unknown>) => void,
 ) => {
   const json = await SafeFetch.get(WoWsAPI.ShipWiki, server, id, langStr());
   const data = Guard(json, 'data', {});
   onData(data);
 };
 
-const getNewModule = (data: any, server: string) => {
+const getNewModule = (data: Record<string, unknown>, server: string) => {
   const {ship_id, module} = data;
   const {
     Artillery,
@@ -598,10 +598,10 @@ const getNewModule = (data: any, server: string) => {
   );
 };
 
-const buildCharts = (similar: any[]) => {
-  let damageChart: any[] = [];
-  let winrateChart: any[] = [];
-  let fragChart: any[] = [];
+const buildCharts = (similar: Array<Record<string, unknown>>) => {
+  let damageChart: Array<Record<string, unknown>> = [];
+  let winrateChart: Array<Record<string, unknown>> = [];
+  let fragChart: Array<Record<string, unknown>> = [];
   for (let ship of similar) {
     let overall = useAppStore.getState().getData(SAVED.pr)[ship.ship_id];
     if (overall == null) continue;
@@ -617,8 +617,8 @@ const buildCharts = (similar: any[]) => {
     {n: lang.warship_avg_frag, d: fragChart, c: '#C94A4D'},
   ];
   return data.map(c => {
-    let names = c.d.map((v: any) => v.x);
-    let values = c.d.map((v: any) => v.y);
+    let names = c.d.map((v: Record<string, unknown>) => v.x);
+    let values = c.d.map((v: Record<string, unknown>) => v.y);
     return (
       <View key={c.n}>
         <SectionTitle center title={c.n} />
@@ -634,29 +634,32 @@ const buildCharts = (similar: any[]) => {
   });
 };
 
-const WarshipDetail = ({route}: any) => {
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {RootStackParamList} from '@wowsinfo/shared';
+
+const WarshipDetail = ({route}: NativeStackScreenProps<RootStackParamList, 'WarshipDetail'>) => {
   const server = useMemo(() => getCurrDomain(), []);
   const currParam = route?.params?.item;
 
   const {curr: initialCurr, similar: initialSimilar} = useMemo(() => {
     let warship = useAppStore.getState().getData(SAVED.warship);
     let similar = Object.entries(warship).filter(
-      (s: any) =>
+      (s: [string, Record<string, unknown>]) =>
         s[1].tier === currParam?.tier &&
         s[1].type === currParam?.type &&
         s[1].ship_id != currParam?.ship_id,
     );
-    similar.forEach((s: any, i: number) => (similar[i] = Object.assign(s[1])));
+    similar.forEach((s: [string, Record<string, unknown>], i: number) => (similar[i] = Object.assign(s[1])));
     return {curr: currParam, similar};
   }, [currParam]);
 
   const [curr, setCurr] = useState(initialCurr);
   const [similar] = useState(initialSimilar);
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<any>({});
-  const [compare, setCompare] = useState<any>(false);
-  const [module, setModule] = useState<any>(null);
-  const upgradesRef = useRef<any[]>([]);
+  const [data, setData] = useState<Record<string, unknown>>({});
+  const [compare, setCompare] = useState<Record<string, unknown> | false>(false);
+  const [module, setModule] = useState<Record<string, unknown> | null>(null);
+  const upgradesRef = useRef<Array<Record<string, unknown>>>([]);
 
   const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const fetchData = useCallback(
@@ -664,7 +667,7 @@ const WarshipDetail = ({route}: any) => {
       setLoading(true);
       clearTimeout(debounceRef.current);
       debounceRef.current = setTimeout(async () => {
-        await efficientDataRequest(id, server, (result: any) => {
+        await efficientDataRequest(id, server, (result: Record<string, unknown>) => {
           const upgrades = Guard(result[id], 'upgrades', []);
           upgradesRef.current = upgrades;
           setData(result[id]);
@@ -723,7 +726,7 @@ const WarshipDetail = ({route}: any) => {
           </View>
         )}
       </ScrollView>
-      {renderSimilar(similar, compare, (item: any) => {
+      {renderSimilar(similar, compare, (item: Record<string, unknown>) => {
         setCurr(item);
         fetchData(item.ship_id);
       })}

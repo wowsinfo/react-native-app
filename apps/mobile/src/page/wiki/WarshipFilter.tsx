@@ -21,7 +21,7 @@ import {useAppStore} from '../../store/useAppStore';
 const MODE = {TIER: 1, NATION: 2, TYPE: 3};
 
 const WarshipFilter = () => {
-  const searchRef = useRef(null);
+  const searchRef = useRef<{focus: () => void}>(null!);
   const scrollRef = useRef<ScrollView>(null);
   const theme = useTheme();
 
@@ -105,7 +105,7 @@ const WarshipFilter = () => {
     <WoWsInfo
       hideAds
       title={lang.wiki_warship_filter_placeholder}
-      onPress={() => (searchRef.current as any)?.focus()}>
+      onPress={() => searchRef.current?.focus()}>
       <TextInput
         label={lang.wiki_warship_filter_placeholder}
         ref={searchRef}

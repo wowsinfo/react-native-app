@@ -24,7 +24,7 @@ const ProVersion = () => {
 
   useEffect(() => {
     const purchaseUpdateSubscription = purchaseUpdatedListener(
-      async (purchase: any) => {
+      async (purchase: Record<string, unknown>) => {
         console.log('purchaseUpdatedListener', purchase);
         const receipt = purchase.transactionReceipt;
         if (receipt) {
@@ -37,7 +37,7 @@ const ProVersion = () => {
       },
     );
 
-    const purchaseErrorSubscription = purchaseErrorListener((error: any) => {
+    const purchaseErrorSubscription = purchaseErrorListener((error: Record<string, unknown>) => {
       console.warn('purchaseErrorListener', error);
     });
 
@@ -51,7 +51,7 @@ const ProVersion = () => {
         const items = await getSubscriptions([sku]);
         console.log(items);
         if (items.length === 1) {
-          const pro: any = items[0];
+          const pro: Record<string, unknown> = items[0];
           setPrice(pro.localizedPrice);
           setDiscountPrice(pro.introductoryPrice);
           setLoading(false);
@@ -68,7 +68,7 @@ const ProVersion = () => {
   const buy = async () => {
     try {
       await requestSubscription(sku, false);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.warn(err.code, err.message);
     }
   };

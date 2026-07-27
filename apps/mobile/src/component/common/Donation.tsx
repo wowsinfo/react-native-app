@@ -22,7 +22,7 @@ const Donation = () => {
       (async () => {
         try {
           const items = await RNIap.getProducts(itemSkus);
-          items.sort((a: any, b: any) => a.price.localeCompare(b.price));
+          items.sort((a: Record<string, unknown>, b: Record<string, unknown>) => (a.price as string).localeCompare(b.price as string));
           setProducts(items);
         } catch (err) {
           console.warn(err);

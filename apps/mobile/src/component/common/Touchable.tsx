@@ -5,16 +5,16 @@
  */
 
 import React from 'react';
-import {View} from 'react-native';
+import {View, ViewStyle} from 'react-native';
 import {TouchableRipple} from 'react-native-paper';
 
 export interface TouchableProps {
-  style?: any;
+  style?: ViewStyle;
   children?: React.ReactNode;
   fill?: boolean;
   onPress?: () => void;
   onLongPress?: () => void;
-  otherProps?: any;
+  otherProps?: Record<string, unknown>;
 }
 
 export const Touchable = ({

@@ -16,10 +16,12 @@ import {getThemeBackColour, getThemeColour, getViewBackColour} from '../../value
 import {View} from 'react-native-animatable';
 import {useAppStore} from '../../store/useAppStore';
 
+import type {ViewStyle} from 'react-native';
+
 export interface WoWsInfoProps {
   children?: React.ReactNode;
   empty?: boolean;
-  style?: any;
+  style?: ViewStyle;
   title?: string;
   onPress?: () => void;
   about?: boolean;

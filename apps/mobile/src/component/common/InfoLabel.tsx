@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, ViewStyle} from 'react-native';
 import {Caption, Text} from 'react-native-paper';
 import {Touchable} from './Touchable';
 
@@ -14,7 +14,7 @@ export interface InfoLabelProps {
   info: string | number;
   left?: boolean;
   right?: boolean;
-  style?: any;
+  style?: ViewStyle;
   onPress?: () => void;
 }
 

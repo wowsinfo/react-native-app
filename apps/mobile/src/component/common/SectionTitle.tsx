@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, ViewStyle} from 'react-native';
 import {getThemeBackColour} from '../../value/colour';
 import {Title, useTheme} from 'react-native-paper';
 
@@ -13,7 +13,7 @@ export interface SectionTitleProps {
   title: string;
   back?: boolean;
   center?: boolean;
-  style?: any;
+  style?: ViewStyle;
   bold?: boolean;
 }
 

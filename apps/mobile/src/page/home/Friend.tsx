@@ -13,14 +13,14 @@ const Friend = () => {
 
   const player = useMemo(() => {
     if (!friendList?.player) return [];
-    const list: any[] = [];
+    const list: Array<Record<string, unknown>> = [];
     for (const ID in friendList.player) list.push(friendList.player[ID]);
     return list;
   }, [friendList]);
 
   const clan = useMemo(() => {
     if (!friendList?.clan) return [];
-    const list: any[] = [];
+    const list: Array<Record<string, unknown>> = [];
     for (const ID in friendList.clan) list.push(friendList.clan[ID]);
     return list;
   }, [friendList]);
@@ -30,7 +30,7 @@ const Friend = () => {
     setGoodWidth(bestWidth(400, newWidth));
   }, []);
 
-  const removeFriend = useCallback((info: any) => {
+  const removeFriend = useCallback((info: Record<string, unknown>) => {
     const str = LOCAL.friendList;
     const allData = JSON.parse(
       JSON.stringify(useAppStore.getState().getData(str)),
@@ -39,7 +39,7 @@ const Friend = () => {
     useAppStore.getState().setData(str, allData);
   }, []);
 
-  const removeClan = useCallback((info: any) => {
+  const removeClan = useCallback((info: Record<string, unknown>) => {
     const str = LOCAL.friendList;
     const allData = JSON.parse(
       JSON.stringify(useAppStore.getState().getData(str)),
@@ -48,11 +48,11 @@ const Friend = () => {
     useAppStore.getState().setData(str, allData);
   }, []);
 
-  const pushToPlayer = useCallback((info: any) => {
+  const pushToPlayer = useCallback((info: Record<string, unknown>) => {
     SafeAction('Statistics', {info: info});
   }, []);
 
-  const pushToClan = useCallback((info: any) => {
+  const pushToClan = useCallback((info: Record<string, unknown>) => {
     SafeAction('ClanInfo', {info: info});
   }, []);
 

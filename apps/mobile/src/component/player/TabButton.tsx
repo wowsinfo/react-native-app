@@ -14,7 +14,7 @@ export interface TabButtonProps {
   icon: IconSource;
   disabled?: boolean;
   onPress?: () => void;
-  otherProps?: any;
+  otherProps?: Record<string, unknown>;
 }
 
 export const TabButton = ({

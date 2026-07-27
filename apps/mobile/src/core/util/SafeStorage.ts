@@ -10,7 +10,7 @@ export class SafeStorage {
    * @param {string} key
    * @param {any} value
    */
-  static async get(key: string, value: any) {
+  static async get(key: string, value: unknown) {
     const data = await AsyncStorage.getItem(key);
     if (data) {
       // Return parsed value
@@ -27,7 +27,7 @@ export class SafeStorage {
    * @param {string} key
    * @param {any} value
    */
-  static set(key: string, value: any) {
+  static set(key: string, value: unknown) {
     // Stringify values to json format
     AsyncStorage.setItem(key, JSON.stringify(value));
   }

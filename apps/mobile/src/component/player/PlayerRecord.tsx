@@ -9,7 +9,7 @@ import {lang} from '../../value/lang';
 import {SectionTitle} from '../common/SectionTitle';
 import {useAppStore} from '../../store/useAppStore';
 
-const renderMax = (data: any, goodWidth: number) => {
+const renderMax = (data: Record<string, unknown>, goodWidth: number) => {
   const {num, id, name} = data;
   if (!id) return null;
   const ship = useAppStore.getState().getData(SAVED.warship)[id];
@@ -29,7 +29,7 @@ const renderMax = (data: any, goodWidth: number) => {
   );
 };
 
-const renderRecord = (item: any, goodWidth: number) => {
+const renderRecord = (item: Record<string, unknown>, goodWidth: number) => {
   const {name, data} = item;
   const {frags, max_frags_battle, max_frags_ship_id, hits, shots} = data;
   if (!max_frags_ship_id) return null;
@@ -63,7 +63,7 @@ const renderRecord = (item: any, goodWidth: number) => {
   );
 };
 
-const PlayerRecord = ({data}: any) => {
+const PlayerRecord = ({data}: {data: Record<string, unknown>}) => {
   const [goodWidth, setGoodWidth] = useState(bestWidth(400));
 
   const updateBestWidth = useCallback((event: LayoutChangeEvent) => {

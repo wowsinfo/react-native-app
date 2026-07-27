@@ -144,7 +144,7 @@ const Settings = () => {
   }, [tintColour, theme, store]);
 
   const updateTint = useCallback(
-    (tint: any) => {
+    (tint: Record<string, unknown>) => {
       setTintColour(tint);
       theme.colors.primary = tint[500];
       theme.colors.secondary = tint[300];
@@ -215,7 +215,7 @@ const Settings = () => {
     }
   };
 
-  const renderAPILanguage = (langList: any) => {
+  const renderAPILanguage = (langList: Record<string, unknown>) => {
     const langData = Object.keys(langList).sort();
     return (
       <View>

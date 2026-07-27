@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import {List, Caption, Text, useTheme} from 'react-native-paper';
 import {SafeAction} from '../../core';
 
-const PlayerCell = ({item, player, clan, width}: any) => {
+const PlayerCell = ({item, player, clan, width}: {item: Record<string, unknown>; player?: boolean; clan?: boolean; width?: number}) => {
   const theme = useTheme();
   const idColor = {color: theme.colors.onSurface};
 

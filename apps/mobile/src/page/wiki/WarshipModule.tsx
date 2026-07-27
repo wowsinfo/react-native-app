@@ -18,7 +18,10 @@ const normaliseKey = (key: string) => {
   return name;
 };
 
-const WarshipModule = ({route}: any) => {
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {RootStackParamList} from '@wowsinfo/shared';
+
+const WarshipModule = ({route}: NativeStackScreenProps<RootStackParamList, 'WarshipModule'>) => {
   const {ship_id, modules_tree} = route?.params?.data ?? {};
   const server = useMemo(() => getCurrDomain(), []);
 
@@ -41,11 +44,11 @@ const WarshipModule = ({route}: any) => {
     let moduleName = useAppStore
       .getState()
       .getData(SAVED.encyclopedia).ship_modules;
-    let result: any[] = [];
+    let result: Array<Record<string, unknown>> = [];
     for (let key in modules) {
       let curr = modules[key];
       if (curr.length > 1) {
-        let sorted = [...curr].sort((a: any, b: any) => {
+        let sorted = [...curr].sort((a: Record<string, unknown>, b: Record<string, unknown>) => {
           let aM = tree[a];
           let bM = tree[b];
           if (aM.price_xp !== bM.price_xp) return aM.price_xp - bM.price_xp;
@@ -60,7 +63,7 @@ const WarshipModule = ({route}: any) => {
     return result;
   }, [route?.params?.data, tree]);
 
-  const updateModule = useCallback((t: any, ID: string) => {
+  const updateModule = useCallback((t: Record<string, unknown>, ID: string) => {
     setModule(prev => ({...prev, [t[ID].type]: ID}));
   }, []);
 

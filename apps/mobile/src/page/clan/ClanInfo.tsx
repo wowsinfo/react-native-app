@@ -21,10 +21,12 @@ import {getTintColour} from '../../value/colour';
 import {lang} from '../../value/lang';
 import {FlatGrid} from 'react-native-super-grid';
 import {useAppStore} from '../../store/useAppStore';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {RootStackParamList} from '@wowsinfo/shared';
 
-const ClanInfo = ({route}: any) => {
+const ClanInfo = ({route}: NativeStackScreenProps<RootStackParamList, 'ClanInfo'>) => {
   const {clan_id, tag, server} = route?.params?.info ?? {};
-  const [info, setInfo] = useState<any>(false);
+  const [info, setInfo] = useState<Record<string, unknown> | false>(false);
   const [valid, setValid] = useState(clan_id != null);
   const [canBeFriend, setCanBeFriend] = useState(() => {
     if (clan_id == null) return true;
@@ -68,7 +70,7 @@ const ClanInfo = ({route}: any) => {
   );
 
   const pushToPlayer = useCallback(
-    (item: any) => {
+    (item: Record<string, unknown>) => {
       item.nickname = item.account_name;
       item.server = server;
       SafeAction('Statistics', {info: item});
@@ -108,7 +110,7 @@ const ClanInfo = ({route}: any) => {
   } = info;
 
   const memberInfo = Object.values(members).sort(
-    (a: any, b: any) => a.joined_at - b.joined_at,
+    (a: Record<string, unknown>, b: Record<string, unknown>) => (a.joined_at as number) - (b.joined_at as number),
   );
 
   return (
@@ -157,7 +159,7 @@ const ClanInfo = ({route}: any) => {
         )}
         data={memberInfo}
         itemDimension={300}
-        renderItem={({item}: any) => (
+        renderItem={({item}: {item: Record<string, unknown>}) => (
           <List.Item
             title={item.account_name}
             description={humanTimeString(item.joined_at)}

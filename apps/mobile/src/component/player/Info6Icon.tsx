@@ -10,7 +10,7 @@ import {IconLabel} from './IconLabel';
 import {roundTo, bestWidth} from '../../core';
 
 export interface Info6IconProps {
-  data?: any;
+  data?: Record<string, unknown>;
   compact?: boolean;
   topOnly?: boolean;
 }

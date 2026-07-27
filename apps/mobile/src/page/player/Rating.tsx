@@ -46,7 +46,7 @@ export const Rating = () => {
         </View>
         <SectionTitle title={lang.rating_scale} />
         {ratingRange.map((v, i) => {
-          const color: any = {color: ratingColours[i], fontWeight: 'bold'};
+          const color: Record<string, unknown> = {color: ratingColours[i], fontWeight: 'bold'};
           return (
             <View style={range} key={v}>
               <Text style={color}>{ratingComments[i]}</Text>

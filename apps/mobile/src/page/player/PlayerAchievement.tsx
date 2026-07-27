@@ -14,7 +14,7 @@ interface PlayerAchievementProps {
 
 export const PlayerAchievement = ({route}: PlayerAchievementProps) => {
   const {data} = route?.params ?? {};
-  const [displayData, setDisplayData] = useState<Array<any>>([]);
+  const [displayData, setDisplayData] = useState<Array<{data: unknown; num: number}>>([]);
 
   useEffect(() => {
     if (!data) return;

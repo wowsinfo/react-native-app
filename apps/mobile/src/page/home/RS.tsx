@@ -57,14 +57,13 @@ const RS = () => {
   const domain = getCurrDomain();
 
   const [ip, setIp] = useState(() => gs().getData(LOCAL.rsIP) ?? '');
-  const [rs, setRs] = useState<any>(null);
+  const [rs, setRs] = useState<Record<string, unknown> | null>(null);
   const [valid, setValid] = useState(false);
   const [info, setInfo] = useState(false);
   const [loading, setLoading] = useState(true);
   const [battleTime, setBattleTime] = useState('');
-  const [allay, setAllay] = useState<any[]>([]);
-  const [allayInfo, setAllayInfo] = useState({});
-  const [enemy, setEnemy] = useState<any[]>([]);
+  const [allay, setAllay] = useState<Array<Record<string, unknown>>>([]);
+  const [enemy, setEnemy] = useState<Array<Record<string, unknown>>>([]);
   const [enemyInfo, setEnemyInfo] = useState({});
 
   const intervalRef = useRef<ReturnType<typeof setInterval>>(undefined);
@@ -96,11 +95,11 @@ const RS = () => {
   }, []);
 
   const appendExtraInfo = useCallback(
-    async (player: any) => {
+    async (player: Record<string, unknown>) => {
       const {name, shipId} = player;
       if (name.startsWith(':')) return player;
       let idInfo = await SafeFetch.get(WoWsAPI.PlayerSearch, domain, name);
-      let playerID: any = Guard(idInfo, 'data.0', null);
+      let playerID: Record<string, unknown> | null = Guard(idInfo, 'data.0', null);
       if (playerID != null) {
         player.ship_id = player.shipId;
         delete player.shipId;
@@ -134,8 +133,8 @@ const RS = () => {
             setLoading(true);
             setBattleTime(data.dateTime);
             const vehicles = data.vehicles;
-            let allayList: any[] = [];
-            let enemyList: any[] = [];
+            let allayList: Array<Record<string, unknown>> = [];
+            let enemyList: Array<Record<string, unknown>> = [];
             for (const v of vehicles) {
               setTimeout(async () => {
                 const player = await appendExtraInfo(v);
@@ -164,7 +163,7 @@ const RS = () => {
     [battleTime, appendExtraInfo],
   );
 
-  const renderPlayerCell = useCallback((info: any) => {
+  const renderPlayerCell = useCallback((info: Record<string, unknown>) => {
     const {nickname, name} = info;
     let pName = SafeValue(nickname, name);
     info.server = getCurrServer();
@@ -191,8 +190,8 @@ const RS = () => {
     if (loading) return <LoadingIndicator />;
     let allayRating = getOverallRating(allay);
     let enemyRating = getOverallRating(enemy);
-    const sortedAllay = [...allay].sort((a: any, b: any) => b.ap - a.ap);
-    const sortedEnemy = [...enemy].sort((a: any, b: any) => b.ap - a.ap);
+    const sortedAllay = [...allay].sort((a: Record<string, unknown>, b: Record<string, unknown>) => (b.ap as number) - (a.ap as number));
+    const sortedEnemy = [...enemy].sort((a: Record<string, unknown>, b: Record<string, unknown>) => (b.ap as number) - (a.ap as number));
 
     return (
       <ScrollView>

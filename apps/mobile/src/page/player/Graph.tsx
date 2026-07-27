@@ -7,8 +7,8 @@ import {SafeValue, roundTo} from '../../core';
 import {getTintColour} from '../../value/colour';
 import {useAppStore} from '../../store/useAppStore';
 
-const objToChart = (obj: any, name?: any, min = 0) => {
-  let chart: any = {x: [], y: []};
+const objToChart = (obj: Record<string, unknown>, name?: Record<string, unknown>, min = 0) => {
+  let chart: {x: unknown[]; y: unknown[]} = {x: [], y: []};
   for (let key in obj) {
     let val = obj[key];
     if (val === 0 || val < min) continue;
@@ -19,7 +19,7 @@ const objToChart = (obj: any, name?: any, min = 0) => {
   return chart;
 };
 
-const getAvgTier = (tier: any) => {
+const getAvgTier = (tier: Record<string, unknown>) => {
   let weight = 0;
   let total = 0;
   for (let key in tier) {
@@ -30,13 +30,16 @@ const getAvgTier = (tier: any) => {
   return roundTo(weight / total, 1);
 };
 
-const Graph = ({route}: any) => {
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {RootStackParamList} from '@wowsinfo/shared';
+
+const Graph = ({route}: NativeStackScreenProps<RootStackParamList, 'Graph'>) => {
   const {data} = route?.params ?? {};
 
   const {tier, nation, type} = useMemo(() => {
-    let tierInfo: any = {};
-    let nationInfo: any = {};
-    let typeInfo: any = {};
+    let tierInfo: Record<string, unknown> = {};
+    let nationInfo: Record<string, unknown> = {};
+    let typeInfo: Record<string, unknown> = {};
     for (let ship of data ?? []) {
       const {pvp, ship_id} = ship;
       const {battles} = pvp;

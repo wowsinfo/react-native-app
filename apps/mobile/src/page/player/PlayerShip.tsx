@@ -22,15 +22,17 @@ import {lang} from '../../value/lang';
 import {Button, useTheme} from 'react-native-paper';
 import {getTintColour} from '../../value/colour';
 import {useAppStore} from '../../store/useAppStore';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {RootStackParamList} from '@wowsinfo/shared';
 
-const PlayerShip = ({route}: any) => {
+const PlayerShip = ({route}: NativeStackScreenProps<RootStackParamList, 'PlayerShip'>) => {
   const ships = route?.params?.data;
   const initialRating = route?.params?.rating;
 
   const original = useMemo(() => {
     if (!ships) return [];
     return [...ships].sort(
-      (a: any, b: any) => b.last_battle_time - a.last_battle_time,
+      (a: Record<string, unknown>, b: Record<string, unknown>) => (b.last_battle_time as number) - (a.last_battle_time as number),
     );
   }, [ships]);
 
@@ -74,7 +76,7 @@ const PlayerShip = ({route}: any) => {
   theme.colors.primary = ratingColor;
 
   const updateShip = useCallback(
-    (d: any) => {
+    (d: Record<string, unknown>) => {
       const sorted = filterShip(d, original);
       if (sorted == null) {
         setData(original);
@@ -97,14 +99,14 @@ const PlayerShip = ({route}: any) => {
         }
         setSortStr(v);
         return [
-          ...prev.sort((a: any, b: any) => Guard(b, v, 0) - Guard(a, v, 0)),
+          ...prev.sort((a: Record<string, unknown>, b: Record<string, unknown>) => (Guard(b, v, 0) as number) - (Guard(a, v, 0) as number)),
         ];
       });
     },
     [sortStr],
   );
 
-  const renderShip = useCallback((item: any) => {
+  const renderShip = useCallback((item: Record<string, unknown>) => {
     const ship = useAppStore.getState().getData(SAVED.warship)[item.ship_id];
     return (
       <Touchable

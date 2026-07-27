@@ -9,7 +9,7 @@ import {Space} from '../common/Space';
 import {SectionTitle} from '../common/SectionTitle';
 import {onlyProVersion} from '../../value/data';
 
-const renderShipRecord = (weapon: any) => {
+const renderShipRecord = (weapon: Record<string, unknown>) => {
   const {data, name} = weapon;
   if (data == null) {
     return null;
@@ -36,7 +36,7 @@ const renderShipRecord = (weapon: any) => {
   );
 };
 
-const renderAllShipRecord = (data: any, playerMode: boolean) => {
+const renderAllShipRecord = (data: Record<string, unknown>, playerMode: boolean) => {
   const {aircraft, main_battery, ramming, second_battery, torpedoes} = data;
   let weapons = [
     {name: lang.warship_artillery_main, data: main_battery},
@@ -52,7 +52,7 @@ const renderAllShipRecord = (data: any, playerMode: boolean) => {
   return null;
 };
 
-const renderInfo = (data: any, playerMode: boolean) => {
+const renderInfo = (data: Record<string, unknown>, playerMode: boolean) => {
   console.log(data);
   const {
     art_agro,
@@ -205,11 +205,11 @@ const renderInfo = (data: any, playerMode: boolean) => {
   );
 };
 
-const renderMore = (data: any, playerMode: boolean) => {
+const renderMore = (data: Record<string, unknown>, playerMode: boolean) => {
   return renderInfo(data.pvp, playerMode);
 };
 
-const DetailedInfo = ({data, more: initialMore}: any) => {
+const DetailedInfo = ({data, more: initialMore}: {data: Record<string, unknown>; more: boolean}) => {
   const [more, setMore] = useState(initialMore);
   const [width, setWidth] = useState(currDeviceWidth());
 

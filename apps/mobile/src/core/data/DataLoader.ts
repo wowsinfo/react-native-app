@@ -49,7 +49,7 @@ class DataLoader {
       proVersion,
     } = LOCAL;
 
-    let data: any = {};
+    let data: Record<string, unknown> = {};
     // Manully setting up SAVED section (they are all different)
     this.loadEntry(data, apiLanguage, 'en');
     this.loadEntry(data, userLanguage, lang.getLanguage());
@@ -84,9 +84,9 @@ class DataLoader {
     await this.loadEntry(data, friendList, list);
     const friendInfo = data[friendList];
     if (friendInfo.player == null) {
-      const saved: any = {clan: {}, player: {}};
+      const saved: Record<string, unknown> = {clan: {}, player: {}};
       friendInfo.forEach(
-        (v: any) => (saved.player[v.id] = this.formatConverter(v)),
+        (v: Record<string, unknown>) => (saved.player[v.id as string] = this.formatConverter(v)),
       );
       data[friendList] = saved;
       SafeStorage.set(friendList, saved);
@@ -124,7 +124,7 @@ class DataLoader {
    * Convert old format to new format
    * @param {*} obj
    */
-  static formatConverter(obj: any) {
+  static formatConverter(obj: Record<string, unknown>) {
     if (obj.name != null) {
       obj.nickname = obj.name;
       delete obj.name;
@@ -143,7 +143,7 @@ class DataLoader {
    * @param {*} data
    */
   static async loadSaved() {
-    let data: any = {};
+    let data: Record<string, unknown> = {};
     // SAVED section is about the same
     for (let key in SAVED) {
       // @ts-ignore
@@ -160,7 +160,7 @@ class DataLoader {
    * @param {string} key
    * @param {any} value
    */
-  static async loadEntry(data: any, key: string, value: any) {
+  static async loadEntry(data: Record<string, unknown>, key: string, value: unknown) {
     data[key] = await SafeStorage.get(key, value);
   }
 }

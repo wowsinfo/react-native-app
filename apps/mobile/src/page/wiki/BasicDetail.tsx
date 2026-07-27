@@ -5,7 +5,7 @@ import {Title, Paragraph, Caption} from 'react-native-paper';
 import {WikiIcon, WoWsInfo, PriceLabel} from '../../component';
 import {getTintTextColour} from '../../value/colour';
 
-const renderDetail = (item: any) => {
+const renderDetail = (item: Record<string, unknown>) => {
   const {container, label} = styles;
   let title = [label, getTintTextColour()];
 
@@ -68,7 +68,10 @@ const renderDetail = (item: any) => {
   }
 };
 
-const BasicDetail = ({route}: any) => {
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {RootStackParamList} from '@wowsinfo/shared';
+
+const BasicDetail = ({route}: NativeStackScreenProps<RootStackParamList, 'BasicDetail'>) => {
   const {item} = route?.params ?? {};
   console.log(item);
 

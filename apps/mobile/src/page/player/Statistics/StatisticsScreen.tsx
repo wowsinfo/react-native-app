@@ -30,8 +30,10 @@ import {
 import {getTintColour} from '../../../value/colour';
 import {lang} from '../../../value/lang';
 import {useAppStore} from '../../../store/useAppStore';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {RootStackParamList} from '@wowsinfo/shared';
 
-const Statistics = ({route}: any) => {
+const Statistics = ({route}: NativeStackScreenProps<RootStackParamList, 'Statistics'>) => {
   const theme = useTheme();
   const ID = Guard(route, 'params.info.account_id', null);
   const {account_id, nickname, server} = route?.params?.info ?? {};
@@ -52,12 +54,12 @@ const Statistics = ({route}: any) => {
   const [clan, setClan] = useState('');
   const [currRank, setCurrRank] = useState(0);
   const [rating, setRating] = useState(0);
-  const [achievement, setAchievement] = useState<any>(false);
-  const [rank, setRank] = useState<any>(false);
-  const [rankShip, setRankShip] = useState<any>(false);
-  const [ship, setShip] = useState<any>(false);
-  const [basic, setBasic] = useState<any>(false);
-  const [graph, setGraph] = useState<any>(false);
+  const [achievement, setAchievement] = useState<Record<string, unknown> | false>(false);
+  const [rank, setRank] = useState<Record<string, unknown> | false>(false);
+  const [rankShip, setRankShip] = useState<Record<string, unknown> | false>(false);
+  const [ship, setShip] = useState<Record<string, unknown> | false>(false);
+  const [basic, setBasic] = useState<Record<string, unknown> | false>(false);
+  const [graph, setGraph] = useState<unknown[] | false>(false);
   const [showMore, setShowMore] = useState(false);
   const [ratingColor, setRatingColor] = useState('#607D8B');
 

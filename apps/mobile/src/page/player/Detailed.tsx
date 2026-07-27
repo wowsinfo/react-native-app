@@ -27,7 +27,7 @@ const normalise = (diff: number, digit: number) => {
   return `+${rounded}`;
 };
 
-const renderNumberDiff = (data: any, overall: any) => {
+const renderNumberDiff = (data: Record<string, unknown>, overall: Record<string, unknown>) => {
   if (overall == null || data == null) return null;
   const {battles, wins, damage_dealt, frags} = data;
   const {average_damage_dealt, average_frags, win_rate} = overall;
@@ -57,7 +57,10 @@ const renderNumberDiff = (data: any, overall: any) => {
   );
 };
 
-const Detailed = ({route}: any) => {
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {RootStackParamList} from '@wowsinfo/shared';
+
+const Detailed = ({route}: NativeStackScreenProps<RootStackParamList, 'PlayerShipDetail'>) => {
   const [data] = useState(route?.params?.data);
   const theme = useTheme();
   const store = useAppStore.getState();

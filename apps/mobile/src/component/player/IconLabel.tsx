@@ -8,11 +8,13 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {IconButton, Text, useTheme} from 'react-native-paper';
 
+import type {ViewStyle} from 'react-native';
+
 export interface IconLabelProps {
   info: number | string;
-  icon: any;
-  style?: any;
-  otherProps?: any;
+  icon: string;
+  style?: ViewStyle;
+  otherProps?: Record<string, unknown>;
 }
 
 export const IconLabel = ({
