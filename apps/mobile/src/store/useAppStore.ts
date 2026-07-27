@@ -16,12 +16,12 @@ interface AppState {
   darkTheme: Record<string, any>;
 
   hydrate: (initial: Record<string, any>) => void;
-  setData: (key: string, value: any) => void;
+  setData: (key: string, value: unknown) => void;
   getData: (key: string) => any;
   setDarkMode: (val: boolean) => void;
   setSwapButton: (val: boolean) => void;
   setLastLocation: (val: string) => void;
-  setTheme: (light: any, dark: any) => void;
+  setTheme: (light: Record<string, unknown>, dark: Record<string, unknown>) => void;
   setShouldUpdateAPI: (val: boolean) => void;
   setGithubVersion: (val: boolean) => void;
   setRealtimeBattleCount: (val: number) => void;

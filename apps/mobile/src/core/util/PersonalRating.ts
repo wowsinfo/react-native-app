@@ -12,7 +12,7 @@ import {
 
 export {getAP, getRatingRange, getRatingIndex, getColourList, getColour};
 
-const getOverall = (id: string) => AppGlobalData.get(SAVED.pr)[id];
+const getOverall = (id: string) => (AppGlobalData.get(SAVED.pr) as Record<string, unknown>)[id];
 
 const calRating = (
   actualDmg: number,
@@ -45,10 +45,10 @@ export const getOverallRating = (ships: any): number => {
     ship.ap = 0;
     const pvp = SafeValue(ship.pvp, null);
     if (pvp) {
-      const overall = getOverall(ship.ship_id);
+      const overall = getOverall(ship.ship_id) as Record<string, unknown>;
       if (overall == null) continue;
       const {battles, damage_dealt, frags, wins} = pvp;
-      const {average_damage_dealt, average_frags, win_rate} = overall;
+      const {average_damage_dealt, average_frags, win_rate} = overall as {average_damage_dealt: number; average_frags: number; win_rate: number};
       if (battles === 0) continue;
       const currAvgDmg = damage_dealt / battles;
       const currWinrate = (wins / battles) * 100;

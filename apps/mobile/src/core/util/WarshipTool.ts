@@ -21,7 +21,7 @@ export const filterShip = (data: any, shipData?: Array<any>) => {
   }
   const fname = name.toLowerCase();
   const fdata = normalise(nation, type, tier);
-  const warship = AppGlobalData.get(SAVED.warship);
+  const warship = AppGlobalData.get(SAVED.warship) as Record<string, unknown>;
   const filtered: any[] = [];
   if (shipData != null) {
     for (const ship of shipData) {
@@ -71,7 +71,7 @@ const normalise = (nation: any[], type: any[], tier: any[]) => {
   const data: any = {nation: {}, type: {}, tier: {}};
   nation.forEach(i => {
     const key = getKeyByValue(
-      AppGlobalData.get(SAVED.encyclopedia).ship_nations,
+      (AppGlobalData.get(SAVED.encyclopedia) as Record<string, unknown>).ship_nations as Record<string, unknown>,
       i,
     );
     if (key == null) console.error('normalise: Invalid ship nation: ' + i);
@@ -79,7 +79,7 @@ const normalise = (nation: any[], type: any[], tier: any[]) => {
   });
   type.forEach(i => {
     const key = getKeyByValue(
-      AppGlobalData.get(SAVED.encyclopedia).ship_types,
+      (AppGlobalData.get(SAVED.encyclopedia) as Record<string, unknown>).ship_types as Record<string, unknown>,
       i,
     );
     if (key == null) console.error('normalise: Invalid ship type: ' + i);

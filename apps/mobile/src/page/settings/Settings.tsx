@@ -186,8 +186,8 @@ const Settings = () => {
     if (gs().canCheckForUpdate) {
       store.getState().setCanCheckForUpdate(false);
       const v = await SafeFetch.normal(WikiAPI.Github_AppVersion);
-      const version = Guard(v, 'version', null);
-      if (version != null) {
+      const version = Guard(v, 'version', '') as string;
+      if (version) {
         if (version > APP.Version) {
           displayUpdate(true, version);
         } else {

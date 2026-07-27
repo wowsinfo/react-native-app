@@ -1,4 +1,4 @@
-export const copy = (value: any) => {
+export const copy = (value: unknown) => {
   return JSON.parse(JSON.stringify(value));
 };
 

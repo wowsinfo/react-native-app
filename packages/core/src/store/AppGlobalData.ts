@@ -1,5 +1,5 @@
 class AppGlobalData {
-  private static dataSource: any = {};
+  private static dataSource: Record<string, unknown> = {};
   static lightTheme: object = {};
   static darkTheme: object = {};
   static isDarkMode: boolean = false;
@@ -10,7 +10,7 @@ class AppGlobalData {
   static lastLocation: string = "";
   static githubVersion: boolean = false;
 
-  public static setupWith(data: any): void {
+  public static setupWith(data: Record<string, unknown>): void {
     if (data == null) {
       throw new Error(
         "The app cannot continue because there is a problem with the data.",
@@ -19,11 +19,11 @@ class AppGlobalData {
     AppGlobalData.dataSource = data;
   }
 
-  public static get(key: string): any {
+  public static get(key: string): unknown {
     return AppGlobalData.dataSource[key];
   }
 
-  public static set(key: string, value: any): void {
+  public static set(key: string, value: unknown): void {
     if (key == null || value == null) {
       console.error("AppGlobalData.set() cannot set null key or value");
       console.trace();

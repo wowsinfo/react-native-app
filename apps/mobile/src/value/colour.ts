@@ -43,7 +43,7 @@ export const getTintBackgroundColour = () => {
   return colour[500];
 };
 
-export const setTintColour = (tint: any) => {
+export const setTintColour = (tint: unknown) => {
   s().setData(LOCAL.theme, tint);
 };
 

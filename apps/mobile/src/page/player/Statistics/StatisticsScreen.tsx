@@ -134,14 +134,16 @@ const Statistics = ({route}: any) => {
         if (mountedRef.current) setRank(r);
       }
       const shipData = await SafeFetch.get(WoWsAPI.RankShipInfo, domain, id);
-      const ships = Guard(shipData, `data.${id}`, null);
-      if (ships != null) {
-        const formatted: any = {};
+      const ships = Guard(shipData, `data.${id}`, []);
+      if (ships.length > 0) {
+        const formatted: Record<string, unknown[]> = {};
         for (const s of ships) {
-          const {seasons, ship_id} = s;
+          const ss = s as Record<string, unknown>;
+          const seasons = ss.seasons as Record<string, unknown>;
+          const ship_id = ss.ship_id as string;
           for (const season in seasons) {
             if (formatted[season] == null) formatted[season] = [];
-            const curr = seasons[season];
+            const curr = seasons[season] as Record<string, unknown>;
             const {rank_solo, rank_div2, rank_div3} = curr;
             if (rank_solo) {
               curr.pvp = curr.rank_solo;

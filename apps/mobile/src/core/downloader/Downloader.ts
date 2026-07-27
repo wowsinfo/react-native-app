@@ -14,6 +14,23 @@ import {SafeFetch, Guard, SafeStorage} from '..';
 import {lang} from '../../value/lang';
 import {useAppStore} from '../../store/useAppStore';
 
+interface WarshipData {
+  name: string;
+  images?: {small: string};
+  icon?: string;
+  is_premium?: boolean;
+  is_special?: boolean;
+  premium?: boolean;
+  model?: string;
+  new?: boolean;
+  [key: string]: unknown;
+}
+
+interface SkillData {
+  tier: number;
+  [key: string]: unknown;
+}
+
 class Downloader {
 
   private syncStore(key: string, value: any) {
@@ -97,7 +114,7 @@ class Downloader {
       // Check for update cycle, game update, force mode or app update
       if (
         this.checkUpdateCycle() ||
-        this.checkVersionUpdate(currVersion, gameVersion) ||
+        this.checkVersionUpdate(currVersion as string, gameVersion) ||
         force ||
         appVersion !== APP.Version
       ) {
@@ -199,7 +216,7 @@ class Downloader {
       this.domain,
       this.language,
     );
-    let data = Guard(json, 'data', {});
+    let data = Guard(json, 'data', {} as Record<string, unknown>);
     await SafeStorage.set(SAVED.encyclopedia, data);
     return data;
   }
@@ -237,15 +254,15 @@ class Downloader {
         `&page_no=${page + 1}&${this.language}`,
       );
       pageTotal = Guard(json, 'meta.page_total', 1);
-      let data = Guard(json, 'data', {});
+      let data = Guard(json, 'data', {} as Record<string, unknown>);
 
       for (let id in data) {
-        let curr = data[id];
+        let curr = data[id] as WarshipData;
         if (curr.name.includes('[')) {
           delete data[id];
         } else {
           // curr.icon = Guard(curr, 'images.small', '');
-          curr.icon = curr.images.small;
+          curr.icon = (curr.images as {small: string}).small;
           delete curr.images;
           // Orange name or not
           curr.premium = curr.is_premium || curr.is_special;
@@ -285,11 +302,11 @@ class Downloader {
       this.domain,
       `${this.language}`,
     );
-    let data = Guard(json, 'data.battle', {});
+    let data = Guard(json, 'data.battle', {} as Record<string, unknown>);
     if (this.new === true) {
       for (let id in data) {
-        let curr = data[id];
-        curr.new = AppGlobalData.get(SAVED.achievement)[id] ? false : true;
+        let curr = data[id] as WarshipData;
+        curr.new = (AppGlobalData.get(SAVED.achievement) as Record<string, unknown>)[id] ? false : true;
       }
     }
     await SafeStorage.set(SAVED.achievement, data);
@@ -310,18 +327,18 @@ class Downloader {
       `${this.language}`,
     );
 
-    const collection = Guard(rawCollection, 'data', {});
-    const item = Guard(rawItem, 'data', {});
+    const collection = Guard(rawCollection, 'data', {} as Record<string, unknown>);
+    const item = Guard(rawItem, 'data', {} as Record<string, unknown>);
 
     for (let id in item) {
-      let curr = item[id];
-      curr.image = curr.images.small;
+      let curr = item[id] as Record<string, unknown>;
+      curr.image = (curr.images as {small: string}).small;
       delete curr.images;
     }
 
     if (this.new === true) {
       for (let id in collection) {
-        let curr = collection[id];
+        let curr = collection[id] as Record<string, unknown>;
         let isOld = Guard(
           AppGlobalData.get(SAVED.collection),
           `collection.${id}`,
@@ -345,8 +362,8 @@ class Downloader {
       `${this.language}`,
     );
 
-    let skill = Guard(json, 'data', []);
-    let data = Object.keys(skill).map(k => skill[k]);
+    let skill = Guard(json, 'data', {} as Record<string, unknown>);
+    let data = Object.keys(skill).map(k => skill[k] as SkillData);
     data.sort((a, b) => a.tier - b.tier);
 
     await SafeStorage.set(SAVED.commanderSkill, data);
@@ -366,17 +383,17 @@ class Downloader {
         `&page_no=${page + 1}&${this.language}`,
       );
       pageTotal = Guard(json, 'meta.page_total', 1);
-      let data = Guard(json, 'data', {});
+      let data = Guard(json, 'data', {} as Record<string, unknown>);
 
       for (let id in data) {
-        let curr = data[id];
+        let curr = data[id] as WarshipData;
         if (this.new === true) {
-          curr.new = AppGlobalData.get(SAVED.consumable)[id] ? false : true;
+          curr.new = (AppGlobalData.get(SAVED.consumable) as Record<string, unknown>)[id] ? false : true;
         }
 
         if (curr.type === 'Modernization') {
           // Calculate their slots
-          let price = curr.price_credit;
+          let price = curr.price_credit as number;
           let slot = 1;
           while (price > 125000) {
             price /= 2;
@@ -407,7 +424,7 @@ class Downloader {
       `${this.language}`,
     );
 
-    let map = Guard(json, 'data', []);
+    let map = Guard(json, 'data', {} as Record<string, unknown>);
     let data = Object.keys(map).map(k => map[k]);
 
     await SafeStorage.set(SAVED.map, data);
@@ -416,10 +433,10 @@ class Downloader {
 
   async getPR() {
     let res = await SafeFetch.normal(WikiAPI.PersonalRating);
-    let json = Guard(res, 'data', {});
+    let json = Guard(res, 'data', {} as Record<string, unknown>);
     // Cleanup empty key
     for (let key in json) {
-      let curr = json[key];
+      let curr = json[key] as unknown[];
       if (curr.length === 0) {
         delete json[key];
       }
@@ -433,10 +450,10 @@ class Downloader {
     console.log('Reading from local');
     const res = require('../../data/personal_rating.json');
     console.log(res);
-    let json = Guard(res, 'data', {});
+    let json = Guard(res, 'data', {} as Record<string, unknown>);
     // Cleanup empty key
     for (let key in json) {
-      let curr = json[key];
+      let curr = json[key] as unknown[];
       if (curr.length === 0) {
         delete json[key];
       }

@@ -34,6 +34,6 @@ export const getColourWithRange = (
   return rgbToHex(R, G, 0);
 };
 
-export const getKeyByValue = (object: any, value: any): string | undefined => {
+export const getKeyByValue = (object: Record<string, unknown>, value: unknown): string | undefined => {
   return Object.keys(object).find((key) => object[key] === value);
 };

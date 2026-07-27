@@ -29,9 +29,9 @@ const renderStatus = (profile: any) => {
 const renderSurvivability = (curr: any) => {
   if (!curr) return null;
   let armour = Guard(curr, 'default_profile.armour', null);
-  let tier = Guard(curr, 'tier', null);
+  let tier = Guard(curr, 'tier', 0);
   if (!armour) return null;
-  const {flood_prob, range, health} = armour;
+  const {flood_prob, range, health} = armour as {flood_prob?: unknown; range: {min?: number; max?: number}; health: number};
   return (
     <View style={styles.margin}>
       <SectionTitle title={lang.warship_survivability} />
@@ -489,10 +489,10 @@ const renderNextShip = (next_ships: any) => {
 };
 
 const renderAll = (curr: any, upgrades: any[]) => {
-  let module = Guard(curr, 'modules', {});
+  let module = Guard(curr, 'modules', {} as Record<string, unknown>);
   let hasModule = false;
   for (let id in module) {
-    if (module[id].length > 1) {
+    if ((module[id] as unknown[]).length > 1) {
       hasModule = true;
       break;
     }

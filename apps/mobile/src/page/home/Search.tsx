@@ -69,9 +69,9 @@ const Search = () => {
           domain,
           text,
         );
-        const clanData = Guard(clanResult, 'data', null);
-        if (clanData != null) {
-          clanData.forEach((v: any) => (v.server = getCurrServer()));
+        const clanData = Guard(clanResult, 'data', []);
+        if (clanData.length > 0) {
+          clanData.forEach(v => (v as Record<string, unknown>).server = getCurrServer());
           all.clan = clanData;
           setResult({...all});
         }
@@ -83,9 +83,9 @@ const Search = () => {
           domain,
           text,
         );
-        const playerData = Guard(playerResult, 'data', null);
-        if (playerData != null) {
-          playerData.forEach((v: any) => (v.server = getCurrServer()));
+        const playerData = Guard(playerResult, 'data', []);
+        if (playerData.length > 0) {
+          playerData.forEach(v => (v as Record<string, unknown>).server = getCurrServer());
           all.player = playerData;
           setResult({...all});
         }
